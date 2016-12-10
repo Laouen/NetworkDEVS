@@ -1,0 +1,284 @@
+Coupled
+    {
+    Type = Root
+    Name = top
+    Ports = 0; 0
+    Description = This is a n layers network model using general OSI model structure and implementing particular UDP/IP protocols.\n\n7) Application layer:\n6) Presentation layer:\n5) Session layer:\n4) transport layer: UDP\n3) Network layer: IP\n2) Data Link layer:\n1) Physical: \n\nEven if in this particular implementation there are the seven defined layers in the OSI model, the model can have as many layers as requested due to its modular implementation. This is way it is called a n layer network model.
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = udp 1
+            Ports = 4 ; 4
+            Path = NetworkDEVS/udp_protocol.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -12405 ; -3300
+                Dimension = 675 ; 750
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/udp.svg
+                }
+            Parameters
+                {
+                ip_amount = Val; 1 ; 
+                ip1 = Str; 148.10.25.48 ; 
+                }
+            }
+        Atomic
+            {
+            Name = input 1
+            Ports = 0 ; 1
+            Path = NetworkDEVS/input_stream.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14505 ; -3330
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/input.svg
+                }
+            Parameters
+                {
+                input = Str; ../input/test/udp/1/1.input ; 
+                }
+            }
+        Atomic
+            {
+            Name = udp 2
+            Ports = 4 ; 4
+            Path = NetworkDEVS/udp_protocol.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -12405 ; -7050
+                Dimension = 675 ; 750
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/udp.svg
+                }
+            Parameters
+                {
+                ip_amount = Val; 1 ; 
+                ip1 = Str; 127.10.25.48 ; 
+                }
+            }
+        Atomic
+            {
+            Name = input 2
+            Ports = 0 ; 1
+            Path = NetworkDEVS/input_stream.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -14505 ; -7080
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/input.svg
+                }
+            Parameters
+                {
+                input = Str; ../input/test/udp/1/2.input ; 
+                }
+            }
+        Atomic
+            {
+            Name = ouput 2.1
+            Ports = 1 ; 0
+            Path = NetworkDEVS/output_stream.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8805 ; -6405
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                output = Str; test/udp/1/2.1.output ; 
+                }
+            }
+        Atomic
+            {
+            Name = demux 2
+            Ports = 1 ; 2
+            Path = NetworkDEVS/demultiplexer.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -10530 ; -7080
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                }
+            Parameters
+                {
+                max_id = Val; 2 ; 
+                }
+            }
+        Atomic
+            {
+            Name = ouput 2.0
+            Ports = 1 ; 0
+            Path = NetworkDEVS/output_stream.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8880 ; -7905
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                output = Str; test/udp/1/2.0.output ; 
+                }
+            }
+        Atomic
+            {
+            Name = demux 1
+            Ports = 1 ; 2
+            Path = NetworkDEVS/demultiplexer.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -10455 ; -3330
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                }
+            Parameters
+                {
+                max_id = Val; 2 ; 
+                }
+            }
+        Atomic
+            {
+            Name = ouput 1.0
+            Ports = 1 ; 0
+            Path = NetworkDEVS/output_stream.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8730 ; -4155
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                output = Str; test/udp/1/1.0.output ; 
+                }
+            }
+        Atomic
+            {
+            Name = ouput 1.1
+            Ports = 1 ; 0
+            Path = NetworkDEVS/output_stream.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8730 ; -2505
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                output = Str; test/udp/1/1.1.output ; 
+                }
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  1 ;  2 ; -1
+            PointX = -13725 ; -13725 ; -12540
+            PointY = -3000 ; -3000 ; -3000
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  3 ; 0
+            Sink = Cmp ;  3 ;  3 ; -1
+            PointX = -11625 ; -11325 ; -11325 ; -12900 ; -12900 ; -12540
+            PointY = -2850 ; -2850 ; -4725 ; -4725 ; -6600 ; -6600
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; 0
+            Sink = Cmp ;  3 ;  2 ; -1
+            PointX = -13725 ; -13725 ; -12540
+            PointY = -6750 ; -6750 ; -6750
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  3 ; 0
+            Sink = Cmp ;  1 ;  3 ; -1
+            PointX = -11625 ; -11325 ; -11325 ; -12900 ; -12900 ; -12540
+            PointY = -6600 ; -6600 ; -4725 ; -4725 ; -2850 ; -2850
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  2 ; 0
+            Sink = Cmp ;  6 ;  1 ; -1
+            PointX = -11625 ; -11625 ; -10665
+            PointY = -6750 ; -6750 ; -6750
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  1 ; 0
+            Sink = Cmp ;  7 ;  1 ; -1
+            PointX = -9750 ; -9375 ; -9375 ; -9015
+            PointY = -6900 ; -6900 ; -7575 ; -7575
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  2 ; 0
+            Sink = Cmp ;  5 ;  1 ; -1
+            PointX = -9750 ; -9375 ; -9375 ; -8940
+            PointY = -6600 ; -6600 ; -6075 ; -6075
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  2 ; 0
+            Sink = Cmp ;  8 ;  1 ; -1
+            PointX = -11625 ; -11625 ; -10590
+            PointY = -3000 ; -3000 ; -3000
+            }
+        Line
+            {
+            Source = Cmp ;  8 ;  1 ; 0
+            Sink = Cmp ;  9 ;  1 ; -1
+            PointX = -9675 ; -9150 ; -9150 ; -8865
+            PointY = -3150 ; -3150 ; -3825 ; -3825
+            }
+        Line
+            {
+            Source = Cmp ;  8 ;  2 ; 0
+            Sink = Cmp ;  10 ;  1 ; -1
+            PointX = -9675 ; -9150 ; -9150 ; -8865
+            PointY = -2850 ; -2850 ; -2175 ; -2175
+            }
+        }
+    }
