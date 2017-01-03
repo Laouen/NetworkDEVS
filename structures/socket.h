@@ -2,6 +2,7 @@
 #define socket_h
 
 #include <string>
+#include "ipv4.h"
 
 namespace udp {
   struct Socket {
@@ -10,8 +11,8 @@ namespace udp {
 
     ushort local_port = 0;
     ushort remote_port = 0;
-    std::string local_ip = "";
-    std::string remote_ip = "";
+    IPv4 local_ip;
+    IPv4 remote_ip;
 
     int app_id;
     Status state = Status::IDLE;
@@ -29,13 +30,13 @@ namespace udp {
       app_id = aid;
     }
 
-    Socket(ushort o_local_port, std::string o_local_ip, int o_app_id) {
+    Socket(ushort o_local_port, IPv4 o_local_ip, int o_app_id) {
       app_id = o_app_id;
       local_port = o_local_port;
       local_ip = o_local_ip;
     }
 
-    Socket(ushort o_local_port, std::string o_local_ip, ushort o_remote_port, std::string o_remote_ip, int o_app_id) {
+    Socket(ushort o_local_port, IPv4 o_local_ip, ushort o_remote_port, IPv4 o_remote_ip, int o_app_id) {
       app_id = o_app_id;
       local_port = o_local_port;
       local_ip = o_local_ip;
@@ -66,7 +67,7 @@ namespace udp {
       reading = true;
     }
 
-    void startReadingFrom(ushort port, std::string ip) {
+    void startReadingFrom(ushort port, IPv4 ip) {
       remote_port = port;
       remote_ip = ip;
       reading_from = true;
@@ -78,19 +79,19 @@ namespace udp {
 
       if (state == Status::BOUND) {
         remote_port = 0;
-        remote_ip = "";
+        remote_ip = IPv4();
       }
     }
 
-    bool validLocalAddress(ushort port, std::string ip) {
+    bool validLocalAddress(ushort port, IPv4 ip) {
       return  port == local_port && ip == local_ip;
     }
 
-    bool validRemoteAddress(ushort port, std::string ip) {
+    bool validRemoteAddress(ushort port, IPv4 ip) {
       return port == remote_port && ip == remote_ip;
     }
 
-    bool accept(ushort local_port, std::string local_ip, ushort remote_port, std::string remote_ip) {
+    bool accept(ushort local_port, IPv4 local_ip, ushort remote_port, IPv4 remote_ip) {
       if (validLocalAddress(local_port,local_ip)) {
         if (bound()) {
           return  reading || 

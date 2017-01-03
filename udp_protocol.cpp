@@ -94,8 +94,8 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
   // Datagrams with incorrect dest_ip are thrown away
   ushort local_port = d.header.dest_port;
   ushort remote_port = d.header.src_port;
-  std::string local_ip = d.psd_header.dest_ip;
-  std::string remote_ip = d.psd_header.src_ip;
+  IPv4 local_ip = d.psd_header.dest_ip;
+  IPv4 remote_ip = d.psd_header.src_ip;
   if (existentSocket(local_port,local_ip) && evaluateChecksum(p,d.header.checksum)) {
     udp::Socket& s = sockets[local_port][local_ip];
     // dest is actually src
@@ -111,7 +111,7 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
 void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   ushort port = c.port;
-  std::string ip = c.ip;
+  IPv4 ip = c.ip;
   int app_id = c.app_id;
   
   udp::Socket* s;
@@ -122,7 +122,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /********* CONNECT **************/
   case app::Ctrl::CONNECT:
-    printLog("[upd][API] Connect\n");
+    printLog("[udp][API] Connect\n");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
       sockets[port][ip] = udp::Socket(port,ip,c.remote_port,c.remote_ip,app_id);
@@ -140,7 +140,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /********* BIND **************/
   case app::Ctrl::BIND:
-    printLog("[upd][API] Bind\n");
+    printLog("[udp][API] Bind\n");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
       sockets[port][ip] = udp::Socket(port,ip,app_id);
@@ -159,7 +159,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********** READ_FROM/RECV_FROM ************/
   case app::Ctrl::READ_FROM:
   case app::Ctrl::RECV_FROM:
-    printLog("[upd][API] Read_from/Recv_from\n");
+    printLog("[udp][API] Read_from/Recv_from\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -183,7 +183,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /*********** READ/RECV *************/
   case app::Ctrl::READ:    
   case app::Ctrl::RECV:    
-    printLog("[upd][API] Read/Recv\n");
+    printLog("[udp][API] Read/Recv\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -209,7 +209,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********** WRITE_TO/SEND_TO ************/
   case app::Ctrl::WRITE_TO:
   case app::Ctrl::SEND_TO:
-    printLog("[upd][API] Write_to/Send_to\n");
+    printLog("[udp][API] Write_to/Send_to\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -232,7 +232,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********* WRITE/SEND **************/
   case app::Ctrl::WRITE:
   case app::Ctrl::SEND:
-    printLog("[upd][API] Write/Send\n");
+    printLog("[udp][API] Write/Send\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -255,7 +255,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /************** CLOSE ******************/
   case app::Ctrl::CLOSE:
-    printLog("[upd][API] Close\n");
+    printLog("[udp][API] Close\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invald socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -281,7 +281,7 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
       ips.push_back(c.ip);
     break;
   case ip::Ctrl::REMOVE_IP:
-    for (std::vector<std::string>::iterator i = ips.begin(); i != ips.end(); ++i) {
+    for (std::vector<IPv4>::iterator i = ips.begin(); i != ips.end(); ++i) {
       if (c.ip == *i) ips.erase(i,i+1);
     }
     break;
@@ -308,7 +308,7 @@ void udp_protocol::sendData(const app::Package& payload, const udp::Socket& s, d
   output = Event(datagrams_out.push(dat,t),2);
 }
 
-void udp_protocol::sendDataTo(const app::Package& payload, const udp::Socket& s, ushort remote_port, std::string remote_ip, double t) {
+void udp_protocol::sendDataTo(const app::Package& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
 
   udp::Datagram dat;
   
@@ -355,20 +355,20 @@ ushort udp_protocol::calculateChecksum(const char* payload, ushort count) {
   return ~sum;
 }
 
-bool udp_protocol::existentIP(std::string ip) {
-  for (std::vector<std::string>::iterator i = ips.begin(); i != ips.end(); ++i) {
+bool udp_protocol::existentIP(IPv4 ip) {
+  for (std::vector<IPv4>::iterator i = ips.begin(); i != ips.end(); ++i) {
     if (ip == *i) return true;
   }
 
   return false;
 }
 
-bool udp_protocol::existentSocket(ushort port, std::string ip) {
-  std::map<ushort,std::map<std::string,udp::Socket>>::iterator port_it = sockets.find(port);
+bool udp_protocol::existentSocket(ushort port, IPv4 ip) {
+  std::map<ushort,std::map<IPv4,udp::Socket>>::iterator port_it = sockets.find(port);
   return  port_it != sockets.end() && port_it->second.find(ip) != port_it->second.end();
 }
 
-bool udp_protocol::validAppSocket(ushort port, std::string ip, int app_id) {
+bool udp_protocol::validAppSocket(ushort port, IPv4 ip, int app_id) {
   return  this->existentSocket(port,ip) && sockets[port][ip].app_id == app_id;
 }
 

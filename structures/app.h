@@ -8,6 +8,7 @@
 #include <fstream>
 
 #include "abstract_types.h"
+#include "ipv4.h"
 
 // Application layer structures
 namespace app {
@@ -23,10 +24,10 @@ namespace app {
     // local info
     int app_id;
     ushort port;
-    std::string ip;
+    IPv4 ip;
     // remote info
     ushort remote_port;
-    std::string remote_ip;
+    IPv4 remote_ip;
     
     Package data;
 

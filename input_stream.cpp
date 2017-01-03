@@ -12,10 +12,12 @@ void input_stream::init(double t,...) {
 }
 
 double input_stream::ta(double t) {
+  printLog("[input stream] ta ");
   return _next_time;
 }
 
 void input_stream::dint(double t) {
+  printLog("[input stream] dint ");
   try {
     std::pair<double,app::Control> parsed_line = _parser.next_input();
     _next_time = parsed_line.first - t;
@@ -32,10 +34,12 @@ void input_stream::dint(double t) {
 }
 
 void input_stream::dext(Event x, double t) {
+  printLog("[input stream] dext ");
   throw std::exception();
 }
 
 Event input_stream::lambda(double t) {
+  printLog("[input stream] lambda ");
   return Event(_sent_inputs.push(_next_input,t),0);
 }
 

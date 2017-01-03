@@ -3,32 +3,54 @@
 
 #include <cstdint> // Allows using ushort
 #include <fstream>
+#include <string>
 #include <cstring> // memcpy
+#include <sstream>
+#include <iostream>
 
 struct IPv4 {
 	ushort* ip;
 
   IPv4() {
     ip = new ushort[4];
+    for(int i=0; i<4; ++i)
+      ip[i] = 0;
   }
+
+  IPv4(const std::string& other_ip) {
+    char ch;
+    ip = new ushort[4];
+    std::istringstream strm(other_ip);
+    strm >> ip[0] >> ch >> ip[1] >> ch >> ip[2] >> ch >> ip[3];
+  }
+
+  IPv4(const char* other_ip) {
+    char ch;
+    ip = new ushort[4];
+    std::istringstream strm(other_ip);
+    strm >> ip[0] >> ch >> ip[1] >> ch >> ip[2] >> ch >> ip[3];
+  }
+
   IPv4(ushort* other_ip) {
     ip = new ushort[4];
-    std::memcpy(ip,other_ip,4);
+    for(int i=0; i<4; ++i)
+      ip[i] = other_ip[i];
   }
 
-  IPv4(const IPv4& other) {
+  IPv4(const IPv4& other_ip) {
     ip = new ushort[4];
-    std::memcpy(ip,other.ip,4);
+    for(int i=0; i<4; ++i)
+      ip[i] = other_ip.ip[i];
   }
 
-  bool operator==(const IPv4& other) {
+  bool operator==(const IPv4& other) const {
     bool res = true;
     for(int i=0; i<4; ++i)
       res = res && ip[i] == other.ip[i];
     return res;
   }
 
-  bool operator<(const IPv4& other) {
+  bool operator<(const IPv4& other) const {
     for(int i=0; i<4; ++i) {
       if (ip[i] < other.ip[i])
         return true;
@@ -39,7 +61,7 @@ struct IPv4 {
   }
 
   friend std::ostream& operator<<(std::ostream&, const IPv4&);
-  friend std::istream& operator>>(std::istream&, const IPv4&);
+  friend std::istream& operator>>(std::istream&, IPv4&);
 };
 
 inline std::ostream& operator<<(std::ostream& os, const IPv4& ip) {

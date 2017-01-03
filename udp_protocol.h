@@ -21,6 +21,7 @@
 #include "structures/udp.h"
 #include "structures/app.h"
 #include "structures/ip.h"
+#include "structures/ipv4.h"
 
 /**
  * TODO: use a correct documentation format
@@ -47,8 +48,10 @@ class udp_protocol: public Simulator {
   message_list<udp::Control> multiplexed_out;
   Event output;
 
-  std::map<ushort,std::map<std::string,udp::Socket>> sockets; // max socket amount 2^16 = 65536
-  std::vector<std::string> ips;
+  // TODO: change map<port,map<ip,socket>> to map<ip,map<port,socket>>
+  // is most likely to have one or a lower amount of IPs than ports.
+  std::map<ushort,std::map<IPv4,udp::Socket>> sockets; // max socket amount 2^16 = 65536
+  std::vector<IPv4> ips;
 
   double next_internal;
 
@@ -62,13 +65,13 @@ class udp_protocol: public Simulator {
   void processDatagram(const udp::Datagram&, double );
   void processAppCtrl(const app::Control&, double);
   void sendData(const app::Package&, const udp::Socket&, double);
-  void sendDataTo(const app::Package&, const udp::Socket&, ushort, std::string, double);
+  void sendDataTo(const app::Package&, const udp::Socket&, ushort, IPv4, double);
   bool evaluateChecksum(const app::Package&, ushort);
-  ushort calculateChecksum(const char* , ushort);
+  ushort calculateChecksum(const char*, ushort);
   void processNtwCtrl(const ip::Control&);
-  bool existentIP(std::string);
-  bool existentSocket(ushort, std::string);
-  bool validAppSocket(ushort, std::string, int);
+  bool existentIP(IPv4);
+  bool existentSocket(ushort, IPv4);
+  bool validAppSocket(ushort, IPv4, int);
   bool queuedMsgs();
 
 public:

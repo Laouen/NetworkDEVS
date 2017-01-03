@@ -9,16 +9,16 @@
 
 #include "abstract_types.h"
 #include "app.h"
+#include "ipv4.h"
 
 // transport layer structures
 namespace udp {
 
   enum Ctrl { SUCCESS,INVALID_SOCKET,INVALID_SOCKET_STATE,DELIVERED_PACKAGE };
-  //TODO(to ask): Check the src_ip and dest_ip from where should the transport layer get those ips
-  //TODO: Check lengh and checksum datatypes
+
   struct PseudoHeader : abstract::Header {
-    std::string src_ip = "";
-    std::string dest_ip = "";
+    IPv4 src_ip;
+    IPv4 dest_ip;
     char zeros = 0;
     char protocol = 0; // currently not used
     ushort udp_lenght = 0;

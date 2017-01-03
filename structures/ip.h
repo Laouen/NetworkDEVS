@@ -8,6 +8,7 @@
 #include <fstream>
 
 #include "abstract_types.h"
+#include "ipv4.h"
 
 // network layer structures
 namespace ip {
@@ -16,7 +17,7 @@ namespace ip {
 
   struct Control {
     Ctrl request;
-    std::string ip;
+    IPv4 ip;
 
     Control() {}
     Control(const Control& o) {
