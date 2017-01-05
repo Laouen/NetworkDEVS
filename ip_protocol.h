@@ -31,22 +31,17 @@
 
 class ip_protocol: public Simulator { 
 
-  // data queues1
-  std::queue<udp::Datagram> datagram_in;
-
   // comunication queues
-  std::queue<app::Control> app_ctrl_in;
-  std::queue<ip::Control> ntw_ctrl_in;
+  std::queue<udp::Control> udp_ctrl_in;
+  std::queue<link::Control> link_ctrl_in;
+  // data queues
+  std::queue<udp::Datagram> udp_data_in;
+  std::queue<link::Packet> link_data_in;
 
-  map<>
-  message_list<udp::Datagram> datagrams_out;
-  message_list<udp::Control> multiplexed_out;
+  std::vector<Routing_entry> routing_table;
+  message_list<ip::Packet> datagrams_out;
+  message_list<ip::Control> multiplexed_out;
   Event output;
-
-  // TODO: change map<port,map<ip,socket>> to map<ip,map<port,socket>>
-  // is most likely to have one or a lower amount of IPs than ports.
-  std::map<ushort,std::map<IPv4,udp::Socket>> sockets; // max socket amount 2^16 = 65536
-  std::vector<IPv4> ips;
 
   double next_internal;
 

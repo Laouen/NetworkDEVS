@@ -60,6 +60,13 @@ struct IPv4 {
     return false;
   }
 
+  IPv4 operator&(const IPv4& other) const {
+    IPv4 res;
+    for(int i=0; i<4; ++i)
+      res.ip[i] = ip[i] & other.ip[i];
+    return res;
+  }
+
   friend std::ostream& operator<<(std::ostream&, const IPv4&);
   friend std::istream& operator>>(std::istream&, IPv4&);
 };

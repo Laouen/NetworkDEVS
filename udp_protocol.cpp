@@ -89,7 +89,7 @@ void udp_protocol::exit() {}
 /*********** Main helpers ************************/
 
 void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
-  app::Package p = d.payload;
+  app::Packet p = d.payload;
 
   // Datagrams with incorrect dest_ip are thrown away
   ushort local_port = d.header.dest_port;
@@ -290,7 +290,7 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
 
 /*********** Secondary helpers ************************/
 
-void udp_protocol::sendData(const app::Package& payload, const udp::Socket& s, double t) {
+void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, double t) {
 
   udp::Datagram dat;
   // pseudo header fields
@@ -308,7 +308,7 @@ void udp_protocol::sendData(const app::Package& payload, const udp::Socket& s, d
   output = Event(datagrams_out.push(dat,t),2);
 }
 
-void udp_protocol::sendDataTo(const app::Package& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
+void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
 
   udp::Datagram dat;
   
@@ -327,7 +327,7 @@ void udp_protocol::sendDataTo(const app::Package& payload, const udp::Socket& s,
   output = Event(datagrams_out.push(dat,t),2);
 }
 
-bool udp_protocol::evaluateChecksum(const app::Package& payload, ushort checksum) {
+bool udp_protocol::evaluateChecksum(const app::Packet& payload, ushort checksum) {
 
   ushort new_checksum = ~calculateChecksum(payload.c_str(),payload.length());
   return new_checksum+checksum == 0xffff;

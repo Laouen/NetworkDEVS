@@ -31,7 +31,11 @@ namespace ip {
       nexthop = other.nexthop;
     }
 
-    bool same_subnet() {} // TODO: implement this method
+    bool same_subnet(IPv4 des_ip) {
+      IPv4 dest_subnet = des_ip & netmask; 
+      IPv4 entry_subnet = network & netmask;
+      return dest_subnet == entry_subnet;
+    }
   };
 
   enum Ctrl { ADD_IP, REMOVE_IP };

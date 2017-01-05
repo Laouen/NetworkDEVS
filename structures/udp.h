@@ -14,7 +14,7 @@
 // transport layer structures
 namespace udp {
 
-  enum Ctrl { SUCCESS,INVALID_SOCKET,INVALID_SOCKET_STATE,DELIVERED_PACKAGE };
+  enum Ctrl { SUCCESS,INVALID_SOCKET,INVALID_SOCKET_STATE,DELIVERED_PACKET };
 
   struct PseudoHeader : abstract::Header {
     IPv4 src_ip;
@@ -51,7 +51,7 @@ namespace udp {
   struct Datagram : abstract::Data {
     PseudoHeader psd_header;
     Header header;
-    app::Package payload;
+    app::Packet payload;
 
     Datagram() {}
     Datagram(const Datagram& o) {
@@ -64,7 +64,7 @@ namespace udp {
   struct Control : abstract::Data {
     int app_id;
     Ctrl control;
-    app::Package data;
+    app::Packet data;
 
     Control() {}
     Control(int o_app_id, Ctrl o_control) {
@@ -72,10 +72,10 @@ namespace udp {
       control = o_control;
     }
     
-    Control(int o_app_id, const app::Package& o_data) {
+    Control(int o_app_id, const app::Packet& o_data) {
       app_id = o_app_id;
       data = o_data;
-      control = Ctrl::DELIVERED_PACKAGE;
+      control = Ctrl::DELIVERED_PACKET;
     }
     
     Control(const Control& o) {
@@ -92,7 +92,7 @@ namespace udp {
     case Ctrl::SUCCESS: os << "SUCCESS"; break;
     case Ctrl::INVALID_SOCKET: os << "INVALID_SOCKET"; break;
     case Ctrl::INVALID_SOCKET_STATE: os << "INVALID_SOCKET_STATE"; break;
-    case Ctrl::DELIVERED_PACKAGE: os << "DELIVERED_PACKAGE"; break;
+    case Ctrl::DELIVERED_PACKET: os << "DELIVERED_PACKET"; break;
     }
     return os;
   }
@@ -100,7 +100,7 @@ namespace udp {
   inline std::ostream& operator<<(std::ostream& os, const Control& m) {
     os << "app_id: " << m.app_id << std::endl;
     os << "Ctrol: " << m.control << std::endl;
-    if (m.control == udp::Ctrl::DELIVERED_PACKAGE) {
+    if (m.control == udp::Ctrl::DELIVERED_PACKET) {
       os << "Data: " << m.data << std::endl;
     }
     return os;

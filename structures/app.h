@@ -16,7 +16,7 @@ namespace app {
   // the interface Ctrl was taken from: http://www.chuidiang.com/clinux/sockets/sockets_simp.php#sockets
   enum Ctrl { CONNECT, BIND, READ_FROM, RECV_FROM, READ, RECV, WRITE_TO, SEND_TO, WRITE, SEND, CLOSE };
 
-  typedef std::string Package;
+  typedef std::string Packet;
 
   struct Control : abstract::Data {
     Ctrl request;
@@ -29,7 +29,7 @@ namespace app {
     ushort remote_port;
     IPv4 remote_ip;
     
-    Package data;
+    Packet data;
 
     Control() {}
     Control(const Control& o) {
