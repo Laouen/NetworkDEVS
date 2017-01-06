@@ -64,7 +64,7 @@ void udp_protocol::dext(Event x, double t) {
     ntw_ctrl_in.push(*(ip::Control*)x.value);
     break;
   default:
-    printLog("[ERROR][input stream] invalid port ");
+    printLog("[ERROR][udp protocol] invalid port ");
     printLog(std::to_string(x.port).c_str());
     printLog("\n");
     break;

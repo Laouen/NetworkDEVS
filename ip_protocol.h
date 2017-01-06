@@ -27,6 +27,9 @@
 /* Documentation
  *
  * https://www.iplocation.net/subnet-mask
+ * distance-vector: RIP - peterson pag 243.
+ * Routing: peterson 3.3 pag 240.
+ * for a complete information about IPv4 header: https://en.wikipedia.org/wiki/IPv4 
  */
 
 class ip_protocol: public Simulator { 
@@ -35,8 +38,8 @@ class ip_protocol: public Simulator {
   std::queue<udp::Control> udp_ctrl_in;
   std::queue<link::Control> link_ctrl_in;
   // data queues
-  std::queue<udp::Datagram> udp_data_in;
-  std::queue<link::Packet> link_data_in;
+  std::queue<udp::Datagram> udp_datagram_in;
+  std::queue<ip::Packet> link_packet_in;
 
   std::vector<Routing_entry> routing_table;
   message_list<ip::Packet> datagrams_out;
@@ -47,6 +50,11 @@ class ip_protocol: public Simulator {
 
   /********** TIMES ***************/
   double infinity = std::numeric_limits<double>::max();
+  double process_udp_datagram_time = 0.001;
+  double process_ip_packet_time = 0.001;
+
+  /********* Private methods *********/
+  bool queuedMsgs();
 
 public:
 	ip_protocol(const char *n): Simulator(n) {};
