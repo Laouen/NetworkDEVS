@@ -42,6 +42,10 @@ public:
     return false;
   }
 
+  bool file_open() {
+    return file.is_open();
+  }
+
   std::pair<double,INPUT> next_input() {
     INPUT result;
     double next_time;

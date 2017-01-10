@@ -15,13 +15,16 @@
 #include <limits>
 
 #include "libs/message_list.h"
+#include "libs/parser.h"
+#include "libs/logger.h"
 
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
+#include "structures/ipv4.h"
 #include "structures/udp.h"
 #include "structures/app.h"
 #include "structures/ip.h"
-#include "structures/ipv4.h"
+#include "structures/link.h"
 
 
 /* Documentation
@@ -29,10 +32,18 @@
  * https://www.iplocation.net/subnet-mask
  * distance-vector: RIP - peterson pag 243.
  * Routing: peterson 3.3 pag 240.
- * for a complete information about IPv4 header: https://en.wikipedia.org/wiki/IPv4 
+ * for a complete information about IPv4 header: https://en.wikipedia.org/wiki/IPv4
+ * IPv4 routing documents
+ * https://technet.microsoft.com/en-us/library/dd379495(v=ws.10).aspx // routing table
+ * https://technet.microsoft.com/en-us/library/cc958831.aspx // routing algorithm used
+ * https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/PacketRoutingandDelivery/PacketRoutingandDelivery.html
+ * 
  */
 
 class ip_protocol: public Simulator { 
+
+  // Logger
+  Logger logger;
 
   // comunication queues
   std::queue<udp::Control> udp_ctrl_in;
@@ -41,9 +52,11 @@ class ip_protocol: public Simulator {
   std::queue<udp::Datagram> udp_datagram_in;
   std::queue<ip::Packet> link_packet_in;
 
-  std::vector<Routing_entry> routing_table;
-  message_list<ip::Packet> datagrams_out;
-  message_list<ip::Control> multiplexed_out;
+  std::list<IPv4> host_ips;
+  std::list<ip::Routing_entry> routing_table;
+  message_list<udp::Datagram> datagrams_out;
+  message_list<ip::Control> ip_control_out;
+  message_list<ip::Packet> ip_packet_out;
   Event output;
 
   double next_internal;
@@ -54,7 +67,19 @@ class ip_protocol: public Simulator {
   double process_ip_packet_time = 0.001;
 
   /********* Private methods *********/
-  bool queuedMsgs();
+  // Class state modifiers
+  void processIPPacket(ip::Packet, double);
+  void processUDPDatagram(udp::Datagram, double);
+  void sendPacket(ip::Packet, IPv4, IPv4, double);
+  // Class state non modifiers
+  bool queuedMsgs() const;
+  bool TTLisZero(ushort) const;
+  ushort calculateChecksum(ip::Header) const;
+  bool verifychecksum(ip::Header) const;
+  bool matchesHostIps(IPv4) const;
+  ushort decreaseTTL(ushort) const;
+  bool getBestRoute(IPv4, ip::Routing_entry&) const;
+  bool isBestRoute(ip::Routing_entry, ip::Routing_entry) const;
 
 public:
 	ip_protocol(const char *n): Simulator(n) {};

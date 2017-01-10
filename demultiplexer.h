@@ -15,6 +15,7 @@
 #include "structures/udp.h"
 #include "structures/app.h"
 #include "structures/ip.h"
+#include "structures/link.h"
 
 class demultiplexer: public Simulator { 
   message_list<udp::Control> _sent_inputs;

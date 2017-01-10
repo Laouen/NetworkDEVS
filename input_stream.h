@@ -16,6 +16,7 @@
 #include "structures/udp.h"
 #include "structures/app.h"
 #include "structures/ip.h"
+#include "structures/link.h"
 
 class input_stream: public Simulator { 
 

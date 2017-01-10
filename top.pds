@@ -1,55 +1,105 @@
 Root-Coordinator
  {
-  Simulator
-   {
-    Path = NetworkDEVS/udp_protocol.h
-    Parameters = 1.000000e+00,"148.10.25.48"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/input_stream.h
-    Parameters = "../input/test/udp/1/1.input"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/udp_protocol.h
-    Parameters = 1.000000e+00,"127.10.25.48"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/input_stream.h
-    Parameters = "../input/test/udp/1/2.input"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/output_stream.h
-    Parameters = "test/udp/1/2.1.output"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/demultiplexer.h
-    Parameters = 2.000000e+00
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/output_stream.h
-    Parameters = "test/udp/1/2.0.output"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/demultiplexer.h
-    Parameters = 2.000000e+00
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/output_stream.h
-    Parameters = "test/udp/1/1.0.output"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/output_stream.h
-    Parameters = "test/udp/1/1.1.output"
-   }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = NetworkDEVS/udp_protocol.h
+        Parameters = 1.000000e+00,"168.10.25.48"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/input_stream.h
+        Parameters = "../input/test/udp/1/2.input"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/output_stream.h
+        Parameters = "test/udp/1/2.1.output"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/demultiplexer.h
+        Parameters = 2.000000e+00
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/output_stream.h
+        Parameters = "test/udp/1/2.0.output"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/ip_protocol.h
+        Parameters = 2.000000e+00,"168.10.25.48","127.0.0.1","../input/test/ip/1/2.routing_table"
+       }
+      EIC
+       {
+        (0,0);(5,2)
+       }
+      EOC
+       {
+        (5,2);(0,0)
+       }
+      IC
+       {
+        (0,1);(3,0)
+        (3,1);(2,0)
+        (1,0);(0,1)
+        (3,0);(4,0)
+        (0,2);(5,0)
+        (5,0);(0,2)
+       }
+     }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = NetworkDEVS/udp_protocol.h
+        Parameters = 1.000000e+00,"148.10.25.48"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/input_stream.h
+        Parameters = "../input/test/udp/1/1.input"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/demultiplexer.h
+        Parameters = 2.000000e+00
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/output_stream.h
+        Parameters = "test/udp/1/1.0.output"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/output_stream.h
+        Parameters = "test/udp/1/1.1.output"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/ip_protocol.h
+        Parameters = 2.000000e+00,"148.10.25.48","127.0.0.1","../input/test/ip/1/1.routing_table"
+       }
+      EIC
+       {
+        (0,0);(5,2)
+       }
+      EOC
+       {
+        (5,2);(0,0)
+       }
+      IC
+       {
+        (0,1);(2,0)
+        (1,0);(0,1)
+        (2,1);(4,0)
+        (2,0);(3,0)
+        (0,2);(5,0)
+        (5,0);(0,2)
+       }
+     }
   EIC
    {
    }
@@ -58,15 +108,7 @@ Root-Coordinator
    }
   IC
    {
-    (1,0);(0,1)
-    (0,2);(2,2)
-    (3,0);(2,1)
-    (2,2);(0,2)
-    (2,1);(5,0)
-    (5,0);(6,0)
-    (5,1);(4,0)
-    (0,1);(7,0)
-    (7,0);(8,0)
-    (7,1);(9,0)
+    (0,0);(1,0)
+    (1,0);(0,0)
    }
  }

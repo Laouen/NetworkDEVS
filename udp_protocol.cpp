@@ -64,7 +64,7 @@ void udp_protocol::dext(Event x, double t) {
     ntw_ctrl_in.push(*(ip::Control*)x.value);
     break;
   default:
-    printLog("[ERROR][udp protocol] invalid port ");
+    printLog("[UDP][ERROR] invalid port ");
     printLog(std::to_string(x.port).c_str());
     printLog("\n");
     break;
@@ -122,7 +122,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /********* CONNECT **************/
   case app::Ctrl::CONNECT:
-    printLog("[udp][API] Connect\n");
+    printLog("[UDP][API] Connect\n");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
       sockets[port][ip] = udp::Socket(port,ip,c.remote_port,c.remote_ip,app_id);
@@ -140,7 +140,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /********* BIND **************/
   case app::Ctrl::BIND:
-    printLog("[udp][API] Bind\n");
+    printLog("[UDP][API] Bind\n");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
       sockets[port][ip] = udp::Socket(port,ip,app_id);
@@ -159,7 +159,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********** READ_FROM/RECV_FROM ************/
   case app::Ctrl::READ_FROM:
   case app::Ctrl::RECV_FROM:
-    printLog("[udp][API] Read_from/Recv_from\n");
+    printLog("[UDP][API] Read_from/Recv_from\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -183,7 +183,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /*********** READ/RECV *************/
   case app::Ctrl::READ:    
   case app::Ctrl::RECV:    
-    printLog("[udp][API] Read/Recv\n");
+    printLog("[UDP][API] Read/Recv\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -209,7 +209,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********** WRITE_TO/SEND_TO ************/
   case app::Ctrl::WRITE_TO:
   case app::Ctrl::SEND_TO:
-    printLog("[udp][API] Write_to/Send_to\n");
+    printLog("[UDP][API] Write_to/Send_to\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -232,7 +232,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********* WRITE/SEND **************/
   case app::Ctrl::WRITE:
   case app::Ctrl::SEND:
-    printLog("[udp][API] Write/Send\n");
+    printLog("[UDP][API] Write/Send\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -255,7 +255,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /************** CLOSE ******************/
   case app::Ctrl::CLOSE:
-    printLog("[udp][API] Close\n");
+    printLog("[UDP][API] Close\n");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invald socket
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
@@ -284,6 +284,9 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
     for (std::vector<IPv4>::iterator i = ips.begin(); i != ips.end(); ++i) {
       if (c.ip == *i) ips.erase(i,i+1);
     }
+    break;
+  default:
+    //TODO: trhow an exception
     break;
   }
 }
