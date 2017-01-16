@@ -1,54 +1,86 @@
 #include "ipv4.h"
-#include "ip.h"
+#include "udp.h"
 
 #include <iostream>
 
 using namespace std;
 
-void calculateChecksum(const char* header, ushort count) {
+void printChecksum(const char* header) {
 
   ushort* h = (ushort*)header;
-  ushort vide = h[0];
-  ushort total_length = h[1];
-  ushort identification = h[2];
-  ushort ff = h[3];
-  ushort ttlp = h[4];
-  IPv4 dest_ip(&h[5]);
-  IPv4 src_ip(&h[9]);
+  unsigned char* h2 = (unsigned char*)header;
+  ushort src_port = h[0];
+  ushort dest_port = h[1];
+  ushort length = h[2];
+  IPv4 src_ip(&h[3]);
+  IPv4 dest_ip(&h[7]);
+  ushort udp_lenght = h[11];
+  ushort protocol = h2[24];
+  ushort zeros = h2[25];
 
-  cout << "vide: " << vide << endl;
-  cout << "total_length: " << total_length << endl;
-  cout << "identification: " << identification << endl;
-  cout << "ff: " << ff << endl;
-  cout << "ttlp: " << ttlp << endl;
-  cout << "dest_ip: " << dest_ip.as_string() << endl;
-  cout << "src_ip: " << src_ip.as_string() << endl;
+  cout << "src_port: " << src_port << endl;
+  cout << "dest_port: " << dest_port << endl;
+  cout << "length: " << length << endl;
+  cout << "src_ip: " << src_ip << endl;
+  cout << "dest_ip: " << dest_ip << endl;
+  cout << "udp_lenght: " << udp_lenght << endl;
+  printf("%s%i\n","zeros: ",zeros);
+  printf("%s%i\n","protocol: ",protocol);
 }
 
-const char* transform(const ip::Header& h) {
-  char* foo = new char[25];
-  memcpy(foo, &h.vide, 2);
-  memcpy(&foo[2], &h.total_length, 2);
-  memcpy(&foo[4], &h.identification, 2);
-  memcpy(&foo[6], &h.ff, 2);
-  memcpy(&foo[8], &h.ttlp, 2);
-  memcpy(&foo[10], h.dest_ip.ip, 8);
-  memcpy(&foo[18], h.src_ip.ip, 8);
-  return foo;
+void printHeader(const char* header) {
+
+  ushort* h = (ushort*)header;
+  ushort src_port = h[0];
+  ushort dest_port = h[1];
+  ushort length = h[2];
+
+  cout << "src_port: " << src_port << endl;
+  cout << "dest_port: " << dest_port << endl;
+  cout << "length: " << length << endl;
+}
+
+void printPseudoheader(const char* pseudoheader) {
+  ushort* h = (ushort*)pseudoheader;
+  unsigned char* h2 = (unsigned char*)pseudoheader;
+  IPv4 src_ip(&h[0]);
+  IPv4 dest_ip(&h[4]);
+  ushort udp_lenght = h[8];
+  unsigned char zeros = h2[18];
+  unsigned char protocol = h2[19];
+
+  cout << "src_ip: " << src_ip << endl;
+  cout << "dest_ip: " << dest_ip << endl;
+  cout << "udp_lenght: " << udp_lenght << endl;
+  printf("%s%i\n","zeros: ",zeros);
+  printf("%s%i\n","protocol: ",protocol);
 }
 
 int main() {
 
-  ip::Header h;
-  h.vide = 255;
-  h.total_length = 254;
-  h.identification = 253;
-  h.ff = 252;
-  h.ttlp = 251;
-  h.header_checksum = 250;
-  h.src_ip = "140.0.0.10";
-  h.dest_ip = "150.5.5.5";
+  udp::Datagram d;
+  d.header.src_port = 80;
+  d.header.dest_port = 8080;
+  d.header.length = 15;
+  d.psd_header.src_ip = "150.5.5.10";
+  d.psd_header.dest_ip = "140.0.0.10";
+  d.psd_header.udp_lenght = 8;
+  d.psd_header.protocol = 0xF;
+  d.psd_header.zeros = 0xE;
+  printChecksum(d.headers_c_str());
+  
+  udp::Header h;
+  h.src_port = 80;
+  h.dest_port = 8080;
+  h.length = 15;
+  printHeader(h.c_str());
 
-  calculateChecksum(transform(h), 8);
+  udp::PseudoHeader ph;
+  ph.src_ip = "150.5.5.10";
+  ph.dest_ip = "140.0.0.10";
+  ph.udp_lenght = 8;
+  ph.zeros = 0xF;
+  ph.protocol = 0xF;
+  printPseudoheader(ph.c_str());
   return 0;
 }

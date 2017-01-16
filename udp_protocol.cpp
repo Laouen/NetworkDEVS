@@ -104,7 +104,7 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
   ushort remote_port = d.header.src_port;
   IPv4 local_ip = d.psd_header.dest_ip;
   IPv4 remote_ip = d.psd_header.src_ip;
-  if (existentSocket(local_port,local_ip) && evaluateChecksum(p,d.header.checksum)) {
+  if (existentSocket(local_port,local_ip) && verifyChecksum(d)) {
     udp::Socket& s = sockets[local_port][local_ip];
     // dest is actually src
     if (s.accept(local_port,local_ip,remote_port,remote_ip)) {
@@ -113,6 +113,8 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
       output = Event(multiplexed_out.push(m,t), 1);
       s.stopReading();
     }
+  } else {
+    logger.info("discarted datagram.");
   }
 }
 
@@ -319,11 +321,13 @@ void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, do
   dat.psd_header.src_ip = s.local_ip;
   dat.psd_header.dest_ip = s.remote_ip;
   dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.length();
+  dat.psd_header.zeros = 0x0;
+  dat.psd_header.protocol = 0x0; // Currently not used
   // header fields
   dat.header.src_port = s.local_port;
   dat.header.dest_port = s.remote_port;
   dat.header.length = payload.length();
-  dat.header.checksum = calculateChecksum(payload.c_str(),payload.length());
+  dat.header.checksum = calculateChecksum(dat);
   // data
   dat.payload = payload;
   
@@ -337,29 +341,33 @@ void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, 
   // pseudo header fields
   dat.psd_header.src_ip = s.local_ip;
   dat.psd_header.dest_ip = remote_ip;
-  dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.length();  
+  dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.length();
+  dat.psd_header.zeros = 0x0;
+  dat.psd_header.protocol = 0x0; // Currently not used
   // header fields
   dat.header.src_port = s.local_port;
   dat.header.dest_port = remote_port;
   dat.header.length = payload.length();
-  dat.header.checksum = calculateChecksum(payload.c_str(),payload.length());
+  dat.header.checksum = calculateChecksum(dat);
   // data
   dat.payload = payload;
   
   output = Event(datagrams_out.push(dat,t),2);
 }
 
-bool udp_protocol::evaluateChecksum(const app::Packet& payload, ushort checksum) {
-
-  ushort new_checksum = ~calculateChecksum(payload.c_str(),payload.length());
-  return new_checksum+checksum == 0xffff;
+bool udp_protocol::verifyChecksum(udp::Datagram d) const {
+  logger.debug("Header checksum: " + std::to_string(d.header.checksum));
+  ushort calculated_checksum = ~calculateChecksum(d);
+  logger.debug("Calculated checksum: " + std::to_string(calculated_checksum));
+  return calculated_checksum+d.header.checksum == 0xFFFF;
 }
 
-ushort udp_protocol::calculateChecksum(const char* payload, ushort count) {
+ushort udp_protocol::calculateChecksum(udp::Datagram d) const {
+
+  ushort count = d.headers_size();
 
   long sum = 0;
-  char* addr = (char *)payload;
-
+  char* addr = (char *)d.headers_c_str();
   while( count > 1 )  {
     /*  This is the inner loop */
     sum += *(ushort*)addr++;
@@ -371,7 +379,7 @@ ushort udp_protocol::calculateChecksum(const char* payload, ushort count) {
   sum += *(unsigned char*)addr++;
 
   /*  Fold 32-bit sum to 16 bits */
-  while (sum>>16)
+  while (sum >> 16)
     sum = (sum & 0xffff) + (sum >> 16);
 
   return ~sum;

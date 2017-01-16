@@ -19,8 +19,8 @@ namespace udp {
   struct PseudoHeader : abstract::Header {
     IPv4 src_ip;
     IPv4 dest_ip;
-    char zeros = 0;
-    char protocol = 0; // currently not used
+    unsigned char zeros = 0x0;
+    unsigned char protocol = 0x0; // currently not used
     ushort udp_lenght = 0;
 
     PseudoHeader() {}
@@ -30,6 +30,20 @@ namespace udp {
       udp_lenght = o.udp_lenght;
       protocol = o.protocol;
       zeros = o.zeros;
+    }
+
+    ushort size() {
+      return 20; // this is the current size of header for checksum
+    }
+
+    const char* c_str() {
+      char* foo = new char[this->size()];
+      memcpy(foo, src_ip.ip, 8);
+      memcpy(&foo[8], dest_ip.ip, 8);
+      memcpy(&foo[16], &udp_lenght, 2);
+      memcpy(&foo[18], &zeros, 1);
+      memcpy(&foo[19], &protocol, 1);
+      return foo;
     }
   };
 
@@ -46,6 +60,18 @@ namespace udp {
       length = o.length;
       checksum = o.checksum;
     }
+
+    ushort size() {
+      return 6; // this is the current size of header for checksum
+    }
+
+    const char* c_str() {
+      char* foo = new char[this->size()];
+      memcpy(foo, &src_port, 2);
+      memcpy(&foo[2], &dest_port, 2);
+      memcpy(&foo[4], &length, 2);
+      return foo;
+    }
   };
 
   struct Datagram : abstract::Data {
@@ -58,6 +84,17 @@ namespace udp {
       psd_header = o.psd_header;
       header = o.header;
       payload = o.payload;
+    }
+
+    ushort headers_size() {
+      return header.size()+psd_header.size();
+    }
+
+    const char* headers_c_str() {
+      char* foo = new char[this->headers_size()];
+      memcpy(foo, header.c_str(), header.size());
+      memcpy(&foo[header.size()], psd_header.c_str(), psd_header.size());
+      return foo;
     }
   };
 

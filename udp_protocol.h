@@ -72,8 +72,8 @@ class udp_protocol: public Simulator {
   void processAppCtrl(const app::Control&, double);
   void sendData(const app::Packet&, const udp::Socket&, double);
   void sendDataTo(const app::Packet&, const udp::Socket&, ushort, IPv4, double);
-  bool evaluateChecksum(const app::Packet&, ushort);
-  ushort calculateChecksum(const char*, ushort);
+  bool verifyChecksum(udp::Datagram d) const;
+  ushort calculateChecksum(udp::Datagram d) const;
   void processNtwCtrl(const ip::Control&);
   bool existentIP(IPv4);
   bool existentSocket(ushort, IPv4);

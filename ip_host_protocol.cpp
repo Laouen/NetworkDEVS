@@ -7,7 +7,7 @@ void ip_host_protocol::init(double t,...) {
 
   // TODO: implement same subnet comparizon to know if the destination is in the same
   // subnet or not. If so, the packet is directly send to destination host. If not, the
-  // packet is sent the subnet router. Peterson page 222.
+  // packet is sent the subnet router. Peterson page 222. THIS MUST BE DONE IN LAYER 2
 
   // Note: Currently packet are delivered multiple times as TTL allows becouse there isn't layer two
   // implementation and therefor, all packet are multicasted and returns to the sender how re send the packet
