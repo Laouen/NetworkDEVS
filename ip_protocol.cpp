@@ -14,7 +14,6 @@ void ip_protocol::init(double t,...) {
   // implementation and therefor, all packet are multicasted and returns to the sender how re send the packet
   // affter decreasing TTL field.
 
-  // TODO: Fix bug in TTL decrease algorithm
   // TODO: implement header checksum
 
   // PowerDEVS parameters
