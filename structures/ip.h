@@ -38,6 +38,22 @@ namespace ip {
       src_ip = other.src_ip;
       dest_ip = other.dest_ip;  
     }
+
+    int size() {
+      return 26; // this is the current size of header for checksum
+    }
+
+    const char* c_str() {
+      char* foo = new char[this->size()];
+      memcpy(foo, &vide, 2);
+      memcpy(&foo[2], &total_length, 2);
+      memcpy(&foo[4], &identification, 2);
+      memcpy(&foo[6], &ff, 2);
+      memcpy(&foo[8], &ttlp, 2);
+      memcpy(&foo[10], dest_ip.ip, 8);
+      memcpy(&foo[18], src_ip.ip, 8);
+      return foo;
+    }
   };
 
   struct Packet : abstract::Data {
@@ -91,29 +107,29 @@ namespace ip {
     std::string as_string() const {
       std::string res = "| ";
       res += network.as_string();
-      for(int i=0;i<16-network.as_string().size();++i) res += " ";
+      for(ushort i=0;i<16-network.as_string().size();++i) res += " ";
       res += "\t | ";
       res += netmask.as_string();
-      for(int i=0;i<16-netmask.as_string().size();++i) res += " ";
+      for(ushort i=0;i<16-netmask.as_string().size();++i) res += " ";
       res += "\t | ";
       res += nexthop.as_string();
-      for(int i=0;i<16-nexthop.as_string().size();++i) res += " ";
+      for(ushort i=0;i<16-nexthop.as_string().size();++i) res += " ";
       res += "\t | ";
       res += interface.as_string();
-      for(int i=0;i<16-interface.as_string().size();++i) res += " ";
+      for(ushort i=0;i<16-interface.as_string().size();++i) res += " ";
       res += "\t | ";
       res += std::to_string(metric);
-      for(int i=0;i<5-std::to_string(metric).size();++i) res += " ";
+      for(ushort i=0;i<5-std::to_string(metric).size();++i) res += " ";
       res += "\t | ";
       res += purpose;
-      for(int i=0;i<30-purpose.size();++i) res += " ";
+      for(ushort i=0;i<30-purpose.size();++i) res += " ";
       res += "\t | ";
       return res;
     }
 
   };
 
-  enum Ctrl { ADD_IP, REMOVE_IP, SEND_PACKET };
+  enum Ctrl { ADD_IP, REMOVE_IP, SEND_PACKET, ROUTING_ERROR };
 
   struct Control {
     Ctrl request;
@@ -123,6 +139,7 @@ namespace ip {
     IPv4 interface;
 
     Control() {}
+    Control(Ctrl c) : request(c) {}
     Control(const Control& o) {
       request = o.request;
       ip = o.ip;

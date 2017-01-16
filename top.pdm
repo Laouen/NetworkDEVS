@@ -30,7 +30,7 @@ Coupled
                 Dimension = 675; 720
                 Direction = Right
                 Color = 15
-                Icon = %basicelements%coupled.svg
+                Icon = ../atomics/NetworkDEVS/icons/host.svg
                 Window = 5000; 5000; 5000; 5000
                 }
             Parameters
@@ -163,7 +163,7 @@ Coupled
                     {
                     Name = ip 2
                     Ports = 4 ; 4
-                    Path = NetworkDEVS/ip_protocol.h
+                    Path = NetworkDEVS/ip_host_protocol.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -171,7 +171,7 @@ Coupled
                         Dimension = 675 ; 750
                         Direction = Right
                         Color = 15
-                        Icon = ../atomics/NetworkDEVS/icons/ipv4.svg
+                        Icon = ../atomics/NetworkDEVS/icons/ipv4_host.svg
                         }
                     Parameters
                         {
@@ -252,7 +252,7 @@ Coupled
                         Dimension = 675; 720
                         Direction = Right
                         Color = 15
-                        Icon = %basicelements%coupled.svg
+                        Icon = ../atomics/NetworkDEVS/icons/host.svg
                         Window = 5000; 5000; 5000; 5000
                         }
                     Parameters
@@ -385,7 +385,7 @@ Coupled
                             {
                             Name = ip 1
                             Ports = 4 ; 4
-                            Path = NetworkDEVS/ip_protocol.h
+                            Path = NetworkDEVS/ip_host_protocol.h
                             Description = Atomic DEVS model
                             Graphic
                                 {
@@ -393,7 +393,7 @@ Coupled
                                 Dimension = 675 ; 675
                                 Direction = Right
                                 Color = 15
-                                Icon = ../atomics/NetworkDEVS/icons/ipv4.svg
+                                Icon = ../atomics/NetworkDEVS/icons/ipv4_host.svg
                                 }
                             Parameters
                                 {
@@ -474,7 +474,7 @@ Coupled
                                 Dimension = 675; 720
                                 Direction = Right
                                 Color = 15
-                                Icon = %basicelements%coupled.svg
+                                Icon = ../atomics/NetworkDEVS/icons/router.svg
                                 Window = 5000; 5000; 5000; 5000
                                 }
                             Parameters
@@ -518,7 +518,7 @@ Coupled
                                         Dimension = 675 ; 675
                                         Direction = Right
                                         Color = 15
-                                        Icon = ../atomics/NetworkDEVS/icons/ipv4.svg
+                                        Icon = ../atomics/NetworkDEVS/icons/ipv4_router.svg
                                         }
                                     Parameters
                                         {

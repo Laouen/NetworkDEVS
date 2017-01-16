@@ -3,7 +3,7 @@
 void udp_protocol::init(double t,...) {
 
 
-  //TODO: Check for duplicated packets
+  //TODO: Check for duplicated packets that arrives and must be discarted
 
   // PowerDEVS parameters
   va_list parameters;
@@ -299,6 +299,10 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
     for (std::vector<IPv4>::iterator i = ips.begin(); i != ips.end(); ++i) {
       if (c.ip == *i) ips.erase(i,i+1);
     }
+    break;
+  case ip::Ctrl::ROUTING_ERROR:
+    //TODO: send the error to the upper layer
+    logger.info("Routing error received from network layer.");
     break;
   default:
     //TODO: trhow an exception

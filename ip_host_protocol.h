@@ -1,6 +1,6 @@
-//CPP:networkDEVS/ip_protocol.cpp
-#if !defined ip_protocol_h
-#define ip_protocol_h
+//CPP:networkDEVS/ip_host_protocol.cpp
+#if !defined ip_host_protocol_h
+#define ip_host_protocol_h
 
 #include "simulator.h"
 #include "event.h"
@@ -41,7 +41,7 @@
  * 
  */
 
-class ip_protocol: public Simulator { 
+class ip_host_protocol: public Simulator { 
 
   // Logger
   Logger logger;
@@ -55,6 +55,7 @@ class ip_protocol: public Simulator {
 
   std::list<IPv4> host_ips;
   std::list<ip::Routing_entry> routing_table;
+  message_list<udp::Datagram> datagrams_out;
   message_list<ip::Control> ip_control_out;
   message_list<ip::Packet> ip_packet_out;
   Event output;
@@ -64,24 +65,25 @@ class ip_protocol: public Simulator {
 
   /********** TIMES ***************/
   double infinity = std::numeric_limits<double>::max();
+  double process_udp_datagram_time = 0.001;
   double process_ip_packet_time = 0.001;
 
   /********* Private methods *********/
   // Class state modifiers
   void processIPPacket(ip::Packet, double);
+  void routeIPPacket(ip::Packet, double);
+  void processUDPDatagram(udp::Datagram, double);
   void sendPacket(ip::Packet, IPv4, IPv4, double);
   // Class state non modifiers
   bool queuedMsgs() const;
-  bool TTLisZero(ushort) const;
   ushort calculateChecksum(ip::Header h) const;
   bool verifychecksum(ip::Header) const;
   bool matchesHostIps(IPv4) const;
-  ushort decreaseTTL(ushort) const;
   bool getBestRoute(IPv4, ip::Routing_entry&) const;
   bool isBestRoute(ip::Routing_entry, ip::Routing_entry) const;
 
 public:
-	ip_protocol(const char *n): Simulator(n) {};
+	ip_host_protocol(const char *n): Simulator(n) {};
 	void init(double, ...);
 	double ta(double t);
 	void dint(double);

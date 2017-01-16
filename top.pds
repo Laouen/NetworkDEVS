@@ -29,7 +29,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/ip_protocol.h
+        Path = NetworkDEVS/ip_host_protocol.h
         Parameters = "Host 2",2.000000e+00,"168.10.25.48","127.0.0.1","../input/test/ip/1/h2.routing_table"
        }
       EIC
@@ -79,7 +79,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/ip_protocol.h
+        Path = NetworkDEVS/ip_host_protocol.h
         Parameters = "Host 1",2.000000e+00,"148.10.25.48","127.0.0.1","../input/test/ip/1/h1.routing_table"
        }
       EIC

@@ -77,9 +77,6 @@ namespace app {
     else if (a == "SEND") c = Ctrl::SEND;
     else if (a == "CLOSE") c = Ctrl::CLOSE;
     else {
-      printLog("invalid app::Ctrl input: ");
-      printLog(a.c_str());
-      printLog("\n");
       throw std::exception();
     }
     return is;
