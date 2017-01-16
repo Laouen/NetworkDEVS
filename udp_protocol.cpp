@@ -364,10 +364,11 @@ bool udp_protocol::verifyChecksum(udp::Datagram d) const {
 
 ushort udp_protocol::calculateChecksum(udp::Datagram d) const {
 
+  const char* header_ptr = d.headers_c_str();
   ushort count = d.headers_size();
 
   long sum = 0;
-  char* addr = (char *)d.headers_c_str();
+  char* addr = (char *)header_ptr;
   while( count > 1 )  {
     /*  This is the inner loop */
     sum += *(ushort*)addr++;
@@ -382,6 +383,7 @@ ushort udp_protocol::calculateChecksum(udp::Datagram d) const {
   while (sum >> 16)
     sum = (sum & 0xffff) + (sum >> 16);
 
+  delete[] header_ptr;
   return ~sum;
 }
 

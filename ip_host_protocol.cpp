@@ -197,13 +197,13 @@ bool ip_host_protocol::queuedMsgs() const {
           !link_packet_in.empty();
 }
 
-ushort ip_host_protocol::calculateChecksum(ip::Header h) const {
+ushort ip_host_protocol::calculateChecksum(ip::Header header) const {
 
-  const char* header = h.c_str();
-  ushort count = h.size();
+  const char* header_ptr = header.c_str();
+  ushort count = header.size();
 
   long sum = 0;
-  char* addr = (char *)header;
+  char* addr = (char *)header_ptr;
 
   while( count > 1 )  {
     //  This is the inner loop
@@ -219,6 +219,7 @@ ushort ip_host_protocol::calculateChecksum(ip::Header h) const {
   while (sum>>16)
     sum = (sum & 0xffff) + (sum >> 16);
 
+  delete[] header_ptr;
   return ~sum;
 }
 

@@ -92,8 +92,12 @@ namespace udp {
 
     const char* headers_c_str() {
       char* foo = new char[this->headers_size()];
-      memcpy(foo, header.c_str(), header.size());
-      memcpy(&foo[header.size()], psd_header.c_str(), psd_header.size());
+      const char* h = header.c_str(); 
+      const char* ph = psd_header.c_str(); 
+      memcpy(foo, h, header.size());
+      memcpy(&foo[header.size()], ph, psd_header.size());
+      delete[] h;
+      delete[] ph;
       return foo;
     }
   };

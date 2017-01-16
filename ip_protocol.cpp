@@ -164,10 +164,12 @@ bool ip_protocol::TTLisZero(ushort ttlp) const {
 }
 
 ushort ip_protocol::calculateChecksum(ip::Header header) const {
+  
+  const char* header_ptr = header.c_str();
   ushort count = header.size();
 
   long sum = 0;
-  char* addr = (char *)header.c_str();
+  char* addr = (char *)header_ptr;
 
   while( count > 1 )  {
     //  This is the inner loop
@@ -183,6 +185,7 @@ ushort ip_protocol::calculateChecksum(ip::Header header) const {
   while (sum >> 16)
     sum = (sum & 0xffff) + (sum >> 16);
 
+  delete[] header_ptr;
   return ~sum;
 }
 
