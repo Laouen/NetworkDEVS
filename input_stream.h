@@ -10,6 +10,7 @@
 
 #include "libs/message_list.h"
 #include "libs/parser.h"
+#include "libs/logger.h"
 
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
@@ -20,6 +21,7 @@
 
 class input_stream: public Simulator { 
 
+  Logger logger;
   Parser<app::Control> _parser;
   double _next_time;
   message_list<app::Control> _sent_inputs;

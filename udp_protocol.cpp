@@ -1,9 +1,17 @@
 #include "udp_protocol.h"
 
 void udp_protocol::init(double t,...) {
+
+
+  //TODO: Check for duplicated packets
+
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
+
+  // Set logger module name
+  std::string module_name = va_arg(parameters,char*);
+  logger.setModuleName("UDP " + module_name);
 
   // reading initial ips
   int ip_amount = (int)va_arg(parameters,double);
@@ -16,13 +24,13 @@ void udp_protocol::init(double t,...) {
 }
 
 double udp_protocol::ta(double t) {
-  //printLog("[in str] ta\n");
   return next_internal;
 }
 
 void udp_protocol::dint(double t) {
-  //printLog("[in str] dint\n");
 
+  last_transition = t;
+  
   if (!ntw_ctrl_in.empty()) {
     ip::Control c = ntw_ctrl_in.front();
     this->processNtwCtrl(c);
@@ -64,16 +72,16 @@ void udp_protocol::dext(Event x, double t) {
     ntw_ctrl_in.push(*(ip::Control*)x.value);
     break;
   default:
-    printLog("[UDP][ERROR] invalid port ");
-    printLog(std::to_string(x.port).c_str());
-    printLog("\n");
+    logger.error("Invalid port");
     break;
   }
 
   if (next_internal < infinity)
-    next_internal -= t;
+    next_internal -= (t-last_transition);
   else if (this->queuedMsgs()) 
     next_internal = 0;
+
+  last_transition = t;
 }
 
 Event udp_protocol::lambda(double t) {
@@ -122,7 +130,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /********* CONNECT **************/
   case app::Ctrl::CONNECT:
-    printLog("[UDP][API] Connect\n");
+    logger.info("Connect");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
       sockets[port][ip] = udp::Socket(port,ip,c.remote_port,c.remote_ip,app_id);
@@ -132,6 +140,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
       output = Event(multiplexed_out.push(m,t), 1);
     } else {
       // send invalid socket
+      logger.debug("Invalid socket 1");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
     }
@@ -140,7 +149,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /********* BIND **************/
   case app::Ctrl::BIND:
-    printLog("[UDP][API] Bind\n");
+    logger.info("Bind");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
       sockets[port][ip] = udp::Socket(port,ip,app_id);
@@ -150,6 +159,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
       output = Event(multiplexed_out.push(m,t), 1);
     } else {
       // send invalid socket
+      logger.debug("Invalid socket 2");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
     }
@@ -159,9 +169,10 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********** READ_FROM/RECV_FROM ************/
   case app::Ctrl::READ_FROM:
   case app::Ctrl::RECV_FROM:
-    printLog("[UDP][API] Read_from/Recv_from\n");
+    logger.info("Read_from/Recv_from");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
+      logger.debug("Invalid socket 3");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
       break;
@@ -183,9 +194,10 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /*********** READ/RECV *************/
   case app::Ctrl::READ:    
   case app::Ctrl::RECV:    
-    printLog("[UDP][API] Read/Recv\n");
+    logger.info("Read/Recv");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
+      logger.debug("Invalid socket 4");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
       break;
@@ -209,9 +221,10 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********** WRITE_TO/SEND_TO ************/
   case app::Ctrl::WRITE_TO:
   case app::Ctrl::SEND_TO:
-    printLog("[UDP][API] Write_to/Send_to\n");
+    logger.info("Write_to/Send_to");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
+      logger.debug("Invalid socket 5");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
       break;
@@ -232,9 +245,10 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
   /********* WRITE/SEND **************/
   case app::Ctrl::WRITE:
   case app::Ctrl::SEND:
-    printLog("[UDP][API] Write/Send\n");
+    logger.info("Write/Send");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
+      logger.debug("Invalid socket 6");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
       break;
@@ -255,9 +269,10 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
   /************** CLOSE ******************/
   case app::Ctrl::CLOSE:
-    printLog("[UDP][API] Close\n");
+    logger.info("Close");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invald socket
+      logger.debug("Invalid socket 7");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(multiplexed_out.push(m,t), 1);
       break;

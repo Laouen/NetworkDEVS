@@ -15,6 +15,7 @@
 #include <limits>
 
 #include "libs/message_list.h"
+#include "libs/logger.h"
 
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
@@ -36,7 +37,10 @@
  */
 
 
-class udp_protocol: public Simulator { 
+class udp_protocol: public Simulator {
+
+  // Logger
+  Logger logger;
 
   // data queues1
   std::queue<udp::Datagram> datagram_in;
@@ -55,6 +59,7 @@ class udp_protocol: public Simulator {
   std::vector<IPv4> ips;
 
   double next_internal;
+  double last_transition;
 
   /********** TIMES ***************/
   double add_rm_ip_time = 0.001; // takes 1 milliseconds to deliver data to the up layer

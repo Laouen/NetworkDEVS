@@ -2,6 +2,7 @@
 #define parser_h
 
 #include "simulator.h"
+#include "logger.h"
 
 #include <stddef.h>
 #include <cstdint> // Allows to use ushort
@@ -13,12 +14,16 @@ template<class INPUT>
 class Parser {
 private:
   std::ifstream file;
+  Logger logger;
 
 public:
   // Constructors and destructors
-  Parser() {}
+  Parser() {
+    logger.setModuleName("Parser");
+  }
 
   Parser(const char* file_path) {
+    logger.setModuleName("Parser");
     this->open_file(file_path);
   }
 
@@ -31,14 +36,10 @@ public:
   bool open_file(const char* file_path) {
     file.open(file_path);
     if (file.is_open()) {
-      printLog("[Parser] Input file ");
-      printLog(file_path);
-      printLog(" opened.\n");
+      logger.info("Input file opened."); // TODO put file_path
       return true;
     }
-    printLog("faild opening file ");
-    printLog(file_path);
-    printLog("\n");
+    logger.error("Faild opening file "); // TODO put file_path
     return false;
   }
 
@@ -51,7 +52,7 @@ public:
     double next_time;
 
     if (file.eof()) {
-      printLog("[Parser] eof\n");
+      logger.info("End of file.");
       throw std::exception();
     }
 

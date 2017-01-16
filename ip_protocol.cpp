@@ -1,25 +1,40 @@
 #include "ip_protocol.h"
 void ip_protocol::init(double t,...) {
 
-  // Logger init
-  logger.setModuleName("IPv4");
+  // TODO: implement same subnet comparizon to know if the destination is in the same
+  // subnet or not. If so, the packet is directly send to destination host. If not, the
+  // packet is sent the subnet router. Peterson page 222.
+
+  // TODO: packet fragmentation handler.Peterson page 213
+
+  // TODO: Check IP packet format from Peterson page 209.
+  // UPD protocol field number is 17.
+
+  // Note: Currently packet are delivered multiple times as TTL allows becouse there isn't layer two
+  // implementation and therefor, all packet are multicasted and returns to the sender how re send the packet
+  // affter decreasing TTL field.
+
+  // TODO: Fix bug in TTL decrease algorithm
+  // TODO: implement header checksum
 
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
 
+  // Set logger module name
+  std::string module_name = va_arg(parameters,char*);
+  logger.setModuleName("IPv4 " + module_name);
+
   // reading initial host ips
   int ip_amount = (int)va_arg(parameters,double);
-  printLog("cantidad de hot ips: ");
-  printLog(std::to_string(ip_amount).c_str());
-  printLog("\n");
+  logger.info("cantidad de hot ips: " + std::to_string(ip_amount));
   for(int i=0;i<ip_amount;++i){
     host_ips.push_back(va_arg(parameters,char*));
   }
 
+  logger.info("Initial host ips:");
   for(std::list<IPv4>::iterator i = host_ips.begin(); i != host_ips.end(); ++i){
-    printLog(i->as_string().c_str());
-    printLog("\n");
+    logger.info(i->as_string());
   }
 
   // building routing table
@@ -36,13 +51,12 @@ void ip_protocol::init(double t,...) {
       }
     }
   } else {
-    printLog("[IPv4] Error parsing routing table file.\n");
+    logger.error("Error parsing routing table file.");
   }
 
-  printLog("[IPv4] Routing table entries:\n");
+  logger.info("Routing table entries:");
   for (std::list<ip::Routing_entry>::iterator i = routing_table.begin(); i != routing_table.end(); ++i) {
-    printLog(i->as_string().c_str());
-    printLog("\n");
+    logger.info(i->as_string());
   }
 
   next_internal = infinity;
@@ -54,6 +68,8 @@ double ip_protocol::ta(double t) {
 }
 
 void ip_protocol::dint(double t) {
+
+  last_transition = t;
 
   if (!udp_datagram_in.empty()) {
     udp::Datagram d = udp_datagram_in.front();
@@ -90,17 +106,16 @@ void ip_protocol::dext(Event x, double t) {
     link_ctrl_in.push(*(link::Control*)x.value);
     break;
   default:
-    printLog("[ERROR][ip protocol] invalid port ");
-    printLog(std::to_string(x.port).c_str());
-    printLog("\n");
+    logger.error("Invalid port.");
     break;
   }
 
-  // TODO: t is global time while next_internal it doesn't. must fix this bug
   if (next_internal < infinity)
-    next_internal -= t;
+    next_internal -= (t-last_transition);
   else if (this->queuedMsgs()) 
     next_internal = 0;
+
+  last_transition = t;
 }
 
 Event ip_protocol::lambda(double t) {
@@ -116,17 +131,21 @@ void ip_protocol::exit() {}
 
 void ip_protocol::processIPPacket(ip::Packet p, double t) {
   ip::Routing_entry route;
+  IPv4 dest_ip = p.header.dest_ip; 
 
+  logger.debug("ip packet: " + dest_ip.as_string());
   // The used algorithm is the microsoft routing process that specifies 7 steps
-  // Step 1  
+  // Step 1
   if (!this->verifychecksum(p.header)) {
     // silent discard
+    logger.info("Deliver to up layer packet with dest_ip: "
+                + dest_ip.as_string());
     output = Event(0,5);
     return;
   }
 
   // Step 2
-  if (this->matchesHostIps(p.header.dest_ip)) {
+  if (this->matchesHostIps(dest_ip)) {
     // Delivering datagram to the next top layer
     output = Event(datagrams_out.push(p.data,t),0);
     return;
@@ -136,7 +155,8 @@ void ip_protocol::processIPPacket(ip::Packet p, double t) {
   if (this->TTLisZero(p.header.ttlp)) {
     // silent discard. Some IP implementations send 
     // ICMP destination Unreachable-Network message to sender
-    printLog("[IPv4] Discard packet: TTL zero\n");
+    logger.info("Discard packet: TTL zero for packet with dest_ip: " 
+                + dest_ip.as_string());
     output = Event(0,5);
     return; 
   }
@@ -147,15 +167,17 @@ void ip_protocol::processIPPacket(ip::Packet p, double t) {
   p.header.header_checksum = this->calculateChecksum(p.header);
 
   // Step 5  
-  if (!this->getBestRoute(p.header.dest_ip, route)) {
+  if (!this->getBestRoute(dest_ip, route)) {
     // silent discard
-    printLog("[IPv4] Discard packet: No route for packet:\n");
+    logger.info("Discard packet: No route for packet with dest_ip: " 
+                + dest_ip.as_string());
     output = Event(0,5);
     return; 
   }
 
   // Step 6-7
-  logger.info("Best route: " + route.as_string());
+  logger.info("Best route for packet with dest_ip: " 
+              + dest_ip.as_string() + " is: " + route.as_string());
   this->sendPacket(p,route.nexthop,route.interface,t);
 }
 
@@ -166,7 +188,9 @@ void ip_protocol::processUDPDatagram(udp::Datagram d, double t) {
   // DSCP 0000 (currently not used) ECN 0000 (currently not used)
   p.header.vide = 0x4500;
   p.header.total_length = sizeof(ip::Header) + d.psd_header.udp_lenght;
-  p.header.ttlp = 0xFF00; // set ttl in hexa FF and protocol in zeros. TODO: check what should put in protocol
+  // set ttl in hexa FF and protocol in zeros. 
+  // TODO: check what should put in protocol
+  p.header.ttlp = 0xFF00;
   p.header.src_ip = d.psd_header.src_ip;
   p.header.dest_ip = d.psd_header.dest_ip;
   p.header.header_checksum = this->calculateChecksum(p.header);
@@ -182,7 +206,9 @@ bool ip_protocol::queuedMsgs() const {
 }
 
 bool ip_protocol::TTLisZero(ushort ttlp) const {
-  ushort ttl = ttlp & 0xFF00;
+  ushort ttl = ttlp >> 8;
+  logger.debug(std::to_string(ttl));
+  logger.debug((ttl == 0) ? "is zero" : "isn't zero");
   return ttl == 0;
 }
 
@@ -198,17 +224,28 @@ bool ip_protocol::verifychecksum(ip::Header header) const {
 
 bool ip_protocol::matchesHostIps(IPv4 dest_ip) const {
   for (std::list<IPv4>::const_iterator it = host_ips.cbegin(); it != host_ips.cend(); ++it) {
-    if (dest_ip == *it) 
+    if (dest_ip == *it) {
       return true;
+    }
   }
   return false;
 }
 
 ushort ip_protocol::decreaseTTL(ushort ttlp) const {
-  ushort ttl = ttlp & 0xFF00;
-  ttl--;
-  ttl = ttl & 0xFFFF;
-  return ttl & ttlp;
+  std::stringstream sstream;
+  sstream << std::hex << ttlp;
+  logger.debug("Start TTL: " + sstream.str());
+  
+  ushort ttl = ttlp >> 8;
+  --ttl;
+  ttl = ttl << 8;
+  ttlp = ttlp & 0x00FF;
+  ttlp = ttl | ttlp;
+  
+  sstream.str("");
+  sstream << std::hex << ttlp;
+  logger.debug("Final TTL: " + sstream.str());
+  return ttlp;
 }
 
 bool ip_protocol::getBestRoute(IPv4 dest_ip, ip::Routing_entry& route) const {

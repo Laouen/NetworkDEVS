@@ -5,7 +5,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/udp_protocol.h
-        Parameters = 1.000000e+00,"168.10.25.48"
+        Parameters = "Host 2",1.000000e+00,"168.10.25.48"
        }
       Simulator
        {
@@ -30,7 +30,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_protocol.h
-        Parameters = 2.000000e+00,"168.10.25.48","127.0.0.1","../input/test/ip/1/2.routing_table"
+        Parameters = "Host 2",2.000000e+00,"168.10.25.48","127.0.0.1","../input/test/ip/1/h2.routing_table"
        }
       EIC
        {
@@ -55,7 +55,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/udp_protocol.h
-        Parameters = 1.000000e+00,"148.10.25.48"
+        Parameters = "Host 1",1.000000e+00,"148.10.25.48"
        }
       Simulator
        {
@@ -80,7 +80,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_protocol.h
-        Parameters = 2.000000e+00,"148.10.25.48","127.0.0.1","../input/test/ip/1/1.routing_table"
+        Parameters = "Host 1",2.000000e+00,"148.10.25.48","127.0.0.1","../input/test/ip/1/h1.routing_table"
        }
       EIC
        {
@@ -100,6 +100,25 @@ Root-Coordinator
         (5,0);(0,2)
        }
      }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = NetworkDEVS/ip_protocol.h
+        Parameters = "Router 1",0.000000e+00,"../input/test/ip/1/r1.routing_table"
+       }
+      EIC
+       {
+        (0,0);(0,2)
+       }
+      EOC
+       {
+        (0,2);(0,0)
+       }
+      IC
+       {
+       }
+     }
   EIC
    {
    }
@@ -108,7 +127,9 @@ Root-Coordinator
    }
   IC
    {
-    (0,0);(1,0)
-    (1,0);(0,0)
+    (0,0);(2,0)
+    (1,0);(2,0)
+    (2,0);(1,0)
+    (2,0);(0,0)
    }
  }

@@ -26,7 +26,7 @@ Coupled
             Description = Coupled DEVS model
             Graphic
                 {
-                Position = -12630; -8310
+                Position = -6180; -5985
                 Dimension = 675; 720
                 Direction = Right
                 Color = 15
@@ -78,6 +78,7 @@ Coupled
                         }
                     Parameters
                         {
+                        module_name = Str; Host 2 ; 
                         ip_amount = Val; 1 ; 
                         ip1 = Str; 168.10.25.48 ; 
                         }
@@ -174,10 +175,11 @@ Coupled
                         }
                     Parameters
                         {
+                        module_name = Str; Host 2 ; 
                         ip_amount = Val; 2 ; 
                         ip_1 = Str; 168.10.25.48 ; 
                         ip_2 = Str; 127.0.0.1 ; 
-                        file_plath = Str; ../input/test/ip/1/2.routing_table ; 
+                        file_plath = Str; ../input/test/ip/1/h2.routing_table ; 
                         }
                     }
                 Line
@@ -246,7 +248,7 @@ Coupled
                     Description = Coupled DEVS model
                     Graphic
                         {
-                        Position = -12630; -5910
+                        Position = -12630; -5985
                         Dimension = 675; 720
                         Direction = Right
                         Color = 15
@@ -265,7 +267,7 @@ Coupled
                             Description = 
                             Graphic
                                 {
-                                Position = -2940 ; -675
+                                Position = -2940 ; -600
                                 Dimension = 480
                                 Direction = Right
                                 }
@@ -277,7 +279,7 @@ Coupled
                             Description = 
                             Graphic
                                 {
-                                Position = -7065 ; -675
+                                Position = -6990 ; -600
                                 Dimension = 480
                                 Direction = Right
                                 }
@@ -298,6 +300,7 @@ Coupled
                                 }
                             Parameters
                                 {
+                                module_name = Str; Host 1 ; 
                                 ip_amount = Val; 1 ; 
                                 ip1 = Str; 148.10.25.48 ; 
                                 }
@@ -386,7 +389,7 @@ Coupled
                             Description = Atomic DEVS model
                             Graphic
                                 {
-                                Position = -4980 ; -1080
+                                Position = -4905 ; -1005
                                 Dimension = 675 ; 675
                                 Direction = Right
                                 Color = 15
@@ -394,10 +397,11 @@ Coupled
                                 }
                             Parameters
                                 {
+                                module_name = Str; Host 1 ; 
                                 ip_amount = Val; 2 ; 
                                 ip_1 = Str; 148.10.25.48 ; 
                                 ip_2 = Str; 127.0.0.1 ; 
-                                file_path = Str; ../input/test/ip/1/1.routing_table ; 
+                                file_path = Str; ../input/test/ip/1/h1.routing_table ; 
                                 }
                             }
                         Line
@@ -432,45 +436,140 @@ Coupled
                             {
                             Source = Cmp ;  1 ;  3 ; 0
                             Sink = Cmp ;  6 ;  1 ; -1
-                            PointX = -4125 ; -3825 ; -3825 ; -5400 ; -5400 ; -5115
-                            PointY = -2775 ; -2775 ; -1800 ; -1800 ; -975 ; -975
+                            PointX = -4125 ; -3825 ; -3825 ; -5400 ; -5400 ; -5040
+                            PointY = -2775 ; -2775 ; -1800 ; -1800 ; -900 ; -900
                             }
                         Line
                             {
                             Source = Cmp ;  6 ;  1 ; 0
                             Sink = Cmp ;  1 ;  3 ; -1
-                            PointX = -4200 ; -3825 ; -3825 ; -5400 ; -5400 ; -5040
-                            PointY = -975 ; -975 ; -1800 ; -1800 ; -2775 ; -2775
+                            PointX = -4125 ; -3825 ; -3825 ; -5400 ; -5400 ; -5040
+                            PointY = -900 ; -900 ; -1800 ; -1800 ; -2775 ; -2775
                             }
                         Line
                             {
                             Source = Cmp ;  6 ;  3 ; 0
                             Sink = Prt ;  1 ;  1 ; -1
-                            PointX = -4200 ; -4200 ; -3090
-                            PointY = -675 ; -675 ; -675
+                            PointX = -4125 ; -4125 ; -3090
+                            PointY = -600 ; -600 ; -600
                             }
                         Line
                             {
                             Source = Prt ;  2 ;  1 ; 0
                             Sink = Cmp ;  6 ;  3 ; -1
-                            PointX = -6450 ; -6450 ; -5115
-                            PointY = -675 ; -675 ; -675
+                            PointX = -6375 ; -6375 ; -5040
+                            PointY = -600 ; -600 ; -600
                             }
                         }
                     }
-                        Line
+                        Coupled
                             {
-                            Source = Cmp ;  1 ;  1 ; 0
-                            Sink = Cmp ;  2 ;  1 ; -1
-                            PointX = -11850 ; -11475 ; -11475 ; -13125 ; -13125 ; -12765
-                            PointY = -7950 ; -7950 ; -6675 ; -6675 ; -5550 ; -5550
+                            Type = Coordinator
+                            Name = Router 1
+                            Ports = 1; 1
+                            Description = Coupled DEVS model
+                            Graphic
+                                {
+                                Position = -9180; -5985
+                                Dimension = 675; 720
+                                Direction = Right
+                                Color = 15
+                                Icon = %basicelements%coupled.svg
+                                Window = 5000; 5000; 5000; 5000
+                                }
+                            Parameters
+                                {
+                                }
+                            System
+                                {
+                                Inport
+                                    {
+                                    Name = Inport0
+                                    CoupledPort = 1
+                                    Description = 
+                                    Graphic
+                                        {
+                                        Position = -6915 ; -300
+                                        Dimension = 480
+                                        Direction = Right
+                                        }
+                                    }
+                                Outport
+                                    {
+                                    Name = Outport0
+                                    CoupledPort = 1
+                                    Description = 
+                                    Graphic
+                                        {
+                                        Position = -2040 ; -300
+                                        Dimension = 480
+                                        Direction = Right
+                                        }
+                                    }
+                                Atomic
+                                    {
+                                    Name = ip 1
+                                    Ports = 4 ; 4
+                                    Path = NetworkDEVS/ip_protocol.h
+                                    Description = Atomic DEVS model
+                                    Graphic
+                                        {
+                                        Position = -4605 ; -705
+                                        Dimension = 675 ; 675
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = ../atomics/NetworkDEVS/icons/ipv4.svg
+                                        }
+                                    Parameters
+                                        {
+                                        module_name = Str; Router 1 ; 
+                                        ip_amount = Val; 0 ; 
+                                        file_path = Str; ../input/test/ip/1/r1.routing_table ; 
+                                        }
+                                    }
+                                Line
+                                    {
+                                    Source = Prt ;  1 ;  1 ; 0
+                                    Sink = Cmp ;  1 ;  3 ; -1
+                                    PointX = -6300 ; -6300 ; -4740
+                                    PointY = -300 ; -300 ; -300
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  1 ;  3 ; 0
+                                    Sink = Prt ;  2 ;  1 ; -1
+                                    PointX = -3825 ; -3825 ; -2190
+                                    PointY = -300 ; -300 ; -300
+                                    }
+                                }
                             }
-                        Line
-                            {
-                            Source = Cmp ;  2 ;  1 ; 0
-                            Sink = Cmp ;  1 ;  1 ; -1
-                            PointX = -11850 ; -11475 ; -11475 ; -13125 ; -13125 ; -12765
-                            PointY = -5550 ; -5550 ; -6675 ; -6675 ; -7950 ; -7950
-                            }
+                                Line
+                                    {
+                                    Source = Cmp ;  1 ;  1 ; 0
+                                    Sink = Cmp ;  3 ;  1 ; -1
+                                    PointX = -5400 ; -4800 ; -4800 ; -9900 ; -9900 ; -9315
+                                    PointY = -5625 ; -5625 ; -4350 ; -4350 ; -5625 ; -5625
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  2 ;  1 ; 0
+                                    Sink = Cmp ;  3 ;  1 ; -1
+                                    PointX = -11850 ; -11850 ; -9315
+                                    PointY = -5625 ; -5625 ; -5625
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  3 ;  1 ; 0
+                                    Sink = Cmp ;  2 ;  1 ; -1
+                                    PointX = -8400 ; -7650 ; -7650 ; -13350 ; -13350 ; -12765
+                                    PointY = -5625 ; -5625 ; -6825 ; -6825 ; -5625 ; -5625
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  3 ;  1 ; 0
+                                    Sink = Cmp ;  1 ;  1 ; -1
+                                    PointX = -8400 ; -8400 ; -6315
+                                    PointY = -5625 ; -5625 ; -5625
+                                    }
         }
     }

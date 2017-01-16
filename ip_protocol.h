@@ -13,6 +13,7 @@
 #include <utility>
 #include <iostream>
 #include <limits>
+#include <iomanip>
 
 #include "libs/message_list.h"
 #include "libs/parser.h"
@@ -60,6 +61,7 @@ class ip_protocol: public Simulator {
   Event output;
 
   double next_internal;
+  double last_transition;
 
   /********** TIMES ***************/
   double infinity = std::numeric_limits<double>::max();

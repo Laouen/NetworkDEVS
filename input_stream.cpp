@@ -3,6 +3,8 @@
 void input_stream::init(double t,...) {
   // PowerDEVS parameters
 
+  logger.setModuleName("Input stream");
+
   va_list parameters;
   va_start(parameters,t);
   const char* file_path = va_arg(parameters,char*);
