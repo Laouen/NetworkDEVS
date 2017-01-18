@@ -1,6 +1,22 @@
 TODO:
 
+1)
 1 byte = 8 bits
 Un ushort tiene 16 bits equivalentes a 2 bytes. y un unsigned char tiene 8 bits equivalentes a 1 byte.
 Hay que mirar todos los tipos de dato utilizados en las estructuras de IPv4, MAC, Headers, etc para ver
 que cada campo tiene un tipo de dato con tamaño correspondiente.
+
+2) 
+Ver como matchear IPv4 interfaces con las interfaces fisicas, si eso se le pasa a la capa 2 o si
+hay una capa dos por cada interfaz.
+
+3)
+El campo interfaz aparece en distintos lugares como parte de la tabla de routing, lo cual en realidad
+proviene del hecho de que creo que ambas tablas (forwarding and routing tables) las implementan como una sola.
+Pero la pregunta es: de dodne se supone que se aprende la interfaz. Utilizando ARP no se aprende y no dice como se
+obtiene.
+
+4)
+No logro ver si hay un timeout en ARP para cuanto tiempo se queda esperando y en tiempo de que se 
+acabe el tiempo cual es el error que se produce. O si se queda al eterno esperando la mac de una IP
+para un paquete.

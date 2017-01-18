@@ -53,6 +53,9 @@ class ip_host_protocol: public Simulator {
   std::queue<udp::Datagram> udp_datagram_in;
   std::queue<ip::Packet> link_packet_in;
 
+  //ARP datas
+  std::list<Forwarding_entry> forwarding_table;
+
   std::list<IPv4> host_ips;
   std::list<ip::Routing_entry> routing_table;
   message_list<udp::Datagram> datagrams_out;

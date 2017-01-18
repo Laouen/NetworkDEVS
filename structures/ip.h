@@ -127,7 +127,31 @@ namespace ip {
       res += "\t | ";
       return res;
     }
+  };
 
+  struct Forwarding_entry {
+    IPv4 network;
+    IPv4 netmask;
+    MAC addr;
+
+    Forwarding_entry() {}
+    Forwarding_entry(const Forwarding_entry& other) {
+      network = other.network;
+      netmask = other.netmask;
+      addr = other.addr;
+    }
+
+    std::string as_string() const {
+      std::string res = "| ";
+      res += network.as_string();
+      for(ushort i=0;i<16-network.as_string().size();++i) res += " ";
+      res += "\t | ";
+      res += netmask.as_string();
+      for(ushort i=0;i<16-netmask.as_string().size();++i) res += " ";
+      res += "\t | ";
+      res += addr.as_string();
+      return res;
+    }
   };
 
   enum Ctrl { ADD_IP, REMOVE_IP, SEND_PACKET, ROUTING_ERROR };
