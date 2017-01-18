@@ -11,6 +11,7 @@
 
 #include "abstract_types.h"
 #include "ipv4.h"
+#include "mac.h"
 #include "udp.h"
 
 // network layer structures
@@ -148,6 +149,34 @@ namespace ip {
       interface = o.interface;
     }
   };
+
+  namespace arp {
+
+    struct Packet : abstract:: Data {
+      ushort Hardware_type;
+      ushort Protocol_type;
+      unsigned char HLen;
+      unsigned char PLen;
+      ushort Operation;
+      MAC Source_Hardware_Address;
+      IPv4 Source_Protocol_Address;
+      MAC Target_Hardware_Address;
+      IPv4 Target_Protocol_Address;
+
+      Packet() {}
+      Packet(const Packet& other) {
+        Hardware_type = other.Hardware_type;
+        Protocol_type = other.Protocol_type;
+        HLen = other.HLen;
+        PLen = other.PLen;
+        Operation = other.Operation;
+        Source_Hardware_Address = other.Source_Hardware_Address;
+        Source_Protocol_Address = other.Source_Protocol_Address;
+        Target_Hardware_Address = other.Target_Hardware_Address;
+        Target_Protocol_Address = other.Target_Protocol_Address;
+      }
+    };
+  }
 }
 
 inline std::ostream& operator<<(std::ostream& os, const ip::Routing_entry& e) {

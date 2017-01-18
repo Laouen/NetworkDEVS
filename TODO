@@ -1,0 +1,6 @@
+TODO:
+
+1 byte = 8 bits
+Un ushort tiene 16 bits equivalentes a 2 bytes. y un unsigned char tiene 8 bits equivalentes a 1 byte.
+Hay que mirar todos los tipos de dato utilizados en las estructuras de IPv4, MAC, Headers, etc para ver
+que cada campo tiene un tipo de dato con tamaño correspondiente.
