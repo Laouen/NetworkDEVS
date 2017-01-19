@@ -13,7 +13,7 @@ class ip_router_protocol : public ip_protocol {
 
 public:
   ip_router_protocol(const char *n): ip_protocol(n) {};
-  void dint(double);
+  virtual void dinternal(double);
 };
 
 #endif

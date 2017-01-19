@@ -1,31 +1,7 @@
 #if !defined ip_protocol_h
 #define ip_protocol_h
 
-#include "simulator.h"
-#include "event.h"
-#include "stdarg.h"
-
-#include <string>
-#include <map>
-#include <queue>
-#include <vector>
-#include <utility>
-#include <iostream>
-#include <limits>
-#include <iomanip>
-
-#include "libs/message_list.h"
-#include "libs/parser.h"
-#include "libs/logger.h"
-
-#include "structures/abstract_types.h"
-#include "structures/socket.h"
-#include "structures/ipv4.h"
-#include "structures/udp.h"
-#include "structures/app.h"
-#include "structures/ip.h"
-#include "structures/link.h"
-
+#include "layer.h"
 
 /* Documentation
  *
@@ -40,41 +16,22 @@
  * 
  */
 
-class ip_protocol: public Simulator { 
+class ip_protocol: public Layer<udp::Datagram, ip::Control, link::Frame, ip::arp::Packet > { 
 
 protected:
-  // Logger
-  Logger logger;
 
-  // comunication queues
-  std::queue<udp::Control> udp_ctrl_in;
-  std::queue<ip::arp::Packet> arp_in;
-  // data queues
-  std::queue<udp::Datagram> udp_datagram_in;
-  std::queue<link::Frame> link_frame_in;
-
-  //ARP structures
+  //ARP MAC structures
   MAC mac;
-  IPv4 ip;
   std::map<IPv4,ip::Forwarding_entry> forwarding_table;
   std::map<IPv4,std::queue<ip::Packet>> arp_waiting_packets;
   std::queue<link::Frame> arp_ready_packet;
 
+  // IP structures
+  IPv4 ip;
   std::list<IPv4> reserved_ips;
   std::list<ip::Routing_entry> routing_table;
 
-  // Output structures
-  message_list<udp::Datagram> datagrams_out;
-  message_list<link::Frame> link_frame_out;
-  message_list<ip::arp::Packet> arp_packet_out;
-  message_list<ip::Control> ip_control_out;
-  Event output;
-
-  double next_internal;
-  double last_transition;
-
   /********** TIMES ***************/
-  double infinity = std::numeric_limits<double>::max();
   double process_udp_datagram_time = 0.001;
   double process_ip_packet_time = 0.001;
   double process_arp_packet_time = 0.001;
@@ -89,7 +46,6 @@ protected:
   void processARPPacket(ip::arp::Packet, double);
   void cacheSourceMAC(MAC, IPv4);
   // Class state non modifiers
-  bool queuedMsgs() const;
   ushort calculateChecksum(ip::Header) const;
   bool verifychecksum(ip::Header) const;
   bool matchesHostIps(IPv4) const;
@@ -97,12 +53,13 @@ protected:
   bool isBestRoute(ip::Routing_entry, ip::Routing_entry) const;
 
 public:
-	ip_protocol(const char *n): Simulator(n) {};
+	ip_protocol(const char *n): Layer(n) {};
 	void init(double, ...);
 	double ta(double t);
-  void dext(Event , double );
   Event lambda(double);
   void exit();
+
+  virtual void dinternal(double) {}
 };
 
 #endif

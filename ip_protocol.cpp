@@ -70,34 +70,6 @@ double ip_protocol::ta(double t) {
   return next_internal;
 }
 
-void ip_protocol::dext(Event x, double t) {
-  switch(x.port) {
-  case 0: // UDP protocol Datagram arrives
-    udp_datagram_in.push(*(udp::Datagram*)x.value);
-    break;
-  case 1: // UDP protocol control message arrives
-    udp_ctrl_in.push(*(udp::Control*)x.value);
-    break;
-  case 2: // link layer frames (L2 frames) arrives
-    logger.debug("L2 Frame input.");
-    link_frame_in.push(*(link::Frame*)x.value);
-    break;
-  case 3: // link layer arp packet arrives
-    arp_in.push(*(ip::arp::Packet*)x.value);
-    break;
-  default:
-    logger.error("Invalid port.");
-    break;
-  }
-
-  if (next_internal < infinity)
-    next_internal -= (t-last_transition);
-  else if (this->queuedMsgs()) 
-    next_internal = 0;
-
-  last_transition = t;
-}
-
 Event ip_protocol::lambda(double t) {
   return output;
 }
@@ -120,7 +92,7 @@ void ip_protocol::routeIPPacket(ip::Packet p, double t) {
     logger.info("Discard packet: No route for packet with dest_ip: " 
                 + dest_ip.as_string());
     ip::Control m = ip::Control(ip::Ctrl::ROUTING_ERROR);
-    output = Event(ip_control_out.push(m,t), 1);
+    output = Event(higher_layer_ctrl_out.push(m,t), 1);
     return; 
   }
 
@@ -128,13 +100,6 @@ void ip_protocol::routeIPPacket(ip::Packet p, double t) {
   logger.info("Best route for packet with dest_ip: " 
               + dest_ip.as_string() + " is: " + route.as_string());
   this->arp(p,route.nexthop,t);
-}
-
-bool ip_protocol::queuedMsgs() const {
-  return  !udp_ctrl_in.empty() ||
-          !arp_in.empty() || 
-          !udp_datagram_in.empty() || 
-          !link_frame_in.empty();
 }
 
 ushort ip_protocol::calculateChecksum(ip::Header header) const {
@@ -252,7 +217,7 @@ void ip_protocol::sendArpQuery(IPv4 nexthop, double t) {
   query.Target_Hardware_Address = "0:0:0:0:0:0"; // In a query this field is ignored
   query.Target_Protocol_Address = nexthop;
 
-  output = Event(arp_packet_out.push(query,t),3);
+  output = Event(lower_layer_ctrl_out.push(query,t),3);
 }
 
 void ip_protocol::cacheSourceMAC(MAC source_mac, IPv4 source_ip) {
@@ -273,7 +238,7 @@ void ip_protocol::processARPPacket(ip::arp::Packet packet, double t) {
     ip::arp::Packet response = packet;
     response.Operation = 0; // response
     response.Target_Hardware_Address = mac;
-    output = Event(arp_packet_out.push(response,t),3);
+    output = Event(lower_layer_ctrl_out.push(response,t),3);
   
   } else if (packet.Operation == 0 && packet.Source_Hardware_Address == mac) { // Response packet
 

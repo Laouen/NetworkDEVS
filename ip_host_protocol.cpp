@@ -1,39 +1,37 @@
 #include "ip_host_protocol.h"
 
-void ip_host_protocol::dint(double t) {
-
-  last_transition = t;
+void ip_host_protocol::dinternal(double t) {
 
   if (!arp_ready_packet.empty()) {
     link::Frame f = arp_ready_packet.front();
     logger.debug("Sending L2 frame for mac: " + f.MAC_destination.as_string());
-    output = Event(link_frame_out.push(f,t),2);
+    output = Event(lower_layer_data_out.push(f,t),2);
     arp_ready_packet.pop();
     next_internal = send_frame_time;
     return;
   }
 
-  if (!arp_in.empty()) {
-    ip::arp::Packet p = arp_in.front();
+  if (!lower_layer_ctrl_in.empty()) {
+    ip::arp::Packet p = lower_layer_ctrl_in.front();
     this->processARPPacket(p,t);
-    arp_in.pop();
+    lower_layer_ctrl_in.pop();
     next_internal = process_arp_packet_time;
     return;
   }
 
-  if (!udp_datagram_in.empty()) {
-    udp::Datagram d = udp_datagram_in.front();
+  if (!higher_layer_data_in.empty()) {
+    udp::Datagram d = higher_layer_data_in.front();
     this->processUDPDatagram(d,t);
-    udp_datagram_in.pop();
+    higher_layer_data_in.pop();
     next_internal = process_udp_datagram_time;
     return;
   }
 
-  if (!link_frame_in.empty()) {
+  if (!lower_layer_data_in.empty()) {
     logger.debug("Process L2 Frame input.");
-    link::Frame f = link_frame_in.front();
+    link::Frame f = lower_layer_data_in.front();
     this->processIPPacket(f.payload,t);
-    link_frame_in.pop();
+    lower_layer_data_in.pop();
     next_internal = process_ip_packet_time;
     return;
   }
@@ -69,7 +67,7 @@ void ip_host_protocol::processIPPacket(ip::Packet p, double t) {
   }
 
   // Delivering datagram to the next top layer
-  output = Event(datagrams_out.push(p.data,t),0);
+  output = Event(higher_layer_data_out.push(p.data,t),0);
   return;
 }
 
