@@ -130,47 +130,36 @@ namespace ip {
   };
 
   struct Forwarding_entry {
-    IPv4 network;
-    IPv4 netmask;
-    MAC addr;
+    IPv4 nexthop;
+    MAC MAC_address;
 
     Forwarding_entry() {}
     Forwarding_entry(const Forwarding_entry& other) {
-      network = other.network;
-      netmask = other.netmask;
-      addr = other.addr;
+      nexthop = other.nexthop;
+      MAC_address = other.MAC_address;
     }
 
     std::string as_string() const {
       std::string res = "| ";
-      res += network.as_string();
-      for(ushort i=0;i<16-network.as_string().size();++i) res += " ";
+      res += nexthop.as_string();
+      for(ushort i=0;i<16-nexthop.as_string().size();++i) res += " ";
       res += "\t | ";
-      res += netmask.as_string();
-      for(ushort i=0;i<16-netmask.as_string().size();++i) res += " ";
-      res += "\t | ";
-      res += addr.as_string();
+      res += MAC_address.as_string();
       return res;
     }
   };
 
-  enum Ctrl { ADD_IP, REMOVE_IP, SEND_PACKET, ROUTING_ERROR };
+  enum Ctrl { ADD_IP, REMOVE_IP, ROUTING_ERROR };
 
   struct Control {
     Ctrl request;
     IPv4 ip;
-    Packet packet;
-    IPv4 nexthop;
-    IPv4 interface;
 
     Control() {}
     Control(Ctrl c) : request(c) {}
     Control(const Control& o) {
       request = o.request;
       ip = o.ip;
-      packet = o.packet;
-      nexthop = o.nexthop;
-      interface = o.interface;
     }
   };
 

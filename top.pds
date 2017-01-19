@@ -30,15 +30,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 2",2.000000e+00,"168.10.25.48","127.0.0.1","../input/test/ip/1/h2.routing_table"
+        Parameters = "Host 2","168.10.25.48",1.000000e+00,"127.0.0.1","2:0:0:0:0:0","../input/test/ip/1/h2.routing_table"
        }
       EIC
        {
         (0,0);(5,2)
+        (0,1);(5,3)
        }
       EOC
        {
         (5,2);(0,0)
+        (5,3);(0,1)
        }
       IC
        {
@@ -80,15 +82,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 1",2.000000e+00,"148.10.25.48","127.0.0.1","../input/test/ip/1/h1.routing_table"
+        Parameters = "Host 1","148.10.25.48",1.000000e+00,"127.0.0.1","1:0:0:0:0:0","../input/test/ip/1/h1.routing_table"
        }
       EIC
        {
         (0,0);(5,2)
+        (0,1);(5,3)
        }
       EOC
        {
         (5,2);(0,0)
+        (5,3);(0,1)
        }
       IC
        {
@@ -104,16 +108,18 @@ Root-Coordinator
      {
       Simulator
        {
-        Path = NetworkDEVS/ip_protocol.h
-        Parameters = "Router 1",0.000000e+00,"../input/test/ip/1/r1.routing_table"
+        Path = NetworkDEVS/ip_router_protocol.h
+        Parameters = "Router 1","148.10.0.0",0.000000e+00,"3:0:0:0:0:0","../input/test/ip/1/r1.routing_table"
        }
       EIC
        {
         (0,0);(0,2)
+        (0,1);(0,3)
        }
       EOC
        {
         (0,2);(0,0)
+        (0,3);(0,1)
        }
       IC
        {
@@ -131,5 +137,9 @@ Root-Coordinator
     (1,0);(2,0)
     (2,0);(1,0)
     (2,0);(0,0)
+    (1,1);(2,1)
+    (2,1);(0,1)
+    (0,1);(2,1)
+    (2,1);(1,1)
    }
  }

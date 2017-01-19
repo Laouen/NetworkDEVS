@@ -14,6 +14,23 @@
 // network layer structures
 namespace link {
 
+  struct Frame : abstract::Data {
+    MAC MAC_destination;
+    MAC MAC_source;
+    ushort EtherType;
+    ip::Packet payload;
+    unsigned long CRC;
+
+    Frame() {}
+    Frame(const Frame& other) {
+      MAC_destination = other.MAC_destination;
+      MAC_source = other.MAC_source;
+      EtherType = other.EtherType;
+      payload = other.payload;
+      CRC = other.CRC;
+    }
+  };
+
   enum Ctrl { IDLE }; // TODO modify this enum correctly
 
   struct Control {

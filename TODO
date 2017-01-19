@@ -13,10 +13,25 @@ hay una capa dos por cada interfaz.
 3)
 El campo interfaz aparece en distintos lugares como parte de la tabla de routing, lo cual en realidad
 proviene del hecho de que creo que ambas tablas (forwarding and routing tables) las implementan como una sola.
-Pero la pregunta es: de dodne se supone que se aprende la interfaz. Utilizando ARP no se aprende y no dice como se
-obtiene.
+Pero la pregunta es: de donde se supone que se aprende la interfaz. Utilizando ARP no se aprende y no dice como se
+obtiene. Segun Peterson pagina 240 en la seccion 3.3 Routing dice:
+
+"The forwarding table is used when a packet is being forwarded and so must
+contain enough information to accomplish the forwarding function. This
+means that a row in the forwarding table contains the mapping from a
+network prefix to an outgoing interface and some MAC information, such
+as the Ethernet address of the next hop"
+
+3.1)
+La interfaz es elegida en la capa IP (en TCP/IP), ̉¿lo mismo vale en este modelo? ¿implementamos un modelo
+de capa 2 por cada interfaz? Actualmente no estoy utilizando el campo IPv4 interfaz.
 
 4)
 No logro ver si hay un timeout en ARP para cuanto tiempo se queda esperando y en tiempo de que se 
 acabe el tiempo cual es el error que se produce. O si se queda al eterno esperando la mac de una IP
 para un paquete.
+
+5)
+Mirar con Rodrigo que onda el algoritmo de ARP y la forwarding table, actualmente estoy matcheando
+nexthop IPv4 a MAC addresses, pero en los libros aparece como que implementa subneting en la forwarding
+table. No me queda claro si el subneting proviene de mezclar ambas tablas o si tienen un uso distinto o que.

@@ -1,5 +1,12 @@
 #include "ip_protocol.h"
+
+// Note: The used algorithm is the microsoft ip routing process at a sender
+
 void ip_protocol::init(double t,...) {
+
+  // TODO: implement same subnet comparizon to know if the destination is in the same
+  // subnet or not. If so, the packet is directly send to destination host. If not, the
+  // packet is sent the subnet router. Peterson page 222. THIS MUST BE DONE IN LAYER 2
 
   // Note: Currently packet are delivered multiple times as TTL allows becouse there isn't layer two
   // implementation and therefor, all packet are multicasted and returns to the sender how re send the packet
@@ -13,17 +20,25 @@ void ip_protocol::init(double t,...) {
   std::string module_name = va_arg(parameters,char*);
   logger.setModuleName("IPv4 " + module_name);
 
-  // reading initial host ips
+  // reading ip
+  ip = va_arg(parameters,char*);
+  logger.info("IP: " + ip.as_string());
+
+  // reading initial reserved ips
   int ip_amount = (int)va_arg(parameters,double);
-  logger.info("cantidad de hot ips: " + std::to_string(ip_amount));
+  logger.info("Reserved ip amount: " + std::to_string(ip_amount));
   for(int i=0;i<ip_amount;++i){
-    host_ips.push_back(va_arg(parameters,char*));
+    reserved_ips.push_back(va_arg(parameters,char*));
   }
 
-  logger.info("Initial host ips:");
-  for(std::list<IPv4>::iterator i = host_ips.begin(); i != host_ips.end(); ++i){
+  logger.info("Reserved ips:");
+  for(std::list<IPv4>::iterator i = reserved_ips.begin(); i != reserved_ips.end(); ++i){
     logger.info(i->as_string());
   }
+
+  // reading MAC address
+  mac = va_arg(parameters,char*);
+  logger.info("MAC: " + mac.as_string());  
 
   // building routing table
   const char* file_path = va_arg(parameters,char*);
@@ -42,7 +57,7 @@ void ip_protocol::init(double t,...) {
     logger.error("Error parsing routing table file.");
   }
 
-  logger.info("Routing table entries:");
+  logger.info("Routing table:");
   for (std::list<ip::Routing_entry>::iterator i = routing_table.begin(); i != routing_table.end(); ++i) {
     logger.info(i->as_string());
   }
@@ -55,32 +70,22 @@ double ip_protocol::ta(double t) {
   return next_internal;
 }
 
-void ip_protocol::dint(double t) {
-
-  last_transition = t;
-
-  if (!link_packet_in.empty()) {
-    ip::Packet p = link_packet_in.front();
-    this->processIPPacket(p,t);
-    link_packet_in.pop();
-    next_internal = process_ip_packet_time;
-    return;
-  }
-
-  next_internal = infinity;
-  output = Event(0,5);
-}
-
 void ip_protocol::dext(Event x, double t) {
   switch(x.port) {
-  case 2: // ip packet arrives from link layer
-    link_packet_in.push(*(ip::Packet*)x.value);
+  case 0: // UDP protocol Datagram arrives
+    udp_datagram_in.push(*(udp::Datagram*)x.value);
     break;
-  case 3: // link layer control message arrives
-    link_ctrl_in.push(*(link::Control*)x.value);
+  case 1: // UDP protocol control message arrives
+    udp_ctrl_in.push(*(udp::Control*)x.value);
+    break;
+  case 2: // link layer frames (L2 frames) arrives
+    logger.debug("L2 Frame input.");
+    link_frame_in.push(*(link::Frame*)x.value);
+    break;
+  case 3: // link layer arp packet arrives
+    arp_in.push(*(ip::arp::Packet*)x.value);
     break;
   default:
-    // Router does not handler upper layer that IP
     logger.error("Invalid port.");
     break;
   }
@@ -104,67 +109,36 @@ void ip_protocol::exit() {}
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_protocol::processIPPacket(ip::Packet p, double t) {
+void ip_protocol::routeIPPacket(ip::Packet p, double t) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
-  logger.debug("ip packet: " + dest_ip.as_string());
-  // The used algorithm is the microsoft routing process that specifies 7 steps
-  // Step 1
-  if (!this->verifychecksum(p.header)) {
-    // silent discard
-    logger.info("Discard packet: checksum verification faild for packet with dest_ip: "
-                + dest_ip.as_string());
-    output = Event(0,5);
-    return;
-  }
-
-  // Step 2 ignored, no upper layer in a router. This step was made for routers running in a host
-
-  // Step 3  
-  if (this->TTLisZero(p.header.ttlp)) {
-    // silent discard. Some IP implementations send 
-    // ICMP destination Unreachable-Network message to sender
-    logger.info("Discard packet: TTL zero for packet with dest_ip: " 
-                + dest_ip.as_string());
-    output = Event(0,5);
-    return; 
-  }
-
-  // Step 4  
-  p.header.ttlp = this->decreaseTTL(p.header.ttlp);
-  // Recalculates checksum because the TTL field has being updated
-  p.header.header_checksum = this->calculateChecksum(p.header);
-
-  // Step 5  
+  logger.debug("sending ip packet: " + dest_ip.as_string());
+  
   if (!this->getBestRoute(dest_ip, route)) {
     // silent discard
     logger.info("Discard packet: No route for packet with dest_ip: " 
                 + dest_ip.as_string());
-    output = Event(0,5);
+    ip::Control m = ip::Control(ip::Ctrl::ROUTING_ERROR);
+    output = Event(ip_control_out.push(m,t), 1);
     return; 
   }
 
   // Step 6-7
   logger.info("Best route for packet with dest_ip: " 
               + dest_ip.as_string() + " is: " + route.as_string());
-  this->sendPacket(p,route.nexthop,route.interface,t);
+  this->arp(p,route.nexthop,t);
 }
 
 bool ip_protocol::queuedMsgs() const {
-  return  !link_ctrl_in.empty() || 
-          !link_packet_in.empty();
-}
-
-bool ip_protocol::TTLisZero(ushort ttlp) const {
-  ushort ttl = ttlp >> 8;
-  logger.debug(std::to_string(ttl));
-  logger.debug((ttl == 0) ? "is zero" : "isn't zero");
-  return ttl == 0;
+  return  !udp_ctrl_in.empty() ||
+          !arp_in.empty() || 
+          !udp_datagram_in.empty() || 
+          !link_frame_in.empty();
 }
 
 ushort ip_protocol::calculateChecksum(ip::Header header) const {
-  
+
   const char* header_ptr = header.c_str();
   ushort count = header.size();
 
@@ -182,7 +156,7 @@ ushort ip_protocol::calculateChecksum(ip::Header header) const {
   sum += *(unsigned char*)addr++;
 
   // Fold 32-bit sum to 16 bits
-  while (sum >> 16)
+  while (sum>>16)
     sum = (sum & 0xffff) + (sum >> 16);
 
   delete[] header_ptr;
@@ -197,29 +171,15 @@ bool ip_protocol::verifychecksum(ip::Header header) const {
 }
 
 bool ip_protocol::matchesHostIps(IPv4 dest_ip) const {
-  for (std::list<IPv4>::const_iterator it = host_ips.cbegin(); it != host_ips.cend(); ++it) {
+  
+  // True if matches the host ip or one of the reserved ip like 127.0.0.1
+  if (dest_ip == ip) return true;
+  for (std::list<IPv4>::const_iterator it = reserved_ips.cbegin(); it != reserved_ips.cend(); ++it) {
     if (dest_ip == *it) {
       return true;
     }
   }
   return false;
-}
-
-ushort ip_protocol::decreaseTTL(ushort ttlp) const {
-  std::stringstream sstream;
-  sstream << std::hex << ttlp;
-  logger.debug("Start TTL: " + sstream.str());
-  
-  ushort ttl = ttlp >> 8;
-  --ttl;
-  ttl = ttl << 8;
-  ttlp = ttlp & 0x00FF;
-  ttlp = ttl | ttlp;
-  
-  sstream.str("");
-  sstream << std::hex << ttlp;
-  logger.debug("Final TTL: " + sstream.str());
-  return ttlp;
 }
 
 bool ip_protocol::getBestRoute(IPv4 dest_ip, ip::Routing_entry& route) const {
@@ -238,15 +198,100 @@ bool ip_protocol::isBestRoute(ip::Routing_entry current, ip::Routing_entry old) 
   return (longest == current.netmask) || (current.metric < old.metric);
 }
 
-void ip_protocol::sendPacket(ip::Packet packet, IPv4 nexthop, IPv4 interface, double t) {
-  // It sends a packet throw a control message to its next under layer.
-  // FOR TESTING WE SEND IP PACKET DIRECTLY
-  /*
-  ip::Control c;
-  c.packet = packet;
-  c.nexthop = nexthop;
-  c.interface = interface;
-  output = Event(ip_control_out.push(c,t),3);
-  */
-  output = Event(ip_packet_out.push(packet,t),2);
+/***********************************************************************/
+/*************************** ARP METHODS *******************************/
+/***********************************************************************/
+
+void ip_protocol::sendPacket(ip::Packet packet, MAC nexthop_mac) {
+
+  link::Frame frame;
+  frame.MAC_destination = nexthop_mac;
+  frame.MAC_source = mac;
+  frame.EtherType = 0; // TODO: check what to put here, sizeof(packet)
+  frame.payload = packet;
+  frame.CRC = 0; // TODO: put the correct CRC data;
+  arp_ready_packet.push(frame);
+}
+
+void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, double t) {
+
+  
+  if (forwarding_table.find(nexthop) != forwarding_table.end()) {
+    ip::Forwarding_entry e = forwarding_table[nexthop];
+    logger.info("MAC address found in cache: " + e.MAC_address.as_string());
+    this->sendPacket(packet, e.MAC_address);
+    return;
+  }
+
+  logger.info("MAC address didn't find.");
+  // If MAC address wasn't found, then a ARP query is sent to all the hosts/routers directly attached
+  if (arp_waiting_packets.find(nexthop) != arp_waiting_packets.end()) {
+    logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
+    arp_waiting_packets[nexthop].push(packet);
+  } else {
+    logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
+    std::queue<ip::Packet> q;
+    q.push(packet);
+    arp_waiting_packets.insert(std::make_pair(nexthop, q));
+  }
+
+  this->sendArpQuery(nexthop,t);
+}
+
+void ip_protocol::sendArpQuery(IPv4 nexthop, double t) {
+  logger.info("Sending ARP query for ip: " + nexthop.as_string());
+  
+  ip::arp::Packet query;
+  query.Hardware_type = 1;
+  query.Protocol_type = 0x0800;
+  query.HLen = 48;
+  query.PLen = 32;
+  query.Operation = 1; // query
+  query.Source_Hardware_Address = mac;
+  query.Source_Protocol_Address = ip;
+  query.Target_Hardware_Address = "0:0:0:0:0:0"; // In a query this field is ignored
+  query.Target_Protocol_Address = nexthop;
+
+  output = Event(arp_packet_out.push(query,t),3);
+}
+
+void ip_protocol::cacheSourceMAC(MAC source_mac, IPv4 source_ip) {
+  ip::Forwarding_entry e;
+  e.nexthop = source_ip;
+  e.MAC_address = source_mac;
+  forwarding_table[e.nexthop] = e;
+}
+
+void ip_protocol::processARPPacket(ip::arp::Packet packet, double t) {
+  logger.info("Process ARP packet.");
+  if (packet.Operation == 1 && ip == packet.Target_Protocol_Address) { // Query packet
+
+    logger.debug("ARP packet query for ip: " + packet.Target_Protocol_Address.as_string());
+    this->cacheSourceMAC(packet.Source_Hardware_Address, packet.Source_Protocol_Address);
+
+    // reply with its own mac
+    ip::arp::Packet response = packet;
+    response.Operation = 0; // response
+    response.Target_Hardware_Address = mac;
+    output = Event(arp_packet_out.push(response,t),3);
+  
+  } else if (packet.Operation == 0 && packet.Source_Hardware_Address == mac) { // Response packet
+
+    IPv4 nexthop_ip = packet.Target_Protocol_Address;
+    MAC nexthop_mac = packet.Target_Hardware_Address;
+
+    logger.debug("ARP packet response for nexthop ip: " + nexthop_ip.as_string());
+    logger.debug("ARP packet response mac address is: " + nexthop_mac.as_string());
+
+    this->cacheSourceMAC(nexthop_mac, nexthop_ip);
+
+    // send the packet that were waiting for this nexthop MAC address
+    if (arp_waiting_packets.find(nexthop_ip) != arp_waiting_packets.end()) {
+      while(!arp_waiting_packets[nexthop_ip].empty()) {
+        logger.debug("Sending ready packet to mac address: " + nexthop_mac.as_string());
+        this->sendPacket(arp_waiting_packets[nexthop_ip].front(), nexthop_mac);
+        arp_waiting_packets[nexthop_ip].pop();
+      }
+    }
+  }
 }
