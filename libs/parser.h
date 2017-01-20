@@ -36,10 +36,10 @@ public:
   bool open_file(const char* file_path) {
     file.open(file_path);
     if (file.is_open()) {
-      logger.info("Input file opened."); // TODO put file_path
+      logger.info("Input file opened: " + std::string(file_path));
       return true;
     }
-    logger.error("Faild opening file "); // TODO put file_path
+    logger.info("Input file opened: " + std::string(file_path));
     return false;
   }
 

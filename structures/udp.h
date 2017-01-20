@@ -14,8 +14,6 @@
 // transport layer structures
 namespace udp {
 
-  enum Ctrl { SUCCESS,INVALID_SOCKET,INVALID_SOCKET_STATE,DELIVERED_PACKET };
-
   struct PseudoHeader : abstract::Header {
     IPv4 src_ip;
     IPv4 dest_ip;
@@ -102,49 +100,181 @@ namespace udp {
     }
   };
 
+  struct Multiplexed_packet : abstract::Data {
+    unsigned int app_id;
+    app::Packet packet;
+
+    Multiplexed_packet() {}
+    Multiplexed_packet(unsigned int other_app_id, app::Packet other_packet) {
+      app_id = other_app_id;
+      packet = other_packet;
+    }
+  };
+
+  // the interface Ctrl was taken from: http://www.chuidiang.com/clinux/sockets/sockets_simp.php#sockets
+  enum Ctrl { SUCCESS, INVALID_SOCKET, INVALID_SOCKET_STATE, 
+              CONNECT, BIND, READ_FROM, RECV_FROM, READ, RECV, WRITE_TO, SEND_TO, WRITE, SEND, CLOSE };
+
   struct Control : abstract::Data {
-    int app_id;
-    Ctrl control;
-    app::Packet data;
+    Ctrl request;
+    unsigned int app_id;
+    app::Packet packet;
+
+    // socket info
+    ushort local_port;
+    ushort remote_port;
+    IPv4 local_ip;
+    IPv4 remote_ip;
 
     Control() {}
-    Control(int o_app_id, Ctrl o_control) {
-      app_id = o_app_id;
-      control = o_control;
+    Control(const Control& other) {
+      request = other.request;
+      app_id = other.app_id;
+      packet = other.packet;
+      local_port = other.local_port;
+      remote_port = other.remote_port;
+      local_ip = other.local_ip;
+      remote_ip = other.remote_ip;
     }
-    
-    Control(int o_app_id, const app::Packet& o_data) {
-      app_id = o_app_id;
-      data = o_data;
-      control = Ctrl::DELIVERED_PACKET;
-    }
-    
-    Control(const Control& o) {
-      app_id = o.app_id;
-      data = o.data;
-      control = o.control;
+    Control(unsigned int other_app_id, Ctrl other_request) {
+      app_id = other_app_id;
+      request = other_request;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Control& m);
+    bool isAppRequest() const {
+      switch(request) {
+      case CONNECT: 
+      case BIND: 
+      case READ_FROM: 
+      case RECV_FROM:
+      case READ: 
+      case RECV:
+      case WRITE_TO:
+      case SEND_TO:
+      case WRITE: 
+      case SEND: 
+      case CLOSE:
+        return true;
+        break;
+      default:
+        return false;
+        break;
+      }
+    }
+
+    std::string as_string() const {
+      std::stringstream ss;
+      ss << "app_id: " << app_id << std::endl;
+      ss << "Ctrl: " << request << std::endl;
+      if (isAppRequest()) {
+        ss << "local_port: " << local_port << std::endl;
+        ss << "local_ip: " << local_ip << std::endl;
+      }
+      
+      if (request == Ctrl::WRITE ||
+          request == Ctrl::WRITE_TO ||
+          request == Ctrl::SEND ||
+          request == Ctrl::SEND_TO) {
+        ss << "packet: " << packet << std::endl;
+      } else if ( request == Ctrl::CONNECT ||
+                  request == Ctrl::SEND_TO ||
+                  request == Ctrl::WRITE_TO ||
+                  request == Ctrl::RECV_FROM ||
+                  request == Ctrl::READ_FROM) {
+        ss << "remote_port: " << remote_port << std::endl;
+        ss << "remote_ip: " << remote_ip << std::endl;
+      }
+      return ss.str();
+    }
   };
 
   inline std::ostream& operator<<(std::ostream& os, const Ctrl& c) {
     switch(c) {
-    case Ctrl::SUCCESS: os << "SUCCESS"; break;
-    case Ctrl::INVALID_SOCKET: os << "INVALID_SOCKET"; break;
-    case Ctrl::INVALID_SOCKET_STATE: os << "INVALID_SOCKET_STATE"; break;
-    case Ctrl::DELIVERED_PACKET: os << "DELIVERED_PACKET"; break;
+    case Ctrl::SUCCESS:               os << "SUCCESS";              break;
+    case Ctrl::INVALID_SOCKET:        os << "INVALID_SOCKET";       break;
+    case Ctrl::INVALID_SOCKET_STATE:  os << "INVALID_SOCKET_STATE"; break;
+    case Ctrl::CONNECT:               os << "CONNECT";              break;
+    case Ctrl::BIND:                  os << "BIND";                 break;
+    case Ctrl::READ_FROM:             os << "READ_FROM";            break;
+    case Ctrl::RECV_FROM:             os << "RECV_FROM";            break;
+    case Ctrl::READ:                  os << "READ";                 break;
+    case Ctrl::RECV:                  os << "RECV";                 break;
+    case Ctrl::WRITE_TO:              os << "WRITE_TO";             break;
+    case Ctrl::SEND_TO:               os << "SEND_TO";              break;
+    case Ctrl::WRITE:                 os << "WRITE";                break;
+    case Ctrl::SEND:                  os << "SEND";                 break;
+    case Ctrl::CLOSE:                 os << "CLOSE";                break;
     }
     return os;
   }
-  
+
+  inline std::istream& operator>>(std::istream& is, Ctrl& c) {
+    std::string ch;
+    is >> ch;
+    if      (ch == "SUCCESS")               c = Ctrl::SUCCESS;
+    else if (ch == "INVALID_SOCKET")        c = Ctrl::INVALID_SOCKET;
+    else if (ch == "INVALID_SOCKET_STATE")  c = Ctrl::INVALID_SOCKET_STATE;
+    else if (ch == "CONNECT")               c = Ctrl::CONNECT;
+    else if (ch == "BIND")                  c = Ctrl::BIND;
+    else if (ch == "READ_FROM")             c = Ctrl::READ_FROM;
+    else if (ch == "RECV_FROM")             c = Ctrl::RECV_FROM;
+    else if (ch == "READ")                  c = Ctrl::READ;
+    else if (ch == "RECV")                  c = Ctrl::RECV;
+    else if (ch == "WRITE_TO")              c = Ctrl::WRITE_TO;
+    else if (ch == "SEND_TO")               c = Ctrl::SEND_TO;
+    else if (ch == "WRITE")                 c = Ctrl::WRITE;
+    else if (ch == "SEND")                  c = Ctrl::SEND;
+    else if (ch == "CLOSE")                 c = Ctrl::CLOSE;
+    return is;
+  }
+
   inline std::ostream& operator<<(std::ostream& os, const Control& m) {
     os << "app_id: " << m.app_id << std::endl;
-    os << "Ctrol: " << m.control << std::endl;
-    if (m.control == udp::Ctrl::DELIVERED_PACKET) {
-      os << "Data: " << m.data << std::endl;
+    os << "Ctrol: " << m.request << std::endl;
+    if (m.isAppRequest()) {
+      os << "local_port: " << m.local_port << std::endl;
+      os << "local_ip: " << m.local_ip << std::endl;
+    }
+    
+    if (m.request == Ctrl::WRITE ||
+        m.request == Ctrl::WRITE_TO ||
+        m.request == Ctrl::SEND ||
+        m.request == Ctrl::SEND_TO) {
+      os << "packet: " << m.packet << std::endl;
+    } else if ( m.request == Ctrl::CONNECT ||
+                m.request == Ctrl::SEND_TO ||
+                m.request == Ctrl::WRITE_TO ||
+                m.request == Ctrl::RECV_FROM ||
+                m.request == Ctrl::READ_FROM) {
+      os << "remote_port: " << m.remote_port << std::endl;
+      os << "remote_ip: " << m.remote_ip << std::endl;
     }
     return os;
+  }
+
+  inline std::istream& operator>>(std::istream& is, Control& m) {
+    is >> m.request >> m.app_id;
+    if (m.isAppRequest()) {
+      is >> m.local_port >> m.local_ip;
+
+      // If remote address is necessary
+      if (m.request == Ctrl::CONNECT ||
+          m.request == Ctrl::SEND_TO ||
+          m.request == Ctrl::WRITE_TO ||
+          m.request == Ctrl::RECV_FROM ||
+          m.request == Ctrl::READ_FROM) {
+        is >> m.remote_port >> m.remote_ip;
+      }
+
+      // If sending data
+      if (m.request == Ctrl::WRITE ||
+          m.request == Ctrl::WRITE_TO ||
+          m.request == Ctrl::SEND ||
+          m.request == Ctrl::SEND_TO) {
+        std::getline(is,m.packet); // read until eol as string
+      }
+    }
+    return is;
   }
 }
 

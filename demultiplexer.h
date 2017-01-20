@@ -18,8 +18,9 @@
 #include "structures/link.h"
 
 class demultiplexer: public Simulator { 
-  message_list<udp::Control> _sent_inputs;
-  int _max_id;
+  message_list<udp::Control> _sent_control_inputs;
+  message_list<app::Packet> _sent_packet_inputs;
+  unsigned int _max_id;
   Event _output;
 
 public:

@@ -22,10 +22,10 @@
 class input_stream: public Simulator { 
 
   Logger logger;
-  Parser<app::Control> _parser;
+  Parser<udp::Control> _parser;
   double _next_time;
-  message_list<app::Control> _sent_inputs;
-  app::Control _next_input;
+  message_list<udp::Control> _sent_inputs;
+  udp::Control _next_input;
 
 public:
   input_stream(const char *n): Simulator(n) {};

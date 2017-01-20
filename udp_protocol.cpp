@@ -2,7 +2,6 @@
 
 void udp_protocol::init(double t,...) {
 
-
   //TODO: Check for duplicated packets that arrives and must be discarted
 
   // PowerDEVS parameters
@@ -27,61 +26,35 @@ double udp_protocol::ta(double t) {
   return next_internal;
 }
 
-void udp_protocol::dint(double t) {
+void udp_protocol::dinternal(double t) {
 
-  last_transition = t;
-  
-  if (!ntw_ctrl_in.empty()) {
-    ip::Control c = ntw_ctrl_in.front();
+  if (!lower_layer_ctrl_in.empty()) {
+    ip::Control c = lower_layer_ctrl_in.front();
     this->processNtwCtrl(c);
-    ntw_ctrl_in.pop();
+    lower_layer_ctrl_in.pop();
     next_internal = add_rm_ip_time;
     output = Event(0,5);
     return;
   }
 
-  if (!app_ctrl_in.empty()) {
-    app::Control c = app_ctrl_in.front();
-    this->processAppCtrl(c,t);
-    app_ctrl_in.pop();
+  if (!higher_layer_ctrl_in.empty()) {
+    udp::Control c = higher_layer_ctrl_in.front();
+    this->processUDPCtrl(c,t);
+    higher_layer_ctrl_in.pop();
     next_internal = app_ctrl_time;
     return;
   }
 
-  if (!datagram_in.empty()) {
-    udp::Datagram d = datagram_in.front();
+  if (!lower_layer_data_in.empty()) {
+    udp::Datagram d = lower_layer_data_in.front();
     this->processDatagram(d,t);
-    datagram_in.pop();
+    lower_layer_data_in.pop();
     next_internal = delivering_time;
     return;
   }
 
   output = Event(0,5);
   next_internal = infinity;
-}
-
-void udp_protocol::dext(Event x, double t) {
-  switch(x.port) {
-  case 1: // Application layer control message arrives
-    app_ctrl_in.push(*(app::Control*)x.value);
-    break;
-  case 2: // Datagram from network layer arrives
-    datagram_in.push(*(udp::Datagram*)x.value);
-    break;
-  case 3: // Network layer control message arrives
-    ntw_ctrl_in.push(*(ip::Control*)x.value);
-    break;
-  default:
-    logger.error("Invalid port");
-    break;
-  }
-
-  if (next_internal < infinity)
-    next_internal -= (t-last_transition);
-  else if (this->queuedMsgs()) 
-    next_internal = 0;
-
-  last_transition = t;
 }
 
 Event udp_protocol::lambda(double t) {
@@ -104,13 +77,19 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
   ushort remote_port = d.header.src_port;
   IPv4 local_ip = d.psd_header.dest_ip;
   IPv4 remote_ip = d.psd_header.src_ip;
+  logger.debug("process Datagram: ");
+  logger.debug("local_port: " + std::to_string(local_port));
+  logger.debug("remote_port: " + std::to_string(remote_port));
+  logger.debug("local_ip: " + local_ip.as_string());
+  logger.debug("remote_ip: " + remote_ip.as_string());
   if (existentSocket(local_port,local_ip) && verifyChecksum(d)) {
     udp::Socket& s = sockets[local_port][local_ip];
     // dest is actually src
     if (s.accept(local_port,local_ip,remote_port,remote_ip)) {
       // deliver data
-      udp::Control m(s.app_id, p);
-      output = Event(multiplexed_out.push(m,t), 1);
+      udp::Multiplexed_packet m(s.app_id, p);
+      logger.debug("app_id: " + std::to_string(m.app_id));
+      output = Event(higher_layer_data_out.push(m,t), 0);
       s.stopReading();
     }
   } else {
@@ -118,10 +97,10 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
   }
 }
 
-void udp_protocol::processAppCtrl(const app::Control &c, double t) {
+void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
 
-  ushort port = c.port;
-  IPv4 ip = c.ip;
+  ushort port = c.local_port;
+  IPv4 ip = c.local_ip;
   int app_id = c.app_id;
   
   udp::Socket* s;
@@ -131,7 +110,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
 
   /********* CONNECT **************/
-  case app::Ctrl::CONNECT:
+  case udp::Ctrl::CONNECT:
     logger.info("Connect");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
@@ -139,18 +118,18 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
       sockets[port][ip].state = udp::Socket::Status::CONNECTED;
       // send success
       udp::Control m(app_id,udp::Ctrl::SUCCESS);
-      output = Event(multiplexed_out.push(m,t), 1);
     } else {
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
       // send invalid socket
       logger.debug("Invalid socket 1");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
     }
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     break;
   
 
   /********* BIND **************/
-  case app::Ctrl::BIND:
+  case udp::Ctrl::BIND:
     logger.info("Bind");
     if (this->existentIP(ip) && !this->existentSocket(port,ip)) {
       // connect socket
@@ -158,34 +137,34 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
       sockets[port][ip].state = udp::Socket::Status::BOUND;
       // send success
       udp::Control m(app_id,udp::Ctrl::SUCCESS);
-      output = Event(multiplexed_out.push(m,t), 1);
     } else {
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
       // send invalid socket
       logger.debug("Invalid socket 2");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
     }
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     break;
 
 
   /********** READ_FROM/RECV_FROM ************/
-  case app::Ctrl::READ_FROM:
-  case app::Ctrl::RECV_FROM:
+  case udp::Ctrl::READ_FROM:
+  case udp::Ctrl::RECV_FROM:
     logger.info("Read_from/Recv_from");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       logger.debug("Invalid socket 3");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
     if (s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s->startReadingFrom(c.remote_port, c.remote_ip);
@@ -194,15 +173,15 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
 
   /*********** READ/RECV *************/
-  case app::Ctrl::READ:    
-  case app::Ctrl::RECV:    
+  case udp::Ctrl::READ:    
+  case udp::Ctrl::RECV:    
     logger.info("Read/Recv");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       logger.debug("Invalid socket 4");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
@@ -210,8 +189,8 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
         s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     // set flag waiting data
@@ -221,39 +200,39 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
 
 
   /********** WRITE_TO/SEND_TO ************/
-  case app::Ctrl::WRITE_TO:
-  case app::Ctrl::SEND_TO:
+  case udp::Ctrl::WRITE_TO:
+  case udp::Ctrl::SEND_TO:
     logger.info("Write_to/Send_to");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       logger.debug("Invalid socket 5");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
     if (s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
-    this->sendDataTo(c.data,*s,c.remote_port,c.remote_ip,t);
+    this->sendDataTo(c.packet,*s,c.remote_port,c.remote_ip,t);
     break;
 
 
   /********* WRITE/SEND **************/
-  case app::Ctrl::WRITE:
-  case app::Ctrl::SEND:
+  case udp::Ctrl::WRITE:
+  case udp::Ctrl::SEND:
     logger.info("Write/Send");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
       logger.debug("Invalid socket 6");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
@@ -261,22 +240,22 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
         s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
-      output = Event(multiplexed_out.push(m,t), 1);
       break;
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
-    this->sendData(c.data,*s,t);
+    this->sendData(c.packet,*s,t);
     break;  
 
 
   /************** CLOSE ******************/
-  case app::Ctrl::CLOSE:
+  case udp::Ctrl::CLOSE:
     logger.info("Close");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invald socket
       logger.debug("Invalid socket 7");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(multiplexed_out.push(m,t), 1);
+      output = Event(higher_layer_ctrl_out.push(m,t), 1);
       break;
     }
 
@@ -286,7 +265,7 @@ void udp_protocol::processAppCtrl(const app::Control &c, double t) {
     }
     // send success
     m = udp::Control(app_id,udp::Ctrl::SUCCESS);
-    output = Event(multiplexed_out.push(m,t), 1);
+    output = Event(higher_layer_ctrl_out.push(m,t), 1);
     break;
   }
 }
@@ -331,7 +310,7 @@ void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, do
   // data
   dat.payload = payload;
   
-  output = Event(datagrams_out.push(dat,t),2);
+  output = Event(lower_layer_data_out.push(dat,t),2);
 }
 
 void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
@@ -352,7 +331,7 @@ void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, 
   // data
   dat.payload = payload;
   
-  output = Event(datagrams_out.push(dat,t),2);
+  output = Event(lower_layer_data_out.push(dat,t),2);
 }
 
 bool udp_protocol::verifyChecksum(udp::Datagram d) const {
@@ -402,10 +381,4 @@ bool udp_protocol::existentSocket(ushort port, IPv4 ip) {
 
 bool udp_protocol::validAppSocket(ushort port, IPv4 ip, int app_id) {
   return  this->existentSocket(port,ip) && sockets[port][ip].app_id == app_id;
-}
-
-bool udp_protocol::queuedMsgs() {
-  return  !app_ctrl_in.empty() ||
-          !datagram_in.empty() || 
-          !ntw_ctrl_in.empty();
 }
