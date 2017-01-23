@@ -39,7 +39,7 @@ public:
       logger.info("Input file opened: " + std::string(file_path));
       return true;
     }
-    logger.info("Input file opened: " + std::string(file_path));
+    logger.info("Input file not opened: " + std::string(file_path));
     return false;
   }
 

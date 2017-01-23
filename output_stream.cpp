@@ -5,7 +5,6 @@ void output_stream::init(double t,...) {
   va_list parameters;
   va_start(parameters,t);
   const char* file_path = va_arg(parameters,char*);
-
   file.open(file_path);
 }
 
@@ -20,7 +19,7 @@ void output_stream::dext(Event x, double t) {
   if (x.port == 0) {
     app::Packet m = *(app::Packet*)x.value;
     file << "time:" << t << std::endl;
-    file << "App::Packet: " << m << std::endl;
+    file << "App::Packet: " << m << std::endl << std::endl;
   } else if (x.port == 1) {
     udp::Control m = *(udp::Control*)x.value;
     file << "time:" << t << std::endl;

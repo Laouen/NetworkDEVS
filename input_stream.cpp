@@ -2,7 +2,6 @@
 
 void input_stream::init(double t,...) {
   // PowerDEVS parameters
-
   va_list parameters;
   va_start(parameters,t);
 

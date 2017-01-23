@@ -3,7 +3,6 @@
 void udp_protocol::init(double t,...) {
 
   //TODO: Check for duplicated packets that arrives and must be discarted
-
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
@@ -17,7 +16,7 @@ void udp_protocol::init(double t,...) {
   for(int i=0;i<ip_amount;++i){
     ips.push_back(va_arg(parameters,char*));
   }
-
+  
   next_internal = infinity;
   output = Event(0,5);
 }

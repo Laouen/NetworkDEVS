@@ -11,7 +11,6 @@ void ip_protocol::init(double t,...) {
   // Note: Currently packet are delivered multiple times as TTL allows becouse there isn't layer two
   // implementation and therefor, all packet are multicasted and returns to the sender how re send the packet
   // affter decreasing TTL field.
-
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
