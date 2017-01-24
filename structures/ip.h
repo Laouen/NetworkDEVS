@@ -192,6 +192,24 @@ namespace ip {
   }
 }
 
+inline std::ostream& operator<<(std::ostream& os, const ip::Header& h) {
+  os << "vide: " << h.vide << std::endl;
+  os << "total_length: " << h.total_length << std::endl;
+  os << "identification: " << h.identification << std::endl;
+  os << "ff: " << h.ff << std::endl;
+  os << "ttlp: " << h.ttlp << std::endl;
+  os << "header_checksum: " << h.header_checksum << std::endl;
+  os << "src_ip: " << h.src_ip << std::endl;
+  os << "dest_ip: " << h.dest_ip << std::endl;
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const ip::Packet& p) {
+  os << "Header: " << std::endl << p.header << std::endl;
+  os << "data: " << std::endl << p.data << std::endl;
+  return os;
+}
+
 inline std::ostream& operator<<(std::ostream& os, const ip::Routing_entry& e) {
   os << e.network << " \t\t | " << e.netmask << " \t\t | " << e.nexthop << " \t\t | ";
   os << e.interface << " \t\t | " << e.metric << " \t\t | " << e.purpose;

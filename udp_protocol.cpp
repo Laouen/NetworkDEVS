@@ -69,7 +69,7 @@ void udp_protocol::exit() {}
 /*********** Main helpers ************************/
 
 void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
-  app::Packet p = d.payload;
+  app::Packet p(d.payload);
 
   // Datagrams with incorrect dest_ip are thrown away
   ushort local_port = d.header.dest_port;
@@ -292,6 +292,8 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
 
 /*********** Secondary helpers ************************/
 
+
+// TODO: merge sendData and sendDataTo equal codes to a single function send.
 void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, double t) {
 
   udp::Datagram dat;
@@ -307,7 +309,8 @@ void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, do
   dat.header.length = payload.length();
   dat.header.checksum = calculateChecksum(dat);
   // data
-  dat.payload = payload;
+  std::size_t length = payload.copy(dat.payload,payload.size(),0);
+  dat.payload[length] = '\0';
   
   output = Event(lower_layer_data_out.push(dat,t),2);
 }
@@ -328,8 +331,9 @@ void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, 
   dat.header.length = payload.length();
   dat.header.checksum = calculateChecksum(dat);
   // data
-  dat.payload = payload;
-  
+  std::size_t length = payload.copy(dat.payload,payload.size(),0);
+  dat.payload[length] = '\0';
+
   output = Event(lower_layer_data_out.push(dat,t),2);
 }
 

@@ -75,13 +75,13 @@ namespace udp {
   struct Datagram : abstract::Data {
     PseudoHeader psd_header;
     Header header;
-    app::Packet payload;
+    char payload[50]; // TODO: put the correct size
 
     Datagram() {}
     Datagram(const Datagram& o) {
       psd_header = o.psd_header;
       header = o.header;
-      payload = o.payload;
+      memcpy(payload,o.payload,sizeof(payload));
     }
 
     ushort headers_size() {
@@ -187,95 +187,119 @@ namespace udp {
       return ss.str();
     }
   };
+}
 
-  inline std::ostream& operator<<(std::ostream& os, const Ctrl& c) {
-    switch(c) {
-    case Ctrl::SUCCESS:               os << "SUCCESS";              break;
-    case Ctrl::INVALID_SOCKET:        os << "INVALID_SOCKET";       break;
-    case Ctrl::INVALID_SOCKET_STATE:  os << "INVALID_SOCKET_STATE"; break;
-    case Ctrl::CONNECT:               os << "CONNECT";              break;
-    case Ctrl::BIND:                  os << "BIND";                 break;
-    case Ctrl::READ_FROM:             os << "READ_FROM";            break;
-    case Ctrl::RECV_FROM:             os << "RECV_FROM";            break;
-    case Ctrl::READ:                  os << "READ";                 break;
-    case Ctrl::RECV:                  os << "RECV";                 break;
-    case Ctrl::WRITE_TO:              os << "WRITE_TO";             break;
-    case Ctrl::SEND_TO:               os << "SEND_TO";              break;
-    case Ctrl::WRITE:                 os << "WRITE";                break;
-    case Ctrl::SEND:                  os << "SEND";                 break;
-    case Ctrl::CLOSE:                 os << "CLOSE";                break;
-    }
-    return os;
+inline std::ostream& operator<<(std::ostream& os, const udp::Ctrl& c) {
+  switch(c) {
+  case udp::Ctrl::SUCCESS:               os << "SUCCESS";              break;
+  case udp::Ctrl::INVALID_SOCKET:        os << "INVALID_SOCKET";       break;
+  case udp::Ctrl::INVALID_SOCKET_STATE:  os << "INVALID_SOCKET_STATE"; break;
+  case udp::Ctrl::CONNECT:               os << "CONNECT";              break;
+  case udp::Ctrl::BIND:                  os << "BIND";                 break;
+  case udp::Ctrl::READ_FROM:             os << "READ_FROM";            break;
+  case udp::Ctrl::RECV_FROM:             os << "RECV_FROM";            break;
+  case udp::Ctrl::READ:                  os << "READ";                 break;
+  case udp::Ctrl::RECV:                  os << "RECV";                 break;
+  case udp::Ctrl::WRITE_TO:              os << "WRITE_TO";             break;
+  case udp::Ctrl::SEND_TO:               os << "SEND_TO";              break;
+  case udp::Ctrl::WRITE:                 os << "WRITE";                break;
+  case udp::Ctrl::SEND:                  os << "SEND";                 break;
+  case udp::Ctrl::CLOSE:                 os << "CLOSE";                break;
   }
+  return os;
+}
 
-  inline std::istream& operator>>(std::istream& is, Ctrl& c) {
-    std::string ch;
-    is >> ch;
-    if      (ch == "SUCCESS")               c = Ctrl::SUCCESS;
-    else if (ch == "INVALID_SOCKET")        c = Ctrl::INVALID_SOCKET;
-    else if (ch == "INVALID_SOCKET_STATE")  c = Ctrl::INVALID_SOCKET_STATE;
-    else if (ch == "CONNECT")               c = Ctrl::CONNECT;
-    else if (ch == "BIND")                  c = Ctrl::BIND;
-    else if (ch == "READ_FROM")             c = Ctrl::READ_FROM;
-    else if (ch == "RECV_FROM")             c = Ctrl::RECV_FROM;
-    else if (ch == "READ")                  c = Ctrl::READ;
-    else if (ch == "RECV")                  c = Ctrl::RECV;
-    else if (ch == "WRITE_TO")              c = Ctrl::WRITE_TO;
-    else if (ch == "SEND_TO")               c = Ctrl::SEND_TO;
-    else if (ch == "WRITE")                 c = Ctrl::WRITE;
-    else if (ch == "SEND")                  c = Ctrl::SEND;
-    else if (ch == "CLOSE")                 c = Ctrl::CLOSE;
-    return is;
+inline std::istream& operator>>(std::istream& is, udp::Ctrl& c) {
+  std::string ch;
+  is >> ch;
+  if      (ch == "SUCCESS")               c = udp::Ctrl::SUCCESS;
+  else if (ch == "INVALID_SOCKET")        c = udp::Ctrl::INVALID_SOCKET;
+  else if (ch == "INVALID_SOCKET_STATE")  c = udp::Ctrl::INVALID_SOCKET_STATE;
+  else if (ch == "CONNECT")               c = udp::Ctrl::CONNECT;
+  else if (ch == "BIND")                  c = udp::Ctrl::BIND;
+  else if (ch == "READ_FROM")             c = udp::Ctrl::READ_FROM;
+  else if (ch == "RECV_FROM")             c = udp::Ctrl::RECV_FROM;
+  else if (ch == "READ")                  c = udp::Ctrl::READ;
+  else if (ch == "RECV")                  c = udp::Ctrl::RECV;
+  else if (ch == "WRITE_TO")              c = udp::Ctrl::WRITE_TO;
+  else if (ch == "SEND_TO")               c = udp::Ctrl::SEND_TO;
+  else if (ch == "WRITE")                 c = udp::Ctrl::WRITE;
+  else if (ch == "SEND")                  c = udp::Ctrl::SEND;
+  else if (ch == "CLOSE")                 c = udp::Ctrl::CLOSE;
+  return is;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const udp::Control& m) {
+  os << "app_id: " << m.app_id << std::endl;
+  os << "Ctrol: " << m.request << std::endl;
+  if (m.isAppRequest()) {
+    os << "local_port: " << m.local_port << std::endl;
+    os << "local_ip: " << m.local_ip << std::endl;
   }
-
-  inline std::ostream& operator<<(std::ostream& os, const Control& m) {
-    os << "app_id: " << m.app_id << std::endl;
-    os << "Ctrol: " << m.request << std::endl;
-    if (m.isAppRequest()) {
-      os << "local_port: " << m.local_port << std::endl;
-      os << "local_ip: " << m.local_ip << std::endl;
-    }
-    
-    if (m.request == Ctrl::WRITE ||
-        m.request == Ctrl::WRITE_TO ||
-        m.request == Ctrl::SEND ||
-        m.request == Ctrl::SEND_TO) {
-      os << "packet: " << m.packet << std::endl;
-    } else if ( m.request == Ctrl::CONNECT ||
-                m.request == Ctrl::SEND_TO ||
-                m.request == Ctrl::WRITE_TO ||
-                m.request == Ctrl::RECV_FROM ||
-                m.request == Ctrl::READ_FROM) {
-      os << "remote_port: " << m.remote_port << std::endl;
-      os << "remote_ip: " << m.remote_ip << std::endl;
-    }
-    return os;
+  
+  if (m.request == udp::Ctrl::WRITE ||
+      m.request == udp::Ctrl::WRITE_TO ||
+      m.request == udp::Ctrl::SEND ||
+      m.request == udp::Ctrl::SEND_TO) {
+    os << "packet: " << m.packet << std::endl;
+  } else if ( m.request == udp::Ctrl::CONNECT ||
+              m.request == udp::Ctrl::SEND_TO ||
+              m.request == udp::Ctrl::WRITE_TO ||
+              m.request == udp::Ctrl::RECV_FROM ||
+              m.request == udp::Ctrl::READ_FROM) {
+    os << "remote_port: " << m.remote_port << std::endl;
+    os << "remote_ip: " << m.remote_ip << std::endl;
   }
+  return os;
+}
 
-  inline std::istream& operator>>(std::istream& is, Control& m) {
-    is >> m.request >> m.app_id;
-    if (m.isAppRequest()) {
-      is >> m.local_port >> m.local_ip;
+inline std::istream& operator>>(std::istream& is, udp::Control& m) {
+  is >> m.request >> m.app_id;
+  if (m.isAppRequest()) {
+    is >> m.local_port >> m.local_ip;
 
-      // If remote address is necessary
-      if (m.request == Ctrl::CONNECT ||
-          m.request == Ctrl::SEND_TO ||
-          m.request == Ctrl::WRITE_TO ||
-          m.request == Ctrl::RECV_FROM ||
-          m.request == Ctrl::READ_FROM) {
-        is >> m.remote_port >> m.remote_ip;
-      }
-
-      // If sending data
-      if (m.request == Ctrl::WRITE ||
-          m.request == Ctrl::WRITE_TO ||
-          m.request == Ctrl::SEND ||
-          m.request == Ctrl::SEND_TO) {
-        std::getline(is,m.packet); // read until eol as string
-      }
+    // If remote address is necessary
+    if (m.request == udp::Ctrl::CONNECT ||
+        m.request == udp::Ctrl::SEND_TO ||
+        m.request == udp::Ctrl::WRITE_TO ||
+        m.request == udp::Ctrl::RECV_FROM ||
+        m.request == udp::Ctrl::READ_FROM) {
+      is >> m.remote_port >> m.remote_ip;
     }
-    return is;
+
+    // If sending data
+    if (m.request == udp::Ctrl::WRITE ||
+        m.request == udp::Ctrl::WRITE_TO ||
+        m.request == udp::Ctrl::SEND ||
+        m.request == udp::Ctrl::SEND_TO) {
+      std::getline(is,m.packet); // read until eol as string
+    }
   }
+  return is;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const udp::Header& h) {
+  os << "src_port: " << h.src_port << std::endl;
+  os << "dest_port: " << h.dest_port << std::endl;
+  os << "length: " << h.length << std::endl;
+  os << "checksum: " << h.checksum << std::endl;
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const udp::PseudoHeader& ph) {
+  os << "src_ip: " << ph.src_ip << std::endl;
+  os << "dest_ip: " << ph.dest_ip << std::endl;
+  os << "zeros: " << ph.zeros << std::endl;
+  os << "protocol: " << ph.protocol << std::endl;
+  os << "udp_lenght: " << ph.udp_lenght << std::endl;
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const udp::Datagram& d) {
+  os << "psd_header: " << std::endl << d.psd_header << std::endl;
+  os << "header: " << std::endl << d.header << std::endl;
+  os << "payload: " << d.payload << std::endl;
+  return os;
 }
 
 #endif

@@ -9,36 +9,31 @@
 #include <iostream>
 
 struct IPv4 {
-	ushort* ip;
+	ushort ip[4];
 
   IPv4() {
-    ip = new ushort[4];
     for(int i=0; i<4; ++i)
       ip[i] = 0;
   }
 
   IPv4(const std::string& other_ip) {
     char ch;
-    ip = new ushort[4];
     std::istringstream strm(other_ip);
     strm >> ip[0] >> ch >> ip[1] >> ch >> ip[2] >> ch >> ip[3];
   }
 
   IPv4(const char* other_ip) {
     char ch;
-    ip = new ushort[4];
     std::istringstream strm(other_ip);
     strm >> ip[0] >> ch >> ip[1] >> ch >> ip[2] >> ch >> ip[3];
   }
 
   IPv4(ushort* other_ip) {
-    ip = new ushort[4];
     for(int i=0; i<4; ++i)
       ip[i] = other_ip[i];
   }
 
   IPv4(const IPv4& other_ip) {
-    ip = new ushort[4];
     for(int i=0; i<4; ++i)
       ip[i] = other_ip.ip[i];
   }
@@ -94,7 +89,6 @@ inline std::ostream& operator<<(std::ostream& os, const IPv4& ip) {
 }
 
 inline std::istream& operator>>(std::istream& is, IPv4& ip) {
-  ip.ip = new ushort[4];
   char ch;
   is >> ip.ip[0] >> ch >> ip.ip[1] >> ch >> ip.ip[2] >> ch >> ip.ip[3];
   return is;

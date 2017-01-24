@@ -9,17 +9,15 @@
 #include <iostream>
 
 struct MAC {
-	ushort* addr;
+	ushort addr[6];
 
   MAC() {
-    addr = new ushort[6];
     for(int i=0; i<6; ++i)
       addr[i] = 0;
   }
 
   MAC(const std::string& other_mac) {
     char ch;
-    addr = new ushort[6];
     std::istringstream strm(other_mac);
     strm >> std::hex >> addr[0] >> ch >> std::hex >> addr[1] >> ch >> std::hex >> addr[2] >> ch; 
     strm >> std::hex >> addr[3] >> ch >> std::hex >> addr[4] >> ch >> std::hex >> addr[5];
@@ -27,20 +25,17 @@ struct MAC {
 
   MAC(const char* other_mac) {
     char ch;
-    addr = new ushort[6];
     std::istringstream strm(other_mac);
     strm >> std::hex >> addr[0] >> ch >> std::hex >> addr[1] >> ch >> std::hex >> addr[2] >> ch; 
     strm >> std::hex >> addr[3] >> ch >> std::hex >> addr[4] >> ch >> std::hex >> addr[5];
   }
 
   MAC(ushort* other_mac) {
-    addr = new ushort[6];
     for(int i=0; i<6; ++i)
       addr[i] = other_mac[i];
   }
 
   MAC(const MAC& other_mac) {
-    addr = new ushort[6];
     for(int i=0; i<6; ++i)
       addr[i] = other_mac.addr[i];
   }
@@ -99,7 +94,6 @@ inline std::ostream& operator<<(std::ostream& os, const MAC& mac) {
 }
 
 inline std::istream& operator>>(std::istream& is, MAC& mac) {
-  mac.addr = new ushort[6];
   char ch;
   is >> std::hex >> mac.addr[0] >> ch >> std::hex >> mac.addr[1] >> ch >> std::hex >> mac.addr[2] >> ch; 
   is >> std::hex >> mac.addr[3] >> ch >> std::hex >> mac.addr[4] >> ch >> std::hex >> mac.addr[5];

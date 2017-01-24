@@ -5,9 +5,6 @@
 #include "layer.h"
 
 /**
- * TODO: use a correct documentation format
- * author Laouen Belloli
- *
  * references: 
  * - https://www.ietf.org/rfc/rfc768.txt
  * - https://en.wikibooks.org/wiki/Communication_Networks/TCP_and_UDP_Protocols
@@ -16,7 +13,7 @@
  */
 
 // app layer send packet throw the control channel (port 1) using udp::Control structs
-// upd layer deliver app:Packet throw the data channel (part 0) using udp::Multiplexed_packet
+// udp layer deliver app:Packet throw the data channel (part 0) using udp::Multiplexed_packet
 class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Datagram, ip::Control> {
 
   // TODO: change map<port,map<ip,socket>> to map<ip,map<port,socket>>
