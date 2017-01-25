@@ -75,7 +75,7 @@ namespace udp {
   struct Datagram : abstract::Data {
     PseudoHeader psd_header;
     Header header;
-    char payload[50]; // TODO: put the correct size
+    char payload[100]; // TODO: put the correct size
 
     Datagram() {}
     Datagram(const Datagram& o) {

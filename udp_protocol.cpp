@@ -116,11 +116,12 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       sockets[port][ip] = udp::Socket(port,ip,c.remote_port,c.remote_ip,app_id);
       sockets[port][ip].state = udp::Socket::Status::CONNECTED;
       // send success
-      udp::Control m(app_id,udp::Ctrl::SUCCESS);
+      logger.debug("SUCCESS");
+      m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     } else {
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
       // send invalid socket
-      logger.debug("Invalid socket 1");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
     }
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
@@ -135,11 +136,12 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       sockets[port][ip] = udp::Socket(port,ip,app_id);
       sockets[port][ip].state = udp::Socket::Status::BOUND;
       // send success
-      udp::Control m(app_id,udp::Ctrl::SUCCESS);
+      logger.debug("SUCCESS");
+      m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     } else {
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
       // send invalid socket
-      logger.debug("Invalid socket 2");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
     }
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
@@ -152,7 +154,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Read_from/Recv_from");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("Invalid socket 3");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       break;
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
@@ -177,7 +179,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Read/Recv");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("Invalid socket 4");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       break;
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
@@ -204,7 +206,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Write_to/Send_to");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("Invalid socket 5");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       break;
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
@@ -228,7 +230,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Write/Send");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("Invalid socket 6");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       break;
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
@@ -252,7 +254,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Close");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invald socket
-      logger.debug("Invalid socket 7");
+      logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       output = Event(higher_layer_ctrl_out.push(m,t), 1);
       break;
@@ -263,6 +265,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       sockets.erase(port);
     }
     // send success
+    logger.debug("SUCCESS");
     m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     output = Event(higher_layer_ctrl_out.push(m,t), 1);
     break;

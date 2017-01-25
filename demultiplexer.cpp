@@ -6,11 +6,11 @@ void demultiplexer::init(double t,...) {
   va_start(parameters,t);
 
   _max_id = (unsigned int)va_arg(parameters,double);
-  _output = Event(0,2*(_max_id+1));
+  _output = Event(0,2*(_max_id+2));
 }
 
 double demultiplexer::ta(double t) {
-  if (_output.port > _max_id) {
+  if (_output.port >= 2*(_max_id+1)) {
     return std::numeric_limits<double>::max();
   } else {
     return 0;
