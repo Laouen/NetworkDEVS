@@ -175,9 +175,24 @@ void swp_protocol::sendAck(swp::SwpHdr sh, MAC mac_dest, double t) {
   output = Event(lower_layer_data_out.push(frame, t), 2);
 }
 
-/*********** Method that still left to implement *****************/
+void swp_protocol::load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
+  unsigned long stored_hdr = 0x00000000;
+  unsigned long curr_val = 0x00000000;
 
-void swp_protocol::load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble) {}
+  stored_hdr = 0x00F00000 & preamble;
+  stored_hdr = stored_hdr >> 20;
+  hdr.Flags = stored_hdr;
+
+  stored_hdr = 0x0F000000 & preamble;
+  stored_hdr = stored_hdr >> 24;
+  hdr.AckNum = stored_hdr;
+
+  stored_hdr = 0xF0000000 & preamble;
+  stored_hdr = stored_hdr >> 28;
+  hdr.SeqNum = stored_hdr;
+}
+
+/*********** Method that still left to implement *****************/
 
 void swp_protocol::swpTimeout(double t) {}
 

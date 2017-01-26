@@ -46,4 +46,11 @@ namespace swp {
   };
 }
 
+inline std::ostream& operator<<(std::ostream& os, const swp::SwpHdr& hdr) {
+  os << "SeqNum: " << (int)hdr.SeqNum << std::endl;
+  os << "AckNum: " << (int)hdr.AckNum << std::endl;
+  os << "Flags: " << (int)hdr.Flags << std::endl;
+  return os;
+}
+
 #endif

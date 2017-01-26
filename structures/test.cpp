@@ -11,7 +11,43 @@
 
 using namespace std;
 
+void load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
+  unsigned long stored_hdr = 0x00000000;
+  unsigned long curr_val = 0x00000000;
+
+  stored_hdr = 0x00F00000 & preamble;
+  cout << stored_hdr << endl;
+  stored_hdr = stored_hdr >> 20;
+  cout << stored_hdr << endl;
+  hdr.Flags = stored_hdr;
+
+  stored_hdr = 0x0F000000 & preamble;
+  cout << stored_hdr << endl;
+  stored_hdr = stored_hdr >> 24;
+  cout << stored_hdr << endl;
+  hdr.AckNum = stored_hdr;
+
+  stored_hdr = 0xF0000000 & preamble;
+  cout << stored_hdr << endl;
+  stored_hdr = stored_hdr >> 28;
+  cout << stored_hdr << endl;
+  hdr.SeqNum = stored_hdr;
+}
+
 int main() {
+
+	cout << hex;
+	unsigned long preamble = 0xabc01010;
+	swp::SwpHdr hdr;
+	hdr.SeqNum = 0x1;
+	hdr.AckNum = 0x1;
+	hdr.Flags = 0x1;
+	cout << "preamble: " << preamble << endl;
+	cout << "hdr: " << endl << hdr << endl;
+	load_swp_hdr(hdr, preamble);
+	cout << "preamble: " << preamble << endl;
+	cout << "hdr: " << endl << hdr << endl;
+	cout << dec;
 
 	/*
 	ip::Packet ip_packet;
