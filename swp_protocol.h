@@ -7,6 +7,8 @@
 // there is no control type for lower layer physical protocols
 class swp_protocol : public Layer<link::Frame, ip::arp::Packet, link::Frame, int> {
 
+  std::queue<link::Frame> akcToSend;
+  std::queue<link::Frame> readyToDeliver;
   swp::SwpState<link::Frame> state;
   MAC mac;
 

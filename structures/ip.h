@@ -168,8 +168,8 @@ namespace ip {
     struct Packet : abstract:: Data {
       ushort Hardware_type;
       ushort Protocol_type;
-      unsigned char HLen;
-      unsigned char PLen;
+      u_char HLen;
+      u_char PLen;
       ushort Operation;
       MAC Source_Hardware_Address;
       IPv4 Source_Protocol_Address;
@@ -190,6 +190,19 @@ namespace ip {
       }
     };
   }
+}
+
+inline std::ostream& operator<<(std::ostream& os, const ip::arp::Packet& p) {
+  os << "Hardware_type: " << p.Hardware_type << std::endl;
+  os << "Protocol_type: " << p.Protocol_type << std::endl;
+  os << "HLen: " << (int)p.HLen << std::endl;
+  os << "PLen: " << (int)p.PLen << std::endl;
+  os << "Operation: " << p.Operation << std::endl;
+  os << "Source_Hardware_Address: " << p.Source_Hardware_Address << std::endl;
+  os << "Source_Protocol_Address: " << p.Source_Protocol_Address << std::endl;
+  os << "Target_Hardware_Address: " << p.Target_Hardware_Address << std::endl;
+  os << "Target_Protocol_Address: " << p.Target_Protocol_Address << std::endl;
+  return os;
 }
 
 inline std::ostream& operator<<(std::ostream& os, const ip::Header& h) {

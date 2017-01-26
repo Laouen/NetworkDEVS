@@ -172,8 +172,7 @@ void ip_protocol::sendPacket(ip::Packet packet, MAC nexthop_mac) {
   frame.MAC_destination = nexthop_mac;
   frame.MAC_source = mac;
   frame.EtherType = 0; // TODO: check what to put here, sizeof(packet)
-  frame.payload = packet;
-  frame.CRC = 0; // TODO: put the correct CRC data;
+  frame.setPayload(packet);
   arp_ready_packet.push(frame);
 }
 

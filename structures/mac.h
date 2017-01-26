@@ -90,6 +90,7 @@ inline std::ostream& operator<<(std::ostream& os, const MAC& mac) {
     os << std::hex << mac.addr[i];
     if(i<5) os << ":";
   }
+  os << std::dec;
   return os;
 }
 

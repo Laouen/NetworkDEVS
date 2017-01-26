@@ -17,8 +17,8 @@ namespace udp {
   struct PseudoHeader : abstract::Header {
     IPv4 src_ip;
     IPv4 dest_ip;
-    unsigned char zeros = 0x0;
-    unsigned char protocol = 0x0; // currently not used
+    u_char zeros = 0x0;
+    u_char protocol = 0x0; // currently not used
     ushort udp_lenght = 0;
 
     PseudoHeader() {}
@@ -289,8 +289,8 @@ inline std::ostream& operator<<(std::ostream& os, const udp::Header& h) {
 inline std::ostream& operator<<(std::ostream& os, const udp::PseudoHeader& ph) {
   os << "src_ip: " << ph.src_ip << std::endl;
   os << "dest_ip: " << ph.dest_ip << std::endl;
-  os << "zeros: " << ph.zeros << std::endl;
-  os << "protocol: " << ph.protocol << std::endl;
+  os << "zeros: " << (int)ph.zeros << std::endl;
+  os << "protocol: " << (int)ph.protocol << std::endl;
   os << "udp_lenght: " << ph.udp_lenght << std::endl;
   return os;
 }
