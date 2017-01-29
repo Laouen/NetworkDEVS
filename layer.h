@@ -50,12 +50,14 @@ protected:
   message_list<DL> lower_layer_data_out;
 
   Event output;
+  std::queue<Event> outputs;
 
   double next_internal;
   double last_transition;
 
   /********** TIMES ***************/
   double infinity = std::numeric_limits<double>::max();
+  double send_time = 0.001;
 
   /********* Private methods *********/
   bool queuedMsgs() const {
@@ -70,8 +72,20 @@ public:
   Layer(const char *n): Simulator(n) {};
 
   void dint(double t) {
-    last_transition = t;
+
+    output = Event(0,5);
+    next_internal = infinity;
+    
+    // this may cause some starvation if there is too many outputs
+    if (!outputs.empty()) {
+      output = outputs.front();
+      outputs.pop();
+      next_internal = send_time;
+      return;
+    }
+
     this->dinternal(t);
+    last_transition = t;
   }
   
   void dext(Event x, double t) {
@@ -98,10 +112,12 @@ public:
     else if (this->queuedMsgs()) 
       next_internal = 0;
 
+    this->dexternal(t);
     last_transition = t;
   }
 
   virtual void dinternal(double t) {}
+  virtual void dexternal(double t) {}
 };
 
 #endif

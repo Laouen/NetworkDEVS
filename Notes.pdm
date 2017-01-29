@@ -17,6 +17,11 @@ sección 2.4.2
 
 - 5 chequear MAC en la capa 2 y sacar la mac de la capa 3 al trasladar ARP a capa 2
 
+- 6 estandarizar el output en colas. De esta forma nadie envia output sino que todos lo encolan en las 
+colas de salida.
+
+- 7 Mirar las message_list para que eliminen los eventos de una forma mas inteligaente que con el tiempo:
+smart pointers deberia ser la solución en vez de message_list
 
 # Minuta reunión 27/01/2017
 - 1 El campo interfaz aparece en distintos lugares como parte de la tabla de routing, lo cual en realidad

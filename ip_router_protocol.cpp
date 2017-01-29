@@ -2,20 +2,11 @@
 
 void ip_router_protocol::dinternal(double t) {
 
-  if (!arp_ready_packet.empty()) {
-    link::Frame f = arp_ready_packet.front();
-  	logger.debug("Sending L2 frame for mac: " + f.MAC_destination.as_string());
-    output = Event(lower_layer_data_out.push(f,t),2);
-    arp_ready_packet.pop();
-    next_internal = send_frame_time;
-    return;
-  }
-
   if (!lower_layer_ctrl_in.empty()) {
-    ip::arp::Packet p = lower_layer_ctrl_in.front();
-    this->processARPPacket(p,t);
+    link::Control c = lower_layer_ctrl_in.front();
+    this->processLinkControl(c,t);
     lower_layer_ctrl_in.pop();
-    next_internal = process_arp_packet_time;
+    next_internal = process_link_control_time;
     return;
   }
 
@@ -51,7 +42,8 @@ void ip_router_protocol::processIPPacket(ip::Packet p, double t) {
     return;
   }
 
-  // Step 2 ignored, no upper layer in a router. This step was made for routers running in a host
+  // Step 2 ignored, no upper layer in a router. This step was made for 
+  // routers running in a host
 
   // Step 3  
   if (this->TTLisZero(p.header.ttlp)) {

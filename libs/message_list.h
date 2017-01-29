@@ -27,7 +27,7 @@ public:
     }
 
     _last_time = t;
-    remove_obsolete_messages();
+    //remove_obsolete_messages();
     msgs.push_back(std::make_pair(m,t));
     return &msgs.back().first;
   };

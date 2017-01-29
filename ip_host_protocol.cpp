@@ -2,20 +2,11 @@
 
 void ip_host_protocol::dinternal(double t) {
 
-  if (!arp_ready_packet.empty()) {
-    link::Frame f = arp_ready_packet.front();
-    logger.debug("Sending L2 frame for mac: " + f.MAC_destination.as_string());
-    output = Event(lower_layer_data_out.push(f,t),2);
-    arp_ready_packet.pop();
-    next_internal = send_frame_time;
-    return;
-  }
-
   if (!lower_layer_ctrl_in.empty()) {
-    ip::arp::Packet p = lower_layer_ctrl_in.front();
-    this->processARPPacket(p,t);
+    link::Control c = lower_layer_ctrl_in.front();
+    this->processLinkControl(c,t);
     lower_layer_ctrl_in.pop();
-    next_internal = process_arp_packet_time;
+    next_internal = process_link_control_time;
     return;
   }
 
@@ -35,9 +26,6 @@ void ip_host_protocol::dinternal(double t) {
     next_internal = process_ip_packet_time;
     return;
   }
-
-  next_internal = infinity;
-  output = Event(0,5);
 }
 
 /***********************************/
@@ -45,29 +33,24 @@ void ip_host_protocol::dinternal(double t) {
 /***********************************/
 
 void ip_host_protocol::processIPPacket(ip::Packet p, double t) {
-  ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
+  Event o;
 
   logger.debug("processing arrived ip packet: " + dest_ip.as_string());
 
-  if (!this->verifychecksum(p.header)) {
-    // silent discard
-    logger.info("Discard packet: checksum verification faild for packet with dest_ip: "
-                + dest_ip.as_string());
-    output = Event(0,5);
+  if (!this->verifychecksum(p.header)) { // silent discard
+    logger.info("Discard packet: checksum verification faild for packet with dest_ip: " + dest_ip.as_string());
     return;
   }
 
-  if (!this->matchesHostIps(dest_ip)) {
-    // silent discard
-    logger.info("Discard packet: host ip does not match for packet with dest_ip: "
-                + dest_ip.as_string());
-    output = Event(0,5);
+  if (!this->matchesHostIps(dest_ip)) { // Silent discard
+    logger.info("Discard packet: host ip does not match for packet with dest_ip: " + dest_ip.as_string());
     return;
   }
 
   // Delivering datagram to the next top layer
-  output = Event(higher_layer_data_out.push(p.data,t),0);
+  o = Event(higher_layer_data_out.push(p.data,t), 0);
+  outputs.push(o);
   return;
 }
 

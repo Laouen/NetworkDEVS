@@ -19,25 +19,17 @@ void ip_protocol::init(double t,...) {
   std::string module_name = va_arg(parameters,char*);
   logger.setModuleName("IPv4 " + module_name);
 
-  // reading ip
-  ip = va_arg(parameters,char*);
-  logger.info("IP: " + ip.as_string());
-
-  // reading initial reserved ips
+  // reading initial host ips
   int ip_amount = (int)va_arg(parameters,double);
-  logger.info("Reserved ip amount: " + std::to_string(ip_amount));
+  logger.info("ip amount: " + std::to_string(ip_amount));
   for(int i=0;i<ip_amount;++i){
     reserved_ips.push_back(va_arg(parameters,char*));
   }
 
-  logger.info("Reserved ips:");
+  logger.info("ips:");
   for(std::list<IPv4>::iterator i = reserved_ips.begin(); i != reserved_ips.end(); ++i){
     logger.info(i->as_string());
   }
-
-  // reading MAC address
-  mac = va_arg(parameters,char*);
-  logger.info("MAC: " + mac.as_string());  
 
   // building routing table
   const char* file_path = va_arg(parameters,char*);
@@ -61,6 +53,28 @@ void ip_protocol::init(double t,...) {
     logger.info(i->as_string());
   }
 
+  // building forwarding table
+  file_path = va_arg(parameters,char*);
+  Parser<ip::Forwarding_entry> parser_ft(file_path);
+  std::pair<double,ip::Forwarding_entry> parsed_line;
+  if (parser_ft.file_open()) {
+    while(true) {
+      try {
+        parsed_line = parser_ft.next_input();
+        forwarding_table.push_back(parsed_line.second);
+      } catch(std::exception& e) {
+        break; // end of file throws an exception
+      }
+    }
+  } else {
+    logger.error("Error parsing routing table file.");
+  }
+
+  logger.info("Forwarding table:");
+  for (std::list<ip::Forwarding_entry>::iterator i = forwarding_table.begin(); i != forwarding_table.end(); ++i) {
+    logger.info(i->as_string());
+  }
+
   next_internal = infinity;
   output = Event(0,5);
 }
@@ -80,12 +94,6 @@ void ip_protocol::exit() {}
 /********* HELPER METHODS **********/
 /***********************************/
 
-ip::Packet ip_protocol::getIpPacket(const link::Frame& frame) {
-  ip::Packet packet;
-  memcpy(&packet,frame.payload,sizeof(packet));
-  return packet;
-}
-
 void ip_protocol::routeIPPacket(ip::Packet p, double t) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
@@ -93,17 +101,14 @@ void ip_protocol::routeIPPacket(ip::Packet p, double t) {
   logger.debug("sending ip packet: " + dest_ip.as_string());
   
   if (!this->getBestRoute(dest_ip, route)) {
-    // silent discard
-    logger.info("Discard packet: No route for packet with dest_ip: " 
-                + dest_ip.as_string());
+    logger.info("Discard packet: No route for packet with dest_ip: " + dest_ip.as_string());
     ip::Control m = ip::Control(ip::Ctrl::ROUTING_ERROR);
     output = Event(higher_layer_ctrl_out.push(m,t), 1);
     return; 
   }
 
   // Step 6-7
-  logger.info("Best route for packet with dest_ip: " 
-              + dest_ip.as_string() + " is: " + route.as_string());
+  logger.info("Best route for packet with dest_ip: " + dest_ip.as_string() + " is: " + route.as_string());
   this->arp(p,route.nexthop,t);
 }
 
@@ -141,9 +146,7 @@ bool ip_protocol::verifychecksum(ip::Header header) const {
 }
 
 bool ip_protocol::matchesHostIps(IPv4 dest_ip) const {
-  
-  // True if matches the host ip or one of the reserved ip like 127.0.0.1
-  if (dest_ip == ip) return true;
+
   for (std::list<IPv4>::const_iterator it = reserved_ips.cbegin(); it != reserved_ips.cend(); ++it) {
     if (dest_ip == *it) {
       return true;
@@ -168,99 +171,54 @@ bool ip_protocol::isBestRoute(ip::Routing_entry current, ip::Routing_entry old) 
   return (longest == current.netmask) || (current.metric < old.metric);
 }
 
-/***********************************************************************/
-/*************************** ARP METHODS *******************************/
-/***********************************************************************/
-
-void ip_protocol::sendPacket(ip::Packet packet, MAC nexthop_mac) {
-
-  link::Frame frame;
-  frame.MAC_destination = nexthop_mac;
-  frame.MAC_source = mac;
-  frame.EtherType = 0; // TODO: check what to put here, sizeof(packet)
-  frame.setPayload(packet);
-  arp_ready_packet.push(frame);
-}
-
-void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, double t) {
-
+void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, IPv4 netmask, double t) {
   
-  if (forwarding_table.find(nexthop) != forwarding_table.end()) {
-    ip::Forwarding_entry e = forwarding_table[nexthop];
-    logger.info("MAC address found in cache: " + e.MAC_address.as_string());
-    this->sendPacket(packet, e.MAC_address);
-    return;
-  }
-
-  logger.info("MAC address didn't find.");
-  // If MAC address wasn't found, then a ARP query is sent to all the hosts/routers directly attached
+  logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
   if (arp_waiting_packets.find(nexthop) != arp_waiting_packets.end()) {
-    logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
-    arp_waiting_packets[nexthop].push(packet);
+    arp_waiting_packets.at(nexthop).push(packet);
   } else {
-    logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
     std::queue<ip::Packet> q;
     q.push(packet);
     arp_waiting_packets.insert(std::make_pair(nexthop, q));
   }
 
-  this->sendArpQuery(nexthop,t);
+  link:Control m;
+  m.request = link::Ctrl::ARP_QUERY;
+  m.ip = nexthop;
+  m.interface = this->getInterface(nexthop, netmask);
+
+  Event o = Event(lower_layer_ctrl_out.push(m,t), 3);
+  outputs.push(o);
 }
 
-void ip_protocol::sendArpQuery(IPv4 nexthop, double t) {
-  logger.info("Sending ARP query for ip: " + nexthop.as_string());
-  
-  ip::arp::Packet query;
-  query.Hardware_type = 1;
-  query.Protocol_type = 0x0800;
-  query.HLen = 48;
-  query.PLen = 32;
-  query.Operation = 1; // query
-  query.Source_Hardware_Address = mac;
-  query.Source_Protocol_Address = ip;
-  query.Target_Hardware_Address = "0:0:0:0:0:0"; // In a query this field is ignored
-  query.Target_Protocol_Address = nexthop;
+void ip_protocol::processLinkControl(link::Control control, double t) {
+  std::queue<ip::Packet> packets_to_send
+  link::Control m;
 
-  output = Event(lower_layer_ctrl_out.push(query,t),3);
-}
-
-void ip_protocol::cacheSourceMAC(MAC source_mac, IPv4 source_ip) {
-  ip::Forwarding_entry e;
-  e.nexthop = source_ip;
-  e.MAC_address = source_mac;
-  forwarding_table[e.nexthop] = e;
-}
-
-void ip_protocol::processARPPacket(ip::arp::Packet packet, double t) {
-  logger.info("Process ARP packet.");
-  if (packet.Operation == 1 && ip == packet.Target_Protocol_Address) { // Query packet
-
-    logger.debug("ARP packet query for ip: " + packet.Target_Protocol_Address.as_string());
-    this->cacheSourceMAC(packet.Source_Hardware_Address, packet.Source_Protocol_Address);
-
-    // reply with its own mac
-    ip::arp::Packet response = packet;
-    response.Operation = 0; // response
-    response.Target_Hardware_Address = mac;
-    output = Event(lower_layer_ctrl_out.push(response,t),3);
-  
-  } else if (packet.Operation == 0 && packet.Source_Hardware_Address == mac) { // Response packet
-
-    IPv4 nexthop_ip = packet.Target_Protocol_Address;
-    MAC nexthop_mac = packet.Target_Hardware_Address;
-
-    logger.debug("ARP packet response for nexthop ip: " + nexthop_ip.as_string());
-    logger.debug("ARP packet response mac address is: " + nexthop_mac.as_string());
-
-    this->cacheSourceMAC(nexthop_mac, nexthop_ip);
-
-    // send the packet that were waiting for this nexthop MAC address
-    if (arp_waiting_packets.find(nexthop_ip) != arp_waiting_packets.end()) {
-      while(!arp_waiting_packets[nexthop_ip].empty()) {
-        logger.debug("Sending ready packet to mac address: " + nexthop_mac.as_string());
-        this->sendPacket(arp_waiting_packets[nexthop_ip].front(), nexthop_mac);
-        arp_waiting_packets[nexthop_ip].pop();
-      }
+  switch(control.request) {
+  case link::Ctrl::ARP_READY:
+    if (arp_waiting_packets.find(control.ip) == arp_waiting_packets.end()) {
+      logger.debug("No packet to send to nexthop " + control.ip.as_string());
+      return; 
     }
+
+    packets_to_send = arp_waiting_packets.at(control.ip);
+    while (!packets_to_send.empty()) {
+      m.request = link::Ctrl::SEND_PACKET;  
+      m.packet = packets_to_send.front();
+      m.interface = control.interface;
+      m.ip = control.ip;
+      packets_to_send.pop();
+
+      Event o = Event(lower_layer_ctrl_out.push(m,t), 3);
+      outputs.push(o);
+    }
+    arp_waiting_packets.erase(control.ip);
+    break;
+  case link::Ctrl::SEND_PACKET_FAILED:
+    this->routeIPPacket(control.packet, t); // send again, this sends a new ARP QUERY
+    break;
+  default:
+    logger.debug("Bad link control request.");
   }
 }

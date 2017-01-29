@@ -11,7 +11,7 @@
 
 #define FLAG_ACK_VALID 0x1 // TODO: check what number should go here;
 #define FLAG_HAS_DATA 0x2 // TODO: check what number should go here;
-#define SWP_SEND_TIMEOUT 1500.0 // TODO: check what number should go here
+#define SWP_SEND_TIMEOUT 900 // TODO: check what number should go here, currently i put 900 seg = 15 min
 
 namespace swp {
 
