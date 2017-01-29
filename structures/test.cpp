@@ -11,6 +11,15 @@
 
 using namespace std;
 
+bool swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum) {
+  for (swp::SwpSeqno i=0; i<WS; ++i) {
+  	swp::SwpSeqno current = startNum+i;
+  	if (seqNum == current)
+      return true;
+  }
+  return false;
+}
+
 void load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
   unsigned long stored_hdr = 0x00000000;
   unsigned long curr_val = 0x00000000;
@@ -36,6 +45,82 @@ void load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
 
 int main() {
 
+	swp::SwpSeqno a = 250;
+
+	for (int i = 0; i < 20; ++i) {
+		cout << (int)a << endl;
+		++a;
+	}
+
+	/*
+	swp::SwpSeqno seqNum[4] = {8,9,254,255};
+	std::list<swp::recvQ_slot<link::Frame>> recvQ(4, swp::recvQ_slot<link::Frame>());
+	int i = 0;
+	for (std::list<swp::recvQ_slot<link::Frame>>::iterator it = recvQ.begin(); it != recvQ.end(); ++it){
+		it->SeqNum = seqNum[i];
+		++i;
+	}
+
+	for (std::list<swp::recvQ_slot<link::Frame>>::iterator it = recvQ.begin(); it != recvQ.end(); ++it){
+		cout << (int)it->SeqNum << " ";
+	}
+	cout << endl;
+
+	recvQ.sort(swp::recvQ_slotComparator<link::Frame>);
+
+	for (std::list<swp::recvQ_slot<link::Frame>>::iterator it = recvQ.begin(); it != recvQ.end(); ++it){
+		cout << (int)it->SeqNum << " ";
+	}
+	cout << endl;
+
+	swp::recvQ_slot<link::Frame> r;
+	r.SeqNum = 7;
+	recvQ.push_back(r);
+
+	for (std::list<swp::recvQ_slot<link::Frame>>::iterator it = recvQ.begin(); it != recvQ.end(); ++it){
+		cout << (int)it->SeqNum << " ";
+	}
+	cout << endl;
+
+	recvQ.sort(swp::recvQ_slotComparator<link::Frame>);
+
+	for (std::list<swp::recvQ_slot<link::Frame>>::iterator it = recvQ.begin(); it != recvQ.end(); ++it){
+		cout << (int)it->SeqNum << " ";
+	}
+	cout << endl;
+	*/
+
+	/*
+	cout << RWS << endl;
+	swp::SwpSeqno a = 10;
+	swp::SwpSeqno seqNum[10] = {8,9,10,11,12,13,14,15,16,17};
+	for(int i=0; i<10; ++i) {
+		cout << "seqNum " << (int)seqNum[i] << ": ";
+		cout << (swp::SeqnoRWSComparator(a,seqNum[i]) ? "<": ">=") << endl;
+	}
+	*/
+
+	/*
+	swp::SwpSeqno startNum = 10;
+	ushort ws = 4;
+	swp::SwpSeqno seqNum[10] = {8,9,10,11,12,13,14,15,16,17};
+	
+	for(int i=0; i<10; ++i) {
+		cout << "seqNum " << (int)seqNum[i] << ": ";
+		cout << (swpInWindow(startNum,ws,seqNum[i]) ? "True": "False") << endl;
+	} */
+
+	/*
+	swp::SwpSeqno startNum = 0xFE;
+	ushort ws = 4;
+	swp::SwpSeqno seqNum[10] = {0xFC,0xFD,0xFE,0xFF,0,1,2,3,4,5};
+	
+	for(int i=0; i<10; ++i) {
+		cout << "seqNum " << (int)seqNum[i] << ": ";
+		cout << (swpInWindow(startNum,ws,seqNum[i]) ? "True": "False") << endl;
+	}
+	*/
+	/*
 	cout << hex;
 	unsigned long preamble = 0xabc01010;
 	swp::SwpHdr hdr;
@@ -48,7 +133,7 @@ int main() {
 	cout << "preamble: " << preamble << endl;
 	cout << "hdr: " << endl << hdr << endl;
 	cout << dec;
-
+	*/
 	/*
 	ip::Packet ip_packet;
 	ip_packet.header.vide = 1;

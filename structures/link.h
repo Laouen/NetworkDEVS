@@ -11,10 +11,10 @@
 #include "abstract_types.h"
 #include "ipv4.h"
 
-// network layer structures
+#define IS_IP_PACKET 0x00010000
+
 namespace link {
 
-  unsigned long IS_IP_PACKET = 0x00010000; 
 
   struct Frame : abstract::Data {
     unsigned long preamble;
@@ -71,7 +71,7 @@ inline std::ostream& operator<<(std::ostream& os, const link::Frame& f) {
   os << "MAC_source: " << f.MAC_source << std::endl;
   os << "EtherType: " << f.EtherType << std::endl;
   os << "CRC: " << f.CRC << std::endl;
-  if (f.preamble & link::IS_IP_PACKET) {
+  if (f.preamble & IS_IP_PACKET) {
     ip::Packet* p = (ip::Packet*)f.payload;
     os << "payload (IP Packet): " << std::endl << *p << std::endl;
   } else {

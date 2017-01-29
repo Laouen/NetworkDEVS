@@ -22,11 +22,11 @@ Coupled
             {
             Type = Coordinator
             Name = host 2
-            Ports = 2; 2
+            Ports = 1; 1
             Description = Coupled DEVS model
             Graphic
                 {
-                Position = -6330; -5835
+                Position = -6180; -5835
                 Dimension = 675; 720
                 Direction = Right
                 Color = 15
@@ -45,7 +45,7 @@ Coupled
                     Description = 
                     Graphic
                         {
-                        Position = -7815 ; -5025
+                        Position = -7440 ; -2025
                         Dimension = 480
                         Direction = Right
                         }
@@ -57,31 +57,7 @@ Coupled
                     Description = 
                     Graphic
                         {
-                        Position = -12015 ; -4950
-                        Dimension = 480
-                        Direction = Right
-                        }
-                    }
-                Inport
-                    {
-                    Name = Inport1
-                    CoupledPort = 2
-                    Description = 
-                    Graphic
-                        {
-                        Position = -12015 ; -3825
-                        Dimension = 480
-                        Direction = Right
-                        }
-                    }
-                Outport
-                    {
-                    Name = Outport1
-                    CoupledPort = 2
-                    Description = 
-                    Graphic
-                        {
-                        Position = -7890 ; -3750
+                        Position = -12165 ; -2025
                         Dimension = 480
                         Direction = Right
                         }
@@ -208,6 +184,26 @@ Coupled
                         file_plath = Str; ../input/test/ip/1/h2.routing_table ; 
                         }
                     }
+                Atomic
+                    {
+                    Name = swp 1
+                    Ports = 4 ; 4
+                    Path = NetworkDEVS/swp_protocol.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -10080 ; -2430
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                        }
+                    Parameters
+                        {
+                        module_name = Str; Host 2 ; 
+                        mac = Str; 2:0:0:0:0:0 ; 
+                        }
+                    }
                 Line
                     {
                     Source = Cmp ;  2 ;  1 ; 0
@@ -235,34 +231,6 @@ Coupled
                     Sink = Cmp ;  1 ;  3 ; -1
                     PointX = -9300 ; -9075 ; -9075 ; -10425 ; -10425 ; -10215
                     PointY = -4725 ; -4725 ; -5400 ; -5400 ; -6225 ; -6225
-                    }
-                Line
-                    {
-                    Source = Cmp ;  6 ;  3 ; 0
-                    Sink = Prt ;  1 ;  1 ; -1
-                    PointX = -9300 ; -8550 ; -8550 ; -7965
-                    PointY = -4425 ; -4425 ; -5025 ; -5025
-                    }
-                Line
-                    {
-                    Source = Prt ;  2 ;  1 ; 0
-                    Sink = Cmp ;  6 ;  3 ; -1
-                    PointX = -11400 ; -10950 ; -10950 ; -10215
-                    PointY = -4950 ; -4950 ; -4425 ; -4425
-                    }
-                Line
-                    {
-                    Source = Prt ;  3 ;  1 ; 0
-                    Sink = Cmp ;  6 ;  4 ; -1
-                    PointX = -11400 ; -10950 ; -10950 ; -10215
-                    PointY = -3825 ; -3825 ; -4275 ; -4275
-                    }
-                Line
-                    {
-                    Source = Cmp ;  6 ;  4 ; 0
-                    Sink = Prt ;  4 ;  1 ; -1
-                    PointX = -9300 ; -8550 ; -8550 ; -8040
-                    PointY = -4275 ; -4275 ; -3750 ; -3750
                     }
                 Line
                     {
@@ -299,13 +267,55 @@ Coupled
                     PointX = -9300 ; -9075 ; -9075 ; -8715
                     PointY = -6375 ; -6375 ; -7575 ; -7575
                     }
+                Line
+                    {
+                    Source = Prt ;  2 ;  1 ; 0
+                    Sink = Cmp ;  7 ;  3 ; -1
+                    PointX = -11550 ; -11550 ; -10215
+                    PointY = -2025 ; -2025 ; -2025
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  3 ; 0
+                    Sink = Prt ;  1 ;  1 ; -1
+                    PointX = -9300 ; -9300 ; -7590
+                    PointY = -2025 ; -2025 ; -2025
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  1 ; 0
+                    Sink = Cmp ;  6 ;  3 ; -1
+                    PointX = -9300 ; -8850 ; -8850 ; -10800 ; -10800 ; -10215
+                    PointY = -2325 ; -2325 ; -3075 ; -3075 ; -4425 ; -4425
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  2 ; 0
+                    Sink = Cmp ;  6 ;  4 ; -1
+                    PointX = -9300 ; -8775 ; -8775 ; -10725 ; -10725 ; -10215
+                    PointY = -2175 ; -2175 ; -3000 ; -3000 ; -4275 ; -4275
+                    }
+                Line
+                    {
+                    Source = Cmp ;  6 ;  3 ; 0
+                    Sink = Cmp ;  7 ;  1 ; -1
+                    PointX = -9300 ; -8925 ; -8925 ; -10500 ; -10500 ; -10215
+                    PointY = -4425 ; -4425 ; -3300 ; -3300 ; -2325 ; -2325
+                    }
+                Line
+                    {
+                    Source = Cmp ;  6 ;  4 ; 0
+                    Sink = Cmp ;  7 ;  2 ; -1
+                    PointX = -9300 ; -9000 ; -9000 ; -10575 ; -10575 ; -10215
+                    PointY = -4275 ; -4275 ; -3375 ; -3375 ; -2175 ; -2175
+                    }
                 }
             }
                 Coupled
                     {
                     Type = Coordinator
                     Name = host 1
-                    Ports = 2; 2
+                    Ports = 1; 1
                     Description = Coupled DEVS model
                     Graphic
                         {
@@ -328,7 +338,7 @@ Coupled
                             Description = 
                             Graphic
                                 {
-                                Position = -2415 ; -1200
+                                Position = -2490 ; 1800
                                 Dimension = 480
                                 Direction = Right
                                 }
@@ -340,31 +350,7 @@ Coupled
                             Description = 
                             Graphic
                                 {
-                                Position = -7065 ; -1050
-                                Dimension = 480
-                                Direction = Right
-                                }
-                            }
-                        Outport
-                            {
-                            Name = Outport1
-                            CoupledPort = 2
-                            Description = 
-                            Graphic
-                                {
-                                Position = -2415 ; 0
-                                Dimension = 480
-                                Direction = Right
-                                }
-                            }
-                        Inport
-                            {
-                            Name = Inport1
-                            CoupledPort = 2
-                            Description = 
-                            Graphic
-                                {
-                                Position = -7065 ; 75
+                                Position = -7065 ; 1800
                                 Dimension = 480
                                 Direction = Right
                                 }
@@ -491,6 +477,26 @@ Coupled
                                 file_path = Str; ../input/test/ip/1/h1.routing_table ; 
                                 }
                             }
+                        Atomic
+                            {
+                            Name = swp 1
+                            Ports = 4 ; 4
+                            Path = NetworkDEVS/swp_protocol.h
+                            Description = Atomic DEVS model
+                            Graphic
+                                {
+                                Position = -4830 ; 1395
+                                Dimension = 675 ; 675
+                                Direction = Right
+                                Color = 15
+                                Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                                }
+                            Parameters
+                                {
+                                module_name = Str; Host 1 ; 
+                                mac = Str; 1:0:0:0:0:0 ; 
+                                }
+                            }
                         Line
                             {
                             Source = Cmp ;  2 ;  1 ; 0
@@ -516,36 +522,8 @@ Coupled
                             {
                             Source = Cmp ;  6 ;  1 ; 0
                             Sink = Cmp ;  1 ;  3 ; -1
-                            PointX = -4125 ; -3825 ; -3825 ; -5400 ; -5400 ; -5040
-                            PointY = -900 ; -900 ; -1800 ; -1800 ; -2775 ; -2775
-                            }
-                        Line
-                            {
-                            Source = Cmp ;  6 ;  3 ; 0
-                            Sink = Prt ;  1 ;  1 ; -1
-                            PointX = -4125 ; -3150 ; -3150 ; -2565
-                            PointY = -600 ; -600 ; -1200 ; -1200
-                            }
-                        Line
-                            {
-                            Source = Prt ;  2 ;  1 ; 0
-                            Sink = Cmp ;  6 ;  3 ; -1
-                            PointX = -6450 ; -5850 ; -5850 ; -5040
-                            PointY = -1050 ; -1050 ; -600 ; -600
-                            }
-                        Line
-                            {
-                            Source = Cmp ;  6 ;  4 ; 0
-                            Sink = Prt ;  3 ;  1 ; -1
-                            PointX = -4125 ; -3150 ; -3150 ; -2565
-                            PointY = -450 ; -450 ; 0 ; 0
-                            }
-                        Line
-                            {
-                            Source = Prt ;  4 ;  1 ; 0
-                            Sink = Cmp ;  6 ;  4 ; -1
-                            PointX = -6450 ; -5850 ; -5850 ; -5040
-                            PointY = 75 ; 75 ; -450 ; -450
+                            PointX = -4125 ; -3825 ; -3825 ; -5250 ; -5250 ; -5040
+                            PointY = -900 ; -900 ; -1575 ; -1575 ; -2775 ; -2775
                             }
                         Line
                             {
@@ -582,13 +560,55 @@ Coupled
                             PointX = -4125 ; -3825 ; -3825 ; -3615
                             PointY = -2925 ; -2925 ; -4350 ; -4350
                             }
+                        Line
+                            {
+                            Source = Cmp ;  7 ;  1 ; 0
+                            Sink = Cmp ;  6 ;  3 ; -1
+                            PointX = -4050 ; -3750 ; -3750 ; -5400 ; -5400 ; -5040
+                            PointY = 1500 ; 1500 ; 675 ; 675 ; -600 ; -600
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  6 ;  3 ; 0
+                            Sink = Cmp ;  7 ;  1 ; -1
+                            PointX = -4125 ; -3750 ; -3750 ; -5625 ; -5625 ; -4965
+                            PointY = -600 ; -600 ; 300 ; 300 ; 1500 ; 1500
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  6 ;  4 ; 0
+                            Sink = Cmp ;  7 ;  2 ; -1
+                            PointX = -4125 ; -3675 ; -3675 ; -5700 ; -5700 ; -4965
+                            PointY = -450 ; -450 ; 375 ; 375 ; 1650 ; 1650
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  7 ;  2 ; 0
+                            Sink = Cmp ;  6 ;  4 ; -1
+                            PointX = -4050 ; -3675 ; -3675 ; -5325 ; -5325 ; -5040
+                            PointY = 1650 ; 1650 ; 600 ; 600 ; -450 ; -450
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  7 ;  3 ; 0
+                            Sink = Prt ;  1 ;  1 ; -1
+                            PointX = -4050 ; -4050 ; -2640
+                            PointY = 1800 ; 1800 ; 1800
+                            }
+                        Line
+                            {
+                            Source = Prt ;  2 ;  1 ; 0
+                            Sink = Cmp ;  7 ;  3 ; -1
+                            PointX = -6450 ; -6450 ; -4965
+                            PointY = 1800 ; 1800 ; 1800
+                            }
                         }
                     }
                         Coupled
                             {
                             Type = Coordinator
                             Name = Router 1
-                            Ports = 2; 2
+                            Ports = 1; 1
                             Description = Coupled DEVS model
                             Graphic
                                 {
@@ -611,7 +631,7 @@ Coupled
                                     Description = 
                                     Graphic
                                         {
-                                        Position = -6690 ; -900
+                                        Position = -6690 ; 2100
                                         Dimension = 480
                                         Direction = Right
                                         }
@@ -623,38 +643,14 @@ Coupled
                                     Description = 
                                     Graphic
                                         {
-                                        Position = -2415 ; -975
-                                        Dimension = 480
-                                        Direction = Right
-                                        }
-                                    }
-                                Inport
-                                    {
-                                    Name = Inport1
-                                    CoupledPort = 2
-                                    Description = 
-                                    Graphic
-                                        {
-                                        Position = -6690 ; 225
-                                        Dimension = 480
-                                        Direction = Right
-                                        }
-                                    }
-                                Outport
-                                    {
-                                    Name = Outport1
-                                    CoupledPort = 2
-                                    Description = 
-                                    Graphic
-                                        {
-                                        Position = -2340 ; 300
+                                        Position = -2340 ; 2100
                                         Dimension = 480
                                         Direction = Right
                                         }
                                     }
                                 Atomic
                                     {
-                                    Name = ip 1
+                                    Name = ip r1
                                     Ports = 4 ; 4
                                     Path = NetworkDEVS/ip_router_protocol.h
                                     Description = Atomic DEVS model
@@ -675,33 +671,67 @@ Coupled
                                         file_path = Str; ../input/test/ip/1/r1.routing_table ; 
                                         }
                                     }
+                                Atomic
+                                    {
+                                    Name = swp r1
+                                    Ports = 4 ; 4
+                                    Path = NetworkDEVS/swp_protocol.h
+                                    Description = Atomic DEVS model
+                                    Graphic
+                                        {
+                                        Position = -4605 ; 1695
+                                        Dimension = 675 ; 675
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                                        }
+                                    Parameters
+                                        {
+                                        module_name = Str; Router 1 ; 
+                                        mac = Str; 3:0:0:0:0:0 ; 
+                                        }
+                                    }
                                 Line
                                     {
-                                    Source = Prt ;  1 ;  1 ; 0
+                                    Source = Cmp ;  2 ;  1 ; 0
                                     Sink = Cmp ;  1 ;  3 ; -1
-                                    PointX = -6075 ; -5700 ; -5700 ; -4740
-                                    PointY = -900 ; -900 ; -300 ; -300
+                                    PointX = -3825 ; -3375 ; -3375 ; -5325 ; -5325 ; -4740
+                                    PointY = 1800 ; 1800 ; 1050 ; 1050 ; -300 ; -300
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  2 ;  2 ; 0
+                                    Sink = Cmp ;  1 ;  4 ; -1
+                                    PointX = -3825 ; -3300 ; -3300 ; -5250 ; -5250 ; -4740
+                                    PointY = 1950 ; 1950 ; 1125 ; 1125 ; -150 ; -150
                                     }
                                 Line
                                     {
                                     Source = Cmp ;  1 ;  3 ; 0
-                                    Sink = Prt ;  2 ;  1 ; -1
-                                    PointX = -3825 ; -3075 ; -3075 ; -2565
-                                    PointY = -300 ; -300 ; -975 ; -975
-                                    }
-                                Line
-                                    {
-                                    Source = Prt ;  3 ;  1 ; 0
-                                    Sink = Cmp ;  1 ;  4 ; -1
-                                    PointX = -6075 ; -5700 ; -5700 ; -4740
-                                    PointY = 225 ; 225 ; -150 ; -150
+                                    Sink = Cmp ;  2 ;  1 ; -1
+                                    PointX = -3825 ; -3300 ; -3300 ; -5025 ; -5025 ; -4740
+                                    PointY = -300 ; -300 ; 825 ; 825 ; 1800 ; 1800
                                     }
                                 Line
                                     {
                                     Source = Cmp ;  1 ;  4 ; 0
-                                    Sink = Prt ;  4 ;  1 ; -1
-                                    PointX = -3825 ; -3075 ; -3075 ; -2490
-                                    PointY = -150 ; -150 ; 300 ; 300
+                                    Sink = Cmp ;  2 ;  2 ; -1
+                                    PointX = -3825 ; -3225 ; -3225 ; -5100 ; -5100 ; -4740
+                                    PointY = -150 ; -150 ; 750 ; 750 ; 1950 ; 1950
+                                    }
+                                Line
+                                    {
+                                    Source = Prt ;  1 ;  1 ; 0
+                                    Sink = Cmp ;  2 ;  3 ; -1
+                                    PointX = -6075 ; -4740 ; -4740
+                                    PointY = 2100 ; 2100 ; 2100
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  2 ;  3 ; 0
+                                    Sink = Prt ;  2 ;  1 ; -1
+                                    PointX = -3825 ; -2490 ; -2490
+                                    PointY = 2100 ; 2100 ; 2100
                                     }
                                 }
                             }
@@ -709,57 +739,29 @@ Coupled
                                     {
                                     Source = Cmp ;  1 ;  1 ; 0
                                     Sink = Cmp ;  3 ;  1 ; -1
-                                    PointX = -5550 ; -4800 ; -4800 ; -9975 ; -9975 ; -9315
-                                    PointY = -5625 ; -5625 ; -4350 ; -4350 ; -5625 ; -5625
+                                    PointX = -5400 ; -4800 ; -4800 ; -9975 ; -9975 ; -9315
+                                    PointY = -5475 ; -5475 ; -4350 ; -4350 ; -5475 ; -5475
                                     }
                                 Line
                                     {
                                     Source = Cmp ;  2 ;  1 ; 0
                                     Sink = Cmp ;  3 ;  1 ; -1
                                     PointX = -11775 ; -11775 ; -9315
-                                    PointY = -5625 ; -5625 ; -5625
+                                    PointY = -5475 ; -5475 ; -5475
                                     }
                                 Line
                                     {
                                     Source = Cmp ;  3 ;  1 ; 0
                                     Sink = Cmp ;  2 ;  1 ; -1
                                     PointX = -8400 ; -7950 ; -7950 ; -13650 ; -13650 ; -12690
-                                    PointY = -5625 ; -5625 ; -6825 ; -6825 ; -5625 ; -5625
+                                    PointY = -5475 ; -5475 ; -6825 ; -6825 ; -5475 ; -5475
                                     }
                                 Line
                                     {
                                     Source = Cmp ;  3 ;  1 ; 0
                                     Sink = Cmp ;  1 ;  1 ; -1
-                                    PointX = -8400 ; -8400 ; -6465
-                                    PointY = -5625 ; -5625 ; -5625
-                                    }
-                                Line
-                                    {
-                                    Source = Cmp ;  2 ;  2 ; 0
-                                    Sink = Cmp ;  3 ;  2 ; -1
-                                    PointX = -11775 ; -11775 ; -9315
-                                    PointY = -5325 ; -5325 ; -5325
-                                    }
-                                Line
-                                    {
-                                    Source = Cmp ;  3 ;  2 ; 0
-                                    Sink = Cmp ;  1 ;  2 ; -1
-                                    PointX = -8400 ; -8400 ; -6465
-                                    PointY = -5325 ; -5325 ; -5325
-                                    }
-                                Line
-                                    {
-                                    Source = Cmp ;  1 ;  2 ; 0
-                                    Sink = Cmp ;  3 ;  2 ; -1
-                                    PointX = -5550 ; -4500 ; -4500 ; -9675 ; -9675 ; -9315
-                                    PointY = -5325 ; -5325 ; -4050 ; -4050 ; -5325 ; -5325
-                                    }
-                                Line
-                                    {
-                                    Source = Cmp ;  3 ;  2 ; 0
-                                    Sink = Cmp ;  2 ;  2 ; -1
-                                    PointX = -8400 ; -7650 ; -7650 ; -13350 ; -13350 ; -12690
-                                    PointY = -5325 ; -5325 ; -7125 ; -7125 ; -5325 ; -5325
+                                    PointX = -8400 ; -8400 ; -6315
+                                    PointY = -5475 ; -5475 ; -5475
                                     }
         }
     }

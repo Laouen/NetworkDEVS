@@ -22,7 +22,7 @@ void ip_router_protocol::dinternal(double t) {
   if (!lower_layer_data_in.empty()) {
   	logger.debug("Process L2 Frame input.");
     link::Frame f = lower_layer_data_in.front();
-    this->processIPPacket(f.payload,t);
+    this->processIPPacket(this->getIpPacket(f),t);
     lower_layer_data_in.pop();
     next_internal = process_ip_packet_time;
     return;

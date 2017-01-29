@@ -39,6 +39,7 @@ protected:
 
   /********* Protected methods *********/
   // Class state modifiers
+  ip::Packet getIpPacket(const link::Frame&);
   void routeIPPacket(ip::Packet, double);
   void sendPacket(ip::Packet packet, MAC nexthop_mac);
   void arp(ip::Packet, IPv4, double);

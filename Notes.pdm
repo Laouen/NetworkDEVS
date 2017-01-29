@@ -13,6 +13,10 @@ sección 2.4.2
 
 - 3 Hacer que la capa IP pueda trabajar tanto con paquetes UDP como TCP.
 
+- 4 cambiar udp::Datagram por udp::Segment y ip::Packet por ip::Datagram
+
+- 5 chequear MAC en la capa 2 y sacar la mac de la capa 3 al trasladar ARP a capa 2
+
 
 # Minuta reunión 27/01/2017
 - 1 El campo interfaz aparece en distintos lugares como parte de la tabla de routing, lo cual en realidad
@@ -63,3 +67,7 @@ tal vez con distintos tamaños, deberia manejarse esto de alguna manera especial
 modelo como implemento un solo protocolo para cada capa esta como "Hardcodeado", no esta literalmente hardcodeado pero
 se asume el tipo de cada paquete. Lo mejor que pense, es que para cada capa superior puede haber un modelo distinto donde los packetes 
 de la capa superior se convierten en un parametro template del modelo, por desgracia PowerDEVS no permite tener modelos templates. 
+
+- 4 No encuentro como es que ARP arranca, o sea, cuando desconecto el cable de un dispositivo y lo conecto a otro dispositivo
+no veo como detectan eso para resetear los Seqnos y no quedar en un estado en el que todos los mensajes estan fuera de la ventana actual
+y rechaze todos.

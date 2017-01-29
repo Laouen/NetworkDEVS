@@ -8,6 +8,8 @@
 #include <sstream>
 #include <iostream>
 
+#define BROADCAST_MAC_ADDRESS std::string("FF:FF:FF:FF:FF:FF")
+
 struct MAC {
 	ushort addr[6];
 
@@ -47,6 +49,11 @@ struct MAC {
     return res;
   }
 
+  bool operator==(const std::string& other_string) const {
+    MAC other = other_string;
+    return *this == other;
+  }
+
   bool operator<(const MAC& other) const {
     for(int i=0; i<6; ++i) {
       if (addr[i] < other.addr[i])
@@ -55,6 +62,11 @@ struct MAC {
         return false;
     }
     return false;
+  }
+
+  bool operator<(const std::string& other_string) const {
+    MAC other = other_string;
+    return *this < other; 
   }
 
   std::string as_string() const {
@@ -79,10 +91,6 @@ struct MAC {
       res.addr[i] = addr[i] | other.addr[i];
     return res;
   }
-
-
-  friend std::ostream& operator<<(std::ostream&, const MAC&);
-  friend std::istream& operator>>(std::istream&, MAC&);
 };
 
 inline std::ostream& operator<<(std::ostream& os, const MAC& mac) {

@@ -13,6 +13,11 @@ void swp_protocol::init(double t, ...) {
   mac = va_arg(parameters, char*);
   logger.info("MAC: " + mac.as_string());
 
+  // initializing state
+  state.LFS = 0;
+  state.LAR = 0;
+  state.LFR = 0;
+
   next_internal = infinity;
   output = Event(0,5);
 }
@@ -41,14 +46,14 @@ void swp_protocol::dinternal(double t) {
   }
 
   if (!lower_layer_data_in.empty()) {
-    link::Frame f lower_layer_data_in.front();
+    link::Frame f = lower_layer_data_in.front();
     this->deliverSWP(f, t);
     lower_layer_data_in.pop();
     next_internal = deliver_swp_time;
     return;
   }
 
-  if (state.sendWindowEmptyPlaces > 0 && !higher_layer_data_in.empty()) {
+  if (!this->sendWindowsIsFull() && !higher_layer_data_in.empty()) {
     link::Frame f = higher_layer_data_in.front();
     this->sendSWP(f, t);
     higher_layer_data_in.pop();
@@ -56,12 +61,19 @@ void swp_protocol::dinternal(double t) {
     return;
   }
 
-  if (state.sendWindowEmptyPlaces > 0 && !higher_layer_ctrl_in.empty()) {
+  if (!this->sendWindowsIsFull() && !higher_layer_ctrl_in.empty()) {
     ip::arp::Packet p = higher_layer_ctrl_in.front();
-    this->sendSWP(this->wrapInFrame(p), t);
+    this->sendSWP(this->wrapARPInFrame(p), t);
     higher_layer_ctrl_in.pop();
     next_internal = send_swp_time;
     return;
+  }
+
+  if (!readyToDeliver.empty()) {
+    link::Frame frame = readyToDeliver.front();
+    this->deliverToUpLayer(frame, t);
+    readyToDeliver.pop();
+    next_internal = deliver_up_layer_time;
   }
 
   next_internal = infinity;
@@ -69,19 +81,28 @@ void swp_protocol::dinternal(double t) {
 }
 
 void swp_protocol::sendSWP(link::Frame frame, double t) {
-  struct sendQ_slot* slot;
+  logger.debug("sendSWP");
+  swp::sendQ_slot<link::Frame> slot;
+  swp::SwpHdr hdr;
 
-  state.sendWindowEmptyPlaces--;
-  state.hdr.SeqNum = ++state.LFS;
-  state.hdr.Flags = swp::FLAG_HAS_DATA;
-  this->store_swp_hdr(state.hdr, frame.preamble);
-  slot = &state.sendQ[state.hdr.SeqNum % SWS]; //TODO: Check this;
-  slot->msg = frame;
-  slot->timeout = swp::SWP_SEND_TIMEOUT;
+  hdr.SeqNum = ++state.LFS;
+  hdr.Flags = FLAG_HAS_DATA;
+  this->storeSwpHdr(hdr, frame.preamble);
+  
+  slot.msg = frame;
+  slot.SeqNum = hdr.SeqNum;
+  slot.timeout = SWP_SEND_TIMEOUT;
+  state.sendQ.push_back(slot);
+  
   output = Event(lower_layer_data_out.push(frame, t), 2);
 }
 
-void swp_protocol::store_swp_hdr(const swp::SwpHdr& hdr, unsigned long& preamble) {
+bool swp_protocol::sendWindowsIsFull() {
+  
+  return state.sendQ.size() >= SWS;
+}
+
+void swp_protocol::storeSwpHdr(const swp::SwpHdr& hdr, unsigned long& preamble) {
   preamble = preamble & 0x000FFFFF; // cleaning the bits where swp::SwpHdr will be placed
   unsigned long stored_hdr = 0x00000000; // starting an empty header
   unsigned long curr_val = 0x00000000; // used to correcly set data in their correspondent bits
@@ -105,79 +126,97 @@ void swp_protocol::store_swp_hdr(const swp::SwpHdr& hdr, unsigned long& preamble
   preamble = preamble | stored_hdr;
 }
 
-link::Frame swp_protocol::wrapInFrame(const ip::arp::Packet& packet) {
+link::Frame swp_protocol::wrapARPInFrame(const ip::arp::Packet& packet) {
   link::Frame frame;
   frame.MAC_destination = "FF:FF:FF:FF:FF:FF";
   frame.MAC_source = mac;
   frame.EtherType = 0; // TODO: check what to put here;
-  frame.setPyload(packet);
+  frame.setPayload(packet);
   return frame;
 }
 
 void swp_protocol::deliverSWP(link::Frame frame, double t) {
+  logger.debug("deliverSWP");
+  swp::SwpHdr hdr;
+  swp::recvQ_slot<link::Frame> slot;
+  output = Event(0,5); // by default there are nothing to send
 
-  SwpHdr hdr;
-  this->load_swp_hdr(hdr, frame.preamble);
-  if (hdr->Flags & FLAG_ACK_VALID) { 
-    /* received an acknowledgment---do SENDER side */
-    struct sendQ_slot *slot;
-    if (this->swpInWindow(hdr.AckNum)) {
-      do {
-        slot = &state->sendQ[++state->LAR % SWS]; // check this, same problem as in the sendSWP method
-        slot->timeout = infinity; // this is a event cancelation
-        slot->msg = link::Frame(); // this is a removed msg
-        state.sendWindowEmptyPlaces++; // this is a semSignal
-      } while (state->LAR != hdr.AckNum);
-    }
+  if (!this->validMAC(frame.MAC_destination)) {
+    logger.info("Discarted frame: Invalid MAC");
+    return;
+  }
+
+  if (!this->verifyCRC(frame)) { // Drop frame with error
+    logger.info("Discarted frame: CRC didn't pass");
     return;
   }
   
-  if (hdr.Flags & FLAG_HAS_DATA) {
-    struct recvQ_slot *slot;
-    /* received data packet---do RECEIVER side */
-    slot = &state->recvQ[hdr.SeqNum % RWS];
-    if (!this->swpInWindow(hdr.SeqNum)) { /* drop the message */
+  this->loadSwpHdr(hdr, frame.preamble);
+  if (hdr.Flags & FLAG_ACK_VALID) {  // received an acknowledgment---do SENDER side
+    
+    if (this->swpInWindow(state.LAR+1, SWS, hdr.AckNum)) {
+      while (state.LAR != hdr.AckNum) {
+        state.sendQ.pop_front();
+        ++state.LAR;
+      };
+    }
+    return;
+  } 
+
+  if (hdr.Flags & FLAG_HAS_DATA) { // received data packet---do RECEIVER side
+    
+    if (!this->swpInWindow(state.LFR+1, RWS, hdr.SeqNum)) { // drop the message
+      logger.debug("Frame not in windows");
+      logger.debug(std::to_string(state.LFR+1) + " " + std::to_string(hdr.SeqNum) + " " + std::to_string(RWS));
       return;
     }
 
-    slot->msg = frame;
-    slot->received = true;
-    if (hdr.SeqNum == state->NFE) {
-      while (slot->received) {
-        readyToDeliver.push(slot->msg);
-        slot->msg = link::Frame(); // this is a removed msg
-        slot->received = false;
-        slot = &state->recvQ[++state->NFE % RWS];
-      }
-
-      this->sendAck(hdr, frame.MAC_source, t);
+    slot.msg = frame;
+    slot.SeqNum = hdr.SeqNum;
+    state.recvQ.push_back(slot);
+    state.recvQ.sort(this->recvQ_slotComparator);
+    logger.debug(" Data frame: " + std::to_string(state.recvQ.size()));
+    
+    while (!state.recvQ.empty() && (state.LFR+1) == state.recvQ.front().SeqNum) {
+      readyToDeliver.push(state.recvQ.front().msg);
+      ++state.LFR;
+      state.recvQ.pop_front();
     }
+    
+    this->sendAck(frame.MAC_source, t);
   }
-  return;
 }
 
-bool swp_protocol::swpInWindow(swp::SwpSeqno seqNum) {
-  // NFE = LFR+1;
-  // NFE+RWS-1 = LAF
-  return !(seqNum < state->NFE || seqNum > (state->NFE+RWS-1));
+bool swp_protocol::validMAC(MAC MAC_destination) {
+  return  MAC_destination == mac || 
+          MAC_destination == BROADCAST_MAC_ADDRESS;
 }
 
-void swp_protocol::sendAck(swp::SwpHdr sh, MAC mac_dest, double t) {
+bool swp_protocol::swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum) {
+  for (swp::SwpSeqno i=0; i<WS; ++i) {
+    swp::SwpSeqno current = startNum+i;
+    if (seqNum == current)
+      return true;
+  }
+  return false;
+}
+
+void swp_protocol::sendAck(MAC mac_dest, double t) {
   link::Frame frame;
-  sh.AckNum = state->NFE-1;
-  sh.Flags = swp::FLAG_ACK_VALID;
-  this->store_swp_hdr(sh,frame.preamble);
-  frame.MAC_destination mac_dest;
+  swp::SwpHdr hdr;
+
+  hdr.AckNum = state.LFR;
+  hdr.Flags = FLAG_ACK_VALID;
+  this->storeSwpHdr(hdr,frame.preamble);
+  frame.MAC_destination = mac_dest;
   frame.MAC_source = mac;
   frame.EtherType = 0; // TODO: check what to put here
   frame.CRC = this->calculateCRC();
-  // frame.payload TODO: Put an empty payload
   output = Event(lower_layer_data_out.push(frame, t), 2);
 }
 
-void swp_protocol::load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
+void swp_protocol::loadSwpHdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
   unsigned long stored_hdr = 0x00000000;
-  unsigned long curr_val = 0x00000000;
 
   stored_hdr = 0x00F00000 & preamble;
   stored_hdr = stored_hdr >> 20;
@@ -192,39 +231,61 @@ void swp_protocol::load_swp_hdr(swp::SwpHdr& hdr, const unsigned long& preamble)
   hdr.SeqNum = stored_hdr;
 }
 
-/*********** Method that still left to implement *****************/
-
-void swp_protocol::swpTimeout(double t) {}
-
-unsigned long swp_protocol::calculateCRC() {
-  return 0;
+void swp_protocol::swpTimeout(double t) {
+  std::list<swp::sendQ_slot<link::Frame>>::iterator it = state.sendQ.begin();
+  while(it != state.sendQ.end() && it->timeout > 0) ++it;
+  it->timeout = SWP_SEND_TIMEOUT;
+  output = Event(lower_layer_data_out.push(it->msg, t), 2);
 }
-
-/*********** Method that still left to implement *****************/
 
 void swp_protocol::updateTimeouts(double t) {
   double elapsed_time = t-last_transition;
-  for(int i=0; i<SWS; ++i) {
-    if (state.sendQ[i].timeout != infinity)
-      state.sendQ[i].timeout -= elapsed_time;
+  for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = state.sendQ.begin(); it !=state.sendQ.end(); ++it) {
+    if (it->timeout != infinity)
+      it->timeout -= elapsed_time;
   }
 }
 
 double swp_protocol::nexTimeout() {
   double next = infinity;
-  for(int i=0; i < SWS; ++i) {
-    if (state.sendQ[i].timeout < next) {
-      next = state.sendQ[i].timeout;
+  for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = state.sendQ.begin(); it !=state.sendQ.end(); ++it) {
+    if (it->timeout < next) {
+      next = it->timeout;
     }
   }
   return next;
 }
 
 bool swp_protocol::timeoutTriggered() {
-  for(int i=0; i < SWS; ++i) {
-    if (state.sendQ[i].timeout <= 0) {
+  for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = state.sendQ.begin(); it !=state.sendQ.end(); ++it) {
+    if (it->timeout <= 0) {
       return true;
     }
   }
   return false;
 }
+
+void swp_protocol::deliverToUpLayer(const link::Frame& frame, double t) {
+  if (frame.preamble & IS_IP_PACKET) {
+    output = Event(higher_layer_data_out.push(frame, t), 0);
+  } else {
+    ip::arp::Packet packet;
+    memcpy(&packet,frame.payload,sizeof(packet));
+    output = Event(higher_layer_ctrl_out.push(packet, t), 1);
+  }
+}
+
+bool swp_protocol::SeqnoRWSComparator(swp::SwpSeqno a, swp::SwpSeqno b) {
+  if (abs(a-b) <= RWS) return a < b;
+  return b < a;
+}
+
+bool swp_protocol::recvQ_slotComparator(swp::recvQ_slot<link::Frame> a, swp::recvQ_slot<link::Frame> b) {
+  return swp_protocol::SeqnoRWSComparator(a.SeqNum, b.SeqNum);
+}
+
+/*********** Method that still left to implement *****************/
+
+unsigned long swp_protocol::calculateCRC() { return 0; }
+
+bool swp_protocol::verifyCRC(link::Frame frame) { return true; }

@@ -80,6 +80,12 @@ void ip_protocol::exit() {}
 /********* HELPER METHODS **********/
 /***********************************/
 
+ip::Packet ip_protocol::getIpPacket(const link::Frame& frame) {
+  ip::Packet packet;
+  memcpy(&packet,frame.payload,sizeof(packet));
+  return packet;
+}
+
 void ip_protocol::routeIPPacket(ip::Packet p, double t) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 

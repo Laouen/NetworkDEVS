@@ -26,6 +26,7 @@
 #include "structures/app.h"
 #include "structures/ip.h"
 #include "structures/link.h"
+#include "structures/swp.h"
 
 /**
  * Basic layer model to inheritate 
