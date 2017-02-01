@@ -134,6 +134,12 @@ namespace ip {
       interface = other.interface;
     }
 
+    bool sameSubnet(IPv4 des_ip) const {
+      IPv4 dest_subnet = des_ip & netmask; 
+      IPv4 entry_subnet = network & netmask;
+      return dest_subnet == entry_subnet;
+    }
+
     std::string as_string() const {
       std::string res = "| ";
       res += network.as_string();

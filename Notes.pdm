@@ -76,3 +76,5 @@ de la capa superior se convierten en un parametro template del modelo, por desgr
 - 4 No encuentro como es que ARP arranca, o sea, cuando desconecto el cable de un dispositivo y lo conecto a otro dispositivo
 no veo como detectan eso para resetear los Seqnos y no quedar en un estado en el que todos los mensajes estan fuera de la ventana actual
 y rechaze todos.
+
+- 5 En SWP que pasa si un frame nunca recibe ack, se traba o en algún momento descarta el packete y continua?

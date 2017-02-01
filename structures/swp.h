@@ -44,6 +44,9 @@ namespace swp {
   
   template <typename MSG>
   struct SwpState {
+    // queued frames waiting to be send
+    std::queue<link::Frame> framesToSend;
+
     // sender side state:
     SwpSeqno LAR; // seqno of Last ACK Received
     SwpSeqno LFS; // Last Frame Sent
@@ -52,6 +55,28 @@ namespace swp {
     // receiver side state:
     SwpSeqno LFR; // Last Frame Received
     std::list<recvQ_slot<MSG>> recvQ;
+
+    bool sendWindowsIsFull() const {
+      return sendQ.size() >= SWS;
+    }
+
+    bool thereIsFrameToSend() const {
+      return !framesToSend.empty() && !this->sendWindowsIsFull();
+    }
+
+    void sendFrame(link::Frame frame) {
+      framesToSend.push(frame);
+    }
+
+    void reset() {
+      std::queue<link::Frame> empty;
+      framesToSend.swap(empty);
+      sendQ.clear();
+      recvQ.clear();
+      LFS = 0;
+      LAR = 0;
+      LFR = 0;
+    }
   };
 }
 

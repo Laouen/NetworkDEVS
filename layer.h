@@ -81,6 +81,7 @@ public:
       output = outputs.front();
       outputs.pop();
       next_internal = send_time;
+      last_transition = t;
       return;
     }
 

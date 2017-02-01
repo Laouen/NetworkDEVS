@@ -12,8 +12,8 @@ void ip_router_protocol::dinternal(double t) {
 
   if (!lower_layer_data_in.empty()) {
   	logger.debug("Process L2 Frame input.");
-    link::Frame f = lower_layer_data_in.front();
-    this->processIPPacket(this->getIpPacket(f),t);
+    ip::Packet p = lower_layer_data_in.front();
+    this->processIPPacket(p,t);
     lower_layer_data_in.pop();
     next_internal = process_ip_packet_time;
     return;
@@ -66,23 +66,19 @@ void ip_router_protocol::processIPPacket(ip::Packet p, double t) {
 
 bool ip_router_protocol::TTLisZero(ushort ttlp) const {
   ushort ttl = ttlp >> 8;
-  logger.debug("TTL: " + std::to_string(ttl));
+  logger.info("TTL: " + std::to_string(ttl));
   return ttl == 0;
 }
 
 ushort ip_router_protocol::decreaseTTL(ushort ttlp) const {
-  std::stringstream sstream;
-  sstream << std::hex << ttlp;
-  logger.debug("Start TTL: " + sstream.str());
-  
   ushort ttl = ttlp >> 8;
+  logger.debug("Before decrease TTL: " + ttl);
+  
   --ttl;
   ttl = ttl << 8;
   ttlp = ttlp & 0x00FF;
   ttlp = ttl | ttlp;
   
-  sstream.str("");
-  sstream << std::hex << ttlp;
-  logger.debug("Final TTL: " + sstream.str());
+  logger.debug("After decrease TTL: " + ttl);
   return ttlp;
 }

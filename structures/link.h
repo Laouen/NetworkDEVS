@@ -54,6 +54,20 @@ namespace link {
         Target_Hardware_Address = other.Target_Hardware_Address;
         Target_Protocol_Address = other.Target_Protocol_Address;
       }
+
+      std::string as_string() const {
+        std::string res = "ARP Packet:\n";
+        res += "Hardware_type: " + std::to_string(Hardware_type) + "\n";
+        res += "Protocol_type: " + std::to_string(Protocol_type) + "\n";
+        res += "HLen: " + std::to_string((int)HLen) + "\n";
+        res += "PLen: " + std::to_string((int)PLen) + "\n";
+        res += "Operation: " + std::to_string(Operation) + "\n";
+        res += "Source_Hardware_Address: " + Source_Hardware_Address.as_string() + "\n";
+        res += "Source_Protocol_Address: " + Source_Protocol_Address.as_string() + "\n";
+        res += "Target_Hardware_Address: " + Target_Hardware_Address.as_string() + "\n";
+        res += "Target_Protocol_Address: " + Target_Protocol_Address.as_string();
+        return res;
+      }
     };
   }
 
@@ -101,6 +115,17 @@ namespace link {
 
   enum Ctrl { ARP_QUERY, ARP_READY, SEND_PACKET, SEND_PACKET_FAILED };
 
+  inline std::string to_string(Ctrl c) {
+    std::string res;
+    switch(c) {
+    case link::Ctrl::ARP_QUERY: res = "ARP_QUERY"; break;
+    case link::Ctrl::ARP_READY: res = "ARP_READY"; break;
+    case link::Ctrl::SEND_PACKET: res = "SEND_PACKET"; break;
+    case link::Ctrl::SEND_PACKET_FAILED: res = "SEND_PACKET_FAILED"; break;
+    }
+    return res;
+  }
+
   struct Control {
     Ctrl request;
     ushort interface;
@@ -136,6 +161,16 @@ inline std::ostream& operator<<(std::ostream& os, const link::arp::Packet& p) {
   os << "Source_Protocol_Address: " << p.Source_Protocol_Address << std::endl;
   os << "Target_Hardware_Address: " << p.Target_Hardware_Address << std::endl;
   os << "Target_Protocol_Address: " << p.Target_Protocol_Address << std::endl;
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const link::Ctrl& c) {
+  switch(c) {
+  case link::Ctrl::ARP_QUERY: os << "ARP_QUERY"; break;
+  case link::Ctrl::ARP_READY: os << "ARP_READY"; break;
+  case link::Ctrl::SEND_PACKET: os << "SEND_PACKET"; break;
+  case link::Ctrl::SEND_PACKET_FAILED: os << "SEND_PACKET_FAILED"; break;
+  }
   return os;
 }
 

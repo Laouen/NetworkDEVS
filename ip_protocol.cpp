@@ -23,23 +23,23 @@ void ip_protocol::init(double t,...) {
   int ip_amount = (int)va_arg(parameters,double);
   logger.info("ip amount: " + std::to_string(ip_amount));
   for(int i=0;i<ip_amount;++i){
-    reserved_ips.push_back(va_arg(parameters,char*));
+    host_ips.push_back(va_arg(parameters,char*));
   }
 
   logger.info("ips:");
-  for(std::list<IPv4>::iterator i = reserved_ips.begin(); i != reserved_ips.end(); ++i){
+  for(std::list<IPv4>::iterator i = host_ips.begin(); i != host_ips.end(); ++i){
     logger.info(i->as_string());
   }
 
   // building routing table
   const char* file_path = va_arg(parameters,char*);
-  Parser<ip::Routing_entry> parser(file_path);
-  std::pair<double,ip::Routing_entry> parsed_line;
-  if (parser.file_open()) {
+  Parser<ip::Routing_entry> parser_rt(file_path);
+  std::pair<double,ip::Routing_entry> parsed_line_rt;
+  if (parser_rt.file_open()) {
     while(true) {
       try {
-        parsed_line = parser.next_input();
-        routing_table.push_back(parsed_line.second);
+        parsed_line_rt = parser_rt.next_input();
+        routing_table.push_back(parsed_line_rt.second);
       } catch(std::exception& e) {
         break; // end of file throws an exception
       }
@@ -56,12 +56,12 @@ void ip_protocol::init(double t,...) {
   // building forwarding table
   file_path = va_arg(parameters,char*);
   Parser<ip::Forwarding_entry> parser_ft(file_path);
-  std::pair<double,ip::Forwarding_entry> parsed_line;
+  std::pair<double,ip::Forwarding_entry> parsed_line_ft;
   if (parser_ft.file_open()) {
     while(true) {
       try {
-        parsed_line = parser_ft.next_input();
-        forwarding_table.push_back(parsed_line.second);
+        parsed_line_ft = parser_ft.next_input();
+        forwarding_table.push_back(parsed_line_ft.second);
       } catch(std::exception& e) {
         break; // end of file throws an exception
       }
@@ -147,7 +147,7 @@ bool ip_protocol::verifychecksum(ip::Header header) const {
 
 bool ip_protocol::matchesHostIps(IPv4 dest_ip) const {
 
-  for (std::list<IPv4>::const_iterator it = reserved_ips.cbegin(); it != reserved_ips.cend(); ++it) {
+  for (std::list<IPv4>::const_iterator it = host_ips.cbegin(); it != host_ips.cend(); ++it) {
     if (dest_ip == *it) {
       return true;
     }
@@ -171,7 +171,7 @@ bool ip_protocol::isBestRoute(ip::Routing_entry current, ip::Routing_entry old) 
   return (longest == current.netmask) || (current.metric < old.metric);
 }
 
-void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, IPv4 netmask, double t) {
+void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, double t) {
   
   logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
   if (arp_waiting_packets.find(nexthop) != arp_waiting_packets.end()) {
@@ -182,17 +182,24 @@ void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, IPv4 netmask, double t) {
     arp_waiting_packets.insert(std::make_pair(nexthop, q));
   }
 
-  link:Control m;
+  link::Control m;
   m.request = link::Ctrl::ARP_QUERY;
   m.ip = nexthop;
-  m.interface = this->getInterface(nexthop, netmask);
+  bool interfaceFound = this->getInterface(nexthop, m.interface);
 
+  if (!interfaceFound) {
+    logger.error("interface not found.");
+    //TODO: report to up layer.
+    return;
+  }
+
+  logger.info("ARP query throw interface: NET " + std::to_string(m.interface));
   Event o = Event(lower_layer_ctrl_out.push(m,t), 3);
   outputs.push(o);
 }
 
 void ip_protocol::processLinkControl(link::Control control, double t) {
-  std::queue<ip::Packet> packets_to_send
+  std::queue<ip::Packet> packets_to_send;
   link::Control m;
 
   switch(control.request) {
@@ -221,4 +228,14 @@ void ip_protocol::processLinkControl(link::Control control, double t) {
   default:
     logger.debug("Bad link control request.");
   }
+}
+
+bool ip_protocol::getInterface(IPv4 nexthop, ushort& interface) const {
+  for (std::list<ip::Forwarding_entry>::const_iterator it = forwarding_table.begin(); it != forwarding_table.end(); ++it) {
+    if (it->sameSubnet(nexthop)) {
+      interface = it->interface;
+      return true;
+    }
+  }
+  return false;
 }

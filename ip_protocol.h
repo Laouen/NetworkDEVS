@@ -45,6 +45,7 @@ protected:
   bool matchesHostIps(IPv4) const;
   bool getBestRoute(IPv4, ip::Routing_entry&) const;
   bool isBestRoute(ip::Routing_entry, ip::Routing_entry) const;
+  bool getInterface(IPv4, ushort&) const;
 
 public:
 	ip_protocol(const char *n): Layer(n) {};

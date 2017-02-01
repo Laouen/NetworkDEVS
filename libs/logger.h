@@ -1,7 +1,7 @@
 #if !defined Logger_h
 #define Logger_h
 
-#define show_log
+//#define show_log
 #define show_info
 #define show_debug
 #define show_error
