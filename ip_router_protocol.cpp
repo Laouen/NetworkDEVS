@@ -72,13 +72,13 @@ bool ip_router_protocol::TTLisZero(ushort ttlp) const {
 
 ushort ip_router_protocol::decreaseTTL(ushort ttlp) const {
   ushort ttl = ttlp >> 8;
-  logger.debug("Before decrease TTL: " + ttl);
+  logger.debug("Before decrease TTL: " + std::to_string(ttl));
   
   --ttl;
   ttl = ttl << 8;
   ttlp = ttlp & 0x00FF;
   ttlp = ttl | ttlp;
   
-  logger.debug("After decrease TTL: " + ttl);
+  logger.debug("After decrease TTL: " + std::to_string(ttl));
   return ttlp;
 }
