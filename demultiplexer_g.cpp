@@ -25,7 +25,7 @@ void demultiplexer_g::dext(Event x, double t) {
 
   link::Control control_to_deliver = *(link::Control*)x.value;
   if (control_to_deliver.interface <= _max_interface) {
-    _output = Event(_sent_control_inputs.push(control_to_deliver,t), control_to_deliver.interface);
+    _output = _sent_control_inputs.send(control_to_deliver, control_to_deliver.interface);
   }
 }
 

@@ -4,13 +4,6 @@
 
 void ip_protocol::init(double t,...) {
 
-  // TODO: implement same subnet comparizon to know if the destination is in the same
-  // subnet or not. If so, the packet is directly send to destination host. If not, the
-  // packet is sent the subnet router. Peterson page 222. THIS MUST BE DONE IN LAYER 2
-
-  // Note: Currently packet are delivered multiple times as TTL allows becouse there isn't layer two
-  // implementation and therefor, all packet are multicasted and returns to the sender how re send the packet
-  // affter decreasing TTL field.
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
@@ -94,7 +87,7 @@ void ip_protocol::exit() {}
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_protocol::routeIPPacket(ip::Packet p, double t) {
+void ip_protocol::routeIPPacket(ip::Packet p) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
@@ -103,13 +96,13 @@ void ip_protocol::routeIPPacket(ip::Packet p, double t) {
   if (!this->getBestRoute(dest_ip, route)) {
     logger.info("Discard packet: No route for packet with dest_ip: " + dest_ip.as_string());
     ip::Control m = ip::Control(ip::Ctrl::ROUTING_ERROR);
-    output = Event(higher_layer_ctrl_out.push(m,t), 1);
+    higher_layer_ctrl_out.push(m, 1);
     return; 
   }
 
   // Step 6-7
   logger.info("Best route for packet with dest_ip: " + dest_ip.as_string() + " is: " + route.as_string());
-  this->arp(p,route.nexthop,t);
+  this->arp(p,route.nexthop);
 }
 
 ushort ip_protocol::calculateChecksum(ip::Header header) const {
@@ -171,7 +164,7 @@ bool ip_protocol::isBestRoute(ip::Routing_entry current, ip::Routing_entry old) 
   return (longest == current.netmask) || (current.metric < old.metric);
 }
 
-void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, double t) {
+void ip_protocol::arp(ip::Packet packet, IPv4 nexthop) {
   
   logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
   if (arp_waiting_packets.find(nexthop) != arp_waiting_packets.end()) {
@@ -194,11 +187,10 @@ void ip_protocol::arp(ip::Packet packet, IPv4 nexthop, double t) {
   }
 
   logger.info("ARP query throw interface: NET " + std::to_string(m.interface));
-  Event o = Event(lower_layer_ctrl_out.push(m,t), 3);
-  outputs.push(o);
+  lower_layer_ctrl_out.push(m,3);
 }
 
-void ip_protocol::processLinkControl(link::Control control, double t) {
+void ip_protocol::processLinkControl(link::Control control) {
   std::queue<ip::Packet> packets_to_send;
   link::Control m;
 
@@ -217,13 +209,12 @@ void ip_protocol::processLinkControl(link::Control control, double t) {
       m.ip = control.ip;
       packets_to_send.pop();
 
-      Event o = Event(lower_layer_ctrl_out.push(m,t), 3);
-      outputs.push(o);
+      lower_layer_ctrl_out.push(m,3);
     }
     arp_waiting_packets.erase(control.ip);
     break;
   case link::Ctrl::SEND_PACKET_FAILED:
-    this->routeIPPacket(control.packet, t); // send again, this sends a new ARP QUERY
+    this->routeIPPacket(control.packet); // send again, this sends a new ARP QUERY
     break;
   default:
     logger.debug("Bad link control request.");

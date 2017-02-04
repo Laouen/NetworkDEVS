@@ -4,7 +4,7 @@ void ip_host_protocol::dinternal(double t) {
 
   if (!lower_layer_ctrl_in.empty()) {
     link::Control c = lower_layer_ctrl_in.front();
-    this->processLinkControl(c,t);
+    this->processLinkControl(c);
     lower_layer_ctrl_in.pop();
     next_internal = process_link_control_time;
     return;
@@ -12,7 +12,7 @@ void ip_host_protocol::dinternal(double t) {
 
   if (!higher_layer_data_in.empty()) {
     udp::Datagram d = higher_layer_data_in.front();
-    this->processUDPDatagram(d,t);
+    this->processUDPDatagram(d);
     higher_layer_data_in.pop();
     next_internal = process_udp_datagram_time;
     return;
@@ -21,7 +21,7 @@ void ip_host_protocol::dinternal(double t) {
   if (!lower_layer_data_in.empty()) {
     logger.debug("Process L2 Frame input.");
     ip::Packet p = lower_layer_data_in.front();
-    this->processIPPacket(p,t);
+    this->processIPPacket(p);
     lower_layer_data_in.pop();
     next_internal = process_ip_packet_time;
     return;
@@ -32,7 +32,7 @@ void ip_host_protocol::dinternal(double t) {
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_host_protocol::processIPPacket(ip::Packet p, double t) {
+void ip_host_protocol::processIPPacket(ip::Packet p) {
   IPv4 dest_ip = p.header.dest_ip; 
   Event o;
 
@@ -49,12 +49,11 @@ void ip_host_protocol::processIPPacket(ip::Packet p, double t) {
   }
 
   // Delivering datagram to the next top layer
-  o = Event(higher_layer_data_out.push(p.data,t), 0);
-  outputs.push(o);
+  higher_layer_data_out.push(p.data,0);
   return;
 }
 
-void ip_host_protocol::processUDPDatagram(udp::Datagram d, double t) {
+void ip_host_protocol::processUDPDatagram(udp::Datagram d) {
   ip::Packet p;
   p.data = d;
   // version 0100 (IPv4) IHL 0101 (5 no option field)
@@ -68,5 +67,5 @@ void ip_host_protocol::processUDPDatagram(udp::Datagram d, double t) {
   p.header.dest_ip = d.psd_header.dest_ip;
   p.header.header_checksum = this->calculateChecksum(p.header);
 
-  this->routeIPPacket(p,t);
+  this->routeIPPacket(p);
 }

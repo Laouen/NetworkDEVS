@@ -4,7 +4,7 @@ void ip_router_protocol::dinternal(double t) {
 
   if (!lower_layer_ctrl_in.empty()) {
     link::Control c = lower_layer_ctrl_in.front();
-    this->processLinkControl(c,t);
+    this->processLinkControl(c);
     lower_layer_ctrl_in.pop();
     next_internal = process_link_control_time;
     return;
@@ -13,7 +13,7 @@ void ip_router_protocol::dinternal(double t) {
   if (!lower_layer_data_in.empty()) {
   	logger.debug("Process L2 Frame input.");
     ip::Packet p = lower_layer_data_in.front();
-    this->processIPPacket(p,t);
+    this->processIPPacket(p);
     lower_layer_data_in.pop();
     next_internal = process_ip_packet_time;
     return;
@@ -27,7 +27,7 @@ void ip_router_protocol::dinternal(double t) {
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_router_protocol::processIPPacket(ip::Packet p, double t) {
+void ip_router_protocol::processIPPacket(ip::Packet p) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
@@ -38,7 +38,6 @@ void ip_router_protocol::processIPPacket(ip::Packet p, double t) {
     // silent discard
     logger.info("Discard packet: checksum verification faild for packet with dest_ip: "
                 + dest_ip.as_string());
-    output = Event(0,5);
     return;
   }
 
@@ -51,7 +50,6 @@ void ip_router_protocol::processIPPacket(ip::Packet p, double t) {
     // ICMP destination Unreachable-Network message to sender
     logger.info("Discard packet: TTL zero for packet with dest_ip: " 
                 + dest_ip.as_string());
-    output = Event(0,5);
     return; 
   }
 
@@ -61,7 +59,7 @@ void ip_router_protocol::processIPPacket(ip::Packet p, double t) {
   p.header.header_checksum = this->calculateChecksum(p.header);
 
   // Step 5-7
-  this->routeIPPacket(p,t);
+  this->routeIPPacket(p);
 }
 
 bool ip_router_protocol::TTLisZero(ushort ttlp) const {

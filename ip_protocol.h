@@ -36,9 +36,9 @@ protected:
 
   /********* Protected methods *********/
   // Class state modifiers
-  void routeIPPacket(ip::Packet, double);
-  void arp(ip::Packet, IPv4, double);
-  void processLinkControl(link::Control, double);
+  void routeIPPacket(ip::Packet);
+  void arp(ip::Packet, IPv4);
+  void processLinkControl(link::Control);
   // Class state non modifiers
   ushort calculateChecksum(ip::Header) const;
   bool verifychecksum(ip::Header) const;

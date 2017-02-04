@@ -32,7 +32,6 @@ void udp_protocol::dinternal(double t) {
     this->processNtwCtrl(c);
     lower_layer_ctrl_in.pop();
     next_internal = add_rm_ip_time;
-    output = Event(0,5);
     return;
   }
 
@@ -51,9 +50,6 @@ void udp_protocol::dinternal(double t) {
     next_internal = delivering_time;
     return;
   }
-
-  output = Event(0,5);
-  next_internal = infinity;
 }
 
 Event udp_protocol::lambda(double t) {
@@ -88,7 +84,7 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
       // deliver data
       udp::Multiplexed_packet m(s.app_id, p);
       logger.debug("app_id: " + std::to_string(m.app_id));
-      output = Event(higher_layer_data_out.push(m,t), 0);
+      higher_layer_data_out.push(m, 0);
       s.stopReading();
     }
   } else {
@@ -119,12 +115,11 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       logger.debug("SUCCESS");
       m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     } else {
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
       // send invalid socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
     }
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
+    higher_layer_ctrl_out.push(m, 1);
     break;
   
 
@@ -139,12 +134,11 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       logger.debug("SUCCESS");
       m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     } else {
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
       // send invalid socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
     }
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
+      higher_layer_ctrl_out.push(m, 1);
     break;
 
 
@@ -156,20 +150,19 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       // send invalid socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
     if (s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s->startReadingFrom(c.remote_port, c.remote_ip);
-    output = Event(0,5);
     break;
 
 
@@ -181,8 +174,8 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       // send invalid socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
@@ -190,8 +183,8 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
         s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     // set flag waiting data
@@ -208,16 +201,16 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       // send invalid socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
     if (s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     this->sendDataTo(c.packet,*s,c.remote_port,c.remote_ip,t);
@@ -232,8 +225,8 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       // send invalid socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     s = &sockets[port][ip];
@@ -241,8 +234,8 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
         s->state != udp::Socket::Status::BOUND) {
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
+      higher_layer_ctrl_out.push(m, 1);
       break;
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
     }
 
     this->sendData(c.packet,*s,t);
@@ -256,7 +249,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       // send invald socket
       logger.debug("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
-      output = Event(higher_layer_ctrl_out.push(m,t), 1);
+      higher_layer_ctrl_out.push(m, 1);
       break;
     }
 
@@ -267,7 +260,10 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     // send success
     logger.debug("SUCCESS");
     m = udp::Control(app_id,udp::Ctrl::SUCCESS);
-    output = Event(higher_layer_ctrl_out.push(m,t), 1);
+    higher_layer_ctrl_out.push(m, 1);
+    break;
+  default:
+    logger.error("Process udp::Control bad case.");
     break;
   }
 }
@@ -288,7 +284,7 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
     logger.info("Routing error received from network layer.");
     break;
   default:
-    //TODO: trhow an exception
+    logger.error("Process ip::Control bad case.");
     break;
   }
 }
@@ -315,7 +311,7 @@ void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, do
   std::size_t length = payload.copy(dat.payload,payload.size(),0);
   dat.payload[length] = '\0';
   
-  output = Event(lower_layer_data_out.push(dat,t),2);
+  lower_layer_data_out.push(dat, 2);
 }
 
 void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
@@ -337,7 +333,7 @@ void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, 
   std::size_t length = payload.copy(dat.payload,payload.size(),0);
   dat.payload[length] = '\0';
 
-  output = Event(lower_layer_data_out.push(dat,t),2);
+  lower_layer_data_out.push(dat, 2);
 }
 
 bool udp_protocol::verifyChecksum(udp::Datagram d) const {

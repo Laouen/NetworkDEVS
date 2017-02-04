@@ -50,7 +50,6 @@ protected:
   message_list<DL> lower_layer_data_out;
 
   Event output;
-  std::queue<Event> outputs;
 
   double next_internal;
   double last_transition;
@@ -76,10 +75,29 @@ public:
     output = Event(0,5);
     next_internal = infinity;
     
-    // this may cause some starvation if there is too many outputs
-    if (!outputs.empty()) {
-      output = outputs.front();
-      outputs.pop();
+    if (!higher_layer_ctrl_out.empty()) {
+      output = higher_layer_ctrl_out.pop();
+      next_internal = send_time;
+      last_transition = t;
+      return;
+    }
+
+    if (!lower_layer_ctrl_out.empty()) {
+      output = lower_layer_ctrl_out.pop();
+      next_internal = send_time;
+      last_transition = t;
+      return;
+    }
+
+    if (!higher_layer_data_out.empty()) {
+      output = higher_layer_data_out.pop();
+      next_internal = send_time;
+      last_transition = t;
+      return;
+    }
+
+    if (!lower_layer_data_out.empty()) {
+      output = lower_layer_data_out.pop();
       next_internal = send_time;
       last_transition = t;
       return;

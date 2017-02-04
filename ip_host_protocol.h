@@ -7,8 +7,8 @@
 
 class ip_host_protocol : public ip_protocol {
 
-  void processIPPacket(ip::Packet, double);
-  void processUDPDatagram(udp::Datagram, double);
+  void processIPPacket(ip::Packet);
+  void processUDPDatagram(udp::Datagram);
 
 public:
   ip_host_protocol(const char *n): ip_protocol(n) {};

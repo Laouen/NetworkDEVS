@@ -7,7 +7,7 @@
 
 class ip_router_protocol : public ip_protocol {
 
-  void processIPPacket(ip::Packet, double);
+  void processIPPacket(ip::Packet);
   bool TTLisZero(ushort) const;
   ushort decreaseTTL(ushort) const;
 

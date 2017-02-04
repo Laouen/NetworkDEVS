@@ -27,22 +27,22 @@ class swp_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
   static bool SeqnoRWSComparator(swp::SwpSeqno, swp::SwpSeqno);
   static bool recvQ_slotComparator(swp::recvQ_slot<link::Frame>, swp::recvQ_slot<link::Frame>);
 
-  void swpSend(link::Frame frame, double t);
-  void swpDeliver(link::Frame frame, double t);
+  void swpSend(link::Frame frame);
+  void swpDeliver(link::Frame frame);
   void swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble);
-  void swpDeliverToUpModules(link::Frame frame, double t);
+  void swpDeliverToUpModules(link::Frame frame);
   bool swpValidMAC(MAC MAC_destination);
   bool swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum);
-  void swpSendAck(MAC mac_dest, double t);
+  void swpSendAck(MAC mac_dest);
   void swpLoadHdr(swp::SwpHdr& hdr, const unsigned long& preamble);
-  void swpTimeout(double t);
+  void swpTimeout();
   void swpUpdateTimeouts(double t);
   double swpNexTimeout();
   bool swpTimeoutTriggered();
   
   /********** Comunication methods **************/
 
-  void sendControl(link::Ctrl c, link::Control control, double t);
+  void sendControl(link::Ctrl c, link::Control control);
   link::Frame wrapInFrame(const ip::Packet& packet, MAC dest_mac);
   link::Frame wrapInFrame(const link::arp::Packet& packet);
   ip::Packet getIpPacket(const link::Frame& frame);
@@ -53,12 +53,12 @@ class swp_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
   /********** ARP methods **************/
 
   void arpCacheSourceMAC(MAC source_mac, IPv4 source_ip);
-  void arpProcessPacket(link::arp::Packet packet, double t);
+  void arpProcessPacket(link::arp::Packet packet);
   void arpUpdateCache(double t);
-  void arpProcessLinkControl(link::Control control, double t);
+  void arpProcessLinkControl(link::Control control);
   bool arpCachedMAC(IPv4 dest_ip);
   MAC arpGetMAC(IPv4 dest_ip);
-  void arpSendQuery(IPv4 arp_ip, double t);
+  void arpSendQuery(IPv4 arp_ip);
 
 public:
   swp_protocol(const char *n): Layer(n) {};

@@ -45,7 +45,7 @@ void input_stream::dext(Event x, double t) {
 
 Event input_stream::lambda(double t) {
   // logger.debug("lambda");
-  return Event(_sent_inputs.push(_next_input,t),0);
+  return _sent_inputs.send(_next_input,0);
 }
 
 void input_stream::exit() {}

@@ -1,46 +1,36 @@
 #if !defined message_list_h
 #define message_list_h
 
-#include <list>
+#include <queue>
 #include <utility>
-#include <string>
-
 #include "simulator.h"
 
-template<typename T>
+template<typename MSG>
 class message_list{
-  std::list<std::pair<T,double>> msgs;
-  double _last_time = -1.0;
+  MSG current_msg;
+  std::queue<std::pair<MSG,int>> queued_msgs; // pair (Message,port) 
 	
 public:
   message_list() {}
-  ~message_list() { msgs.clear(); }
 	
-  T* push(const T& m, double t) {
-
-    if (t < _last_time) {
-      printLog("BadTime\n");
-      printLog(std::to_string(t).c_str());
-      printLog(" < ");
-      printLog(std::to_string(_last_time).c_str());
-      throw std::exception();
-    }
-
-    _last_time = t;
-    //remove_obsolete_messages();
-    msgs.push_back(std::make_pair(m,t));
-    return &msgs.back().first;
+  void push(const MSG& m, int port) {
+  	queued_msgs.push(std::make_pair(m,port));
   };
 
-  void remove_obsolete_messages() {
+  Event pop() {
+    current_msg = queued_msgs.front().first;
+    int port = queued_msgs.front().second;
+    queued_msgs.pop();
+    return Event(&current_msg, port);
+  }
 
-    typename std::list<std::pair<T,double>>::iterator it = msgs.begin();
-    while (it != msgs.end()) {
-      if (it->second < _last_time)
-        it = msgs.erase(it);
-      else 
-        ++it;
-    }
+  Event send(const MSG& m, int port) {
+    current_msg = m;
+    return Event(&current_msg, port);
+  }
+
+  bool empty() {
+    return queued_msgs.empty();
   }
 };
 

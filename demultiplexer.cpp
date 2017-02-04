@@ -29,13 +29,13 @@ void demultiplexer::dext(Event x, double t) {
   case 0:
     packet_to_deliver = *(udp::Multiplexed_packet*)x.value;
     if (packet_to_deliver.app_id <= _max_id) {
-      _output = Event(_sent_packet_inputs.push(packet_to_deliver.packet,t),(2*packet_to_deliver.app_id));
+      _output = _sent_packet_inputs.send(packet_to_deliver.packet,(2*packet_to_deliver.app_id));
     }
     break;
   case 1:
     control_to_deliver = *(udp::Control*)x.value;
     if (control_to_deliver.app_id <= _max_id) {
-      _output = Event(_sent_control_inputs.push(control_to_deliver,t),(2*control_to_deliver.app_id)+1);
+      _output = _sent_control_inputs.send(control_to_deliver,(2*control_to_deliver.app_id)+1);
     }
     break;
   default:
