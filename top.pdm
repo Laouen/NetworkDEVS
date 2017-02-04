@@ -196,7 +196,7 @@ Coupled
                         Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
-                        Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                        Icon = ../atomics/NetworkDEVS/icons/link.svg
                         }
                     Parameters
                         {
@@ -484,7 +484,7 @@ Coupled
                                 Dimension = 675 ; 675
                                 Direction = Right
                                 Color = 15
-                                Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                                Icon = ../atomics/NetworkDEVS/icons/link.svg
                                 }
                             Parameters
                                 {
@@ -698,7 +698,7 @@ Coupled
                                         Dimension = 675 ; 675
                                         Direction = Right
                                         Color = 15
-                                        Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                                        Icon = ../atomics/NetworkDEVS/icons/link.svg
                                         }
                                     Parameters
                                         {
@@ -720,7 +720,7 @@ Coupled
                                         Dimension = 675 ; 675
                                         Direction = Right
                                         Color = 15
-                                        Icon = ../atomics/NetworkDEVS/icons/swp.svg
+                                        Icon = ../atomics/NetworkDEVS/icons/link.svg
                                         }
                                     Parameters
                                         {
