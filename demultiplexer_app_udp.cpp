@@ -1,6 +1,6 @@
-#include "demultiplexer.h"
+#include "demultiplexer_app_udp.h"
 
-void demultiplexer::init(double t,...) {
+void demultiplexer_app_udp::init(double t,...) {
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
@@ -9,7 +9,7 @@ void demultiplexer::init(double t,...) {
   _output = Event(0,2*(_max_id+2));
 }
 
-double demultiplexer::ta(double t) {
+double demultiplexer_app_udp::ta(double t) {
   if (_output.port >= 2*(_max_id+1)) {
     return std::numeric_limits<double>::max();
   } else {
@@ -17,11 +17,11 @@ double demultiplexer::ta(double t) {
   }
 }
 
-void demultiplexer::dint(double t) {
+void demultiplexer_app_udp::dint(double t) {
   _output = Event(0,2*(_max_id+1));
 }
 
-void demultiplexer::dext(Event x, double t) {
+void demultiplexer_app_udp::dext(Event x, double t) {
   udp::Control control_to_deliver;
   udp::Multiplexed_packet packet_to_deliver;
 
@@ -43,8 +43,8 @@ void demultiplexer::dext(Event x, double t) {
   }
 }
 
-Event demultiplexer::lambda(double t) {
+Event demultiplexer_app_udp::lambda(double t) {
   return _output;
 }
 
-void demultiplexer::exit() {}
+void demultiplexer_app_udp::exit() {}

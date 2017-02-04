@@ -19,7 +19,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/demultiplexer.h
+        Path = NetworkDEVS/demultiplexer_app_udp.h
         Parameters = 2.000000e+00
        }
       Simulator
@@ -75,7 +75,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/demultiplexer.h
+        Path = NetworkDEVS/demultiplexer_app_udp.h
         Parameters = 2.000000e+00
        }
       Simulator
@@ -141,7 +141,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/demultiplexer_g.h
+        Path = NetworkDEVS/demultiplexer_ip_link.h
         Parameters = 2.000000e+00
        }
       EIC

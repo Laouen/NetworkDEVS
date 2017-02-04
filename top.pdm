@@ -126,7 +126,7 @@ Coupled
                     {
                     Name = demux 2
                     Ports = 2 ; 4
-                    Path = NetworkDEVS/demultiplexer.h
+                    Path = NetworkDEVS/demultiplexer_app_udp.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -395,7 +395,7 @@ Coupled
                             {
                             Name = demux 1
                             Ports = 2 ; 4
-                            Path = NetworkDEVS/demultiplexer.h
+                            Path = NetworkDEVS/demultiplexer_app_udp.h
                             Description = Atomic DEVS model
                             Graphic
                                 {
@@ -734,7 +734,7 @@ Coupled
                                     {
                                     Name = Atomic0
                                     Ports = 1 ; 2
-                                    Path = NetworkDEVS/demultiplexer_g.h
+                                    Path = NetworkDEVS/demultiplexer_ip_link.h
                                     Description = Atomic DEVS model
                                     Graphic
                                         {

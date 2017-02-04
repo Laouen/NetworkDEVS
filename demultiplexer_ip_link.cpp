@@ -1,6 +1,6 @@
-#include "demultiplexer_g.h"
+#include "demultiplexer_ip_link.h"
 
-void demultiplexer_g::init(double t,...) {
+void demultiplexer_ip_link::init(double t,...) {
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
@@ -9,7 +9,7 @@ void demultiplexer_g::init(double t,...) {
   _output = Event(0,_max_interface+2);
 }
 
-double demultiplexer_g::ta(double t) {
+double demultiplexer_ip_link::ta(double t) {
   if (_output.port >= _max_interface) {
     return std::numeric_limits<double>::max();
   } else {
@@ -17,11 +17,11 @@ double demultiplexer_g::ta(double t) {
   }
 }
 
-void demultiplexer_g::dint(double t) {
+void demultiplexer_ip_link::dint(double t) {
   _output = Event(0,_max_interface+2);
 }
 
-void demultiplexer_g::dext(Event x, double t) {
+void demultiplexer_ip_link::dext(Event x, double t) {
 
   link::Control control_to_deliver = *(link::Control*)x.value;
   if (control_to_deliver.interface <= _max_interface) {
@@ -29,8 +29,8 @@ void demultiplexer_g::dext(Event x, double t) {
   }
 }
 
-Event demultiplexer_g::lambda(double t) {
+Event demultiplexer_ip_link::lambda(double t) {
   return _output;
 }
 
-void demultiplexer_g::exit() {}
+void demultiplexer_ip_link::exit() {}

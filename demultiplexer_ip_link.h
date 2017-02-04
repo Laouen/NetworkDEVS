@@ -1,6 +1,6 @@
-//CPP:networkDEVS/demultiplexer.cpp
-#if !defined demultiplexer_h
-#define demultiplexer_h
+//CPP:networkDEVS/demultiplexer_ip_link.cpp
+#if !defined demultiplexer_ip_link_h
+#define demultiplexer_ip_link_h
 
 #include <limits>
 
@@ -17,14 +17,13 @@
 #include "structures/ip.h"
 #include "structures/link.h"
 
-class demultiplexer: public Simulator { 
-  message_list<udp::Control> _sent_control_inputs;
-  message_list<app::Packet> _sent_packet_inputs;
-  unsigned int _max_id;
+class demultiplexer_ip_link: public Simulator { 
+  message_list<link::Control> _sent_control_inputs;
+  unsigned int _max_interface;
   Event _output;
 
 public:
-  demultiplexer(const char *n): Simulator(n) {};
+  demultiplexer_ip_link(const char *n): Simulator(n) {};
   void init(double, ...);
   double ta(double t);
   void dint(double);
