@@ -1,11 +1,11 @@
-//CPP:NetworkDEVS/swp_protocol.cpp
-#if !defined swp_protocol_h
-#define swp_protocol_h
+//CPP:NetworkDEVS/link_protocol.cpp
+#if !defined link_protocol_h
+#define link_protocol_h
 
 #include "layer.h"
 
 // there is no control type for lower layer physical protocols
-class swp_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
+class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
 
   std::list<link::arp::Entry> ARPTable;
   swp::SwpState<link::Frame> SWPState;
@@ -61,7 +61,7 @@ class swp_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
   void arpSendQuery(IPv4 arp_ip);
 
 public:
-  swp_protocol(const char *n): Layer(n) {};
+  link_protocol(const char *n): Layer(n) {};
   void init(double, ...);
   double ta(double t);
   Event lambda(double);

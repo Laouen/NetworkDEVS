@@ -188,7 +188,7 @@ Coupled
                     {
                     Name = swp 1
                     Ports = 4 ; 4
-                    Path = NetworkDEVS/swp_protocol.h
+                    Path = NetworkDEVS/link_protocol.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -476,7 +476,7 @@ Coupled
                             {
                             Name = swp 1
                             Ports = 4 ; 4
-                            Path = NetworkDEVS/swp_protocol.h
+                            Path = NetworkDEVS/link_protocol.h
                             Description = Atomic DEVS model
                             Graphic
                                 {
@@ -690,7 +690,7 @@ Coupled
                                     {
                                     Name = swp r1
                                     Ports = 4 ; 4
-                                    Path = NetworkDEVS/swp_protocol.h
+                                    Path = NetworkDEVS/link_protocol.h
                                     Description = Atomic DEVS model
                                     Graphic
                                         {
@@ -712,7 +712,7 @@ Coupled
                                     {
                                     Name = swp r2
                                     Ports = 4 ; 4
-                                    Path = NetworkDEVS/swp_protocol.h
+                                    Path = NetworkDEVS/link_protocol.h
                                     Description = Atomic DEVS model
                                     Graphic
                                         {

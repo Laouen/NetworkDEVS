@@ -1,6 +1,6 @@
-#include "swp_protocol.h"
+#include "link_protocol.h"
 
-void swp_protocol::init(double t, ...) {
+void link_protocol::init(double t, ...) {
   // PowerDEVS parameters
 
   va_list parameters;
@@ -29,7 +29,7 @@ void swp_protocol::init(double t, ...) {
   output = Event(0,5);
 }
 
-double swp_protocol::ta(double t) {
+double link_protocol::ta(double t) {
   if (next_internal == infinity) {
     return this->swpNexTimeout();
   } else {
@@ -37,11 +37,11 @@ double swp_protocol::ta(double t) {
   }
 }
 
-Event swp_protocol::lambda(double) {
+Event link_protocol::lambda(double) {
   return output;
 }
 
-void swp_protocol::dinternal(double t) {
+void link_protocol::dinternal(double t) {
 
   this->swpUpdateTimeouts(t);
   this->arpUpdateCache(t);
@@ -77,13 +77,13 @@ void swp_protocol::dinternal(double t) {
   }
 }
 
-void swp_protocol::dexternal(double t) {
+void link_protocol::dexternal(double t) {
   this->arpUpdateCache(t);
 }
 
 /***************** SWP **************************/
 
-void swp_protocol::swpSend(link::Frame frame) {
+void link_protocol::swpSend(link::Frame frame) {
   logger.info("swpSend");
   Event msg;
   swp::sendQ_slot<link::Frame> slot;
@@ -102,7 +102,7 @@ void swp_protocol::swpSend(link::Frame frame) {
   return;
 }
 
-bool swp_protocol::swpTimeoutTriggered() {
+bool link_protocol::swpTimeoutTriggered() {
   for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it !=SWPState.sendQ.end(); ++it) {
     if (it->timeout <= 0) {
       return true;
@@ -111,7 +111,7 @@ bool swp_protocol::swpTimeoutTriggered() {
   return false;
 }
 
-void swp_protocol::swpTimeout() { 
+void link_protocol::swpTimeout() { 
   for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it != SWPState.sendQ.end(); ++it) {
     if (it->timeout <= 0) {
       it->timeout = SWP_SEND_TIMEOUT;
@@ -120,7 +120,7 @@ void swp_protocol::swpTimeout() {
   }
 }
 
-void swp_protocol::swpDeliver(link::Frame frame) {
+void link_protocol::swpDeliver(link::Frame frame) {
   logger.info("swpDeliver");
   swp::SwpHdr hdr;
   swp::recvQ_slot<link::Frame> slot;
@@ -186,7 +186,7 @@ void swp_protocol::swpDeliver(link::Frame frame) {
   }
 }
 
-void swp_protocol::swpDeliverToUpModules(link::Frame frame) {
+void link_protocol::swpDeliverToUpModules(link::Frame frame) {
   ip::Packet ip_packet;
   link::arp::Packet arp_packet;
   Event o;
@@ -200,17 +200,17 @@ void swp_protocol::swpDeliverToUpModules(link::Frame frame) {
   }
 }
 
-bool swp_protocol::SeqnoRWSComparator(swp::SwpSeqno a, swp::SwpSeqno b) {
+bool link_protocol::SeqnoRWSComparator(swp::SwpSeqno a, swp::SwpSeqno b) {
   if (abs(a-b) <= RWS) return a < b;
   return b < a;
 }
 
-bool swp_protocol::recvQ_slotComparator(swp::recvQ_slot<link::Frame> a, swp::recvQ_slot<link::Frame> b) {
+bool link_protocol::recvQ_slotComparator(swp::recvQ_slot<link::Frame> a, swp::recvQ_slot<link::Frame> b) {
   
-  return swp_protocol::SeqnoRWSComparator(a.SeqNum, b.SeqNum);
+  return link_protocol::SeqnoRWSComparator(a.SeqNum, b.SeqNum);
 }
 
-double swp_protocol::swpNexTimeout() {
+double link_protocol::swpNexTimeout() {
   double next = infinity;
   for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it !=SWPState.sendQ.end(); ++it) {
     if (it->timeout < next) {
@@ -220,7 +220,7 @@ double swp_protocol::swpNexTimeout() {
   return next;
 }
 
-void swp_protocol::swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble) {
+void link_protocol::swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble) {
   preamble = preamble & 0x000FFFFF; // cleaning the bits where swp::SwpHdr will be placed
   unsigned long stored_hdr = 0x00000000; // starting an empty header
   unsigned long curr_val = 0x00000000; // used to correcly set data in their correspondent bits
@@ -244,7 +244,7 @@ void swp_protocol::swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble) 
   preamble = preamble | stored_hdr;
 }
 
-void swp_protocol::swpSendAck(MAC mac_dest) {
+void link_protocol::swpSendAck(MAC mac_dest) {
   logger.info("send ACK LFR: " + std::to_string(SWPState.LFR));
   link::Frame frame;
   swp::SwpHdr hdr;
@@ -261,12 +261,12 @@ void swp_protocol::swpSendAck(MAC mac_dest) {
   lower_layer_data_out.push(frame, 2);
 }
 
-bool swp_protocol::swpValidMAC(MAC MAC_destination) {
+bool link_protocol::swpValidMAC(MAC MAC_destination) {
   return  MAC_destination == mac || 
           MAC_destination == BROADCAST_MAC_ADDRESS;
 }
 
-bool swp_protocol::swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum) {
+bool link_protocol::swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum) {
   for (swp::SwpSeqno i=0; i<WS; ++i) {
     swp::SwpSeqno current = startNum+i;
     if (seqNum == current)
@@ -275,7 +275,7 @@ bool swp_protocol::swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno 
   return false;
 }
 
-void swp_protocol::swpLoadHdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
+void link_protocol::swpLoadHdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
   unsigned long stored_hdr = 0x00000000;
 
   stored_hdr = 0x00F00000 & preamble;
@@ -291,7 +291,7 @@ void swp_protocol::swpLoadHdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
   hdr.SeqNum = stored_hdr;
 }
 
-void swp_protocol::swpUpdateTimeouts(double t) {
+void link_protocol::swpUpdateTimeouts(double t) {
   double elapsed_time = t-last_transition;
   for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it !=SWPState.sendQ.end(); ++it) {
     if (it->timeout != infinity)
@@ -301,7 +301,7 @@ void swp_protocol::swpUpdateTimeouts(double t) {
 
 /***************** Comunication methods **************************/
 
-link::Frame swp_protocol::wrapInFrame(const ip::Packet& packet, MAC dest_mac) {
+link::Frame link_protocol::wrapInFrame(const ip::Packet& packet, MAC dest_mac) {
   link::Frame frame;
   frame.MAC_source = mac;
   frame.MAC_destination = dest_mac;
@@ -311,7 +311,7 @@ link::Frame swp_protocol::wrapInFrame(const ip::Packet& packet, MAC dest_mac) {
   return frame;
 }
 
-link::Frame swp_protocol::wrapInFrame(const link::arp::Packet& packet) {
+link::Frame link_protocol::wrapInFrame(const link::arp::Packet& packet) {
   link::Frame frame;
   frame.MAC_source = mac;
   frame.MAC_destination = BROADCAST_MAC_ADDRESS;
@@ -321,19 +321,19 @@ link::Frame swp_protocol::wrapInFrame(const link::arp::Packet& packet) {
   return frame;
 }
 
-ip::Packet swp_protocol::getIpPacket(const link::Frame& frame) {
+ip::Packet link_protocol::getIpPacket(const link::Frame& frame) {
   ip::Packet packet;
   memcpy(&packet,frame.payload,sizeof(packet));
   return packet;
 }
 
-link::arp::Packet swp_protocol::getARPPacket(const link::Frame& frame) {
+link::arp::Packet link_protocol::getARPPacket(const link::Frame& frame) {
   link::arp::Packet packet;
   memcpy(&packet,frame.payload,sizeof(packet));
   return packet;
 }
 
-void swp_protocol::sendControl(link::Ctrl c, link::Control control) {
+void link_protocol::sendControl(link::Ctrl c, link::Control control) {
   logger.info("Send control to ip: " + link::to_string(c));
   control.request = c;
   control.interface = interface;
@@ -342,13 +342,13 @@ void swp_protocol::sendControl(link::Ctrl c, link::Control control) {
 
 /*********** Unimplemented Comunication Methods *****************/
 
-unsigned long swp_protocol::calculateCRC() { return 0; }
+unsigned long link_protocol::calculateCRC() { return 0; }
 
-bool swp_protocol::verifyCRC(link::Frame frame) { return true; }
+bool link_protocol::verifyCRC(link::Frame frame) { return true; }
 
 /****************** ARP methods ***********************/
 
-void swp_protocol::arpProcessLinkControl(link::Control control) {
+void link_protocol::arpProcessLinkControl(link::Control control) {
   MAC dest_mac;
   link::Frame frame;
   link::Control m;
@@ -382,7 +382,7 @@ void swp_protocol::arpProcessLinkControl(link::Control control) {
   }
 }
 
-void swp_protocol::arpProcessPacket(link::arp::Packet packet) {
+void link_protocol::arpProcessPacket(link::arp::Packet packet) {
   logger.debug("Process ARP packet.");
   logger.log(packet.as_string());
 
@@ -413,7 +413,7 @@ void swp_protocol::arpProcessPacket(link::arp::Packet packet) {
   }
 }
 
-bool swp_protocol::arpCachedMAC(IPv4 dest_ip) {
+bool link_protocol::arpCachedMAC(IPv4 dest_ip) {
   std::list<link::arp::Entry>::iterator it;
 
   for (it = ARPTable.begin(); it != ARPTable.end(); ++it) {
@@ -426,7 +426,7 @@ bool swp_protocol::arpCachedMAC(IPv4 dest_ip) {
   return false;
 }
 
-MAC swp_protocol::arpGetMAC(IPv4 dest_ip) {
+MAC link_protocol::arpGetMAC(IPv4 dest_ip) {
   std::list<link::arp::Entry>::iterator it;
 
   for (it = ARPTable.begin(); it != ARPTable.end(); ++it) {
@@ -435,7 +435,7 @@ MAC swp_protocol::arpGetMAC(IPv4 dest_ip) {
   }
 }
 
-void swp_protocol::arpUpdateCache(double t) {
+void link_protocol::arpUpdateCache(double t) {
   double elapsed_time = t-last_transition;
   std::list<link::arp::Entry>::iterator it = ARPTable.begin();
 
@@ -449,7 +449,7 @@ void swp_protocol::arpUpdateCache(double t) {
   }
 }
 
-void swp_protocol::arpCacheSourceMAC(MAC source_mac, IPv4 source_ip) {
+void link_protocol::arpCacheSourceMAC(MAC source_mac, IPv4 source_ip) {
   link::arp::Entry e;
   e.ip = source_ip;
   e.mac = source_mac;
@@ -457,7 +457,7 @@ void swp_protocol::arpCacheSourceMAC(MAC source_mac, IPv4 source_ip) {
   ARPTable.push_back(e);
 }
 
-void swp_protocol::arpSendQuery(IPv4 arp_ip) {
+void link_protocol::arpSendQuery(IPv4 arp_ip) {
   logger.info("Sending ARP query for ip: " + arp_ip.as_string());
   
   link::arp::Packet query;

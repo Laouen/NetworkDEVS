@@ -34,7 +34,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/swp_protocol.h
+        Path = NetworkDEVS/link_protocol.h
         Parameters = "Host 2 NET 0","2:0:0:0:0:0","168.10.25.48",0.000000e+00
        }
       EIC
@@ -95,7 +95,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/swp_protocol.h
+        Path = NetworkDEVS/link_protocol.h
         Parameters = "Host 1 NET 0","1:0:0:0:0:0","148.10.25.48",0.000000e+00
        }
       EIC
@@ -131,12 +131,12 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/swp_protocol.h
+        Path = NetworkDEVS/link_protocol.h
         Parameters = "Router 1 NET 0","3:0:0:0:0:0","148.10.0.0",0.000000e+00
        }
       Simulator
        {
-        Path = NetworkDEVS/swp_protocol.h
+        Path = NetworkDEVS/link_protocol.h
         Parameters = "Router 1 NET 1","4:0:0:0:0:0","168.10.0.0",1.000000e+00
        }
       Simulator
