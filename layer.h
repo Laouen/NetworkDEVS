@@ -38,16 +38,17 @@ protected:
   // Logger
   Logger logger;
 
-  // comunication queues
-  std::queue<CH> higher_layer_ctrl_in;
-  std::queue<CL> lower_layer_ctrl_in;
-  message_list<CH> higher_layer_ctrl_out;
-  message_list<CL> lower_layer_ctrl_out;
-  // data queues
+  // input queues
   std::queue<DH> higher_layer_data_in;
   std::queue<DL> lower_layer_data_in;
+  std::queue<CH> higher_layer_ctrl_in;
+  std::queue<CL> lower_layer_ctrl_in;
+  
+  // output queues
   message_list<DH> higher_layer_data_out;
   message_list<DL> lower_layer_data_out;
+  message_list<CH> higher_layer_ctrl_out;
+  message_list<CL> lower_layer_ctrl_out;
 
   Event output;
 
