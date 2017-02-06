@@ -55,6 +55,7 @@ public:
   void exit();
 
   virtual void dinternal(double) {}
+  virtual void dexternal(double) {}
 };
 
 #endif

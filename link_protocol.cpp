@@ -87,7 +87,7 @@ void link_protocol::swpSend(link::Frame frame) {
   logger.info("swpSend");
   Event msg;
   swp::sendQ_slot<link::Frame> slot;
-  swp::SwpHdr hdr;
+  swp::Hdr hdr;
 
   hdr.SeqNum = ++SWPState.LFS;
   hdr.Flags = FLAG_HAS_DATA;
@@ -122,7 +122,7 @@ void link_protocol::swpTimeout() {
 
 void link_protocol::swpDeliver(link::Frame frame) {
   logger.info("swpDeliver");
-  swp::SwpHdr hdr;
+  swp::Hdr hdr;
   swp::recvQ_slot<link::Frame> slot;
 
   if (!this->swpValidMAC(frame.MAC_destination)) {
@@ -200,7 +200,7 @@ void link_protocol::swpDeliverToUpModules(link::Frame frame) {
   }
 }
 
-bool link_protocol::SeqnoRWSComparator(swp::SwpSeqno a, swp::SwpSeqno b) {
+bool link_protocol::SeqnoRWSComparator(swp::Seqno a, swp::Seqno b) {
   if (abs(a-b) <= RWS) return a < b;
   return b < a;
 }
@@ -220,8 +220,8 @@ double link_protocol::swpNexTimeout() {
   return next;
 }
 
-void link_protocol::swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble) {
-  preamble = preamble & 0x000FFFFF; // cleaning the bits where swp::SwpHdr will be placed
+void link_protocol::swpStoreHdr(const swp::Hdr& hdr, unsigned long& preamble) {
+  preamble = preamble & 0x000FFFFF; // cleaning the bits where swp::Hdr will be placed
   unsigned long stored_hdr = 0x00000000; // starting an empty header
   unsigned long curr_val = 0x00000000; // used to correcly set data in their correspondent bits
 
@@ -247,7 +247,7 @@ void link_protocol::swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble)
 void link_protocol::swpSendAck(MAC mac_dest) {
   logger.info("send ACK LFR: " + std::to_string(SWPState.LFR));
   link::Frame frame;
-  swp::SwpHdr hdr;
+  swp::Hdr hdr;
 
   hdr.AckNum = SWPState.LFR;
   hdr.Flags = FLAG_ACK_VALID;
@@ -266,16 +266,16 @@ bool link_protocol::swpValidMAC(MAC MAC_destination) {
           MAC_destination == BROADCAST_MAC_ADDRESS;
 }
 
-bool link_protocol::swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum) {
-  for (swp::SwpSeqno i=0; i<WS; ++i) {
-    swp::SwpSeqno current = startNum+i;
+bool link_protocol::swpInWindow(swp::Seqno startNum, ushort WS, swp::Seqno seqNum) {
+  for (swp::Seqno i=0; i<WS; ++i) {
+    swp::Seqno current = startNum+i;
     if (seqNum == current)
       return true;
   }
   return false;
 }
 
-void link_protocol::swpLoadHdr(swp::SwpHdr& hdr, const unsigned long& preamble) {
+void link_protocol::swpLoadHdr(swp::Hdr& hdr, const unsigned long& preamble) {
   unsigned long stored_hdr = 0x00000000;
 
   stored_hdr = 0x00F00000 & preamble;

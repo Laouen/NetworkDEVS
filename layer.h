@@ -27,11 +27,12 @@
 #include "structures/ip.h"
 #include "structures/link.h"
 #include "structures/swp.h"
+#include "structures/sw.h"
 
 /**
  * Basic layer model to inheritate 
  */
-template <typename DH, typename CH, typename DL, typename CL>
+template <typename DH, typename CH, typename DL, typename CL, typename DH2 = DH, typename CH2 = CH, typename DL2 = DL, typename CL2 = CL>
 class Layer: public Simulator { 
 
 protected:
@@ -45,10 +46,10 @@ protected:
   std::queue<CL> lower_layer_ctrl_in;
   
   // output queues
-  message_list<DH> higher_layer_data_out;
-  message_list<DL> lower_layer_data_out;
-  message_list<CH> higher_layer_ctrl_out;
-  message_list<CL> lower_layer_ctrl_out;
+  message_list<DH2> higher_layer_data_out;
+  message_list<DL2> lower_layer_data_out;
+  message_list<CH2> higher_layer_ctrl_out;
+  message_list<CL2> lower_layer_ctrl_out;
 
   Event output;
 

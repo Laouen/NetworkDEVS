@@ -15,17 +15,17 @@
 
 namespace swp {
 
-  typedef u_char SwpSeqno;
+  typedef u_char Seqno;
 
-  struct SwpHdr {
+  struct Hdr {
 
-    SwpHdr() {
+    Hdr() {
       SeqNum = 0x0;
       AckNum = 0x0;
       Flags = 0x0; 
     }
-    SwpSeqno SeqNum; // sequence number of this frame
-    SwpSeqno AckNum; // ack of received frame
+    Seqno SeqNum; // sequence number of this frame
+    Seqno AckNum; // ack of received frame
     u_char Flags; // up to 8 bits worth of flags
   };
 
@@ -33,27 +33,27 @@ namespace swp {
   struct sendQ_slot {
     double timeout; 
     MSG msg;
-    SwpSeqno SeqNum;
+    Seqno SeqNum;
   };
 
   template <typename MSG>
   struct recvQ_slot {
-    SwpSeqno SeqNum;
+    Seqno SeqNum;
     MSG msg;
   };
   
   template <typename MSG>
-  struct SwpState {
+  struct State {
     // queued frames waiting to be send
     std::queue<link::Frame> framesToSend;
 
     // sender side state:
-    SwpSeqno LAR; // seqno of Last ACK Received
-    SwpSeqno LFS; // Last Frame Sent
+    Seqno LAR; // seqno of Last ACK Received
+    Seqno LFS; // Last Frame Sent
     std::list<sendQ_slot<MSG>> sendQ;
 
     // receiver side state:
-    SwpSeqno LFR; // Last Frame Received
+    Seqno LFR; // Last Frame Received
     std::list<recvQ_slot<MSG>> recvQ;
 
     bool sendWindowsIsFull() const {
@@ -80,7 +80,7 @@ namespace swp {
   };
 }
 
-inline std::ostream& operator<<(std::ostream& os, const swp::SwpHdr& hdr) {
+inline std::ostream& operator<<(std::ostream& os, const swp::Hdr& hdr) {
   os << "SeqNum: " << (int)hdr.SeqNum << std::endl;
   os << "AckNum: " << (int)hdr.AckNum << std::endl;
   os << "Flags: " << (int)hdr.Flags << std::endl;

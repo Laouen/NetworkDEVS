@@ -8,7 +8,7 @@
 class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
 
   std::list<link::arp::Entry> ARPTable;
-  swp::SwpState<link::Frame> SWPState;
+  swp::State<link::Frame> SWPState;
   
   MAC mac;
   IPv4 ip;
@@ -24,17 +24,17 @@ class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> 
 
   /********** SWP methods **************/
 
-  static bool SeqnoRWSComparator(swp::SwpSeqno, swp::SwpSeqno);
+  static bool SeqnoRWSComparator(swp::Seqno, swp::Seqno);
   static bool recvQ_slotComparator(swp::recvQ_slot<link::Frame>, swp::recvQ_slot<link::Frame>);
 
   void swpSend(link::Frame frame);
   void swpDeliver(link::Frame frame);
-  void swpStoreHdr(const swp::SwpHdr& hdr, unsigned long& preamble);
+  void swpStoreHdr(const swp::Hdr& hdr, unsigned long& preamble);
   void swpDeliverToUpModules(link::Frame frame);
   bool swpValidMAC(MAC MAC_destination);
-  bool swpInWindow(swp::SwpSeqno startNum, ushort WS, swp::SwpSeqno seqNum);
+  bool swpInWindow(swp::Seqno startNum, ushort WS, swp::Seqno seqNum);
   void swpSendAck(MAC mac_dest);
-  void swpLoadHdr(swp::SwpHdr& hdr, const unsigned long& preamble);
+  void swpLoadHdr(swp::Hdr& hdr, const unsigned long& preamble);
   void swpTimeout();
   void swpUpdateTimeouts(double t);
   double swpNexTimeout();

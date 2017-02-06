@@ -113,6 +113,17 @@ namespace link {
     }
   };
 
+  struct Multiplexed_frame {
+    Frame frame;
+    ushort interface;
+
+    Multiplexed_frame() {}
+    Multiplexed_frame(const Multiplexed_frame& other) {
+      frame = other.frame;
+      interface = other.interface;
+    }
+  };
+
   enum Ctrl { ARP_QUERY, ARP_READY, SEND_PACKET, SEND_PACKET_FAILED };
 
   inline std::string to_string(Ctrl c) {
