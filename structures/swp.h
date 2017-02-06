@@ -56,6 +56,25 @@ namespace swp {
     Seqno LFR; // Last Frame Received
     std::list<recvQ_slot<MSG>> recvQ;
 
+    State() {
+      std::queue<link::Frame> empty;
+      framesToSend.swap(empty);
+      sendQ.clear();
+      recvQ.clear();
+      LFS = 0;
+      LAR = 0;
+      LFR = 0;
+    }
+
+    State(const State& other) {
+      framesToSend = other.framesToSend;
+      LAR = other.LAR;
+      LFS = other.LFS;
+      sendQ = other.sendQ;
+      LFR = other.LFR;
+      recvQ = other.recvQ;
+    }
+
     bool sendWindowsIsFull() const {
       return sendQ.size() >= SWS;
     }

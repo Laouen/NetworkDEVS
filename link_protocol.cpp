@@ -22,9 +22,6 @@ void link_protocol::init(double t, ...) {
   interface = (ushort)va_arg(parameters, double);
   logger.info("Interface: " + std::to_string(interface));
 
-  // initializing state
-  SWPState.reset();
-
   next_internal = infinity;
   output = Event(0,5);
 }
