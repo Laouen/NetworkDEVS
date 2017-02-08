@@ -43,23 +43,23 @@ void link_protocol::dinternal(double t) {
   this->swpUpdateTimeouts(t);
   this->arpUpdateCache(t);
 
-  if (SWPState.thereIsFrameToSend()) {
-    link::Frame f = SWPState.framesToSend.front();
-    this->swpSend(f);
-    SWPState.framesToSend.pop();
+  swp::State<link::Frame>* SWPState;
+
+  if (this->swpThereIsFrameToSend(SWPState)) {
+    this->swpSend(*SWPState);
     next_internal = send_swp_time;
     return;
   }
 
-  if (this->swpTimeoutTriggered()) {
-    this->swpTimeout();
+  if (this->swpTimeoutTriggered(SWPState)) {
+    this->swpTimeout(*SWPState);
     next_internal = swp_timeout_time;
     return;
   }
 
   if (!lower_layer_data_in.empty()) {
     link::Frame f = lower_layer_data_in.front();
-    this->swpDeliver(f);
+    this->processFrame(f);
     lower_layer_data_in.pop();
     next_internal = deliver_swp_time;
     return;
@@ -80,8 +80,23 @@ void link_protocol::dexternal(double t) {
 
 /***************** SWP **************************/
 
-void link_protocol::swpSend(link::Frame frame) {
+bool link_protocol::swpThereIsFrameToSend(swp::State<link::Frame>*& SWPState) {
+  std::map<MAC,swp::State<link::Frame>>::iterator it;
+  for (it = SWPTable.begin(); it != SWPTable.end(); ++it) {
+    if (it->second.thereIsFrameToSend()) {
+      SWPState = &it->second;
+      return true;
+    }
+  }
+  return false;
+}
+
+void link_protocol::swpSend(swp::State<link::Frame>& SWPState) {
   logger.info("swpSend");
+
+  link::Frame frame = SWPState.framesToSend.front();
+  SWPState.framesToSend.pop();
+
   Event msg;
   swp::sendQ_slot<link::Frame> slot;
   swp::Hdr hdr;
@@ -99,16 +114,22 @@ void link_protocol::swpSend(link::Frame frame) {
   return;
 }
 
-bool link_protocol::swpTimeoutTriggered() {
-  for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it !=SWPState.sendQ.end(); ++it) {
-    if (it->timeout <= 0) {
-      return true;
+bool link_protocol::swpTimeoutTriggered(swp::State<link::Frame>*& SWPState) {
+  std::map<MAC,swp::State<link::Frame>>::iterator jt;
+  std::list<swp::sendQ_slot<link::Frame>>::iterator it;
+
+  for (jt = SWPTable.begin(); jt != SWPTable.end(); ++jt) {
+    for(it = jt->second.sendQ.begin(); it !=jt->second.sendQ.end(); ++it) {
+      if (it->timeout <= 0) {
+        SWPState = &jt->second;
+        return true;
+      }
     }
   }
   return false;
 }
 
-void link_protocol::swpTimeout() { 
+void link_protocol::swpTimeout(swp::State<link::Frame>& SWPState) { 
   for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it != SWPState.sendQ.end(); ++it) {
     if (it->timeout <= 0) {
       it->timeout = SWP_SEND_TIMEOUT;
@@ -122,16 +143,7 @@ void link_protocol::swpDeliver(link::Frame frame) {
   swp::Hdr hdr;
   swp::recvQ_slot<link::Frame> slot;
 
-  if (!this->swpValidMAC(frame.MAC_destination)) {
-    logger.info("Discarted frame: Invalid MAC");
-    return;
-  }
-
-  if (!this->verifyCRC(frame)) { // Drop frame with error
-    logger.info("Discarted frame: CRC didn't pass");
-    return;
-  }
-  
+  swp::State<link::Frame>& SWPState = this->swpGetState(frame.MAC_source);
   this->swpLoadHdr(hdr, frame.preamble);
   if (hdr.Flags & FLAG_ACK_VALID) {  // received an acknowledgment---do SENDER side
     
@@ -173,27 +185,13 @@ void link_protocol::swpDeliver(link::Frame frame) {
     
     while (!SWPState.recvQ.empty() && (SWPState.LFR+1) == SWPState.recvQ.front().SeqNum) {
       logger.info("Deliver frame with SeqNum: " + std::to_string(SWPState.recvQ.front().SeqNum));
-      this->swpDeliverToUpModules(SWPState.recvQ.front().msg);
+      higher_layer_data_out.push(this->getIpPacket(frame), 0);
       ++SWPState.LFR;
       SWPState.recvQ.pop_front();
     }
     
     logger.debug("Out of order frames: " + std::to_string(SWPState.recvQ.size()));
-    this->swpSendAck(frame.MAC_source);
-  }
-}
-
-void link_protocol::swpDeliverToUpModules(link::Frame frame) {
-  ip::Packet ip_packet;
-  link::arp::Packet arp_packet;
-  Event o;
-  
-  if (frame.preamble & IS_IP_PACKET) {
-    ip_packet = this->getIpPacket(frame);
-    higher_layer_data_out.push(ip_packet, 0);
-  } else {
-    arp_packet = this->getARPPacket(frame);
-    this->arpProcessPacket(arp_packet);
+    this->swpSendAck(frame.MAC_source, SWPState.LFR);
   }
 }
 
@@ -209,9 +207,14 @@ bool link_protocol::recvQ_slotComparator(swp::recvQ_slot<link::Frame> a, swp::re
 
 double link_protocol::swpNexTimeout() {
   double next = infinity;
-  for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it !=SWPState.sendQ.end(); ++it) {
-    if (it->timeout < next) {
-      next = it->timeout;
+  std::map<MAC,swp::State<link::Frame>>::iterator jt;
+  std::list<swp::sendQ_slot<link::Frame>>::iterator it;
+
+  for (jt = SWPTable.begin(); jt != SWPTable.end(); ++jt) {
+    for(it = jt->second.sendQ.begin(); it !=jt->second.sendQ.end(); ++it) {
+      if (it->timeout < next) {
+        next = it->timeout;
+      }
     }
   }
   return next;
@@ -241,12 +244,12 @@ void link_protocol::swpStoreHdr(const swp::Hdr& hdr, unsigned long& preamble) {
   preamble = preamble | stored_hdr;
 }
 
-void link_protocol::swpSendAck(MAC mac_dest) {
-  logger.info("send ACK LFR: " + std::to_string(SWPState.LFR));
+void link_protocol::swpSendAck(MAC mac_dest, swp::Seqno LFR) {
+  logger.info("send ACK LFR: " + std::to_string(LFR));
   link::Frame frame;
   swp::Hdr hdr;
 
-  hdr.AckNum = SWPState.LFR;
+  hdr.AckNum = LFR;
   hdr.Flags = FLAG_ACK_VALID;
   this->swpStoreHdr(hdr,frame.preamble);
 
@@ -254,13 +257,9 @@ void link_protocol::swpSendAck(MAC mac_dest) {
   frame.MAC_source = mac;
   frame.EtherType = 0; // TODO: check what to put here
   frame.CRC = this->calculateCRC();
-  
-  lower_layer_data_out.push(frame, 2);
-}
+  frame.disableARPFlag();
 
-bool link_protocol::swpValidMAC(MAC MAC_destination) {
-  return  MAC_destination == mac || 
-          MAC_destination == BROADCAST_MAC_ADDRESS;
+  lower_layer_data_out.push(frame, 2);
 }
 
 bool link_protocol::swpInWindow(swp::Seqno startNum, ushort WS, swp::Seqno seqNum) {
@@ -290,13 +289,49 @@ void link_protocol::swpLoadHdr(swp::Hdr& hdr, const unsigned long& preamble) {
 
 void link_protocol::swpUpdateTimeouts(double t) {
   double elapsed_time = t-last_transition;
-  for(std::list<swp::sendQ_slot<link::Frame>>::iterator it = SWPState.sendQ.begin(); it !=SWPState.sendQ.end(); ++it) {
-    if (it->timeout != infinity)
-      it->timeout -= elapsed_time;
+  std::map<MAC,swp::State<link::Frame>>::iterator jt;
+  std::list<swp::sendQ_slot<link::Frame>>::iterator it;
+
+  for(jt = SWPTable.begin(); jt != SWPTable.end(); ++jt) {
+    for(it = jt->second.sendQ.begin(); it !=jt->second.sendQ.end(); ++it) {
+      if (it->timeout != infinity)
+        it->timeout -= elapsed_time;
+    }
   }
 }
 
+swp::State<link::Frame>& link_protocol::swpGetState(MAC mac_dest) {
+  if (SWPTable.find(mac_dest) == SWPTable.end()) {
+    logger.info("Adding new SWP state to SWP Table for MAC adress: " + mac_dest.as_string());
+    SWPTable.insert(std::make_pair(mac_dest, swp::State<link::Frame>()));     
+  }
+  return SWPTable.at(mac_dest);
+}
+
 /***************** Comunication methods **************************/
+
+void link_protocol::processFrame(link::Frame frame) {
+  if (!this->validMAC(frame.MAC_destination)) { // Drop frame not address to the correct mac
+    logger.info("Discarted frame: Invalid MAC");
+    return;
+  }
+
+  if (!this->verifyCRC(frame)) { // Drop frame with error
+    logger.info("Discarted frame: CRC didn't pass");
+    return;
+  }
+
+  if (frame.preamble & IS_ARP_PACKET) {
+    this->arpProcessPacket(this->getARPPacket(frame));
+  } else {
+    this->swpDeliver(frame);
+  }
+}
+
+bool link_protocol::validMAC(MAC MAC_destination) {
+  return  MAC_destination == mac || 
+          MAC_destination == BROADCAST_MAC_ADDRESS;
+}
 
 link::Frame link_protocol::wrapInFrame(const ip::Packet& packet, MAC dest_mac) {
   link::Frame frame;
@@ -366,6 +401,7 @@ void link_protocol::arpProcessLinkControl(link::Control control) {
     if (this->arpCachedMAC(control.ip)) {
       dest_mac = this->arpGetMAC(control.ip);
       frame = this->wrapInFrame(control.packet, dest_mac);
+      swp::State<link::Frame>& SWPState = this->swpGetState(frame.MAC_destination);
       SWPState.sendFrame(frame);
       break;
     }
@@ -393,7 +429,7 @@ void link_protocol::arpProcessPacket(link::arp::Packet packet) {
     response.Operation = 0; // response
     response.Target_Hardware_Address = mac;
 
-    SWPState.sendFrame(this->wrapInFrame(response));
+    lower_layer_data_out.push(this->wrapInFrame(response),2);
   
   } else if (packet.Operation == 0 && packet.Source_Hardware_Address == mac) { // Response packet
 
@@ -435,10 +471,9 @@ MAC link_protocol::arpGetMAC(IPv4 dest_ip) {
 void link_protocol::arpUpdateCache(double t) {
   double elapsed_time = t-last_transition;
   std::list<link::arp::Entry>::iterator it = ARPTable.begin();
-
   while (it != ARPTable.end()) {
     if (it->timeout < elapsed_time) {
-      ARPTable.erase(it);
+      it = ARPTable.erase(it);
     } else {
       it->timeout -= elapsed_time;
       ++it;
@@ -468,5 +503,5 @@ void link_protocol::arpSendQuery(IPv4 arp_ip) {
   query.Target_Hardware_Address = BROADCAST_MAC_ADDRESS; // In a query this field is ignored
   query.Target_Protocol_Address = arp_ip;
 
-  SWPState.sendFrame(this->wrapInFrame(query));
+  lower_layer_data_out.push(this->wrapInFrame(query),2); // arp is not sent using SWP
 }

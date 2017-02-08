@@ -8,7 +8,7 @@
 class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
 
   std::list<link::arp::Entry> ARPTable;
-  swp::State<link::Frame> SWPState;
+  std::map<MAC,swp::State<link::Frame>> SWPTable;
   
   MAC mac;
   IPv4 ip;
@@ -27,21 +27,23 @@ class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> 
   static bool SeqnoRWSComparator(swp::Seqno, swp::Seqno);
   static bool recvQ_slotComparator(swp::recvQ_slot<link::Frame>, swp::recvQ_slot<link::Frame>);
 
-  void swpSend(link::Frame frame);
+  bool swpThereIsFrameToSend(swp::State<link::Frame>*& SWPState);
+  void swpSend(swp::State<link::Frame>& SWPState);
+  void swpTimeout(swp::State<link::Frame>& SWPState);
+  bool swpTimeoutTriggered(swp::State<link::Frame>*& SWPState);
   void swpDeliver(link::Frame frame);
   void swpStoreHdr(const swp::Hdr& hdr, unsigned long& preamble);
-  void swpDeliverToUpModules(link::Frame frame);
-  bool swpValidMAC(MAC MAC_destination);
   bool swpInWindow(swp::Seqno startNum, ushort WS, swp::Seqno seqNum);
-  void swpSendAck(MAC mac_dest);
+  void swpSendAck(MAC mac_dest, swp::Seqno LFR);
   void swpLoadHdr(swp::Hdr& hdr, const unsigned long& preamble);
-  void swpTimeout();
   void swpUpdateTimeouts(double t);
   double swpNexTimeout();
-  bool swpTimeoutTriggered();
+  swp::State<link::Frame>& swpGetState(MAC mac_dest);
   
   /********** Comunication methods **************/
 
+  void processFrame(link::Frame frame);
+  bool validMAC(MAC MAC_destination);
   void sendControl(link::Ctrl c, link::Control control);
   link::Frame wrapInFrame(const ip::Packet& packet, MAC dest_mac);
   link::Frame wrapInFrame(const link::arp::Packet& packet);

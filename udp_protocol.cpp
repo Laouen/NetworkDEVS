@@ -83,7 +83,7 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
     if (s.accept(local_port,local_ip,remote_port,remote_ip)) {
       // deliver data
       udp::Multiplexed_packet m(s.app_id, p);
-      logger.debug("app_id: " + std::to_string(m.app_id));
+      logger.debug("Deliver to app_id: " + std::to_string(m.app_id));
       higher_layer_data_out.push(m, 0);
       s.stopReading();
     }
@@ -172,7 +172,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Read/Recv");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       higher_layer_ctrl_out.push(m, 1);
       break;
@@ -181,6 +181,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     s = &sockets[port][ip];
     if (s->state != udp::Socket::Status::CONNECTED && 
         s->state != udp::Socket::Status::BOUND) {
+      logger.info("INVALID_SOCKET_STATE");
       // send invalid socket state
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET_STATE);
       higher_layer_ctrl_out.push(m, 1);

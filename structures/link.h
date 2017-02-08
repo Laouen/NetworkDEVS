@@ -11,7 +11,7 @@
 #include "abstract_types.h"
 #include "ipv4.h"
 
-#define IS_IP_PACKET 0x00010000
+#define IS_ARP_PACKET 0x00010000
 #define ARP_TIMEOUT 900 // 900 seg = 15 min
 
 namespace link {
@@ -93,23 +93,23 @@ namespace link {
       memcpy(interpacket_gat,other.interpacket_gat,sizeof(other.interpacket_gat));
     }
 
-    void setAsIpPacket() {
+    void disableARPFlag() {
       preamble = preamble & 0xFFFEFFFF;
-      preamble = preamble | IS_IP_PACKET;
     }
 
-    void setAsARPPacket() {
+    void enableARPFlag() {
       preamble = preamble & 0xFFFEFFFF;
+      preamble = preamble | IS_ARP_PACKET;
     }
 
     void setPayload(const ip::Packet& p) {
       memcpy(payload,&p,sizeof(p));
-      setAsIpPacket();
+      disableARPFlag();
     }
 
     void setPayload(const arp::Packet& p) {
       memcpy(payload,&p,sizeof(p));
-      setAsARPPacket(); 
+      enableARPFlag(); 
     }
   };
 

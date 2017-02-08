@@ -196,6 +196,7 @@ void ip_protocol::processLinkControl(link::Control control) {
 
   switch(control.request) {
   case link::Ctrl::ARP_READY:
+    logger.info("link::Ctrl::ARP_READY");
     if (arp_waiting_packets.find(control.ip) == arp_waiting_packets.end()) {
       logger.debug("No packet to send to nexthop " + control.ip.as_string());
       return; 
@@ -214,10 +215,11 @@ void ip_protocol::processLinkControl(link::Control control) {
     arp_waiting_packets.erase(control.ip);
     break;
   case link::Ctrl::SEND_PACKET_FAILED:
+    logger.info("link::Ctrl::SEND_PACKET_FAILED");
     this->routeIPPacket(control.packet); // send again, this sends a new ARP QUERY
     break;
   default:
-    logger.debug("Bad link control request.");
+    logger.error("Bad link control request.");
   }
 }
 
