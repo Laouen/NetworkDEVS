@@ -314,7 +314,7 @@ Coupled
                     Description = Coupled DEVS model
                     Graphic
                         {
-                        Position = -12480; -5985
+                        Position = -14055; -6510
                         Dimension = 675; 720
                         Direction = Right
                         Color = 15
@@ -828,33 +828,173 @@ Coupled
                                     }
                                 }
                             }
-                                Line
+                                Coupled
                                     {
-                                    Source = Cmp ;  2 ;  1 ; 0
-                                    Sink = Cmp ;  3 ;  1 ; -1
-                                    PointX = -11700 ; -9315 ; -9315
-                                    PointY = -5625 ; -5625 ; -5625
+                                    Type = Coordinator
+                                    Name = Switch 1
+                                    Ports = 1; 2
+                                    Description = Coupled DEVS model
+                                    Graphic
+                                        {
+                                        Position = -11580; -7710
+                                        Dimension = 675; 720
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = ../atomics/NetworkDEVS/icons/switch.svg
+                                        Window = 5000; 5000; 5000; 5000
+                                        }
+                                    Parameters
+                                        {
+                                        }
+                                    System
+                                        {
+                                        Inport
+                                            {
+                                            Name = Inport0
+                                            CoupledPort = 1
+                                            Description = 
+                                            Graphic
+                                                {
+                                                Position = -8340 ; -1125
+                                                Dimension = 480
+                                                Direction = Right
+                                                }
+                                            }
+                                        Outport
+                                            {
+                                            Name = Outport0
+                                            CoupledPort = 1
+                                            Description = 
+                                            Graphic
+                                                {
+                                                Position = -765 ; -2175
+                                                Dimension = 480
+                                                Direction = Right
+                                                }
+                                            }
+                                        Outport
+                                            {
+                                            Name = Outport1
+                                            CoupledPort = 2
+                                            Description = 
+                                            Graphic
+                                                {
+                                                Position = -690 ; -150
+                                                Dimension = 480
+                                                Direction = Right
+                                                }
+                                            }
+                                        Atomic
+                                            {
+                                            Name = Atomic0
+                                            Ports = 4 ; 4
+                                            Path = NetworkDEVS/switch_protocol.h
+                                            Description = Atomic DEVS model
+                                            Graphic
+                                                {
+                                                Position = -5655 ; -1575
+                                                Dimension = 675 ; 750
+                                                Direction = Right
+                                                Color = 15
+                                                Icon = None
+                                                }
+                                            Parameters
+                                                {
+                                                module_name = Str; 1 ; 
+                                                interface_amount = Val; 2 ; 
+                                                forwarding_table = Str; ../input/test/switch/1/sw1.forwarding_table ; 
+                                                }
+                                            }
+                                        Atomic
+                                            {
+                                            Name = Atomic1
+                                            Ports = 1 ; 2
+                                            Path = NetworkDEVS/demultiplexer_switch.h
+                                            Description = Atomic DEVS model
+                                            Graphic
+                                                {
+                                                Position = -3255 ; -1455
+                                                Dimension = 675 ; 675
+                                                Direction = Right
+                                                Color = 15
+                                                Icon = None
+                                                }
+                                            Parameters
+                                                {
+                                                interface_amount = Val; 2 ; 
+                                                }
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  3 ; 0
+                                            Sink = Cmp ;  2 ;  1 ; -1
+                                            PointX = -4875 ; -4875 ; -3390
+                                            PointY = -1125 ; -1125 ; -1125
+                                            }
+                                        Line
+                                            {
+                                            Source = Prt ;  1 ;  1 ; 0
+                                            Sink = Cmp ;  1 ;  3 ; -1
+                                            PointX = -7725 ; -7725 ; -5790
+                                            PointY = -1125 ; -1125 ; -1125
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  2 ;  1 ; 0
+                                            Sink = Prt ;  2 ;  1 ; -1
+                                            PointX = -2475 ; -1575 ; -1575 ; -915
+                                            PointY = -1275 ; -1275 ; -2175 ; -2175
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  2 ;  2 ; 0
+                                            Sink = Prt ;  3 ;  1 ; -1
+                                            PointX = -2475 ; -1575 ; -1575 ; -840
+                                            PointY = -975 ; -975 ; -150 ; -150
+                                            }
+                                        }
                                     }
-                                Line
-                                    {
-                                    Source = Cmp ;  3 ;  1 ; 0
-                                    Sink = Cmp ;  2 ;  1 ; -1
-                                    PointX = -8400 ; -8250 ; -8250 ; -12825 ; -12825 ; -12615
-                                    PointY = -5625 ; -5625 ; -6300 ; -6300 ; -5625 ; -5625
-                                    }
-                                Line
-                                    {
-                                    Source = Cmp ;  3 ;  2 ; 0
-                                    Sink = Cmp ;  1 ;  1 ; -1
-                                    PointX = -8400 ; -8400 ; -6240
-                                    PointY = -5325 ; -5325 ; -5325
-                                    }
-                                Line
-                                    {
-                                    Source = Cmp ;  1 ;  1 ; 0
-                                    Sink = Cmp ;  3 ;  2 ; -1
-                                    PointX = -5325 ; -4950 ; -4950 ; -9525 ; -9525 ; -9315
-                                    PointY = -5325 ; -5325 ; -4350 ; -4350 ; -5325 ; -5325
-                                    }
+                                        Line
+                                            {
+                                            Source = Cmp ;  3 ;  2 ; 0
+                                            Sink = Cmp ;  1 ;  1 ; -1
+                                            PointX = -8400 ; -8400 ; -6240
+                                            PointY = -5325 ; -5325 ; -5325
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  1 ; 0
+                                            Sink = Cmp ;  3 ;  2 ; -1
+                                            PointX = -5325 ; -4950 ; -4950 ; -9525 ; -9525 ; -9315
+                                            PointY = -5325 ; -5325 ; -4350 ; -4350 ; -5325 ; -5325
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  2 ;  1 ; 0
+                                            Sink = Cmp ;  4 ;  1 ; -1
+                                            PointX = -13275 ; -12375 ; -12375 ; -11715
+                                            PointY = -6150 ; -6150 ; -7350 ; -7350
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  4 ;  1 ; 0
+                                            Sink = Cmp ;  2 ;  1 ; -1
+                                            PointX = -10800 ; -10200 ; -10200 ; -14400 ; -14400 ; -14190
+                                            PointY = -7500 ; -7500 ; -8025 ; -8025 ; -6150 ; -6150
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  4 ;  2 ; 0
+                                            Sink = Cmp ;  3 ;  1 ; -1
+                                            PointX = -10800 ; -10200 ; -10200 ; -9315
+                                            PointY = -7200 ; -7200 ; -5625 ; -5625
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  3 ;  1 ; 0
+                                            Sink = Cmp ;  4 ;  1 ; -1
+                                            PointX = -8400 ; -8100 ; -8100 ; -12150 ; -12150 ; -11715
+                                            PointY = -5625 ; -5625 ; -6150 ; -6150 ; -7350 ; -7350
+                                            }
         }
     }

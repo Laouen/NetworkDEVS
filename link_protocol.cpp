@@ -322,7 +322,7 @@ void link_protocol::processFrame(link::Frame frame) {
   }
 
   if (frame.preamble & IS_ARP_PACKET) {
-    this->arpProcessPacket(this->getARPPacket(frame));
+    this->arpProcessPacket(frame);
   } else {
     this->swpDeliver(frame);
   }
@@ -347,6 +347,16 @@ link::Frame link_protocol::wrapInFrame(const link::arp::Packet& packet) {
   link::Frame frame;
   frame.MAC_source = mac;
   frame.MAC_destination = BROADCAST_MAC_ADDRESS;
+  frame.EtherType = 0; // TODO: check what to put here;
+  frame.setPayload(packet);
+  frame.CRC = this->calculateCRC();
+  return frame;
+}
+
+link::Frame link_protocol::wrapInFrame(const link::arp::Packet& packet, MAC dest_mac) {
+  link::Frame frame;
+  frame.MAC_source = mac;
+  frame.MAC_destination = dest_mac;
   frame.EtherType = 0; // TODO: check what to put here;
   frame.setPayload(packet);
   frame.CRC = this->calculateCRC();
@@ -415,9 +425,10 @@ void link_protocol::arpProcessLinkControl(link::Control control) {
   }
 }
 
-void link_protocol::arpProcessPacket(link::arp::Packet packet) {
+void link_protocol::arpProcessPacket(link::Frame frame) {
   logger.debug("Process ARP packet.");
-  logger.log(packet.as_string());
+  
+  link::arp::Packet packet = this->getARPPacket(frame);
 
   if (packet.Operation == 1 && ip == packet.Target_Protocol_Address) { // Query packet
 
@@ -429,7 +440,7 @@ void link_protocol::arpProcessPacket(link::arp::Packet packet) {
     response.Operation = 0; // response
     response.Target_Hardware_Address = mac;
 
-    lower_layer_data_out.push(this->wrapInFrame(response),2);
+    lower_layer_data_out.push(this->wrapInFrame(response,frame.MAC_source),2);
   
   } else if (packet.Operation == 0 && packet.Source_Hardware_Address == mac) { // Response packet
 

@@ -165,6 +165,32 @@ Root-Coordinator
         (3,0);(1,1)
        }
      }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = NetworkDEVS/switch_protocol.h
+        Parameters = "1",2.000000e+00,"../input/test/switch/1/sw1.forwarding_table"
+       }
+      Simulator
+       {
+        Path = NetworkDEVS/demultiplexer_switch.h
+        Parameters = 2.000000e+00
+       }
+      EIC
+       {
+        (0,0);(0,2)
+       }
+      EOC
+       {
+        (1,0);(0,0)
+        (1,1);(0,1)
+       }
+      IC
+       {
+        (0,2);(1,0)
+       }
+     }
   EIC
    {
    }
@@ -173,9 +199,11 @@ Root-Coordinator
    }
   IC
    {
-    (1,0);(2,0)
-    (2,0);(1,0)
     (2,1);(0,0)
     (0,0);(2,1)
+    (1,0);(3,0)
+    (3,0);(1,0)
+    (3,1);(2,0)
+    (2,0);(3,0)
    }
  }

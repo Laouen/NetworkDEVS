@@ -47,6 +47,7 @@ class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> 
   void sendControl(link::Ctrl c, link::Control control);
   link::Frame wrapInFrame(const ip::Packet& packet, MAC dest_mac);
   link::Frame wrapInFrame(const link::arp::Packet& packet);
+  link::Frame wrapInFrame(const link::arp::Packet& packet, MAC dest_mac);
   ip::Packet getIpPacket(const link::Frame& frame);
   link::arp::Packet getARPPacket(const link::Frame& frame);
   unsigned long calculateCRC();
@@ -55,7 +56,7 @@ class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> 
   /********** ARP methods **************/
 
   void arpCacheSourceMAC(MAC source_mac, IPv4 source_ip);
-  void arpProcessPacket(link::arp::Packet packet);
+  void arpProcessPacket(link::Frame frame);
   void arpUpdateCache(double t);
   void arpProcessLinkControl(link::Control control);
   bool arpCachedMAC(IPv4 dest_ip);

@@ -10,6 +10,8 @@
 
 #include "abstract_types.h"
 #include "ipv4.h"
+#include "mac.h"
+#include "ip.h"
 
 #define IS_ARP_PACKET 0x00010000
 #define ARP_TIMEOUT 900 // 900 seg = 15 min
