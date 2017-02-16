@@ -46,16 +46,18 @@ Event switch_protocol::lambda(double t) {
 
 void switch_protocol::dinternal(double t) {
   if (!lower_layer_data_in.empty()) {
-    link::Frame frame = lower_layer_data_in.front();
+    link::Multiplexed_frame frame = lower_layer_data_in.front();
     this->processFrame(frame);
     lower_layer_data_in.pop();
     next_internal = process_frame_time;
   }
 }
 
-void switch_protocol::processFrame(link::Frame& frame) {
+void switch_protocol::processFrame(link::Multiplexed_frame& multiplexed_frame) {
+  link::Frame frame = multiplexed_frame.frame;
+  
   if (frame.MAC_destination == BROADCAST_MAC_ADDRESS) {
-    this->sendToAllInterfaces(frame);
+    this->sendToAllInterfaces(frame, multiplexed_frame.interface);
     return;
   }
 
@@ -70,18 +72,21 @@ void switch_protocol::processFrame(link::Frame& frame) {
   this->send(frame,forwarding_table.at(frame.MAC_destination));
 }
 
-void switch_protocol::sendToAllInterfaces(link::Frame& frame) {
+void switch_protocol::sendToAllInterfaces(link::Frame& frame, ushort source_interface) {
   logger.info("Bradcast MAC sent throw all interfaces");
-  
-  ushort source_interface = interface_amount; // invalid interface;
-  if (forwarding_table.find(frame.MAC_source) != forwarding_table.end()) {
-    source_interface = forwarding_table.at(frame.MAC_source);
+  logger.debug("srouce interface: " + std::to_string(source_interface));
+
+  std::set<ushort> interfaces;
+  std::map<MAC,ushort>::iterator it;
+  for(it = forwarding_table.begin(); it != forwarding_table.end(); ++it) {
+    if (it->second != source_interface) {
+      interfaces.insert(it->second);
+    }
   }
 
-  for(ushort i=0; i<interface_amount; ++i) {
-    if (i != source_interface) {
-      this->send(frame,i);
-    }
+  std::set<ushort>::iterator jt;
+  for(jt = interfaces.begin(); jt != interfaces.end(); ++jt){
+    this->send(frame,*jt);
   }
 }
 

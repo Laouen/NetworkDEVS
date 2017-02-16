@@ -19,7 +19,7 @@ void ip_host_protocol::dinternal(double t) {
   }
 
   if (!lower_layer_data_in.empty()) {
-    logger.debug("Process L2 Frame input.");
+    logger.debug("Process ip Packet input.");
     ip::Packet p = lower_layer_data_in.front();
     this->processIPPacket(p);
     lower_layer_data_in.pop();

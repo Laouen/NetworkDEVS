@@ -16,7 +16,7 @@ void link_protocol::init(double t, ...) {
 
   // reading ip
   ip = va_arg(parameters, char*);
-  logger.info("IP: " + mac.as_string());
+  logger.info("IP: " + ip.as_string());
 
   // reading interface
   interface = (ushort)va_arg(parameters, double);
@@ -376,7 +376,7 @@ link::arp::Packet link_protocol::getARPPacket(const link::Frame& frame) {
 }
 
 void link_protocol::sendControl(link::Ctrl c, link::Control control) {
-  logger.info("Send control to ip: " + link::to_string(c));
+  logger.info("Send control " + link::to_string(c));
   control.request = c;
   control.interface = interface;
   higher_layer_ctrl_out.push(control, 1);

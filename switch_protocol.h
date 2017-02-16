@@ -3,8 +3,9 @@
 #define switch_protocol_h
 
 #include "layer.h"
+#include <set>
 
-class switch_protocol : public Layer<int, int, link::Frame, int, int, int, link::Multiplexed_frame, int> {
+class switch_protocol : public Layer<int, int, link::Multiplexed_frame, int> {
 
   std::map<MAC,ushort> forwarding_table;
   ushort interface_amount;
@@ -13,8 +14,8 @@ class switch_protocol : public Layer<int, int, link::Frame, int, int, int, link:
   double process_frame_time = 0.001;
 
   /********** switch methods **********/
-  void processFrame(link::Frame&);
-  void sendToAllInterfaces(link::Frame&);
+  void processFrame(link::Multiplexed_frame& multiplexed_frame);
+  void sendToAllInterfaces(link::Frame& frame, ushort source_interface);
   void send(link::Frame& frame, ushort interface);
 
 public:
