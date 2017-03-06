@@ -1,0 +1,67 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc} % para poder usar tildes en archivos UTF-8
+\usepackage[spanish, es-tabla]{babel} % para que comandos como \today den el resultado en castellano
+\usepackage{a4wide} % márgenes un poco más anchos que lo usual
+\usepackage[conEntregas]{caratula}
+\usepackage{xcolor,colortbl}
+\usepackage{todonotes}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{cite}
+%\usepackage{tabu}
+
+%definations
+\definecolor{Gray}{gray}{0.6}
+\definecolor{ligthGray}{gray}{0.9}
+\newcommand{\mc}[2]{\multicolumn{#1}{|c|}{#2}}
+
+\begin{document}
+
+\titulo{NetworkDEVS}
+\subtitulo{Una herramienta de estudio para medelar redes usando DEVS y PowerDEVS}
+
+\fecha{\today}
+
+\materia{Teoría de las telecomunicaciones}
+
+\integrante{Belloli, Laouen Mayal Louan}{134/11}{laouen.belloli@gmail.com}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introducción}
+
+El presente trabajo se introduce un modelo DEVS de una red funcionando bajo el protocolo TCP/IP encuadrando lo mejor posible cada uno de sus módulos en su correspondiente capa respecto al modelo OSI presentado en la literatura oficial de la materia de teoría de la telecomunicaciones \cite{peterson2007computer}. El trabajo fue desarrollado en el simulador PowerDEVS y pensado como herramienta de aprendizaje para futuros alumnos de la materia.
+
+\section{Motivación}
+\section{Objetivos}
+\section{Introdución a DEVS}
+\section{Introducción a PowerDEVS}
+\section{Arquitectura general}
+\section{Como usar el template}
+\subsection{Como heredar el modelo layer}
+\subsection{Como enviar y recibir mensajes entre las capas}
+\subsection{Como implementar el protocolo de una capa (internal/external functions)}
+\section{Como agregar una capa}
+\section{Como modificar un protocolo}
+\section{Input/output del modelo}
+\section{Logger}
+\section{Case study: escenario implementado}
+\section{Protocolos implementados}
+\subsection{UDP}
+\subsection{IP}
+\subsection{ARP}
+\subsection{SWP}
+\subsection{Datagram protocol}
+\section{Resultados}
+\section{Conclusiones}
+\section{Trabajo futuro}
+\section{References}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

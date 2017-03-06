@@ -1,0 +1,7 @@
+informe/*.aux
+informe/*.bbl
+informe/*.blg
+informe/*.log
+informe/*.pdf
+informe/*.synctex.gz
+informe/*.toc
