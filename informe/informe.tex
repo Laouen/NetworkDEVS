@@ -95,7 +95,12 @@ Distintos dispositivos de la red pueden tener distintas cantidades de capas, por
 
 La figura \ref{figure:general architecture} muestra la arquitectura general recien explicada en un modelo de una red con un host y un router, en el mismo se pueden se pueden ver los multiplexers y demultiplexers, se puede ver que cada modelo tiene distintas cantidadesde capas y se puede ver como estan conectadas las capas utilizando los distintos puertos.
 
-\todo[inline]{poner grafico de la arquitectura de N capas y modificar el host para que el input lo tome de afuera del modelo acoplado host}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{png/multi_layer_model.png}
+    \caption{Arquitectura de un modelo en NetworkDEVS con dos dispositivos (un host y un reouter de N y M capas correspondientemente).}
+    \label{figure:general architecture}
+\end{figure}
 
 \section{Como usar el template}
 \subsection{Como heredar el modelo layer}
