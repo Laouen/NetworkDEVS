@@ -33,12 +33,35 @@
 \tableofcontents
 \newpage
 
-\section{Introducción}
+\section{Introducción y Motivación}
 
 El presente trabajo se introduce un modelo DEVS de una red funcionando bajo el protocolo TCP/IP encuadrando lo mejor posible cada uno de sus módulos en su correspondiente capa respecto al modelo OSI presentado en la literatura oficial de la materia de teoría de la telecomunicaciones \cite{peterson2007computer}. El trabajo fue desarrollado en el simulador PowerDEVS y pensado como herramienta de aprendizaje para futuros alumnos de la materia.
 
-\section{Motivación}
+El principal aporte de este trabajo consiste en la creación de un framework que permite programar y modificar los protocolos de una red de telecomunicaciones para luego simular su comportamiento y obtener feedback instantáneo de los resultados. Además, usando el simulador PowerDEVS, se consigue brindar una interfaz gráfica intuitiva que mapea de forma directa los dispositivos de la red con los módulos del modelo. Esta interfaz gráfica permite también crear distintos escenarios topológicos sin tener que tocar ni una linea de código. 
+
+Por otro lado, esta interfaz gráfica permite modularizar de forma explicita las distintas capas del modelo y su interacción, mapeando los modelos DEVS de cada capa con su capa correspondiente en la red, permitiendo una interacción más tangible y concreta respecto al modelo en capa. De esta forma, se programa cada protocolo en su capa correspondiente, esto no es menor, ya que si bien, teóricamente, los distintos protocolos están separados en capas y las redes pueden ser pensadas en capas, en la realidad, estas capas no existen de forma explicita y hay un salto entre las teorías de redes y los modelos en capas respecto de sus distintas implementaciones prácticas donde las capas terminan mezclándose en varios aspectos. Este modelo, permite a los alumnos hacer trabajos prácticos donde implementar los protocolos manteniendo explicitas las capas y por ende, acercando la teoría y la práctica de las redes de telecomunicaciones.
+
+Si bien, el modelo realizado es un modelo DEVS (Discrete EVent System Specification), el mismo fue pensado para que no sea necesario más que una breve introducción a DEVS, por lo que mismo personas sin ninguna experiencia en DEVS deberían ser capases de poder utilizar el simulador, el modelo y el framework general propuesto en este trabajo.
+
 \section{Objetivos}
+
+Los objetivos de este trabajo se pueden dividir en varias partes:
+\subsection{Introducir un framework para modelos de redes}
+
+Como ya fue mencionado en la introducción, uno de los principales objetivos de este trabajo es implementar un framework, que permita fácilmente implementar protocolos de red y validarlos mediante Simulación de Eventos Discretos (DES) generando distintos escenarios. Esto permite testear los protocolos implementados de forma sencilla y rápida. Obteniendo una herramienta útil, tanto para el estudio de las redes de telecomunicaciones como para la investigación en el área. 
+
+La creación de un modelo que sirva como framework, tiene por objetivo factorizar y estandarizar las partes comunes a todos los protocolos, estás partes comunes provienen de las propiedades inherentes a los dispositivos físicos en los cuales los protocolos están corriendo, y de los estándares actualmente utilizados que permiten obtener robustez y compatibilidad entre distintas implementaciones que puedan existir en distintas partes de una red. Estas abstracciones encapsuladas en el modelo framework presentado, permiten al modelador, concentrarse plenamente en su protocolo y permite la reutilización y compatibilidad de distintos modelos que pueden luego ser combinados en un único modelo de una red que funcione bajo distintos protocolos, permitiendo así el estudio de la compatibilidad y homogeneidad de los protocolos implementados.
+
+\subsection{Implementar un modelo UDP/IP básico}
+
+Por otro lado, este trabajo pretende implementar un modelo básico de una red UDP/IP que permita cubrir los protocolos mínimos e indispensables para hacer funcionar una pequeña red. Este modelo no tiene como intensión implementar todas las partes, ni cubrir todos los protocolos de forma completa, por lo que temáticas como la fragmentación de paquetes, congestión de tráfico, el manejo de errores, Dinamic Host Configuration Protocol (DHCP) \cite[p.~231]{peterson2007computer}, Routing Information Protocol (RIP)\cite[p.~243]{peterson2007computer} y Spanning tree protocol \cite[p.~194]{peterson2007computer} quedan fuera del alcance de este trabajo, siendo los mismos posibles trabajos futuros.
+
+También se implementó un modelo de switch que utiliza el protocolo de Datagramas \cite{petersonSwitchDatagram} utilizando una forwarding table para enviar los Frames por la interface correspondiente. 
+
+\subsection{Mapeo entre el modelo UDP/IP y el modelo OSI}
+
+En este trabajo, también pretendemos mostrar como se pueden implementar los distintos protocolos del modelo UDP/IP encuadrandolos en un modelo en capas OSI. Para esto, varias decisiones tuvieron que tomarse, siendo tal vez la más difícil, decidir en que capa implementar el protocolo ARP \cite[p.~228]{peterson2007computer}. Para tomar estas decisiones, se tomaron siempre como referencia los textos del libro \cite{peterson2007computer}. Se intentó también separar lo mejor posible las tareas de cada capa de forma tal que cada una de ellas pueda ignorar lo más posible la existencia de la/las capa/s inferior/es.
+
 \section{Introdución a DEVS}
 \section{Introducción a PowerDEVS}
 \section{Arquitectura general}
