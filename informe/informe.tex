@@ -10,7 +10,6 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{cite}
-%\usepackage{tabu}
 
 %definations
 \definecolor{Gray}{gray}{0.6}
@@ -65,6 +64,39 @@ En este trabajo, también pretendemos mostrar como se pueden implementar los dis
 \section{Introdución a DEVS}
 \section{Introducción a PowerDEVS}
 \section{Arquitectura general}
+
+La arquitectura general del modelo propuesto en este trabajo tiene por principal objetivo ofreser un framework donde se pueda facilmente desarrollar protocolos, para esto, se concentra en resolver varios puntos principales:
+
+\begin{itemize}
+\item Estandarizar la comunicación entre las capas de forma de conseguir consenso entre los distintos modeladores que usen esta herramienta, y que facilite una comprensión herarquica y organizada del modelo entero para los lectores nuevos.
+\item Implementar todas aquellas partes generales a todos los modelos de protocolos de forma que solo sea necesario consentrarse en el protocolo a implementar.
+\item intentar minimizar lo más posible la necesidad de tener conocimientos avanzados sobre DEVS a la hora de utilizar la herramienta.
+\end{itemize}
+
+La arquitectura consiste en un modelo de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [2,..,N-1]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
+
+\begin{itemize}
+\item Output port 0: Envio de datos a la capa $i+1$.
+\item Output port 1: Envio de controles a la capa $i+1$.
+\item Output port 2: Envio de datos a la capa $i-1$.
+\item Output port 3: Envio de controles a la capa $i-1$.
+\item Input port 0: Recepción de datos de la capa $i+1$.
+\item Input port 1: Recepción de controles de la capa $i+1$.
+\item Input port 2: Recepción de datos de la capa $i-1$.
+\item Input port 3: Recepción de controles de la capa $i-1$.
+\end{itemize}
+
+Dado que no siempre sucede que en un dispositivo de la red, exista un solo modulo por capa, por ejemplo, puede pasar que un host tenga varias aplicaciones enviando datos a travez de distintos sockets y en ese escenario habria más de un módulo en la capa de aplicación (capa siete del modelo OSI) de ese host, o un router probablemente tenga más de una interfaz, ya que suele tener una interfaz por cada sub-red a la cual esté conectado, entonces tendría más de un modulo en la capa de linkeo (capa dos del modelo OSI), y dado que los puertos de salida y entradas estan pensados para comunicarse con un solo modelo en la capa superior/inferior. Es necesario usar modelos demultiplexers que permitan redirigir los mensajes salientes por un puerto al modelo correspondiente de entre todas las posibles opciones. También, es necesario usar modelos multiplexers para que los múltiples modelos de la capa superior e inferior puedan enviarle mensajes al modulo. Esto se explicará más adelante con mayor detalle.
+
+Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Dado que en la realidad existe solo un medio de comunicación entre dispositivos y tanto datos como controles se envian por ese medio, entonces el modelo acoplado "dispositivo" tiene solo un puerto de salida y un puerto de entrada destinado a enviar datos de cualquier tipo (datos o controles), y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado "dispositivo" y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada para datos. Por otro lado, el input necesario para la capa $N$ (comunmente el input que indica los comandos del usuario de enviar o recibir datos) se puede conectar directamente con los puertos de entrada de la capa $N$, ya sea dejando los modelos de input adentro de l modelo acoplado del "dispositivo" o afuera del mismo. Lo mismo ocurre con el output generado por la capa $N$ para las capas superiores que no existen, este output puede ser recibido por modelos que lo guardan en archivos, estos modelos también pueden estar definidos tanto adentro como afuera del modelo acoplado "dispositivo".\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red]{Revisar esto}
+
+
+Distintos dispositivos de la red pueden tener distintas cantidades de capas, por lo cual, la cantidad de capas existente puede variar entre los distintos modelos de cada dispositivo dentro de una misma red. Los host por ejemplo, suelen tener hasta la capa siete mientras que los routers comunes llegan a la capa tres y los switches a la capa dos.
+
+La figura \ref{figure:general architecture} muestra la arquitectura general recien explicada en un modelo de una red con un host y un router, en el mismo se pueden se pueden ver los multiplexers y demultiplexers, se puede ver que cada modelo tiene distintas cantidadesde capas y se puede ver como estan conectadas las capas utilizando los distintos puertos.
+
+\todo[inline]{poner grafico de la arquitectura de N capas y modificar el host para que el input lo tome de afuera del modelo acoplado host}
+
 \section{Como usar el template}
 \subsection{Como heredar el modelo layer}
 \subsection{Como enviar y recibir mensajes entre las capas}
