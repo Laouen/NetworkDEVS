@@ -96,7 +96,13 @@ La arquitectura consiste en un modelo acoplado "dispositivo" de $N$ capas, con $
 \item Input port 3: Recepción de controles de la capa $i-1$.
 \end{itemize}
 
-Dado que no siempre sucede que en un dispositivo de la red, exista un solo modulo por capa, y dado que los puertos de salida y entradas estan pensados para comunicarse con un solo modelo en la capa superior/inferior. Es necesario usar modelos demultiplexers que permitan redirigir los mensajes salientes por un puerto al modelo correspondiente de entre todas las posibles opciones. También, es necesario usar modelos multiplexers para que los múltiples modelos de la capa superior o inferior puedan enviarle mensajes al modulo. Ejemplos de estos son: un host que tenga varias aplicaciones enviando datos a travez de distintos sockets y en ese escenario habria más de un módulo en la capa de aplicación (capa siete del modelo OSI) de ese host, un router  que tenga más de una interfaz (una por cada sub-red a la cual esté conectado), contando con más de un modulo en la capa de linkeo (capa dos del modelo OSI). \\
+Dado que no siempre sucede que en un dispositivo de la red, exista un solo modulo por capa, y dado que los puertos de salida y entradas estan pensados para comunicarse con un solo modelo en la capa superior/inferior. Es necesario usar modelos demultiplexers que permitan redirigir los mensajes salientes por un puerto al modelo correspondiente de entre todas las posibles opciones. También, se puede usar modelos multiplexers para que los múltiples modelos de la capa superior o inferior envien mensajes al modulo y quede guardado en el campo \textit{interfaz} la ideantidad del modulo de origen del mensaje. \\
+
+Ejemplos de estos son: 
+\begin{itemize}
+\item Un host que tenga varias aplicaciones enviando datos a travez de distintos sockets y en ese escenario habria más de un módulo en la capa de aplicación (capa siete del modelo OSI) de ese host.
+\item  Un router  que tenga más de una interfaz (una por cada sub-red a la cual esté conectado), contando con más de un modulo en la capa de linkeo (capa dos del modelo OSI).
+\end{itemize}
 
 Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como que existe solo un medio de comunicación entre dispositivos y tanto datos como controles se envian por ese medio, entonces el modelo acoplado "dispositivo" tiene solo un puerto de salida y un puerto de entrada destinado a enviar datos de cualquier tipo, y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada para datos. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede conectar con modelos generadores que pueden estar situados tanto adentro como afuera del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$ para las capas superiores que no existen; este output puede ser recibido por modelos que lo guardan en archivos y estos modelos también pueden estar situados tanto adentro como afuera del modelo acoplado \\
 
@@ -173,8 +179,7 @@ El modelo Layer es el modelo template que contiene toda la implementación corre
 
 El modelo Layer tiene la siguiente forma:
 \begin{lstlisting}
-template <typename DH, typename CH, typename DL, typename CL, 
-	typename DH2 = DH, typename CH2 = CH, typename DL2 = DL, typename CL2 = CL>
+template <typename DH, CH, DL, CL, DH2 = DH, CH2 = CH, DL2 = DL, CL2 = CL>
 class Layer: public Simulator { 
 
 protected:
@@ -203,6 +208,8 @@ protected:
 public:
 
   Layer(const char *n): Simulator(n) {};
+  double ta(double t);  
+  Event lambda(double);
   void dint(double t) { .... }
   void dext(Event x, double t) { .... }
   
@@ -211,11 +218,45 @@ public:
 };
 \end{lstlisting}
 
-El template cuenta con dos métodos virtuales que están definidos e implementados como funciones que no hacen nada, estos métodos son los que deben ser sobre escritos para implementar el protocolo. Siempre que haya mensajes por procesar en las colas de entradas, el modelo llama al método \textit{internal} en la cual se deben procesar dichos mensajes, al finalizar dicha función, el modelo Layer mira las colas de salidas para ver si hay mensajes a enviar y los envia, si al finalizar este proceso sigue habiendo mensajes por procesar en la cola de entrada, se volverá a llamar a esta función respetando el formalismo DEVS de forma de seguir procesando mensajes, este proceso se repite indefinidamente hasta que no haya mas mensajes por procesar y cuando esto ocurre, el modelo se pasiva a la espera de nuevos eventos externos. \\
+PowerDEVS tiene un par de exigencias a la hora de declarar un nuevo modelo, por este motivo, a continuación se muestra un ejemplo de herencia que puede ser usado de base para implementar nuevos modelos de capas. \\
 
-El método virtual \textit{dexternal} existe por si se desea implementar codigo que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro propósito. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS ni con PowerDEVS. \\
+\newpage
 
-\textbf{Nota:} Como se puede observar existen las funciones \textit{dint} y \textit{dext} que son las funciones exigidas por el simulador para ejecutar correctamente las transiciones interna y externa correspondientes al formalismo DEVS, el modelo Layer ejecuta en esas funciones todo el código relativo a la arquitectura presentada y llama a los métodos virtuales \textit{internal} y \textit{dexternal} que es sobre escrito por el modelador para ejecutar el protocolo implementado. De esta forma se consigue abstraer lo más posible al modelador del formalismo DEVS convirtiendo esta herramienta en una herramienta viable para el uso de estudio, mismo con alumnos no familiarizados en DEVS ni DES. 
+\textbf{protocol\_name.h}
+\begin{lstlisting}
+//CPP:path_to_cpp_files/protocol_name.cpp
+#include "layer.h"
+
+class layer_name: public Layer<T1, T2, T3, T4> { 
+
+protected:
+	
+  // variables privadas del modelo
+  // metodos privados del modelo
+
+public:
+  protocol_name(const char *n): Layer(n) {};
+  void init(double, ...);
+  void exit();
+
+  virtual void dinternal(double);
+  virtual void dexternal(double);
+  
+  // variables publicas del modelo
+  // metodos publicos del modelo
+};
+\end{lstlisting}
+
+\textbf{Exigencias}
+\begin{itemize}
+\item La primer linea es requerida por el compilador de PowerDEVS y tiene que tener correctamente seteado la dirección al archivo \textit{.cpp} donde estén implementados todos los métodos del modelo.
+\item El constructor de la clase debe estar declarado como se muestra en el ejemplo y la función init es la utilizada por el simulador para inicializar el modelo. Esta función debe ser declarada como se muestra con los \ldots, el simulador llama a esta función pasandole como primer parametró \textit{double} la cantidad de párametros a leer y luego el resto de los parámetros definidos para el modelo en la IDE PowerDEVS, los mismos se recuperan utilizando la librería \textit{va\_start} y \textit{va\_arg}.
+\item El método exit también debe ser declarado y el mismo es llamado por el simulador al finalizar la simulación. Todos los destructores correspondientes deben ser llamados en esta función de forma de liberar correctamente la memoria.
+\end{itemize}
+
+Como se puede observar existen las funciones \textit{dint} y \textit{dext} que son las funciones exigidas por el simulador para ejecutar correctamente las transiciones interna y externa correspondientes al formalismo DEVS, el modelo Layer ejecuta en esas funciones todo el código relativo a la arquitectura presentada y llama a los métodos virtuales \textit{internal} y \textit{dexternal} que son sobre escritos por el modelador para ejecutar el protocolo implementado. De esta forma se consigue abstraer lo más posible al modelador del formalismo, convirtiendo esta herramienta en una herramienta viable para el uso dentro del ambito de estudio. \\
+
+Por otro lado, la variable \textit{next\_internal} definida en en el template Layer es inicializada en cero cada vez que se llama a la implementación del protocolo, y es utilizada por el modelo para agendar la próxima transición interna, de esta forma si el protocolo no asigna ningún valor a esta variable, el simulador genera una transición interna instantanea. El desarrollador del protocolo tiene que asignar en esta esta variable un modelo del tiempo de computo del protocolo para de esta forma modelar los tiempos reales de runtime. Esta variable es de tipo double y la representación del tiempo mediante doubles queda en manos del modelador y debe ser consensuada con el resto de los modeladores de los demás protocolos para poder unirlos en un solo modelo, un consenso común es asumir que un double representa un segundo y utilizarlo de forma similar a los timestamps. \\
 
 \subsection{Como enviar y recibir mensajes entre las capas}
 
@@ -227,11 +268,13 @@ Todos los mensajes que llegan al modelo de una capa son recibidas por uno de los
 \item std::queue$<CL>$ lower\_layer\_ctrl\_in:   Input Port 3
 \end{itemize}
 
+La Figura \ref{figure:layer general architecture} Muestra de que capa proviene y para que tipo de datos está pensado cada uno de estos puertos. \\
+
 Como ya fue mencionado y como se puede observar en la definición de las colas, los tipos template instanciados son los tipos de los mensajes recibidos desde las capas superior e inferior. Es importante que los mensajes recibidos sean efectivamente de este tipo, porque el simulador PowerDEVS envia mensajes como \textbf{void *} y los mismos son casteados a su tipo correspondientes una vez recibidos por el modelo receptor, por lo que si los tipos no corresponden se generará un excepción en tiempo de ejecución. \\
 
-Para procesar los mensajes, dentro del método \textit{internal}, los mismos deben ser desencolados, es importante que se desencolen, ya que en caso contrario el mismo seguirá estando en la cola y el modelo volverá a producir una transición interna y llamar de nuevo al método \textit{internal} procesando dos o más veces el mismo mensaje. Reprocesar un mensaje multiple veces probablemente esté mal, pero tal vez es lo deseado por el protocolo, pero hay que tener en cuenta que una de las pocas exigencias del formalizmo DEVS es que no ocurran infinitos eventos en un mismo momento del tiempo virtual, y como el modelo sigué generando transiciones internas mientras haya mensajes por procesar, si los mensajes no son nunca desencolados, se generarán infinitas transiciones internas y eso produce un modelo DEVS ilegítimo que cuelgué al simulador. \\
+Para procesar los mensajes, dentro del método \textit{internal}, los mismos deben ser desencolados, es importante que se desencolen, ya que en caso contrario el mismo seguirá estando en la cola y el modelo volverá a producir una transición interna y llamar de nuevo al método \textit{internal} procesando dos o más veces el mismo mensaje. Reprocesar un mensaje multiple veces probablemente esté mal, pero tal vez es lo deseado por el protocolo, pero hay que tener en cuenta que una de las pocas exigencias del formalizmo DEVS es que no ocurran infinitos eventos en un mismo momento del tiempo virtual, y como el modelo sigué generando transiciones internas mientras haya mensajes por procesar, si los mensajes no son nunca desencolados y la variable \textit{next\_internal} se mantiene en cero, se generan infinitas transiciones internas y eso produciría un modelo DEVS ilegítimo que cuelga al simulador. \\
 
-Para enviar mensajes las colas utilizar son las siguientes:
+Para enviar mensajes las colas a utilizar son las siguientes:
 \begin{itemize}
 \item msg::queue$<DH2>$ higher\_layer\_data\_out: Output Port 0 
 \item msg::queue$<DL2>$ lower\_layer\_data\_out:  Output Port 1
@@ -239,19 +282,30 @@ Para enviar mensajes las colas utilizar son las siguientes:
 \item msg::queue$<CL2>$ lower\_layer\_ctrl\_out:  Output Port 3
 \end{itemize}
 
-Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada, esto es porque los mismos por defecto se instancian usando los mismos tipos a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya y se considera buena práctica que el tipo de datos que intercambian dos capas por un canal de comunicación sea siempre el mismo en ambas direcciónes, facilitando la reutilización y comprensión de los modelos por parte de otras personas. \\
+Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada con un $2$ al final, esto es porque los mismos por defecto se instancian usando los tipos de las colas de entrada a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya y se considera buena práctica que el tipo de datos que intercambian dos capas por un canal de comunicación sea siempre el mismo en ambas direcciónes, facilitando la reutilización y comprensión de los modelos por parte de otras personas. \\
 
-Para encolar un mensaje en la cola de de salida correspondiente se debe utilizar el metodo \textit{push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
+Para encolar un mensaje en la cola de de salida correspondiente se debe utilizar el método \textit{msg::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
 
-El tipo de datos msg::multiplexed<typename MSG> sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer<typename MSG>. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parametros en la IDE de PowerDEVS, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos del demultiplexer. \\
+El tipo de datos msg::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hey ejemplos de como utilizar el modelo demultiplexer con el tipo de dato msg::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los modulos de salida de $0$ a $k-1$}. \\
 
-\todo[inline]{PONER FIGURA DEL DEMULTIPLEXER}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{img/png/demultiplexer.png}
+    \caption{Puertos de entrada y salida de un demultiplexer, mapeo del campo interfaz del mensaje multiplexado con el puerto de salida correspondiente.}
+    \label{figure: demultiplexer}
+\end{figure}
 
-El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer correctamente con todos los destinatarios. Para no tener que usar un demultiplexer para los mensajes de datos y otro demultiplexer para los mensajes de controles, el modelo demultiplexer cuenta con dos puertos de entrada (datos y controles) y envia los mensajes por los puertos pares si son datos y por puertos impares si son controles. De esta forma un mensaje de control que llega con interface $i$ es enviado por el puerto $2*i+1$ y un mensaje de datos que llega con interface $i$ es enviado por el puerto $2*i$.
+Para no tener que usar un demultiplexer para los mensajes de datos y otro demultiplexer para los mensajes de controles, el modelo demultiplexer cuenta con dos puertos de entrada (datos y controles) y envia los mensajes por los puertos pares si son datos y por puertos impares si son controles; De esta forma, un mensaje de control que llega con interface $i$ es enviado por el puerto $2*i+1$ y un mensaje de datos que llega con interface $i$ es enviado por el puerto $2*i$. \\
+
+El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer correctamente con los destinatarios, la entrada de datos del modelo $i$ de destino debe estar conectado al puerto de salida $2*i$ del demultiplexer y la entrada de controles del modelo $i$ debe estar conectado al puerto $2*i+1$ del demultiplexer. \\
 
 \subsection{Como implementar el protocolo de una capa (internal/external functions)}
+
+El template cuenta con dos métodos virtuales que están definidos e implementados como funciones vacias (sin comportamiento), estos métodos son los que deben ser sobre escritos para implementar el protocolo. Siempre que haya mensajes por procesar en las colas de entradas, el modelo llama al método \textit{internal} en el cual se deben procesar dichos mensajes, el modelo Layer mira las colas de salidas para ver si hay mensajes a enviar y los envia, si al finalizar este proceso sigue habiendo mensajes por procesar en la cola de entrada se volverá a llamar a esta función respetando el formalismo DEVS de forma de seguir procesando mensajes. Este ciclo se repite indefinidamente hasta que no haya mas mensajes por procesar, momento en el cual el modelo se pasiva a la espera de nuevos eventos externos. \\
+
+El método virtual \textit{dexternal} existe por si se desea implementar código que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro motivo. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS o PowerDEVS. \\
+
 \section{Como agregar una capa}
-\section{Como modificar un protocolo}
 \section{Input/output del modelo}
 \section{Logger}
 \section{Case study: escenario implementado}
