@@ -83,7 +83,7 @@ La arquitectura general del modelo propuesto en este trabajo tiene por principal
 \item intentar minimizar lo más posible la necesidad de tener conocimientos avanzados sobre DEVS a la hora de utilizar la herramienta.
 \end{itemize}
 
-La arquitectura consiste en un modelo acoplado "dispositivo" de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [1,..,N]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
+La arquitectura consiste en un modelo acoplado ``dispositivo" de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [1,..,N]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
 
 \begin{itemize}
 \item Output port 0: Envio de datos a la capa $i+1$.
@@ -104,7 +104,7 @@ Ejemplos de estos son:
 \item  Un router  que tenga más de una interfaz (una por cada sub-red a la cual esté conectado), contando con más de un modulo en la capa de linkeo (capa dos del modelo OSI).
 \end{itemize}
 
-Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como que existe solo un medio de comunicación entre dispositivos y tanto datos como controles se envian por ese medio, entonces el modelo acoplado "dispositivo" tiene solo un puerto de salida y un puerto de entrada destinado a enviar datos de cualquier tipo, y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada para datos. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede conectar con modelos generadores que pueden estar situados tanto adentro como afuera del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$ para las capas superiores que no existen; este output puede ser recibido por modelos que lo guardan en archivos y estos modelos también pueden estar situados tanto adentro como afuera del modelo acoplado \\
+Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como que existe solo un medio de comunicación entre dispositivos y tanto datos como controles se envian por ese medio, entonces el modelo acoplado ``dispositivo" tiene solo un puerto de salida y un puerto de entrada destinado a enviar datos de cualquier tipo, y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada para datos. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede conectar con modelos generadores que pueden estar situados tanto adentro como afuera del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$ para las capas superiores que no existen; este output puede ser recibido por modelos que lo guardan en archivos y estos modelos también pueden estar situados tanto adentro como afuera del modelo acoplado \\
 
 Distintos dispositivos de la red pueden tener distintas cantidades de capas, por lo cual, la cantidad de capas existente puede variar entre los distintos modelos de cada dispositivo dentro de una misma red. Los hosts por ejemplo, suelen tener hasta la capa siete, mientras que los routers comunes llegan a la capa tres y los switches a la capa dos. \\
 
@@ -306,8 +306,87 @@ El template cuenta con dos métodos virtuales que están definidos e implementad
 El método virtual \textit{dexternal} existe por si se desea implementar código que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro motivo. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS o PowerDEVS. \\
 
 \section{Como agregar una capa}
+
+Como ya vimos en la sección ``introducción a DEVS", hay dos tipos de modelos: los modelos atómicos y los modelos acoplados. Para implementar un modelo de capa, primero es necesario heredar del template Layer para obtener el modelo atomico capa y luego el mismo debe ser insertado mediante la IDE PowerDEVS dentro del modelo acoplado general. \\
+
+Como se muestra en la arquitectura general, las capas deben ser insertadas dentro de los modelos acoplados de dispositivos (hosts,switches,routers,etc), por lo que antes de agregar la capa al modelo hay que abrir el modelo acoplado dispositivo en caso de existir o crear el modelo acoplado dispositivo en caso de todavía no existir.
+
+\begin{itemize}
+\item \textbf{Abrir un modelo acoplado en PowerDEVS:} Seleccionar con el mouse el modelo acoplado a abrir y abrir el menú de opciones del mismo dando click derecho sobre el modelo acoplado, elegir la opción ``open model".
+\item \textbf{Crear un modelo acomplado en PowerDEVS: } Abrir la pestaña ``Basic Elements" del sector ``library" de la IDE y arrastrar el icono ``Coupled" desde el meno hasta el sector donde esta el dibujo del modelo.
+\end{itemize}
+
+La figura \ref{figure: PowerDEVS IDE} muestra la IDE PowerDEVS e indica como crear un modelo acoplado dentro de la misma. \\
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{img/png/powerDEVS_coupled.png}
+    \caption{Screenshot de la IDE PowerDEVS con la pestaña ``Basic Elements" abierta resaltando el ícono de coupled model.}
+    \label{figure: PowerDEVS IDE}
+\end{figure}
+
+Para insertar un nuevo modelo de capa dentro de un modelo acoplado de dispositivo en PowerDEVS hay que seguir los siguientes pasos:
+
+\begin{enumerate}
+\item Crear el modelo acoplado de dispositivo en caso de ser necesario y abrirlo.
+\item Crear un nuevo modelo atomico de capa:
+\begin{enumerate}
+\item De la solapa ``Basic Elements" arrastrar al escenario del modelo el icono ``atomic".
+\item Click derecho sobre el icono del nuevo modelo atomico en el escenario.
+\item Elegir la opción  ``edit".
+\item Ire a la pestaña ``code", navegar por los modelos hasta encontrar el archivo \textit{.h} del modelo capa creado y seleccionarlo.
+\item Ir a la pestaña ``parameters" y agregar todos los parámetros requeridos por el modelo, o sea aquellos que el simulador le va a pasar al método ``init" del modelo para inicializarlo correctamente.
+\item Ir a la pestaña ``properties".
+\item Escribir el nombre deseado para el nuevo modelo, setear cuatro puertos de entrada y cuatro puertos de salida y elegir el icono a mostrar en el modelo (Elegir un ícono no es obligatorio)
+\end{enumerate}
+\item Conectar las salidas de los modelos superiores e inferiores con las entradas del nuevo modelo según lo explicado anteriormente en la sección \textit{Como enviar y recibir mensajes entre las capas}.
+\item Conectar las salidas del nuevo modelo a las entradas correspondientes de los modelos de las capas superiores e inferiores según lo explicado anteriormente en la sección \textit{Como enviar y recibir mensajes entre las capas}.
+\end{enumerate}
+
 \section{Input/output del modelo}
+
+\subsection{Input}
+Existen dos módulos responsables de leer el/los inputs del modelo, estos son: El modelo atómico template input\_stream y la clase Parser. La idea de separar el input en dos módulos es la de tener un parser que sepa leer archivos utilizados para inicializar modelos que requieren parámetros muy grandes \footnote{como por ejemplo las inicializaciones de las diferentes tablas utilizadas por el modelo (routing/forwarding tables)} del modelo generador que se encarga de ir insertando el input en el tiempo virtual correcto.\\
+
+\subsection{La clase Parser}
+Esta clase está diseñada como una template y sirve para leer las lineas de un archivo y parsearlas con el fin de devolverlas en la estructura de datos correspondiente según la instanciación realizada. El \textit{typename INPUT} indica el tipo del input a parsear y el mismo debe implementar el operador PONER OPERADOR. Es importante que este operador este implementado para leer todos los atributos necesarios sin saltos de linea ya que el parser lee un input por linea.\\
+
+% OPERADOR: inline std::istream operator$>>$(std::istream& is, IPv4$&$ ip)
+
+El constructor de la clase Parser recibe como parámetro un valor boleano que indica si el input a leer viene asociado con un tiempo (un valor \textit{double}). En caso de que este parámetro sea \textit{true}, las lineas del archivo deben comenzar con un valor \textit{double} que será devuelto por el parser de forma separada al input y que representa el tiempo en que debe ser insertado el input en la simulación, luego debe haber un espacio y el resto de la sintaxis requerida por el operador $>>$ del tipo de datos a parsear. Si bién el Parser tiene la opción para parsear el input junto con un tiempo asociado, el mismo no hace más que devolverlo.\\
+
+La clase Parser puede ser utilizada de forma independiente al modelo que lee input siempre que sea necesario leer y parsear las lineas de un archivo. La interfaz y documentación técnica del Parser está en formato Doxigen y exportado en el apendice de este documento.
+
+\subsection{El modelo input stream}
+
+El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo parámetro que se utiliza para iniciar el parser. \\
+
+Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del input$>$ que herede de input\_stream \footnote{El archivo header siempre tiene que ser de tipo \textit{.h} y la implementación debe estar en un archivo \textit{.cpp}} instanciando el parámetro template. Dado que el simulador PowerDEVS requiere que los modelos tengan un archivo \textit{.cpp} el mismo debe existir y puede simplemente estar vacio. \todo[]{insertar la issue para hcer el modelo input\_stream como template. Además agregar en todos los lugares donde se introducen modelos, la tabla con los parametros a instanciar en la IDE PowerDEVS y que tipo de datos es cada parámetro.} \\
+
+Una vez creada la herencia, el modelo atómico está listo para ser utilizado, el mismo no tiene ningún puerto de entrada y un solo puerto de salida por donde salen los inputs generados, este puerto de salida es el que debe ser conectado al modelo que precisa del input.
+
 \section{Logger}
+
+La clase Logger sirve para ir creando logs de la simulación. Esta clase separa los logs en cuatro tipos:
+
+\begin{itemize}
+\item \textbf{LOG:} Mensajes que sirven para documentar eventos no relevantes de la simulación.
+\item \textbf{INFO:} Mensajes utilizados para documentar eventos relevantes de la simulación.
+\item \textbf{DEBUG:} Mensajes utilizados para documentar eventos que sirven de ayuda para tareas de debug pero que no tiene ningún otro interés.
+\item \textbf{ERROR:} Mensajes utilizados para documentar errores producidos en tiempo de ejecución.
+\end{itemize}
+
+Para habilitar y deshabilitar los distintos tipos de logs a guardar en una simulación solo hay que comentar y descomentar las lineas $4,5,6$ y $7$ del archivo \textit{logger.h}, de esta forma en el código se logean todos los eventos correspondientes a estas cuatro categorías y luego antes de cada simulación se decide que mensajes mostrar y cuales no. \\
+
+Lineas a descomentar y comentar para habilitar y deshabilitar los distintos tipos de logs correspondientemente:
+\begin{lstlisting}
+#define show_log
+#define show_info
+#define show_debug
+#define show_error
+\end{lstlisting}
+
+Para utilizar esta clase, solo hay que inicializarla pasandole como parámetro un \textit{string} con el nombre del módulo o modelo del cual el logger va a loggear eventos y luego utilizarlo siguiendo su interfaz, la misma está documentada en formato Doxigen y adjunto en el apendice de este documento. \\
 \section{Case study: escenario implementado}
 \section{Protocolos implementados}
 \subsection{UDP}
