@@ -3,7 +3,8 @@
 \usepackage[spanish, es-tabla]{babel} % para que comandos como \today den el resultado en castellano
 \usepackage{a4wide} % márgenes un poco más anchos que lo usual
 \usepackage[conEntregas]{caratula}
-\usepackage{xcolor,colortbl}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
 \usepackage{todonotes}
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -12,7 +13,8 @@
 \usepackage{dirtree}
 \usepackage{cite}
 \usepackage{listings}
-
+\usepackage{multirow}
+\usepackage{epsfig}
 
 \lstset { %
     language=C++,
@@ -83,7 +85,7 @@ La arquitectura general del modelo propuesto en este trabajo tiene por principal
 \item intentar minimizar lo más posible la necesidad de tener conocimientos avanzados sobre DEVS a la hora de utilizar la herramienta.
 \end{itemize}
 
-La arquitectura consiste en un modelo acoplado ``dispositivo" de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [1,..,N]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
+La arquitectura consiste en un modelo acoplado ``dispositivo'' de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [1,..,N]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
 
 \begin{itemize}
 \item Output port 0: Envio de datos a la capa $i+1$.
@@ -104,7 +106,7 @@ Ejemplos de estos son:
 \item  Un router  que tenga más de una interfaz (una por cada sub-red a la cual esté conectado), contando con más de un modulo en la capa de linkeo (capa dos del modelo OSI).
 \end{itemize}
 
-Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como que existe solo un medio de comunicación entre dispositivos y tanto datos como controles se envian por ese medio, entonces el modelo acoplado ``dispositivo" tiene solo un puerto de salida y un puerto de entrada destinado a enviar datos de cualquier tipo, y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada para datos. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede conectar con modelos generadores que pueden estar situados tanto adentro como afuera del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$ para las capas superiores que no existen; este output puede ser recibido por modelos que lo guardan en archivos y estos modelos también pueden estar situados tanto adentro como afuera del modelo acoplado \\
+Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como que existe solo un medio de comunicación entre dispositivos y tanto datos como controles se envian por ese medio, entonces el modelo acoplado ``dispositivo'' tiene solo un puerto de salida y un puerto de entrada destinado a enviar datos de cualquier tipo, y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada para datos. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede conectar con modelos generadores que pueden estar situados tanto adentro como afuera del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$ para las capas superiores que no existen; este output puede ser recibido por modelos que lo guardan en archivos y estos modelos también pueden estar situados tanto adentro como afuera del modelo acoplado \\
 
 Distintos dispositivos de la red pueden tener distintas cantidades de capas, por lo cual, la cantidad de capas existente puede variar entre los distintos modelos de cada dispositivo dentro de una misma red. Los hosts por ejemplo, suelen tener hasta la capa siete, mientras que los routers comunes llegan a la capa tres y los switches a la capa dos. \\
 
@@ -252,6 +254,7 @@ public:
 \item La primer linea es requerida por el compilador de PowerDEVS y tiene que tener correctamente seteado la dirección al archivo \textit{.cpp} donde estén implementados todos los métodos del modelo.
 \item El constructor de la clase debe estar declarado como se muestra en el ejemplo y la función init es la utilizada por el simulador para inicializar el modelo. Esta función debe ser declarada como se muestra con los \ldots, el simulador llama a esta función pasandole como primer parametró \textit{double} la cantidad de párametros a leer y luego el resto de los parámetros definidos para el modelo en la IDE PowerDEVS, los mismos se recuperan utilizando la librería \textit{va\_start} y \textit{va\_arg}.
 \item El método exit también debe ser declarado y el mismo es llamado por el simulador al finalizar la simulación. Todos los destructores correspondientes deben ser llamados en esta función de forma de liberar correctamente la memoria.
+\item El nombre de la clase debe estar escrito todo con minúsculas.
 \end{itemize}
 
 Como se puede observar existen las funciones \textit{dint} y \textit{dext} que son las funciones exigidas por el simulador para ejecutar correctamente las transiciones interna y externa correspondientes al formalismo DEVS, el modelo Layer ejecuta en esas funciones todo el código relativo a la arquitectura presentada y llama a los métodos virtuales \textit{internal} y \textit{dexternal} que son sobre escritos por el modelador para ejecutar el protocolo implementado. De esta forma se consigue abstraer lo más posible al modelador del formalismo, convirtiendo esta herramienta en una herramienta viable para el uso dentro del ambito de estudio. \\
@@ -307,13 +310,13 @@ El método virtual \textit{dexternal} existe por si se desea implementar código
 
 \section{Como agregar una capa}
 
-Como ya vimos en la sección ``introducción a DEVS", hay dos tipos de modelos: los modelos atómicos y los modelos acoplados. Para implementar un modelo de capa, primero es necesario heredar del template Layer para obtener el modelo atomico capa y luego el mismo debe ser insertado mediante la IDE PowerDEVS dentro del modelo acoplado general. \\
+Como ya vimos en la sección ``introducción a DEVS'', hay dos tipos de modelos: los modelos atómicos y los modelos acoplados. Para implementar un modelo de capa, primero es necesario heredar del template Layer para obtener el modelo atomico capa como fue descripto en la sección anterior y luego el mismo debe ser insertado mediante la IDE PowerDEVS dentro del modelo acoplado general. \\
 
-Como se muestra en la arquitectura general, las capas deben ser insertadas dentro de los modelos acoplados de dispositivos (hosts,switches,routers,etc), por lo que antes de agregar la capa al modelo hay que abrir el modelo acoplado dispositivo en caso de existir o crear el modelo acoplado dispositivo en caso de todavía no existir.
+Como se muestra en la arquitectura general, las capas deben ser insertadas dentro de los modelos acoplados de dispositivos (hosts, switches, routers, etc), por lo que antes de agregar la capa al modelo hay que abrir el modelo acoplado dispositivo en caso de existir, o crear el modelo acoplado dispositivo en caso de todavía no existir.
 
 \begin{itemize}
-\item \textbf{Abrir un modelo acoplado en PowerDEVS:} Seleccionar con el mouse el modelo acoplado a abrir y abrir el menú de opciones del mismo dando click derecho sobre el modelo acoplado, elegir la opción ``open model".
-\item \textbf{Crear un modelo acomplado en PowerDEVS: } Abrir la pestaña ``Basic Elements" del sector ``library" de la IDE y arrastrar el icono ``Coupled" desde el meno hasta el sector donde esta el dibujo del modelo.
+\item \textbf{Abrir un modelo acoplado en PowerDEVS:} Seleccionar con el mouse el modelo acoplado a abrir y desplegar el menú de opciones del mismo dando click derecho sobre el icono, luego elegir la opción ``open model''.
+\item \textbf{Crear un modelo acomplado en PowerDEVS: } Abrir la pestaña ``Basic Elements'' del sector ``library'' de la IDE y arrastrar el icono ``Coupled'' desde el menú hasta el sector donde esta el dibujo del modelo.
 \end{itemize}
 
 La figura \ref{figure: PowerDEVS IDE} muestra la IDE PowerDEVS e indica como crear un modelo acoplado dentro de la misma. \\
@@ -321,47 +324,53 @@ La figura \ref{figure: PowerDEVS IDE} muestra la IDE PowerDEVS e indica como cre
 \begin{figure}[htbp]
     \centering
     \includegraphics[width = 0.6\textwidth]{img/png/powerDEVS_coupled.png}
-    \caption{Screenshot de la IDE PowerDEVS con la pestaña ``Basic Elements" abierta resaltando el ícono de coupled model.}
+    \caption{Screenshot de la IDE PowerDEVS con la pestaña ``Basic Elements'' abierta resaltando el ícono de coupled model.}
     \label{figure: PowerDEVS IDE}
 \end{figure}
 
 Para insertar un nuevo modelo de capa dentro de un modelo acoplado de dispositivo en PowerDEVS hay que seguir los siguientes pasos:
 
 \begin{enumerate}
-\item Crear el modelo acoplado de dispositivo en caso de ser necesario y abrirlo.
-\item Crear un nuevo modelo atomico de capa:
+\item Crear el modelo acoplado de dispositivo (en caso de ser necesario) y abrirlo.
+\item Crear un nuevo modelo atómico de capa:
 \begin{enumerate}
-\item De la solapa ``Basic Elements" arrastrar al escenario del modelo el icono ``atomic".
+\item De la solapa ``Basic Elements'' arrastrar al escenario el icono ``atomic''.
 \item Click derecho sobre el icono del nuevo modelo atomico en el escenario.
-\item Elegir la opción  ``edit".
-\item Ire a la pestaña ``code", navegar por los modelos hasta encontrar el archivo \textit{.h} del modelo capa creado y seleccionarlo.
-\item Ir a la pestaña ``parameters" y agregar todos los parámetros requeridos por el modelo, o sea aquellos que el simulador le va a pasar al método ``init" del modelo para inicializarlo correctamente.
-\item Ir a la pestaña ``properties".
-\item Escribir el nombre deseado para el nuevo modelo, setear cuatro puertos de entrada y cuatro puertos de salida y elegir el icono a mostrar en el modelo (Elegir un ícono no es obligatorio)
+\item Elegir la opción  ``edit''.
+\item Ir a la pestaña ``code'', navegar por los modelos hasta encontrar el archivo \textit{.h} del modelo capa creado y seleccionarlo.
+\item Ir a la pestaña ``parameters'' y agregar todos los parámetros requeridos por el modelo, o sea aquellos que el simulador le va a pasar al método ``init'' del modelo para inicializarlo y que serán leidos usando \textit{va\_arg} \footnote{Estos parámetros dependen de la implementación particular del protocolo.}.
+\item Ir a la pestaña ``properties'' y realizar las siguientes tareas: Escribir el nombre deseado para el nuevo modelo, setear cuatro puertos de entrada y cuatro puertos de salida y elegir el icono a mostrar en el modelo (Elegir un ícono no es obligatorio)
 \end{enumerate}
 \item Conectar las salidas de los modelos superiores e inferiores con las entradas del nuevo modelo según lo explicado anteriormente en la sección \textit{Como enviar y recibir mensajes entre las capas}.
 \item Conectar las salidas del nuevo modelo a las entradas correspondientes de los modelos de las capas superiores e inferiores según lo explicado anteriormente en la sección \textit{Como enviar y recibir mensajes entre las capas}.
 \end{enumerate}
 
+\todo[inline]{Colocar figuras ilustrativas de los pasos anteriores.}
+
 \section{Input/output del modelo}
 
 \subsection{Input}
-Existen dos módulos responsables de leer el/los inputs del modelo, estos son: El modelo atómico template input\_stream y la clase Parser. La idea de separar el input en dos módulos es la de tener un parser que sepa leer archivos utilizados para inicializar modelos que requieren parámetros muy grandes \footnote{como por ejemplo las inicializaciones de las diferentes tablas utilizadas por el modelo (routing/forwarding tables)} del modelo generador que se encarga de ir insertando el input en el tiempo virtual correcto.\\
+Existen dos módulos responsables de leer el/los inputs del modelo, estos son: El modelo atómico template \textit{input\_stream} y la clase \textit{Parser}. La idea de separar el input en dos módulos es la de atacar dos problematicas distintas pero similares:
+
+\begin{itemize}
+\item Contar con un parser que sepa leer archivos utilizados para inicializar modelos que requieren parámetros muy grandes \footnote{como por ejemplo las inicializaciones de las diferentes tablas utilizadas por el modelo (routing/forwarding tables)}.
+\item Contar con un modelo generador que utilice el parser y se encargue de ir insertando los estimulos externos al modelo en el tiempo virtual correspondiente.\\
+\end{itemize}
+
+\newpage
 
 \subsection{La clase Parser}
-Esta clase está diseñada como una template y sirve para leer las lineas de un archivo y parsearlas con el fin de devolverlas en la estructura de datos correspondiente según la instanciación realizada. El \textit{typename INPUT} indica el tipo del input a parsear y el mismo debe implementar el operador PONER OPERADOR. Es importante que este operador este implementado para leer todos los atributos necesarios sin saltos de linea ya que el parser lee un input por linea.\\
+Esta clase está diseñada como template y sirve para leer las lineas de un archivo y parsearlas con el fin de devolverlas en la estructura de datos correspondiente según la instanciación realizada. El \textit{typename INPUT} indica el tipo del input a parsear y el mismo debe implementar el operador std::istream \textsf{operator}$>>$(\textsf{std::istream}\& is, \textsf{IPv4}\& ip). Es importante que este operador este implementado de forma que lea todos los atributos necesarios sin saltos de linea ya que el parser lee un input por linea.\\
 
-% OPERADOR: inline std::istream operator$>>$(std::istream& is, IPv4$&$ ip)
-
-El constructor de la clase Parser recibe como parámetro un valor boleano que indica si el input a leer viene asociado con un tiempo (un valor \textit{double}). En caso de que este parámetro sea \textit{true}, las lineas del archivo deben comenzar con un valor \textit{double} que será devuelto por el parser de forma separada al input y que representa el tiempo en que debe ser insertado el input en la simulación, luego debe haber un espacio y el resto de la sintaxis requerida por el operador $>>$ del tipo de datos a parsear. Si bién el Parser tiene la opción para parsear el input junto con un tiempo asociado, el mismo no hace más que devolverlo.\\
+El constructor de la clase Parser recibe como parámetro un valor boleano que indica si el input a leer viene asociado con un tiempo (un valor \textit{double}). En caso de que este parámetro sea \textit{true}, las lineas del archivo deben comenzar con un valor \textit{double} que será devuelto por el parser de forma separada al input y que representa el tiempo en que debe ser insertado el input en la simulación, luego debe haber un espacio y el resto de la sintaxis requerida por el operador $>>$ del tipo de datos a parsear. Si bién el Parser tiene la opción para parsear el input junto con un tiempo asociado, el mismo no hace más que devolverlo en una tupla (tiempo, mensaje).\\
 
 La clase Parser puede ser utilizada de forma independiente al modelo que lee input siempre que sea necesario leer y parsear las lineas de un archivo. La interfaz y documentación técnica del Parser está en formato Doxigen y exportado en el apendice de este documento.
 
 \subsection{El modelo input stream}
 
-El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo parámetro que se utiliza para iniciar el parser. \\
+El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo que se utiliza para iniciar el parser. \\
 
-Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del input$>$ que herede de input\_stream \footnote{El archivo header siempre tiene que ser de tipo \textit{.h} y la implementación debe estar en un archivo \textit{.cpp}} instanciando el parámetro template. Dado que el simulador PowerDEVS requiere que los modelos tengan un archivo \textit{.cpp} el mismo debe existir y puede simplemente estar vacio. \todo[]{insertar la issue para hcer el modelo input\_stream como template. Además agregar en todos los lugares donde se introducen modelos, la tabla con los parametros a instanciar en la IDE PowerDEVS y que tipo de datos es cada parámetro.} \\
+Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del input$>$ que herede de input\_stream \footnote{El archivo header siempre tiene que ser de tipo \textit{.h} y la implementación debe estar en un archivo \textit{.cpp}} instanciando el parámetro template. Dado que el simulador PowerDEVS requiere que los modelos tengan un archivo \textit{.cpp} el mismo debe existir y puede simplemente estar vacio. \todo[]{Agregar en todos los lugares donde se introducen modelos, la tabla con los parametros a instanciar en la IDE PowerDEVS y que tipo de datos es cada parámetro.} \\
 
 Una vez creada la herencia, el modelo atómico está listo para ser utilizado, el mismo no tiene ningún puerto de entrada y un solo puerto de salida por donde salen los inputs generados, este puerto de salida es el que debe ser conectado al modelo que precisa del input.
 
@@ -370,10 +379,10 @@ Una vez creada la herencia, el modelo atómico está listo para ser utilizado, e
 La clase Logger sirve para ir creando logs de la simulación. Esta clase separa los logs en cuatro tipos:
 
 \begin{itemize}
-\item \textbf{LOG:} Mensajes que sirven para documentar eventos no relevantes de la simulación.
-\item \textbf{INFO:} Mensajes utilizados para documentar eventos relevantes de la simulación.
-\item \textbf{DEBUG:} Mensajes utilizados para documentar eventos que sirven de ayuda para tareas de debug pero que no tiene ningún otro interés.
-\item \textbf{ERROR:} Mensajes utilizados para documentar errores producidos en tiempo de ejecución.
+\item \textbf{LOG:} Logs que sirven para documentar eventos no relevantes de la simulación.
+\item \textbf{INFO:} Logs utilizados para documentar eventos relevantes de la simulación.
+\item \textbf{DEBUG:} Logs utilizados para documentar eventos que sirven de ayuda para tareas de debug pero que no tiene ningún otro interés.
+\item \textbf{ERROR:} Logs utilizados para documentar errores producidos en tiempo de ejecución.
 \end{itemize}
 
 Para habilitar y deshabilitar los distintos tipos de logs a guardar en una simulación solo hay que comentar y descomentar las lineas $4,5,6$ y $7$ del archivo \textit{logger.h}, de esta forma en el código se logean todos los eventos correspondientes a estas cuatro categorías y luego antes de cada simulación se decide que mensajes mostrar y cuales no. \\
@@ -386,14 +395,120 @@ Lineas a descomentar y comentar para habilitar y deshabilitar los distintos tipo
 #define show_error
 \end{lstlisting}
 
-Para utilizar esta clase, solo hay que inicializarla pasandole como parámetro un \textit{string} con el nombre del módulo o modelo del cual el logger va a loggear eventos y luego utilizarlo siguiendo su interfaz, la misma está documentada en formato Doxigen y adjunto en el apendice de este documento. \\
-\section{Case study: escenario implementado}
-\section{Protocolos implementados}
+Para utilizar esta clase, cada modulo tiene que crear una variable de tipo \textit{Logger} e inicializarla pasandole como parámetro un \textit{string} con el nombre del módulo o modelo del cual el logger va a loggear eventos y luego utilizarlo siguiendo su interfaz. La inicialización de la variable puede ser en su constructor o mediante el método \textit{Logger::setModuleName(std::string other\_module\_name)}. La documentación de la interfaz está en formato Doxigen y adjunto en el apendice de este documento. \\
+
+\section{Caso de estudio}
+	Además de implementar un framework para el estudio de las redes, en este trabajo se introduce un modelo sencillo del protocolo UDP/IP, el mismo cuenta con los protocol necesarios para que la red funcione de forma que los mensajes van pasando a travez de las distintas capas para llegar a ser enviados de un dispositivo a otro. La Figura \ref{figure: protocolos} muestra un diagrama de los protocolos implementados. \\
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{img/png/protocols.png}
+    \caption{Protocolos implementados separados por capas y dispositivos que los utilizan.}
+    \label{figure: protocolos}
+\end{figure}
+	
+\subsection{HTTP}
 \subsection{UDP}
+
+\subsection{Estructuras de datos correspondiente a UDP}
+
+El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cuales cuentan con documentación en formato Doxigen y que se encuentra adjunto en el apéndice de este documento:
+\begin{itemize}
+\item udp::Segment: Representa un segmento de datos para ser enviado por la red, el mismo cuenta con pseudoheader, header y payload como se muestra en la Figura \ref{figure: udp segment}.
+\item udp::Control: Es la estructura de datos utilizada para la comunicación con la capa de aplicación, en la misma se especifica que comando envia la aplicacion a la capa UDP. Toda la información a enviar llega al protocolo UDP a travez de esta estructura.
+\end{itemize}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{img/png/UDP-Segment.png}
+    \caption{Estructura del tipo de datos udp::Segment}
+    \label{figure: udp segment}
+\end{figure} \todo[]{Redibujar para que esté en español}
+
+\subsection{Comportamiento del protocolo}
+
+El protocolo UDP no cuenta con ningún sistema de detección de fallas en la entrega de los mensajes ya que el mismo está pensado para funcionar de forma que optimise la velocidad de entrega, para esto se basa en un mecanismo de mejor esfuerzo. Esto lo convierte en un buen protocolo cuando la eficiencia es un atributo clave. Por otro lado, dado que no controla que los mensajes lleguén o no a su destino, es necesario contar con otro mecanismo que detecte mensajes faltantes (aquellos que no llegaron a destino) o de lo contrario, debe permitirse la perdida de los mismos. Si bien no se realiza ningún esfuerzo por detectar si el mensaje llega o no a destino, UDP implementa checksum para detectar errores en la codificacion del header del segmento, esto es implementado con la finalidad de no entregar mensajes a destinatarios incorrectos. Cuando un error es detectado en el header, el segment es directamente descartado\footnote{No se comprueba que el payload contenga errores en su codificación, por lo que el dato en si, podria llegar a destino con errores y nunca serían detectados por UDP.}.\\
+
+UDP funciona con sockets, los sockets son una conbinación de IP y puerto que permiten enviar y entregar los mensajes a la aplicación correspondiente  dentro del host de destino. De esta forma, para que un mensaje sea correctamente entregado, el host destino tiene que tener una aplicación que esté escuchando por el puerto al cual fue enviado el mensaje, si este no es el caso, el mensaje es simplemente descartado. Los sockets también cumplen el roll de evitar colisiones entre las aplicaciones ya que las mismas no pueden conectarse a un puerto mediante un socket si el puerto ya está siendo utilizado por otra aplicación, ya sea para enviar o recibir mensajes. La Figura \ref{figure: UPD flow} muestra la máquina de estados del protocolo UDP. \\
+
+\todo[inline]{Colocar figura de la máquina de estados de UDP}
+ 
+En el modelo implementado, los mensajes de Control contienen un campo \textit{request} que indica que operación se desea efecectuar (connect, bind, read, etc) también es necesario enviar el IP y puerto del socket y el id de la aplicación, esta información es siempre requerida, ya sea para crear un nuevo socket atado a la aplicación del id o para corroborar que el socket existe y que corresponde a la aplicación que envia el mensaje de control. Dependiendo de la operación, es preciso completar correctamente los campos restantes. A continuación se explica cada operación y que campos requiere cada una: \\
+
+\begin{itemize}
+\item \textbf{CONNECT}: \textit{remote\_ip}, \textit{remote\_port}. De está forma UDP sabe que cada vez que esta aplicación envie o reciba un paquete, el mismo será para o desde el socket con IP \textit{remote\_ip} y puerto \textit{remote\_port}. Esta operación falla si el socket ya existe.
+\item \textbf{BIND:} Esto permite a la aplicación enviar paquetes a distintos destinos, especificando siempre el socket del destino mediante los comandos WRITE\_TO y SEND\_TO y recibir mensajes de distintos orígenes mediante los comandos READ\_FROM, RECV\_FROM, REC o READ. Esta aplicación falla si el soquet ya existe.
+\item \textbf{READ\_FROM / RECV\_FROM:} \textit{remote\_ip}, \textit{remote\_port}, estos campos son utilizados para saber que mensajes entrantes deben que ser aceptados y cuales no. Cuando este comando es recibido por UDP, el socket correspondiente es marcado como ``En espera de mensajes'' y el mismo se mantiene en ese estado hasta que llega un mensaje del host remoto indicado, en ese momento el mensaje es entregado y el socket vuelve al estado anterior. Este comando solo puede ser utilizado en un socket que está en estado \textit{BOUND}, o sea, un socket que fue previamente bindeado.
+\item \textbf{READ / RECV:} Es lo mismo que el item anterior pero con la diferencia de que no se especifica un socket remoto. Si el el soket local fue bindeado se aceptan todos los mensajes entrantes a este socket y si fue conectado se aceptan solo los mensajes del socket remoto indicado en el momento de la conexión.
+\item \textbf{WRITE\_TO / SEND\_TO:} Lo mismo que READ\_FROM / RECV\_FROM pero para enviar mensajes, con lo cual el campo \textit{packet} debe contener el paquete a enviar.
+\item \textbf{WRITE / SEND:} Lo mismo que READ / RECV pero para enviar mensajes, con lo cual el campo \textit{packet} debe contener el paquete a enviar.
+\item \textbf{CLOSE:} Esta operación remueve el socket, dejando el IP y puerto libres para futuras aplicaciones que quieran conectarse o bindearse al mismo.
+\end{itemize}
+
+Cada vez que el protocolo UDP quiere enviar un paquete, crea un nuevo udp::Segment, asigna el paquete en el campo \textit{payload}, completa los campos correspondientes del header y pseudoheader, calcula el checksum utilizando el header ya completado, guarda el valor obtenido en el campo \textit{checksum} y envia el mensaje a la capa inferior por el canal de datos encolando el mismo en la cola \textit{lower\_layer\_data\_out}. \\
+
+Cada vez que el protocolo UDP recibe un mensaje de la capa inferior se realizan un par de chequeos, en caso de que el mensaje pase los controles, el \textit{payload} del segmento recibido es entregado a la aplicación correspondiente, en caso contrario el segmento es descartado. Un segmento pasa los chequeos si se cumplen las siguientes condiciones:
+
+\begin{itemize}
+\item El campo \textit{checksum} debe coincidir con el calculo de checksum que realiza nuevamente el protocolo sobre el header del segmento recibido.
+\item El socket destino del segmento debe ser un socket local existente.
+\item El socket local debe estar en un estado de ``En espera de mensajes''.
+\item El socket local debe estar esperando mensajes del socket remoto o esperando mensajes de cualquiero socket remoto.
+\end{itemize}
+
 \subsection{IP}
+
+El protocolo IP es el encargado del enrutamiento de los udp::Segments, este proceso es el que se encarga de forwardear ip::Datagrams de un nodo  (router, host) a otro con la finalidad de llegar al host destino. Para esto, los udp::Segments deben estar encapsulados en la estructura de datos ip::Datagrams que cuenta con un campo \textit{header} y un campo \textit{data}, la Figura \ref{figure: ip datagram} muestra la estructura del tipo de datos ip::Datagram.  \\
+
+El protocolo IP implementado en este trabajo funciona con UDP y se puede dividir en dos categorias:
+\begin{itemize}
+\item \textbf{Enrutamiento en un host:} Los hosts son los encargados de encapsular los udp::Segments provenientes de la capa superior (UDP) dentro de ip::Datagrams y enviarlos al router o host directamente conectado al mismo dependiendo de si el IP de destino corresponde a un un host de la misma subnet o a un host en otra subnet. Si un host recibe un ip::Datagram cuyo IP destino no corresponde con ningún IP del host, el ip::Datagram no es forwardeado a nadie y es descartado, en cambio si el IP corresponde con algún IP del host, el udp::Segment del ip::Datagram recibido es desencapsulado y entregado a la capa superior.
+\item \textbf{Enrutamiento en routers:} Los routers por el contrario no encapsulan udp::Segments ya que no existe capa de transporte en un router, los mismos se encargan de forwardear ip::Datagrams que llegan.
+\end{itemize}
+
+Si bien hay diferencia entre los hosts y los routers, el proceso de enviar ip::Datagrams es el mismo para ambos, este proceso consiste en buscar el mejor \textit{nexthope} dentro de la ``routing table'' y enviar el ip::Datagram al mismo, con la esperanza de que el sepa como entregar el mensaje al destino. En este trabajo no se implementaron clases de direcciones IP A, B y C y por el contrario se implemento subneting mediante el uso de netmasks. La routing table contiene los siguientes campos:
+
+\begin{itemize}
+\item \textbf{Network:} IP del network asociado a esta entrada.
+\item \textbf{Netmask:} Máscara utilizada para saber que parte del IP network debe ser comparada con el IP destino para determinar si el IP destino corresponde a la misma red a la cual se puede llegar mediante este netxhope.
+\item \textbf{Nexthope:} IP del nodo al cual hay que enviarle el ip::Datagram de forma que el mismo sepa como entregar el ip::Datagram. El nexthope debe estar directamente conectado con el nodo actual. El mismo puede ser un host, en este caso, el destino es directamente alcanzable y el mensaje es enviado al mismo.
+\item \textbf{Metric:} Una metrica de a que distancia (en termino de nodos intermedios) se encuentra el destino del router o host actual.
+\item \textbf{Description:} Una descripción que ayude a comprender el roll del nexthope. Esto puede ser el nombre del mismo.
+\end{itemize}
+
+Si la routing table no es correctamente completada, puede suceder que un paquete nunca llegue a destino o que el mismo se quede dando vueltas en circulos, para evitar que se generen ciclos infinitos que ocasionarian una gran congestión de la red se utiliza el campo \textit{TTL} el cual arranca con el valor $255$ cuando el host envia el paquete al primer \textit{nexthope} y es decrementado en uno cada vez que pasa por un nuevo router, de esta forma, cuando el \textit{TTL} llega a $0$ el ip::Datagram es descartado en vez de ser forwardeado. \\
+
+\todo[inline]{hablar de como IP pregunta si ya esta el MAC y envia el pedido de ARP a la capa dos}
+
 \subsection{ARP}
 \subsection{SWP}
 \subsection{Datagram protocol}
+\subsection{Escenario implementado}
+
+El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envio de mensajes a travez de la red tales como: Pasar por múltiples routers, enviar mensajes a otro host de la misma red y enviar mensajes a un host de una red donde es el único host. Para conseguir esto, se planteo el escenario mostrado en la Figura \ref{figure: case stady}, el mismo cuanta con cinco subnets con diferentes cantidades de switches y hosts en cada subnet, las subnets $2$ y $3$ no cuentan con dispositivos extras a los routers a los cuales están conectadas. \\
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{img/png/scenario.png}
+    \caption{Escenario implementado.}
+    \label{figure: case stady}
+\end{figure}
+
+Como ya fue mencionado, en este trabajo no se implementaron algoritmos dinamicos para completar las routing y forwarding tables, las mismas son completadas a mano. A continuación, se presentan tablas con las entradas seteadas para este escenario, las mismas están pensadas para el correcto funcionamiento de la red.
+
+\begin{table}[!htb]
+\rowcolors{1}{}{lightgray}
+\centering
+\begin{tabular}{c|c|c|c|c}
+    \rowcolor[gray]{.1} \color{white}Network & \color{white}Netmask & \color{white}Nexthope & \color{white}Metric & \color{white}Description\\
+    1.0.0.2 & 255.255.255.255 & 1.0.0.2 & 1 & Host 2 \\
+    -&-&-&-&-\\
+    -&-&-&-&-\\
+\end{tabular}
+\caption{Routing table del host 1.}
+\label{tab:routing host 1}
+\end{table}
+
 \section{Resultados}
 \section{Conclusiones}
 \section{Trabajo futuro}
