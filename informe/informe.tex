@@ -15,6 +15,7 @@
 \usepackage{listings}
 \usepackage{multirow}
 \usepackage{epsfig}
+\usepackage[font=small,labelfont=bf]{caption}
 
 \lstset { %
     language=C++,
@@ -429,9 +430,14 @@ El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cual
 
 El protocolo UDP no cuenta con ningún sistema de detección de fallas en la entrega de los mensajes ya que el mismo está pensado para funcionar de forma que optimise la velocidad de entrega, para esto se basa en un mecanismo de mejor esfuerzo. Esto lo convierte en un buen protocolo cuando la eficiencia es un atributo clave. Por otro lado, dado que no controla que los mensajes lleguén o no a su destino, es necesario contar con otro mecanismo que detecte mensajes faltantes (aquellos que no llegaron a destino) o de lo contrario, debe permitirse la perdida de los mismos. Si bien no se realiza ningún esfuerzo por detectar si el mensaje llega o no a destino, UDP implementa checksum para detectar errores en la codificacion del header del segmento, esto es implementado con la finalidad de no entregar mensajes a destinatarios incorrectos. Cuando un error es detectado en el header, el segment es directamente descartado\footnote{No se comprueba que el payload contenga errores en su codificación, por lo que el dato en si, podria llegar a destino con errores y nunca serían detectados por UDP.}.\\
 
-UDP funciona con sockets, los sockets son una conbinación de IP y puerto que permiten enviar y entregar los mensajes a la aplicación correspondiente  dentro del host de destino. De esta forma, para que un mensaje sea correctamente entregado, el host destino tiene que tener una aplicación que esté escuchando por el puerto al cual fue enviado el mensaje, si este no es el caso, el mensaje es simplemente descartado. Los sockets también cumplen el roll de evitar colisiones entre las aplicaciones ya que las mismas no pueden conectarse a un puerto mediante un socket si el puerto ya está siendo utilizado por otra aplicación, ya sea para enviar o recibir mensajes. La Figura \ref{figure: UPD flow} muestra la máquina de estados del protocolo UDP. \\
+UDP funciona con sockets, los sockets son una conbinación de IP y puerto que permiten enviar y entregar los mensajes a la aplicación correspondiente  dentro del host de destino. De esta forma, para que un mensaje sea correctamente entregado, el host destino tiene que tener una aplicación que esté escuchando por el puerto al cual fue enviado el mensaje, si este no es el caso, el mensaje es simplemente descartado. Los sockets también cumplen el roll de evitar colisiones entre las aplicaciones ya que las mismas no pueden conectarse a un puerto mediante un socket si el puerto ya está siendo utilizado por otra aplicación, ya sea para enviar o recibir mensajes. La Figura \ref{figure: UPD state machine} muestra la máquina de estados del protocolo UDP. \\
 
-\todo[inline]{Colocar figura de la máquina de estados de UDP}
+\begin{figure}[!hb]
+    \centering
+    \includegraphics[width = 0.7\textwidth]{img/png/UDP-state-machine.png}
+    \caption{Máquina de estados del protocolo UDP para un socket determinado. Por prolijidad, el comando \textit{CLOSE} no aparece, el mismo corta cualquier estado y vuelve automáticamente a \textit{LIBRE}}
+    \label{figure: UPD state machine}
+\end{figure}
  
 En el modelo implementado, los mensajes de Control contienen un campo \textit{request} que indica que operación se desea efecectuar (connect, bind, read, etc) también es necesario enviar el IP y puerto del socket y el id de la aplicación, esta información es siempre requerida, ya sea para crear un nuevo socket atado a la aplicación del id o para corroborar que el socket existe y que corresponde a la aplicación que envia el mensaje de control. Dependiendo de la operación, es preciso completar correctamente los campos restantes. A continuación se explica cada operación y que campos requiere cada una: \\
 
@@ -458,13 +464,13 @@ Cada vez que el protocolo UDP recibe un mensaje de la capa inferior se realizan 
 
 \subsection{IP}
 
-El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} y un campo \textit{data}, la Figura \ref{figure: ip datagram} muestra la estructura del tipo de datos ip::Datagram.  \\
+El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} de tipo ip::Header y un campo \textit{data} de tipo udp::Datagram, la Figura \ref{figure: ip header} muestra la estructura del tipo de datos ip::Header.  \\
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width = 0.4\textwidth]{img/png/IP-datagram.png}
-    \caption{Estructura del tipo de datos ip::Datagram}
-    \label{figure: ip datagram}
+    \caption{Estructura del tipo de datos de ip::Header}
+    \label{figure: ip header}
 \end{figure}
 
 El protocolo IP implementado en este trabajo funciona con UDP y se puede dividir en dos categorias:
@@ -488,11 +494,42 @@ La routing table contiene los siguientes campos:
 
 Para determinar cual \textit{nexthope} es el mejor se utiliza el siguiente criterio: Se elige aquel nexthope con prefijo de network más pequeño, si hay más de uno con menor prefijo, se elige aquel con menor métrica, o sea, aquel para el cual se espera que el camino sea menor, si sigue siendo necesario desenpatar, se elige uno de entre ellos al azar. \\
 
-Si las routing tables no son correctamente completadas, puede suceder que un paquete nunca llegue a destino o que el mismo se quede dando vueltas en circulos, para evitar que se generen ciclos infinitos que ocasionarian una gran congestión de la red se utiliza el campo \textit{TTL} (Time To Live) el cual arranca con el valor $255$ cuando el host envia el paquete al primer \textit{nexthope} y es decrementado en uno cada vez que pasa por un nuevo router, de esta forma, cuando el \textit{TTL} llega a $0$ el ip::Datagram es descartado en vez de ser forwardeado. \\
+Un dispositivo puede tener más de una interfaz, cada interfaz está conectada con una network particular y el \textit{nexthope} elegido pertenece a alguna de esas networks, para saber por que interfaz enviar el ip::Datagram se utiliza la \textit{forwarding table} la cual indica para cada \textit{nexthope} su interfaz asociada dependiendo de en que network se encuentre el \textit{nexthope}. Si bien la \textit{forwarding table} suele ser completada dinamicamente por protocolos tales como \textit{Spanning Tree Protocol}, en este trabajo la misma es completada manualmente. \\
 
-Para poder enviar un ip::Datagram al nexthope o al host en cuestión, el protocolo IP le manda un mensaje de control a la capa de linkeo para pedirle que pepare la MAC address asociada al IP del \textit{nexthope}, una vez que recibe el mensaje de la capa de linkeo confirmando que dicha MAC address está cacheada, el protocolo IP pasa el ip::Datagram a la capa de linkeo para que el mismo lo envíe. \\
+Dado que en estre tabajo no se implementó ningún algoritmo dinámico para completar las \textit{routing tables}, si las mismas no son correctamente completadas, puede suceder que un paquete nunca llegue a destino o que el mismo se quede dando vueltas en circulos, para evitar que se generen ciclos infinitos que ocasionarian una gran congestión de la red se utiliza el campo \textit{TTL} (Time To Live) el cual arranca con el valor $255$ cuando el host envia el paquete al primer \textit{nexthope} y es decrementado en uno cada vez que pasa por un nuevo router, de esta forma, cuando el \textit{TTL} llega a $0$ el ip::Datagram es descartado en vez de ser forwardeado. Este tipo de problemas puede suceder también cuando las \textit{routing tables} son completadas dinamicamente. \\
+
+Para poder enviar un ip::Datagram al nexthope o al host en cuestión, el protocolo IP le manda un mensaje de control a la capa de linkeo para pedirle que pepare la MAC address asociada al IP del \textit{nexthope}, una vez que recibe el mensaje de la capa de linkeo confirmando que dicha MAC address está cacheada, el protocolo IP pasa el ip::Datagram a la capa de linkeo para que el mismo lo envíe. El mensaje de confirmación de que la \textit{MAC address} existe no asegura que el mensaje sea enviado, en caso de que un error acontesca en el protocolo ARP, el mismo se lo comunica a IP que se queda esperando una nueva confirmación del protocolo ARP comunicando que el envio puede ser realizado. \\
 
 \subsection{ARP}
+
+Si bien los IPs cuentan con una estructura jerárquica que permite describir la topologia de la red y de esa forma agrupar a los hosts por networks, los mismos son asignados dinámicamente dependiendo de en donde está conectado el host. Por el contrario, las \textit{MAC addresses} son fijas, y cada dispositivo de red viene con una \textit{MAC address} de fábrica, la misma se supone que es única. Para poder enviar datos de un dispositivo a otro, es necesario primero conseguir su \textit{MAC address}, el protocolo ARP (\textit{Address Resolution Protocol}) es el protocolo utilizado en este modelo para realizar este trabajo. \\
+
+Los ip::Datagram que deben ser enviados entre dos nodos adyacentes de la red son encapsulados dentro de un link::Frame, el cual cuenta con la estructura mostrada en la Figura \ref{figure: frame structure}. \\
+
+\todo[inline]{poner la figura de la estructura de un link::Frame}
+
+El campo payload es el que contiene al ip::Datagram, el mismo admite un tamaño máximo de $1500$ bytes, por lo cual todos los paquetes enviados en este modelo deben tener un tamaño menor a $1500$ bytes \footnote{En este trabajo no está implementado el mecanismo de fragmentación}. El campo \textit{MAC\_destination} es el que contiene el \textit{MAC address} del dispositivo de destino al cual se desea enviar el frame.\\
+
+El protocolo ARP cuenta con una \textit{ARP table}, la cual tiene las siguientes columnas:
+
+\begin{itemize}
+\item \textbf{ip:} El IP del dispositivo al cual se debe enviar el link::Frame, este IP es el que utiliza la capa IP.
+\item \textbf{mac:} La \textit{MAC address} del dispositivo al cual se debe enviar el link::Frame.
+\item \textbf{timeout:} Es el periodo de tiempo de validez que tiene el dato. Cada vez que se agrega una fila a la \textit{ARP table}, al mismo se le asigna un \textit{timeout}, y cuando el mismo se acaba, la fila es eliminada de la tabla.
+\end{itemize}
+
+Cada vez que el protocolo IP envia un pedido para enviar un ip::Datagram, el protocolo ARP busca el IP en la \textit{ARP Table}, si hay una entrada con ese IP, ARP manda un mensaje de control a la capa IP comunicando que el envío puede ser efectuado, si por el contrario, no hay una entrada con ese IP, ARP envía un \textit{ARP Packet} con un pedido de \textit{MAC} a todos los dispositivos de la red directamente conectados con el. Todo dispositivo que recibe un \textit{ARP Packet} con pedido de \textit{MAC} cuya dirección IP corresponda con la requerida, enviará una respuesta con su \textit{MAC address}, luego, el dispositivo que envió el pedido, al recibir la respuesta agrega la nueva entrada a la \textit{ARP table}. Una vez que se obtuvo la \textit{MAC address}, ARP envia el mensaje de control a la capa IP comunicando que el envio puede ser efectuado. Si ningún dispositivo de la red matchea con el IP solicitado, entonces el ip::Datagram nunca será enviado pues el protocolo ARP se quedará hasta el infinito esperando la respuesta de la red, esto no implica que el protocolo quede bloqueado y otros pedidos podrían ser procesados. La figura \ref{figure: ARP IP comunication flow} muestra la comunicación entre ARP y IP para la obtención de la \textit{MAC address}.\\
+
+\todo[inline]{poner la figura de ARP IP comunication flow}
+
+Podría suceder que durante el tiempo que transcurre entre que ARP envía el mensaje a IP comunicandole que el envio puede realizarse y que el protocolo IP manda el ip::Datagram para ser enviado, el \textit{timeout} de la \textit{MAC address} requerida se cumpla y la misma sea eliminada de la tabla. Si este es el caso, se envia un mensaje al protocolo IP de falla en el envio del mensaje y se envia un \textit{ARP Packet} para volver a obtener el \textit{MAC address}. La Figura \ref{figure: arp packet} muestra la estructura de un \textit{ARP packet}.\\
+
+\todo[inline]{poner la figura de la estructura de un link::Frame}
+
+Un dispositivo puede tener varias interfaces, este es el caso de los routers que cuentan con una interfaz por cada network al que están conectados. Cada interfaz cuanta con un IP y con una \textit{MAC address} y los pedidos de \textit{MAC address} que llegan a la interfaz son respondidos por el protocolo ARP dentro de la interfaz sin llegar a la capa de enrutamiento. De esta forma, un router puede ser accedido por los dispositivos de una red solo si ellos conocen el IP de la interfaz que está conectada a dicha red, en caso de que llegue un pedido de \textit{MAC address} para un IP de otra interfaz, el mismo es ignorado ya que las interfaces son independientes entre si. \\
+
+Una vez que el link::Frame esta listo para ser enviado, la capa de linkeo utiliza el protocolo SWP (\textit{Sliding Window Protocol}) para enviar el mismo. \\
+
 \subsection{SWP}
 \subsection{Datagram protocol}
 \subsection{Escenario implementado}
