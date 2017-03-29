@@ -420,10 +420,10 @@ El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cual
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width = 0.6\textwidth]{img/png/UDP-Segment.png}
+    \includegraphics[width = 0.7\textwidth]{img/png/UDP-Segment.png}
     \caption{Estructura del tipo de datos udp::Segment}
     \label{figure: udp segment}
-\end{figure} \todo[]{Redibujar para que esté en español}
+\end{figure}
 
 \subsection{Comportamiento del protocolo}
 
@@ -458,16 +458,26 @@ Cada vez que el protocolo UDP recibe un mensaje de la capa inferior se realizan 
 
 \subsection{IP}
 
-El protocolo IP es el encargado del enrutamiento de los udp::Segments, este proceso es el que se encarga de forwardear ip::Datagrams de un nodo  (router, host) a otro con la finalidad de llegar al host destino. Para esto, los udp::Segments deben estar encapsulados en la estructura de datos ip::Datagrams que cuenta con un campo \textit{header} y un campo \textit{data}, la Figura \ref{figure: ip datagram} muestra la estructura del tipo de datos ip::Datagram.  \\
+El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} y un campo \textit{data}, la Figura \ref{figure: ip datagram} muestra la estructura del tipo de datos ip::Datagram.  \\
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.4\textwidth]{img/png/IP-datagram.png}
+    \caption{Estructura del tipo de datos ip::Datagram}
+    \label{figure: ip datagram}
+\end{figure}
 
 El protocolo IP implementado en este trabajo funciona con UDP y se puede dividir en dos categorias:
 \begin{itemize}
 \item \textbf{Enrutamiento en un host:} Los hosts son los encargados de encapsular los udp::Segments provenientes de la capa superior (UDP) dentro de ip::Datagrams y enviarlos al router o host directamente conectado al mismo dependiendo de si el IP de destino corresponde a un un host de la misma subnet o a un host en otra subnet. Si un host recibe un ip::Datagram cuyo IP destino no corresponde con ningún IP del host, el ip::Datagram no es forwardeado a nadie y es descartado, en cambio si el IP corresponde con algún IP del host, el udp::Segment del ip::Datagram recibido es desencapsulado y entregado a la capa superior.
-\item \textbf{Enrutamiento en routers:} Los routers por el contrario no encapsulan udp::Segments ya que no existe capa de transporte en un router, los mismos se encargan de forwardear ip::Datagrams que llegan.
+\item \textbf{Enrutamiento en un router:} Los routers por el contrario no encapsulan udp::Segments ya que no existe capa de transporte en un router, los mismos se encargan de forwardear ip::Datagrams que llegan.
 \end{itemize}
 
-Si bien hay diferencia entre los hosts y los routers, el proceso de enviar ip::Datagrams es el mismo para ambos, este proceso consiste en buscar el mejor \textit{nexthope} dentro de la ``routing table'' y enviar el ip::Datagram al mismo, con la esperanza de que el sepa como entregar el mensaje al destino. En este trabajo no se implementaron clases de direcciones IP A, B y C y por el contrario se implemento subneting mediante el uso de netmasks. La routing table contiene los siguientes campos:
+Si bien hay diferencia entre los hosts y los routers, el proceso de enviar ip::Datagrams es el mismo para ambos, este proceso consiste en buscar el mejor \textit{nexthope} dentro de la ``routing table'' y enviar el ip::Datagram al mismo con la esperanza de que el sepa como entregar el mensaje al destino. \\
 
+En este trabajo no se implementaron clases de direcciones IP A, B y C, por el contrario se implementó el mecanismo de subneting mediante el uso de netmasks, esto significa que se utiliza una máscara que indica cuantos bits de la izquierda del IP corresponden al network. La máscara utilizada es una dirección IP que tiene en los bits de la izquierda unos y en los bits de la derecha ceros, la cantidad de unos de la máscara determinan cuantos bits del IP deben ser considerados como network. \\
+
+La routing table contiene los siguientes campos:
 \begin{itemize}
 \item \textbf{Network:} IP del network asociado a esta entrada.
 \item \textbf{Netmask:} Máscara utilizada para saber que parte del IP network debe ser comparada con el IP destino para determinar si el IP destino corresponde a la misma red a la cual se puede llegar mediante este netxhope.
@@ -476,9 +486,11 @@ Si bien hay diferencia entre los hosts y los routers, el proceso de enviar ip::D
 \item \textbf{Description:} Una descripción que ayude a comprender el roll del nexthope. Esto puede ser el nombre del mismo.
 \end{itemize}
 
-Si la routing table no es correctamente completada, puede suceder que un paquete nunca llegue a destino o que el mismo se quede dando vueltas en circulos, para evitar que se generen ciclos infinitos que ocasionarian una gran congestión de la red se utiliza el campo \textit{TTL} el cual arranca con el valor $255$ cuando el host envia el paquete al primer \textit{nexthope} y es decrementado en uno cada vez que pasa por un nuevo router, de esta forma, cuando el \textit{TTL} llega a $0$ el ip::Datagram es descartado en vez de ser forwardeado. \\
+Para determinar cual \textit{nexthope} es el mejor se utiliza el siguiente criterio: Se elige aquel nexthope con prefijo de network más pequeño, si hay más de uno con menor prefijo, se elige aquel con menor métrica, o sea, aquel para el cual se espera que el camino sea menor, si sigue siendo necesario desenpatar, se elige uno de entre ellos al azar. \\
 
-\todo[inline]{hablar de como IP pregunta si ya esta el MAC y envia el pedido de ARP a la capa dos}
+Si las routing tables no son correctamente completadas, puede suceder que un paquete nunca llegue a destino o que el mismo se quede dando vueltas en circulos, para evitar que se generen ciclos infinitos que ocasionarian una gran congestión de la red se utiliza el campo \textit{TTL} (Time To Live) el cual arranca con el valor $255$ cuando el host envia el paquete al primer \textit{nexthope} y es decrementado en uno cada vez que pasa por un nuevo router, de esta forma, cuando el \textit{TTL} llega a $0$ el ip::Datagram es descartado en vez de ser forwardeado. \\
+
+Para poder enviar un ip::Datagram al nexthope o al host en cuestión, el protocolo IP le manda un mensaje de control a la capa de linkeo para pedirle que pepare la MAC address asociada al IP del \textit{nexthope}, una vez que recibe el mensaje de la capa de linkeo confirmando que dicha MAC address está cacheada, el protocolo IP pasa el ip::Datagram a la capa de linkeo para que el mismo lo envíe. \\
 
 \subsection{ARP}
 \subsection{SWP}
