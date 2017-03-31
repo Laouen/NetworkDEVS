@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="729.99994"
+   height="330"
+   viewBox="0 0 729.99995 330.00001"
+   id="svg4288"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="arp-packet.svg"
+   inkscape:export-filename="/home/laouen/powerdevs/atomics/NetworkDEVS/informe/img/png/arp-packet.png"
+   inkscape:export-xdpi="89"
+   inkscape:export-ydpi="89">
+  <defs
+     id="defs4290" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.8949827"
+     inkscape:cx="387.03404"
+     inkscape:cy="154.82779"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-bottom="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     units="px"
+     inkscape:window-width="1553"
+     inkscape:window-height="876"
+     inkscape:window-x="47"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4293">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-2.8774505,-647.80608)">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.10499998;stroke:#000000;stroke-width:0.41919744;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4307"
+       width="174.5808"
+       height="49.580803"
+       x="18.08704"
+       y="713.18457" />
+    <rect
+       y="863.3927"
+       x="18.295126"
+       height="49.164627"
+       width="699.16461"
+       id="rect4309"
+       style="opacity:1;fill:#000000;fill-opacity:0.25;stroke:#000000;stroke-width:0.83537161;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.25;stroke:#000000;stroke-width:0.83537161;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4311"
+       width="699.16461"
+       height="49.164627"
+       x="18.295126"
+       y="813.3927" />
+    <rect
+       y="763.3927"
+       x="18.295126"
+       height="49.164627"
+       width="699.16461"
+       id="rect4313"
+       style="opacity:1;fill:#000000;fill-opacity:0.25;stroke:#000000;stroke-width:0.83537161;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.10499998;stroke:#000000;stroke-width:0.59200943;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4315"
+       width="349.40799"
+       height="49.40799"
+       x="18.173445"
+       y="663.271" />
+    <rect
+       y="913.3927"
+       x="18.295126"
+       height="49.164627"
+       width="699.16461"
+       id="rect4317"
+       style="opacity:1;fill:#000000;fill-opacity:0.25;stroke:#000000;stroke-width:0.83537161;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="713.271"
+       x="368.17343"
+       height="49.40799"
+       width="349.40799"
+       id="rect4319"
+       style="opacity:1;fill:#000000;fill-opacity:0.10499998;stroke:#000000;stroke-width:0.59200943;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:0.10499998;stroke:#000000;stroke-width:0.59200943;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4321"
+       width="349.40799"
+       height="49.40799"
+       x="368.17343"
+       y="663.271" />
+    <rect
+       y="713.18457"
+       x="193.08704"
+       height="49.580803"
+       width="174.5808"
+       id="rect4323"
+       style="opacity:1;fill:#000000;fill-opacity:0.10499998;stroke:#000000;stroke-width:0.41919744;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="192.54053"
+       y="692.11316"
+       id="text4325"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4327"
+         x="192.54053"
+         y="692.11316">Hardware Type</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4329"
+       y="692.11316"
+       x="542.54053"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="692.11316"
+         x="542.54053"
+         id="tspan4331"
+         sodipodi:role="line">Protocol Type</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="543.10083"
+       y="742.11316"
+       id="text4333"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4335"
+         x="543.10083"
+         y="742.11316">Operation</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4337"
+       y="742.11316"
+       x="280.28589"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="742.11316"
+         x="280.28589"
+         id="tspan4339"
+         sodipodi:role="line">Protocol length</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="105.28589"
+       y="742.11316"
+       id="text4341"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4343"
+         x="105.28589"
+         y="742.11316">Hardware length</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="367.75293"
+       y="793.56708"
+       id="text4345"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4347"
+         x="367.75293"
+         y="793.56708">Sender hardware address</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4349"
+       y="842.11322"
+       x="367.75293"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="842.11322"
+         x="367.75293"
+         id="tspan4351"
+         sodipodi:role="line">Sender protocol address</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="368.26929"
+       y="892.11322"
+       id="text4353"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4355"
+         x="368.26929"
+         y="892.11322">Target hardware address</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4357"
+       y="942.11316"
+       x="368.26929"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="942.11316"
+         x="368.26929"
+         id="tspan4359"
+         sodipodi:role="line">Target protocol address</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:0.25;stroke:#000000;stroke-width:0.95314878;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4361"
+       width="709.04681"
+       height="309.04684"
+       x="13.354025"
+       y="658.28265" />
+  </g>
+</svg>
