@@ -185,7 +185,7 @@ void link_protocol::swpDeliver(link::Frame frame) {
     
     while (!SWPState.recvQ.empty() && (SWPState.LFR+1) == SWPState.recvQ.front().SeqNum) {
       logger.info("Deliver frame with SeqNum: " + std::to_string(SWPState.recvQ.front().SeqNum));
-      higher_layer_data_out.push(this->getIpPacket(frame), 0);
+      higher_layer_data_out.push(this->getIpDatagram(frame), 0);
       ++SWPState.LFR;
       SWPState.recvQ.pop_front();
     }
@@ -333,7 +333,7 @@ bool link_protocol::validMAC(MAC MAC_destination) {
           MAC_destination == BROADCAST_MAC_ADDRESS;
 }
 
-link::Frame link_protocol::wrapInFrame(const ip::Packet& packet, MAC dest_mac) {
+link::Frame link_protocol::wrapInFrame(const ip::Datagram& packet, MAC dest_mac) {
   link::Frame frame;
   frame.MAC_source = mac;
   frame.MAC_destination = dest_mac;
@@ -363,8 +363,8 @@ link::Frame link_protocol::wrapInFrame(const link::arp::Packet& packet, MAC dest
   return frame;
 }
 
-ip::Packet link_protocol::getIpPacket(const link::Frame& frame) {
-  ip::Packet packet;
+ip::Datagram link_protocol::getIpDatagram(const link::Frame& frame) {
+  ip::Datagram packet;
   memcpy(&packet,frame.payload,sizeof(packet));
   return packet;
 }

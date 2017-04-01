@@ -87,7 +87,7 @@ void ip_protocol::exit() {}
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_protocol::routeIPPacket(ip::Packet p) {
+void ip_protocol::routeIPDatagram(ip::Datagram p) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
@@ -164,13 +164,13 @@ bool ip_protocol::isBestRoute(ip::Routing_entry current, ip::Routing_entry old) 
   return (longest == current.netmask) || (current.metric < old.metric);
 }
 
-void ip_protocol::arp(ip::Packet packet, IPv4 nexthop) {
+void ip_protocol::arp(ip::Datagram packet, IPv4 nexthop) {
   
   logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
   if (arp_waiting_packets.find(nexthop) != arp_waiting_packets.end()) {
     arp_waiting_packets.at(nexthop).push(packet);
   } else {
-    std::queue<ip::Packet> q;
+    std::queue<ip::Datagram> q;
     q.push(packet);
     arp_waiting_packets.insert(std::make_pair(nexthop, q));
   }
@@ -191,7 +191,7 @@ void ip_protocol::arp(ip::Packet packet, IPv4 nexthop) {
 }
 
 void ip_protocol::processLinkControl(link::Control control) {
-  std::queue<ip::Packet> packets_to_send;
+  std::queue<ip::Datagram> packets_to_send;
   link::Control m;
 
   switch(control.request) {
@@ -216,7 +216,7 @@ void ip_protocol::processLinkControl(link::Control control) {
     break;
   case link::Ctrl::SEND_PACKET_FAILED:
     logger.info("link::Ctrl::SEND_PACKET_FAILED");
-    this->routeIPPacket(control.packet); // send again, this sends a new ARP QUERY
+    this->routeIPDatagram(control.packet); // send again, this sends a new ARP QUERY
     break;
   default:
     logger.error("Bad link control request.");

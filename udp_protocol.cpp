@@ -44,8 +44,8 @@ void udp_protocol::dinternal(double t) {
   }
 
   if (!lower_layer_data_in.empty()) {
-    udp::Datagram d = lower_layer_data_in.front();
-    this->processDatagram(d,t);
+    udp::Segment d = lower_layer_data_in.front();
+    this->processSegment(d,t);
     lower_layer_data_in.pop();
     next_internal = delivering_time;
     return;
@@ -64,15 +64,15 @@ void udp_protocol::exit() {}
 
 /*********** Main helpers ************************/
 
-void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
+void udp_protocol::processSegment(const udp::Segment& d, double t) {
   app::Packet p(d.payload);
 
-  // Datagrams with incorrect dest_ip are thrown away
+  // Segments with incorrect dest_ip are thrown away
   ushort local_port = d.header.dest_port;
   ushort remote_port = d.header.src_port;
   IPv4 local_ip = d.psd_header.dest_ip;
   IPv4 remote_ip = d.psd_header.src_ip;
-  logger.debug("process Datagram: ");
+  logger.debug("process Segment: ");
   logger.debug("local_port: " + std::to_string(local_port));
   logger.debug("remote_port: " + std::to_string(remote_port));
   logger.debug("local_ip: " + local_ip.as_string());
@@ -88,7 +88,7 @@ void udp_protocol::processDatagram(const udp::Datagram& d, double t) {
       s.stopReading();
     }
   } else {
-    logger.info("discarted datagram.");
+    logger.info("discarted segment.");
   }
 }
 
@@ -296,7 +296,7 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
 // TODO: merge sendData and sendDataTo equal codes to a single function send.
 void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, double t) {
 
-  udp::Datagram dat;
+  udp::Segment dat;
   // pseudo header fields
   dat.psd_header.src_ip = s.local_ip;
   dat.psd_header.dest_ip = s.remote_ip;
@@ -317,7 +317,7 @@ void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, do
 
 void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
 
-  udp::Datagram dat;
+  udp::Segment dat;
   
   // pseudo header fields
   dat.psd_header.src_ip = s.local_ip;
@@ -337,14 +337,14 @@ void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, 
   lower_layer_data_out.push(dat, 2);
 }
 
-bool udp_protocol::verifyChecksum(udp::Datagram d) const {
+bool udp_protocol::verifyChecksum(udp::Segment d) const {
   logger.debug("Header checksum: " + std::to_string(d.header.checksum));
   ushort calculated_checksum = ~calculateChecksum(d);
   logger.debug("Calculated checksum: " + std::to_string(calculated_checksum));
   return calculated_checksum+d.header.checksum == 0xFFFF;
 }
 
-ushort udp_protocol::calculateChecksum(udp::Datagram d) const {
+ushort udp_protocol::calculateChecksum(udp::Segment d) const {
 
   const char* header_ptr = d.headers_c_str();
   ushort count = d.headers_size();

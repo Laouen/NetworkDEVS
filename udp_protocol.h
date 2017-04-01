@@ -14,7 +14,7 @@
 
 // app layer send packet throw the control channel (port 1) using udp::Control structs
 // udp layer deliver app:Packet throw the data channel (part 0) using udp::Multiplexed_packet
-class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Datagram, ip::Control> {
+class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Segment, ip::Control> {
 
   // TODO: change map<port,map<ip,socket>> to map<ip,map<port,socket>>
   // is most likely to have one or a lower amount of IPs than ports.
@@ -27,12 +27,12 @@ class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Dat
   double app_ctrl_time = 0.01; // takes 1 milliseconds to bind a socket
 
   /************ Helper methods **************/
-  void processDatagram(const udp::Datagram&, double );
+  void processSegment(const udp::Segment&, double );
   void processUDPCtrl(const udp::Control&, double);
   void sendData(const app::Packet&, const udp::Socket&, double);
   void sendDataTo(const app::Packet&, const udp::Socket&, ushort, IPv4, double);
-  bool verifyChecksum(udp::Datagram d) const;
-  ushort calculateChecksum(udp::Datagram d) const;
+  bool verifyChecksum(udp::Segment d) const;
+  ushort calculateChecksum(udp::Segment d) const;
   void processNtwCtrl(const ip::Control&);
   bool existentIP(IPv4);
   bool existentSocket(ushort, IPv4);

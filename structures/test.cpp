@@ -135,7 +135,7 @@ int main() {
 	cout << dec;
 	*/
 	/*
-	ip::Packet ip_packet;
+	ip::Datagram ip_packet;
 	ip_packet.header.vide = 1;
 	ip_packet.header.total_length = 2;
 	ip_packet.header.identification = 3;

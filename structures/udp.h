@@ -72,13 +72,13 @@ namespace udp {
     }
   };
 
-  struct Datagram : abstract::Data {
+  struct Segment : abstract::Data {
     PseudoHeader psd_header;
     Header header;
     char payload[100]; // TODO: put the correct size
 
-    Datagram() {}
-    Datagram(const Datagram& o) {
+    Segment() {}
+    Segment(const Segment& o) {
       psd_header = o.psd_header;
       header = o.header;
       memcpy(payload,o.payload,sizeof(payload));
@@ -295,7 +295,7 @@ inline std::ostream& operator<<(std::ostream& os, const udp::PseudoHeader& ph) {
   return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const udp::Datagram& d) {
+inline std::ostream& operator<<(std::ostream& os, const udp::Segment& d) {
   os << "psd_header: " << std::endl << d.psd_header << std::endl;
   os << "header: " << std::endl << d.header << std::endl;
   os << "payload: " << d.payload << std::endl;

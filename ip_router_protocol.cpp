@@ -12,10 +12,10 @@ void ip_router_protocol::dinternal(double t) {
 
   if (!lower_layer_data_in.empty()) {
   	logger.debug("Process ip packet input.");
-    ip::Packet p = lower_layer_data_in.front();
-    this->processIPPacket(p);
+    ip::Datagram p = lower_layer_data_in.front();
+    this->processIPDatagram(p);
     lower_layer_data_in.pop();
-    next_internal = process_ip_packet_time;
+    next_internal = process_ip_datagram_time;
     return;
   }
 
@@ -27,7 +27,7 @@ void ip_router_protocol::dinternal(double t) {
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_router_protocol::processIPPacket(ip::Packet p) {
+void ip_router_protocol::processIPDatagram(ip::Datagram p) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
@@ -59,7 +59,7 @@ void ip_router_protocol::processIPPacket(ip::Packet p) {
   p.header.header_checksum = this->calculateChecksum(p.header);
 
   // Step 5-7
-  this->routeIPPacket(p);
+  this->routeIPDatagram(p);
 }
 
 bool ip_router_protocol::TTLisZero(ushort ttlp) const {

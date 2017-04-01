@@ -11,19 +11,19 @@ void ip_host_protocol::dinternal(double t) {
   }
 
   if (!higher_layer_data_in.empty()) {
-    udp::Datagram d = higher_layer_data_in.front();
-    this->processUDPDatagram(d);
+    udp::Segment d = higher_layer_data_in.front();
+    this->processUDPSegment(d);
     higher_layer_data_in.pop();
-    next_internal = process_udp_datagram_time;
+    next_internal = process_udp_segment_time;
     return;
   }
 
   if (!lower_layer_data_in.empty()) {
-    logger.debug("Process ip Packet input.");
-    ip::Packet p = lower_layer_data_in.front();
-    this->processIPPacket(p);
+    logger.debug("Process ip Datagram input.");
+    ip::Datagram p = lower_layer_data_in.front();
+    this->processIPDatagram(p);
     lower_layer_data_in.pop();
-    next_internal = process_ip_packet_time;
+    next_internal = process_ip_datagram_time;
     return;
   }
 }
@@ -32,7 +32,7 @@ void ip_host_protocol::dinternal(double t) {
 /********* HELPER METHODS **********/
 /***********************************/
 
-void ip_host_protocol::processIPPacket(ip::Packet p) {
+void ip_host_protocol::processIPDatagram(ip::Datagram p) {
   IPv4 dest_ip = p.header.dest_ip; 
   Event o;
 
@@ -48,13 +48,13 @@ void ip_host_protocol::processIPPacket(ip::Packet p) {
     return;
   }
 
-  // Delivering datagram to the next top layer
+  // Delivering segment to the next top layer
   higher_layer_data_out.push(p.data,0);
   return;
 }
 
-void ip_host_protocol::processUDPDatagram(udp::Datagram d) {
-  ip::Packet p;
+void ip_host_protocol::processUDPSegment(udp::Segment d) {
+  ip::Datagram p;
   p.data = d;
   // version 0100 (IPv4) IHL 0101 (5 no option field)
   // DSCP 0000 (currently not used) ECN 0000 (currently not used)
@@ -67,5 +67,5 @@ void ip_host_protocol::processUDPDatagram(udp::Datagram d) {
   p.header.dest_ip = d.psd_header.dest_ip;
   p.header.header_checksum = this->calculateChecksum(p.header);
 
-  this->routeIPPacket(p);
+  this->routeIPDatagram(p);
 }

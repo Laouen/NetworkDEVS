@@ -5,7 +5,7 @@
 #include "layer.h"
 
 // there is no control type for lower layer physical protocols
-class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> {
+class link_protocol : public Layer<ip::Datagram, link::Control, link::Frame, int> {
 
   std::list<link::arp::Entry> ARPTable;
   std::map<MAC,swp::State<link::Frame>> SWPTable;
@@ -45,10 +45,10 @@ class link_protocol : public Layer<ip::Packet, link::Control, link::Frame, int> 
   void processFrame(link::Frame frame);
   bool validMAC(MAC MAC_destination);
   void sendControl(link::Ctrl c, link::Control control);
-  link::Frame wrapInFrame(const ip::Packet& packet, MAC dest_mac);
+  link::Frame wrapInFrame(const ip::Datagram& packet, MAC dest_mac);
   link::Frame wrapInFrame(const link::arp::Packet& packet);
   link::Frame wrapInFrame(const link::arp::Packet& packet, MAC dest_mac);
-  ip::Packet getIpPacket(const link::Frame& frame);
+  ip::Datagram getIpDatagram(const link::Frame& frame);
   link::arp::Packet getARPPacket(const link::Frame& frame);
   unsigned long calculateCRC();
   bool verifyCRC(link::Frame frame);

@@ -464,7 +464,7 @@ Cada vez que el protocolo UDP recibe un mensaje de la capa inferior se realizan 
 
 \subsection{IP}
 
-El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} de tipo ip::Header y un campo \textit{data} de tipo udp::Datagram, la Figura \ref{figure: ip header} muestra la estructura del tipo de datos ip::Header.  \\
+El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} de tipo ip::Header y un campo \textit{data} de tipo udp::Segment, la Figura \ref{figure: ip header} muestra la estructura del tipo de datos ip::Header.  \\
 
 \begin{figure}[!htb]
     \centering

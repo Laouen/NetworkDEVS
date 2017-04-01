@@ -16,28 +16,28 @@
  * 
  */
 
-class ip_protocol: public Layer<udp::Datagram, ip::Control, ip::Packet, link::Control> { 
+class ip_protocol: public Layer<udp::Segment, ip::Control, ip::Datagram, link::Control> { 
 
 protected:
 
   //ARP structures
   std::list<ip::Forwarding_entry> forwarding_table;
-  std::map<IPv4,std::queue<ip::Packet>> arp_waiting_packets;
+  std::map<IPv4,std::queue<ip::Datagram>> arp_waiting_packets;
 
   // IP structures
   std::list<IPv4> host_ips;
   std::list<ip::Routing_entry> routing_table;
 
   /********** TIMES ***************/
-  double process_udp_datagram_time = 0.001;
-  double process_ip_packet_time = 0.001;
+  double process_udp_segment_time = 0.001;
+  double process_ip_datagram_time = 0.001;
   double process_link_control_time = 0.001;
   double send_frame_time = 0.001;
 
   /********* Protected methods *********/
   // Class state modifiers
-  void routeIPPacket(ip::Packet);
-  void arp(ip::Packet, IPv4);
+  void routeIPDatagram(ip::Datagram);
+  void arp(ip::Datagram, IPv4);
   void processLinkControl(link::Control);
   // Class state non modifiers
   ushort calculateChecksum(ip::Header) const;

@@ -57,12 +57,12 @@ namespace ip {
     }
   };
 
-  struct Packet : abstract::Data {
+  struct Datagram : abstract::Data {
     Header header;
-    udp::Datagram data;
+    udp::Segment data;
 
-    Packet() {}
-    Packet(const Packet& other) {
+    Datagram() {}
+    Datagram(const Datagram& other) {
       header = other.header;
       data = other.data;
     }
@@ -182,7 +182,7 @@ inline std::ostream& operator<<(std::ostream& os, const ip::Header& h) {
   return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, const ip::Packet& p) {
+inline std::ostream& operator<<(std::ostream& os, const ip::Datagram& p) {
   os << "Header: " << std::endl << p.header << std::endl;
   os << "data: " << std::endl << p.data << std::endl;
   return os;

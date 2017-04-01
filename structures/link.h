@@ -104,7 +104,7 @@ namespace link {
       preamble = preamble | IS_ARP_PACKET;
     }
 
-    void setPayload(const ip::Packet& p) {
+    void setPayload(const ip::Datagram& p) {
       memcpy(payload,&p,sizeof(p));
       disableARPFlag();
     }
@@ -143,7 +143,7 @@ namespace link {
     Ctrl request;
     ushort interface;
     IPv4 ip;
-    ip::Packet packet;
+    ip::Datagram packet;
 
     Control() {}
     Control(const Control& other) {
