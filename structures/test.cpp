@@ -8,6 +8,7 @@
 #include "ip.h"
 #include "link.h"
 #include "swp.h"
+#include "dns.h"
 
 using namespace std;
 
@@ -45,12 +46,51 @@ void load_swp_hdr(swp::Hdr& hdr, const unsigned long& preamble) {
 
 int main() {
 
+	dns::Header b;
+
+	b.id = 0xFF;
+	b.flags_code = 0xFE;
+	b.QDCount = 0xFF;
+	b.ANCount = 0;
+	b.NSCount = 2;
+	b.ARCount = 1;
+
+	const char* d = NULL;
+	d = b.c_str();
+	dns::Header e(d);
+
+	std::cout << b << std::endl << std::endl;
+	std::cout << e << std::endl << std::endl;
+
+	dns::RR a;
+
+	a.name = std::string("el-atajo.com.ar");
+	a.QType = 0xFFFF;
+	a.QClass = 0xFFFF;
+	a.TTL = 0xFFFF;
+
+	const char* h = NULL;
+	h = a.c_str();
+
+	dns::RR g = a;
+	dns::RR f(h);
+
+	std::cout << hex;
+	std::cout << a << std::endl;
+	std::cout << f << std::endl;
+	std::cout << g << std::endl;
+
+	delete[] d;
+	delete[] h;
+
+	/*
 	swp::Seqno a = 250;
 
 	for (int i = 0; i < 20; ++i) {
 		cout << (int)a << endl;
 		++a;
 	}
+	*/
 
 	/*
 	swp::Seqno seqNum[4] = {8,9,254,255};

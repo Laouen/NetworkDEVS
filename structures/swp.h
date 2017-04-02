@@ -5,6 +5,7 @@
 #include <cstdint> // Allows to use ushort
 #include <stdlib.h> // abs
 #include <list>
+#include <queue>
 
 #define SWS 4
 #define RWS 4
