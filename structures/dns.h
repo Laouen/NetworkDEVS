@@ -86,8 +86,8 @@ namespace dns {
     }
 
     const char* c_str() const {
-      char* res = new char[this->size()+1]; // don't know whye valgrind throw error if not added 1.
-      for (int i = 0; i < this->size(); ++i) res[i] = 0x00;
+      char* res = new char[this->size()];
+      for (int i = 0; i < this->size(); ++i) res[i] = 0x00; // last 0x0 character is initialized here
       int len;
       int i = 0;
       std::list<std::string>::const_iterator it;
@@ -97,7 +97,6 @@ namespace dns {
         memcpy(&res[i+1],it->c_str(),len);
         i += len + 1;
       }
-      res[i+1] = 0x00;
       return res;
     }
 
