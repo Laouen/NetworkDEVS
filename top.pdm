@@ -85,83 +85,6 @@ Coupled
                     }
                 Atomic
                     {
-                    Name = input 1
-                    Ports = 0 ; 1
-                    Path = NetworkDEVS/input_stream.h
-                    Description = Atomic DEVS model
-                    Graphic
-                        {
-                        Position = -6405 ; -4755
-                        Dimension = 675 ; 675
-                        Direction = Right
-                        Color = 15
-                        Icon = ../atomics/NetworkDEVS/icons/input.svg
-                        }
-                    Parameters
-                        {
-                        module name = Str; Host 1 ; 
-                        input = Str; ../input/test/udp/1/1.input ; 
-                        }
-                    }
-                Atomic
-                    {
-                    Name = demux 1
-                    Ports = 2 ; 4
-                    Path = NetworkDEVS/demultiplexer_app_udp.h
-                    Description = Atomic DEVS model
-                    Graphic
-                        {
-                        Position = -3480 ; -4830
-                        Dimension = 675 ; 675
-                        Direction = Right
-                        Color = 15
-                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
-                        }
-                    Parameters
-                        {
-                        max_id = Val; 2 ; 
-                        }
-                    }
-                Atomic
-                    {
-                    Name = ouput 1.0
-                    Ports = 2 ; 0
-                    Path = NetworkDEVS/output_stream.h
-                    Description = Atomic DEVS model
-                    Graphic
-                        {
-                        Position = -1755 ; -5655
-                        Dimension = 675 ; 675
-                        Direction = Right
-                        Color = 15
-                        Icon = ../atomics/NetworkDEVS/icons/output.svg
-                        }
-                    Parameters
-                        {
-                        output = Str; test/udp/1/1.0.output ; 
-                        }
-                    }
-                Atomic
-                    {
-                    Name = ouput 1.1
-                    Ports = 2 ; 0
-                    Path = NetworkDEVS/output_stream.h
-                    Description = Atomic DEVS model
-                    Graphic
-                        {
-                        Position = -1755 ; -4080
-                        Dimension = 675 ; 675
-                        Direction = Right
-                        Color = 15
-                        Icon = ../atomics/NetworkDEVS/icons/output.svg
-                        }
-                    Parameters
-                        {
-                        output = Str; test/udp/1/1.1.output ; 
-                        }
-                    }
-                Atomic
-                    {
                     Name = ip 1
                     Ports = 4 ; 4
                     Path = NetworkDEVS/ip_host_protocol.h
@@ -206,93 +129,85 @@ Coupled
                         interface = Val; 0 ; 
                         }
                     }
-                Line
+                Atomic
                     {
-                    Source = Cmp ;  2 ;  1 ; 0
-                    Sink = Cmp ;  1 ;  2 ; -1
-                    PointX = -5625 ; -5400 ; -5400 ; -5040
-                    PointY = -4425 ; -4425 ; -2925 ; -2925
+                    Name = DNS 1
+                    Ports = 4 ; 4
+                    Path = NetworkDEVS/dns_server_protocol.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -4980 ; -5880
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = ../atomics/NetworkDEVS/icons/dns_server.svg
+                        }
+                    Parameters
+                        {
+                        module_name = Str; Host 1 ; 
+                        recursive = Val; 1 ; 
+                        dns_table = Str; ../input/test/dns/1/h1.dns_table ; 
+                        server_ip = Str; 1.0.0.1 ; 
+                        }
                     }
-                Line
+                Atomic
                     {
-                    Source = Cmp ;  3 ;  1 ; 0
-                    Sink = Cmp ;  4 ;  1 ; -1
-                    PointX = -2700 ; -2475 ; -2475 ; -1890
-                    PointY = -4725 ; -4725 ; -5475 ; -5475
+                    Name = demux 1
+                    Ports = 2 ; 2
+                    Path = NetworkDEVS/demultiplexer_app_udp.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -6555 ; -5775
+                        Dimension = 675 ; 750
+                        Direction = Right
+                        Color = 15
+                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                        }
+                    Parameters
+                        {
+                        max_id = Val; 1 ; 
+                        }
                     }
                 Line
                     {
                     Source = Cmp ;  1 ;  3 ; 0
-                    Sink = Cmp ;  6 ;  1 ; -1
+                    Sink = Cmp ;  2 ;  1 ; -1
                     PointX = -4125 ; -3825 ; -3825 ; -5400 ; -5400 ; -5040
                     PointY = -2775 ; -2775 ; -1800 ; -1800 ; -900 ; -900
                     }
                 Line
                     {
-                    Source = Cmp ;  6 ;  1 ; 0
+                    Source = Cmp ;  2 ;  1 ; 0
                     Sink = Cmp ;  1 ;  3 ; -1
                     PointX = -4125 ; -3825 ; -3825 ; -5250 ; -5250 ; -5040
                     PointY = -900 ; -900 ; -1575 ; -1575 ; -2775 ; -2775
                     }
                 Line
                     {
-                    Source = Cmp ;  3 ;  2 ; 0
-                    Sink = Cmp ;  4 ;  2 ; -1
-                    PointX = -2700 ; -2250 ; -2250 ; -1890
-                    PointY = -4575 ; -4575 ; -5175 ; -5175
-                    }
-                Line
-                    {
-                    Source = Cmp ;  3 ;  3 ; 0
-                    Sink = Cmp ;  5 ;  1 ; -1
-                    PointX = -2700 ; -2250 ; -2250 ; -1890
-                    PointY = -4425 ; -4425 ; -3900 ; -3900
-                    }
-                Line
-                    {
-                    Source = Cmp ;  3 ;  4 ; 0
-                    Sink = Cmp ;  5 ;  2 ; -1
-                    PointX = -2700 ; -2475 ; -2475 ; -1890
-                    PointY = -4275 ; -4275 ; -3600 ; -3600
-                    }
-                Line
-                    {
-                    Source = Cmp ;  1 ;  1 ; 0
-                    Sink = Cmp ;  3 ;  1 ; -1
-                    PointX = -4125 ; -3975 ; -3975 ; -3615
-                    PointY = -3075 ; -3075 ; -4650 ; -4650
-                    }
-                Line
-                    {
-                    Source = Cmp ;  1 ;  2 ; 0
-                    Sink = Cmp ;  3 ;  2 ; -1
-                    PointX = -4125 ; -3825 ; -3825 ; -3615
-                    PointY = -2925 ; -2925 ; -4350 ; -4350
-                    }
-                Line
-                    {
-                    Source = Cmp ;  7 ;  1 ; 0
-                    Sink = Cmp ;  6 ;  3 ; -1
+                    Source = Cmp ;  3 ;  1 ; 0
+                    Sink = Cmp ;  2 ;  3 ; -1
                     PointX = -4050 ; -3750 ; -3750 ; -5400 ; -5400 ; -5040
                     PointY = 1500 ; 1500 ; 675 ; 675 ; -600 ; -600
                     }
                 Line
                     {
-                    Source = Cmp ;  6 ;  4 ; 0
-                    Sink = Cmp ;  7 ;  2 ; -1
+                    Source = Cmp ;  2 ;  4 ; 0
+                    Sink = Cmp ;  3 ;  2 ; -1
                     PointX = -4125 ; -3675 ; -3675 ; -5700 ; -5700 ; -4965
                     PointY = -450 ; -450 ; 375 ; 375 ; 1650 ; 1650
                     }
                 Line
                     {
-                    Source = Cmp ;  7 ;  2 ; 0
-                    Sink = Cmp ;  6 ;  4 ; -1
+                    Source = Cmp ;  3 ;  2 ; 0
+                    Sink = Cmp ;  2 ;  4 ; -1
                     PointX = -4050 ; -3675 ; -3675 ; -5325 ; -5325 ; -5040
                     PointY = 1650 ; 1650 ; 600 ; 600 ; -450 ; -450
                     }
                 Line
                     {
-                    Source = Cmp ;  7 ;  3 ; 0
+                    Source = Cmp ;  3 ;  3 ; 0
                     Sink = Prt ;  1 ;  1 ; -1
                     PointX = -4050 ; -4050 ; -2640
                     PointY = 1800 ; 1800 ; 1800
@@ -300,9 +215,44 @@ Coupled
                 Line
                     {
                     Source = Prt ;  2 ;  1 ; 0
-                    Sink = Cmp ;  7 ;  3 ; -1
+                    Sink = Cmp ;  3 ;  3 ; -1
                     PointX = -6450 ; -6450 ; -4965
                     PointY = 1800 ; 1800 ; 1800
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  2 ; 0
+                    Sink = Cmp ;  1 ;  2 ; -1
+                    PointX = -4200 ; -3900 ; -3900 ; -5475 ; -5475 ; -5040
+                    PointY = -5625 ; -5625 ; -4125 ; -4125 ; -2925 ; -2925
+                    }
+                Line
+                    {
+                    Source = Cmp ;  1 ;  1 ; 0
+                    Sink = Cmp ;  5 ;  1 ; -1
+                    PointX = -4125 ; -4125 ; -7350 ; -7350 ; -6690
+                    PointY = -3075 ; -3675 ; -3675 ; -5550 ; -5550
+                    }
+                Line
+                    {
+                    Source = Cmp ;  1 ;  2 ; 0
+                    Sink = Cmp ;  5 ;  2 ; -1
+                    PointX = -4125 ; -4125 ; -7200 ; -7200 ; -6690
+                    PointY = -2925 ; -3825 ; -3825 ; -5250 ; -5250
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  1 ; 0
+                    Sink = Cmp ;  4 ;  3 ; -1
+                    PointX = -5775 ; -5115 ; -5115
+                    PointY = -5550 ; -5550 ; -5475
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  2 ; 0
+                    Sink = Cmp ;  4 ;  4 ; -1
+                    PointX = -5775 ; -5115 ; -5115
+                    PointY = -5250 ; -5250 ; -5325
                     }
                 }
             }

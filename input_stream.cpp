@@ -22,16 +22,13 @@ double input_stream::ta(double t) {
 
 void input_stream::dint(double t) {
   try {
-    std::pair<double,udp::Control> parsed_line = _parser.next_input();
+    std::pair<double,udp::Control> parsed_line = _parser.next_timed_input();
     _next_time = parsed_line.first - t;
 
     if (_next_time < 0.0) {
       throw std::exception();
     }
     _next_input = parsed_line.second;
-    // logger.debug("_next_time: " + std::to_string(_next_time));
-    // logger.debug("_next_input:\n" + _next_input.as_string());
-
 
   } catch(std::exception& e) {
     _next_time = std::numeric_limits<double>::max();

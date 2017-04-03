@@ -3,11 +3,16 @@
 
 #include <stddef.h>
 #include <cstdint> // Allows to use ushort
+#include <cstring> // memcpy
+#include <list>
+#include <sstream> // istringstring
+#include <iostream>
 
 #include <string>
 #include <fstream>
 
 #include "abstract_types.h"
+#include "ipv4.h"
 
 #define IS_AUTHORITATIVE_ANSWER
 #define IS_TRUNCATED
@@ -17,6 +22,8 @@
 
 // Application layer structures
 namespace dns {
+
+  enum Type : uint16_t {A = 1, NS = 2 };
 
   struct Header : abstract::Header {
     ushort id;
@@ -36,12 +43,12 @@ namespace dns {
       ARCount = other.ARCount;
     }
     Header(const char* other) {
-      memcpy(&id,other,2);
-      memcpy(&flags_code,&other[2],2);
-      memcpy(&QDCount,&other[4],2);
-      memcpy(&ANCount,&other[6],2);
-      memcpy(&NSCount,&other[8],2);
-      memcpy(&ARCount,&other[10],2);
+      std::memcpy(&id,other,2);
+      std::memcpy(&flags_code,&other[2],2);
+      std::memcpy(&QDCount,&other[4],2);
+      std::memcpy(&ANCount,&other[6],2);
+      std::memcpy(&NSCount,&other[8],2);
+      std::memcpy(&ARCount,&other[10],2);
     }
 
     ushort size() const {
@@ -51,24 +58,24 @@ namespace dns {
     const char* c_str() const {
       char* res = new char[this->size()];
 
-      memcpy(res,&id,2);
-      memcpy(&res[2],&flags_code,2);
-      memcpy(&res[4],&QDCount,2);
-      memcpy(&res[6],&ANCount,2);
-      memcpy(&res[8],&NSCount,2);
-      memcpy(&res[10],&ARCount,2);
+      std::memcpy(res,&id,2);
+      std::memcpy(&res[2],&flags_code,2);
+      std::memcpy(&res[4],&QDCount,2);
+      std::memcpy(&res[6],&ANCount,2);
+      std::memcpy(&res[8],&NSCount,2);
+      std::memcpy(&res[10],&ARCount,2);
       return res;
     }
   };
 
-  struct DN {
+  struct DomainName {
     std::list<std::string> name;
 
-    DN() {};
-    DN(const DN& other) {
+    DomainName() {};
+    DomainName(const DomainName& other) {
       name = other.name;
     }
-    DN(std::string str) {
+    DomainName(std::string str) {
       std::stringstream ss(str);
       std::string sub_domain;
 
@@ -76,7 +83,7 @@ namespace dns {
         name.push_back(sub_domain);
       }
     }
-    DN(const char* data) {
+    DomainName(const char* data) {
       int i = 0;
       while (data[i] != 0x00) { /* data[i] == 0 */
         int len = data[i];
@@ -94,8 +101,19 @@ namespace dns {
       for (it = name.begin(); it != name.end(); ++it) {
         len = it->length();
         res[i] = (unsigned char)len;
-        memcpy(&res[i+1],it->c_str(),len);
+        std::memcpy(&res[i+1],it->c_str(),len);
         i += len + 1;
+      }
+      return res;
+    }
+
+    std::string as_string() {
+      std::string res = "";
+      std::list<std::string>::const_iterator it = name.begin();
+      while (it != name.end()) {
+        res += *it;
+        ++it;
+        if (it != name.end()) res += '.';
       }
       return res;
     }
@@ -111,25 +129,48 @@ namespace dns {
   };
 
   // Resource Record
-  struct RR {
-    DN name;
-    ushort QType;
+  struct ResourceRecord {
+    DomainName name;
+    Type QType;
+    IPv4 AValue;
+    DomainName NSValue;
     ushort QClass;
     ushort TTL;
 
-    RR() {}
-    RR(const RR& other) {
+    ResourceRecord() {}
+    ResourceRecord(const ResourceRecord& other) {
       name = other.name;
+      AValue = other.AValue;
+      NSValue = other.NSValue;
       QType = other.QType;
       QClass = other.QClass;
       TTL = other.TTL;
     }
-    RR(const char *data) {
-      name = DN(data);
-      int name_size = name.size();
-      memcpy(&QType,  &data[name_size],   2);
-      memcpy(&QClass, &data[name_size+2], 2);
-      memcpy(&TTL,    &data[name_size+4], 2);
+    ResourceRecord(const char *data) {
+      
+      // Reading name
+      name = DomainName(data);
+      int i = name.size();
+      
+      // Reading type
+      std::memcpy(&QType, &data[i], sizeof(QType));
+      i += sizeof(QType);
+
+      // Reading value
+      if (QType == Type::A) {
+        AValue = IPv4(&data[i]);
+        i += AValue.size();
+      } else if (QType == Type::NS) {
+        NSValue = DomainName(&data[i]);
+        i += NSValue.size();
+      }
+
+      //Reading class
+      std::memcpy(&QClass, &data[i], sizeof(QClass));
+      i += sizeof(QClass);
+
+      // Reading TTL
+      std::memcpy(&TTL, &data[i+4], sizeof(TTL));
     }
 
     const char* c_str() const {
@@ -139,10 +180,10 @@ namespace dns {
 
       int name_size = name.size();
       
-      memcpy(res,name_str,name_size);
-      memcpy(&res[name_size],&QType,2);
-      memcpy(&res[name_size+2],&QClass,2);
-      memcpy(&res[name_size+4],&TTL,2);
+      std::memcpy(res,name_str,name_size);
+      std::memcpy(&res[name_size],&QType,2);
+      std::memcpy(&res[name_size+2],&QClass,2);
+      std::memcpy(&res[name_size+4],&TTL,2);
 
       delete[] name_str;
       return res;
@@ -151,15 +192,39 @@ namespace dns {
     int size() const {
       return name.size() + 6;
     }
+
+    std::string as_string() {
+      std::string res = "";
+      res += this->name.as_string() + " ";
+      switch(this->QType) {
+      case dns::Type::A: res += "A "; res += this->AValue.as_string() + " "; break;
+      case dns::Type::NS: res += "NS "; res += this->NSValue.as_string() + " "; break;
+      }
+      res += std::to_string(this->QClass) + " ";
+      res += std::to_string(this->TTL) + " ";
+      return res;
+    }
+  };
+
+  struct Packet { // TODO, implement
+    int a;
   };
 }
 
-inline std::ostream& operator<<(std::ostream& os, dns::DN& d) {
+inline std::ostream& operator<<(std::ostream& os, dns::DomainName& d) {
   std::list<std::string>::const_iterator it = d.name.begin();
   while (it != d.name.end()) {
     os << *it;
     ++it;
     if (it != d.name.end()) os << '.';
+  }
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, dns::Type& t) {
+  switch(t) {
+  case dns::Type::A: os << "A"; break;
+  case dns::Type::NS: os << "NS"; break;
   }
   return os;
 }
@@ -174,12 +239,45 @@ inline std::ostream& operator<<(std::ostream& os, dns::Header& h) {
   return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, dns::RR& r) {
-  os << "name: " << r.name << std::endl;
-  os << "QType: " << r.QType << std::endl;
-  os << "QClass: " << r.QClass << std::endl;
-  os << "TTL: " << r.TTL << std::endl;
+inline std::ostream& operator<<(std::ostream& os, dns::ResourceRecord& r) {
+  os << r.name <<  " ";
+  os << r.QType <<  " ";
+  if (r.QType == dns::Type::A) os << r.AValue <<  " ";
+  else if (r.QType == dns::Type::NS) os << r.NSValue <<  " ";
+  os << r.QClass <<  " ";
+  os << r.TTL;
   return os;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::Type& t) {
+  std::string c;
+  is >> c;
+  if (c == std::string("A")) t = dns::Type::A;
+  else if (c == std::string("NS")) t = dns::Type::NS;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::DomainName& d) {
+
+  std::string str, sub_domain;
+  is >> str;
+  std::stringstream ss(str);
+  while(getline(ss, sub_domain, '.')) {
+    d.name.push_back(sub_domain);
+  }
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::ResourceRecord& r) {
+  is >> r.name;
+  is >> r.QType;
+  switch(r.QType) {
+  case dns::Type::A: is >> r.AValue; break;
+  case dns::Type::NS: is >> r.NSValue; break;
+  }
+  is >> r.QClass;
+  is >> r.TTL;
+  return is;
 }
 
 #endif

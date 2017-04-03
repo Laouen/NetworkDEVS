@@ -78,6 +78,10 @@ struct IPv4 {
     return res;
   }
 
+  int size() const {
+    return 4 * sizeof(ip[0]);
+  }
+
 
   friend std::ostream& operator<<(std::ostream&, const IPv4&);
   friend std::istream& operator>>(std::istream&, IPv4&);

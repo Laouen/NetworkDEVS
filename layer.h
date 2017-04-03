@@ -22,6 +22,7 @@
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
 #include "structures/ipv4.h"
+#include "structures/dns.h"
 #include "structures/udp.h"
 #include "structures/app.h"
 #include "structures/ip.h"

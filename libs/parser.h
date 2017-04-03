@@ -47,7 +47,7 @@ public:
     return file.is_open();
   }
 
-  std::pair<double,INPUT> next_input() {
+  std::pair<double,INPUT> next_timed_input() {
     INPUT result;
     double next_time;
 
@@ -60,6 +60,19 @@ public:
     file >> result;
 
     return std::make_pair(next_time,result);
+  }
+
+  INPUT next_input() {
+    INPUT result;
+
+    if (file.eof()) {
+      logger.info("End of file.");
+      throw std::exception();
+    }
+
+    file >> result;
+
+    return result;
   }
 };
 

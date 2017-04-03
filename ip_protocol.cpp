@@ -27,12 +27,10 @@ void ip_protocol::init(double t,...) {
   // building routing table
   const char* file_path = va_arg(parameters,char*);
   Parser<ip::Routing_entry> parser_rt(file_path);
-  std::pair<double,ip::Routing_entry> parsed_line_rt;
   if (parser_rt.file_open()) {
     while(true) {
       try {
-        parsed_line_rt = parser_rt.next_input();
-        routing_table.push_back(parsed_line_rt.second);
+        routing_table.push_back(parser_rt.next_input());
       } catch(std::exception& e) {
         break; // end of file throws an exception
       }
@@ -49,12 +47,10 @@ void ip_protocol::init(double t,...) {
   // building forwarding table
   file_path = va_arg(parameters,char*);
   Parser<ip::Forwarding_entry> parser_ft(file_path);
-  std::pair<double,ip::Forwarding_entry> parsed_line_ft;
   if (parser_ft.file_open()) {
     while(true) {
       try {
-        parsed_line_ft = parser_ft.next_input();
-        forwarding_table.push_back(parsed_line_ft.second);
+        forwarding_table.push_back(parser_ft.next_input());
       } catch(std::exception& e) {
         break; // end of file throws an exception
       }

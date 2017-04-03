@@ -1,17 +1,18 @@
-#include <iostream>
+//#include <iostream>
 
-#include "abstract_types.h"
-#include "socket.h"
-#include "ipv4.h"
-#include "udp.h"
-#include "app.h"
-#include "ip.h"
-#include "link.h"
-#include "swp.h"
+//#include "abstract_types.h"
+//#include "socket.h"
+//#include "ipv4.h"
+//#include "udp.h"
+//#include "app.h"
+//#include "ip.h"
+//#include "link.h"
+//#include "swp.h"
 #include "dns.h"
 
 using namespace std;
 
+/*
 bool swpInWindow(swp::Seqno startNum, ushort WS, swp::Seqno seqNum) {
   for (swp::Seqno i=0; i<WS; ++i) {
   	swp::Seqno current = startNum+i;
@@ -43,6 +44,7 @@ void load_swp_hdr(swp::Hdr& hdr, const unsigned long& preamble) {
   cout << stored_hdr << endl;
   hdr.SeqNum = stored_hdr;
 }
+*/
 
 int main() {
 
@@ -62,18 +64,19 @@ int main() {
 	std::cout << b << std::endl << std::endl;
 	std::cout << e << std::endl << std::endl;
 
-	dns::RR a;
+	dns::ResourceRecord a;
 
 	a.name = std::string("el-atajo.com.ar");
-	a.QType = 0xFFFF;
+	a.QType = dns::Type::A;
+	a.AValue = "1.0.0.2";
 	a.QClass = 0xFFFF;
 	a.TTL = 0xFFFF;
 
 	const char* h = NULL;
 	h = a.c_str();
 
-	dns::RR g = a;
-	dns::RR f(h);
+	dns::ResourceRecord g = a;
+	dns::ResourceRecord f(h);
 
 	std::cout << hex;
 	std::cout << a << std::endl;
@@ -82,6 +85,12 @@ int main() {
 
 	delete[] d;
 	delete[] h;
+
+	dns::ResourceRecord dn;
+	std::cin >> dn;
+	std::cout << dn << std::endl;
+
+
 
 	/*
 	swp::Seqno a = 250;

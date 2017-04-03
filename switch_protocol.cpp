@@ -16,12 +16,12 @@ void switch_protocol::init(double t, ...) {
   // building forwarding table
   const char* file_path = va_arg(parameters,char*);
   Parser<sw::Forwarding_entry> parser(file_path);
-  std::pair<double,sw::Forwarding_entry> parsed_line;
+  sw::Forwarding_entry parsed_line;
   if (parser.file_open()) {
     while(true) {
       try {
         parsed_line = parser.next_input();
-        forwarding_table[parsed_line.second.mac] = parsed_line.second.interface;
+        forwarding_table.insert({parsed_line.mac, parsed_line.interface});
       } catch(std::exception& e) {
         break; // end of file throws an exception
       }
