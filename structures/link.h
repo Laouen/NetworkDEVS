@@ -91,7 +91,7 @@ namespace link {
       MAC_source = other.MAC_source;
       EtherType = other.EtherType;
       CRC = other.CRC;
-      memcpy(payload,other.payload,sizeof(other.payload));
+      memcpy(payload,other.payload,1500);
       memcpy(interpacket_gat,other.interpacket_gat,sizeof(other.interpacket_gat));
     }
 

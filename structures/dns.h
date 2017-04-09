@@ -42,7 +42,7 @@ namespace dns {
       NSCount = other.NSCount;
       ARCount = other.ARCount;
     }
-    Header(const char* other) {
+    Header(const char* const other) {
       std::memcpy(&id,other,2);
       std::memcpy(&flags_code,&other[2],2);
       std::memcpy(&QDCount,&other[4],2);
@@ -64,6 +64,17 @@ namespace dns {
       std::memcpy(&res[6],&ANCount,2);
       std::memcpy(&res[8],&NSCount,2);
       std::memcpy(&res[10],&ARCount,2);
+      return res;
+    }
+
+    std::string as_string() const {
+      std::string res = "";
+      res += "id: " + std::to_string(id) + "\n";
+      res += "flags_code: " + std::to_string(flags_code) + "\n";
+      res += "QDCount: " + std::to_string(QDCount) + "\n";
+      res += "ANCount: " + std::to_string(ANCount) + "\n";
+      res += "NSCount: " + std::to_string(NSCount) + "\n";
+      res += "ARCount: " + std::to_string(ARCount) + "\n";
       return res;
     }
   };
@@ -107,7 +118,7 @@ namespace dns {
       return res;
     }
 
-    std::string as_string() {
+    std::string as_string() const {
       std::string res = "";
       std::list<std::string>::const_iterator it = name.begin();
       while (it != name.end()) {
@@ -146,7 +157,7 @@ namespace dns {
       QClass = other.QClass;
       TTL = other.TTL;
     }
-    ResourceRecord(const char *data) {
+    ResourceRecord(const char* const data) {
       
       // Reading name
       name = DomainName(data);
@@ -158,7 +169,7 @@ namespace dns {
 
       // Reading value
       if (QType == Type::A) {
-        AValue = IPv4(&data[i]);
+        memcpy(&AValue, &data[i], sizeof(AValue));
         i += AValue.size();
       } else if (QType == Type::NS) {
         NSValue = DomainName(&data[i]);
@@ -170,30 +181,53 @@ namespace dns {
       i += sizeof(QClass);
 
       // Reading TTL
-      std::memcpy(&TTL, &data[i+4], sizeof(TTL));
+      std::memcpy(&TTL, &data[i], sizeof(TTL));
     }
 
     const char* c_str() const {
       char* res = new char[this->size()];
       for (int i = 0; i < this->size(); ++i) res[i] = 0x00;
-      const char* name_str = name.c_str();
-
-      int name_size = name.size();
       
-      std::memcpy(res,name_str,name_size);
-      std::memcpy(&res[name_size],&QType,2);
-      std::memcpy(&res[name_size+2],&QClass,2);
-      std::memcpy(&res[name_size+4],&TTL,2);
-
+      // copying name
+      int i = name.size();
+      const char* name_str = name.c_str();
+      std::memcpy(res,name_str,i);
       delete[] name_str;
+
+      // copying type
+      std::memcpy(&res[i],&QType,sizeof(QType));
+      i += sizeof(QType);
+      
+      // copying value
+      if (QType == Type::A) {
+        memcpy(&res[i],AValue.ip,AValue.size());
+        i += AValue.size(); 
+      } else if (QType == Type::NS) {
+        const char * nsv_str = NSValue.c_str();
+        memcpy(&res[i],nsv_str,NSValue.size());
+        delete[] nsv_str;
+        i += NSValue.size();
+      }
+
+      // copying Class
+      std::memcpy(&res[i],&QClass,sizeof(QClass));
+      i += sizeof(QClass);
+
+      // copying TTL
+      std::memcpy(&res[i],&TTL,sizeof(TTL));
+      i += sizeof(TTL);
+
       return res;
     }
 
     int size() const {
-      return name.size() + 6;
+      int size = name.size() + sizeof(QType) + sizeof(QClass) + sizeof(TTL);
+      if (QType == Type::A) size += AValue.size();
+      else if (QType == Type::NS) size += NSValue.size();
+      return size;
     }
 
-    std::string as_string() {
+    std::string as_string() const {
       std::string res = "";
       res += this->name.as_string() + " ";
       switch(this->QType) {
@@ -206,12 +240,141 @@ namespace dns {
     }
   };
 
-  struct Packet { // TODO, implement
-    int a;
+  struct Packet {
+    Header header;
+    std::list<ResourceRecord> questions;
+    std::list<ResourceRecord> answers;
+    std::list<ResourceRecord> authoritatives;
+    std::list<ResourceRecord> aditionals;
+
+    Packet() {}
+    Packet(const Packet& other) {
+      header = other.header;
+      questions = other.questions;
+      answers = other.answers;
+      authoritatives = other.authoritatives;
+      aditionals = other.aditionals;
+    }
+    Packet(const char* const data) {
+      
+      int i = 0;
+      header = Header(data);
+      i += header.size();
+      
+      ushort j;
+      for (j=0; j<header.QDCount; ++j) {
+        questions.push_back(ResourceRecord(&data[i]));
+        i += questions.back().size();
+      }
+      for (j=0; j<header.ANCount; ++j) {
+        answers.push_back(ResourceRecord(&data[i]));
+        i += answers.back().size();
+      }
+      for (j=0; j<header.NSCount; ++j) {
+        authoritatives.push_back(ResourceRecord(&data[i]));
+        i += authoritatives.back().size();
+      }
+      for (j=0; j<header.ARCount; ++j) {
+        aditionals.push_back(ResourceRecord(&data[i]));
+        i += aditionals.back().size();
+      }
+    }
+
+    const char* c_str() const {
+      std::list<ResourceRecord>::const_iterator it;
+
+      int len = this->size();
+      char* res = new char[len];
+      for (int j = 0; j < len; ++j) res[j] = 0x00;
+
+      const char* h_chars = header.c_str();
+      std::memcpy(res, h_chars, header.size());
+      delete[] h_chars;
+
+      int i = header.size();
+      for (it = questions.begin(); it != questions.end(); ++it) {
+        const char* r_chars = it->c_str();
+        std::memcpy(&res[i],r_chars,it->size());
+        delete[] r_chars;
+        i += it->size();
+      }
+      for (it = answers.begin(); it != answers.end(); ++it) {
+        const char* r_chars = it->c_str();
+        std::memcpy(&res[i],r_chars,it->size());
+        delete[] r_chars;
+        i += it->size();
+      }
+      for (it = authoritatives.begin(); it != authoritatives.end(); ++it) {
+        const char* r_chars = it->c_str();
+        std::memcpy(&res[i],r_chars,it->size());
+        delete[] r_chars;
+        i += it->size();
+      }
+      for (it = aditionals.begin(); it != aditionals.end(); ++it) {
+        const char* r_chars = it->c_str();
+        std::memcpy(&res[i],r_chars,it->size());
+        delete[] r_chars;
+        i += it->size();
+      }
+
+      return res;
+    }
+
+    int size() const {
+      int len = header.size();
+      std::list<ResourceRecord>::const_iterator it;
+      
+      for (it = questions.begin(); it != questions.end(); ++it) {
+        len += it->size();
+      }
+      for (it = answers.begin(); it != answers.end(); ++it) {
+        len += it->size();
+      }
+      for (it = authoritatives.begin(); it != authoritatives.end(); ++it) {
+        len += it->size();
+      }
+      for (it = aditionals.begin(); it != aditionals.end(); ++it) {
+        len += it->size();
+      }
+      return len;
+    }
+
+    std::string as_string() const {
+
+      std::string res = "-------------- dns packet ---------------\n";
+
+      res += "** HEADER ** \n";
+      res += header.as_string() + "\n\n";
+  
+      res += "\n\n** QUESTION SECTION ** \n";
+      std::list<dns::ResourceRecord>::const_iterator it;
+      for (it = questions.begin(); it != questions.end(); ++it) {
+        res += it->as_string() + "\n";
+      }
+      
+      res += "\n\n** ANSWER SECTION ** \n";
+      for (it = answers.begin(); it != answers.end(); ++it) {
+        res += it->as_string() + "\n";
+      }
+      
+      res += "\n\n** AUTHORITATIVES SECTION ** \n";
+      for (it = authoritatives.begin(); it != authoritatives.end(); ++it) {
+        res += it->as_string() + "\n";
+      }
+      
+      res += "\n\n** ADITIONAL SECTION ** \n";
+      for (it = aditionals.begin(); it != aditionals.end(); ++it) {
+        res += it->as_string() + "\n";
+      }
+
+      res += "-----------------------------------------\n";
+      
+      return res;
+    }
   };
 }
 
-inline std::ostream& operator<<(std::ostream& os, dns::DomainName& d) {
+inline std::ostream& operator<<(std::ostream& os, const dns::DomainName& d) {
   std::list<std::string>::const_iterator it = d.name.begin();
   while (it != d.name.end()) {
     os << *it;
@@ -221,7 +384,7 @@ inline std::ostream& operator<<(std::ostream& os, dns::DomainName& d) {
   return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, dns::Type& t) {
+inline std::ostream& operator<<(std::ostream& os, const dns::Type& t) {
   switch(t) {
   case dns::Type::A: os << "A"; break;
   case dns::Type::NS: os << "NS"; break;
@@ -229,7 +392,7 @@ inline std::ostream& operator<<(std::ostream& os, dns::Type& t) {
   return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, dns::Header& h) {
+inline std::ostream& operator<<(std::ostream& os, const dns::Header& h) {
   os << "id: " << h.id << std::endl;
   os << "flags_code: " << h.flags_code << std::endl;
   os << "QDCount: " << h.QDCount << std::endl;
@@ -239,13 +402,46 @@ inline std::ostream& operator<<(std::ostream& os, dns::Header& h) {
   return os;
 }
 
-inline std::ostream& operator<<(std::ostream& os, dns::ResourceRecord& r) {
+inline std::ostream& operator<<(std::ostream& os, const dns::ResourceRecord& r) {
   os << r.name <<  " ";
   os << r.QType <<  " ";
   if (r.QType == dns::Type::A) os << r.AValue <<  " ";
   else if (r.QType == dns::Type::NS) os << r.NSValue <<  " ";
   os << r.QClass <<  " ";
   os << r.TTL;
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::Packet& p) {
+  os << "-------------- dns packet ---------------" << std::endl;
+  os << "** HEADER ** " << std::endl << p.header << std::endl;
+  
+  os << std::endl;
+  os << "** QUESTION SECTION **" << std::endl;
+  std::list<dns::ResourceRecord>::const_iterator it;
+  for (it = p.questions.begin(); it != p.questions.end(); ++it) {
+    os << *it << std::endl;
+  }
+  
+  os << std::endl;
+  os << "** ANSWER SECTION **" << std::endl;
+  for (it = p.answers.begin(); it != p.answers.end(); ++it) {
+    os << *it << std::endl;
+  }
+  
+  os << std::endl;
+  os << "** AUTHORITATIVES SECTION **" << std::endl;
+  for (it = p.authoritatives.begin(); it != p.authoritatives.end(); ++it) {
+    os << *it << std::endl;
+  }
+  
+  os << std::endl;
+  os << "** ADITIONAL SECTION **" << std::endl;
+  for (it = p.aditionals.begin(); it != p.aditionals.end(); ++it) {
+    os << *it << std::endl;
+  }
+
+  os << "-----------------------------------------" << std::endl;
   return os;
 }
 
@@ -259,6 +455,7 @@ inline std::istream& operator>>(std::istream& is, dns::Type& t) {
 
 inline std::istream& operator>>(std::istream& is, dns::DomainName& d) {
 
+  d.name.clear();
   std::string str, sub_domain;
   is >> str;
   std::stringstream ss(str);
@@ -277,6 +474,41 @@ inline std::istream& operator>>(std::istream& is, dns::ResourceRecord& r) {
   }
   is >> r.QClass;
   is >> r.TTL;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::Header& h) {
+  is >> h.id;
+  is >> h.flags_code;
+  is >> h.QDCount;
+  is >> h.ANCount;
+  is >> h.NSCount;
+  is >> h.ARCount;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::Packet& p) {
+  
+  is >> p.header;
+  dns::ResourceRecord r;
+  ushort j;
+
+  for (j=0; j<p.header.QDCount; ++j) {
+    is >> r;
+    p.questions.push_back(r);
+  }
+  for (j=0; j<p.header.ANCount; ++j) {
+    is >> r;
+    p.answers.push_back(r);
+  }
+  for (j=0; j<p.header.NSCount; ++j) {
+    is >> r;
+    p.authoritatives.push_back(r);
+  }
+  for (j=0; j<p.header.ARCount; ++j) {
+    is >> r;
+    p.aditionals.push_back(r);
+  }
   return is;
 }
 

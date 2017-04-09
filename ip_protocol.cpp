@@ -103,8 +103,8 @@ void ip_protocol::routeIPDatagram(ip::Datagram p) {
 
 ushort ip_protocol::calculateChecksum(ip::Header header) const {
 
-  const char* header_ptr = header.c_str();
-  ushort count = header.size();
+  const char* header_ptr = header.checksum_c_str();
+  ushort count = header.checksum_size();
 
   long sum = 0;
   char* addr = (char *)header_ptr;

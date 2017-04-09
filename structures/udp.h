@@ -8,8 +8,8 @@
 #include <fstream>
 
 #include "abstract_types.h"
-#include "app.h"
 #include "ipv4.h"
+#include "dns.h"
 
 // transport layer structures
 namespace udp {
@@ -75,13 +75,15 @@ namespace udp {
   struct Segment : abstract::Data {
     PseudoHeader psd_header;
     Header header;
-    char payload[100]; // TODO: put the correct size
+    char payload[512]; // UDP size limit
 
-    Segment() {}
+    Segment() {
+      for(int i=0; i<512; ++i) payload[i] = 0x00;
+    }
     Segment(const Segment& o) {
       psd_header = o.psd_header;
       header = o.header;
-      memcpy(payload,o.payload,sizeof(payload));
+      memcpy(&payload[0], &o.payload[0], 512);
     }
 
     ushort headers_size() {
@@ -98,14 +100,20 @@ namespace udp {
       delete[] ph;
       return foo;
     }
+
+    void setPayload(const dns::Packet& packet) {
+      const char* payload_str = packet.c_str();
+      memcpy(&payload[0],payload_str,packet.size());
+      delete[] payload_str;
+    }
   };
 
   struct Multiplexed_packet : abstract::Data {
     unsigned int app_id;
-    app::Packet packet;
+    dns::Packet packet;
 
     Multiplexed_packet() {}
-    Multiplexed_packet(unsigned int other_app_id, app::Packet other_packet) {
+    Multiplexed_packet(unsigned int other_app_id, dns::Packet other_packet) {
       app_id = other_app_id;
       packet = other_packet;
     }
@@ -118,7 +126,7 @@ namespace udp {
   struct Control : abstract::Data {
     Ctrl request;
     unsigned int app_id;
-    app::Packet packet;
+    dns::Packet packet;
 
     // socket info
     ushort local_port;
@@ -175,7 +183,7 @@ namespace udp {
           request == Ctrl::WRITE_TO ||
           request == Ctrl::SEND ||
           request == Ctrl::SEND_TO) {
-        ss << "packet: " << packet << std::endl;
+        ss << packet.as_string() << std::endl;
       } else if ( request == Ctrl::CONNECT ||
                   request == Ctrl::SEND_TO ||
                   request == Ctrl::WRITE_TO ||
@@ -272,7 +280,7 @@ inline std::istream& operator>>(std::istream& is, udp::Control& m) {
         m.request == udp::Ctrl::WRITE_TO ||
         m.request == udp::Ctrl::SEND ||
         m.request == udp::Ctrl::SEND_TO) {
-      std::getline(is,m.packet); // read until eol as string
+      is >> m.packet;
     }
   }
   return is;
@@ -298,7 +306,8 @@ inline std::ostream& operator<<(std::ostream& os, const udp::PseudoHeader& ph) {
 inline std::ostream& operator<<(std::ostream& os, const udp::Segment& d) {
   os << "psd_header: " << std::endl << d.psd_header << std::endl;
   os << "header: " << std::endl << d.header << std::endl;
-  os << "payload: " << d.payload << std::endl;
+  dns::Packet p(&d.payload[0]);
+  os << "payload: " << std::endl << p << std::endl;
   return os;
 }
 

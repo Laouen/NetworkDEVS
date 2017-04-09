@@ -14,12 +14,13 @@
 #include "structures/socket.h"
 #include "structures/udp.h"
 #include "structures/app.h"
+#include "structures/dns.h"
 #include "structures/ip.h"
 #include "structures/link.h"
 
 class demultiplexer_app_udp: public Simulator { 
   message_list<udp::Control> _sent_control_inputs;
-  message_list<app::Packet> _sent_packet_inputs;
+  message_list<dns::Packet> _sent_packet_inputs;
   unsigned int _max_id;
   Event _output;
 

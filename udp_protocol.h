@@ -12,8 +12,8 @@
  *
  */
 
-// app layer send packet throw the control channel (port 1) using udp::Control structs
-// udp layer deliver app:Packet throw the data channel (part 0) using udp::Multiplexed_packet
+// dns layer send packet throw the control channel (port 1) using udp::Control structs
+// udp layer deliver dns:Packet throw the data channel (part 0) using udp::Multiplexed_packet
 class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Segment, ip::Control> {
 
   // TODO: change map<port,map<ip,socket>> to map<ip,map<port,socket>>
@@ -29,8 +29,8 @@ class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Seg
   /************ Helper methods **************/
   void processSegment(const udp::Segment&, double );
   void processUDPCtrl(const udp::Control&, double);
-  void sendData(const app::Packet&, const udp::Socket&, double);
-  void sendDataTo(const app::Packet&, const udp::Socket&, ushort, IPv4, double);
+  void sendData(const dns::Packet&, const udp::Socket&, double);
+  void sendDataTo(const dns::Packet&, const udp::Socket&, ushort, IPv4, double);
   bool verifyChecksum(udp::Segment d) const;
   ushort calculateChecksum(udp::Segment d) const;
   void processNtwCtrl(const ip::Control&);

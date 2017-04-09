@@ -3,13 +3,14 @@
 //#include "abstract_types.h"
 //#include "socket.h"
 //#include "ipv4.h"
-//#include "udp.h"
+#include "udp.h"
 //#include "app.h"
 //#include "ip.h"
 //#include "link.h"
 //#include "swp.h"
 #include "dns.h"
 
+#include "../libs/parser.h"
 using namespace std;
 
 /*
@@ -48,6 +49,16 @@ void load_swp_hdr(swp::Hdr& hdr, const unsigned long& preamble) {
 
 int main() {
 
+	Parser<dns::Packet> p("test.txt");
+	cout << p.next_input() << endl;
+	cout << p.next_input() << endl;
+
+	/*
+
+	dns::Packet p;
+	cin >> p;
+	cout << p << endl;
+	
 	dns::Header b;
 
 	b.id = 0xFF;
@@ -57,8 +68,7 @@ int main() {
 	b.NSCount = 2;
 	b.ARCount = 1;
 
-	const char* d = NULL;
-	d = b.c_str();
+	const char* d = b.c_str();
 	dns::Header e(d);
 
 	std::cout << b << std::endl << std::endl;
@@ -89,9 +99,69 @@ int main() {
 	dns::ResourceRecord dn;
 	std::cin >> dn;
 	std::cout << dn << std::endl;
+	*/
+	/*
+	
+	dns::Packet p;
+
+	p.header.id = 0xFF;
+	p.header.flags_code = 0xFE;
+	p.header.QDCount = 1;
+	p.header.ANCount = 0;
+	p.header.NSCount = 1;
+	p.header.ARCount = 1;
+
+	dns::ResourceRecord a;
+
+	a.name = std::string("el-atajo.com.ar");
+	a.QType = dns::Type::A;
+	a.AValue = "1.0.0.2";
+	a.QClass = 0xFFFF;
+	a.TTL = 0xFFFF;
 
 
+	dns::ResourceRecord b;
 
+	b.name = std::string("andaen.com");
+	b.QType = dns::Type::A;
+	b.AValue = "1.0.0.2";
+	b.QClass = 0xFFFF;
+	b.TTL = 0xFFFF;
+
+	dns::ResourceRecord c;
+
+	c.name = std::string("el-atajo.com.ar");
+	c.QType = dns::Type::NS;
+	c.NSValue = std::string("dns.server.ar");
+	c.QClass = 0xFFFF;
+	c.TTL = 0xFFFF;
+
+	dns::ResourceRecord d;
+
+	d.name = std::string("el-atajo.com.ar");
+	d.QType = dns::Type::NS;
+	d.NSValue = std::string("hola.test.como.estas.esto.es.muy.largo");
+	d.QClass = 0xFFFF;
+	d.TTL = 0xFFFF;
+
+	p.questions.push_back(a);
+	p.authoritatives.push_back(b);
+	p.authoritatives.push_back(c);
+	p.aditionals.push_back(d);
+
+	cout << p << endl;
+	cout << "size of dns::Packet p: " << p.size() << endl;
+
+	const char* p_str = p.c_str();
+	dns::Packet p2(p_str);
+
+	cout << p2 << endl;
+
+	delete[] p_str;
+
+
+	cout << "size of dns::Packet p2: " << p2.size() << endl;
+	*/
 	/*
 	swp::Seqno a = 250;
 

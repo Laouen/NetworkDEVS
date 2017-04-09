@@ -65,7 +65,7 @@ void udp_protocol::exit() {}
 /*********** Main helpers ************************/
 
 void udp_protocol::processSegment(const udp::Segment& d, double t) {
-  app::Packet p(d.payload);
+  dns::Packet p(d.payload);
 
   // Segments with incorrect dest_ip are thrown away
   ushort local_port = d.header.dest_port;
@@ -294,45 +294,43 @@ void udp_protocol::processNtwCtrl(const ip::Control &c) {
 
 
 // TODO: merge sendData and sendDataTo equal codes to a single function send.
-void udp_protocol::sendData(const app::Packet& payload, const udp::Socket& s, double t) {
+void udp_protocol::sendData(const dns::Packet& payload, const udp::Socket& s, double t) {
 
   udp::Segment dat;
   // pseudo header fields
   dat.psd_header.src_ip = s.local_ip;
   dat.psd_header.dest_ip = s.remote_ip;
-  dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.length();
+  dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.size();
   dat.psd_header.zeros = 0x0;
   dat.psd_header.protocol = 0x0; // Currently not used
   // header fields
   dat.header.src_port = s.local_port;
   dat.header.dest_port = s.remote_port;
-  dat.header.length = payload.length();
+  dat.header.length = payload.size();
   dat.header.checksum = calculateChecksum(dat);
   // data
-  std::size_t length = payload.copy(dat.payload,payload.size(),0);
-  dat.payload[length] = '\0';
-  
+  dat.setPayload(payload);
+
   lower_layer_data_out.push(dat, 2);
 }
 
-void udp_protocol::sendDataTo(const app::Packet& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
+void udp_protocol::sendDataTo(const dns::Packet& payload, const udp::Socket& s, ushort remote_port, IPv4 remote_ip, double t) {
 
   udp::Segment dat;
-  
+
   // pseudo header fields
   dat.psd_header.src_ip = s.local_ip;
   dat.psd_header.dest_ip = remote_ip;
-  dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.length();
+  dat.psd_header.udp_lenght = sizeof(udp::Header)+payload.size();
   dat.psd_header.zeros = 0x0;
   dat.psd_header.protocol = 0x0; // Currently not used
   // header fields
   dat.header.src_port = s.local_port;
   dat.header.dest_port = remote_port;
-  dat.header.length = payload.length();
+  dat.header.length = payload.size();
   dat.header.checksum = calculateChecksum(dat);
   // data
-  std::size_t length = payload.copy(dat.payload,payload.size(),0);
-  dat.payload[length] = '\0';
+  dat.setPayload(payload);
 
   lower_layer_data_out.push(dat, 2);
 }

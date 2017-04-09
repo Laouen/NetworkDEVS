@@ -40,19 +40,62 @@ namespace ip {
       dest_ip = other.dest_ip;  
     }
 
-    int size() {
-      return 26; // this is the current size of header for checksum
+    int size() const {
+      return sizeof(vide) +
+              sizeof(total_length) +
+              sizeof(identification) +
+              sizeof(ff) +
+              sizeof(ttlp) +
+              sizeof(header_checksum) + 
+              dest_ip.size() +
+              src_ip.size();
     }
 
-    const char* c_str() {
+    const char* c_str() const {
       char* foo = new char[this->size()];
-      memcpy(foo, &vide, 2);
-      memcpy(&foo[2], &total_length, 2);
-      memcpy(&foo[4], &identification, 2);
-      memcpy(&foo[6], &ff, 2);
-      memcpy(&foo[8], &ttlp, 2);
-      memcpy(&foo[10], dest_ip.ip, 8);
-      memcpy(&foo[18], src_ip.ip, 8);
+      int i = 0;
+      
+      memcpy(&foo[i], &vide, sizeof(vide)); 
+      i += sizeof(vide);
+      memcpy(&foo[i], &total_length, sizeof(total_length)); 
+      i += sizeof(total_length);
+      memcpy(&foo[i], &identification, sizeof(identification)); 
+      i += sizeof(identification);
+      memcpy(&foo[i], &ff, sizeof(ff)); 
+      i += sizeof(ff);
+      memcpy(&foo[i], &ttlp, sizeof(ttlp)); 
+      i += sizeof(ttlp);
+      memcpy(&foo[i], &header_checksum, sizeof(header_checksum)); 
+      i += sizeof(header_checksum);
+      memcpy(&foo[i], dest_ip.ip, dest_ip.size()); 
+      i += dest_ip.size();
+      memcpy(&foo[i], src_ip.ip, src_ip.size());
+      
+      return foo;
+    }
+
+    int checksum_size() const {
+      return this->size() - sizeof(header_checksum);
+    }
+
+    const char* checksum_c_str() const {
+      char* foo = new char[this->size()];
+      int i = 0;
+      
+      memcpy(&foo[i], &vide, sizeof(vide)); 
+      i += sizeof(vide);
+      memcpy(&foo[i], &total_length, sizeof(total_length)); 
+      i += sizeof(total_length);
+      memcpy(&foo[i], &identification, sizeof(identification)); 
+      i += sizeof(identification);
+      memcpy(&foo[i], &ff, sizeof(ff)); 
+      i += sizeof(ff);
+      memcpy(&foo[i], &ttlp, sizeof(ttlp)); 
+      i += sizeof(ttlp);
+      memcpy(&foo[i], dest_ip.ip, dest_ip.size()); 
+      i += dest_ip.size();
+      memcpy(&foo[i], src_ip.ip, src_ip.size());
+      
       return foo;
     }
   };

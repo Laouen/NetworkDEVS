@@ -17,9 +17,9 @@ void output_stream::dint(double t) {}
 void output_stream::dext(Event x, double t) {
 
   if (x.port == 0) {
-    app::Packet m = *(app::Packet*)x.value;
+    dns::Packet m = *(dns::Packet*)x.value;
     file << "time:" << t << std::endl;
-    file << "App::Packet: " << m << std::endl << std::endl;
+    file << m << std::endl << std::endl;
   } else if (x.port == 1) {
     udp::Control m = *(udp::Control*)x.value;
     file << "time:" << t << std::endl;
