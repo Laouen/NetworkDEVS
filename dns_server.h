@@ -1,5 +1,5 @@
-#if !defined dns_client_protocol_h
-#define dns_client_protocol_h
+#if !defined dns_server_h
+#define dns_server_h
 
 #include "layer.h"
 
@@ -8,7 +8,7 @@
  * 
  */
 
-class dns_clienter_protocol: public Layer<dns::DomainName, int, dns::Packet, udp::Control, dns::Packet> { 
+class dns_server: public Layer<dns::DomainName, int, dns::Packet, udp::Control, dns::Packet> { 
 
 protected:
 
@@ -26,18 +26,16 @@ protected:
   double process_dns_response = 0.001;
 
   /********* Protected methods *********/
-  void processDNSQuery(dns::DomainName);
-  void processDNSResponse(dns::Packet);
 
 public:
-	dns_clienter_protocol(const char *n): Layer(n) {};
+	dns_server(const char *n): Layer(n) {};
 	void init(double, ...);
 	double ta(double t);
   Event lambda(double);
   void exit();
 
   virtual void dinternal(double);
-  virtual void dexternal(double) {};
+  virtual void dexternal(double);
 };
 
 #endif

@@ -1,6 +1,6 @@
-#include "dns_client_protocol.h"
+#include "dns_server.h"
 
-void dns_client_protocol::init(double t,...) {
+void dns_server::init(double t,...) {
   // PowerDEVS parameters
   va_list parameters;
   va_start(parameters,t);
@@ -46,7 +46,10 @@ void dns_client_protocol::init(double t,...) {
   next_internal = 0;
 }
 
-void dns_client_protocol::dinternal(double) {
+void dns_server::dinternal(double t) {
+  
+  this->updateCache(t);
+
   if (bind) {
     bind = false;
     return;
@@ -54,7 +57,7 @@ void dns_client_protocol::dinternal(double) {
 
   if (!higher_layer_data_in.empty()) {
     dns::DomainName s = higher_layer_data_in.front();
-    this->processDNSQuery(s);
+    this->processDomainName(s);
     higher_layer_data_in.pop();
     next_internal = process_dns_query;
     return;
@@ -69,27 +72,30 @@ void dns_client_protocol::dinternal(double) {
   }
 }
 
-double dns_client_protocol::ta(double t) { 
+void dns_server::dexternal(double t) {
+  this->updateCache(t);
+}
+
+double dns_server::ta(double t) { 
   return next_internal;
 }
 
-Event dns_client_protocol::lambda(double) { 
+Event dns_server::lambda(double) { 
   return output;
 }
 
-void dns_client_protocol::exit() {}
+void dns_server::exit() {}
 
 /**********************************************/
 /************** Helper methods ****************/
 /**********************************************/
 
-void dns_client_protocol::processDNSQuery(dns::DomainName domain) {
+void dns_server::processDomainName(dns::DomainName domain) {
   
   dns::Packet p = this->wrapQueryInPacket(domain);
   if (this->existRR(domain)) {
 
-    this->setAuthoritativeFlag(p, r.name);
-    p.addAnswerResource(this->getRR(domain));
+    this->convertPacketInResponse(p);
     higher_layer_data_out.push(p,0); 
 
   } else {
@@ -100,7 +106,7 @@ void dns_client_protocol::processDNSQuery(dns::DomainName domain) {
   }
 }
 
-dns::Packet dns_client_protocol::wrapQueryInPacket(dns::DomainName d) const {
+dns::Packet dns_server::wrapQueryInPacket(dns::DomainName d) const {
 
   // First aditional RR is the requested domain with the requester host IPv4
   dns::ResourceRecord RRRequesterIP;
@@ -132,7 +138,7 @@ dns::Packet dns_client_protocol::wrapQueryInPacket(dns::DomainName d) const {
   return packet;
 }
 
-void dns_client_protocol::sendTo(const dns::Packet& p, IPv4 server_ip, ushort server_port) {
+void dns_server::sendTo(const dns::Packet& p, IPv4 server_ip, ushort server_port) {
   udp::Control c(0, udp::Ctrl::SEND_TO);
   c.remote_ip = server_ip;
   c.remote_port = server_port;
@@ -140,12 +146,12 @@ void dns_client_protocol::sendTo(const dns::Packet& p, IPv4 server_ip, ushort se
   lower_layer_data_out.push(c,2);
 }
 
-void dns_client_protocol::processDNSPacket(dns::Packet packet) {
+void dns_server::processDNSPacket(dns::Packet packet) {
   dns::ResourceRecord r;
 
   if (packet.header.is(dns::QR::QR_ANSWER,dns::QR::QR_MASK)) { // ANSWER PACKET
     
-    if (this->serverError(packet)) { // RETURN ERROR
+    if (!packet.header.is(dns::RCode::RCode_NO_ERROR,dns::RCode::RCode_MASK)) { // RETURN ERROR
       
       this->deliverAnswer(packet);
       this->removePacket(packet.header.id);
@@ -171,39 +177,43 @@ void dns_client_protocol::processDNSPacket(dns::Packet packet) {
   } else { // QUERY PACKET
     
     r = packet.aditionals.front(); // first aditional is requester host ip
-    if (this->existRR(r.name)) {
 
-      this->setAuthoritativeFlag(p, r.name);
-      p.addAnswerResource(this->getRR(domain));
-      this->sendTo(p, r.AValue, 53); 
+    if (this->existRR(r.name)) { // RESOURCE EXIST
 
-    } else {
+      this->convertPacketInResponse(packet);
+      this->sendTo(packet, r.AValue, 53);
 
-      host_requests.push_back(p);
-      this->sendTo(p, local_root_server_ip, 53);
+    } else if (packet.header.is(dns::RD::RD_RECURSIVE,dsn::RD::RD_MASK)) { // RECURSIVE QUERY
+
+      host_requests.push_back(packet);
+      this->sendTo(packet, local_root_server_ip, 53);
+
+    } else { // NAME ERROR
+
+      this->setAsResponse(packet);
+      packet.header.setFlag(dns::RCode::RCode_NAME_ERROR,dns::RCode::RCode_MASK);
+      this->sendTo(packet, r.AValue, 53);
 
     }
-
   }
 }
 
-void dns_client_protocol::setAuthoritativeFlag(dns::Packet& packet, dns::DomainName d) {}
+void dns_server::setAsResponse(dns::Packet& packet) {
+  packet.header.setFlag(dns::QR::QR_ANSWER,dns::QR::QR_MASK);
+  packet.header.setFlag(dns::TC::TC_NOT_TRUNCATED,dns::TC::TC_MASK);
+}
 
-bool dns_client_protocol::serverError(const dns::Packet& packet) const {}
+void dns_server::convertPacketInResponse(dns::Packet& packet) {
 
-bool dns_client_protocol::isAppRequest(const dns::Packet& packet) const {}
+  this->setAsResponse(packet);
+  packet.header.setFlag(dns::RCode::RCode_NO_ERROR,dns::RCode::RCode_MASK);
+  
+  dns::DomainName d = packet.aditionals.front().name;
+  this->setAuthoritativeFlag(packet, d);
+  packet.addAnswerResource(this->getRR(d));
+}
 
-bool dns_client_protocol::isHostRequest(const dns::Packet& packet) const {}
-
-void dns_client_protocol::removePacket(const dns::Packet& packet) {}
-
-dns::packet dns_client_protocol::getPacket(int id) {}
-
-bool dns_client_protocol::existRR(const dns::DomainName& d) {}
-
-dns::ResourceRecord dns_client_protocol::getRR(const dns::DomainName& d) {}
-
-void dns_client_protocol::deliverAnswer(const dns::Packet& packet) {
+void dns_server::deliverAnswer(const dns::Packet& packet) {
 
   if (this->isAppRequest(packet.header.id)) {
     higher_layer_data_out.push(packet,0);
@@ -212,3 +222,19 @@ void dns_client_protocol::deliverAnswer(const dns::Packet& packet) {
     this->sendResponse(packet, host_ip, 53);
   }
 }
+
+void dns_server::setAuthoritativeFlag(dns::Packet& packet, dns::DomainName d) {}
+
+bool dns_server::isAppRequest(const dns::Packet& packet) const {}
+
+bool dns_server::isHostRequest(const dns::Packet& packet) const {}
+
+void dns_server::removePacket(const dns::Packet& packet) {}
+
+dns::packet dns_server::getPacket(int id) {}
+
+bool dns_server::existRR(const dns::DomainName& d) {}
+
+dns::ResourceRecord dns_server::getRR(const dns::DomainName& d) {}
+
+void dns_server::updateCache(double t) {}
