@@ -14,16 +14,72 @@
 #include "abstract_types.h"
 #include "ipv4.h"
 
-#define IS_AUTHORITATIVE_ANSWER
-#define IS_TRUNCATED
-#define RECURSION_DESIRED
-#define RECURSION_AVAILABLE
-#define RECURSION_AVAILABLE
-
 // Application layer structures
 namespace dns {
 
+  enum QR : uint16_t { // Query/Response Flag
+    QR_QUERY = 0x8000, 
+    QR_ANSWER = 0x0000, 
+    QR_MASK = 0x8000
+  };
+
+  enum Opcode : uint16_t { // Operation code
+    Opcode_QUERY = 0x0000, //0
+    Opcode_IQUERY = 0x0800, //1
+    Opcode_STATUS = 0x1000, //2
+    Opcode_RESERVED = 0x1800, //3
+    Opcode_NOTIFY = 0x2000, //4
+    Opcode_UPDATE = 0x2800, //5
+    Opcode_MASK = 0x7800
+  };
+
+  enum AA : uint16_t { // Authoritative Answer Flag
+    AA_AUTHORITATIVE_ANSWER = 0x0400,
+    AA_NOT_AUTHORITATIVE_ANSWER = 0x0000,
+    AA_MASK = 0x0400
+  };
+
+  enum TC : uint16_t { // Truncation Flag
+    TC_TRUNCATED  = 0x0200,
+    TC_NOT_TRUNCATED  = 0x0000,
+    TC_MASK  = 0x0200
+  };
+
+  enum RD : uint16_t { // Recursion Desired
+    RD_RECURSIVE = 0x0100,
+    RD_ITERATIVE = 0x0000,
+    RD_MASK = 0x0100
+  };
+
+  enum RA : uint16_t { // Recursion Available
+    RA_RECURSION_AVAILABLE = 0x0080,
+    RA_ITERATIVE = 0x0000,
+    RA_MASK = 0x0080
+  };
+
+  enum Z : uint16_t { // Zero
+    Z_RESERVED = 0x0000,
+    Z_MASK = 0x0070,
+  };
+
+  enum RCode : uint16_t { // Response code
+    RCode_NO_ERROR = 0x0000,
+    RCode_FORMAT_ERROR = 0x0001,
+    RCode_SERVER_FAILURE = 0x0002,
+    RCode_NAME_ERROR = 0x0003,
+    RCode_NOT_IMPLEMENTED = 0x0004,
+    RCode_REFUSED = 0x0005,
+    RCode_YX_DOMAIN = 0x0006,
+    RCode_YX_RR_SET = 0x0007,
+    RCode_NX_RR_SET = 0x0008,
+    RCode_NOT_AUTH = 0x0009,
+    RCode_NOT_ZONE = 0x000A,
+    RCode_MASK = 0x000F
+  };
+
   enum Type : uint16_t {A = 1, NS = 2 };
+
+  enum Class : uint16_t {IN = 1};
 
   struct Header : abstract::Header {
     ushort id;
@@ -49,6 +105,15 @@ namespace dns {
       std::memcpy(&ANCount,&other[6],2);
       std::memcpy(&NSCount,&other[8],2);
       std::memcpy(&ARCount,&other[10],2);
+    }
+
+    void setFlag(uint16_t flag, uint16_t mask) {
+      flags_code = (flags_code & ~mask);
+      flags_code = (flags_code | flag);
+    }
+
+    bool is(uint16_t flag, uint16_t mask) const {
+      return (flags_code & mask) == flag;
     }
 
     ushort size() const {
@@ -145,7 +210,7 @@ namespace dns {
     Type QType;
     IPv4 AValue;
     DomainName NSValue;
-    ushort QClass;
+    Class QClass;
     ushort TTL;
 
     ResourceRecord() {}
@@ -234,7 +299,9 @@ namespace dns {
       case dns::Type::A: res += "A "; res += this->AValue.as_string() + " "; break;
       case dns::Type::NS: res += "NS "; res += this->NSValue.as_string() + " "; break;
       }
-      res += std::to_string(this->QClass) + " ";
+      switch(this->QType) {
+      case dns::Class::IN: res += "IN "; res += this->AValue.as_string() + " "; break;
+      }
       res += std::to_string(this->TTL) + " ";
       return res;
     }
@@ -247,7 +314,12 @@ namespace dns {
     std::list<ResourceRecord> authoritatives;
     std::list<ResourceRecord> aditionals;
 
-    Packet() {}
+    Packet() {
+      header.QDCount = 0;
+      header.ANCount = 0;
+      header.NSCount = 0;
+      header.ARCount = 0;
+    }
     Packet(const Packet& other) {
       header = other.header;
       questions = other.questions;
@@ -278,6 +350,26 @@ namespace dns {
         aditionals.push_back(ResourceRecord(&data[i]));
         i += aditionals.back().size();
       }
+    }
+
+    void addQuestionResource(ResourceRecord r) {
+      questions.push_back(r);
+      header.QDCount++;
+    }
+
+    void addAnswerResource(ResourceRecord r) {
+      questions.push_back(r);
+      header.QDCount++;
+    }
+
+    void addAuthoritativeResource(ResourceRecord r) {
+      questions.push_back(r);
+      header.QDCount++;
+    }
+
+    void addAditionalResource(ResourceRecord r) {
+      questions.push_back(r);
+      header.QDCount++;
     }
 
     const char* c_str() const {
@@ -392,9 +484,102 @@ inline std::ostream& operator<<(std::ostream& os, const dns::Type& t) {
   return os;
 }
 
+inline std::ostream& operator<<(std::ostream& os, const dns::QR& qr) {
+  switch(qr) {
+  case dns::QR::QR_QUERY: os << "QR_QUERY"; break;
+  case dns::QR::QR_ANSWER: os << "QR_ANSWER"; break;
+  default: os << "INV"; break;
+  }
+  return os;  
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::Opcode& o) {
+  switch(o) {
+  case dns::Opcode::Opcode_QUERY: os << "Opcode_QUERY"; break;
+  case dns::Opcode::Opcode_IQUERY: os << "Opcode_IQUERY"; break;
+  case dns::Opcode::Opcode_STATUS: os << "Opcode_STATUS"; break;
+  case dns::Opcode::Opcode_RESERVED: os << "Opcode_RESERVED"; break;
+  case dns::Opcode::Opcode_NOTIFY: os << "Opcode_NOTIFY"; break;
+  case dns::Opcode::Opcode_UPDATE: os << "Opcode_UPDATE"; break;
+  default: os << "INV"; break;
+  }
+  return os;  
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::AA& r) {
+  switch(r) {
+  case dns::AA::AA_AUTHORITATIVE_ANSWER: os << "AA_AUTHORITATIVE_ANSWER"; break;
+  case dns::AA::AA_NOT_AUTHORITATIVE_ANSWER: os << "AA_NOT_AUTHORITATIVE_ANSWER"; break;
+  default: os << "INV"; break;
+  }
+  return os;  
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::TC& tc) {
+  switch(tc) {
+  case dns::TC::TC_TRUNCATED: os << "TC_TRUNCATED"; break;
+  case dns::TC::TC_NOT_TRUNCATED: os << "TC_NOT_TRUNCATED"; break;
+  default: os << "INV"; break;
+  }
+  return os;  
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::RD& r) {
+  switch(r) {
+  case dns::RD::RD_RECURSIVE: os << "RD_RECURSIVE"; break;
+  case dns::RD::RD_ITERATIVE: os << "RD_ITERATIVE"; break;
+  default: os << "INV"; break;
+  }
+  return os;  
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::RA& r) {
+  switch(r) {
+  case dns::RA::RA_RECURSION_AVAILABLE: os << "RA_RECURSION_AVAILABLE"; break;
+  case dns::RA::RA_ITERATIVE: os << "RA_ITERATIVE"; break;
+  default: os << "INV"; break;
+  }
+  return os;  
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::RCode& r) {
+  switch(r) {
+  case dns::RCode::RCode_NO_ERROR: os << "RCode_NO_ERROR"; break;
+  case dns::RCode::RCode_FORMAT_ERROR: os << "RCode_FORMAT_ERROR"; break;
+  case dns::RCode::RCode_SERVER_FAILURE: os << "RCode_SERVER_FAILURE"; break;
+  case dns::RCode::RCode_NAME_ERROR: os << "RCode_NAME_ERROR"; break;
+  case dns::RCode::RCode_NOT_IMPLEMENTED: os << "RCode_NOT_IMPLEMENTED"; break;
+  case dns::RCode::RCode_REFUSED: os << "RCode_REFUSED"; break;
+  case dns::RCode::RCode_YX_DOMAIN: os << "RCode_YX_DOMAIN"; break;
+  case dns::RCode::RCode_YX_RR_SET: os << "RCode_YX_RR_SET"; break;
+  case dns::RCode::RCode_NX_RR_SET: os << "RCode_NX_RR_SET"; break;
+  case dns::RCode::RCode_NOT_AUTH: os << "RCode_NOT_AUTH"; break;
+  case dns::RCode::RCode_NOT_ZONE: os << "RCode_NOT_ZONE"; break;
+  default: os << "INV"; break;
+  }
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const dns::Class& t) {
+  switch(t) {
+  case dns::Class::IN: os << "IN"; break;
+  }
+  return os;
+}
+
 inline std::ostream& operator<<(std::ostream& os, const dns::Header& h) {
   os << "id: " << h.id << std::endl;
-  os << "flags_code: " << h.flags_code << std::endl;
+
+  os << "flags: ";
+  os << (dns::QR)(h.flags_code & dns::QR::QR_MASK) << "|";
+  os << (dns::Opcode)(h.flags_code & dns::Opcode::Opcode_MASK) << "|";
+  os << (dns::AA)(h.flags_code & dns::AA::AA_MASK) << "|";
+  os << (dns::TC)(h.flags_code & dns::TC::TC_MASK) << "|";
+  os << (dns::RD)(h.flags_code & dns::RD::RD_MASK) << "|";
+  os << (dns::RA)(h.flags_code & dns::RA::RA_MASK) << "|";
+  os << (dns::RCode)(h.flags_code & dns::RCode::RCode_MASK);
+
+  os << std::endl;
   os << "QDCount: " << h.QDCount << std::endl;
   os << "ANCount: " << h.ANCount << std::endl;
   os << "NSCount: " << h.NSCount << std::endl;
@@ -450,6 +635,13 @@ inline std::istream& operator>>(std::istream& is, dns::Type& t) {
   is >> c;
   if (c == std::string("A")) t = dns::Type::A;
   else if (c == std::string("NS")) t = dns::Type::NS;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::Class& t) {
+  std::string c;
+  is >> c;
+  if (c == std::string("IN")) t = dns::Class::IN;
   return is;
 }
 

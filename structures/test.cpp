@@ -50,8 +50,17 @@ void load_swp_hdr(swp::Hdr& hdr, const unsigned long& preamble) {
 int main() {
 
 	Parser<dns::Packet> p("test.txt");
-	cout << p.next_input() << endl;
-	cout << p.next_input() << endl;
+
+	dns::Packet dp = p.next_input();
+	dp.header.setFlag(dns::QR::QR_QUERY,dns::QR::QR_MASK);
+	dp.header.setFlag(dns::Opcode::Opcode_UPDATE,dns::Opcode::Opcode_MASK);
+	cout << dp << endl;
+
+	if (dp.header.is(dns::Opcode::Opcode_UPDATE,dns::Opcode::Opcode_MASK))
+		cout << "anda" << endl;
+	else
+		cout << "no anda" << endl;
+
 
 	/*
 
