@@ -5,6 +5,7 @@
 #include <cstdint> // Allows to use ushort
 #include <cstring> // memcpy
 #include <list>
+#include <vector>
 #include <sstream> // istringstring
 #include <iostream>
 
@@ -145,7 +146,7 @@ namespace dns {
   };
 
   struct DomainName {
-    std::list<std::string> name;
+    std::vector<std::string> name;
 
     DomainName() {};
     DomainName(const DomainName& other) {
@@ -173,7 +174,7 @@ namespace dns {
       for (int i = 0; i < this->size(); ++i) res[i] = 0x00; // last 0x0 character is initialized here
       int len;
       int i = 0;
-      std::list<std::string>::const_iterator it;
+      std::vector<std::string>::const_iterator it;
       for (it = name.begin(); it != name.end(); ++it) {
         len = it->length();
         res[i] = (unsigned char)len;
@@ -185,7 +186,7 @@ namespace dns {
 
     std::string as_string() const {
       std::string res = "";
-      std::list<std::string>::const_iterator it = name.begin();
+      std::vector<std::string>::const_iterator it = name.begin();
       while (it != name.end()) {
         res += *it;
         ++it;
@@ -196,7 +197,7 @@ namespace dns {
 
     int size() const {
       int size = 0;
-      std::list<std::string>::const_iterator it;
+      std::vector<std::string>::const_iterator it;
       for (it = name.begin(); it != name.end(); ++it) {
         size += it->length() + 1;
       }
@@ -464,10 +465,47 @@ namespace dns {
       return res;
     }
   };
+
+  struct Zone {
+    dns::ResourceRecord name_server; 
+    dns::ResourceRecord authoritative;
+
+    bool empty() {
+      return  name_server.name.name.size() > 0 &&
+              authoritative.name.name.size() > 0 &&
+              name_server.QType == Type::NS &&
+              authoritative.QType == Type::A;
+    }
+
+    std::string as_string() {
+      std::string res = "\n";
+      res += "-------------- Zone --------------\n";
+      res += "** NS **\n";
+      res += name_server.as_string() + "\n";
+      res += "** A **\n";
+      res += authoritative.as_string() + "\n";
+      res += "----------------------------------\n";
+      return res;
+    }
+
+    bool isZoneOf(dns::DomainName d) const {
+      if (name_server.name.name.size() > d.name.size()) {
+        return false;
+      }
+
+      for(int i = name_server.name.levels()-1; i >= 0; --i) {
+        if (name_server.name.name[i] != d.name[i]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  }
 }
 
 inline std::ostream& operator<<(std::ostream& os, const dns::DomainName& d) {
-  std::list<std::string>::const_iterator it = d.name.begin();
+  std::vector<std::string>::const_iterator it = d.name.begin();
   while (it != d.name.end()) {
     os << *it;
     ++it;

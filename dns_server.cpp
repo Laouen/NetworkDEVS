@@ -7,37 +7,58 @@ void dns_server::init(double t,...) {
 
   // Set logger module name
   std::string module_name = va_arg(parameters, char*);
-  logger.setModuleName("DNS-client " + module_name);
+  logger.setModuleName("DNS " + module_name);
 
   client_ip = va_arg(parameters,char*);
-  logger.info("DNS client ip: " + client_ip.as_string());
+  logger.info("DNS local ip: " + client_ip.as_string());
 
-  local_root_server_ip = va_arg(parameters,char*);
-  logger.info("DNS local root server ip: " + local_root_server_ip.as_string());
+  root_server_ip = va_arg(parameters,char*);
+  logger.info("DNS root server ip: " + root_server_ip.as_string());
 
-  // building authoritative RR table
+  // Building authoritative RR table
   const char* file_path = va_arg(parameters,char*);
-  Parser<dns::ResourceRecord> parser(file_path);
-  if (parser.file_open()) {
+  Parser<dns::ResourceRecord> parser_rr(file_path);
+  if (parser_rr.file_open()) {
+    logger.info("Authoritative RR table:");
     while(true) {
       try {
-        authoritative_RRs.push_back(parser.next_input());
+        authoritative_RRs.push_back(parser_rr.next_input());
+        logger.info(authoritative_RRs.back().as_string());
       } catch(std::exception& e) {
         break; // end of file throws an exception
       }
     }
   } else {
-    logger.error("Error parsing routing table file.");
+    logger.error("Error parsing authoritative RR table file.");
   }
 
-  logger.info("Authoritative RR table:");
-  for (std::list<dns::ResourceRecord>::iterator i = authoritative_RRs.begin(); i != authoritative_RRs.end(); ++i) {
-    logger.info(i->as_string());
+  // Building authoritative RR table
+  file_path = va_arg(parameters,char*);
+  Parser<dns::Zone> parser_zone(file_path);
+  if (parser_zone.file_open()) {
+    logger.info("Zone servers table:");
+    while(true) {
+      try {
+        zone_servers.push_back(parser_zone.next_input());
+        logger.info(zone_servers.back().as_string());
+      } catch(std::exception& e) {
+        break; // end of file throws an exception
+      }
+    }
+  } else {
+    logger.error("Error parsing zone server table file.");
   }
+
+  // Getting recursive allowed parameter
+  recursive_allowed = va_arg(parameters,double);
+  if (recursive_allowed)
+  	logger.info("Recursive allowed: True");
+  else
+  	logger.info("Recursive allowed: False");
 
   next_id = 0;
   
-  // starting udp bind
+  // Starting udp bind
   bind = true;
   udp::Control c(0,udp::Ctrl::BIND);
   c.local_port = 53;
@@ -50,10 +71,7 @@ void dns_server::dinternal(double t) {
   
   this->updateCache(t);
 
-  if (bind) {
-    bind = false;
-    return;
-  }
+  bind = false;
 
   if (!higher_layer_data_in.empty()) {
     dns::DomainName s = higher_layer_data_in.front();
@@ -73,10 +91,12 @@ void dns_server::dinternal(double t) {
 }
 
 void dns_server::dexternal(double t) {
+  
   this->updateCache(t);
 }
 
 double dns_server::ta(double t) { 
+  
   return next_internal;
 }
 
@@ -92,21 +112,21 @@ void dns_server::exit() {}
 
 void dns_server::processDomainName(dns::DomainName domain) {
   
-  dns::Packet p = this->wrapQueryInPacket(domain);
+  dns::Packet p = this->QueryPacket(domain);
   if (this->existRR(domain)) {
 
-    this->convertPacketInResponse(p);
+    this->directAnswer(p);
     higher_layer_data_out.push(p,0); 
 
   } else {
 
     app_requests.push_back(p);
-    this->sendTo(p, local_root_server_ip, 53);
+    this->sendTo(p, root_server_ip, 53);
 
   }
 }
 
-dns::Packet dns_server::wrapQueryInPacket(dns::DomainName d) const {
+dns::Packet dns_server::QueryPacket(dns::DomainName d) const {
 
   // First aditional RR is the requested domain with the requester host IPv4
   dns::ResourceRecord RRRequesterIP;
@@ -143,7 +163,7 @@ void dns_server::sendTo(const dns::Packet& p, IPv4 server_ip, ushort server_port
   c.remote_ip = server_ip;
   c.remote_port = server_port;
 
-  lower_layer_data_out.push(c,2);
+  lower_layer_ctrl_out.push(c,2);
 }
 
 void dns_server::processDNSPacket(dns::Packet packet) {
@@ -162,7 +182,9 @@ void dns_server::processDNSPacket(dns::Packet packet) {
     r = packet.answers.front();
     if (r.QType == dns::Type::A) { // RETURN FOUND IPv4 DNS PACKET
       
-      this->cached_RR.push_back(r);
+      if (packet.header.is(dns::AA::AA_AUTHORITATIVE_ANSWER,dns::AA::AA_MASK)) {
+        this->cached_RRs.push_back(r);
+      }
       this->deliverAnswer(packet);  
       this->removePacket(packet.header.id);
     
@@ -180,20 +202,32 @@ void dns_server::processDNSPacket(dns::Packet packet) {
 
     if (this->existRR(r.name)) { // RESOURCE EXIST
 
-      this->convertPacketInResponse(packet);
+      this->directAnswer(packet);
       this->sendTo(packet, r.AValue, 53);
 
-    } else if (packet.header.is(dns::RD::RD_RECURSIVE,dsn::RD::RD_MASK)) { // RECURSIVE QUERY
+    } else if (packet.header.is(dns::RD::RD_RECURSIVE,dsn::RD::RD_MASK) && recursive_allowed) { // RECURSIVE QUERY
 
       host_requests.push_back(packet);
-      this->sendTo(packet, local_root_server_ip, 53);
+      this->sendTo(packet, root_server_ip, 53);
 
-    } else { // NAME ERROR
+    } else { // RETURN BEST MATCH OR NAME ERROR
+
+      dns::Zone zone = this->getBestMatch(r.name);
+
+      if (!zone.empty()) {
+
+        packet.answers.addAnswerResource(zone.name_server);
+        packet.answers.addAuthoritativeResource(zone.authoritative);
+        packet.header.setFlag(dns::RCode::RCode_NO_ERROR,dns::RCode::RCode_MASK);
+      
+      } else {
+
+        packet.header.setFlag(dns::RCode::RCode_NAME_ERROR,dns::RCode::RCode_MASK);
+      }
 
       this->setAsResponse(packet);
-      packet.header.setFlag(dns::RCode::RCode_NAME_ERROR,dns::RCode::RCode_MASK);
+      packet.header.setFlag(dns::AA::AA_NOT_AUTHORITATIVE_ANSWER,dns::AA::AA_MASK);
       this->sendTo(packet, r.AValue, 53);
-
     }
   }
 }
@@ -203,7 +237,7 @@ void dns_server::setAsResponse(dns::Packet& packet) {
   packet.header.setFlag(dns::TC::TC_NOT_TRUNCATED,dns::TC::TC_MASK);
 }
 
-void dns_server::convertPacketInResponse(dns::Packet& packet) {
+void dns_server::directAnswer(dns::Packet& packet) {
 
   this->setAsResponse(packet);
   packet.header.setFlag(dns::RCode::RCode_NO_ERROR,dns::RCode::RCode_MASK);
@@ -223,18 +257,125 @@ void dns_server::deliverAnswer(const dns::Packet& packet) {
   }
 }
 
-void dns_server::setAuthoritativeFlag(dns::Packet& packet, dns::DomainName d) {}
+void dns_server::setAuthoritativeFlag(dns::Packet& packet, dns::DomainName d) {
+  std::list<dns::ResourceRecord>::const_iterator it;
+  
+  for(it = cached_RRs.begin(); it != cached_RRs.end(); ++it) {
+    if (it->name == d.name) {
+      packet.header.setFlag(dns::AA::AA_NOT_AUTHORITATIVE_ANSWER,dns::AA::AA_MASK);
+      return;
+    }
+  }
 
-bool dns_server::isAppRequest(const dns::Packet& packet) const {}
+  for(it = authoritative_RRs.begin(); it != authoritative_RRs.end(); ++it) {
+    if (it->name == d.name) {
+      packet.header.setFlag(dns::AA::AA_AUTHORITATIVE_ANSWER,dns::AA::AA_MASK);
+      return;
+    }
+  }
+}
 
-bool dns_server::isHostRequest(const dns::Packet& packet) const {}
+bool dns_server::isAppRequest(ushort id) const {
+  std::list<dns::Packet>::const_iterator it;
+  for(it = app_requests.begin(); it != app_requests.end(); ++it) {
+    if (it->header.id == id) return true;
+  }
+  return false;
+}
 
-void dns_server::removePacket(const dns::Packet& packet) {}
+bool dns_server::isHostRequest(ushort id) const {
+  std::list<dns::Packet>::const_iterator it;
+  for(it = host_requests.begin(); it != host_requests.end(); ++it) {
+    if (it->header.id == id) return true;
+  }
+  return false;
+}
 
-dns::packet dns_server::getPacket(int id) {}
+void dns_server::removePacket(const dns::Packet& packet) {
+  std::list<dns::Packet>::const_iterator it;
 
-bool dns_server::existRR(const dns::DomainName& d) {}
+  // Removing from app request
+  it = app_requests.begin();
+  while(it != app_requests.end()) {
+    if (it->header.id == id) {
+      it = app_requests.erase(it);
+    } else {
+      ++it;
+    }
+  }
 
-dns::ResourceRecord dns_server::getRR(const dns::DomainName& d) {}
+  // Removing from host request
+  it = host_requests.begin();
+  while(it != host_requests.end()) {
+    if (it->header.id == id) {
+      it = host_requests.erase(it);
+    } else {
+      ++it;
+    }
+  }
+}
 
-void dns_server::updateCache(double t) {}
+dns::packet dns_server::getPacket(ushort id) {
+  std::list<dns::Packet>::const_iterator it;
+
+  for(it = app_requests.begin(); it != app_requests.end(); ++it) {
+    if (it->header.id == id) return *it;
+  }
+
+  for(it = host_requests.begin(); it != host_requests.end(); ++it) {
+    if (it->header.id == id) return *it;
+  }
+}
+
+bool dns_server::existRR(const dns::DomainName& d) const {
+
+  std::list<dns::ResourceRecord>::const_iterator it;
+  for(it = cached_RRs.begin(); it != cached_RRs.end(); ++it) {
+    if (it->name == d.name) return true;
+  }
+
+  for(it = authoritative_RRs.begin(); it != authoritative_RRs.end(); ++it) {
+    if (it->name == d.name) return true;
+  }
+
+  return false;
+}
+
+dns::ResourceRecord dns_server::getRR(const dns::DomainName& d) {
+  std::list<dns::ResourceRecord>::const_iterator it;
+
+  for(it = cached_RRs.begin(); it != cached_RRs.end(); ++it) {
+    if (it->name == d.name) return *it;
+  }
+
+  for(it = authoritative_RRs.begin(); it != authoritative_RRs.end(); ++it) {
+    if (it->name == d.name) return *it;
+  }
+}
+
+void dns_server::updateCache(double t) {
+  ushort elapsed_time = std::floor(t-last_transition);
+
+  std::list<dns::ResourceRecord>::const_iterator it = cached_RRs.begin();
+  while(it != cached_RRs.end()) {
+    it->TTL -= elapsed_time; 
+    if (it->TTL <= 0) {
+      it = cached_RRs.erase(it);
+    } else {
+      ++it;
+    }
+  }
+}
+
+dns::Zone dns_server::getBestMatch(dns::DomainName d) {
+  dns::Zone z;
+  std::list<dns::ResourceRecord>::const_iterator it;
+
+  for(it = zone_servers.begin(); it != zone_servers.end(); ++it) {
+    if (it->isZoneOf(d) && it->isZoneOf(z.authoritative.name)) {
+      z = *it;
+    }
+  }
+
+  return z;
+}
