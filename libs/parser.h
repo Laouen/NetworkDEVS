@@ -50,7 +50,7 @@ public:
     INPUT result;
     double next_time;
 
-    if (file.eof()) {
+    if (!file.is_open() || file.eof()) {
       //logger.info("End of file.");
       throw std::exception();
     }

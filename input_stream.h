@@ -15,6 +15,7 @@
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
 #include "structures/udp.h"
+#include "structures/dns.h"
 #include "structures/app.h"
 #include "structures/ip.h"
 #include "structures/link.h"
@@ -22,10 +23,10 @@
 class input_stream: public Simulator { 
 
   Logger logger;
-  Parser<udp::Control> _parser;
+  Parser<dns::DomainName> _parser;
   double _next_time;
-  message_list<udp::Control> _sent_inputs;
-  udp::Control _next_input;
+  message_list<dns::DomainName> _sent_inputs;
+  dns::DomainName _next_input;
 
 public:
   input_stream(const char *n): Simulator(n) {};

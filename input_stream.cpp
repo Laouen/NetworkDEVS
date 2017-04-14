@@ -22,17 +22,16 @@ double input_stream::ta(double t) {
 
 void input_stream::dint(double t) {
   try {
-    std::pair<double,udp::Control> parsed_line = _parser.next_timed_input();
+    std::pair<double,dns::DomainName> parsed_line = _parser.next_timed_input();
     _next_time = parsed_line.first - t;
+    _next_input = parsed_line.second;
 
     if (_next_time < 0.0) {
       throw std::exception();
     }
-    _next_input = parsed_line.second;
-
   } catch(std::exception& e) {
     _next_time = std::numeric_limits<double>::max();
-    _next_input = udp::Control();
+    _next_input = dns::DomainName();
   }
 }
 

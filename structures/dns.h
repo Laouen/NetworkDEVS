@@ -203,6 +203,18 @@ namespace dns {
       }
       return size+1; // last 0 char value
     }
+
+    bool operator==(const DomainName& other) const {
+      if (name.size() != other.name.size()) {
+        return false;
+      }
+
+      for(int i=0; i<name.size(); ++i) {
+        if (name[i] != other.name[i]) return false;
+      }
+
+      return true;
+    }
   };
 
   // Resource Record
@@ -300,8 +312,8 @@ namespace dns {
       case dns::Type::A: res += "A "; res += this->AValue.as_string() + " "; break;
       case dns::Type::NS: res += "NS "; res += this->NSValue.as_string() + " "; break;
       }
-      switch(this->QType) {
-      case dns::Class::IN: res += "IN "; res += this->AValue.as_string() + " "; break;
+      switch(this->QClass) {
+      case dns::Class::IN: res += "IN "; break;
       }
       res += std::to_string(this->TTL) + " ";
       return res;
@@ -359,18 +371,18 @@ namespace dns {
     }
 
     void addAnswerResource(ResourceRecord r) {
-      questions.push_back(r);
-      header.QDCount++;
+      answers.push_back(r);
+      header.ANCount++;
     }
 
     void addAuthoritativeResource(ResourceRecord r) {
-      questions.push_back(r);
-      header.QDCount++;
+      authoritatives.push_back(r);
+      header.NSCount++;
     }
 
     void addAditionalResource(ResourceRecord r) {
-      questions.push_back(r);
-      header.QDCount++;
+      aditionals.push_back(r);
+      header.ARCount++;
     }
 
     const char* c_str() const {
@@ -460,7 +472,7 @@ namespace dns {
         res += it->as_string() + "\n";
       }
 
-      res += "-----------------------------------------\n";
+      res += "-----------------------------------------";
       
       return res;
     }
@@ -470,38 +482,41 @@ namespace dns {
     dns::ResourceRecord name_server; 
     dns::ResourceRecord authoritative;
 
-    bool empty() {
-      return  name_server.name.name.size() > 0 &&
-              authoritative.name.name.size() > 0 &&
-              name_server.QType == Type::NS &&
-              authoritative.QType == Type::A;
+    bool empty() const {
+      return  name_server.name.name.size() == 0 ||
+              authoritative.name.name.size() == 0 ||
+              name_server.QType != Type::NS ||
+              authoritative.QType != Type::A;
     }
 
-    std::string as_string() {
+    std::string as_string() const {
       std::string res = "\n";
       res += "-------------- Zone --------------\n";
       res += "** NS **\n";
       res += name_server.as_string() + "\n";
       res += "** A **\n";
       res += authoritative.as_string() + "\n";
-      res += "----------------------------------\n";
+      res += "----------------------------------";
       return res;
     }
 
     bool isZoneOf(dns::DomainName d) const {
-      if (name_server.name.name.size() > d.name.size()) {
+      int name_server_len = name_server.name.name.size();
+      int domain_len = d.name.size();
+
+      if (name_server_len > domain_len) {
         return false;
       }
 
-      for(int i = name_server.name.levels()-1; i >= 0; --i) {
-        if (name_server.name.name[i] != d.name[i]) {
+      for(int i = 1; i <= name_server_len; ++i) {
+        if (name_server.name.name[name_server_len-i] != d.name[domain_len-i]) {
           return false;
         }
       }
 
       return true;
     }
-  }
+  };
 }
 
 inline std::ostream& operator<<(std::ostream& os, const dns::DomainName& d) {
@@ -739,6 +754,12 @@ inline std::istream& operator>>(std::istream& is, dns::Packet& p) {
     is >> r;
     p.aditionals.push_back(r);
   }
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, dns::Zone& z) {
+  is >> z.name_server;
+  is >> z.authoritative;
   return is;
 }
 

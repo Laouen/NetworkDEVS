@@ -79,13 +79,16 @@ void udp_protocol::processSegment(const udp::Segment& d, double t) {
   logger.debug("remote_ip: " + remote_ip.as_string());
   if (existentSocket(local_port,local_ip) && verifyChecksum(d)) {
     udp::Socket& s = sockets[local_port][local_ip];
+    logger.debug("socket local_ip: " + s.local_ip.as_string());
+    logger.debug("socket local_ip: " + std::to_string(s.local_port));
     // dest is actually src
     if (s.accept(local_port,local_ip,remote_port,remote_ip)) {
       // deliver data
-      udp::Multiplexed_packet m(s.app_id, p);
-      logger.debug("Deliver to app_id: " + std::to_string(m.app_id));
-      higher_layer_data_out.push(m, 0);
+      logger.info("Deliver dns packet");
+      higher_layer_data_out.push(p, 0);
       s.stopReading();
+    } else {
+      logger.info("Not accepted packet");
     }
   } else {
     logger.info("discarted segment.");
@@ -336,10 +339,19 @@ void udp_protocol::sendDataTo(const dns::Packet& payload, const udp::Socket& s, 
 }
 
 bool udp_protocol::verifyChecksum(udp::Segment d) const {
-  logger.debug("Header checksum: " + std::to_string(d.header.checksum));
   ushort calculated_checksum = ~calculateChecksum(d);
+  
+  logger.debug("Header checksum: " + std::to_string(d.header.checksum));
   logger.debug("Calculated checksum: " + std::to_string(calculated_checksum));
-  return calculated_checksum+d.header.checksum == 0xFFFF;
+  
+  bool valid_checksum = calculated_checksum+d.header.checksum == 0xFFFF;
+
+  if (valid_checksum)
+    logger.info("valid checksum: true");
+  else
+    logger.info("valid checksum: False");
+
+  return valid_checksum;
 }
 
 ushort udp_protocol::calculateChecksum(udp::Segment d) const {

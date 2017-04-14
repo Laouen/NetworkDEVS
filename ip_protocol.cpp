@@ -128,10 +128,18 @@ ushort ip_protocol::calculateChecksum(ip::Header header) const {
 }
 
 bool ip_protocol::verifychecksum(ip::Header header) const {
-  logger.debug("header checksum: " + std::to_string(header.header_checksum));
   ushort new_checksum = ~calculateChecksum(header);
+ 
+  logger.debug("header checksum: " + std::to_string(header.header_checksum));
   logger.debug("calculated checksum: " + std::to_string(new_checksum));
-  return new_checksum+header.header_checksum == 0xFFFF;
+
+  bool valid_checksum = new_checksum+header.header_checksum == 0xFFFF;
+
+  if (valid_checksum)
+    logger.info("valid checksum: true");
+  else
+    logger.info("valid checksum: False");
+  return valid_checksum;
 }
 
 bool ip_protocol::matchesHostIps(IPv4 dest_ip) const {

@@ -12,19 +12,15 @@
  *
  */
 
-// dns layer send packet throw the control channel (port 1) using udp::Control structs
-// udp layer deliver dns:Packet throw the data channel (part 0) using udp::Multiplexed_packet
-class udp_protocol: public Layer<udp::Multiplexed_packet, udp::Control, udp::Segment, ip::Control> {
+class udp_protocol: public Layer<dns::Packet, udp::Control, udp::Segment, ip::Control> {
 
-  // TODO: change map<port,map<ip,socket>> to map<ip,map<port,socket>>
-  // is most likely to have one or a lower amount of IPs than ports.
-  std::map<ushort,std::map<IPv4,udp::Socket>> sockets; // max socket amount 2^17-1 = 65536
+  std::map<ushort,std::map<IPv4,udp::Socket>> sockets;
   std::vector<IPv4> ips;
 
   /********** TIMES ***************/
-  double add_rm_ip_time = 0.001; // takes 1 milliseconds to deliver data to the up layer
-  double delivering_time = 0.1; // takes 100 milliseconds to deliver data to the up layer
-  double app_ctrl_time = 0.01; // takes 1 milliseconds to bind a socket
+  double add_rm_ip_time = 0.01;
+  double delivering_time = 0.01;
+  double app_ctrl_time = 0.01;
 
   /************ Helper methods **************/
   void processSegment(const udp::Segment&, double );

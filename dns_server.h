@@ -1,3 +1,4 @@
+//CPP:networkDEVS/dns_server.cpp
 #if !defined dns_server_h
 #define dns_server_h
 
@@ -15,11 +16,12 @@ protected:
 
   int next_id;
   bool bind;
+  bool start_reading;
   bool recursive_allowed;
   IPv4 local_ip;
-  IPv4 root_server_ip;
-  std::list<dns::ResourseRecord> chaced_RRs;
-  std::list<dns::ResourseRecord> authoritative_RRs;
+  IPv4 server_ip;
+  std::list<dns::ResourceRecord> cached_RRs;
+  std::list<dns::ResourceRecord> authoritative_RRs;
   std::list<dns::Zone> zone_servers;
   std::list<dns::Packet> app_requests;
   std::list<dns::Packet> host_requests;
@@ -36,12 +38,12 @@ protected:
   void directAnswer(dns::Packet& packet);
   void deliverAnswer(const dns::Packet& packet);
   void setAuthoritativeFlag(dns::Packet& packet, dns::DomainName d);
-  void removePacket(const dns::Packet& packet);
-  dns::packet getPacket(ushort id);
+  void removePacket(ushort id);
+  dns::Packet getPacket(ushort id);
   void updateCache(double t);
   dns::Zone getBestMatch(dns::DomainName d);
+  dns::Packet QueryPacket(dns::DomainName d);
   
-  dns::Packet QueryPacket(dns::DomainName d) const;
   bool isAppRequest(ushort id) const;
   bool isHostRequest(ushort id) const;
   bool existRR(const dns::DomainName& d) const;
