@@ -449,25 +449,25 @@ namespace dns {
       std::string res = "-------------- dns packet ---------------\n";
 
       res += "** HEADER ** \n";
-      res += header.as_string() + "\n\n";
+      res += header.as_string();
   
-      res += "\n\n** QUESTION SECTION ** \n";
+      res += "\n** QUESTION SECTION ** \n";
       std::list<dns::ResourceRecord>::const_iterator it;
       for (it = questions.begin(); it != questions.end(); ++it) {
         res += it->as_string() + "\n";
       }
       
-      res += "\n\n** ANSWER SECTION ** \n";
+      res += "\n** ANSWER SECTION ** \n";
       for (it = answers.begin(); it != answers.end(); ++it) {
         res += it->as_string() + "\n";
       }
       
-      res += "\n\n** AUTHORITATIVES SECTION ** \n";
+      res += "\n** AUTHORITATIVES SECTION ** \n";
       for (it = authoritatives.begin(); it != authoritatives.end(); ++it) {
         res += it->as_string() + "\n";
       }
       
-      res += "\n\n** ADITIONAL SECTION ** \n";
+      res += "\n** ADITIONAL SECTION ** \n";
       for (it = aditionals.begin(); it != aditionals.end(); ++it) {
         res += it->as_string() + "\n";
       }
