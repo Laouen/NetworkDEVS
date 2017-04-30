@@ -10,8 +10,18 @@ void switch_protocol::init(double t, ...) {
   std::string module_name = va_arg(parameters,char*);
   logger.setModuleName("Switch " + module_name);
 
+  // reading mac
+  mac = va_arg(parameters, char*);
+  logger.info("MAC: " + mac.as_string());
+
   interface_amount = (ushort)va_arg(parameters,double);
   logger.info("Interface amounts: " + std::to_string(interface_amount));
+
+  // initializing swp ports
+  for (int i=0; i<interface_amount; ++i) {
+    swp_ports.push_back(swp_protocol());
+    swp_ports.back().init(mac, module_name + " Port: " + std::to_string(i));
+  }
 
   // building forwarding table
   const char* file_path = va_arg(parameters,char*);
@@ -37,39 +47,104 @@ void switch_protocol::init(double t, ...) {
 }
 
 double switch_protocol::ta(double t) {
+  std::vector<swp_protocol>::iterator it;
+
+  for(it=swp_ports.begin(); it!=swp_ports.end(); ++it) {
+    next_internal = std::min(next_internal, it->nexTimeout());
+  }
   return next_internal;
 }
 
 Event switch_protocol::lambda(double t) {
+
   return output;
 }
 
 void switch_protocol::dinternal(double t) {
+
+  this->updateTimeouts(t);
+
+
+  for (ushort i=0; i<swp_ports.size(); ++i) {
+    if (swp_ports[i].thereIsFrameToSend()) {
+      swp_ports[i].send();
+      next_internal = swp_ports[i].send_time;
+      return;
+    }
+  }
+
+  for (ushort i=0; i<swp_ports.size(); ++i) {
+    if (!swp_ports[i].to_send_frames.empty()) {
+      this->sendFrames(i);
+      next_internal = send_frame_time;
+      return;
+    }
+  }
+
+  for (ushort i=0; i<swp_ports.size(); ++i) {
+    if (swp_ports[i].timeoutTriggered()) {
+      swp_ports[i].timeout();
+      next_internal = swp_timeout_time;
+      return;
+    }
+  }
+
+  for (ushort i=0; i<swp_ports.size(); ++i) {
+    if (!swp_ports[i].accepted_frames.empty()) {
+      link::Frame frame = swp_ports[i].accepted_frames.front();
+      this->processFrame(frame,i);
+      swp_ports[i].accepted_frames.pop();
+      next_internal = process_frame_time;
+      return;
+    }
+  }
+
   if (!lower_layer_data_in.empty()) {
-    link::Multiplexed_frame frame = lower_layer_data_in.front();
-    this->processFrame(frame);
+    link::Multiplexed_frame multiplexed_frame = lower_layer_data_in.front();
+    swp_protocol swp = swp_ports[multiplexed_frame.interface];
+    swp.processFrame(multiplexed_frame.frame);
     lower_layer_data_in.pop();
     next_internal = process_frame_time;
+    return;
   }
 }
 
-void switch_protocol::processFrame(link::Multiplexed_frame& multiplexed_frame) {
-  link::Frame frame = multiplexed_frame.frame;
+void switch_protocol::dexternal(double t) {
+
+  this->updateTimeouts(t);
+}
+
+/***************** Datagram **************************/
+
+void switch_protocol::processFrame(link::Frame& frame, ushort interface) {
   
   if (frame.MAC_destination == BROADCAST_MAC_ADDRESS) {
-    this->sendToAllInterfaces(frame, multiplexed_frame.interface);
+    this->sendToAllInterfaces(frame, interface);
     return;
   }
 
   if (forwarding_table.find(frame.MAC_destination) == forwarding_table.end()) {
     // this model does not implement any dinamic method to get the interface
-    logger.info("Destination mac address " + 
+    logger.info("MAC_destination " + 
                 frame.MAC_destination.as_string() + 
-                " not found in forwarding table");
+                " not found in the forwarding table");
     return;
   }
 
-  this->send(frame,forwarding_table.at(frame.MAC_destination));
+  this->send(frame, forwarding_table.at(frame.MAC_destination));
+}
+
+void switch_protocol::sendFrames(ushort interface) {
+  link::Multiplexed_frame multiplexed_frame;
+  swp_protocol swp = swp_ports[interface];
+
+  while(!swp.to_send_frames.empty()) {
+    multiplexed_frame.frame = swp.to_send_frames.front();
+    multiplexed_frame.frame.CRC = this->calculateCRC();
+    multiplexed_frame.interface = interface;
+    lower_layer_data_out.push(multiplexed_frame,2);
+    swp.to_send_frames.pop();
+  }
 }
 
 void switch_protocol::sendToAllInterfaces(link::Frame& frame, ushort source_interface) {
@@ -91,13 +166,22 @@ void switch_protocol::sendToAllInterfaces(link::Frame& frame, ushort source_inte
 }
 
 void switch_protocol::send(link::Frame& frame, ushort interface) {
-    logger.info("send frame for MAC: " + 
-                frame.MAC_destination.as_string() + 
-                " throw interface " + 
-                std::to_string(interface));
+  logger.info("send frame for MAC: " + 
+              frame.MAC_destination.as_string() + 
+              " throw interface " + 
+              std::to_string(interface));
 
-    link::Multiplexed_frame m;
-    m.interface = interface;
-    m.frame = frame; 
-    lower_layer_data_out.push(m,2);   
+  swp_ports[interface].sendFrame(frame);
 }
+
+void switch_protocol::updateTimeouts(double t) {
+  for (int i=0; i<swp_ports.size(); ++i) {
+    swp_ports[i].updateTimeouts(t-last_transition);
+  }
+}
+
+/*********** Unimplemented Comunication Methods *****************/
+
+unsigned long switch_protocol::calculateCRC() { return 0; }
+
+bool switch_protocol::verifyCRC(link::Frame frame) { return true; }

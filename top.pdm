@@ -1936,7 +1936,7 @@ Coupled
                                                                             }
                                                                         Atomic
                                                                             {
-                                                                            Name = Atomic0
+                                                                            Name = Datagram
                                                                             Ports = 4 ; 4
                                                                             Path = NetworkDEVS/switch_protocol.h
                                                                             Description = Atomic DEVS model
@@ -1951,13 +1951,14 @@ Coupled
                                                                             Parameters
                                                                                 {
                                                                                 module_name = Str; 1 ; 
+                                                                                MAC = Str; 0:0:0:0:0:13 ; 
                                                                                 interface_amount = Val; 3 ; 
                                                                                 forwarding_table = Str; ../input/test/switch/1/sw1.forwarding_table ; 
                                                                                 }
                                                                             }
                                                                         Atomic
                                                                             {
-                                                                            Name = Atomic1
+                                                                            Name = Demultiplexer
                                                                             Ports = 1 ; 3
                                                                             Path = NetworkDEVS/demultiplexer_switch.h
                                                                             Description = Atomic DEVS model
@@ -1967,7 +1968,7 @@ Coupled
                                                                                 Dimension = 675 ; 675
                                                                                 Direction = Right
                                                                                 Color = 15
-                                                                                Icon = None
+                                                                                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
                                                                                 }
                                                                             Parameters
                                                                                 {
@@ -1976,7 +1977,7 @@ Coupled
                                                                             }
                                                                         Atomic
                                                                             {
-                                                                            Name = Atomic2
+                                                                            Name = Multiplexer
                                                                             Ports = 3 ; 1
                                                                             Path = NetworkDEVS/multiplexer_switch.h
                                                                             Description = Atomic DEVS model
@@ -2159,6 +2160,7 @@ Coupled
                                                                                     Parameters
                                                                                         {
                                                                                         module_name = Str; 2 ; 
+                                                                                        MAC = Str; 0:0:0:0:0:14 ; 
                                                                                         interface_amount = Val; 3 ; 
                                                                                         forwarding_table = Str; ../input/test/switch/1/sw2.forwarding_table ; 
                                                                                         }
@@ -2367,6 +2369,7 @@ Coupled
                                                                                             Parameters
                                                                                                 {
                                                                                                 module_name = Str; 3 ; 
+                                                                                                MAC = Str; 0:0:0:0:0:15 ; 
                                                                                                 interface_amount = Val; 3 ; 
                                                                                                 forwarding_table = Str; ../input/test/switch/1/sw3.forwarding_table ; 
                                                                                                 }
@@ -2612,6 +2615,7 @@ Coupled
                                                                                                     Parameters
                                                                                                         {
                                                                                                         module_name = Str; 4 ; 
+                                                                                                        MAC = Str; 0:0:0:0:0:16 ; 
                                                                                                         interface_amount = Val; 3 ; 
                                                                                                         forwarding_table = Str; ../input/test/switch/1/sw4.forwarding_table ; 
                                                                                                         }
@@ -2669,7 +2673,7 @@ Coupled
                                                                                                     {
                                                                                                     Source = Cmp ;  3 ;  3 ; 0
                                                                                                     Sink = Cmp ;  1 ;  1 ; -1
-                                                                                                    PointX = -4875 ; -3390 ; -3390
+                                                                                                    PointX = -4875 ; -4875 ; -3390
                                                                                                     PointY = -1125 ; -1125 ; -1125
                                                                                                     }
                                                                                                 }
