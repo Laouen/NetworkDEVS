@@ -22,14 +22,14 @@ void link_protocol::init(double t, ...) {
   interface = (ushort)va_arg(parameters, double);
   logger.info("Interface: " + std::to_string(interface));
 
-  this->swp.init(mac, module_name);
+  swp.init(mac, module_name);
 
   next_internal = infinity;
   output = Event(0,5);
 }
 
 double link_protocol::ta(double t) {
-  return std::min(next_internal, this->swp.nexTimeout());
+  return std::min(next_internal, swp.nexTimeout());
 }
 
 Event link_protocol::lambda(double) {
@@ -38,30 +38,29 @@ Event link_protocol::lambda(double) {
 
 void link_protocol::dinternal(double t) {
 
-  this->swp.updateTimeouts(t-last_transition);
+  swp.updateTimeouts(t-last_transition);
   this->arpUpdateCache(t-last_transition);
 
-
-  if (this->swp.thereIsFrameToSend()) {
-    this->swp.send();
-    next_internal = this->swp.send_time;
-    return;
-  }
-
-  if (!this->swp.to_send_frames.empty()) {
+  if (!swp.to_send_frames.empty()) {
     this->sendFrames();
     next_internal = send_frame_time;
     return;
   }
 
-  if (!this->swp.accepted_frames.empty()) {
+  if (swp.thereIsFrameToSend()) {
+    swp.send();
+    next_internal = swp.send_time;
+    return;
+  }
+
+  if (!swp.accepted_frames.empty()) {
     this->processAcceptedFrames();
     next_internal = deliver_swp_time;
     return;
   }
 
-  if (this->swp.timeoutTriggered()) {
-    this->swp.timeout();
+  if (swp.timeoutTriggered()) {
+    swp.timeout();
     next_internal = swp_timeout_time;
     return;
   }
@@ -84,7 +83,7 @@ void link_protocol::dinternal(double t) {
 }
 
 void link_protocol::dexternal(double t) {
-  this->swp.updateTimeouts(t-last_transition);
+  swp.updateTimeouts(t-last_transition);
   this->arpUpdateCache(t-last_transition);
 }
 
@@ -101,33 +100,36 @@ void link_protocol::processFrame(link::Frame frame) {
     return;
   }
 
-  this->swp.processFrame(frame);
+  swp.processFrame(frame);
 }
 
 void link_protocol::processAcceptedFrames() {
+  logger.debug("link_protocol::processAcceptedFrames");
   link::Frame frame;
   ip::Datagram datagram;
 
-  while (!this->swp.accepted_frames.empty()) {
-    frame = this->swp.accepted_frames.front();
+  while (!swp.accepted_frames.empty()) {
+    frame = swp.accepted_frames.front();
     if (frame.preamble & IS_ARP_PACKET) {
       this->arpProcessPacket(frame);
     } else {
+      logger.debug("send data to up layer");
       memcpy(&datagram,&frame.payload[0],sizeof(datagram));
       higher_layer_data_out.push(datagram,0);
     }
-    this->swp.accepted_frames.pop();
+    swp.accepted_frames.pop();
   }
 }
 
 void link_protocol::sendFrames() {
+  logger.debug("link_protocol::sendFrames");
   link::Frame frame;
 
-  while(!this->swp.to_send_frames.empty()) {
-    frame = this->swp.to_send_frames.front();
+  while(!swp.to_send_frames.empty()) {
+    frame = swp.to_send_frames.front();
     frame.CRC = this->calculateCRC();
     lower_layer_data_out.push(frame,2);
-    this->swp.to_send_frames.pop();
+    swp.to_send_frames.pop();
   }
 }
 
@@ -213,8 +215,9 @@ void link_protocol::arpProcessLinkControl(link::Control control) {
     logger.info("SEND_PACKET");
     if (this->arpCachedMAC(control.ip)) {
       dest_mac = this->arpGetMAC(control.ip);
+      logger.debug("Send to MAC: " + dest_mac.as_string());
       frame = this->wrapInFrame(control.packet, dest_mac);
-      this->swp.sendFrame(frame);
+      swp.sendFrame(frame);
       break;
     }
     // If MAC is not cached
@@ -242,7 +245,7 @@ void link_protocol::arpProcessPacket(link::Frame frame) {
     response.Operation = 0; // response
     response.Target_Hardware_Address = mac;
 
-    this->swp.sendFrame(this->wrapInFrame(response,frame.MAC_source));
+    swp.sendFrame(this->wrapInFrame(response,frame.MAC_source));
   
   } else if (packet.Operation == 0 && packet.Source_Hardware_Address == mac) { // Response packet
 
@@ -315,5 +318,5 @@ void link_protocol::arpSendQuery(IPv4 arp_ip) {
   query.Target_Hardware_Address = BROADCAST_MAC_ADDRESS; // In a query this field is ignored
   query.Target_Protocol_Address = arp_ip;
 
-  this->swp.sendFrame(this->wrapInFrame(query));
+  swp.sendFrame(this->wrapInFrame(query));
 }

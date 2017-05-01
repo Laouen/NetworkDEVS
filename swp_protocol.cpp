@@ -13,10 +13,9 @@ bool swp_protocol::thereIsFrameToSend() {
 }
 
 void swp_protocol::send() {
-  logger.info("swp_protocol::send");
+  logger.debug("swp_protocol::send");
 
   link::Frame frame = swp_state.framesToSend.front();
-  swp_state.framesToSend.pop();
 
   Event msg;
   swp::sendQ_slot<link::Frame> slot;
@@ -32,23 +31,32 @@ void swp_protocol::send() {
 
   swp_state.sendQ.push_back(slot);
   to_send_frames.push(frame);
+
+  swp_state.framesToSend.pop();
   return;
 }
 
 void swp_protocol::sendFrame(link::Frame frame) {
+  logger.debug("swp_protocol::sendFrame");
   swp_state.sendFrame(frame);
 }
 
 bool swp_protocol::timeoutTriggered() {
+  //logger.debug("swp_protocol::timeoutTriggered");
   std::list<swp::sendQ_slot<link::Frame>>::iterator it;
 
   for(it = swp_state.sendQ.begin(); it != swp_state.sendQ.end(); ++it) {
-    if (it->timeout <= 0) return true;
+    if (it->timeout <= 0) {
+      //logger.debug("timeoutTriggered: True");
+      return true;
+    }
   }
+  //logger.debug("timeoutTriggered: False");
   return false;
 }
 
-void swp_protocol::timeout() { 
+void swp_protocol::timeout() {
+  logger.debug("swp_protocol::timeout");
   std::list<swp::sendQ_slot<link::Frame>>::iterator it;
 
   for(it = swp_state.sendQ.begin(); it != swp_state.sendQ.end(); ++it) {

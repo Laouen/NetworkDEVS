@@ -27,7 +27,7 @@ void dns_server::init(double t,...) {
       }
     }
   } else {
-    logger.error("No authoritative RR table file.");
+    logger.info("No authoritative RR table file.");
   }
 
   if (!authoritative_RRs.empty()) {
@@ -50,7 +50,7 @@ void dns_server::init(double t,...) {
       }
     }
   } else {
-    logger.error("No zone server table file.");
+    logger.info("No zone server table file.");
   }
 
   if (!zone_servers.empty()) {

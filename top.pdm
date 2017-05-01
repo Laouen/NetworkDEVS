@@ -1254,7 +1254,7 @@ Coupled
                                                         }
                                                     Parameters
                                                         {
-                                                        module_name = Str; Router 1 NET 1 ; 
+                                                        module_name = Str; Router 1 NET 2 ; 
                                                         mac = Str; 0:0:0:0:0:4 ; 
                                                         ip = Str; 2.0.0.0 ; 
                                                         interface = Val; 2 ; 
@@ -1950,7 +1950,7 @@ Coupled
                                                                                 }
                                                                             Parameters
                                                                                 {
-                                                                                module_name = Str; 1 ; 
+                                                                                module_name = Str; Switch 1 ; 
                                                                                 MAC = Str; 0:0:0:0:0:13 ; 
                                                                                 interface_amount = Val; 3 ; 
                                                                                 forwarding_table = Str; ../input/test/switch/1/sw1.forwarding_table ; 
@@ -2159,7 +2159,7 @@ Coupled
                                                                                         }
                                                                                     Parameters
                                                                                         {
-                                                                                        module_name = Str; 2 ; 
+                                                                                        module_name = Str; Switch 2 ; 
                                                                                         MAC = Str; 0:0:0:0:0:14 ; 
                                                                                         interface_amount = Val; 3 ; 
                                                                                         forwarding_table = Str; ../input/test/switch/1/sw2.forwarding_table ; 
@@ -2368,7 +2368,7 @@ Coupled
                                                                                                 }
                                                                                             Parameters
                                                                                                 {
-                                                                                                module_name = Str; 3 ; 
+                                                                                                module_name = Str; Switch 3 ; 
                                                                                                 MAC = Str; 0:0:0:0:0:15 ; 
                                                                                                 interface_amount = Val; 3 ; 
                                                                                                 forwarding_table = Str; ../input/test/switch/1/sw3.forwarding_table ; 
@@ -2614,7 +2614,7 @@ Coupled
                                                                                                         }
                                                                                                     Parameters
                                                                                                         {
-                                                                                                        module_name = Str; 4 ; 
+                                                                                                        module_name = Str; Switch 4 ; 
                                                                                                         MAC = Str; 0:0:0:0:0:16 ; 
                                                                                                         interface_amount = Val; 3 ; 
                                                                                                         forwarding_table = Str; ../input/test/switch/1/sw4.forwarding_table ; 

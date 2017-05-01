@@ -241,7 +241,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 1 NET 1","0:0:0:0:0:4","2.0.0.0",2.000000e+00
+        Parameters = "Router 1 NET 2","0:0:0:0:0:4","2.0.0.0",2.000000e+00
        }
       EIC
        {
@@ -360,7 +360,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "1","0:0:0:0:0:13",3.000000e+00,"../input/test/switch/1/sw1.forwarding_table"
+        Parameters = "Switch 1","0:0:0:0:0:13",3.000000e+00,"../input/test/switch/1/sw1.forwarding_table"
        }
       Simulator
        {
@@ -395,7 +395,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "2","0:0:0:0:0:14",3.000000e+00,"../input/test/switch/1/sw2.forwarding_table"
+        Parameters = "Switch 2","0:0:0:0:0:14",3.000000e+00,"../input/test/switch/1/sw2.forwarding_table"
        }
       Simulator
        {
@@ -430,7 +430,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "3","0:0:0:0:0:15",3.000000e+00,"../input/test/switch/1/sw3.forwarding_table"
+        Parameters = "Switch 3","0:0:0:0:0:15",3.000000e+00,"../input/test/switch/1/sw3.forwarding_table"
        }
       Simulator
        {
@@ -475,7 +475,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "4","0:0:0:0:0:16",3.000000e+00,"../input/test/switch/1/sw4.forwarding_table"
+        Parameters = "Switch 4","0:0:0:0:0:16",3.000000e+00,"../input/test/switch/1/sw4.forwarding_table"
        }
       EIC
        {

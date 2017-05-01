@@ -19,6 +19,7 @@ void switch_protocol::init(double t, ...) {
 
   // initializing swp ports
   for (int i=0; i<interface_amount; ++i) {
+    logger.info("Added swp protocol for port " + std::to_string(i));
     swp_ports.push_back(swp_protocol());
     swp_ports.back().init(mac, module_name + " Port: " + std::to_string(i));
   }
@@ -64,27 +65,23 @@ void switch_protocol::dinternal(double t) {
 
   this->updateTimeouts(t);
 
+  bool frames_sent = false;
+  for (ushort i=0; i<swp_ports.size(); ++i) {
+    if (!swp_ports[i].to_send_frames.empty()) {
+      this->sendFrames(i);
+      frames_sent = true;
+    }
+  }
+
+  if (frames_sent) {
+    next_internal = send_frame_time;
+    return;
+  }
 
   for (ushort i=0; i<swp_ports.size(); ++i) {
     if (swp_ports[i].thereIsFrameToSend()) {
       swp_ports[i].send();
       next_internal = swp_ports[i].send_time;
-      return;
-    }
-  }
-
-  for (ushort i=0; i<swp_ports.size(); ++i) {
-    if (!swp_ports[i].to_send_frames.empty()) {
-      this->sendFrames(i);
-      next_internal = send_frame_time;
-      return;
-    }
-  }
-
-  for (ushort i=0; i<swp_ports.size(); ++i) {
-    if (swp_ports[i].timeoutTriggered()) {
-      swp_ports[i].timeout();
-      next_internal = swp_timeout_time;
       return;
     }
   }
@@ -99,10 +96,17 @@ void switch_protocol::dinternal(double t) {
     }
   }
 
+  for (ushort i=0; i<swp_ports.size(); ++i) {
+    if (swp_ports[i].timeoutTriggered()) {
+      swp_ports[i].timeout();
+      next_internal = swp_timeout_time;
+      return;
+    }
+  }
+
   if (!lower_layer_data_in.empty()) {
-    link::Multiplexed_frame multiplexed_frame = lower_layer_data_in.front();
-    swp_protocol swp = swp_ports[multiplexed_frame.interface];
-    swp.processFrame(multiplexed_frame.frame);
+    link::Multiplexed_frame mf = lower_layer_data_in.front();
+    swp_ports[mf.interface].processFrame(mf.frame);
     lower_layer_data_in.pop();
     next_internal = process_frame_time;
     return;
@@ -117,7 +121,7 @@ void switch_protocol::dexternal(double t) {
 /***************** Datagram **************************/
 
 void switch_protocol::processFrame(link::Frame& frame, ushort interface) {
-  
+  logger.debug("switch_protocol::processFrame");
   if (frame.MAC_destination == BROADCAST_MAC_ADDRESS) {
     this->sendToAllInterfaces(frame, interface);
     return;
@@ -135,21 +139,21 @@ void switch_protocol::processFrame(link::Frame& frame, ushort interface) {
 }
 
 void switch_protocol::sendFrames(ushort interface) {
+  logger.debug("switch_protocol::sendFrames");
   link::Multiplexed_frame multiplexed_frame;
-  swp_protocol swp = swp_ports[interface];
 
-  while(!swp.to_send_frames.empty()) {
-    multiplexed_frame.frame = swp.to_send_frames.front();
+  while(!swp_ports[interface].to_send_frames.empty()) {
+    multiplexed_frame.frame = swp_ports[interface].to_send_frames.front();
     multiplexed_frame.frame.CRC = this->calculateCRC();
     multiplexed_frame.interface = interface;
     lower_layer_data_out.push(multiplexed_frame,2);
-    swp.to_send_frames.pop();
+    swp_ports[interface].to_send_frames.pop();
   }
 }
 
 void switch_protocol::sendToAllInterfaces(link::Frame& frame, ushort source_interface) {
   logger.info("Bradcast MAC sent throw all interfaces");
-  logger.debug("srouce interface: " + std::to_string(source_interface));
+  logger.debug("source interface: " + std::to_string(source_interface));
 
   std::set<ushort> interfaces;
   std::map<MAC,ushort>::iterator it;
