@@ -8,13 +8,13 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "libs/message_list.h"
+#include "libs/message.h"
 
 #include "structures/abstract_types.h"
 #include "structures/link.h"
 
 class multiplexer_switch: public Simulator { 
-  message_list<link::Multiplexed_frame> _sent_frame_out;
+  message::queue<link::Multiplexed_frame> _sent_frame_out;
   Event _output;
 
 public:

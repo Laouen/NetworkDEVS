@@ -1,20 +1,30 @@
-#if !defined message_list_h
-#define message_list_h
+#if !defined message_h
+#define message_h
 
 #include <queue>
 #include <utility>
 #include "simulator.h"
 
+namespace message {
+
 template<typename MSG>
-class message_list{
+class queue{
+  ushort default_port;
   MSG current_msg;
   std::queue<std::pair<MSG,int>> queued_msgs; // pair (Message,port) 
-	
+  
 public:
-  message_list() {}
+  queue() {}
+  queue(ushort other_default_port) {
+    default_port = other_default_port;
+  }
 	
   void push(const MSG& m, int port) {
   	queued_msgs.push(std::make_pair(m,port));
+  };
+
+  void push(const MSG& m) {
+    queued_msgs.push(std::make_pair(m,default_port));
   };
 
   Event pop() {
@@ -33,5 +43,6 @@ public:
     return queued_msgs.empty();
   }
 };
+}
 
 #endif

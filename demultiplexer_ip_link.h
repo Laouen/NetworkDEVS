@@ -8,7 +8,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "libs/message_list.h"
+#include "libs/message.h"
 
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
@@ -18,7 +18,7 @@
 #include "structures/link.h"
 
 class demultiplexer_ip_link: public Simulator { 
-  message_list<link::Control> _sent_control_inputs;
+  message::queue<link::Control> _sent_control_inputs;
   unsigned int _max_interface;
   Event _output;
 

@@ -49,7 +49,7 @@ void ip_host_protocol::processIPDatagram(ip::Datagram p) {
   }
 
   // Delivering segment to the next top layer
-  higher_layer_data_out.push(p.data,0);
+  higher_layer_data_out.push(p.data);
   return;
 }
 

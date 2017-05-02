@@ -8,13 +8,13 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "libs/message_list.h"
+#include "libs/message.h"
 
 #include "structures/abstract_types.h"
 #include "structures/link.h"
 
 class demultiplexer_switch: public Simulator { 
-  message_list<link::Frame> _sent_frame_out;
+  message::queue<link::Frame> _sent_frame_out;
   unsigned int _max_interface;
   Event _output;
 

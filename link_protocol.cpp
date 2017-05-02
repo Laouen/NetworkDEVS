@@ -115,7 +115,7 @@ void link_protocol::processAcceptedFrames() {
     } else {
       logger.debug("send data to up layer");
       memcpy(&datagram,&frame.payload[0],sizeof(datagram));
-      higher_layer_data_out.push(datagram,0);
+      higher_layer_data_out.push(datagram);
     }
     swp.accepted_frames.pop();
   }
@@ -128,7 +128,7 @@ void link_protocol::sendFrames() {
   while(!swp.to_send_frames.empty()) {
     frame = swp.to_send_frames.front();
     frame.CRC = this->calculateCRC();
-    lower_layer_data_out.push(frame,2);
+    lower_layer_data_out.push(frame);
     swp.to_send_frames.pop();
   }
 }
@@ -184,7 +184,7 @@ void link_protocol::sendControl(link::Ctrl c, link::Control control) {
   logger.info("Send control " + link::to_string(c));
   control.request = c;
   control.interface = interface;
-  higher_layer_ctrl_out.push(control, 1);
+  higher_layer_ctrl_out.push(control);
 }
 
 /*********** Unimplemented Comunication Methods *****************/

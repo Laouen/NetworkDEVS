@@ -8,7 +8,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "libs/message_list.h"
+#include "libs/message.h"
 
 #include "structures/abstract_types.h"
 #include "structures/socket.h"
@@ -19,8 +19,8 @@
 #include "structures/link.h"
 
 class demultiplexer_app_udp: public Simulator { 
-  message_list<udp::Control> _sent_control_inputs;
-  message_list<dns::Packet> _sent_packet_inputs;
+  message::queue<udp::Control> _sent_control_inputs;
+  message::queue<dns::Packet> _sent_packet_inputs;
   unsigned int _max_id;
   Event _output;
 

@@ -92,7 +92,7 @@ void ip_protocol::routeIPDatagram(ip::Datagram p) {
   if (!this->getBestRoute(dest_ip, route)) {
     logger.info("Discard packet: No route for packet with dest_ip: " + dest_ip.as_string());
     ip::Control m = ip::Control(ip::Ctrl::ROUTING_ERROR);
-    higher_layer_ctrl_out.push(m, 1);
+    higher_layer_ctrl_out.push(m);
     return; 
   }
 
@@ -191,7 +191,7 @@ void ip_protocol::arp(ip::Datagram packet, IPv4 nexthop) {
   }
 
   logger.info("ARP query throw interface: NET " + std::to_string(m.interface));
-  lower_layer_ctrl_out.push(m,3);
+  lower_layer_ctrl_out.push(m);
 }
 
 void ip_protocol::processLinkControl(link::Control control) {
@@ -214,7 +214,7 @@ void ip_protocol::processLinkControl(link::Control control) {
       m.ip = control.ip;
       packets_to_send.pop();
 
-      lower_layer_ctrl_out.push(m,3);
+      lower_layer_ctrl_out.push(m);
     }
     arp_waiting_packets.erase(control.ip);
     break;

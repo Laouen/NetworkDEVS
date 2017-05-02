@@ -199,10 +199,10 @@ protected:
   std::queue<CL> lower_layer_ctrl_in;  // Input Port 3
   
   // Output queues
-  msg::queue<DH2> higher_layer_data_out; // Output Port 0 
-  msg::queue<DL2> lower_layer_data_out;  // Output Port 1
-  msg::queue<CH2> higher_layer_ctrl_out; // Output Port 2
-  msg::queue<CL2> lower_layer_ctrl_out;  // Output Port 3
+  message::queue<DH2> higher_layer_data_out; // Output Port 0 
+  message::queue<DL2> lower_layer_data_out;  // Output Port 1
+  message::queue<CH2> higher_layer_ctrl_out; // Output Port 2
+  message::queue<CL2> lower_layer_ctrl_out;  // Output Port 3
 
   Event output;
 
@@ -283,27 +283,27 @@ Para procesar los mensajes, dentro del método \textit{internal}, los mismos deb
 
 Para enviar mensajes las colas a utilizar son las siguientes:
 \begin{itemize}
-\item msg::queue$<DH2>$ higher\_layer\_data\_out: Output Port 0 
-\item msg::queue$<DL2>$ lower\_layer\_data\_out:  Output Port 1
-\item msg::queue$<CH2>$ higher\_layer\_ctrl\_out: Output Port 2
-\item msg::queue$<CL2>$ lower\_layer\_ctrl\_out:  Output Port 3
+\item message::queue$<DH2>$ higher\_layer\_data\_out: Output Port 0 
+\item message::queue$<DL2>$ lower\_layer\_data\_out:  Output Port 1
+\item message::queue$<CH2>$ higher\_layer\_ctrl\_out: Output Port 2
+\item message::queue$<CL2>$ lower\_layer\_ctrl\_out:  Output Port 3
 \end{itemize}
 
 Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada con un $2$ al final, esto es porque los mismos por defecto se instancian usando los tipos de las colas de entrada a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya que se considera buena práctica que el tipo de datos que intercambian dos capas por un canal de comunicación sea siempre el mismo en ambas direcciones, facilitando la reutilización y comprensión de los modelos por parte de otras personas, sin embargo esto no es siempre posible, principalmente cuando se interactua mediante modelos \textit{demultiplexers}. \\
 
-Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{msg::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
+Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{message::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
 
-El tipo de datos msg::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -> parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameters demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato msg::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
+El tipo de datos message::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -> parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameters demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
 
 \begin{tabular}{|l|c|c|c|}
   \hline
   Nombre & Tipo & Descripción \\
   \hline
-  Max_interface & Int & La cantidad máximas de interfaces de salida que puede demultiplexar. \\
+  Max\_interface & Int & La cantidad máximas de interfaces de salida que puede demultiplexar. \\
   \hline
   \label{table: parameters demultiplexer}
-  \caption{Parametros del modelo demultiplexer}
 \end{tabular}
+%\caption{Parámetros del modelo demultiplexer}
 
 \section{Logger}
 
@@ -401,8 +401,8 @@ Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestra
   Input & String & El path al archivo donde está guardado el input a parsear \\
   \hline
   \label{table: input stream parameters}
-  \caption{Parametros del modelo input\_stream}
 \end{tabular}
+%\caption{Parametros del modelo input\_stream}
 
 \section{Logger}
 
@@ -494,10 +494,10 @@ Cada vez que el protocolo UDP recibe un mensaje de la capa inferior se realizan 
 La estructura de datos \textit{Socket} es utilizada para manipular esta combinaciones de ip-puerto, la misma cuenta con los siguientes campos.
 
 \begin{itemize}
-\item \textbf{local_port: } Es de tipo \textit{uint_16} y representa el puerto del host local al cual se conecta o bindea el socket.
-\item \textbf{remote_port: } Es de tipo \textit{uint_16} y representa el puerto del host remoto al cual se desea enviar y/o recibir datos. Este campo es opcional, no siempre se especifica un host remoto, por ejemplo, cuando se desea leer datos de cualquier host remoto, este campo no debe especificarse.
-\item \textbf{local_ip: } Es de tipo \textit{IPv4}\footnote{El tipo de datos \textit{IPv4} está documentado en formato Doxigen en el código} y representa el ip del host local al cual se conecta o bindea el socket.
-\item \textbf{remote_ip: } Es de tipo \textit{IPv4} y representa el ip del host remoto al cual se desea enviar y/o recibir datos. Este campo es opcional, no siempre se especifica un host remoto, por ejemplo, cuando se desea leer datos de cualquier host remoto, este campo no debe especificarse.
+\item \textbf{local\_port: } Es de tipo \textit{uint\_16} y representa el puerto del host local al cual se conecta o bindea el socket.
+\item \textbf{remote\_port: } Es de tipo \textit{uint\_16} y representa el puerto del host remoto al cual se desea enviar y/o recibir datos. Este campo es opcional, no siempre se especifica un host remoto, por ejemplo, cuando se desea leer datos de cualquier host remoto, este campo no debe especificarse.
+\item \textbf{local\_ip: } Es de tipo \textit{IPv4}\footnote{El tipo de datos \textit{IPv4} está documentado en formato Doxigen en el código} y representa el ip del host local al cual se conecta o bindea el socket.
+\item \textbf{remote\_ip: } Es de tipo \textit{IPv4} y representa el ip del host remoto al cual se desea enviar y/o recibir datos. Este campo es opcional, no siempre se especifica un host remoto, por ejemplo, cuando se desea leer datos de cualquier host remoto, este campo no debe especificarse.
 \item \textbf{status: } Es de tipo enum e indica en que estado se encuentra el socket. Los estados son los mencionados previamente cuando se explicaron los comandos.
 \end{itemize}
 
@@ -509,7 +509,7 @@ La Tabla \ref{table: parameters UDP} muestra los parámetros del modelo UDP en l
   \hline
   Module name & String & El nombre del módulo que utiliza el logger \\
   \hline
-  ip_amount & Int & La cantidad de ip locales, generalmente este valor es 1 \\
+  ip\_amount & Int & La cantidad de ip locales, generalmente este valor es 1 \\
   \hline
   ip 1 & IPv4 & La primer ip local \\
   \hline
@@ -518,9 +518,8 @@ La Tabla \ref{table: parameters UDP} muestra los parámetros del modelo UDP en l
   ip n & IPv4 & La última ip local \\
   \hline
   \label{table: parameters UDP}
-  \caption{Parametros del modelo UDP}
 \end{tabular}
-
+%\caption{Parametros del modelo UDP}
 
 \subsection{IP}
 
@@ -568,7 +567,7 @@ Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra Tabla \
   \hline
   Module name & String & El nombre del módulo que utiliza el logger \\
   \hline
-  ip_amount & Int & La cantidad de ip locales, generalmente este valor es 1 \\
+  ip\_amount & Int & La cantidad de ip locales, generalmente este valor es 1 \\
   \hline
   ip 1 & IPv4 & La primer ip local \\
   \hline
@@ -576,15 +575,15 @@ Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra Tabla \
   \hline
   ip n & IPv4 & La última ip local \\
   \hline
-  reserved_ip & IPv4 & Reservados para IP de loopback \\
+  reserved\_ip & IPv4 & Reservados para IP de loopback \\
   \hline
-  file_path_rt & String & Path al archivo que contiene las entradas de la routing table \\
+  file\_path\_rt & String & Path al archivo que contiene las entradas de la routing table \\
   \hline
-  file_path_ft & String & Path al archivo que contiene las entradas de la fowarding table \\
+  file\_path\_ft & String & Path al archivo que contiene las entradas de la fowarding table \\
   \hline
   \label{table: parameters UDP}
-  \caption{Parametros del modelo UDP}
 \end{tabular}
+%\caption{Parámetros del modelo UDP}
 
 \subsection{ARP}
 
@@ -645,8 +644,8 @@ La tabla \ref{table: parameters link} muestra los parámetros del modelo de link
   interface & Int & El número de la interfaz \\
   \hline
   \label{table: parameters link}
-  \caption{Parametros del modelo Link}
 \end{tabular}
+%\caption{Parametros del modelo Link}
 
 Una vez que el link::Frame esta listo para ser enviado, la capa de linkeo utiliza el protocolo SWP (\textit{Sliding Window Protocol}) para enviar el mismo. \\
 
@@ -697,13 +696,13 @@ La Tabla \ref{table: parameters datagrams} muestra los parametros del modelo swi
   \hline
   Module name & String & El nombre del módulo que utiliza el logger \\
   \hline
-  Interface_amount & Int & La cantidad de interfaces por las cuales forwardear los Frames entrantes \\
+  Interface\_amount & Int & La cantidad de interfaces por las cuales forwardear los Frames entrantes \\
   \hline
-  forwarding_table & String & Path al archivo que contiene las entradas de la fowarding table \\
+  forwarding\_table & String & Path al archivo que contiene las entradas de la fowarding table \\
   \hline
   \label{table: parameters datagrams}
-  \caption{Parametros del modelo Switch}
 \end{tabular}
+%\caption{Parámetros del modelo Switch}
 
 \subsection{Escenario implementado}
 

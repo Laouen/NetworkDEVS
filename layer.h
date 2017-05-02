@@ -15,7 +15,7 @@
 #include <limits>
 #include <iomanip>
 
-#include "libs/message_list.h"
+#include "libs/message.h"
 #include "libs/parser.h"
 #include "libs/logger.h"
 
@@ -47,10 +47,10 @@ protected:
   std::queue<CL> lower_layer_ctrl_in;
   
   // output queues
-  message_list<DH2> higher_layer_data_out;
-  message_list<DL2> lower_layer_data_out;
-  message_list<CH2> higher_layer_ctrl_out;
-  message_list<CL2> lower_layer_ctrl_out;
+  message::queue<DH2> higher_layer_data_out = 0;
+  message::queue<DL2> lower_layer_data_out = 2;
+  message::queue<CH2> higher_layer_ctrl_out = 1;
+  message::queue<CL2> lower_layer_ctrl_out = 3;
 
   Event output;
 

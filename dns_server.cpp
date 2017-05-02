@@ -86,7 +86,7 @@ void dns_server::dinternal(double t) {
     c = udp::Control(0,udp::Ctrl::BIND);
     c.local_port = 53;
     c.local_ip = local_ip;
-    lower_layer_ctrl_out.push(c,3);
+    lower_layer_ctrl_out.push(c);
     next_internal = 0;
     return;
   }
@@ -96,7 +96,7 @@ void dns_server::dinternal(double t) {
     c = udp::Control(0,udp::Ctrl::READ);
     c.local_port = 53;
     c.local_ip = local_ip;
-    lower_layer_ctrl_out.push(c,3);
+    lower_layer_ctrl_out.push(c);
     next_internal = 0;
     return;
   }
@@ -148,7 +148,7 @@ void dns_server::processDomainName(dns::DomainName domain) {
 
     logger.info("Domain name is in cache");
     this->directAnswer(p);
-    higher_layer_data_out.push(p,0); 
+    higher_layer_data_out.push(p); 
 
   } else {
 
@@ -204,7 +204,7 @@ void dns_server::sendTo(const dns::Packet& p, IPv4 server_ip, ushort server_port
   c.packet.aditionals.front().AValue = local_ip;
 
   logger.info("Send DNS Query to: (" + c.remote_ip.as_string() + ", " + std::to_string(c.remote_port) + ")");
-  lower_layer_ctrl_out.push(c,3);
+  lower_layer_ctrl_out.push(c);
 }
 
 void dns_server::processDNSPacket(dns::Packet packet) {
@@ -305,7 +305,7 @@ void dns_server::directAnswer(dns::Packet& packet) {
 void dns_server::deliverAnswer(const dns::Packet& packet) {
 
   if (this->isAppRequest(packet.header.id)) {
-    higher_layer_data_out.push(packet,0);
+    higher_layer_data_out.push(packet);
   } else if (this->isHostRequest(packet.header.id)) {
 
     IPv4 host_ip = this->getPacket(packet.header.id).aditionals.front().AValue; // first aditional is requester host ip

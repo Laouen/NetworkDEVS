@@ -8,7 +8,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "libs/message_list.h"
+#include "libs/message.h"
 #include "libs/parser.h"
 #include "libs/logger.h"
 
@@ -25,7 +25,7 @@ class input_stream: public Simulator {
   Logger logger;
   Parser<dns::DomainName> _parser;
   double _next_time;
-  message_list<dns::DomainName> _sent_inputs;
+  message::queue<dns::DomainName> _sent_inputs;
   dns::DomainName _next_input;
 
 public:

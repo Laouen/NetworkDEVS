@@ -146,7 +146,7 @@ void switch_protocol::sendFrames(ushort interface) {
     multiplexed_frame.frame = swp_ports[interface].to_send_frames.front();
     multiplexed_frame.frame.CRC = this->calculateCRC();
     multiplexed_frame.interface = interface;
-    lower_layer_data_out.push(multiplexed_frame,2);
+    lower_layer_data_out.push(multiplexed_frame);
     swp_ports[interface].to_send_frames.pop();
   }
 }
