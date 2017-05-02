@@ -2,7 +2,7 @@
 #if !defined dns_server_h
 #define dns_server_h
 
-#include "layer.h"
+#include "template/layer.h"
 #include <cmath>
 
 /* Documentation

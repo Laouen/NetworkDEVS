@@ -1,7 +1,7 @@
 #if !defined swp_protocol_h
 #define swp_protocol_h
 
-#include "layer.h"
+#include "template/layer.h"
 
 class swp_protocol {
 private:

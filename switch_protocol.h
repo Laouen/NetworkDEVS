@@ -2,7 +2,7 @@
 #if !defined switch_protocol_h
 #define switch_protocol_h
 
-#include "layer.h"
+#include "template/layer.h"
 #include <set>
 #include "swp_protocol.h"
 

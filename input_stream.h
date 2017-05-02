@@ -8,7 +8,7 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include "libs/message.h"
+#include "libs/message_queue.h"
 #include "libs/parser.h"
 #include "libs/logger.h"
 

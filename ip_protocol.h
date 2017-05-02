@@ -1,7 +1,7 @@
 #if !defined ip_protocol_h
 #define ip_protocol_h
 
-#include "layer.h"
+#include "template/layer.h"
 
 /* Documentation
  *

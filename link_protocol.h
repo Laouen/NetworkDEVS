@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-#include "layer.h"
+#include "template/layer.h"
 #include "swp_protocol.h"
 
 // there is no control type for lower layer physical protocols
