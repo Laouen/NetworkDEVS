@@ -293,17 +293,19 @@ Como se puede observar, los nombres de los tipos a instanciar son iguales a los 
 
 Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{message::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
 
-El tipo de datos message::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -> parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameters demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
+El tipo de datos message::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -> parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
 
-\begin{tabular}{|l|c|c|c|}
-  \hline
-  Nombre & Tipo & Descripción \\
-  \hline
-  Max\_interface & Int & La cantidad máximas de interfaces de salida que puede demultiplexar. \\
-  \hline
-  \label{table: parameters demultiplexer}
-\end{tabular}
-%\caption{Parámetros del modelo demultiplexer}
+\begin{table*}[h]
+	\begin{tabular}{|l|c|c|c|}
+  		\hline
+  		Nombre & Tipo & Descripción \\
+  		\hline
+  		Max\_interface & Int & La cantidad máximas de interfaces de salida que puede demultiplexar. \\
+  		\hline
+	\end{tabular}
+	\caption{Parámetros del modelo demultiplexer}
+	\label{table: parameter demultiplexer}
+\end{table*}
 
 \section{Logger}
 
@@ -391,7 +393,7 @@ Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del in
 Una vez creada la herencia, el modelo atómico está listo para ser utilizado, el mismo no tiene ningún puerto de entrada y un solo puerto de salida por donde salen los inputs generados, este puerto de salida es el que debe ser conectado al modelo que precisa del input. \\
 
 Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestran en la Tabla \ref{table: input stream parameters}
-
+\begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
   \hline
   Nombre & Tipo & Descripción \\
@@ -400,9 +402,10 @@ Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestra
   \hline
   Input & String & El path al archivo donde está guardado el input a parsear \\
   \hline
-  \label{table: input stream parameters}
 \end{tabular}
-%\caption{Parametros del modelo input\_stream}
+\caption{Parametros del modelo input\_stream}
+\label{table: input stream parameters}
+\end{table*}
 
 \section{Logger}
 
@@ -502,7 +505,7 @@ La estructura de datos \textit{Socket} es utilizada para manipular esta combinac
 \end{itemize}
 
 La Tabla \ref{table: parameters UDP} muestra los parámetros del modelo UDP en la IDE PowerDEVS.
-
+\begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
   \hline
   Nombre & Tipo & Descripción \\
@@ -517,9 +520,10 @@ La Tabla \ref{table: parameters UDP} muestra los parámetros del modelo UDP en l
   \hline
   ip n & IPv4 & La última ip local \\
   \hline
-  \label{table: parameters UDP}
 \end{tabular}
-%\caption{Parametros del modelo UDP}
+\caption{Parametros del modelo UDP}
+\label{table: parameters UDP}
+\end{table*}
 
 \subsection{IP}
 
@@ -559,8 +563,9 @@ Dado que en este trabajo no se implementó ningún algoritmo dinámico para comp
 
 Para poder enviar un ip::Datagram al nexthope o al host en cuestión, el protocolo IP le manda un mensaje de control a la capa de linkeo para pedirle que prepare la MAC address asociada al IP del \textit{nexthope}, una vez que recibe el mensaje de la capa de linkeo confirmando que dicha MAC address está cacheada, el protocolo IP pasa el ip::Datagram a la capa de linkeo para que el mismo lo envíe. El mensaje de confirmación de que la \textit{MAC address} existe no asegura que el mensaje sea enviado, en caso de que un error acontezca en el protocolo ARP, el mismo se lo comunica a IP que se queda esperando una nueva confirmación del protocolo ARP comunicando que el envío puede ser realizado. \\
 
-Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra Tabla \ref{table: parameters IP}
+Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra la Tabla \ref{table: patameters IP}
 
+\begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
   \hline
   Nombre & Tipo & Descripción \\
@@ -581,9 +586,10 @@ Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra Tabla \
   \hline
   file\_path\_ft & String & Path al archivo que contiene las entradas de la fowarding table \\
   \hline
-  \label{table: parameters UDP}
 \end{tabular}
-%\caption{Parámetros del modelo UDP}
+\label{table: patameters IP}
+\caption{Parámetros del modelo IP}
+\end{table*}
 
 \subsection{ARP}
 
@@ -631,6 +637,7 @@ Un dispositivo puede tener varias interfaces y cada interfaz es un modelo \texti
 
 La tabla \ref{table: parameters link} muestra los parámetros del modelo de link en la IDE PowerDEVS.
 
+\begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
   \hline
   Nombre & Tipo & Descripción \\
@@ -643,9 +650,10 @@ La tabla \ref{table: parameters link} muestra los parámetros del modelo de link
   \hline
   interface & Int & El número de la interfaz \\
   \hline
-  \label{table: parameters link}
 \end{tabular}
-%\caption{Parametros del modelo Link}
+\caption{Parametros del modelo Link}
+\label{table: parameters link}
+\end{table*}
 
 Una vez que el link::Frame esta listo para ser enviado, la capa de linkeo utiliza el protocolo SWP (\textit{Sliding Window Protocol}) para enviar el mismo. \\
 
@@ -690,6 +698,7 @@ Nuevamente, en este trabajo no se implementó ningún algoritmo dinámico para c
 
 La Tabla \ref{table: parameters datagrams} muestra los parametros del modelo switch que implementa el protocolo Datagrams.
 
+\begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
   \hline
   Nombre & Tipo & Descripción \\
@@ -700,9 +709,10 @@ La Tabla \ref{table: parameters datagrams} muestra los parametros del modelo swi
   \hline
   forwarding\_table & String & Path al archivo que contiene las entradas de la fowarding table \\
   \hline
-  \label{table: parameters datagrams}
 \end{tabular}
-%\caption{Parámetros del modelo Switch}
+\caption{Parámetros del modelo Switch}
+\label{table: parameters datagrams}
+\end{table*}
 
 \subsection{Escenario implementado}
 
