@@ -80,7 +80,7 @@ En este trabajo, también pretendemos mostrar como se pueden implementar los dis
 
 \section{Arquitectura}
 
-\subsubsection{Arquitectura general}
+\subsubsection{Conceptos básicos de la arquitectura}
 
 La arquitectura general del modelo propuesto en este trabajo tiene por principal objetivo ofrecer un framework donde se pueda fácilmente desarrollar protocolos, para esto, se concentra en resolver varios puntos principales:
 
@@ -90,6 +90,9 @@ La arquitectura general del modelo propuesto en este trabajo tiene por principal
 \item Minimizar lo más posible la necesidad de tener conocimientos avanzados sobre DEVS a la hora de utilizar la herramienta.
 \end{itemize}
 
+\newpage
+
+\subsubsection{Arquitectura implementada}
 La arquitectura consiste en un modelo acoplado ``dispositivo'' de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [1,..,N]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
 
 \begin{itemize}
@@ -117,9 +120,9 @@ Distintos dispositivos de la red pueden tener distintas cantidades de capas, por
 
 La Figura \ref{figure:general architecture} muestra la arquitectura general recién explicada en un modelo de una red con un host y un router, en el mismo se pueden ver: los multiplexers y demultiplexers, modelos con distintas cantidades de capas y las conexiones entre capas utilizando los distintos puertos. \\
 
-\begin{figure}[htbp]
+\begin{figure}[t]
     \centering
-    \includegraphics[width = 0.5\textwidth]{img/png/general_architecture.png}
+    \includegraphics[width = 0.8\textwidth]{img/png/general_architecture.png}
     \caption{Arquitectura de un modelo en NetworkDEVS con dos dispositivos de N y M capas correspondientemente.}
     \label{figure:general architecture}
 \end{figure}
@@ -130,16 +133,16 @@ La Figura \ref{figure:general architecture} muestra la arquitectura general reci
 
 La arquitectura de las capas está implementada en un modelo template llamado Layer del cual se puede realizar herencia para heredar su estructura. Esta estructura permite abstraer al protocolo de todo el modelo correspondiente al dispositivo, en otras palabras, esta estructura ya modela las propiedades de un dispositivo genérico, esto implica manejar el envío y recepción de mensajes a y desde las otras capas. Para manejar la entrada y salida de mensajes se utilizan colas FIFO; Cada vez que hay un mensajes entrante, el mismo es encolado en la cola de entrada correspondiente y el protocolo los va desencolando y atendiendo de uno o de a muchos dependiendo su implementación, el modelo template ya está armado de forma que mientras no haya mensajes por procesar se mantiene pasivado (en estado IDLE) y mientras que hay mensajes por procesar se queda ciclando para ir atendiéndolos a todos hasta que no halla más mensajes a procesar, momento en el que el modelo se vuelve a pasivar. Por otro lado, cada vez que se quiere enviar un mensaje, el mismo solo debe ser encolado en la cola de mensajes salientes correspondiente dependiendo de si es un mensaje de datos o control a la capa superior o inferior, luego el simulador cuando el protocolo termina el procesamiento actual se encarga de ciclar entre las colas de salida para enviar todos los mensajes que hallan sido encolados. La Figura \ref{figure:layer general architecture} muestra la arquitectura general de una capa cualquiera y la Figura \ref{figure:processing flow} muestra el flujo de procesamiento generado por el modelo template cuando es extendido agregándole un protocolo.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
     \centering
     \includegraphics[width = 0.4\textwidth]{img/png/layer_architecture.png}
     \caption{Arquitectura de una capa en NetworkDEVS.}
     \label{figure:layer general architecture}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
     \centering
-    \includegraphics[width = 0.6\textwidth]{img/png/processing_flow.png}
+    \includegraphics[width = 0.55\textwidth]{img/png/processing_flow.png}
     \caption{Flujo de procesamiento de una capa que extiende al modelo template Layer.}
     \label{figure:processing flow}
 \end{figure}
@@ -170,16 +173,17 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 .3 layer.h.
 .3 demultiplexer.h.
 .3 multiplexer.h.
-.2 top.pdm.
-.2 top.pds.
-.2 top.stm.
+.2 LICENSE.
+.2 README.md.
 }
 
 \medskip
 
 La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Layer} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan están separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxigen y la misma fue exportada y se encuentra disponible en el apéndice de este documento. \\
 
-Todos los tipos de datos están implementados en namespaces que sirven como organizadores, para cada capa existente debe existir un namespace y los tipos de datos inherentes a esa capa tienen que estar definidos dentro del namespace (por más que otras capas lo usen). Si se implementan nuevas capas, se deben crear sus correspondientes namespaces a menos que no halla tipos de datos correspondientes a la capa. De está forma se evitan las ambigüedades que son muy recurrentes en el ámbito de las redes y se explicita la interacción con los datos correspondientes a cada capa.
+Todos los tipos de datos están implementados en namespaces que sirven como organizadores, para cada capa existente debe existir un namespace y los tipos de datos inherentes a esa capa tienen que estar definidos dentro del namespace (por más que otras capas lo usen). Si se implementan nuevas capas, se deben crear sus correspondientes namespaces a menos que no halla tipos de datos correspondientes a la capa. De está forma se evitan las ambigüedades que son muy recurrentes en el ámbito de las redes y se explicita la interacción con los datos correspondientes a cada capa. \\
+
+\textbf{Note: } No están incluidos en esta estructura todos los archivos puntuales al modelo particular implementado, solo se encuentran aquellos archivos correspondientes a la arquitectura del framework. \\
 
 \subsection{Como heredar el modelo layer}
 
@@ -208,6 +212,7 @@ protected:
 
   Event output;
 
+
   // Manipulacion del tiempo virtual de la simulacion 
   double next_internal;
   double last_transition;
@@ -226,8 +231,6 @@ public:
   virtual void dexternal(double t) {}
 };
 \end{lstlisting}
-
-\newpage
 
 PowerDEVS tiene un par de exigencias a la hora de declarar un nuevo modelo, por este motivo, a continuación se muestra un ejemplo de herencia que puede ser usado de base para implementar nuevos modelos de capas. \\
 
@@ -389,6 +392,8 @@ La clase parser cuenta con dos métodos distintos para leer los datos del archiv
 
 La clase Parser puede ser utilizada de forma independiente al modelo que lee input siempre que sea necesario leer y parsear las lineas de un archivo. La interfaz y documentación técnica del Parser está en formato Doxigen y exportado en el apéndice de este documento.
 
+\newpage
+
 \subsection{El modelo input stream}
 
 El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo que se utiliza para iniciar el parser. \\
@@ -545,6 +550,7 @@ Cuando una consulta llega a un servidor iterativo, en caso de ser autoritativo p
 \subsubsection{Estructuras de datos correspondiente a UDP}
 
 El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cuales tienen documentación en formato Doxigen en el códifo y que se encuentra adjunta en el apéndice de este documento:
+
 \begin{itemize}
 \item udp::Segment: Representa un segmento de datos para ser enviado por la red, el mismo cuenta con pseudoheader, header y payload como se muestra en la Figura \ref{figure: udp segment}.
 \item udp::Control: Es la estructura de datos utilizada para la comunicación con la capa de aplicación, en la misma se especifica que comando envía la aplicación a la capa UDP. Toda la información a enviar llega al protocolo UDP a través de esta estructura.
@@ -563,12 +569,14 @@ El protocolo UDP no cuenta con ningún sistema de detección de fallas en la ent
 
 UDP funciona con sockets, los sockets son una combinación de IP y puerto que permiten enviar y entregar los mensajes a la aplicación correspondiente dentro del host de destino. De esta forma, para que un mensaje sea correctamente entregado, el host destino tiene que tener una aplicación que esté escuchando por el puerto al cual fue enviado el mensaje, si este no es el caso, el mensaje es simplemente descartado. Los sockets también cumplen el roll de evitar colisiones entre las aplicaciones ya que las mismas no pueden conectarse a un puerto mediante un socket si el puerto ya está siendo utilizado por otra aplicación, ya sea para enviar o recibir mensajes. La Figura \ref{figure: UPD state machine} muestra la máquina de estados del protocolo UDP implementado en este trabajo. \\
 
-\begin{figure}[!hb]
+\begin{figure}[t]
     \centering
     \includegraphics[width = 0.7\textwidth]{img/png/UDP-state-machine.png}
     \caption{Máquina de estados del protocolo UDP para un socket determinado. Por prolijidad, el comando \textit{CLOSE} no aparece, el mismo corta cualquier estado y vuelve automáticamente a \textit{LIBRE}.}
     \label{figure: UPD state machine}
 \end{figure}
+
+\newpage
  
 En el modelo implementado, los mensajes de Control contienen un campo \textit{request} que indica que operación se desea efectuar (connect, bind, read, etc) también es necesario enviar el IP y puerto del socket y el id de la aplicación, esta información es siempre requerida, ya sea para crear un nuevo socket atado a la aplicación del id o para corroborar que el socket existe y que corresponde a la aplicación que envía el mensaje de control. Dependiendo de la operación, es preciso completar correctamente los campos restantes. A continuación se explica cada operación y que campos requiere cada una: \\
 
@@ -620,7 +628,7 @@ La Tabla \ref{table: parameters UDP} muestra los parámetros del modelo UDP en l
   ip n & IPv4 & La última ip local \\
   \hline
 \end{tabular}
-\caption{Parametros del modelo UDP}
+\caption{Parámetros del modelo UDP}
 \label{table: parameters UDP}
 \end{table*}
 
@@ -662,7 +670,7 @@ Dado que en este trabajo no se implementó ningún algoritmo dinámico para comp
 
 Para poder enviar un ip::Datagram al nexthope o al host en cuestión, el protocolo IP le manda un mensaje de control a la capa de linkeo para pedirle que prepare la MAC address asociada al IP del \textit{nexthope}, una vez que recibe el mensaje de la capa de linkeo confirmando que dicha MAC address está cacheada, el protocolo IP pasa el ip::Datagram a la capa de linkeo para que el mismo lo envíe. El mensaje de confirmación de que la \textit{MAC address} existe no asegura que el mensaje sea enviado, en caso de que un error acontezca en el protocolo ARP, el mismo se lo comunica a IP que se queda esperando una nueva confirmación del protocolo ARP comunicando que el envío puede ser realizado. \\
 
-Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra la Tabla \ref{table: patameters IP}
+Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra la Tabla \ref{table: parameters ip}
 
 \begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
@@ -686,9 +694,11 @@ Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra la Tabl
   file\_path\_ft & String & Path al archivo que contiene las entradas de la fowarding table \\
   \hline
 \end{tabular}
-\label{table: patameters IP}
 \caption{Parámetros del modelo IP}
+\label{table: parameters ip}
 \end{table*}
+
+\newpage
 
 \subsection{ARP}
 
