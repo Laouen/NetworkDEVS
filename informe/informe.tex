@@ -448,26 +448,97 @@ La clase tamplate \textit{Layer}, ya cuenta con una variable de tipo textit{Logg
 \end{figure}
 	
 \subsection{DNS}
-\textit{DNS} (\textit{Domain Name System}) es el sistema mediante el cual se puede transformar un nombre de dominio en una dirección \textit{IP} del host correspondiente. Este sistema es muy utilizado ya que para los humanos es muy difícil recordar direcciones en formato \textit{IP} pero no en formato \textit{Domian Name}, es por esto, que cuando una persona cuenta con un nombre de dominio debe utilizar \textit{DNS}. Este sistema pertenece a la capa de aplicación y es utilizada por diversas aplicaciones para facilitar la comunicación con aplicaciones remotas. Ejemplos de esto son los browsers donde una persona escribe el nombre de dominio de un servidor y \textit{DNS} lo transforma en \textit{IP} para poder acceder al mismo donde se encuentra alojada la plataforma web. 
+\textit{DNS} (\textit{Domain Name System}) es un sistema de indexación mediante el cual se puede transformar un nombre de dominio en una dirección \textit{IP} del host correspondiente. Este sistema es muy utilizado ya que para los humanos es muy difícil recordar direcciones en formato \textit{IP} pero no en formato \textit{Domian Name}. Asi como el sistema de indexación de una guia telefónica indexa por apellido y nombre para conseguir el número de teléfono de las persona, cuando se cuenta con un nombre de dominio se debe utilizar \textit{DNS} para conseguir la direccion \textit{IP} del host. Este sistema pertenece a la capa de aplicación y es utilizada por diversas aplicaciones para facilitar la comunicación con aplicaciones remotas. Ejemplos de esto son los browsers donde una persona escribe el nombre de dominio de un servidor y \textit{DNS} lo transforma en \textit{IP} para poder acceder al mismo donde se encuentra alojada la plataforma web. 
 
 \subsubsection{Estructuras de datos correspondientes}
 La estructura de datos utilizada para el sistema de \textit{DNS} es dns::Packet y cuenta con los siguientes campos:
 \begin{itemize}
-\item \textbf{header: } Es de tipo dns::Header, cuanta con toda la información necesaria para saber cuantos dns::ResourceRecord hay en cada una de los siguientes campos, si es un packete \textit{query} o \textit{response}, etc.
+\item \textbf{header: } Es de tipo dns::Header, cuanta entre otras cosas, con toda la información necesaria para saber cuantos dns::ResourceRecord hay en cada una de los siguientes campos. La Figura \ref{figure: dns header} muestra esta estructura de datos.
 \item \textbf{questions: } Una lista de dns::ResourceRecord que almacena el nombre de dominio del cual se desea obtener el \textit{IP} asociado.
 \item \textbf{answers: } Una lista de dns::ResourceRecord que almacena la respuesta obtenida mediante \textit{DNS}.
 \item \textbf{authoritatives: } Una lista de dns::ResourceRecord que almacena la dirección \textit{IP} de servidores \textit{DNS} mediante los cuales se puede obtener la dirección pedida.
 \item \textbf{aditionals: } Una lista de dns::ResourceRecord donde se guarda la dirección ip del host que mandó el request. De esta forma no necesita pedirle a la capa \textit{UDP} por el ip que mandó el \textit{request}.
 \end{itemize}
 
-\todo[inline]{poner gráfico y explicar dns::Header} \\
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{img/png/dns-header.png}
+    \caption{Estructura del tipo de datos dns::Header alineada a 4 bytes.}
+    \label{figure: dns header}
+\end{figure}
 
-Por otro lado dns::DomainName es una estructura que sirve para guardar nombres de dominios como por ejemplo ``\textit{network.devs.com}''. El mismo cuenta con métodos que permiten trabajar fácilmente con la jerarquía de zonas de los mismos, como puede ser, saber si un nombre de dominio pertenece a la zona de otro nombre de dominio, por ejemplo: \\
+La Figura \ref{figure: dns header} muestra la estructura del header de un paquete dns, en el mismo se ven los campos \textbf{\textit{QDCount}}, \textbf{\textit{ANCount}}, \textbf{\textit{NSCount}} y \textbf{\textit{ARCount}} que indican la cantidad de dns::ResourceRecords en cada una de las secciones \textbf{\textit{questions}}, \textbf{\textit{answers}}, \textbf{\textit{authoritatives}}, \textbf{\textit{aditionals}} respectivamente. No todos los campos son utilizados en la implementación realizada en este trabajo, la utilización de los mismos será explicada a continuación junto con la explicación del funcionamiento del protocolo. Información detallada sobre cada campo del header puede ser encontrada en \cite{dnsheader}\\
 
-dns::DomainName(``\textit{com}'').isZoneFor(``\textit{network.devs.com}'') devuelve verdadero.
+dns::ResourceRecord es la estructura de datos encargada de guardar información de pares de pregunta/respuesta. Si bien la pregunta es siempre de tipo dns::DomainName, la respuesta puede no siempre ser de tipo \textit{IP}, en algunos casos como en los renombres de dominios, o en las consultas no recursivas, la respuesta puede ser  de tipo dns::DomainName.\\
+
+Los campos de la estructura dns::ResourceRecord son los siguientes:
+
+\begin{itemize}
+\item \textbf{name: } Es de tipo dns::DomainName y guarda el nombre de dominio del cual se quiere conocer su \textit{IP}.
+\item \textbf{QType: } Indica el tipo de respuesta; A = 1 representa respuestas de servidores autoritativos y son de tipo \textit{IP}, NS = 2 representa redirecciones a un servidor autoritativo para una determinada zona y son de tipo dns::DomainName.
+\item \textbf{Avalue: } Si la respuesta es de tipo A, este campo guarda el \textit{IP} correspondiente a la respuesta.
+\item \textbf{NSValue: } Si la respuesta es de tipo NS, este campo guarda el dns::DomainName correspondiente a la respuesta.
+\item \textbf{QClass: } Este campo indica el protocolo a utilizar; En este trabajo y en la mayoría de los casos, este campo se mantiene siempre con el valor IN = 1 = Internet protocol.
+\item \textbf{TTL: } Es el tiempo de vida (generalmente en segundos) utilizado para saber cuanto tiempo se puede mantener un recurso obtenido por un pedido \textit{DNS} en la memoria cache antes de considerar que es invalido y eliminarlo.
+\end{itemize}
+
+Por último dns::DomainName es una estructura que sirve para guardar nombres de dominios como por ejemplo ``\textit{network.devs.com}''. El mismo cuenta con métodos que permiten leer, escribir, imprimir y trabajar fácilmente con la jerarquía de zonas de los mismos. Por ejemplo, para saber si un nombre de dominio pertenece a la zona de otro nombre de dominio, Se puede hacer lo siguiente: \\
+
+dns::DomainName(``\textit{com}'').isZoneFor(``\textit{network.devs.com}'').
 \subsubsection{Funcionamiento del protocolo}
 
-\todo[inline]{explicar DNS iterativo y recursivo}
+\paragraph{cliente}
+El protocolo implementado en este trabajo para el cliente es muy simple, las consultas comienzan con un dns::Packet que tiene un solo RR (dns::ResourceRecord) en la sección \textit{questions} que contiene el nombre de dominio del cual se desea saber el \textit{IP}. El Protocolo comienza buscando el nombre de dominio del RR en el cache y si lo encuentra devuelve el \textit{IP} asociado y terminó la consulta. En caso de que no lo encuentre los siguientes pasos son realizados:
+
+\begin{enumerate}
+\item Le asigna un nuevo ID al dns::Header del dns::Packet de la consulta.
+\item Le asigna el valor QR = 1 para indicar que es una query y no un answer.
+\item Le asigna el valor RD = 1 para indicar que desea que la consulta se resuelva de forma recursiva, si el servidor no es recursivo este campo será ignorado y enviara una redirección a otro servidor.
+\item Guarda el paquete en una tabla de consultas realizadas localmente (i.e. consultas realizadas por el host local).
+\item Agrega un RR A la sección \textit{aditionals} que contiene el IP local para que el servidor sepa a quien devolver la respuesta.
+\item Envía el paquete al servidor local para que el mismo resuelva el pedido.
+\end{enumerate}
+
+\paragraph{Servidor recursivo}
+Cuando un servidor recursivo recibe un dns::Packet con el campo QR = 1, el mismo intenta primero resolver la consulta buscando en la tabla de nombres de dominios para los cuales el es autoritativo. envía la respuesta realizando los siguientes pasos:
+
+\begin{enumerate}
+\item Al paquete entrante le cambia el campo QR = 0 para indicar que es una respuesta.
+\item Asigna el valor AA = 1 para indicar que la respuesta proviene de un servidor autoritativo para ese nombre de dominio.
+\item Le agrega un RR en la sección \textit{answers} con \textit{Qtype} = A, con el nombre de dominio de la consulta y en \textit{AValue} el IP correspondiente al nombre de dominio.
+\item Envía el dns::Packet de retorno al servidor que envió el \textit{request}, el IP del mismo se encuentra en el RR de la sección \textit{aditional}.
+\end{enumerate}
+
+En caso de no encontrar la respuesta en su lista personal, si el paquete dns tiene el campo RD = 1 el servidor realiza los siguientes pasos con la finalidad de conseguir la respuesta mediante otros servidores de forma recursiva:
+
+\begin{enumerate}
+\item Guarda el paquete en una tabla de consultas realizadas remotamente (i.e. consultas realizadas por un \textit{host} remoto que llegó a través de paquetes dns).
+\item Cambia el RR de la sección \textit{aditionals} para asignarle el \textit{IP} local para que el servidor al cual reenvíe la consulta sepa como enviarle la respuesta.
+\item Envía el paquete al servidor TLD que conoce.
+\end{enumerate}
+
+Una vez reenviada la consulta se queda a la espera de una respuesta de del servidor. Si el servidor es autoritativo para ese nombre de dominio ó es un servidor recursivo, le enviará una respuesta final con el \textit{IP} correspondiente que será reenviado al \textit{host} del cual llegó la consulta. Si el servidor no es ni autoritativo para la consulta ni recursivo, entonces va a devolver una redirección a un servidor autoritativo para esa zona, cuando esto ocurre, en el paquete dns de respuesta vienen dos RRs, uno en la sección \textit{answers} de tipo NS que contiene el nombre de dominio de dicho servidor y otro en la sección \textit{authoritatives} de tipo A con el \textit{IP} de dicho servidor. En este caso el paquete es reenviado a dicho servidor con la esperanza de que esté resuelva la consulta o vuelva a enviar una redirección. \\
+
+\textbf{Note:} El \textit{IP} de dicho \textit{host} está en el paquete dns que se guardó anteriormente, y la forma de recuperarlo es utilizando el ID de la consulta que se mantiene igual durante todo el proceso. \\
+
+\textbf{Note:} En caso de que el servidor envíe un paquete dns de error, el mismo es reenviado al \textit{host} que realizo la consulta y el protocolo falló. Esto puede ocurrir porque no se conoce de ningún servidor autoritativo para la zona del nombre de dominio consultado. \\
+
+\textbf{Note:} El paquete enviado como respuesta final es un paquete que llega desde un servidor al cual se le realizó la consulta, y por ende el campo AA que indica si la respuesta es autoritativa o no, depende de dicho servidor. \\
+
+En caso de que que el campo RD esté en 0, el servidor se comporta como un servidor iterativo \\
+
+\paragraph{Servidor iterativo}
+
+Cuando una consulta llega a un servidor iterativo, en caso de ser autoritativo para la consulta, envía el paquete previamente transformado en respuesta con el \textit{IP} correspondiente a la consulta asignando AA = 1 y termina. En caso de no ser autoritativo, el servidor busca en la tabla de \textit{DN servers} un servidor que sea autoritativo para la zona del nombre de dominio consultado, en caso de haber más de uno, elige el servidor más puntual y lo envía como respuesta de redirección. Para esto realiza los siguientes pasos modificando el paquete de la consulta para mantener el ID correcto.
+
+\begin{enumerate}
+\item Agrega un RR de tipo NS en la sección \textit{answers} donde \textit{name} contiene el nombre de dominio para el cual el servidor es responsable de todos sus sub-dominios (i.e. es responsable de esa zona), y en \textit{NSValue} el nombre de dominio del servidor.
+\item Agrega un RR de tipo A en la sección \textit{authoritatives} donde \textit{name} es igual al campo \textit{NSValue} del RR mencionado en el punto anterior y en el campo \textit{AValue} el \textit{IP} de dicho servidor.
+\item Asigna AA = 0 para marcar que el no es autoritativo para dicha consulta.
+\item Utiliza el RR de la sección \textit{aditionals} para enviar el paquete con la respuesta al host que realizó la consulta.
+\end{enumerate}
+
+\textbf{note: } un servidor $s1$ es más puntual para una zona que otro servidor $s2$ si y solo si $s1$ pertenece a la zona de $s2$, por ejemplo ``devs.com'' es más puntual que ``com'' ya que ``devs.com'' pertenece a la zona ``com'', con lo cual, si hay una consulta ``algo.devs.com'' el servidor que tiene la respuesta final es ``devs.com'' y no ``com'' quien va a devolver una redirección a ``devs.com''.
 
 \subsection{UDP}
 
