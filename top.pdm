@@ -157,7 +157,7 @@ Coupled
                     {
                     Name = ouput 1
                     Ports = 1 ; 0
-                    Path = NetworkDEVS/output_stream.h
+                    Path = NetworkDEVS/domain_name_sink.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -169,6 +169,7 @@ Coupled
                         }
                     Parameters
                         {
+                        module_name = Str; Host 1 ; 
                         output = Str; test/udp/1/h1.output ; 
                         }
                     }
@@ -440,7 +441,7 @@ Coupled
                             {
                             Name = ouput 3
                             Ports = 1 ; 0
-                            Path = NetworkDEVS/output_stream.h
+                            Path = NetworkDEVS/domain_name_sink.h
                             Description = Atomic DEVS model
                             Graphic
                                 {
@@ -452,6 +453,7 @@ Coupled
                                 }
                             Parameters
                                 {
+                                module_name = Str; Host 3 ; 
                                 output = Str; test/udp/1/h3.output ; 
                                 }
                             }
@@ -727,7 +729,7 @@ Coupled
                                     {
                                     Name = ouput 4
                                     Ports = 1 ; 0
-                                    Path = NetworkDEVS/output_stream.h
+                                    Path = NetworkDEVS/domain_name_sink.h
                                     Description = Atomic DEVS model
                                     Graphic
                                         {
@@ -739,6 +741,7 @@ Coupled
                                         }
                                     Parameters
                                         {
+                                        module_name = Str; Host 4 ; 
                                         output = Str; test/udp/1/h4.output ; 
                                         }
                                     }
@@ -1014,7 +1017,7 @@ Coupled
                                             {
                                             Name = ouput 5
                                             Ports = 1 ; 0
-                                            Path = NetworkDEVS/output_stream.h
+                                            Path = NetworkDEVS/domain_name_sink.h
                                             Description = Atomic DEVS model
                                             Graphic
                                                 {
@@ -1026,6 +1029,7 @@ Coupled
                                                 }
                                             Parameters
                                                 {
+                                                module_name = Str; Host 5 ; 
                                                 output = Str; test/udp/1/h5.output ; 
                                                 }
                                             }
@@ -2886,7 +2890,7 @@ Coupled
                                                                                                             {
                                                                                                             Name = ouput 2
                                                                                                             Ports = 1 ; 0
-                                                                                                            Path = NetworkDEVS/output_stream.h
+                                                                                                            Path = NetworkDEVS/domain_name_sink.h
                                                                                                             Description = Atomic DEVS model
                                                                                                             Graphic
                                                                                                                 {
@@ -2898,6 +2902,7 @@ Coupled
                                                                                                                 }
                                                                                                             Parameters
                                                                                                                 {
+                                                                                                                module_name = Str; Host 2 ; 
                                                                                                                 output = Str; test/udp/1/h2.output ; 
                                                                                                                 }
                                                                                                             }

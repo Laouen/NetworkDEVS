@@ -14,7 +14,8 @@ class input_stream: public Simulator {
 
 public:
   input_stream(const char *n): Simulator(n) {};
-    void init(double t, ...) {
+  
+  void init(double t, ...) {
     // PowerDEVS parameters
     va_list parameters;
     va_start(parameters,t);

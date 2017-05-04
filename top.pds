@@ -24,8 +24,8 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/output_stream.h
-        Parameters = "test/udp/1/h1.output"
+        Path = NetworkDEVS/domain_name_sink.h
+        Parameters = "Host 1","test/udp/1/h1.output"
        }
       Simulator
        {
@@ -84,8 +84,8 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/output_stream.h
-        Parameters = "test/udp/1/h3.output"
+        Path = NetworkDEVS/domain_name_sink.h
+        Parameters = "Host 3","test/udp/1/h3.output"
        }
       Simulator
        {
@@ -144,8 +144,8 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/output_stream.h
-        Parameters = "test/udp/1/h4.output"
+        Path = NetworkDEVS/domain_name_sink.h
+        Parameters = "Host 4","test/udp/1/h4.output"
        }
       Simulator
        {
@@ -204,8 +204,8 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/output_stream.h
-        Parameters = "test/udp/1/h5.output"
+        Path = NetworkDEVS/domain_name_sink.h
+        Parameters = "Host 5","test/udp/1/h5.output"
        }
       Simulator
        {
@@ -533,8 +533,8 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/output_stream.h
-        Parameters = "test/udp/1/h2.output"
+        Path = NetworkDEVS/domain_name_sink.h
+        Parameters = "Host 2","test/udp/1/h2.output"
        }
       Simulator
        {
