@@ -109,7 +109,7 @@ Coupled
                     }
                 Atomic
                     {
-                    Name = swp 1
+                    Name = Link 1
                     Ports = 4 ; 4
                     Path = NetworkDEVS/link_protocol.h
                     Description = Atomic DEVS model
@@ -369,7 +369,7 @@ Coupled
                             }
                         Atomic
                             {
-                            Name = swp 3
+                            Name = Link 3
                             Ports = 4 ; 4
                             Path = NetworkDEVS/link_protocol.h
                             Description = Atomic DEVS model
@@ -629,7 +629,7 @@ Coupled
                                     }
                                 Atomic
                                     {
-                                    Name = swp 4
+                                    Name = Link 4
                                     Ports = 4 ; 4
                                     Path = NetworkDEVS/link_protocol.h
                                     Description = Atomic DEVS model
@@ -889,7 +889,7 @@ Coupled
                                             }
                                         Atomic
                                             {
-                                            Name = swp 5
+                                            Name = Link 5
                                             Ports = 4 ; 4
                                             Path = NetworkDEVS/link_protocol.h
                                             Description = Atomic DEVS model
@@ -1177,7 +1177,7 @@ Coupled
                                                     }
                                                 Atomic
                                                     {
-                                                    Name = swp r1
+                                                    Name = Link r1
                                                     Ports = 4 ; 4
                                                     Path = NetworkDEVS/link_protocol.h
                                                     Description = Atomic DEVS model
@@ -1199,7 +1199,7 @@ Coupled
                                                     }
                                                 Atomic
                                                     {
-                                                    Name = swp r2
+                                                    Name = Link r2
                                                     Ports = 4 ; 4
                                                     Path = NetworkDEVS/link_protocol.h
                                                     Description = Atomic DEVS model
@@ -1240,7 +1240,7 @@ Coupled
                                                     }
                                                 Atomic
                                                     {
-                                                    Name = swp r3
+                                                    Name = Link r3
                                                     Ports = 4 ; 4
                                                     Path = NetworkDEVS/link_protocol.h
                                                     Description = Atomic DEVS model
@@ -1468,7 +1468,7 @@ Coupled
                                                             }
                                                         Atomic
                                                             {
-                                                            Name = swp r1
+                                                            Name = Link r1
                                                             Ports = 4 ; 4
                                                             Path = NetworkDEVS/link_protocol.h
                                                             Description = Atomic DEVS model
@@ -1490,7 +1490,7 @@ Coupled
                                                             }
                                                         Atomic
                                                             {
-                                                            Name = swp r2
+                                                            Name = Link r2
                                                             Ports = 4 ; 4
                                                             Path = NetworkDEVS/link_protocol.h
                                                             Description = Atomic DEVS model
@@ -1702,7 +1702,7 @@ Coupled
                                                                     }
                                                                 Atomic
                                                                     {
-                                                                    Name = swp r1
+                                                                    Name = Link r1
                                                                     Ports = 4 ; 4
                                                                     Path = NetworkDEVS/link_protocol.h
                                                                     Description = Atomic DEVS model
@@ -1936,7 +1936,7 @@ Coupled
                                                                             }
                                                                         Atomic
                                                                             {
-                                                                            Name = Datagram
+                                                                            Name = Switch
                                                                             Ports = 4 ; 4
                                                                             Path = NetworkDEVS/switch_protocol.h
                                                                             Description = Atomic DEVS model
@@ -1946,7 +1946,7 @@ Coupled
                                                                                 Dimension = 675 ; 750
                                                                                 Direction = Right
                                                                                 Color = 15
-                                                                                Icon = None
+                                                                                Icon = ../atomics/NetworkDEVS/icons/switch.svg
                                                                                 }
                                                                             Parameters
                                                                                 {
@@ -1987,7 +1987,7 @@ Coupled
                                                                                 Dimension = 675 ; 675
                                                                                 Direction = Right
                                                                                 Color = 15
-                                                                                Icon = None
+                                                                                Icon = ../atomics/NetworkDEVS/icons/multiplexer.svg
                                                                                 }
                                                                             Parameters
                                                                                 {
@@ -2145,7 +2145,7 @@ Coupled
                                                                                     }
                                                                                 Atomic
                                                                                     {
-                                                                                    Name = Atomic0
+                                                                                    Name = switch
                                                                                     Ports = 4 ; 4
                                                                                     Path = NetworkDEVS/switch_protocol.h
                                                                                     Description = Atomic DEVS model
@@ -2155,7 +2155,7 @@ Coupled
                                                                                         Dimension = 675 ; 750
                                                                                         Direction = Right
                                                                                         Color = 15
-                                                                                        Icon = None
+                                                                                        Icon = ../atomics/NetworkDEVS/icons/switch.svg
                                                                                         }
                                                                                     Parameters
                                                                                         {
@@ -2167,7 +2167,7 @@ Coupled
                                                                                     }
                                                                                 Atomic
                                                                                     {
-                                                                                    Name = Atomic1
+                                                                                    Name = Demultiplexer
                                                                                     Ports = 1 ; 3
                                                                                     Path = NetworkDEVS/demultiplexer_switch.h
                                                                                     Description = Atomic DEVS model
@@ -2177,7 +2177,7 @@ Coupled
                                                                                         Dimension = 675 ; 675
                                                                                         Direction = Right
                                                                                         Color = 15
-                                                                                        Icon = None
+                                                                                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
                                                                                         }
                                                                                     Parameters
                                                                                         {
@@ -2186,7 +2186,7 @@ Coupled
                                                                                     }
                                                                                 Atomic
                                                                                     {
-                                                                                    Name = Atomic2
+                                                                                    Name = Multiplexer
                                                                                     Ports = 3 ; 1
                                                                                     Path = NetworkDEVS/multiplexer_switch.h
                                                                                     Description = Atomic DEVS model
@@ -2196,7 +2196,7 @@ Coupled
                                                                                         Dimension = 675 ; 675
                                                                                         Direction = Right
                                                                                         Color = 15
-                                                                                        Icon = None
+                                                                                        Icon = ../atomics/NetworkDEVS/icons/multiplexer.svg
                                                                                         }
                                                                                     Parameters
                                                                                         {
@@ -2354,7 +2354,7 @@ Coupled
                                                                                             }
                                                                                         Atomic
                                                                                             {
-                                                                                            Name = Atomic0
+                                                                                            Name = Switch
                                                                                             Ports = 4 ; 4
                                                                                             Path = NetworkDEVS/switch_protocol.h
                                                                                             Description = Atomic DEVS model
@@ -2364,7 +2364,7 @@ Coupled
                                                                                                 Dimension = 675 ; 750
                                                                                                 Direction = Right
                                                                                                 Color = 15
-                                                                                                Icon = None
+                                                                                                Icon = ../atomics/NetworkDEVS/icons/switch.svg
                                                                                                 }
                                                                                             Parameters
                                                                                                 {
@@ -2376,7 +2376,7 @@ Coupled
                                                                                             }
                                                                                         Atomic
                                                                                             {
-                                                                                            Name = Atomic1
+                                                                                            Name = Demultiplexer
                                                                                             Ports = 1 ; 3
                                                                                             Path = NetworkDEVS/demultiplexer_switch.h
                                                                                             Description = Atomic DEVS model
@@ -2386,7 +2386,7 @@ Coupled
                                                                                                 Dimension = 675 ; 675
                                                                                                 Direction = Right
                                                                                                 Color = 15
-                                                                                                Icon = None
+                                                                                                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
                                                                                                 }
                                                                                             Parameters
                                                                                                 {
@@ -2395,7 +2395,7 @@ Coupled
                                                                                             }
                                                                                         Atomic
                                                                                             {
-                                                                                            Name = Atomic2
+                                                                                            Name = Multiplexer
                                                                                             Ports = 3 ; 1
                                                                                             Path = NetworkDEVS/multiplexer_switch.h
                                                                                             Description = Atomic DEVS model
@@ -2405,7 +2405,7 @@ Coupled
                                                                                                 Dimension = 675 ; 675
                                                                                                 Direction = Right
                                                                                                 Color = 15
-                                                                                                Icon = None
+                                                                                                Icon = ../atomics/NetworkDEVS/icons/multiplexer.svg
                                                                                                 }
                                                                                             Parameters
                                                                                                 {
@@ -2563,7 +2563,7 @@ Coupled
                                                                                                     }
                                                                                                 Atomic
                                                                                                     {
-                                                                                                    Name = Atomic1
+                                                                                                    Name = Demultiplexer
                                                                                                     Ports = 1 ; 3
                                                                                                     Path = NetworkDEVS/demultiplexer_switch.h
                                                                                                     Description = Atomic DEVS model
@@ -2573,7 +2573,7 @@ Coupled
                                                                                                         Dimension = 675 ; 675
                                                                                                         Direction = Right
                                                                                                         Color = 15
-                                                                                                        Icon = None
+                                                                                                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
                                                                                                         }
                                                                                                     Parameters
                                                                                                         {
@@ -2582,7 +2582,7 @@ Coupled
                                                                                                     }
                                                                                                 Atomic
                                                                                                     {
-                                                                                                    Name = Atomic2
+                                                                                                    Name = Multiplexer
                                                                                                     Ports = 3 ; 1
                                                                                                     Path = NetworkDEVS/multiplexer_switch.h
                                                                                                     Description = Atomic DEVS model
@@ -2592,7 +2592,7 @@ Coupled
                                                                                                         Dimension = 675 ; 675
                                                                                                         Direction = Right
                                                                                                         Color = 15
-                                                                                                        Icon = None
+                                                                                                        Icon = ../atomics/NetworkDEVS/icons/multiplexer.svg
                                                                                                         }
                                                                                                     Parameters
                                                                                                         {
@@ -2600,7 +2600,7 @@ Coupled
                                                                                                     }
                                                                                                 Atomic
                                                                                                     {
-                                                                                                    Name = Atomic0
+                                                                                                    Name = Switch
                                                                                                     Ports = 4 ; 4
                                                                                                     Path = NetworkDEVS/switch_protocol.h
                                                                                                     Description = Atomic DEVS model
@@ -2610,7 +2610,7 @@ Coupled
                                                                                                         Dimension = 675 ; 750
                                                                                                         Direction = Right
                                                                                                         Color = 15
-                                                                                                        Icon = None
+                                                                                                        Icon = ../atomics/NetworkDEVS/icons/switch.svg
                                                                                                         }
                                                                                                     Parameters
                                                                                                         {
@@ -2808,7 +2808,7 @@ Coupled
                                                                                                             }
                                                                                                         Atomic
                                                                                                             {
-                                                                                                            Name = swp 2
+                                                                                                            Name = Link 2
                                                                                                             Ports = 4 ; 4
                                                                                                             Path = NetworkDEVS/link_protocol.h
                                                                                                             Description = Atomic DEVS model
@@ -3019,7 +3019,7 @@ Coupled
                                                                                                             {
                                                                                                             Source = Cmp ;  10 ;  1 ; 0
                                                                                                             Sink = Cmp ;  9 ;  3 ; -1
-                                                                                                            PointX = -6675 ; -6300 ; -6300 ; -6810
+                                                                                                            PointX = -6675 ; -6225 ; -6225 ; -6810
                                                                                                             PointY = -7425 ; -7425 ; -10350 ; -10350
                                                                                                             }
                                                                                                         Line
@@ -3096,15 +3096,15 @@ Coupled
                                                                                                             {
                                                                                                             Source = Cmp ;  9 ;  2 ; 0
                                                                                                             Sink = Cmp ;  8 ;  3 ; -1
-                                                                                                            PointX = -7725 ; -13200 ; -13200 ; -12465
+                                                                                                            PointX = -7725 ; -12975 ; -12975 ; -12465
                                                                                                             PointY = -10575 ; -10575 ; -6975 ; -6975
                                                                                                             }
                                                                                                         Line
                                                                                                             {
                                                                                                             Source = Cmp ;  8 ;  3 ; 0
                                                                                                             Sink = Cmp ;  9 ;  2 ; -1
-                                                                                                            PointX = -11550 ; -10875 ; -10875 ; -6375 ; -6375 ; -6810
-                                                                                                            PointY = -6975 ; -6975 ; -11175 ; -11175 ; -10575 ; -10575
+                                                                                                            PointX = -11550 ; -11175 ; -11175 ; -6450 ; -6450 ; -6810
+                                                                                                            PointY = -6975 ; -6975 ; -9525 ; -9525 ; -10575 ; -10575
                                                                                                             }
         }
     }
