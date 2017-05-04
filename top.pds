@@ -29,7 +29,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/input_stream.h
+        Path = NetworkDEVS/domain_name_source.h
         Parameters = "Host 1","../input/test/input/1/h1.input"
        }
       Simulator
@@ -79,7 +79,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/input_stream.h
+        Path = NetworkDEVS/domain_name_source.h
         Parameters = "Host 3","../input/test/input/1/h3.input"
        }
       Simulator
@@ -139,7 +139,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/input_stream.h
+        Path = NetworkDEVS/domain_name_source.h
         Parameters = "Host 4","../input/test/input/1/h4.input"
        }
       Simulator
@@ -199,7 +199,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/input_stream.h
+        Path = NetworkDEVS/domain_name_source.h
         Parameters = "Host 5","../input/test/input/1/h5.input"
        }
       Simulator
@@ -528,7 +528,7 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/input_stream.h
+        Path = NetworkDEVS/domain_name_source.h
         Parameters = "Host 2","../input/test/input/1/h2.input"
        }
       Simulator

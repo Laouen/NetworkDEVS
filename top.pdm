@@ -176,7 +176,7 @@ Coupled
                     {
                     Name = input 1
                     Ports = 0 ; 1
-                    Path = NetworkDEVS/input_stream.h
+                    Path = NetworkDEVS/domain_name_source.h
                     Description = Atomic DEVS model
                     Graphic
                         {
@@ -420,7 +420,7 @@ Coupled
                             {
                             Name = input 3
                             Ports = 0 ; 1
-                            Path = NetworkDEVS/input_stream.h
+                            Path = NetworkDEVS/domain_name_source.h
                             Description = Atomic DEVS model
                             Graphic
                                 {
@@ -707,7 +707,7 @@ Coupled
                                     {
                                     Name = input 4
                                     Ports = 0 ; 1
-                                    Path = NetworkDEVS/input_stream.h
+                                    Path = NetworkDEVS/domain_name_source.h
                                     Description = Atomic DEVS model
                                     Graphic
                                         {
@@ -994,7 +994,7 @@ Coupled
                                             {
                                             Name = input 5
                                             Ports = 0 ; 1
-                                            Path = NetworkDEVS/input_stream.h
+                                            Path = NetworkDEVS/domain_name_source.h
                                             Description = Atomic DEVS model
                                             Graphic
                                                 {
@@ -2866,7 +2866,7 @@ Coupled
                                                                                                             {
                                                                                                             Name = input 2
                                                                                                             Ports = 0 ; 1
-                                                                                                            Path = NetworkDEVS/input_stream.h
+                                                                                                            Path = NetworkDEVS/domain_name_source.h
                                                                                                             Description = Atomic DEVS model
                                                                                                             Graphic
                                                                                                                 {
@@ -3221,7 +3221,7 @@ Coupled
                                                                                                             {
                                                                                                             Source = Cmp ;  10 ;  2 ; 0
                                                                                                             Sink = Cmp ;  8 ;  2 ; -1
-                                                                                                            PointX = -6675 ; -6375 ; -6375 ; -12900 ; -12900 ; -12465
+                                                                                                            PointX = -6675 ; -6375 ; -6375 ; -12750 ; -12750 ; -12465
                                                                                                             PointY = -7200 ; -7200 ; -6150 ; -6150 ; -7200 ; -7200
                                                                                                             }
                                                                                                         Line

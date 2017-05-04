@@ -1,6 +1,8 @@
 #if !defined layer_h
 #define layer_h
 
+#include <limits>
+
 #include "simulator.h"
 #include "event.h"
 #include "stdarg.h"
