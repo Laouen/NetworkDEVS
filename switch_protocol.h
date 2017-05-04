@@ -6,7 +6,7 @@
 #include <set>
 #include "swp_protocol.h"
 
-class switch_protocol : public Layer<int, int, link::Multiplexed_frame, int> {
+class switch_protocol : public Layer<int, int, message::Multiplexed<link::Frame>, int> {
 
   std::map<MAC,ushort> forwarding_table;
   std::vector<swp_protocol> swp_ports;

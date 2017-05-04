@@ -179,10 +179,11 @@ void ip_protocol::arp(ip::Datagram packet, IPv4 nexthop) {
     arp_waiting_packets.insert(std::make_pair(nexthop, q));
   }
 
-  link::Control m;
-  m.request = link::Ctrl::ARP_QUERY;
-  m.ip = nexthop;
-  bool interfaceFound = this->getInterface(nexthop, m.interface);
+  message::Multiplexed<link::Control> m;
+  m.message.request = link::Ctrl::ARP_QUERY;
+  m.message.ip = nexthop;
+  bool interfaceFound = this->getInterface(nexthop, m.message.interface);
+  m.interface = m.message.interface;
 
   if (!interfaceFound) {
     logger.error("interface not found.");
@@ -196,7 +197,7 @@ void ip_protocol::arp(ip::Datagram packet, IPv4 nexthop) {
 
 void ip_protocol::processLinkControl(link::Control control) {
   std::queue<ip::Datagram> packets_to_send;
-  link::Control m;
+  message::Multiplexed<link::Control> m;
 
   switch(control.request) {
   case link::Ctrl::ARP_READY:
@@ -208,10 +209,11 @@ void ip_protocol::processLinkControl(link::Control control) {
 
     packets_to_send = arp_waiting_packets.at(control.ip);
     while (!packets_to_send.empty()) {
-      m.request = link::Ctrl::SEND_PACKET;  
-      m.packet = packets_to_send.front();
+      m.message.request = link::Ctrl::SEND_PACKET;  
+      m.message.packet = packets_to_send.front();
+      m.message.ip = control.ip;
+      m.message.interface = control.interface;
       m.interface = control.interface;
-      m.ip = control.ip;
       packets_to_send.pop();
 
       lower_layer_ctrl_out.push(m);

@@ -105,8 +105,8 @@ void switch_protocol::dinternal(double t) {
   }
 
   if (!lower_layer_data_in.empty()) {
-    link::Multiplexed_frame mf = lower_layer_data_in.front();
-    swp_ports[mf.interface].processFrame(mf.frame);
+    message::Multiplexed<link::Frame> mf = lower_layer_data_in.front();
+    swp_ports[mf.interface].processFrame(mf.message);
     lower_layer_data_in.pop();
     next_internal = process_frame_time;
     return;
@@ -140,11 +140,11 @@ void switch_protocol::processFrame(link::Frame& frame, ushort interface) {
 
 void switch_protocol::sendFrames(ushort interface) {
   logger.debug("switch_protocol::sendFrames");
-  link::Multiplexed_frame multiplexed_frame;
+  message::Multiplexed<link::Frame> multiplexed_frame;
 
   while(!swp_ports[interface].to_send_frames.empty()) {
-    multiplexed_frame.frame = swp_ports[interface].to_send_frames.front();
-    multiplexed_frame.frame.CRC = this->calculateCRC();
+    multiplexed_frame.message = swp_ports[interface].to_send_frames.front();
+    multiplexed_frame.message.CRC = this->calculateCRC();
     multiplexed_frame.interface = interface;
     lower_layer_data_out.push(multiplexed_frame);
     swp_ports[interface].to_send_frames.pop();

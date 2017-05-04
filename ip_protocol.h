@@ -16,7 +16,7 @@
  * 
  */
 
-class ip_protocol: public Layer<udp::Segment, ip::Control, ip::Datagram, link::Control> { 
+class ip_protocol: public Layer<udp::Segment, ip::Control, ip::Datagram, link::Control, udp::Segment, ip::Control, ip::Datagram, message::Multiplexed<link::Control>> { 
 
 protected:
 

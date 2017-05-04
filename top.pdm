@@ -192,6 +192,26 @@ Coupled
                         input = Str; ../input/test/input/1/h1.input ; 
                         }
                     }
+                Atomic
+                    {
+                    Name = demu 1
+                    Ports = 1 ; 1
+                    Path = NetworkDEVS/demultiplexer_ip_link.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -3480 ; -780
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                        }
+                    Parameters
+                        {
+                        module_name = Str; Host 1 ; 
+                        max_interface = Val; 1 ; 
+                        }
+                    }
                 Line
                     {
                     Source = Cmp ;  1 ;  3 ; 0
@@ -212,13 +232,6 @@ Coupled
                     Sink = Cmp ;  2 ;  3 ; -1
                     PointX = -4050 ; -3750 ; -3750 ; -5400 ; -5400 ; -5040
                     PointY = 1500 ; 1500 ; 675 ; 675 ; -600 ; -600
-                    }
-                Line
-                    {
-                    Source = Cmp ;  2 ;  4 ; 0
-                    Sink = Cmp ;  3 ;  2 ; -1
-                    PointX = -4125 ; -3675 ; -3675 ; -5700 ; -5700 ; -4965
-                    PointY = -450 ; -450 ; 375 ; 375 ; 1650 ; 1650
                     }
                 Line
                     {
@@ -275,6 +288,20 @@ Coupled
                     Sink = Cmp ;  1 ;  2 ; -1
                     PointX = -4200 ; -4050 ; -4050 ; -5250 ; -5250 ; -5040
                     PointY = -5025 ; -5025 ; -4350 ; -4350 ; -2925 ; -2925
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  4 ; 0
+                    Sink = Cmp ;  7 ;  1 ; -1
+                    PointX = -4125 ; -4125 ; -3615
+                    PointY = -450 ; -450 ; -450
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  2 ; -1
+                    PointX = -2700 ; -2325 ; -2325 ; -5400 ; -5400 ; -4965
+                    PointY = -450 ; -450 ; 900 ; 900 ; 1650 ; 1650
                     }
                 }
             }
@@ -452,6 +479,26 @@ Coupled
                                 recursive = Val; 1 ; 
                                 }
                             }
+                        Atomic
+                            {
+                            Name = demu 3
+                            Ports = 1 ; 1
+                            Path = NetworkDEVS/demultiplexer_ip_link.h
+                            Description = Atomic DEVS model
+                            Graphic
+                                {
+                                Position = -8130 ; -4455
+                                Dimension = 675 ; 675
+                                Direction = Right
+                                Color = 15
+                                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                                }
+                            Parameters
+                                {
+                                module_name = Str; Host 3 ; 
+                                max_interface = Val; 1 ; 
+                                }
+                            }
                         Line
                             {
                             Source = Cmp ;  1 ;  3 ; 0
@@ -496,13 +543,6 @@ Coupled
                             }
                         Line
                             {
-                            Source = Cmp ;  2 ;  4 ; 0
-                            Sink = Cmp ;  3 ;  2 ; -1
-                            PointX = -9300 ; -9000 ; -9000 ; -10800 ; -10800 ; -10215
-                            PointY = -4125 ; -4125 ; -3375 ; -3375 ; -2175 ; -2175
-                            }
-                        Line
-                            {
                             Source = Cmp ;  4 ;  1 ; 0
                             Sink = Cmp ;  6 ;  1 ; -1
                             PointX = -11100 ; -11100 ; -10290
@@ -535,6 +575,20 @@ Coupled
                             Sink = Cmp ;  1 ;  2 ; -1
                             PointX = -9375 ; -8850 ; -8850 ; -10725 ; -10725 ; -10290
                             PointY = -8400 ; -8400 ; -7125 ; -7125 ; -6375 ; -6375
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  2 ;  4 ; 0
+                            Sink = Cmp ;  7 ;  1 ; -1
+                            PointX = -9300 ; -9300 ; -8265
+                            PointY = -4125 ; -4125 ; -4125
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  7 ;  1 ; 0
+                            Sink = Cmp ;  3 ;  2 ; -1
+                            PointX = -7350 ; -7125 ; -7125 ; -10575 ; -10575 ; -10215
+                            PointY = -4125 ; -4125 ; -2700 ; -2700 ; -2175 ; -2175
                             }
                         }
                     }
@@ -712,6 +766,26 @@ Coupled
                                         recursive = Val; 0 ; 
                                         }
                                     }
+                                Atomic
+                                    {
+                                    Name = demu 4
+                                    Ports = 1 ; 1
+                                    Path = NetworkDEVS/demultiplexer_ip_link.h
+                                    Description = Atomic DEVS model
+                                    Graphic
+                                        {
+                                        Position = -8355 ; -4605
+                                        Dimension = 675 ; 675
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                                        }
+                                    Parameters
+                                        {
+                                        module_name = Str; Host 4 ; 
+                                        max_interface = Val; 1 ; 
+                                        }
+                                    }
                                 Line
                                     {
                                     Source = Cmp ;  1 ;  3 ; 0
@@ -756,13 +830,6 @@ Coupled
                                     }
                                 Line
                                     {
-                                    Source = Cmp ;  2 ;  4 ; 0
-                                    Sink = Cmp ;  3 ;  2 ; -1
-                                    PointX = -9300 ; -9000 ; -9000 ; -10575 ; -10575 ; -10215
-                                    PointY = -4275 ; -4275 ; -3375 ; -3375 ; -2175 ; -2175
-                                    }
-                                Line
-                                    {
                                     Source = Cmp ;  6 ;  1 ; 0
                                     Sink = Cmp ;  5 ;  1 ; -1
                                     PointX = -9300 ; -9300 ; -8490
@@ -795,6 +862,20 @@ Coupled
                                     Sink = Cmp ;  1 ;  2 ; -1
                                     PointX = -9300 ; -9075 ; -9075 ; -10725 ; -10725 ; -10215
                                     PointY = -7950 ; -7950 ; -6975 ; -6975 ; -6375 ; -6375
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  2 ;  4 ; 0
+                                    Sink = Cmp ;  7 ;  1 ; -1
+                                    PointX = -9300 ; -9300 ; -8490
+                                    PointY = -4275 ; -4275 ; -4275
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  7 ;  1 ; 0
+                                    Sink = Cmp ;  3 ;  2 ; -1
+                                    PointX = -7575 ; -7350 ; -7350 ; -10800 ; -10800 ; -10215
+                                    PointY = -4275 ; -4275 ; -2775 ; -2775 ; -2175 ; -2175
                                     }
                                 }
                             }
@@ -972,6 +1053,26 @@ Coupled
                                                 recursive = Val; 0 ; 
                                                 }
                                             }
+                                        Atomic
+                                            {
+                                            Name = demu 5
+                                            Ports = 1 ; 1
+                                            Path = NetworkDEVS/demultiplexer_ip_link.h
+                                            Description = Atomic DEVS model
+                                            Graphic
+                                                {
+                                                Position = -8430 ; -4455
+                                                Dimension = 675 ; 675
+                                                Direction = Right
+                                                Color = 15
+                                                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                                                }
+                                            Parameters
+                                                {
+                                                module_name = Str; Host 5 ; 
+                                                max_interface = Val; 1 ; 
+                                                }
+                                            }
                                         Line
                                             {
                                             Source = Cmp ;  1 ;  3 ; 0
@@ -1016,13 +1117,6 @@ Coupled
                                             }
                                         Line
                                             {
-                                            Source = Cmp ;  2 ;  4 ; 0
-                                            Sink = Cmp ;  3 ;  2 ; -1
-                                            PointX = -9300 ; -9000 ; -9000 ; -10575 ; -10575 ; -10215
-                                            PointY = -4125 ; -4125 ; -3300 ; -3300 ; -2175 ; -2175
-                                            }
-                                        Line
-                                            {
                                             Source = Cmp ;  4 ;  1 ; 0
                                             Sink = Cmp ;  6 ;  1 ; -1
                                             PointX = -11100 ; -11100 ; -10290
@@ -1055,6 +1149,20 @@ Coupled
                                             Sink = Cmp ;  1 ;  2 ; -1
                                             PointX = -9375 ; -9000 ; -9000 ; -10875 ; -10875 ; -10215
                                             PointY = -8175 ; -8175 ; -6975 ; -6975 ; -6375 ; -6375
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  2 ;  4 ; 0
+                                            Sink = Cmp ;  7 ;  1 ; -1
+                                            PointX = -9300 ; -9300 ; -8565
+                                            PointY = -4125 ; -4125 ; -4125
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  7 ;  1 ; 0
+                                            Sink = Cmp ;  3 ;  2 ; -1
+                                            PointX = -7650 ; -7500 ; -7500 ; -10800 ; -10800 ; -10215
+                                            PointY = -4125 ; -4125 ; -2700 ; -2700 ; -2175 ; -2175
                                             }
                                         }
                                     }
@@ -1235,6 +1343,7 @@ Coupled
                                                         }
                                                     Parameters
                                                         {
+                                                        module_name = Str; Router 1 ; 
                                                         max_interface = Val; 3 ; 
                                                         }
                                                     }
@@ -1526,6 +1635,7 @@ Coupled
                                                                 }
                                                             Parameters
                                                                 {
+                                                                module_name = Str; router 2 ; 
                                                                 max_interface = Val; 2 ; 
                                                                 }
                                                             }
@@ -1760,6 +1870,7 @@ Coupled
                                                                         }
                                                                     Parameters
                                                                         {
+                                                                        module_name = Str; router 3 ; 
                                                                         max_interface = Val; 2 ; 
                                                                         }
                                                                     }
@@ -1972,6 +2083,7 @@ Coupled
                                                                                 }
                                                                             Parameters
                                                                                 {
+                                                                                module_name = Str; Switch 1 ; 
                                                                                 interface_amount = Val; 3 ; 
                                                                                 }
                                                                             }
@@ -1991,6 +2103,7 @@ Coupled
                                                                                 }
                                                                             Parameters
                                                                                 {
+                                                                                module_name = Str; Switch 1 ; 
                                                                                 }
                                                                             }
                                                                         Line
@@ -2145,7 +2258,7 @@ Coupled
                                                                                     }
                                                                                 Atomic
                                                                                     {
-                                                                                    Name = switch
+                                                                                    Name = Switch
                                                                                     Ports = 4 ; 4
                                                                                     Path = NetworkDEVS/switch_protocol.h
                                                                                     Description = Atomic DEVS model
@@ -2181,6 +2294,7 @@ Coupled
                                                                                         }
                                                                                     Parameters
                                                                                         {
+                                                                                        module_name = Str; Switch 2 ; 
                                                                                         interface_amount = Val; 3 ; 
                                                                                         }
                                                                                     }
@@ -2200,6 +2314,7 @@ Coupled
                                                                                         }
                                                                                     Parameters
                                                                                         {
+                                                                                        module_name = Str; Switch 2 ; 
                                                                                         }
                                                                                     }
                                                                                 Line
@@ -2390,6 +2505,7 @@ Coupled
                                                                                                 }
                                                                                             Parameters
                                                                                                 {
+                                                                                                module_name = Str; Switch 3 ; 
                                                                                                 interface_amount = Val; 3 ; 
                                                                                                 }
                                                                                             }
@@ -2409,6 +2525,7 @@ Coupled
                                                                                                 }
                                                                                             Parameters
                                                                                                 {
+                                                                                                Module_name = Str; Switch 3 ; 
                                                                                                 }
                                                                                             }
                                                                                         Line
@@ -2577,6 +2694,7 @@ Coupled
                                                                                                         }
                                                                                                     Parameters
                                                                                                         {
+                                                                                                        module_name = Str; Switch 4 ; 
                                                                                                         interface_amount = Val; 3 ; 
                                                                                                         }
                                                                                                     }
@@ -2596,6 +2714,7 @@ Coupled
                                                                                                         }
                                                                                                     Parameters
                                                                                                         {
+                                                                                                        Module_name = Str; Switch 4 ; 
                                                                                                         }
                                                                                                     }
                                                                                                 Atomic
@@ -2852,6 +2971,26 @@ Coupled
                                                                                                                 recursive = Val; 1 ; 
                                                                                                                 }
                                                                                                             }
+                                                                                                        Atomic
+                                                                                                            {
+                                                                                                            Name = demu 1
+                                                                                                            Ports = 1 ; 1
+                                                                                                            Path = NetworkDEVS/demultiplexer_ip_link.h
+                                                                                                            Description = Atomic DEVS model
+                                                                                                            Graphic
+                                                                                                                {
+                                                                                                                Position = -3180 ; -780
+                                                                                                                Dimension = 675 ; 675
+                                                                                                                Direction = Right
+                                                                                                                Color = 15
+                                                                                                                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                                                                                                                }
+                                                                                                            Parameters
+                                                                                                                {
+                                                                                                                module_name = Str; Host 2 ; 
+                                                                                                                max_interface = Val; 1 ; 
+                                                                                                                }
+                                                                                                            }
                                                                                                         Line
                                                                                                             {
                                                                                                             Source = Cmp ;  1 ;  3 ; 0
@@ -2872,13 +3011,6 @@ Coupled
                                                                                                             Sink = Cmp ;  4 ;  3 ; -1
                                                                                                             PointX = -4050 ; -3750 ; -3750 ; -5400 ; -5400 ; -5040
                                                                                                             PointY = 1500 ; 1500 ; 675 ; 675 ; -600 ; -600
-                                                                                                            }
-                                                                                                        Line
-                                                                                                            {
-                                                                                                            Source = Cmp ;  4 ;  4 ; 0
-                                                                                                            Sink = Cmp ;  5 ;  2 ; -1
-                                                                                                            PointX = -4125 ; -3675 ; -3675 ; -5700 ; -5700 ; -4965
-                                                                                                            PointY = -450 ; -450 ; 375 ; 375 ; 1650 ; 1650
                                                                                                             }
                                                                                                         Line
                                                                                                             {
@@ -2935,6 +3067,20 @@ Coupled
                                                                                                             Sink = Cmp ;  1 ;  2 ; -1
                                                                                                             PointX = -4125 ; -3825 ; -3825 ; -5250 ; -5250 ; -5040
                                                                                                             PointY = -4875 ; -4875 ; -4050 ; -4050 ; -2925 ; -2925
+                                                                                                            }
+                                                                                                        Line
+                                                                                                            {
+                                                                                                            Source = Cmp ;  4 ;  4 ; 0
+                                                                                                            Sink = Cmp ;  7 ;  1 ; -1
+                                                                                                            PointX = -4125 ; -4125 ; -3315
+                                                                                                            PointY = -450 ; -450 ; -450
+                                                                                                            }
+                                                                                                        Line
+                                                                                                            {
+                                                                                                            Source = Cmp ;  7 ;  1 ; 0
+                                                                                                            Sink = Cmp ;  5 ;  2 ; -1
+                                                                                                            PointX = -2400 ; -1950 ; -1950 ; -5400 ; -5400 ; -4965
+                                                                                                            PointY = -450 ; -450 ; 975 ; 975 ; 1650 ; 1650
                                                                                                             }
                                                                                                         }
                                                                                                     }
