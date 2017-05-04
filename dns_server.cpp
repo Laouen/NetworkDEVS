@@ -140,8 +140,8 @@ void dns_server::exit() {}
 /**********************************************/
 
 void dns_server::processDomainName(dns::DomainName domain) {
-  
-  logger.info("process domain name " + domain.as_string());
+
+  logger.info("Process domain name " + domain.as_string());
 
   dns::Packet p = this->QueryPacket(domain);
   if (this->existRR(domain)) {
@@ -210,8 +210,8 @@ void dns_server::sendTo(const dns::Packet& p, IPv4 server_ip, ushort server_port
 void dns_server::processDNSPacket(dns::Packet packet) {
   dns::ResourceRecord r;
 
-  logger.debug("Incoming packet:");
-  logger.debug("\n" + packet.as_string());
+  logger.info("Incoming packet:");
+  logger.info("\n" + packet.as_string());
 
   if (packet.header.is(dns::QR::QR_ANSWER,dns::QR::QR_MASK)) { // ANSWER PACKET
     logger.info("Answer packet");

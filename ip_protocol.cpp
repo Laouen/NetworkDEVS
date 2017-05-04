@@ -87,7 +87,7 @@ void ip_protocol::routeIPDatagram(ip::Datagram p) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
-  logger.debug("sending ip packet: " + dest_ip.as_string());
+  logger.info("Forwarding ip packet: " + dest_ip.as_string());
   
   if (!this->getBestRoute(dest_ip, route)) {
     logger.info("Discard packet: No route for packet with dest_ip: " + dest_ip.as_string());
@@ -130,15 +130,15 @@ ushort ip_protocol::calculateChecksum(ip::Header header) const {
 bool ip_protocol::verifychecksum(ip::Header header) const {
   ushort new_checksum = ~calculateChecksum(header);
  
-  logger.debug("header checksum: " + std::to_string(header.header_checksum));
-  logger.debug("calculated checksum: " + std::to_string(new_checksum));
+  logger.debug("Header checksum: " + std::to_string(header.header_checksum));
+  logger.debug("Calculated checksum: " + std::to_string(new_checksum));
 
   bool valid_checksum = new_checksum+header.header_checksum == 0xFFFF;
 
   if (valid_checksum)
-    logger.info("valid checksum: true");
+    logger.info("Valid checksum: true");
   else
-    logger.info("valid checksum: False");
+    logger.info("Valid checksum: False");
   return valid_checksum;
 }
 
@@ -170,7 +170,7 @@ bool ip_protocol::isBestRoute(ip::Routing_entry current, ip::Routing_entry old) 
 
 void ip_protocol::arp(ip::Datagram packet, IPv4 nexthop) {
   
-  logger.debug("Adding packet to wait ARP for nexthop: " + nexthop.as_string());
+  logger.info("Added packet to wait ARP for nexthop: " + nexthop.as_string());
   if (arp_waiting_packets.find(nexthop) != arp_waiting_packets.end()) {
     arp_waiting_packets.at(nexthop).push(packet);
   } else {

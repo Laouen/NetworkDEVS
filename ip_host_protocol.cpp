@@ -36,7 +36,7 @@ void ip_host_protocol::processIPDatagram(ip::Datagram p) {
   IPv4 dest_ip = p.header.dest_ip; 
   Event o;
 
-  logger.debug("processing arrived ip packet: " + dest_ip.as_string());
+  logger.info("Processing arrived ip packet: " + dest_ip.as_string());
 
   if (!this->verifychecksum(p.header)) { // silent discard
     logger.info("Discard packet: checksum verification faild for packet with dest_ip: " + dest_ip.as_string());

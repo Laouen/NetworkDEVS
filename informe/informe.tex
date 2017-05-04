@@ -159,20 +159,15 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 .3 parser.h.
 .2 structures.
 .3 bastract\_types.h.
-.3 app.h.
-.3 dns.h.
-.3 ip.h.
 .3 ipv4.h1.
-.3 link.h.
 .3 mac.h.
 .3 socket.h.
-.3 sw.h.
-.3 swp.h.
-.3 udp.h.
 .2 templates. 
 .3 layer.h.
 .3 demultiplexer.h.
 .3 multiplexer.h.
+.3 input\_stream.h.
+.3 output\_strem.h.
 .2 LICENSE.
 .2 README.md.
 }
@@ -287,6 +282,8 @@ Como ya fue mencionado y como se puede observar en la definición de las colas, 
 
 Para procesar los mensajes, dentro del método \textit{dinternal}, los mismos deben ser desencolados, es importante que se desencolen, ya que en caso contrario el mismo seguirá estando en la cola y el modelo volverá a producir una transición interna y llamar de nuevo al método \textit{dinternal} procesando dos o más veces el mismo mensaje. Reprocesar un mensaje múltiple veces probablemente esté mal, pero tal vez es lo deseado por el protocolo, pero hay que tener en cuenta que una de las pocas exigencias del formalismo DEVS es que no ocurran infinitos eventos en un mismo momento del tiempo virtual, y como el modelo sigue generando transiciones internas mientras haya mensajes por procesar, si los mensajes no son nunca desencolados y la variable \textit{next\_internal} se mantiene en cero, se generan infinitas transiciones internas y eso produciría un modelo DEVS ilegítimo que cuelga al simulador. \\
 
+\newpage
+
 Para enviar mensajes las colas a utilizar son las siguientes:
 \begin{itemize}
 \item message::queue$<DH2>$ higher\_layer\_data\_out: Output Port 0 
@@ -299,12 +296,14 @@ Como se puede observar, los nombres de los tipos a instanciar son iguales a los 
 
 Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{message::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
 
-El tipo de datos \textit{message::Multiplexed}$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -$>$ parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
+El tipo de datos message::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -$>$ parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
 
 \begin{table*}[h]
 	\begin{tabular}{|l|c|c|c|}
   		\hline
   		\textbf{Nombre} & \textbf{Tipo} & \textbf{Descripción} \\
+  		\hline
+  		Module\_name & String & El nombre del módulo que utiliza el logger \\
   		\hline
   		Max\_interface & Int & La cantidad máximas de interfaces de salida que puede demultiplexar. \\
   		\hline
@@ -313,16 +312,16 @@ El tipo de datos \textit{message::Multiplexed}$<typename MSG>$ sirve para enviar
 	\label{table: parameter demultiplexer}
 \end{table*}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
     \centering
     \includegraphics[width = 0.6\textwidth]{img/png/demultiplexer.png}
-    \caption{Puertos de entrada y salida de un demultiplexer, mapeo del campo interfaz del mensaje multiplexado con el puerto de salida correspondiente.}
+    \caption{Puertos de entrada y salida de un demultiplexer, mapeo del campo interfaz del mensaje con el puerto de salida correspondiente.}
     \label{figure: demultiplexer}
 \end{figure}
 
-Para no tener que usar un demultiplexer para los mensajes de datos y otro demultiplexer para los mensajes de controles, el modelo demultiplexer cuenta con dos puertos de entrada (datos y controles) y envía los mensajes por los puertos pares si son datos y por puertos impares si son controles; De esta forma, un mensaje de control que llega con interfaz $i$ es enviado por el puerto $2*i+1$ y un mensaje de datos que llega con interfaz $i$ es enviado por el puerto $2*i$. \\
+El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer con los puertos de entrada de los destinatarios, la entrada de mensages del modelo $i$ de destino debe estar conectado al puerto de salida $i$ del demultiplexer, la Figura \ref{figure: demultiplexer} muestra el mapeo de puertos de un demultiplexer. \\
 
-El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer correctamente con los destinatarios correspondientes, la entrada de datos del modelo $i$ de destino debe estar conectado al puerto de salida $2*i$ del demultiplexer y la entrada de controles del modelo $i$ debe estar conectado al puerto $2*i+1$ del demultiplexer. \\
+\newpage
 
 \subsection{Como implementar el protocolo de una capa (internal/external functions)}
 
@@ -369,7 +368,8 @@ Para insertar un nuevo modelo de capa dentro de un modelo acoplado de dispositiv
 
 Información más detallada sobre como usar PowerDEVS puede ser encontrada en el documento \cite{bergero2011powerdevs}, allí los autores describen como funciona el simulador y como crear un modelo desde el principio. \\
 
-\section{Input/output del modelo}
+\section{Input - Modelo generador}
+Para poder alimentar al modelo con eventos, es necesario con contar con unos modelos específicos que sepan leer archivos, parsearlos y generar eventos para enviar a los otros modelos. Estos modelos son llamados generadores o \textit{sources} en ingles y si bien no forman parte del modelado del fenomeno, los mismos son una abstracción del mundo externo del modelo y permite modelar dicha interacción.
 
 \subsection{Input}
 Existen dos módulos responsables de leer el o los inputs del modelo, estos son: El modelo atómico template \textit{input\_stream} y la clase \textit{Parser}. La idea de separar el input en dos módulos es la de atacar dos problemáticas distintas pero similares:
@@ -396,13 +396,13 @@ La clase Parser puede ser utilizada de forma independiente al modelo que lee inp
 
 \subsection{El modelo input stream}
 
-El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo que se utiliza para iniciar el parser. \\
+El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo que se utiliza para iniciar el parser y tiene las mismas precondiciones. \\
 
-Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del input$>$ que herede de input\_stream \footnote{El archivo header siempre tiene que ser de tipo \textit{.h} y la implementación debe estar en un archivo \textit{.cpp}} instanciando el parámetro template. Dado que el simulador PowerDEVS requiere que los modelos tengan un archivo \textit{.cpp} el mismo debe existir y puede simplemente estar vacío.
+Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del input$>$ que herede de input\_stream \footnote{El archivo header siempre tiene que ser de tipo \textit{.h} y la implementación debe estar en un archivo \textit{.cpp}} instanciando el parámetro template del tipo de datos del input. Dado que el simulador PowerDEVS requiere que los modelos tengan un archivo \textit{.cpp} el mismo debe existir y puede simplemente estar vacío. \\
 
-Una vez creada la herencia, el modelo atómico está listo para ser utilizado, el mismo no tiene ningún puerto de entrada y un solo puerto de salida por donde salen los inputs generados, este puerto de salida es el que debe ser conectado al modelo que precisa del input. \\
+Una vez creada la herencia, el modelo atómico está listo para ser utilizado, el mismo no tiene ningún puerto de entrada y un solo puerto de salida por donde salen los inputs generados, este puerto de salida es el que debe ser conectado al modelo que precisa del input. Un ejemplo de esto se encuentra disponible en el modelo del caso de estudio presentado con el nombre \textit{domain\_name\_source.h}. \\
 
-Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestran en la Tabla \ref{table: input stream parameters}
+Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestran en la Tabla \ref{table: input stream parameters}.
 \begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
   \hline
@@ -416,6 +416,31 @@ Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestra
 \caption{Parámetros del modelo input\_stream}
 \label{table: input stream parameters}
 \end{table*}
+
+\subsection{El modelo output stream}
+De la misma forma que es necesario contar con modelos generadores, también se necesita contar con modelos vertederos o \textit{sink} en ingles. Estos modelos sirven para absorver todo el output generado por el modelo y guardarlo en un archivo. El mismo está implementado de la misma forma que el modelo input stream y se hereda tomando las mismas consideraciones. Las únicas diferencias son las siguientes: \\
+
+\begin{itemize}
+\item No cuenta con ningún puerto de salida y cuenta con un puerto de entrada.
+\item Tiene dos tipos de datos template, uno para el tipo de output que le llega por el puerto $0$ y otro para el que le llega por el puerto $1$. Esto es así ya que la arquitectura de capas introducido en este trabajo envía mensajes de tipo datos por el puerto $0$ y mensajes de tipo control por el puerto $1$. Para que el modelo vertedero pueda aceptar ambos mensajes se utilizó este mecanismo.
+\end{itemize}
+
+Un ejemplo de esto se encuentra disponible en el modelo del caso de estudio presentado con el nombre \textit{domain\_name\_source.h}. Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestran en la Tabla \ref{table: output stream parameters}.
+\begin{table*}[h]
+\begin{tabular}{|l|c|c|c|}
+  \hline
+  \textbf{Nombre} & \textbf{Tipo} & \textbf{Descripción} \\
+  \hline
+  Module name & String & El nombre del módulo que utiliza el logger \\
+  \hline
+  Output & String & El path al archivo donde está guardado el input a parsear \\
+  \hline
+\end{tabular}
+\caption{Parámetros del modelo input\_stream}
+\label{table: output stream parameters}
+\end{table*}
+
+\newpage
 
 \section{Logger}
 
@@ -698,11 +723,7 @@ Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra la Tabl
 \label{table: parameters ip}
 \end{table*}
 
-\newpage
-
 \subsection{ARP}
-
-El modelo Link (capa 2) implementa los protocolos ARP y SWP explicados a continuación. \\
 
 Si bien los IPs cuentan con una estructura jerárquica que permite describir la topología de la red y de esa forma agrupar a los hosts por networks, los mismos son asignados dinámicamente dependiendo de en donde está conectado el host. Por el contrario, las \textit{MAC addresses} son fijas, y cada dispositivo de red viene con una \textit{MAC address} de fábrica, la misma se supone que es única. Para poder enviar datos de un dispositivo a otro, es necesario primero conseguir su \textit{MAC address}, el protocolo ARP (\textit{Address Resolution Protocol}) es el encargado en este modelo para realizar este trabajo. \\
 
@@ -746,7 +767,7 @@ Podría suceder que durante el tiempo que transcurre entre que ARP envía el men
 
 Un dispositivo puede tener varias interfaces y cada interfaz es un modelo \textit{Link} que implenta ARP y SWL. Este es el caso de los routers que cuentan con una interfaz por cada network al que están conectados. Cada interfaz cuanta con un IP y con una \textit{MAC address} y los pedidos de \textit{MAC address} que llegan a la interfaz son respondidos por el protocolo ARP dentro de la interfaz sin llegar a la capa de enrutamiento. De esta forma, un router puede ser accedido por los dispositivos de una red solo si ellos conocen el IP de la interfaz que está conectada a dicha red, en caso de que llegue un pedido de \textit{MAC address} para un IP de otra interfaz, el mismo es ignorado ya que las interfaces son independientes entre si. \\
 
-Tanto \textit{ARP} como \textit{SWP} son protocolos de nivel 2 y es por eso que se encuentran ambos implementados dentro del modelo \textit{link}. La tabla \ref{table: parameters link} muestra los parámetros del modelo de \textit{link} en la IDE PowerDEVS.
+Tanto \textit{ARP} como \textit{SWP} (explicado más adelante) son protocolos de nivel 2 y es por eso que se encuentran ambos implementados dentro del modelo \textit{link}. La tabla \ref{table: parameters link} muestra los parámetros del modelo de \textit{link} en la IDE PowerDEVS. 
 
 \begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
@@ -782,7 +803,7 @@ Cada vez que un nuevo frame llega a un switch, el mismo busca la \textit{MAC add
 
 Nuevamente, en este trabajo no se implementó ningún algoritmo dinámico para completar las \textit{forwarding tables} de los switches y las mismas deben ser completadas a mano, si dichas tablas no están completas o están mal completadas los frames podrían nunca llegar a destino y/o quedarse dando vueltas entre los distintos switches infinitamente. \\
 
-Tanto \textit{Datagrams} como \textit{SWP} son protocolos de nivel 2 y es por eso que se encuentran ambos implementados dentro del modelo \textit{switch}. La Tabla \ref{table: parameters datagrams} muestra los parámetros del modelo \textit{switch}.
+Tanto \textit{Datagrams} como \textit{SWP} (explicado más adelante) son protocolos de nivel 2 y es por eso que se encuentran ambos implementados dentro del modelo \textit{switch}. La Tabla \ref{table: parameters datagrams} muestra los parámetros del modelo \textit{switch}.
 
 \begin{table*}[h]
 \begin{tabular}{|l|c|c|c|}
@@ -802,6 +823,8 @@ Tanto \textit{Datagrams} como \textit{SWP} son protocolos de nivel 2 y es por es
 
 \subsection{SWP}
 
+Este protocolo es el utilizado en la capa $2$ y el mismo se encuentra tanto en el modelo \textit{link} como en el modelo \textit{switch}, de esta forma la comunicación de todos los dispositivos a nivel $2$ es realizada mediante \textit{SWP}.\\
+
 En este trabajo también se implementó el protocolo \textit{Sliding Window Protocol} de forma de garantizar que la comunicación entre dos dispositivos de la red se realiza sin perdida de frames y que los mismos llegan en orden, o sea, si se envía más de un paquete de un dispositivo a otro, los mismos son entregados en el mismo orden en que fueron enviados. Para no desaprovechar el ancho de banda enviando un solo frame por vez, el protocolo SWP utiliza una ventana que sirve para marcar cuantos frames pueden ser enviados en simultaneo de forma desordenada y a medida que los mismos van llegando, cuando el destinatario los ordena, la ventana se va corriendo. La Figura \ref{figure: swp timeline} ilustra la idea general del envío y recivo de mensajes mediante el protocolo SWP en una linea temporal.\\
 
 \begin{figure}[!htb]
@@ -820,8 +843,6 @@ Cuenta con una variable \texttt{SWS} (\textit{Send Window Size}) que indica el t
 Cuenta con una variable \texttt{RWS} (\textit{Receive Window Size}) que indica el tamaño de la ventana de cuales \textit{SeqNum} son aceptados y con una variable \texttt{LFR} (\textit{Last Frame received}) que indica el último frame para el cual envió un acknoledgment y por ende el comienzo de la ventana. En caso de que un frame llegue y no cumpla que \texttt{LFR} $<$ \textit{SeqNum} $\leq$ \texttt{LFR} + \texttt{RWS}, el mismo es descartado. Los frames que llegan y son aceptados se guardan en un arreglo a la espera de ser entregados a la capa superior. Cada vez que un frame es aceptado, se mira cual es el frame aceptados con \textit{SewNum} más grande tal que todos los frames con \textit{SeqNum} menor a el ya fueron recibidos y se envía un ack de dicho frame. Una vez que se envió el ack de un frame, el y todos los frames anteriores son enviados a la capa superior. \\
 
 Una cosa a tener en cuenta es que el \textit{SeqNum} está representado con un unsigned char y cuando llega al máximo número representable la secuencia vuelve a empezar de cero. Para evitar problemas con esto, es necesario asegurarse que las ventanas \texttt{SWS} y \texttt{RWS} sean lo suficientemente chicas respecto al máximo \textit{SeqNum} de forma de que cuando se llegue al mismo y se vuelva a empezar no se generen confusiones. \\
-
-Este protocolo es el utilizado en la capa $2$ y el mismo se encuentra tanto en el modelo \textit{link} como en el modelo \textit{switch}, de esta forma la comunicación de todos los dispositivos a nivel $2$ es realizada mediante \textit{SWP}.
 
 \subsection{Casos de test unitarios}
 

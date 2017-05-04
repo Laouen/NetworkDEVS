@@ -38,7 +38,7 @@ void switch_protocol::init(double t, ...) {
       }
     }
   } else {
-    logger.error("Error parsing routing table file.");
+    logger.info("No routing table file.");
   }
 
   logger.info("Forwarding table:");

@@ -31,7 +31,7 @@ void ip_router_protocol::processIPDatagram(ip::Datagram p) {
   ip::Routing_entry route;
   IPv4 dest_ip = p.header.dest_ip; 
 
-  logger.debug("ip packet: " + dest_ip.as_string());
+  logger.info("Process Ip Datagram");
   // The used algorithm is the microsoft routing process that specifies 7 steps
   // Step 1
   if (!this->verifychecksum(p.header)) {

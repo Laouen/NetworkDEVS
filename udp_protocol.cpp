@@ -72,15 +72,15 @@ void udp_protocol::processSegment(const udp::Segment& d, double t) {
   ushort remote_port = d.header.src_port;
   IPv4 local_ip = d.psd_header.dest_ip;
   IPv4 remote_ip = d.psd_header.src_ip;
-  logger.debug("process Segment: ");
-  logger.debug("local_port: " + std::to_string(local_port));
-  logger.debug("remote_port: " + std::to_string(remote_port));
-  logger.debug("local_ip: " + local_ip.as_string());
-  logger.debug("remote_ip: " + remote_ip.as_string());
+  logger.info("process Segment: ");
+  logger.info("local_port: " + std::to_string(local_port));
+  logger.info("remote_port: " + std::to_string(remote_port));
+  logger.info("local_ip: " + local_ip.as_string());
+  logger.info("remote_ip: " + remote_ip.as_string());
   if (existentSocket(local_port,local_ip) && verifyChecksum(d)) {
     udp::Socket& s = sockets[local_port][local_ip];
-    logger.debug("socket local_ip: " + s.local_ip.as_string());
-    logger.debug("socket local_ip: " + std::to_string(s.local_port));
+    logger.info("socket local_ip: " + s.local_ip.as_string());
+    logger.info("socket local_ip: " + std::to_string(s.local_port));
     // dest is actually src
     if (s.accept(local_port,local_ip,remote_port,remote_ip)) {
       // deliver data
@@ -115,11 +115,11 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       sockets[port][ip] = udp::Socket(port,ip,c.remote_port,c.remote_ip,app_id);
       sockets[port][ip].state = udp::Socket::Status::CONNECTED;
       // send success
-      logger.debug("SUCCESS");
+      logger.info("SUCCESS");
       m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     } else {
       // send invalid socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
     }
     higher_layer_ctrl_out.push(m);
@@ -134,11 +134,11 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       sockets[port][ip] = udp::Socket(port,ip,app_id);
       sockets[port][ip].state = udp::Socket::Status::BOUND;
       // send success
-      logger.debug("SUCCESS");
+      logger.info("SUCCESS");
       m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     } else {
       // send invalid socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
     }
       higher_layer_ctrl_out.push(m);
@@ -151,7 +151,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Read_from/Recv_from");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       higher_layer_ctrl_out.push(m);
       break;
@@ -203,7 +203,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Write_to/Send_to");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       higher_layer_ctrl_out.push(m);
       break;
@@ -227,7 +227,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Write/Send");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invalid socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       higher_layer_ctrl_out.push(m);
       break;
@@ -251,7 +251,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
     logger.info("Close");
     if (!this->validAppSocket(port,ip,app_id)) {
       // send invald socket
-      logger.debug("INVALID_SOCKET");
+      logger.info("INVALID_SOCKET");
       m = udp::Control(app_id,udp::Ctrl::INVALID_SOCKET);
       higher_layer_ctrl_out.push(m);
       break;
@@ -262,7 +262,7 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       sockets.erase(port);
     }
     // send success
-    logger.debug("SUCCESS");
+    logger.info("SUCCESS");
     m = udp::Control(app_id,udp::Ctrl::SUCCESS);
     higher_layer_ctrl_out.push(m);
     break;

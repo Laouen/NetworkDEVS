@@ -200,7 +200,7 @@ void link_protocol::arpProcessLinkControl(link::Control control) {
   link::Frame frame;
   link::Control m;
   Event o;
-  logger.debug("process link control");
+  logger.debug("Process link control");
 
   switch (control.request) {
   case link::Ctrl::ARP_QUERY:
@@ -231,7 +231,7 @@ void link_protocol::arpProcessLinkControl(link::Control control) {
 }
 
 void link_protocol::arpProcessPacket(link::Frame frame) {
-  logger.debug("Process ARP packet.");
+  logger.info("Process ARP packet.");
   
   link::arp::Packet packet = this->getARPPacket(frame);
 
@@ -267,11 +267,11 @@ bool link_protocol::arpCachedMAC(IPv4 dest_ip) {
 
   for (it = ARPTable.begin(); it != ARPTable.end(); ++it) {
     if (it->ip == dest_ip) {
-      logger.info("arp ip " + dest_ip.as_string() + " is in cache.");
+      logger.info("ARP ip " + dest_ip.as_string() + " is in cache.");
       return true;
     }
   }
-  logger.info("arp ip " + dest_ip.as_string() + " not cached.");
+  logger.info("ARP ip " + dest_ip.as_string() + " not cached.");
   return false;
 }
 
