@@ -368,7 +368,7 @@ Para insertar un nuevo modelo de capa dentro de un modelo acoplado de dispositiv
 
 Información más detallada sobre como usar PowerDEVS puede ser encontrada en el documento \cite{bergero2011powerdevs}, allí los autores describen como funciona el simulador y como crear un modelo desde el principio. \\
 
-\section{Input - Modelo generador}
+\section{Input/Output - Modelos generadores y vertederos}
 Para poder alimentar al modelo con eventos, es necesario con contar con unos modelos específicos que sepan leer archivos, parsearlos y generar eventos para enviar a los otros modelos. Estos modelos son llamados generadores o \textit{sources} en ingles y si bien no forman parte del modelado del fenomeno, los mismos son una abstracción del mundo externo del modelo y permite modelar dicha interacción.
 
 \subsection{Input}
@@ -844,6 +844,8 @@ Cuenta con una variable \texttt{RWS} (\textit{Receive Window Size}) que indica e
 
 Una cosa a tener en cuenta es que el \textit{SeqNum} está representado con un unsigned char y cuando llega al máximo número representable la secuencia vuelve a empezar de cero. Para evitar problemas con esto, es necesario asegurarse que las ventanas \texttt{SWS} y \texttt{RWS} sean lo suficientemente chicas respecto al máximo \textit{SeqNum} de forma de que cuando se llegue al mismo y se vuelva a empezar no se generen confusiones. \\
 
+\begin{comment}
+
 \subsection{Casos de test unitarios}
 
 para tener una validación del comportamiento de cada uno de los módulos del modelo implementado, se realizaron distintos test de unidad, en los cuales se inventó el input de los modelos y se comparó el resultado obtenido con el esperado. De esta forma a continuación se listan todos los test unitarios implementados: \\
@@ -864,6 +866,9 @@ Para finalizar el modelo y a modo de test de integración, se implementó un mod
 \section{Resultados}
 \section{Conclusiones}
 \section{Trabajo futuro}
+
+\end{comment}
+
 \section{References}
 \bibliographystyle{plain}
 \bibliography{references}
