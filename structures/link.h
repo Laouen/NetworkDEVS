@@ -187,4 +187,32 @@ inline std::ostream& operator<<(std::ostream& os, const link::Ctrl& c) {
   return os;
 }
 
+inline std::ostream& operator<<(std::ostream& os, const link::Control& c) {
+  os << "request: " << c.request << std::endl;
+  os << "interface: " << c.interface << std::endl;
+  os << "ip: " << c.ip << std::endl;
+  os << "Datagram: " << std::endl << c.packet << std::endl;
+  return os;
+}
+
+inline std::istream& operator>>(std::istream& is, link::Ctrl& c) {
+  std::string a;
+  is >> a;
+  if (a == "ARP_QUERY") c = link::Ctrl::ARP_QUERY;
+  if (a == "ARP_READY") c = link::Ctrl::ARP_READY;
+  if (a == "SEND_PACKET") c = link::Ctrl::SEND_PACKET;
+  if (a == "SEND_PACKET_FAILED") c = link::Ctrl::SEND_PACKET_FAILED;
+  return is;
+}
+
+// Only for testing purposes
+inline std::istream& operator>>(std::istream& is, link::Control& c) {
+  is >> c.request;
+  is >> c.interface;
+  is >> c.ip;
+  return is;
+}
+
+
+
 #endif

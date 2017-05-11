@@ -1,0 +1,205 @@
+Coupled
+    {
+    Type = Root
+    Name = ip
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = IP HOST
+            Ports = 4 ; 4
+            Path = NetworkDEVS/ip_host_protocol.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -6480 ; -2355
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/ipv4_host.svg
+                }
+            Parameters
+                {
+                module name = Str; Test ; 
+                ip amount = Val; 1 ; 
+                ip 1 = Str; 1.0.0.1 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Src 1
+            Ports = 0 ; 1
+            Path = NetworkDEVS/ip_control_src.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8505 ; -2430
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/input.svg
+                }
+            Parameters
+                {
+                module name = Str; ip_control ; 
+                input = Str; ../atomics/NetworkDEVS/tests/ip/host/input/ip_control.input ; 
+                }
+            }
+        Atomic
+            {
+            Name = Src 2
+            Ports = 0 ; 1
+            Path = NetworkDEVS/link_control_src.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8505 ; -1305
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/input.svg
+                }
+            Parameters
+                {
+                module name = Str; link_control ; 
+                input = Str; ../atomics/NetworkDEVS/tests/ip/host/input/link_control.input ; 
+                }
+            }
+        Atomic
+            {
+            Name = Sink 1
+            Ports = 1 ; 0
+            Path = NetworkDEVS/udp_segment_sink.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -4680 ; -2955
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                module name = Str; udp_segment ; 
+                input = Str; ../atomics/NetworkDEVS/tests/ip/host/output/udp_segment.output ; 
+                }
+            }
+        Atomic
+            {
+            Name = Sink 2
+            Ports = 1 ; 0
+            Path = NetworkDEVS/link_control_sink.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -3630 ; -1680
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                module name = Str; link_control ; 
+                input = Str; ../atomics/NetworkDEVS/tests/ip/host/output/link_control.output ; 
+                }
+            }
+        Atomic
+            {
+            Name = Src 3
+            Ports = 0 ; 1
+            Path = NetworkDEVS/udp_segment_src.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8505 ; -3555
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/input.svg
+                }
+            Parameters
+                {
+                module name = Str; udp_segment ; 
+                input = Str; ../atomics/NetworkDEVS/tests/ip/host/input/udp_segment.input ; 
+                }
+            }
+        Atomic
+            {
+            Name = demu 1
+            Ports = 1 ; 1
+            Path = NetworkDEVS/demultiplexer_ip_link.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -4680 ; -1680
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
+                }
+            Parameters
+                {
+                module_name = Str; Host 1 ; 
+                max_interface = Val; 1 ; 
+                }
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  1 ; 0
+            Sink = Cmp ;  4 ;  1 ; -1
+            PointX = -5700 ; -5325 ; -5325 ; -4815
+            PointY = -2250 ; -2250 ; -2625 ; -2625
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  1 ;  2 ; -1
+            PointX = -7725 ; -7725 ; -6615
+            PointY = -2100 ; -2100 ; -2100
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -7725 ; -7200 ; -7200 ; -6615
+            PointY = -3225 ; -3225 ; -2250 ; -2250
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
+            Sink = Cmp ;  1 ;  4 ; -1
+            PointX = -7725 ; -7200 ; -7200 ; -6615
+            PointY = -975 ; -975 ; -1800 ; -1800
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  4 ; 0
+            Sink = Cmp ;  7 ;  1 ; -1
+            PointX = -5700 ; -5325 ; -5325 ; -4815
+            PointY = -1800 ; -1800 ; -1350 ; -1350
+            }
+        Line
+            {
+            Source = Cmp ;  7 ;  1 ; 0
+            Sink = Cmp ;  5 ;  1 ; -1
+            PointX = -3900 ; -3900 ; -3765
+            PointY = -1350 ; -1350 ; -1350
+            }
+        }
+    }

@@ -1,0 +1,53 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = NetworkDEVS/ip_host_protocol.h
+    Parameters = "Test",1.000000e+00,"1.0.0.1","../atomics/NetworkDEVS/tests/ip/host/table/routing.table","../atomics/NetworkDEVS/tests/ip/host/table/forwarding.table"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/ip_control_src.h
+    Parameters = "ip_control","../atomics/NetworkDEVS/tests/ip/host/input/ip_control.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/link_control_src.h
+    Parameters = "link_control","../atomics/NetworkDEVS/tests/ip/host/input/link_control.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_segment_sink.h
+    Parameters = "udp_segment","../atomics/NetworkDEVS/tests/ip/host/output/udp_segment.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/link_control_sink.h
+    Parameters = "link_control","../atomics/NetworkDEVS/tests/ip/host/output/link_control.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_segment_src.h
+    Parameters = "udp_segment","../atomics/NetworkDEVS/tests/ip/host/input/udp_segment.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/demultiplexer_ip_link.h
+    Parameters = "Host 1",1.000000e+00
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (0,0);(3,0)
+    (1,0);(0,1)
+    (5,0);(0,0)
+    (2,0);(0,3)
+    (0,3);(6,0)
+    (6,0);(4,0)
+   }
+ }

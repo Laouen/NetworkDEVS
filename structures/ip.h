@@ -248,4 +248,35 @@ inline std::istream& operator>>(std::istream& is, ip::Forwarding_entry& e) {
   return is;
 }
 
+inline std::istream& operator>>(std::istream& is, ip::Ctrl& c) {
+  std::string a;
+  is >> a;
+  if (a == "ADD_IP") c = ip::Ctrl::ADD_IP; return is;
+  if (a == "REMOVE_IP") c = ip::Ctrl::REMOVE_IP; return is;
+  if (a == "ROUTING_ERROR") c = ip::Ctrl::ROUTING_ERROR; return is;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, ip::Control& c) {
+  is >> c.request;
+  is >> c.ip;
+  return is;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const ip::Ctrl& c) {
+  switch(c) {
+  case ip::Ctrl::ADD_IP: os << "ADD_IP"; break;
+  case ip::Ctrl::REMOVE_IP: os << "REMOVE_IP"; break;
+  case ip::Ctrl::ROUTING_ERROR: os << "ROUTING_ERROR"; break;
+  }
+  return os;
+}
+
+inline std::ostream& operator<<(std::ostream& os, const ip::Control& c) {
+  os << "Request: " << c.request << std::endl;
+  if (c.request != ip::Ctrl::ROUTING_ERROR)
+    os << "ip: " << c.ip;
+  return os;
+}
+
 #endif
