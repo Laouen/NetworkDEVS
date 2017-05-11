@@ -237,6 +237,27 @@ inline std::istream& operator>>(std::istream& is, udp::Ctrl& c) {
   return is;
 }
 
+inline std::istream& operator>>(std::istream& is, udp::Header& h) {
+  is >> h.src_port;
+  is >> h.dest_port;
+  is >> h.length;
+  is >> h.checksum;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, udp::PseudoHeader& ph) {
+  is >> ph.src_ip;
+  is >> ph.dest_ip;
+  is >> ph.udp_lenght;
+  return is;
+}
+
+// This method is for testing purpose only, it does not load any payload
+inline std::istream& operator>>(std::istream& is, udp::Segment& s) {
+  is >> s.psd_header;
+  is >> s.header;
+}
+
 inline std::ostream& operator<<(std::ostream& os, const udp::Control& m) {
   os << "app_id: " << m.app_id << std::endl;
   os << "Ctrol: " << m.request << std::endl;

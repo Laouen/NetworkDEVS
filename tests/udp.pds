@@ -1,0 +1,47 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = NetworkDEVS/udp_protocol.h
+    Parameters = "Test",1.000000e+00,"1.0.0.1"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_control_src.h
+    Parameters = "udp_control","../atomics/NetworkDEVS/tests/udp/input/udp_control.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_segment_src.h
+    Parameters = "udp_segment","../atomics/NetworkDEVS/tests/udp/input/udp_segment.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_control_sink.h
+    Parameters = "udp_control","../atomics/NetworkDEVS/tests/udp/output/udp_control.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/dns_packet_sink.h
+    Parameters = "dns_packet_sink","../atomics/NetworkDEVS/tests/udp/output/dns_packet.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_segment_sink.h
+    Parameters = "udp_segment","../atomics/NetworkDEVS/tests/udp/output/segment.output"
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (2,0);(0,2)
+    (0,0);(4,0)
+    (1,0);(0,1)
+    (0,1);(3,0)
+    (0,2);(5,0)
+   }
+ }

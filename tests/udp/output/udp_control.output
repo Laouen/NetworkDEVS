@@ -1,0 +1,15 @@
+time:15.011
+app_id: 0
+Ctrol: SUCCESS
+
+
+time:18.011
+app_id: 1
+Ctrol: SUCCESS
+
+
+time:20.011
+app_id: 0
+Ctrol: INVALID_SOCKET
+
+
