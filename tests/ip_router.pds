@@ -1,0 +1,41 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = NetworkDEVS/ip_router_protocol.h
+    Parameters = "Test",1.000000e+00,"1.0.0.1","../atomics/NetworkDEVS/tests/ip/router/table/routing.table","../atomics/NetworkDEVS/tests/ip/router/table/forwarding.table"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/ip_datagram_src.h
+    Parameters = "ip_control","../atomics/NetworkDEVS/tests/ip/router/input/ip_datagram.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/link_control_src.h
+    Parameters = "link_control","../atomics/NetworkDEVS/tests/ip/router/input/link_control.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/link_control_sink.h
+    Parameters = "link_control","../atomics/NetworkDEVS/tests/ip/router/output/link_control.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/demultiplexer_ip_link.h
+    Parameters = "Host 1",1.000000e+00
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (2,0);(0,3)
+    (0,3);(4,0)
+    (4,0);(3,0)
+    (1,0);(0,2)
+   }
+ }

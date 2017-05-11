@@ -279,4 +279,22 @@ inline std::ostream& operator<<(std::ostream& os, const ip::Control& c) {
   return os;
 }
 
+inline std::istream& operator>>(std::istream& is, ip::Header& h) {
+  is >> h.vide;
+  is >> h.total_length;
+  is >> h.identification;
+  is >> h.ff;
+  is >> h.ttlp;
+  is >> h.header_checksum;
+  is >> h.src_ip;
+  is >> h.dest_ip;
+  return is;
+}
+
+inline std::istream& operator>>(std::istream& is, ip::Datagram& d) {
+  is >> d.header;
+  is >> d.data;
+  return is;
+}
+
 #endif

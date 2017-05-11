@@ -7,8 +7,8 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = NetworkDEVS/ip_control_src.h
-    Parameters = "ip_control","../atomics/NetworkDEVS/tests/ip/host/input/ip_control.input"
+    Path = NetworkDEVS/ip_datagram_src.h
+    Parameters = "ip_datagram","../atomics/NetworkDEVS/tests/ip/host/input/ip_datagram.input"
    }
   Simulator
    {
@@ -44,10 +44,10 @@ Root-Coordinator
   IC
    {
     (0,0);(3,0)
-    (1,0);(0,1)
     (5,0);(0,0)
     (2,0);(0,3)
     (0,3);(6,0)
     (6,0);(4,0)
+    (1,0);(0,2)
    }
  }
