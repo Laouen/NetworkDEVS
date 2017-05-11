@@ -1,0 +1,23 @@
+time:27915.7
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_RECURSIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 1
+ANCount: 1
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION **
+network.devs.com A 0.0.0.0 IN 0
+
+** ANSWER SECTION **
+network.devs.com A 6.0.0.1 IN 65535
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+network.devs.com A 1.0.0.2 IN 7184
+-----------------------------------------
+
+

@@ -1,0 +1,2 @@
+com NS ns1.com IN 65535
+ns1.com A 5.0.0.2 IN 65535

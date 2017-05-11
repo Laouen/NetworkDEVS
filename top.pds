@@ -10,7 +10,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 1",2.000000e+00,"1.0.0.1","127.0.0.1","../input/test/ip/1/h1.routing_table","../input/test/ip/1/h1.forwarding_table"
+        Parameters = "Host 1",2.000000e+00,"1.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h1.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h1.forwarding_table"
        }
       Simulator
        {
@@ -20,17 +20,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 1","1.0.0.1","1.0.0.2","../input/test/dns/1/h1.authoritative_table","../input/test/dns/1/h1.zone_table",1.000000e+00
+        Parameters = "Host 1","1.0.0.1","1.0.0.2","../atomics/NetworkDEVS/scenario/input/dns/1/h1.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h1.zone_table",1.000000e+00
        }
       Simulator
        {
-        Path = NetworkDEVS/domain_name_sink.h
-        Parameters = "Host 1","test/udp/1/h1.output"
+        Path = NetworkDEVS/dns_packet_sink.h
+        Parameters = "Host 1","../atomics/NetworkDEVS/scenario/output/h1.output"
        }
       Simulator
        {
         Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 1","../input/test/input/1/h1.input"
+        Parameters = "Host 1","../atomics/NetworkDEVS/scenario/input/input/1/h1.input"
        }
       Simulator
        {
@@ -70,7 +70,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 3",2.000000e+00,"4.0.0.1","127.0.0.1","../input/test/ip/1/h3.routing_table","../input/test/ip/1/h3.forwarding_table"
+        Parameters = "Host 3",2.000000e+00,"4.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h3.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h3.forwarding_table"
        }
       Simulator
        {
@@ -80,17 +80,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 3","../input/test/input/1/h3.input"
+        Parameters = "Host 3","../atomics/NetworkDEVS/scenario/input/input/1/h3.input"
        }
       Simulator
        {
-        Path = NetworkDEVS/domain_name_sink.h
-        Parameters = "Host 3","test/udp/1/h3.output"
+        Path = NetworkDEVS/dns_packet_sink.h
+        Parameters = "Host 3","../atomics/NetworkDEVS/scenario/output/h3.output"
        }
       Simulator
        {
         Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 3","4.0.0.1","5.0.0.1","../input/test/dns/1/h3.authoritative_table","../input/test/dns/1/h3.zone_table",1.000000e+00
+        Parameters = "Host 3","4.0.0.1","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h3.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h3.zone_table",1.000000e+00
        }
       Simulator
        {
@@ -130,7 +130,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 4",2.000000e+00,"5.0.0.2","127.0.0.1","../input/test/ip/1/h4.routing_table","../input/test/ip/1/h4.forwarding_table"
+        Parameters = "Host 4",2.000000e+00,"5.0.0.2","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h4.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h4.forwarding_table"
        }
       Simulator
        {
@@ -140,17 +140,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 4","../input/test/input/1/h4.input"
+        Parameters = "Host 4","../atomics/NetworkDEVS/scenario/input/input/1/h4.input"
        }
       Simulator
        {
-        Path = NetworkDEVS/domain_name_sink.h
-        Parameters = "Host 4","test/udp/1/h4.output"
+        Path = NetworkDEVS/dns_packet_sink.h
+        Parameters = "Host 4","../atomics/NetworkDEVS/scenario/output/h4.output"
        }
       Simulator
        {
         Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 4","5.0.0.2","5.0.0.1","../input/test/dns/1/h4.authoritative_table","../input/test/dns/1/h4.zone_table",0.000000e+00
+        Parameters = "Host 4","5.0.0.2","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h4.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h4.zone_table",0.000000e+00
        }
       Simulator
        {
@@ -190,7 +190,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 5",2.000000e+00,"5.0.0.1","127.0.0.1","../input/test/ip/1/h5.routing_table","../input/test/ip/1/h5.forwarding_table"
+        Parameters = "Host 5",2.000000e+00,"5.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h5.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h5.forwarding_table"
        }
       Simulator
        {
@@ -200,17 +200,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 5","../input/test/input/1/h5.input"
+        Parameters = "Host 5","../atomics/NetworkDEVS/scenario/input/input/1/h5.input"
        }
       Simulator
        {
-        Path = NetworkDEVS/domain_name_sink.h
-        Parameters = "Host 5","test/udp/1/h5.output"
+        Path = NetworkDEVS/dns_packet_sink.h
+        Parameters = "Host 5","../atomics/NetworkDEVS/scenario/output/h5.output"
        }
       Simulator
        {
         Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 5","5.0.0.1","5.0.0.1","../input/test/dns/1/h5.authoritative_table","../input/test/dns/1/h5.zone_table",0.000000e+00
+        Parameters = "Host 5","5.0.0.1","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h5.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h5.zone_table",0.000000e+00
        }
       Simulator
        {
@@ -245,7 +245,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_router_protocol.h
-        Parameters = "Router 1",3.000000e+00,"1.0.0.0","2.0.0.0","3.0.0.0","../input/test/ip/1/r1.routing_table","../input/test/ip/1/r1.forwarding_table"
+        Parameters = "Router 1",3.000000e+00,"1.0.0.0","2.0.0.0","3.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r1.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r1.forwarding_table"
        }
       Simulator
        {
@@ -298,7 +298,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_router_protocol.h
-        Parameters = "Router 2",2.000000e+00,"3.0.0.1","5.0.0.0","../input/test/ip/1/r2.routing_table","../input/test/ip/1/r2.forwarding_table"
+        Parameters = "Router 2",2.000000e+00,"3.0.0.1","5.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r2.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r2.forwarding_table"
        }
       Simulator
        {
@@ -341,7 +341,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/ip_router_protocol.h
-        Parameters = "Router 3",2.000000e+00,"2.0.0.1","4.0.0.0","../input/test/ip/1/r3.routing_table","../input/test/ip/1/r3.forwarding_table"
+        Parameters = "Router 3",2.000000e+00,"2.0.0.1","4.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r3.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r3.forwarding_table"
        }
       Simulator
        {
@@ -384,7 +384,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "Switch 1","0:0:0:0:0:13",3.000000e+00,"../input/test/switch/1/sw1.forwarding_table"
+        Parameters = "Switch 1","0:0:0:0:0:13",3.000000e+00,"../atomics/NetworkDEVS/scenario/input/switch/1/sw1.forwarding_table"
        }
       Simulator
        {
@@ -419,7 +419,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "Switch 2","0:0:0:0:0:14",3.000000e+00,"../input/test/switch/1/sw2.forwarding_table"
+        Parameters = "Switch 2","0:0:0:0:0:14",3.000000e+00,"../atomics/NetworkDEVS/scenario/input/switch/1/sw2.forwarding_table"
        }
       Simulator
        {
@@ -454,7 +454,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "Switch 3","0:0:0:0:0:15",3.000000e+00,"../input/test/switch/1/sw3.forwarding_table"
+        Parameters = "Switch 3","0:0:0:0:0:15",3.000000e+00,"../atomics/NetworkDEVS/scenario/input/switch/1/sw3.forwarding_table"
        }
       Simulator
        {
@@ -499,7 +499,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/switch_protocol.h
-        Parameters = "Switch 4","0:0:0:0:0:16",3.000000e+00,"../input/test/switch/1/sw4.forwarding_table"
+        Parameters = "Switch 4","0:0:0:0:0:16",3.000000e+00,"../atomics/NetworkDEVS/scenario/input/switch/1/sw4.forwarding_table"
        }
       EIC
        {
@@ -529,17 +529,17 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 2","../input/test/input/1/h2.input"
+        Parameters = "Host 2","../atomics/NetworkDEVS/scenario/input/input/1/h2.input"
        }
       Simulator
        {
-        Path = NetworkDEVS/domain_name_sink.h
-        Parameters = "Host 2","test/udp/1/h2.output"
+        Path = NetworkDEVS/dns_packet_sink.h
+        Parameters = "Host 2","../atomics/NetworkDEVS/scenario/output/h2.output"
        }
       Simulator
        {
         Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 2",2.000000e+00,"1.0.0.2","127.0.0.1","../input/test/ip/1/h2.routing_table","../input/test/ip/1/h2.forwarding_table"
+        Parameters = "Host 2",2.000000e+00,"1.0.0.2","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h2.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h2.forwarding_table"
        }
       Simulator
        {
@@ -549,7 +549,7 @@ Root-Coordinator
       Simulator
        {
         Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 2","1.0.0.2","5.0.0.1","../input/test/dns/1/h2.authoritative_table","../input/test/dns/1/h2.zone_table",1.000000e+00
+        Parameters = "Host 2","1.0.0.2","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h2.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h2.zone_table",1.000000e+00
        }
       Simulator
        {

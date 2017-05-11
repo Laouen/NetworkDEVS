@@ -1,0 +1,4 @@
+16 BIND 1 8080 1.0.0.1
+17 SEND_TO 1 8080 1.0.0.1 8080 1.0.0.2 1 1 0 0 1 0 el-atajo.com.ar NS hola.com 1 1
+18 CONNECT 0 80 1.0.0.1 8080 5.0.0.1
+19 SEND 0 80 1.0.0.1 1 1 0 0 1 0 el-atajo.com.ar NS hola.com 1 1

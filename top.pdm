@@ -103,8 +103,8 @@ Coupled
                         ip_amount = Val; 2 ; 
                         ip = Str; 1.0.0.1 ; 
                         reserved_ip_1 = Str; 127.0.0.1 ; 
-                        file_path_rt = Str; ../input/test/ip/1/h1.routing_table ; 
-                        file_path_ft = Str; ../input/test/ip/1/h1.forwarding_table ; 
+                        file_path_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h1.routing_table ; 
+                        file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h1.forwarding_table ; 
                         }
                     }
                 Atomic
@@ -148,8 +148,8 @@ Coupled
                         module_name = Str; Host 1 ; 
                         client_ip = Str; 1.0.0.1 ; 
                         server_ip = Str; 1.0.0.2 ; 
-                        dns_table = Str; ../input/test/dns/1/h1.authoritative_table ; 
-                        zone_table = Str; ../input/test/dns/1/h1.zone_table ; 
+                        dns_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h1.authoritative_table ; 
+                        zone_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h1.zone_table ; 
                         recursive = Val; 1 ; 
                         }
                     }
@@ -157,11 +157,11 @@ Coupled
                     {
                     Name = ouput 1
                     Ports = 1 ; 0
-                    Path = NetworkDEVS/domain_name_sink.h
+                    Path = NetworkDEVS/dns_packet_sink.h
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -3405 ; -5805
+                        Position = -3255 ; -5805
                         Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
@@ -170,7 +170,7 @@ Coupled
                     Parameters
                         {
                         module_name = Str; Host 1 ; 
-                        output = Str; test/udp/1/h1.output ; 
+                        output = Str; ../atomics/NetworkDEVS/scenario/output/h1.output ; 
                         }
                     }
                 Atomic
@@ -190,7 +190,7 @@ Coupled
                     Parameters
                         {
                         module name = Str; Host 1 ; 
-                        input = Str; ../input/test/input/1/h1.input ; 
+                        input = Str; ../atomics/NetworkDEVS/scenario/input/input/1/h1.input ; 
                         }
                     }
                 Atomic
@@ -280,7 +280,7 @@ Coupled
                     {
                     Source = Cmp ;  4 ;  1 ; 0
                     Sink = Cmp ;  5 ;  1 ; -1
-                    PointX = -4200 ; -4200 ; -3540
+                    PointX = -4200 ; -4200 ; -3390
                     PointY = -5475 ; -5475 ; -5475
                     }
                 Line
@@ -391,8 +391,8 @@ Coupled
                                 ip_amount = Val; 2 ; 
                                 ip = Str; 4.0.0.1 ; 
                                 reserved_ip_1 = Str; 127.0.0.1 ; 
-                                file_plath_rt = Str; ../input/test/ip/1/h3.routing_table ; 
-                                file_path_ft = Str; ../input/test/ip/1/h3.forwarding_table ; 
+                                file_plath_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h3.routing_table ; 
+                                file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h3.forwarding_table ; 
                                 }
                             }
                         Atomic
@@ -434,14 +434,14 @@ Coupled
                             Parameters
                                 {
                                 module name = Str; Host 3 ; 
-                                input = Str; ../input/test/input/1/h3.input ; 
+                                input = Str; ../atomics/NetworkDEVS/scenario/input/input/1/h3.input ; 
                                 }
                             }
                         Atomic
                             {
                             Name = ouput 3
                             Ports = 1 ; 0
-                            Path = NetworkDEVS/domain_name_sink.h
+                            Path = NetworkDEVS/dns_packet_sink.h
                             Description = Atomic DEVS model
                             Graphic
                                 {
@@ -454,7 +454,7 @@ Coupled
                             Parameters
                                 {
                                 module_name = Str; Host 3 ; 
-                                output = Str; test/udp/1/h3.output ; 
+                                output = Str; ../atomics/NetworkDEVS/scenario/output/h3.output ; 
                                 }
                             }
                         Atomic
@@ -476,8 +476,8 @@ Coupled
                                 module_name = Str; Host 3 ; 
                                 client_ip = Str; 4.0.0.1 ; 
                                 server_ip = Str; 5.0.0.1 ; 
-                                dns_table = Str; ../input/test/dns/1/h3.authoritative_table ; 
-                                zone_table = Str; ../input/test/dns/1/h3.zone_table ; 
+                                dns_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h3.authoritative_table ; 
+                                zone_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h3.zone_table ; 
                                 recursive = Val; 1 ; 
                                 }
                             }
@@ -679,8 +679,8 @@ Coupled
                                         ip_amount = Val; 2 ; 
                                         ip = Str; 5.0.0.2 ; 
                                         reserved_ip_1 = Str; 127.0.0.1 ; 
-                                        file_plath_rt = Str; ../input/test/ip/1/h4.routing_table ; 
-                                        file_path_ft = Str; ../input/test/ip/1/h4.forwarding_table ; 
+                                        file_plath_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h4.routing_table ; 
+                                        file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h4.forwarding_table ; 
                                         }
                                     }
                                 Atomic
@@ -722,14 +722,14 @@ Coupled
                                     Parameters
                                         {
                                         module name = Str; Host 4 ; 
-                                        input = Str; ../input/test/input/1/h4.input ; 
+                                        input = Str; ../atomics/NetworkDEVS/scenario/input/input/1/h4.input ; 
                                         }
                                     }
                                 Atomic
                                     {
                                     Name = ouput 4
                                     Ports = 1 ; 0
-                                    Path = NetworkDEVS/domain_name_sink.h
+                                    Path = NetworkDEVS/dns_packet_sink.h
                                     Description = Atomic DEVS model
                                     Graphic
                                         {
@@ -742,7 +742,7 @@ Coupled
                                     Parameters
                                         {
                                         module_name = Str; Host 4 ; 
-                                        output = Str; test/udp/1/h4.output ; 
+                                        output = Str; ../atomics/NetworkDEVS/scenario/output/h4.output ; 
                                         }
                                     }
                                 Atomic
@@ -764,8 +764,8 @@ Coupled
                                         module_name = Str; Host 4 ; 
                                         client_ip = Str; 5.0.0.2 ; 
                                         server_ip = Str; 5.0.0.1 ; 
-                                        dns_table = Str; ../input/test/dns/1/h4.authoritative_table ; 
-                                        zone_table = Str; ../input/test/dns/1/h4.zone_table ; 
+                                        dns_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h4.authoritative_table ; 
+                                        zone_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h4.zone_table ; 
                                         recursive = Val; 0 ; 
                                         }
                                     }
@@ -967,8 +967,8 @@ Coupled
                                                 ip_amount = Val; 2 ; 
                                                 ip = Str; 5.0.0.1 ; 
                                                 reserved_ip_1 = Str; 127.0.0.1 ; 
-                                                file_plath_rt = Str; ../input/test/ip/1/h5.routing_table ; 
-                                                file_path_ft = Str; ../input/test/ip/1/h5.forwarding_table ; 
+                                                file_plath_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h5.routing_table ; 
+                                                file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h5.forwarding_table ; 
                                                 }
                                             }
                                         Atomic
@@ -1010,14 +1010,14 @@ Coupled
                                             Parameters
                                                 {
                                                 module name = Str; Host 5 ; 
-                                                input = Str; ../input/test/input/1/h5.input ; 
+                                                input = Str; ../atomics/NetworkDEVS/scenario/input/input/1/h5.input ; 
                                                 }
                                             }
                                         Atomic
                                             {
                                             Name = ouput 5
                                             Ports = 1 ; 0
-                                            Path = NetworkDEVS/domain_name_sink.h
+                                            Path = NetworkDEVS/dns_packet_sink.h
                                             Description = Atomic DEVS model
                                             Graphic
                                                 {
@@ -1030,7 +1030,7 @@ Coupled
                                             Parameters
                                                 {
                                                 module_name = Str; Host 5 ; 
-                                                output = Str; test/udp/1/h5.output ; 
+                                                output = Str; ../atomics/NetworkDEVS/scenario/output/h5.output ; 
                                                 }
                                             }
                                         Atomic
@@ -1052,8 +1052,8 @@ Coupled
                                                 module_name = Str; Host 5 ; 
                                                 client_ip = Str; 5.0.0.1 ; 
                                                 server_ip = Str; 5.0.0.1 ; 
-                                                dns_table = Str; ../input/test/dns/1/h5.authoritative_table ; 
-                                                zone_table = Str; ../input/test/dns/1/h5.zone_table ; 
+                                                dns_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h5.authoritative_table ; 
+                                                zone_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h5.zone_table ; 
                                                 recursive = Val; 0 ; 
                                                 }
                                             }
@@ -1283,8 +1283,8 @@ Coupled
                                                         ip_1 = Str; 1.0.0.0 ; 
                                                         ip_2 = Str; 2.0.0.0 ; 
                                                         ip_3 = Str; 3.0.0.0 ; 
-                                                        file_path_rt = Str; ../input/test/ip/1/r1.routing_table ; 
-                                                        file_path_ft = Str; ../input/test/ip/1/r1.forwarding_table ; 
+                                                        file_path_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/r1.routing_table ; 
+                                                        file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/r1.forwarding_table ; 
                                                         }
                                                     }
                                                 Atomic
@@ -1575,8 +1575,8 @@ Coupled
                                                                 ip_amount = Val; 2 ; 
                                                                 ip = Str; 3.0.0.1 ; 
                                                                 ip_2 = Str; 5.0.0.0 ; 
-                                                                file_path_rt = Str; ../input/test/ip/1/r2.routing_table ; 
-                                                                file_path_ft = Str; ../input/test/ip/1/r2.forwarding_table ; 
+                                                                file_path_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/r2.routing_table ; 
+                                                                file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/r2.forwarding_table ; 
                                                                 }
                                                             }
                                                         Atomic
@@ -1810,8 +1810,8 @@ Coupled
                                                                         ip_amount = Val; 2 ; 
                                                                         ip = Str; 2.0.0.1 ; 
                                                                         ip_2 = Str; 4.0.0.0 ; 
-                                                                        file_path_rt = Str; ../input/test/ip/1/r3.routing_table ; 
-                                                                        file_path_ft = Str; ../input/test/ip/1/r3.forwarding_table ; 
+                                                                        file_path_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/r3.routing_table ; 
+                                                                        file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/r3.forwarding_table ; 
                                                                         }
                                                                     }
                                                                 Atomic
@@ -2068,7 +2068,7 @@ Coupled
                                                                                 module_name = Str; Switch 1 ; 
                                                                                 MAC = Str; 0:0:0:0:0:13 ; 
                                                                                 interface_amount = Val; 3 ; 
-                                                                                forwarding_table = Str; ../input/test/switch/1/sw1.forwarding_table ; 
+                                                                                forwarding_table = Str; ../atomics/NetworkDEVS/scenario/input/switch/1/sw1.forwarding_table ; 
                                                                                 }
                                                                             }
                                                                         Atomic
@@ -2279,7 +2279,7 @@ Coupled
                                                                                         module_name = Str; Switch 2 ; 
                                                                                         MAC = Str; 0:0:0:0:0:14 ; 
                                                                                         interface_amount = Val; 3 ; 
-                                                                                        forwarding_table = Str; ../input/test/switch/1/sw2.forwarding_table ; 
+                                                                                        forwarding_table = Str; ../atomics/NetworkDEVS/scenario/input/switch/1/sw2.forwarding_table ; 
                                                                                         }
                                                                                     }
                                                                                 Atomic
@@ -2490,7 +2490,7 @@ Coupled
                                                                                                 module_name = Str; Switch 3 ; 
                                                                                                 MAC = Str; 0:0:0:0:0:15 ; 
                                                                                                 interface_amount = Val; 3 ; 
-                                                                                                forwarding_table = Str; ../input/test/switch/1/sw3.forwarding_table ; 
+                                                                                                forwarding_table = Str; ../atomics/NetworkDEVS/scenario/input/switch/1/sw3.forwarding_table ; 
                                                                                                 }
                                                                                             }
                                                                                         Atomic
@@ -2740,7 +2740,7 @@ Coupled
                                                                                                         module_name = Str; Switch 4 ; 
                                                                                                         MAC = Str; 0:0:0:0:0:16 ; 
                                                                                                         interface_amount = Val; 3 ; 
-                                                                                                        forwarding_table = Str; ../input/test/switch/1/sw4.forwarding_table ; 
+                                                                                                        forwarding_table = Str; ../atomics/NetworkDEVS/scenario/input/switch/1/sw4.forwarding_table ; 
                                                                                                         }
                                                                                                     }
                                                                                                 Line
@@ -2883,14 +2883,14 @@ Coupled
                                                                                                             Parameters
                                                                                                                 {
                                                                                                                 module name = Str; Host 2 ; 
-                                                                                                                input = Str; ../input/test/input/1/h2.input ; 
+                                                                                                                input = Str; ../atomics/NetworkDEVS/scenario/input/input/1/h2.input ; 
                                                                                                                 }
                                                                                                             }
                                                                                                         Atomic
                                                                                                             {
                                                                                                             Name = ouput 2
                                                                                                             Ports = 1 ; 0
-                                                                                                            Path = NetworkDEVS/domain_name_sink.h
+                                                                                                            Path = NetworkDEVS/dns_packet_sink.h
                                                                                                             Description = Atomic DEVS model
                                                                                                             Graphic
                                                                                                                 {
@@ -2903,7 +2903,7 @@ Coupled
                                                                                                             Parameters
                                                                                                                 {
                                                                                                                 module_name = Str; Host 2 ; 
-                                                                                                                output = Str; test/udp/1/h2.output ; 
+                                                                                                                output = Str; ../atomics/NetworkDEVS/scenario/output/h2.output ; 
                                                                                                                 }
                                                                                                             }
                                                                                                         Atomic
@@ -2926,8 +2926,8 @@ Coupled
                                                                                                                 ip_amount = Val; 2 ; 
                                                                                                                 ip = Str; 1.0.0.2 ; 
                                                                                                                 reserved_ip_1 = Str; 127.0.0.1 ; 
-                                                                                                                file_path_rt = Str; ../input/test/ip/1/h2.routing_table ; 
-                                                                                                                file_path_ft = Str; ../input/test/ip/1/h2.forwarding_table ; 
+                                                                                                                file_path_rt = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h2.routing_table ; 
+                                                                                                                file_path_ft = Str; ../atomics/NetworkDEVS/scenario/input/ip/1/h2.forwarding_table ; 
                                                                                                                 }
                                                                                                             }
                                                                                                         Atomic
@@ -2971,8 +2971,8 @@ Coupled
                                                                                                                 module_name = Str; Host 2 ; 
                                                                                                                 client_ip = Str; 1.0.0.2 ; 
                                                                                                                 server_ip = Str; 5.0.0.1 ; 
-                                                                                                                dns_table = Str; ../input/test/dns/1/h2.authoritative_table ; 
-                                                                                                                zone_table = Str; ../input/test/dns/1/h2.zone_table ; 
+                                                                                                                dns_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h2.authoritative_table ; 
+                                                                                                                zone_table = Str; ../atomics/NetworkDEVS/scenario/input/dns/1/h2.zone_table ; 
                                                                                                                 recursive = Val; 1 ; 
                                                                                                                 }
                                                                                                             }
