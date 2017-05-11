@@ -205,6 +205,15 @@ inline std::istream& operator>>(std::istream& is, link::Ctrl& c) {
   return is;
 }
 
+inline std::istream& operator>>(std::istream& is, link::Frame& f) {
+  is >> f.preamble;
+  is >> f.MAC_destination;
+  is >> f.MAC_source;
+  is >> f.EtherType;
+  is >> f.CRC;
+  return is;
+}
+
 // Only for testing purposes
 inline std::istream& operator>>(std::istream& is, link::Control& c) {
   is >> c.request;
