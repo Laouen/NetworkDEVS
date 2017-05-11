@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class link_frame_sink: public output_stream<link::Frame, int> {
+class link_frame_sink: public output_stream<link::Frame> {
 
 public:
   link_frame_sink(const char *n): output_stream(n) {};

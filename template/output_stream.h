@@ -3,7 +3,7 @@
 
 #include "layer.h"
 
-template<typename DATA, typename CTRL>
+template<typename DATA>
 class output_stream: public Simulator {
   Logger logger;
   std::ofstream file;
@@ -37,10 +37,6 @@ public:
       DATA m = *(DATA*)x.value;
       file << "time:" << t << std::endl;
       file << m << std::endl << std::endl;
-    } else if (x.port == 1) {
-      CTRL m = *(CTRL*)x.value;
-      file << "time:" << t << std::endl;
-      file << m << std::endl;
     }
   }
 

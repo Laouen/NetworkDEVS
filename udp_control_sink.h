@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class udp_control_sink: public output_stream<udp::Control, int> {
+class udp_control_sink: public output_stream<udp::Control> {
 
 public:
   udp_control_sink(const char *n): output_stream(n) {};

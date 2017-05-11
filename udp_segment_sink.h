@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class udp_segment_sink: public output_stream<udp::Segment, int> {
+class udp_segment_sink: public output_stream<udp::Segment> {
 
 public:
   udp_segment_sink(const char *n): output_stream(n) {};

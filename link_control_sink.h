@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class link_control_sink: public output_stream<link::Control, int> {
+class link_control_sink: public output_stream<link::Control> {
 
 public:
   link_control_sink(const char *n): output_stream(n) {};

@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class dns_packet_sink: public output_stream<dns::Packet, int> {
+class dns_packet_sink: public output_stream<dns::Packet> {
 
 public:
   dns_packet_sink(const char *n): output_stream(n) {};

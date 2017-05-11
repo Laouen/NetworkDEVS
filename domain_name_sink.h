@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class domain_name_sink: public output_stream<dns::DomainName, int> {
+class domain_name_sink: public output_stream<dns::DomainName> {
 
 public:
   domain_name_sink(const char *n): output_stream(n) {};

@@ -4,7 +4,7 @@
 
 #include "template/output_stream.h"
 
-class ip_datagram_sink: public output_stream<ip::Datagram, int> {
+class ip_datagram_sink: public output_stream<ip::Datagram> {
 
 public:
   ip_datagram_sink(const char *n): output_stream(n) {};
