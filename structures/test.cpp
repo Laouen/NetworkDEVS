@@ -49,6 +49,11 @@ void load_swp_hdr(swp::Hdr& hdr, const unsigned long& preamble) {
 
 int main() {
 
+	dns::Packet p;
+	cin >> p;
+	cout << p << endl;	
+
+	/*
 	Parser<dns::Packet> p("test.txt");
 
 	dns::Packet dp = p.next_input();
@@ -62,7 +67,6 @@ int main() {
 		cout << "no anda" << endl;
 
 
-	/*
 
 	dns::Packet p;
 	cin >> p;

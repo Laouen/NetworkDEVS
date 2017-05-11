@@ -249,7 +249,8 @@ inline std::ostream& operator<<(std::ostream& os, const udp::Control& m) {
       m.request == udp::Ctrl::WRITE_TO ||
       m.request == udp::Ctrl::SEND ||
       m.request == udp::Ctrl::SEND_TO) {
-    os << "packet: " << m.packet << std::endl;
+    os << "packet: " << std::endl; 
+    os << m.packet << std::endl;
   } else if ( m.request == udp::Ctrl::CONNECT ||
               m.request == udp::Ctrl::SEND_TO ||
               m.request == udp::Ctrl::WRITE_TO ||

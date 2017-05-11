@@ -1,0 +1,49 @@
+time:0.001
+app_id: 0
+Ctrol: BIND
+local_port: 53
+local_ip: 1.0.0.1
+
+
+time:0.002
+app_id: 0
+Ctrol: READ
+local_port: 53
+local_ip: 1.0.0.1
+
+
+time:15.002
+app_id: 0
+Ctrol: SEND_TO
+local_port: 53
+local_ip: 1.0.0.1
+packet: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_QUERY|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_RECURSIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION **
+network.devs.com A 0.0.0.0 IN 0
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+network.devs.com A 1.0.0.1 IN 8592
+-----------------------------------------
+
+
+
+time:18.003
+app_id: 0
+Ctrol: READ
+local_port: 53
+local_ip: 1.0.0.1
+
+

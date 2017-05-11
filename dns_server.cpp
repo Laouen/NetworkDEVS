@@ -381,6 +381,8 @@ dns::Packet dns_server::getPacket(ushort id) {
   for(it = host_requests.begin(); it != host_requests.end(); ++it) {
     if (it->header.id == id) return *it;
   }
+
+  return dns::Packet();
 }
 
 bool dns_server::existRR(const dns::DomainName& d) const {

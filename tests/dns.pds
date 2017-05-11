@@ -1,0 +1,47 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = NetworkDEVS/dns_server.h
+    Parameters = "Test","1.0.0.1","1.0.0.2","../atomics/NetworkDEVS/tests/dns/tables/authoritative.table","../atomics/NetworkDEVS/tests/dns/tables/zone.table",1.000000e+00
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/domain_name_source.h
+    Parameters = "DomainName Sink","../atomics/NetworkDEVS/tests/dns/input/domainName.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/dns_packet_src.h
+    Parameters = "udp_control","../atomics/NetworkDEVS/tests/dns/input/dns_packet.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_control_src.h
+    Parameters = "udp_ctrl","../atomics/NetworkDEVS/tests/dns/input/udp_control.input"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_control_sink.h
+    Parameters = "udp_ctrl_sink","../atomics/NetworkDEVS/tests/dns/output/udp_control.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/dns_packet_sink.h
+    Parameters = "dns_packet_sink","../atomics/NetworkDEVS/tests/dns/output/dns_packet.output"
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (1,0);(0,0)
+    (2,0);(0,2)
+    (3,0);(0,3)
+    (0,0);(5,0)
+    (0,3);(4,0)
+   }
+ }
