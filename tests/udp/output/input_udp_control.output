@@ -1,0 +1,122 @@
+time:15
+app_id: 0
+Ctrol: CONNECT
+local_port: 80
+local_ip: 1.0.0.1
+remote_port: 80
+remote_ip: 1.0.0.2
+
+
+time:16
+app_id: 0
+Ctrol: SEND
+local_port: 80
+local_ip: 1.0.0.1
+packet: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 0
+ANCount: 0
+NSCount: 0
+ARCount: 0
+
+** QUESTION SECTION **
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+-----------------------------------------
+
+
+
+time:17
+app_id: 0
+Ctrol: SEND
+local_port: 80
+local_ip: 1.0.0.1
+packet: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 0
+ANCount: 0
+NSCount: 0
+ARCount: 0
+
+** QUESTION SECTION **
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+-----------------------------------------
+
+
+
+time:18
+app_id: 1
+Ctrol: BIND
+local_port: 8080
+local_ip: 1.0.0.1
+
+
+time:19
+app_id: 1
+Ctrol: SEND_TO
+local_port: 8080
+local_ip: 1.0.0.1
+remote_port: 8080
+remote_ip: 1.0.0.2
+packet: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 0
+ANCount: 0
+NSCount: 0
+ARCount: 0
+
+** QUESTION SECTION **
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+-----------------------------------------
+
+
+
+time:20
+app_id: 0
+Ctrol: SEND
+local_port: 53
+local_ip: 1.0.0.1
+packet: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 0
+ANCount: 0
+NSCount: 0
+ARCount: 0
+
+** QUESTION SECTION **
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+-----------------------------------------
+
+
+

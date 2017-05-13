@@ -1,0 +1,35 @@
+time:18
+psd_header: 
+src_ip: 1.0.0.2
+dest_ip: 1.0.0.1
+zeros: 0
+protocol: 0
+udp_lenght: 0
+
+header: 
+src_port: 80
+dest_port: 80
+length: 0
+checksum: 0
+
+payload: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 0
+ANCount: 0
+NSCount: 0
+ARCount: 0
+
+** QUESTION SECTION **
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+-----------------------------------------
+
+
+

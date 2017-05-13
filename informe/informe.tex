@@ -31,6 +31,8 @@
 
 \hyphenation{UDP/IP}
 
+\usepackage{verbatim}
+
 \begin{document}
 
 \titulo{NetworkDEVS}
@@ -368,7 +370,7 @@ Para insertar un nuevo modelo de capa dentro de un modelo acoplado de dispositiv
 
 Información más detallada sobre como usar PowerDEVS puede ser encontrada en el documento \cite{bergero2011powerdevs}, allí los autores describen como funciona el simulador y como crear un modelo desde el principio. \\
 
-\section{Input/Output - Modelos generadores y vertederos}
+\section{Input/Output - Modelos generadores y vertederos} \label{section: I/O}
 Para poder alimentar al modelo con eventos, es necesario con contar con unos modelos específicos que sepan leer archivos, parsearlos y generar eventos para enviar a los otros modelos. Estos modelos son llamados generadores o \textit{sources} en ingles y si bien no forman parte del modelado del fenomeno, los mismos son una abstracción del mundo externo del modelo y permite modelar dicha interacción.
 
 \subsection{Input}
@@ -842,13 +844,103 @@ Cuenta con una variable \texttt{RWS} (\textit{Receive Window Size}) que indica e
 
 Una cosa a tener en cuenta es que el \textit{SeqNum} está representado con un unsigned char y cuando llega al máximo número representable la secuencia vuelve a empezar de cero. Para evitar problemas con esto, es necesario asegurarse que las ventanas \texttt{SWS} y \texttt{RWS} sean lo suficientemente chicas respecto al máximo \textit{SeqNum} de forma de que cuando se llegue al mismo y se vuelva a empezar no se generen confusiones. \\
 
-\begin{comment}
-
 \subsection{Casos de test unitarios}
 
 para tener una validación del comportamiento de cada uno de los módulos del modelo implementado, se realizaron distintos test de unidad, en los cuales se inventó el input de los modelos y se comparó el resultado obtenido con el esperado. De esta forma a continuación se listan todos los test unitarios implementados: \\
 
-\todo[inline]{Escribir los test implementados de cada modelo}
+El único módulo que no cuenta con test de unidad, es el modelo \textit{Switch} ya que el mismo se encuentra en un modelo acoplado de dispositivo donde es el único módulo, con lo cuál, el test de integración para este caso funciona como test de unidad también. \\
+
+Para realizar test de unidad de cada módulo por separado (un módulo representa una capa o un protocolo en específico), dado que los mismos funcionan en su totalidad mediante la interacción con el resto de los modelos y ellos no van a estar en el test (por ser de unidad y no de integración), se implementaron múltiples modelos generadores y vertederos utilizando la técnica descripta en la Sección \ref{section: I/O}. De esta forma, por cada puerto de entrada por el cual el modelo recibe un input o emite un output desde y hacia otros modelos, se mockean los inputs y se guardan en archivos los output generados por el modelo consiguiendo de esta forma emular un símulación con interacciones aunque no esten todas las partes presentes. \\
+
+\subsubsection{Test de unidad para el módulo DNS}
+
+En el caso del modelo DNS, el test de unidad básico implementado recibe un pedido de resolución para el dominio ``networks.devs.com'' por el puerto de entrada 0 (puerto por el cual recibe datos de la capa superior) en el tiempo virtual 15, el módulo envía un pedido recursivo a su servidor local con ip conocido 1.0.0.2 por el puerto de salida 3 y luego de que el servidor resuelve la consulta de forma recursiva, se le envia un mensaje con la respuesta en formato de paquete dns por el puerto de entrada 2 (puerto por el cual recibe datos de la capa inferior), el mismo procesa la respuesta y la reenvía por el puerto de salido 0. La Figura \ref{figure: unit test dns} muestra el modelo implementado en PowerDEVS para el test de unidad del modelo dns con sus respectivas fuentes y vertederso.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{img/png/unit_tests/dns.png}
+    \caption{Src 1 genera input de tipo dns::DomainName, src 2 genera input de tipo dns::Packet. Sink 1 imprime output de tipo dns::Packet y Sink 2 imprime output de tipo udp::Control, Sinks 3 y 4 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test dns}
+\end{figure}
+
+\newpage
+
+A continuación se muestra el input y output del test: \\
+
+\textbf{Input port 0 (dns::DomainName)}
+\lstinputlisting[language=Bash]{../tests/dns/output/input_domain_name.output}
+
+\textbf{Input port 2 (dns::Packet)}
+\lstinputlisting[language=Bash]{../tests/dns/output/input_dns_packet.output}
+
+\textbf{Output port 0 (dns::Packet)}
+\lstinputlisting[language=Bash]{../tests/dns/output/dns_packet.output}
+
+\newpage
+
+\textbf{Output port 3 (udp::Control)}
+\lstinputlisting[language=Bash]{../tests/dns/output/udp_control.output}
+
+\subsubsection{Tet de unidad para el módulo UDP}
+
+Para testear el módulo UDP se utilizó la misma lógica que para DNS. En este caso, se implementaron generadores tanto para los controles de udp que envian pedidos de conección, bindeo, etc. desde la capa superior, como para los udp::Segment que llegan desde la capa inferior. La figura \ref{figure: unit test udp} muestra el modelo implementado en PowerDEVS para el test de unidad del módulo UDP. \\
+
+En este escenario, se simuló lo siguiente:
+\begin{enumerate}
+\item El módulo de capa de aplicación se conecta la aplicación con id 0 al socket local 1.0.0.1:80 y remoto 1.0.0.2:80.
+\item El módulo de capa de aplicación realiza envia dos paquetes vaciós para la aplicación con id 0 utilizando el socket previamente conectado.
+\item El módulo de capa de aplicación bindea la aplicación con id 1 al socket local 1.0.0.1:8080.
+\item El módulo de capa de aplicación envia un paquete para la aplicación con id 1 especificando el destinatario con socket remoto 1.0.0.2:8080.
+\item El módulo de capa de aplicación envia un paquete para la aplicación con id 0 por el socket local 1.0.0.1:53 inexistente, por lo que este pedido falla.
+\item Una aplicación remota envía un paquete con socket remoto 1.0.0.2:80 y local 1.0.0.1:80. Si bien el socket es válido, el udp::Segment entrante falla en el checksum ya que el mismo es inválido y es descartado (esto no se ve en el output, pero se ve en el log de la simulación).
+\end{enumerate}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{img/png/unit_tests/udp.png}
+    \caption{Src 1 genera input de tipo udp::control, src 2 genera input de tipo udp::Segment. Sink 1 imprime output de tipo udp::Control, Sinks 2 imprime output de tipo udp::Segment mientras que Sink 3 y 4 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test udp}
+\end{figure}
+
+\newpage
+
+A continuación se muestra el input, output y log del test: \\
+
+\textbf{Input port 1 (udp::Control)}
+\lstinputlisting[language=Bash]{../tests/udp/output/input_udp_control.output}
+
+\textbf{Input port 2 (udp::Segment)}
+\lstinputlisting[language=Bash]{../tests/udp/output/input_udp_segment.output}
+
+\textbf{Output port 1 (udp::Control)}
+\lstinputlisting[language=Bash]{../tests/udp/output/udp_control.output}
+
+\textbf{Output port 2 (udp::Segment)}
+\lstinputlisting[language=Bash]{../tests/udp/output/udp_segment.output}
+
+\textbf{Log generado por el logger implementado}
+\begin{lstlisting}
+Simulation Initialized
+[INFO] - [UDP Test] Connect
+[INFO] - [UDP Test] SUCCESS
+[INFO] - [UDP Test] Write/Send
+[INFO] - [UDP Test] Write/Send
+[INFO] - [UDP Test] Bind
+[INFO] - [UDP Test] SUCCESS
+[INFO] - [UDP Test] process Segment: 
+[INFO] - [UDP Test] local_port: 80
+[INFO] - [UDP Test] remote_port: 80
+[INFO] - [UDP Test] local_ip: 1.0.0.1
+[INFO] - [UDP Test] remote_ip: 1.0.0.2
+[DEBUG] - [UDP Test] Header checksum: 0
+[DEBUG] - [UDP Test] Calculated checksum: 21411
+[INFO] - [UDP Test] valid checksum: False
+[INFO] - [UDP Test] discarted segment.
+[INFO] - [UDP Test] Write_to/Send_to
+[INFO] - [UDP Test] Write/Send
+[INFO] - [UDP Test] INVALID_SOCKET
+Simulation Ended (0.00162 sec)
+\end{lstlisting}
 
 \subsection{Escenario implementado}
 
@@ -864,8 +956,6 @@ Para finalizar el modelo y a modo de test de integración, se implementó un mod
 \section{Resultados}
 \section{Conclusiones}
 \section{Trabajo futuro}
-
-\end{comment}
 
 \section{References}
 \bibliographystyle{plain}

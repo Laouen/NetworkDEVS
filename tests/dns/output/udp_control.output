@@ -17,6 +17,8 @@ app_id: 0
 Ctrol: SEND_TO
 local_port: 53
 local_ip: 1.0.0.1
+remote_port: 53
+remote_ip: 1.0.0.2
 packet: 
 -------------- dns packet ---------------
 ** HEADER ** 
@@ -35,7 +37,7 @@ network.devs.com A 0.0.0.0 IN 0
 ** AUTHORITATIVES SECTION **
 
 ** ADITIONAL SECTION **
-network.devs.com A 1.0.0.1 IN 8592
+network.devs.com A 1.0.0.1 IN 63195
 -----------------------------------------
 
 

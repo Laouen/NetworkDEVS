@@ -266,20 +266,23 @@ inline std::ostream& operator<<(std::ostream& os, const udp::Control& m) {
     os << "local_ip: " << m.local_ip << std::endl;
   }
   
+  if (m.request == udp::Ctrl::CONNECT ||
+      m.request == udp::Ctrl::SEND_TO ||
+      m.request == udp::Ctrl::WRITE_TO ||
+      m.request == udp::Ctrl::RECV_FROM ||
+      m.request == udp::Ctrl::READ_FROM) {
+    os << "remote_port: " << m.remote_port << std::endl;
+    os << "remote_ip: " << m.remote_ip << std::endl;
+  }
+
   if (m.request == udp::Ctrl::WRITE ||
       m.request == udp::Ctrl::WRITE_TO ||
       m.request == udp::Ctrl::SEND ||
       m.request == udp::Ctrl::SEND_TO) {
     os << "packet: " << std::endl; 
     os << m.packet << std::endl;
-  } else if ( m.request == udp::Ctrl::CONNECT ||
-              m.request == udp::Ctrl::SEND_TO ||
-              m.request == udp::Ctrl::WRITE_TO ||
-              m.request == udp::Ctrl::RECV_FROM ||
-              m.request == udp::Ctrl::READ_FROM) {
-    os << "remote_port: " << m.remote_port << std::endl;
-    os << "remote_ip: " << m.remote_ip << std::endl;
-  }
+  } 
+
   return os;
 }
 

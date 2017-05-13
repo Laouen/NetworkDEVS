@@ -17,11 +17,6 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = NetworkDEVS/udp_control_src.h
-    Parameters = "udp_ctrl","../atomics/NetworkDEVS/tests/dns/input/udp_control.input"
-   }
-  Simulator
-   {
     Path = NetworkDEVS/udp_control_sink.h
     Parameters = "udp_ctrl_sink","../atomics/NetworkDEVS/tests/dns/output/udp_control.output"
    }
@@ -29,6 +24,16 @@ Root-Coordinator
    {
     Path = NetworkDEVS/dns_packet_sink.h
     Parameters = "dns_packet_sink","../atomics/NetworkDEVS/tests/dns/output/dns_packet.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/domain_name_sink.h
+    Parameters = "dns_packet_src_sink","../atomics/NetworkDEVS/tests/dns/output/input_domain_name.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/dns_packet_sink.h
+    Parameters = "dns_packet_src_sink","../atomics/NetworkDEVS/tests/dns/output/input_dns_packet.output"
    }
   EIC
    {
@@ -40,8 +45,9 @@ Root-Coordinator
    {
     (1,0);(0,0)
     (2,0);(0,2)
-    (3,0);(0,3)
-    (0,0);(5,0)
-    (0,3);(4,0)
+    (0,0);(4,0)
+    (0,3);(3,0)
+    (1,0);(5,0)
+    (2,0);(6,0)
    }
  }

@@ -3,7 +3,7 @@
 
 //#define show_log
 #define show_info
-#define show_debug
+//#define show_debug
 #define show_error
 
 #include <string>
