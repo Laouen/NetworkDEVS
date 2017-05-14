@@ -2222,7 +2222,7 @@ Coupled
                                                                                     Description = 
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -10440 ; -2475
+                                                                                        Position = -9315 ; -2475
                                                                                         Dimension = 480
                                                                                         Direction = Right
                                                                                         }
@@ -2234,7 +2234,7 @@ Coupled
                                                                                     Description = 
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -690 ; -2625
+                                                                                        Position = -1740 ; -2625
                                                                                         Dimension = 480
                                                                                         Direction = Right
                                                                                         }
@@ -2246,7 +2246,7 @@ Coupled
                                                                                     Description = 
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -690 ; -1125
+                                                                                        Position = -1740 ; -1125
                                                                                         Dimension = 480
                                                                                         Direction = Right
                                                                                         }
@@ -2258,7 +2258,7 @@ Coupled
                                                                                     Description = 
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -615 ; 450
+                                                                                        Position = -1665 ; 300
                                                                                         Dimension = 480
                                                                                         Direction = Right
                                                                                         }
@@ -2270,7 +2270,7 @@ Coupled
                                                                                     Description = 
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -10440 ; -1125
+                                                                                        Position = -9315 ; -1125
                                                                                         Dimension = 480
                                                                                         Direction = Right
                                                                                         }
@@ -2282,7 +2282,7 @@ Coupled
                                                                                     Description = 
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -10440 ; 75
+                                                                                        Position = -9315 ; 0
                                                                                         Dimension = 480
                                                                                         Direction = Right
                                                                                         }
@@ -2317,7 +2317,7 @@ Coupled
                                                                                     Description = Atomic DEVS model
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -3255 ; -1455
+                                                                                        Position = -4155 ; -1455
                                                                                         Dimension = 675 ; 675
                                                                                         Direction = Right
                                                                                         Color = 15
@@ -2337,7 +2337,7 @@ Coupled
                                                                                     Description = Atomic DEVS model
                                                                                     Graphic
                                                                                         {
-                                                                                        Position = -7980 ; -1455
+                                                                                        Position = -7230 ; -1455
                                                                                         Dimension = 675 ; 675
                                                                                         Direction = Right
                                                                                         Color = 15
@@ -2352,57 +2352,57 @@ Coupled
                                                                                     {
                                                                                     Source = Cmp ;  1 ;  3 ; 0
                                                                                     Sink = Cmp ;  2 ;  1 ; -1
-                                                                                    PointX = -4875 ; -4875 ; -3390
+                                                                                    PointX = -4875 ; -4875 ; -4290
                                                                                     PointY = -1125 ; -1125 ; -1125
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Cmp ;  2 ;  1 ; 0
                                                                                     Sink = Prt ;  2 ;  1 ; -1
-                                                                                    PointX = -2475 ; -1575 ; -1575 ; -840
+                                                                                    PointX = -3375 ; -2475 ; -2475 ; -1890
                                                                                     PointY = -1275 ; -1275 ; -2625 ; -2625
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Cmp ;  2 ;  2 ; 0
                                                                                     Sink = Prt ;  3 ;  1 ; -1
-                                                                                    PointX = -2475 ; -2475 ; -840
+                                                                                    PointX = -3375 ; -3375 ; -1890
                                                                                     PointY = -1125 ; -1125 ; -1125
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Cmp ;  2 ;  3 ; 0
                                                                                     Sink = Prt ;  4 ;  1 ; -1
-                                                                                    PointX = -2475 ; -1575 ; -1575 ; -765
-                                                                                    PointY = -900 ; -900 ; 450 ; 450
+                                                                                    PointX = -3375 ; -2475 ; -2475 ; -1815
+                                                                                    PointY = -900 ; -900 ; 300 ; 300
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Cmp ;  3 ;  1 ; 0
                                                                                     Sink = Cmp ;  1 ;  3 ; -1
-                                                                                    PointX = -7200 ; -7200 ; -5790
+                                                                                    PointX = -6450 ; -6450 ; -5790
                                                                                     PointY = -1125 ; -1125 ; -1125
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Prt ;  1 ;  1 ; 0
                                                                                     Sink = Cmp ;  3 ;  1 ; -1
-                                                                                    PointX = -9825 ; -8925 ; -8925 ; -8115
+                                                                                    PointX = -8700 ; -8175 ; -8175 ; -7365
                                                                                     PointY = -2475 ; -2475 ; -1275 ; -1275
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Prt ;  5 ;  1 ; 0
                                                                                     Sink = Cmp ;  3 ;  2 ; -1
-                                                                                    PointX = -9825 ; -9825 ; -8115
+                                                                                    PointX = -8700 ; -8700 ; -7365
                                                                                     PointY = -1125 ; -1125 ; -1125
                                                                                     }
                                                                                 Line
                                                                                     {
                                                                                     Source = Prt ;  6 ;  1 ; 0
                                                                                     Sink = Cmp ;  3 ;  3 ; -1
-                                                                                    PointX = -9825 ; -8925 ; -8925 ; -8115
-                                                                                    PointY = 75 ; 75 ; -900 ; -900
+                                                                                    PointX = -8700 ; -8175 ; -8175 ; -7365
+                                                                                    PointY = 0 ; 0 ; -900 ; -900
                                                                                     }
                                                                                 }
                                                                             }
