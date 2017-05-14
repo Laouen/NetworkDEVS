@@ -844,7 +844,7 @@ Cuenta con una variable \texttt{RWS} (\textit{Receive Window Size}) que indica e
 
 Una cosa a tener en cuenta es que el \textit{SeqNum} está representado con un unsigned char y cuando llega al máximo número representable la secuencia vuelve a empezar de cero. Para evitar problemas con esto, es necesario asegurarse que las ventanas \texttt{SWS} y \texttt{RWS} sean lo suficientemente chicas respecto al máximo \textit{SeqNum} de forma de que cuando se llegue al mismo y se vuelva a empezar no se generen confusiones. \\
 
-\subsection{Casos de test unitarios}
+\subsection{Tests de unidad}
 
 para tener una validación del comportamiento de cada uno de los módulos del modelo implementado, se realizaron distintos test de unidad, en los cuales se inventó el input de los modelos y se comparó el resultado obtenido con el esperado. De esta forma a continuación se listan todos los test unitarios implementados: \\
 
@@ -1076,7 +1076,7 @@ Simulation Ended (0.000795 sec)
 
 \newpage
 
-\subsection{Test de unidad para el módulo link}
+\subsubsection{Test de unidad para el módulo link}
 
 Por último, el test de unidad para el módulo link, el cual implementa \textit{ARP} y \textit{SWP}, fue testeado con un escenario en el cual le llega un link::Frame de un nodo de la red que es aceptado. El frame entrante, es un frame de datos que contiene un ip::Datagram que es desencapsulado y entregado a la capa superior. Luego de haber entregado el ip::Datagram, el protocolo \textit{SWP} se encarga de enviar un \textit{Ack} al nodo que envió el frame para notificarle que llegó correctamente y que este pueda actualizar su ventana \textit{SWS} y seguir enviando más frames en un futuro. La Figura \ref{figure: unit test link} Muestra el escenario en la IDE PowerDEVS para este test. \\
 
@@ -1110,7 +1110,7 @@ Simulation Initialized
 Simulation Ended (0.000283 sec)
 \end{lstlisting}
 
-\subsection{Escenario implementado}
+\subsection{Test de integración - Escenario implementado}
 
 Para finalizar y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario donde todos los módulos funcionan en conjuntos para enviar mensajes entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteó el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada al test. \\
 
