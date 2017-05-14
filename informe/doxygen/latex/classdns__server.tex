@@ -1,0 +1,145 @@
+\hypertarget{classdns__server}{}\section{dns\+\_\+server Class Reference}
+\label{classdns__server}\index{dns\+\_\+server@{dns\+\_\+server}}
+
+
+Inheritance diagram for dns\+\_\+server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classdns__server__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for dns\+\_\+server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{classdns__server__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries dns\+\_\+server} (const char $\ast$n)\hypertarget{classdns__server_afbeb3f646717cf7960d54385e469b850}{}\label{classdns__server_afbeb3f646717cf7960d54385e469b850}
+
+\item 
+void {\bfseries init} (double,...)\hypertarget{classdns__server_a4b17d2d96b3e7a702495b8f44707ec02}{}\label{classdns__server_a4b17d2d96b3e7a702495b8f44707ec02}
+
+\item 
+double {\bfseries ta} (double t)\hypertarget{classdns__server_a18ec5017d2e817ddf8d876b3f3f747e5}{}\label{classdns__server_a18ec5017d2e817ddf8d876b3f3f747e5}
+
+\item 
+Event {\bfseries lambda} (double)\hypertarget{classdns__server_ad691a03c4bfb71509b3043560c6b73b0}{}\label{classdns__server_ad691a03c4bfb71509b3043560c6b73b0}
+
+\item 
+void {\bfseries exit} ()\hypertarget{classdns__server_a05eb620b2f8308ec3818cf5412669890}{}\label{classdns__server_a05eb620b2f8308ec3818cf5412669890}
+
+\item 
+virtual void {\bfseries dinternal} (double)\hypertarget{classdns__server_a51e296892a2de8776c83689f172a0797}{}\label{classdns__server_a51e296892a2de8776c83689f172a0797}
+
+\item 
+virtual void {\bfseries dexternal} (double)\hypertarget{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}{}\label{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries process\+Domain\+Name} (\hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} domain)\hypertarget{classdns__server_ade0acda9d6fc57e25a7a52645101c753}{}\label{classdns__server_ade0acda9d6fc57e25a7a52645101c753}
+
+\item 
+void {\bfseries send\+To} (const \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&p, \hyperlink{structIPv4}{I\+Pv4} server\+\_\+ip, ushort server\+\_\+port)\hypertarget{classdns__server_a0471cc529b817849b3910a6c8e415a86}{}\label{classdns__server_a0471cc529b817849b3910a6c8e415a86}
+
+\item 
+void {\bfseries process\+D\+N\+S\+Packet} (\hyperlink{structdns_1_1Packet}{dns\+::\+Packet} packet)\hypertarget{classdns__server_aedffffa660f9076ce9a5e2ee8de8602d}{}\label{classdns__server_aedffffa660f9076ce9a5e2ee8de8602d}
+
+\item 
+void {\bfseries set\+As\+Response} (\hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&packet)\hypertarget{classdns__server_aa05469d6b169567590aa23b64119e413}{}\label{classdns__server_aa05469d6b169567590aa23b64119e413}
+
+\item 
+void {\bfseries direct\+Answer} (\hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&packet)\hypertarget{classdns__server_a2ed1fc3068bf26f5932f3ba55cc7d374}{}\label{classdns__server_a2ed1fc3068bf26f5932f3ba55cc7d374}
+
+\item 
+void {\bfseries deliver\+Answer} (const \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&packet)\hypertarget{classdns__server_ac0521c8ec9d0c0283bfcf1e53e1e5bcb}{}\label{classdns__server_ac0521c8ec9d0c0283bfcf1e53e1e5bcb}
+
+\item 
+void {\bfseries set\+Authoritative\+Flag} (\hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&packet, \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} d)\hypertarget{classdns__server_af6b289b84e5be96e9596193b06daf65f}{}\label{classdns__server_af6b289b84e5be96e9596193b06daf65f}
+
+\item 
+void {\bfseries remove\+Packet} (ushort id)\hypertarget{classdns__server_a29ce34ee3c497ba383b1651498500b12}{}\label{classdns__server_a29ce34ee3c497ba383b1651498500b12}
+
+\item 
+\hyperlink{structdns_1_1Packet}{dns\+::\+Packet} {\bfseries get\+Packet} (ushort id)\hypertarget{classdns__server_afcfb30629b4d0538bac2c44f1659d9eb}{}\label{classdns__server_afcfb30629b4d0538bac2c44f1659d9eb}
+
+\item 
+void {\bfseries update\+Cache} (double t)\hypertarget{classdns__server_af8c786411d5c0eb9f24f53c928ac9b48}{}\label{classdns__server_af8c786411d5c0eb9f24f53c928ac9b48}
+
+\item 
+\hyperlink{structdns_1_1Zone}{dns\+::\+Zone} {\bfseries get\+Best\+Match} (\hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} d)\hypertarget{classdns__server_a0b1f6f215b752925e9901adf16df7edf}{}\label{classdns__server_a0b1f6f215b752925e9901adf16df7edf}
+
+\item 
+\hyperlink{structdns_1_1Packet}{dns\+::\+Packet} {\bfseries Query\+Packet} (\hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} d)\hypertarget{classdns__server_ac4a4d1569cfb515454b442a2bd0d84db}{}\label{classdns__server_ac4a4d1569cfb515454b442a2bd0d84db}
+
+\item 
+bool {\bfseries is\+App\+Request} (ushort id) const \hypertarget{classdns__server_a87c7e3fe0cfa2e0cf4ac452b9dbf05da}{}\label{classdns__server_a87c7e3fe0cfa2e0cf4ac452b9dbf05da}
+
+\item 
+bool {\bfseries is\+Host\+Request} (ushort id) const \hypertarget{classdns__server_a86c84b8b2f3e35d546a3ad9660944de9}{}\label{classdns__server_a86c84b8b2f3e35d546a3ad9660944de9}
+
+\item 
+bool {\bfseries exist\+RR} (const \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} \&d) const \hypertarget{classdns__server_ab0d83fc5df34b863592c906f01e681bc}{}\label{classdns__server_ab0d83fc5df34b863592c906f01e681bc}
+
+\item 
+\hyperlink{structdns_1_1ResourceRecord}{dns\+::\+Resource\+Record} {\bfseries get\+RR} (const \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} \&d)\hypertarget{classdns__server_a2c2bffe8648fed6274b8fcde47f2f3bd}{}\label{classdns__server_a2c2bffe8648fed6274b8fcde47f2f3bd}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries next\+\_\+id}\hypertarget{classdns__server_a2da2838d3660ae78cba549d9acb899e7}{}\label{classdns__server_a2da2838d3660ae78cba549d9acb899e7}
+
+\item 
+bool {\bfseries bind}\hypertarget{classdns__server_aa593f877363212c866ffa1fe59a06435}{}\label{classdns__server_aa593f877363212c866ffa1fe59a06435}
+
+\item 
+bool {\bfseries start\+\_\+reading}\hypertarget{classdns__server_a9245a53bf6cd3a03fe38b5ef1c08cd1a}{}\label{classdns__server_a9245a53bf6cd3a03fe38b5ef1c08cd1a}
+
+\item 
+bool {\bfseries recursive\+\_\+allowed}\hypertarget{classdns__server_a754e1a5b9cc9f5831724d3209fa101e7}{}\label{classdns__server_a754e1a5b9cc9f5831724d3209fa101e7}
+
+\item 
+\hyperlink{structIPv4}{I\+Pv4} {\bfseries local\+\_\+ip}\hypertarget{classdns__server_a3b185eef3b7d44822d0a9a12baeb71ee}{}\label{classdns__server_a3b185eef3b7d44822d0a9a12baeb71ee}
+
+\item 
+\hyperlink{structIPv4}{I\+Pv4} {\bfseries server\+\_\+ip}\hypertarget{classdns__server_af587511dc4a23c264e30502506746c9a}{}\label{classdns__server_af587511dc4a23c264e30502506746c9a}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1ResourceRecord}{dns\+::\+Resource\+Record} $>$ {\bfseries cached\+\_\+\+R\+Rs}\hypertarget{classdns__server_a9708a2ed7f8735caaf541b1fde6ee15d}{}\label{classdns__server_a9708a2ed7f8735caaf541b1fde6ee15d}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1ResourceRecord}{dns\+::\+Resource\+Record} $>$ {\bfseries authoritative\+\_\+\+R\+Rs}\hypertarget{classdns__server_aafed2cfadd1263403cf6147981ca503b}{}\label{classdns__server_aafed2cfadd1263403cf6147981ca503b}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1Zone}{dns\+::\+Zone} $>$ {\bfseries zone\+\_\+servers}\hypertarget{classdns__server_a4e467dbf292e6f8e15b28fe93c4969fb}{}\label{classdns__server_a4e467dbf292e6f8e15b28fe93c4969fb}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} $>$ {\bfseries app\+\_\+requests}\hypertarget{classdns__server_a4df4c84961c098bba0dcc5fe41e52564}{}\label{classdns__server_a4df4c84961c098bba0dcc5fe41e52564}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} $>$ {\bfseries host\+\_\+requests}\hypertarget{classdns__server_a0ed8a7cc91535c4bbcff5320503dc8ba}{}\label{classdns__server_a0ed8a7cc91535c4bbcff5320503dc8ba}
+
+\item 
+double {\bfseries process\+\_\+dns\+\_\+query} = 0.\+001\hypertarget{classdns__server_a9444ae1982f78180dd1c8d905b46d3c3}{}\label{classdns__server_a9444ae1982f78180dd1c8d905b46d3c3}
+
+\item 
+double {\bfseries process\+\_\+dns\+\_\+response} = 0.\+001\hypertarget{classdns__server_a5b577ff9d1e88181cd5c753c6ea31c07}{}\label{classdns__server_a5b577ff9d1e88181cd5c753c6ea31c07}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/dns\+\_\+server.\+h\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/dns\+\_\+server.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="dns_server" name="dns_server">
+<area shape="rect" id="node2" href="$classLayer.html" title="Layer\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="5,81,184,137"/>
+<area shape="rect" id="node4" href="$structIPv4.html" title="This class declare a IPV4 type for NetworkDEVS simulation purposes. " alt="" coords="209,96,258,123"/>
+</map>

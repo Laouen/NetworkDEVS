@@ -1,0 +1,65 @@
+\hypertarget{structdns_1_1Packet}{}\section{dns\+:\+:Packet Struct Reference}
+\label{structdns_1_1Packet}\index{dns\+::\+Packet@{dns\+::\+Packet}}
+
+
+Collaboration diagram for dns\+:\+:Packet\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{structdns_1_1Packet__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Packet} (const \hyperlink{structdns_1_1Packet}{Packet} \&other)\hypertarget{structdns_1_1Packet_a7cc92466b5291c0f4773092084836495}{}\label{structdns_1_1Packet_a7cc92466b5291c0f4773092084836495}
+
+\item 
+{\bfseries Packet} (const char $\ast$const data)\hypertarget{structdns_1_1Packet_a90c293bc5bc7bad9c47be19d6060b82a}{}\label{structdns_1_1Packet_a90c293bc5bc7bad9c47be19d6060b82a}
+
+\item 
+void {\bfseries add\+Question\+Resource} (\hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} r)\hypertarget{structdns_1_1Packet_ac9e9b7e48afc984d949b0062feef13fe}{}\label{structdns_1_1Packet_ac9e9b7e48afc984d949b0062feef13fe}
+
+\item 
+void {\bfseries add\+Answer\+Resource} (\hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} r)\hypertarget{structdns_1_1Packet_aa5e426126e1b03f0ca2e874bd7453864}{}\label{structdns_1_1Packet_aa5e426126e1b03f0ca2e874bd7453864}
+
+\item 
+void {\bfseries add\+Authoritative\+Resource} (\hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} r)\hypertarget{structdns_1_1Packet_ac7aac0fb6f1d988b6e74f6dae4c0dd8a}{}\label{structdns_1_1Packet_ac7aac0fb6f1d988b6e74f6dae4c0dd8a}
+
+\item 
+void {\bfseries add\+Aditional\+Resource} (\hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} r)\hypertarget{structdns_1_1Packet_a384c1b1338b232cd10808b8e94817a98}{}\label{structdns_1_1Packet_a384c1b1338b232cd10808b8e94817a98}
+
+\item 
+const char $\ast$ {\bfseries c\+\_\+str} () const \hypertarget{structdns_1_1Packet_abe5254f0b79f2f3d41cee8a1b6654c6d}{}\label{structdns_1_1Packet_abe5254f0b79f2f3d41cee8a1b6654c6d}
+
+\item 
+int {\bfseries size} () const \hypertarget{structdns_1_1Packet_a8edc861125aa062b29793fa0c5ff435a}{}\label{structdns_1_1Packet_a8edc861125aa062b29793fa0c5ff435a}
+
+\item 
+std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structdns_1_1Packet_ac8d0b87762ca208e97da4d0dddd39adb}{}\label{structdns_1_1Packet_ac8d0b87762ca208e97da4d0dddd39adb}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structdns_1_1Header}{Header} {\bfseries header}\hypertarget{structdns_1_1Packet_ace5e0371bc023efa2b4cd9ba82489052}{}\label{structdns_1_1Packet_ace5e0371bc023efa2b4cd9ba82489052}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} $>$ {\bfseries questions}\hypertarget{structdns_1_1Packet_a5631816949452064bfef6add1307a84a}{}\label{structdns_1_1Packet_a5631816949452064bfef6add1307a84a}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} $>$ {\bfseries answers}\hypertarget{structdns_1_1Packet_aacd3022640b60706f6be45c497a5ca15}{}\label{structdns_1_1Packet_aacd3022640b60706f6be45c497a5ca15}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} $>$ {\bfseries authoritatives}\hypertarget{structdns_1_1Packet_a07495fe7b4c452b136da01b155c2f608}{}\label{structdns_1_1Packet_a07495fe7b4c452b136da01b155c2f608}
+
+\item 
+std\+::list$<$ \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} $>$ {\bfseries aditionals}\hypertarget{structdns_1_1Packet_aafa573148fd6ea9451c6f7db16676f25}{}\label{structdns_1_1Packet_aafa573148fd6ea9451c6f7db16676f25}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/structures/dns.\+h\end{DoxyCompactItemize}

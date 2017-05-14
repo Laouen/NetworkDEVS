@@ -1,0 +1,5 @@
+<map id="dns::Zone" name="dns::Zone">
+<area shape="rect" id="node2" href="$structdns_1_1ResourceRecord.html" title="dns::ResourceRecord" alt="" coords="13,109,162,136"/>
+<area shape="rect" id="node3" href="$structIPv4.html" title="This class declare a IPV4 type for NetworkDEVS simulation purposes. " alt="" coords="5,5,55,32"/>
+<area shape="rect" id="node4" href="$structdns_1_1DomainName.html" title="dns::DomainName" alt="" coords="79,5,210,32"/>
+</map>

@@ -1,0 +1,109 @@
+\hypertarget{classip__protocol}{}\section{ip\+\_\+protocol Class Reference}
+\label{classip__protocol}\index{ip\+\_\+protocol@{ip\+\_\+protocol}}
+
+
+Inheritance diagram for ip\+\_\+protocol\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classip__protocol__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ip\+\_\+protocol\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classip__protocol__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries ip\+\_\+protocol} (const char $\ast$n)\hypertarget{classip__protocol_af3d5fa13a4175ab93d431ad38e7c3712}{}\label{classip__protocol_af3d5fa13a4175ab93d431ad38e7c3712}
+
+\item 
+void {\bfseries init} (double,...)\hypertarget{classip__protocol_a41b4678b7d525775ca4ed84dd4f8daac}{}\label{classip__protocol_a41b4678b7d525775ca4ed84dd4f8daac}
+
+\item 
+double {\bfseries ta} (double t)\hypertarget{classip__protocol_a799af7a028afc688255e9efe732e00f4}{}\label{classip__protocol_a799af7a028afc688255e9efe732e00f4}
+
+\item 
+Event {\bfseries lambda} (double)\hypertarget{classip__protocol_ae92e4088780f38a62419a202d53e2511}{}\label{classip__protocol_ae92e4088780f38a62419a202d53e2511}
+
+\item 
+void {\bfseries exit} ()\hypertarget{classip__protocol_aed94f19da59b71685e9d17de4febcd75}{}\label{classip__protocol_aed94f19da59b71685e9d17de4febcd75}
+
+\item 
+virtual void {\bfseries dinternal} (double)\hypertarget{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}{}\label{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}
+
+\item 
+virtual void {\bfseries dexternal} (double)\hypertarget{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}{}\label{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries route\+I\+P\+Datagram} (\hyperlink{structip_1_1Datagram}{ip\+::\+Datagram})\hypertarget{classip__protocol_ae49db3617f34c1765b8b3f64996fe7eb}{}\label{classip__protocol_ae49db3617f34c1765b8b3f64996fe7eb}
+
+\item 
+void {\bfseries arp} (\hyperlink{structip_1_1Datagram}{ip\+::\+Datagram}, \hyperlink{structIPv4}{I\+Pv4})\hypertarget{classip__protocol_a32a4c86b4f32594b60a3f7170421fb7e}{}\label{classip__protocol_a32a4c86b4f32594b60a3f7170421fb7e}
+
+\item 
+void {\bfseries process\+Link\+Control} (\hyperlink{structlink_1_1Control}{link\+::\+Control})\hypertarget{classip__protocol_a6c03ee07d8fa8c2b4a5f43732fb95c05}{}\label{classip__protocol_a6c03ee07d8fa8c2b4a5f43732fb95c05}
+
+\item 
+ushort {\bfseries calculate\+Checksum} (\hyperlink{structip_1_1Header}{ip\+::\+Header}) const \hypertarget{classip__protocol_a14d8f57ecf3e4e7b8c2fc5b98a782939}{}\label{classip__protocol_a14d8f57ecf3e4e7b8c2fc5b98a782939}
+
+\item 
+bool {\bfseries verifychecksum} (\hyperlink{structip_1_1Header}{ip\+::\+Header}) const \hypertarget{classip__protocol_aa730a2a5c453742c1a3bcc105bc839c0}{}\label{classip__protocol_aa730a2a5c453742c1a3bcc105bc839c0}
+
+\item 
+bool {\bfseries matches\+Host\+Ips} (\hyperlink{structIPv4}{I\+Pv4}) const \hypertarget{classip__protocol_ac83406e9e5d5e54b1a3afd4d5a4f53c9}{}\label{classip__protocol_ac83406e9e5d5e54b1a3afd4d5a4f53c9}
+
+\item 
+bool {\bfseries get\+Best\+Route} (\hyperlink{structIPv4}{I\+Pv4}, \hyperlink{structip_1_1Routing__entry}{ip\+::\+Routing\+\_\+entry} \&) const \hypertarget{classip__protocol_a391caec68e7eaf86659f0479763500ec}{}\label{classip__protocol_a391caec68e7eaf86659f0479763500ec}
+
+\item 
+bool {\bfseries is\+Best\+Route} (\hyperlink{structip_1_1Routing__entry}{ip\+::\+Routing\+\_\+entry}, \hyperlink{structip_1_1Routing__entry}{ip\+::\+Routing\+\_\+entry}) const \hypertarget{classip__protocol_a49ccaaab6a679045ddbff00f44ca49cc}{}\label{classip__protocol_a49ccaaab6a679045ddbff00f44ca49cc}
+
+\item 
+bool {\bfseries get\+Interface} (\hyperlink{structIPv4}{I\+Pv4}, ushort \&) const \hypertarget{classip__protocol_a15e87109b4478fe5028e3e67c11a20fb}{}\label{classip__protocol_a15e87109b4478fe5028e3e67c11a20fb}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::list$<$ \hyperlink{structip_1_1Forwarding__entry}{ip\+::\+Forwarding\+\_\+entry} $>$ {\bfseries forwarding\+\_\+table}\hypertarget{classip__protocol_aaeb5d99cd92641500f0013e3822d56a1}{}\label{classip__protocol_aaeb5d99cd92641500f0013e3822d56a1}
+
+\item 
+std\+::map$<$ \hyperlink{structIPv4}{I\+Pv4}, std\+::queue$<$ \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} $>$ $>$ {\bfseries arp\+\_\+waiting\+\_\+packets}\hypertarget{classip__protocol_a284258e9e9050ae7e51b3864f5a953ce}{}\label{classip__protocol_a284258e9e9050ae7e51b3864f5a953ce}
+
+\item 
+std\+::list$<$ \hyperlink{structIPv4}{I\+Pv4} $>$ {\bfseries host\+\_\+ips}\hypertarget{classip__protocol_aa7d9cb9aba71a12d55cbb48ebb8023bf}{}\label{classip__protocol_aa7d9cb9aba71a12d55cbb48ebb8023bf}
+
+\item 
+std\+::list$<$ \hyperlink{structip_1_1Routing__entry}{ip\+::\+Routing\+\_\+entry} $>$ {\bfseries routing\+\_\+table}\hypertarget{classip__protocol_a10115583b02359dd2a5670d1ad15f491}{}\label{classip__protocol_a10115583b02359dd2a5670d1ad15f491}
+
+\item 
+double {\bfseries process\+\_\+udp\+\_\+segment\+\_\+time} = 0.\+001\hypertarget{classip__protocol_a70dbab92c8f81ef06fd54f3e8d7bd948}{}\label{classip__protocol_a70dbab92c8f81ef06fd54f3e8d7bd948}
+
+\item 
+double {\bfseries process\+\_\+ip\+\_\+datagram\+\_\+time} = 0.\+001\hypertarget{classip__protocol_a5a4799b4959601058134ada5e68535d9}{}\label{classip__protocol_a5a4799b4959601058134ada5e68535d9}
+
+\item 
+double {\bfseries process\+\_\+link\+\_\+control\+\_\+time} = 0.\+001\hypertarget{classip__protocol_a5d8f0b585621473601c220ad283a825f}{}\label{classip__protocol_a5d8f0b585621473601c220ad283a825f}
+
+\item 
+double {\bfseries send\+\_\+frame\+\_\+time} = 0.\+001\hypertarget{classip__protocol_a228a55f7b2c25fa8e3900893ccc87e41}{}\label{classip__protocol_a228a55f7b2c25fa8e3900893ccc87e41}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/ip\+\_\+protocol.\+h\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/ip\+\_\+protocol.\+cpp\end{DoxyCompactItemize}

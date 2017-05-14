@@ -1,0 +1,56 @@
+\hypertarget{classswp__protocol}{}\section{swp\+\_\+protocol Class Reference}
+\label{classswp__protocol}\index{swp\+\_\+protocol@{swp\+\_\+protocol}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries init} (\hyperlink{structMAC}{M\+AC} other\+\_\+mac, std\+::string module\+\_\+name)\hypertarget{classswp__protocol_ac75ad403a0e67ee52f55845a5649daf8}{}\label{classswp__protocol_ac75ad403a0e67ee52f55845a5649daf8}
+
+\item 
+bool {\bfseries there\+Is\+Frame\+To\+Send} ()\hypertarget{classswp__protocol_a573d06b53b641a8f9354956e1aae8d42}{}\label{classswp__protocol_a573d06b53b641a8f9354956e1aae8d42}
+
+\item 
+bool {\bfseries timeout\+Triggered} ()\hypertarget{classswp__protocol_ae5bb244e5dd8eb44cd2550ca270ee80b}{}\label{classswp__protocol_ae5bb244e5dd8eb44cd2550ca270ee80b}
+
+\item 
+void {\bfseries timeout} ()\hypertarget{classswp__protocol_af7e9869bf57452799f53effa6cb02ddd}{}\label{classswp__protocol_af7e9869bf57452799f53effa6cb02ddd}
+
+\item 
+double {\bfseries nex\+Timeout} ()\hypertarget{classswp__protocol_ae9dca95b848d2c6c3c2f429152ae0929}{}\label{classswp__protocol_ae9dca95b848d2c6c3c2f429152ae0929}
+
+\item 
+void {\bfseries update\+Timeouts} (double t)\hypertarget{classswp__protocol_abe07df0326dbf0b8d5c1a59b1e4f6dc7}{}\label{classswp__protocol_abe07df0326dbf0b8d5c1a59b1e4f6dc7}
+
+\item 
+void {\bfseries send\+Frame} (\hyperlink{structlink_1_1Frame}{link\+::\+Frame} frame)\hypertarget{classswp__protocol_a6d5c49fbcaf4d540ee065b862df339ae}{}\label{classswp__protocol_a6d5c49fbcaf4d540ee065b862df339ae}
+
+\item 
+void {\bfseries send} ()\hypertarget{classswp__protocol_a25a7db2cad83583871ae98437b360847}{}\label{classswp__protocol_a25a7db2cad83583871ae98437b360847}
+
+\item 
+void {\bfseries process\+Frame} (\hyperlink{structlink_1_1Frame}{link\+::\+Frame} frame)\hypertarget{classswp__protocol_a37f388591cdea5b3cac8a7bf3a829e2b}{}\label{classswp__protocol_a37f388591cdea5b3cac8a7bf3a829e2b}
+
+\item 
+void {\bfseries set\+Module\+Name} (std\+::string module\+\_\+name)\hypertarget{classswp__protocol_aad7851e8e2708a8e23eaf1a6fa8637c8}{}\label{classswp__protocol_aad7851e8e2708a8e23eaf1a6fa8637c8}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::queue$<$ \hyperlink{structlink_1_1Frame}{link\+::\+Frame} $>$ {\bfseries accepted\+\_\+frames}\hypertarget{classswp__protocol_a6ca21ef352c5c0386941af7ff47f889c}{}\label{classswp__protocol_a6ca21ef352c5c0386941af7ff47f889c}
+
+\item 
+std\+::queue$<$ \hyperlink{structlink_1_1Frame}{link\+::\+Frame} $>$ {\bfseries to\+\_\+send\+\_\+frames}\hypertarget{classswp__protocol_a83ea71f30f8d84f1248a48615ec3e869}{}\label{classswp__protocol_a83ea71f30f8d84f1248a48615ec3e869}
+
+\item 
+double {\bfseries send\+\_\+time} = 0.\+001\hypertarget{classswp__protocol_a03c28f33ff015cccdccf7f082e7cd981}{}\label{classswp__protocol_a03c28f33ff015cccdccf7f082e7cd981}
+
+\item 
+double {\bfseries infinity} = std\+::numeric\+\_\+limits$<$double$>$\+::max()\hypertarget{classswp__protocol_a267d11a0dbb19b5699670232d802c93c}{}\label{classswp__protocol_a267d11a0dbb19b5699670232d802c93c}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/swp\+\_\+protocol.\+h\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/swp\+\_\+protocol.\+cpp\end{DoxyCompactItemize}

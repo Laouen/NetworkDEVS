@@ -1,0 +1,106 @@
+\hypertarget{classLayer}{}\section{Layer$<$ DH, CH, DL, CL, D\+H2, C\+H2, D\+L2, C\+L2 $>$ Class Template Reference}
+\label{classLayer}\index{Layer$<$ D\+H, C\+H, D\+L, C\+L, D\+H2, C\+H2, D\+L2, C\+L2 $>$@{Layer$<$ D\+H, C\+H, D\+L, C\+L, D\+H2, C\+H2, D\+L2, C\+L2 $>$}}
+
+
+{\ttfamily \#include $<$layer.\+h$>$}
+
+
+
+Inheritance diagram for Layer$<$ DH, CH, DL, CL, D\+H2, C\+H2, D\+L2, C\+L2 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classLayer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Layer$<$ DH, CH, DL, CL, D\+H2, C\+H2, D\+L2, C\+L2 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classLayer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Layer} (const char $\ast$n)\hypertarget{classLayer_a61263cb897fd7d091830e5591c9ae3b0}{}\label{classLayer_a61263cb897fd7d091830e5591c9ae3b0}
+
+\item 
+void {\bfseries dint} (double t)\hypertarget{classLayer_ac73462187fad467ee68767488f8cdf25}{}\label{classLayer_ac73462187fad467ee68767488f8cdf25}
+
+\item 
+void {\bfseries dext} (Event x, double t)\hypertarget{classLayer_a7e588f39547025f0483fc94a57fc9636}{}\label{classLayer_a7e588f39547025f0483fc94a57fc9636}
+
+\item 
+virtual void {\bfseries dinternal} (double t)\hypertarget{classLayer_a1c82b14ba3efc37969f55c633a9b3173}{}\label{classLayer_a1c82b14ba3efc37969f55c633a9b3173}
+
+\item 
+virtual void {\bfseries dexternal} (double t)\hypertarget{classLayer_ae21ef24340c6c1f6cf20d66b5ab6a5f7}{}\label{classLayer_ae21ef24340c6c1f6cf20d66b5ab6a5f7}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries queued\+Msgs} () const \hypertarget{classLayer_aba0f1461c09e98abc9d28ab9fc438afb}{}\label{classLayer_aba0f1461c09e98abc9d28ab9fc438afb}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Logger {\bfseries logger}\hypertarget{classLayer_a537a1e57d0e9b69c857a89372e43e8c8}{}\label{classLayer_a537a1e57d0e9b69c857a89372e43e8c8}
+
+\item 
+std\+::queue$<$ DH $>$ {\bfseries higher\+\_\+layer\+\_\+data\+\_\+in}\hypertarget{classLayer_a087dc6b9f1a13ab134ec21bbcca1613a}{}\label{classLayer_a087dc6b9f1a13ab134ec21bbcca1613a}
+
+\item 
+std\+::queue$<$ DL $>$ {\bfseries lower\+\_\+layer\+\_\+data\+\_\+in}\hypertarget{classLayer_adb48b09eff4b15662593a8e5d6c937da}{}\label{classLayer_adb48b09eff4b15662593a8e5d6c937da}
+
+\item 
+std\+::queue$<$ CH $>$ {\bfseries higher\+\_\+layer\+\_\+ctrl\+\_\+in}\hypertarget{classLayer_a2ad38a89f17ce5ce6027cf9847f42f04}{}\label{classLayer_a2ad38a89f17ce5ce6027cf9847f42f04}
+
+\item 
+std\+::queue$<$ CL $>$ {\bfseries lower\+\_\+layer\+\_\+ctrl\+\_\+in}\hypertarget{classLayer_ac4cd7792653eab48d3b01a087ae9069a}{}\label{classLayer_ac4cd7792653eab48d3b01a087ae9069a}
+
+\item 
+message\+::queue$<$ D\+H2 $>$ {\bfseries higher\+\_\+layer\+\_\+data\+\_\+out} = 0\hypertarget{classLayer_a0695544b96e2e6f4473838d1ce79acea}{}\label{classLayer_a0695544b96e2e6f4473838d1ce79acea}
+
+\item 
+message\+::queue$<$ D\+L2 $>$ {\bfseries lower\+\_\+layer\+\_\+data\+\_\+out} = 2\hypertarget{classLayer_aed13b723a43c0e7e3e05cf9c25eef0ff}{}\label{classLayer_aed13b723a43c0e7e3e05cf9c25eef0ff}
+
+\item 
+message\+::queue$<$ C\+H2 $>$ {\bfseries higher\+\_\+layer\+\_\+ctrl\+\_\+out} = 1\hypertarget{classLayer_a135be5c42313bff23a18d1cda136f495}{}\label{classLayer_a135be5c42313bff23a18d1cda136f495}
+
+\item 
+message\+::queue$<$ C\+L2 $>$ {\bfseries lower\+\_\+layer\+\_\+ctrl\+\_\+out} = 3\hypertarget{classLayer_a5fdb4f5acc54930faa871a4fdc6ce688}{}\label{classLayer_a5fdb4f5acc54930faa871a4fdc6ce688}
+
+\item 
+Event {\bfseries output}\hypertarget{classLayer_a3701dfd2133046db9c6e5ee4280a0b59}{}\label{classLayer_a3701dfd2133046db9c6e5ee4280a0b59}
+
+\item 
+double {\bfseries next\+\_\+internal}\hypertarget{classLayer_a34f12ad31909eb23876f11bd414c5a87}{}\label{classLayer_a34f12ad31909eb23876f11bd414c5a87}
+
+\item 
+double {\bfseries last\+\_\+transition}\hypertarget{classLayer_a4159d408eff834a4e80439a0d05fcddd}{}\label{classLayer_a4159d408eff834a4e80439a0d05fcddd}
+
+\item 
+double {\bfseries infinity} = std\+::numeric\+\_\+limits$<$double$>$\+::max()\hypertarget{classLayer_a450c3707171bd64904e6a1fcd5c8de1a}{}\label{classLayer_a450c3707171bd64904e6a1fcd5c8de1a}
+
+\item 
+double {\bfseries send\+\_\+time} = 0.\+001\hypertarget{classLayer_adf1d2eddfe40d3b94bd98a10f6226999}{}\label{classLayer_adf1d2eddfe40d3b94bd98a10f6226999}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename DH, typename CH, typename DL, typename CL, typename D\+H2 = DH, typename C\+H2 = CH, typename D\+L2 = DL, typename C\+L2 = CL$>$\\*
+class Layer$<$ D\+H, C\+H, D\+L, C\+L, D\+H2, C\+H2, D\+L2, C\+L2 $>$}
+
+Basic layer model to inheritate 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/template/layer.\+h\end{DoxyCompactItemize}

@@ -8,6 +8,18 @@
 #include <sstream>
 #include <iostream>
 
+/**
+ * @author Laouen Louan Mayal Belloli
+ * @date 14 May 2017
+ * 
+ * @struct IPv4 ipv4.h
+ * @brief This class declare a IPV4 type for NetworkDEVS simulation purposes. 
+ *
+ * @details It's not meant to be a full IPv4 class, for that purpose, there is many 
+ * external C++ libraries. This class was designed to easely simulate Networks 
+ * using the NetworkDEVS framework.
+ *
+ */
 struct IPv4 {
 	ushort ip[4];
 

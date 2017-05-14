@@ -1,0 +1,7 @@
+<map id="udp::Control" name="udp::Control">
+<area shape="rect" id="node2" href="$structabstract_1_1Data.html" title="abstract::Data" alt="" coords="5,171,111,197"/>
+<area shape="rect" id="node3" href="$structdns_1_1Packet.html" title="dns::Packet" alt="" coords="135,171,227,197"/>
+<area shape="rect" id="node4" href="$structdns_1_1Header.html" title="dns::Header" alt="" coords="134,81,227,108"/>
+<area shape="rect" id="node5" href="$structabstract_1_1Header.html" title="abstract::Header" alt="" coords="121,5,240,32"/>
+<area shape="rect" id="node6" href="$structIPv4.html" title="This class declare a IPV4 type for NetworkDEVS simulation purposes. " alt="" coords="251,171,300,197"/>
+</map>
