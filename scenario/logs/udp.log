@@ -1,0 +1,104 @@
+Simulation Initialized
+[INFO] - [UDP Host 1] Bind
+[INFO] - [UDP Host 1] SUCCESS
+[INFO] - [UDP Host 3] Bind
+[INFO] - [UDP Host 3] SUCCESS
+[INFO] - [UDP Host 4] Bind
+[INFO] - [UDP Host 4] SUCCESS
+[INFO] - [UDP Host 5] Bind
+[INFO] - [UDP Host 5] SUCCESS
+[INFO] - [UDP Host 2] Bind
+[INFO] - [UDP Host 2] SUCCESS
+[INFO] - [UDP Host 1] Read/Recv
+[INFO] - [UDP Host 3] Read/Recv
+[INFO] - [UDP Host 4] Read/Recv
+[INFO] - [UDP Host 5] Read/Recv
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [UDP Host 1] Write_to/Send_to
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 1.0.0.1
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [UDP Host 5] process Segment: 
+[INFO] - [UDP Host 5] local_port: 53
+[INFO] - [UDP Host 5] remote_port: 53
+[INFO] - [UDP Host 5] local_ip: 5.0.0.1
+[INFO] - [UDP Host 5] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 5] valid checksum: true
+[INFO] - [UDP Host 5] socket local_ip: 5.0.0.1
+[INFO] - [UDP Host 5] socket local_ip: 53
+[INFO] - [UDP Host 5] Deliver dns packet
+[INFO] - [UDP Host 5] Write_to/Send_to
+[INFO] - [UDP Host 5] Read/Recv
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 5.0.0.1
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [UDP Host 4] process Segment: 
+[INFO] - [UDP Host 4] local_port: 53
+[INFO] - [UDP Host 4] remote_port: 53
+[INFO] - [UDP Host 4] local_ip: 5.0.0.2
+[INFO] - [UDP Host 4] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 4] valid checksum: true
+[INFO] - [UDP Host 4] socket local_ip: 5.0.0.2
+[INFO] - [UDP Host 4] socket local_ip: 53
+[INFO] - [UDP Host 4] Deliver dns packet
+[INFO] - [UDP Host 4] Write_to/Send_to
+[INFO] - [UDP Host 4] Read/Recv
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 5.0.0.2
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [UDP Host 3] process Segment: 
+[INFO] - [UDP Host 3] local_port: 53
+[INFO] - [UDP Host 3] remote_port: 53
+[INFO] - [UDP Host 3] local_ip: 4.0.0.1
+[INFO] - [UDP Host 3] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 3] valid checksum: true
+[INFO] - [UDP Host 3] socket local_ip: 4.0.0.1
+[INFO] - [UDP Host 3] socket local_ip: 53
+[INFO] - [UDP Host 3] Deliver dns packet
+[INFO] - [UDP Host 3] Write_to/Send_to
+[INFO] - [UDP Host 3] Read/Recv
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 4.0.0.1
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [UDP Host 1] process Segment: 
+[INFO] - [UDP Host 1] local_port: 53
+[INFO] - [UDP Host 1] remote_port: 53
+[INFO] - [UDP Host 1] local_ip: 1.0.0.1
+[INFO] - [UDP Host 1] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 1] valid checksum: true
+[INFO] - [UDP Host 1] socket local_ip: 1.0.0.1
+[INFO] - [UDP Host 1] socket local_ip: 53
+[INFO] - [UDP Host 1] Deliver dns packet
+[INFO] - [UDP Host 1] Read/Recv

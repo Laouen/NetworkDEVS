@@ -1,0 +1,203 @@
+[INFO] - [Link Host 1 NET 0] MAC: 0:0:0:0:0:1
+[INFO] - [Link Host 1 NET 0] IP: 1.0.0.1
+[INFO] - [Link Host 1 NET 0] Interface: 0
+[INFO] - [Link Host 3 NET 0] MAC: 0:0:0:0:0:8
+[INFO] - [Link Host 3 NET 0] IP: 4.0.0.1
+[INFO] - [Link Host 3 NET 0] Interface: 0
+[INFO] - [Link Host 4 NET 0] MAC: 0:0:0:0:0:12
+[INFO] - [Link Host 4 NET 0] IP: 5.0.0.2
+[INFO] - [Link Host 4 NET 0] Interface: 0
+[INFO] - [Link Host 5 NET 0] MAC: 0:0:0:0:0:11
+[INFO] - [Link Host 5 NET 0] IP: 5.0.0.1
+[INFO] - [Link Host 5 NET 0] Interface: 0
+[INFO] - [Link Router 1 NET 0] MAC: 0:0:0:0:0:3
+[INFO] - [Link Router 1 NET 0] IP: 1.0.0.0
+[INFO] - [Link Router 1 NET 0] Interface: 0
+[INFO] - [Link Router 1 NET 1] MAC: 0:0:0:0:0:5
+[INFO] - [Link Router 1 NET 1] IP: 3.0.0.0
+[INFO] - [Link Router 1 NET 1] Interface: 1
+[INFO] - [Link Router 1 NET 2] MAC: 0:0:0:0:0:4
+[INFO] - [Link Router 1 NET 2] IP: 2.0.0.0
+[INFO] - [Link Router 1 NET 2] Interface: 2
+[INFO] - [Link Router 2 NET 0] MAC: 0:0:0:0:0:9
+[INFO] - [Link Router 2 NET 0] IP: 3.0.0.1
+[INFO] - [Link Router 2 NET 0] Interface: 0
+[INFO] - [Link Router 2 NET 1] MAC: 0:0:0:0:0:10
+[INFO] - [Link Router 2 NET 1] IP: 5.0.0.0
+[INFO] - [Link Router 2 NET 1] Interface: 1
+[INFO] - [Link Router 3 NET 0] MAC: 0:0:0:0:0:6
+[INFO] - [Link Router 3 NET 0] IP: 2.0.0.1
+[INFO] - [Link Router 3 NET 0] Interface: 0
+[INFO] - [Link Router 3 NET 1] MAC: 0:0:0:0:0:7
+[INFO] - [Link Router 3 NET 1] IP: 4.0.0.0
+[INFO] - [Link Router 3 NET 1] Interface: 1
+[INFO] - [Link Host 2 NET 0] MAC: 0:0:0:0:0:2
+[INFO] - [Link Host 2 NET 0] IP: 1.0.0.2
+[INFO] - [Link Host 2 NET 0] Interface: 0
+Simulation Initialized
+[INFO] - [Link Host 1 NET 0] ARP_QUERY
+[INFO] - [Link Host 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Host 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 1 NET 0] Send control ARP_READY
+[INFO] - [Link Host 1 NET 0] SEND_PACKET
+[INFO] - [Link Host 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.0
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 is in cache.
+[INFO] - [Link Router 1 NET 1] ARP_QUERY
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 not cached.
+[INFO] - [Link Router 1 NET 1] Sending ARP query for ip: 3.0.0.1
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [Link Router 1 NET 1] Send control ARP_READY
+[INFO] - [Link Router 1 NET 1] SEND_PACKET
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 is in cache.
+[INFO] - [Link Router 2 NET 1] ARP_QUERY
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.1 not cached.
+[INFO] - [Link Router 2 NET 1] Sending ARP query for ip: 5.0.0.1
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [Link Router 2 NET 1] Send control ARP_READY
+[INFO] - [Link Router 2 NET 1] SEND_PACKET
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.1 is in cache.
+[INFO] - [Link Host 5 NET 0] ARP_QUERY
+[INFO] - [Link Host 5 NET 0] ARP ip 5.0.0.0 not cached.
+[INFO] - [Link Host 5 NET 0] Sending ARP query for ip: 5.0.0.0
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [Link Host 5 NET 0] Send control ARP_READY
+[INFO] - [Link Host 5 NET 0] SEND_PACKET
+[INFO] - [Link Host 5 NET 0] ARP ip 5.0.0.0 is in cache.
+[INFO] - [Link Router 2 NET 0] ARP_QUERY
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 not cached.
+[INFO] - [Link Router 2 NET 0] Sending ARP query for ip: 3.0.0.0
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 2 NET 0] Send control ARP_READY
+[INFO] - [Link Router 2 NET 0] SEND_PACKET
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 is in cache.
+[INFO] - [Link Router 1 NET 0] ARP_QUERY
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Router 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Send control ARP_READY
+[INFO] - [Link Router 1 NET 0] SEND_PACKET
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.0
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 is in cache.
+[INFO] - [Link Router 1 NET 1] ARP_QUERY
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 not cached.
+[INFO] - [Link Router 1 NET 1] Sending ARP query for ip: 3.0.0.1
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [Link Router 1 NET 1] Send control ARP_READY
+[INFO] - [Link Router 1 NET 1] SEND_PACKET
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 is in cache.
+[INFO] - [Link Router 2 NET 1] ARP_QUERY
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.2 not cached.
+[INFO] - [Link Router 2 NET 1] Sending ARP query for ip: 5.0.0.2
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [Link Router 2 NET 1] Send control ARP_READY
+[INFO] - [Link Router 2 NET 1] SEND_PACKET
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.2 is in cache.
+[INFO] - [Link Host 4 NET 0] ARP_QUERY
+[INFO] - [Link Host 4 NET 0] ARP ip 5.0.0.0 not cached.
+[INFO] - [Link Host 4 NET 0] Sending ARP query for ip: 5.0.0.0
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [Link Host 4 NET 0] Send control ARP_READY
+[INFO] - [Link Host 4 NET 0] SEND_PACKET
+[INFO] - [Link Host 4 NET 0] ARP ip 5.0.0.0 is in cache.
+[INFO] - [Link Router 2 NET 0] ARP_QUERY
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 not cached.
+[INFO] - [Link Router 2 NET 0] Sending ARP query for ip: 3.0.0.0
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 2 NET 0] Send control ARP_READY
+[INFO] - [Link Router 2 NET 0] SEND_PACKET
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 is in cache.
+[INFO] - [Link Router 1 NET 0] ARP_QUERY
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Router 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Send control ARP_READY
+[INFO] - [Link Router 1 NET 0] SEND_PACKET
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.0
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 is in cache.
+[INFO] - [Link Router 1 NET 2] ARP_QUERY
+[INFO] - [Link Router 1 NET 2] ARP ip 2.0.0.1 not cached.
+[INFO] - [Link Router 1 NET 2] Sending ARP query for ip: 2.0.0.1
+[INFO] - [Link Router 3 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 2] Process ARP packet.
+[INFO] - [Link Router 1 NET 2] Send control ARP_READY
+[INFO] - [Link Router 1 NET 2] SEND_PACKET
+[INFO] - [Link Router 1 NET 2] ARP ip 2.0.0.1 is in cache.
+[INFO] - [Link Router 3 NET 1] ARP_QUERY
+[INFO] - [Link Router 3 NET 1] ARP ip 4.0.0.1 not cached.
+[INFO] - [Link Router 3 NET 1] Sending ARP query for ip: 4.0.0.1
+[INFO] - [Link Host 3 NET 0] Process ARP packet.
+[INFO] - [Link Router 3 NET 1] Process ARP packet.
+[INFO] - [Link Router 3 NET 1] Send control ARP_READY
+[INFO] - [Link Router 3 NET 1] SEND_PACKET
+[INFO] - [Link Router 3 NET 1] ARP ip 4.0.0.1 is in cache.
+[INFO] - [Link Host 3 NET 0] ARP_QUERY
+[INFO] - [Link Host 3 NET 0] ARP ip 4.0.0.0 is in cache.
+[INFO] - [Link Host 3 NET 0] Send control ARP_READY
+[INFO] - [Link Host 3 NET 0] SEND_PACKET
+[INFO] - [Link Host 3 NET 0] ARP ip 4.0.0.0 is in cache.
+[INFO] - [Link Router 3 NET 0] ARP_QUERY
+[INFO] - [Link Router 3 NET 0] ARP ip 2.0.0.0 is in cache.
+[INFO] - [Link Router 3 NET 0] Send control ARP_READY
+[INFO] - [Link Router 3 NET 0] SEND_PACKET
+[INFO] - [Link Router 3 NET 0] ARP ip 2.0.0.0 is in cache.
+[INFO] - [Link Router 1 NET 0] ARP_QUERY
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Router 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Send control ARP_READY
+[INFO] - [Link Router 1 NET 0] SEND_PACKET
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.1 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.1
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.1 is in cache.

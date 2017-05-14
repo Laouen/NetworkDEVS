@@ -856,7 +856,7 @@ Para realizar test de unidad de cada módulo por separado (un módulo representa
 
 \subsubsection{Test de unidad para el módulo DNS}
 
-En el caso del modelo DNS, el test de unidad básico implementado recibe un pedido de resolución para el dominio ``networks.devs.com'' por el puerto de entrada 0 (puerto por el cual recibe datos de la capa superior) en el tiempo virtual 15, el módulo envía un pedido recursivo a su servidor local con ip conocido 1.0.0.2 por el puerto de salida 3 y luego de que el servidor resuelve la consulta de forma recursiva, se le envia un mensaje con la respuesta en formato de paquete dns por el puerto de entrada 2 (puerto por el cual recibe datos de la capa inferior), el mismo procesa la respuesta y la reenvía por el puerto de salido 0. La Figura \ref{figure: unit test dns} muestra el modelo implementado en PowerDEVS para el test de unidad del modelo dns con sus respectivas fuentes y vertederso.
+En el caso del modelo DNS, el test de unidad básico implementado recibe un pedido de resolución para el dominio ``networks.devs.com'' por el puerto de entrada 0 (puerto por el cual recibe datos de la capa superior) en el tiempo virtual 15, el módulo envía un pedido recursivo a su servidor local con ip conocido 1.0.0.2 por el puerto de salida 3 y luego de que el servidor resuelve la consulta de forma recursiva, se le envía un mensaje con la respuesta en formato de paquete dns por el puerto de entrada 2 (puerto por el cual recibe datos de la capa inferior), el mismo procesa la respuesta y la reenvía por el puerto de salido 0. La Figura \ref{figure: unit test dns} muestra el modelo implementado en PowerDEVS para el test de unidad del modelo dns con sus respectivas fuentes y vertederos.
 
 \begin{figure}[!b]
     \centering
@@ -923,15 +923,15 @@ Simulation Ended (0.000862 sec)
 
 \subsubsection{Tet de unidad para el módulo UDP}
 
-Para testear el módulo UDP se utilizó la misma lógica que para DNS. En este caso, se implementaron generadores tanto para los controles de udp que envian pedidos de conección, bindeo, etc. desde la capa superior, como para los udp::Segment que llegan desde la capa inferior. La figura \ref{figure: unit test udp} muestra el modelo implementado en PowerDEVS para el test de unidad del módulo UDP. \\
+Para testear el módulo UDP se utilizó la misma lógica que para DNS. En este caso, se implementaron generadores tanto para los controles de udp que envían pedidos de conexión, bindeo, etc. desde la capa superior, como para los udp::Segment que llegan desde la capa inferior. La figura \ref{figure: unit test udp} muestra el modelo implementado en PowerDEVS para el test de unidad del módulo UDP. \\
 
 En este escenario, se simuló lo siguiente:
 \begin{enumerate}
 \item El módulo de capa de aplicación se conecta la aplicación con id 0 al socket local 1.0.0.1:80 y remoto 1.0.0.2:80.
-\item El módulo de capa de aplicación realiza envia dos paquetes vaciós para la aplicación con id 0 utilizando el socket previamente conectado.
+\item El módulo de capa de aplicación realiza envía dos paquetes vacíos para la aplicación con id 0 utilizando el socket previamente conectado.
 \item El módulo de capa de aplicación bindea la aplicación con id 1 al socket local 1.0.0.1:8080.
-\item El módulo de capa de aplicación envia un paquete para la aplicación con id 1 especificando el destinatario con socket remoto 1.0.0.2:8080.
-\item El módulo de capa de aplicación envia un paquete para la aplicación con id 0 por el socket local 1.0.0.1:53 inexistente, por lo que este pedido falla.
+\item El módulo de capa de aplicación envía un paquete para la aplicación con id 1 especificando el destinatario con socket remoto 1.0.0.2:8080.
+\item El módulo de capa de aplicación envía un paquete para la aplicación con id 0 por el socket local 1.0.0.1:53 inexistente, por lo que este pedido falla.
 \item Una aplicación remota envía un paquete con socket remoto 1.0.0.2:80 y local 1.0.0.1:80. Si bien el socket es válido, el udp::Segment entrante falla en el checksum ya que el mismo es inválido y es descartado (esto no se ve en el output, pero se ve en el log de la simulación).
 \end{enumerate}
 
@@ -982,7 +982,7 @@ Simulation Ended (0.00135 sec)
 
 \subsubsection{Test de unidad para el módulo IP Host}
 
-En este caso, el test implementado es para testear el comportamiento del protocolo IP para los hosts, la única diferencia entre este protocolo IP y el protocolo IP del server es que en este caso, se trabaja con la capa superior (UDP) y es necesario encapsular los udp::Segments en ip::Datagrams para forwardearlos por la red. Para este sencillo test se simula el proceso recien mencionado. La Figura \ref{figure: unit test ip host} muestra es escenario para este test de unidad.
+En este caso, el test implementado es para testear el comportamiento del protocolo IP para los hosts, la única diferencia entre este protocolo IP y el protocolo IP de los routers es que en este caso, se trabaja con la capa superior (UDP) y es necesario encapsular los udp::Segments en ip::Datagrams para forwardearlos por la red. Para este sencillo test se simula el proceso recién mencionado. La Figura \ref{figure: unit test ip host} muestra es escenario para este test de unidad.
 
 \begin{figure}[!t]
     \centering
@@ -1078,7 +1078,7 @@ Simulation Ended (0.000795 sec)
 
 \subsection{Test de unidad para el módulo link}
 
-Por último, el test de unidad para el módulo link, el cual implementa \textit{ARP} y \textit{SWP}, fue testeado con un escenario en el cual le llega un link::Frame de un nodo de la red que es aceptado. El frame entrante, es un frame de datos que contiene un ip::Datagram que es desencapsulado y entregado a la capa superior. Luego de haber entregado el ip::Datagram, el protocolo \textit{SWP} se encarga de eviar un \textit{Ack} al nodo que envió el frame para notificarle que llegó correctamente y que este pueda actualizar su ventana \textit{SWS} y seguir enviando más frames en un futuro. La Figura \ref{figure: unit test link} Muestra el escenario en la IDE PowerDEVS para este test. \\
+Por último, el test de unidad para el módulo link, el cual implementa \textit{ARP} y \textit{SWP}, fue testeado con un escenario en el cual le llega un link::Frame de un nodo de la red que es aceptado. El frame entrante, es un frame de datos que contiene un ip::Datagram que es desencapsulado y entregado a la capa superior. Luego de haber entregado el ip::Datagram, el protocolo \textit{SWP} se encarga de enviar un \textit{Ack} al nodo que envió el frame para notificarle que llegó correctamente y que este pueda actualizar su ventana \textit{SWS} y seguir enviando más frames en un futuro. La Figura \ref{figure: unit test link} Muestra el escenario en la IDE PowerDEVS para este test. \\
 
 \begin{figure}[!h]
     \centering
@@ -1112,18 +1112,49 @@ Simulation Ended (0.000283 sec)
 
 \subsection{Escenario implementado}
 
-Para finalizar el modelo y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario de interacción entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo interesante donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteo el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada nuevo. \\
+Para finalizar y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario donde todos los módulos funcionan en conjuntos para enviar mensajes entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteó el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada al test. \\
+
+En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el host 5 es el host TLD mientras que el host 4 es el host responsable de la zona ``.com'' y el host 3 es el host responsable para la zona ``.devs.com'' con lo cual, el es autoritativo para el dominio ``networks.devs.com''. En esta simulación el host 1 le pide a su servidor local (host 2) que resuelva el dominio ``networks.devs.com'' de forma recursiva, el mismo al no tener esa entrada en su cache, envía el pedido al servidor TLD (host 5) quien no tiene la respuesta pero sabe que pertenece a la zona ``.com'' y le envía un mensaje diciéndole que el host 4 es el responsable de esa zona, también le envía el \textit{IP} del host 4 para que sepa como llegar a el, el host 2 envía entonces la misma consulta al host 4 y repitiéndose lo mismo que antes, el host 4 al no tener la respuesta pero saber que el host 3 es responsable de la zona más puntual ``.devs.com'', le envía el \textit{IP} del host 3 y repitiendo el proceso, el host 2 le envía el mismo pedido al host 3 quien si tiene la respuesta. Una vez con la respuesta, el host 2 la agrega a su cache, para que se mantenga ahí hasta que se venza su \textit{TTL} y y se la envía al host 1.
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width = 1.0\textwidth]{img/png/scenario.png}
-    \caption{Escenario implementado.}
+    \caption{Escenario implementado: Las lineas azules muestran el intercambio de paquetes \textit{DNS} entre los hosts mientras que las lineas negras muestran las conexiones de la red por donde efectivamente se envían los paquetes, teniendo que pasar por múltiples switches y routers para ir de un host a otro. Los números al lado de los switches muestran el mapeo de puertos para el protocolo \textit{Datagram}.}
     \label{figure: case study}
-\end{figure}\todo[]{corregir el gráfico: tamaño de los ip y macs, agregar MAC de los switches, e interfaces del switch que falta, cambiar todo a español y cambiar no recursivo por iterativo}
+\end{figure}
 
 \section{Resultados}
-\section{Conclusiones}
-\section{Trabajo futuro}
+
+A continuación se presentan los resultados del escenario con el mismo formato que se presentaron para los test de unidad. Primero se presenta el input y ouput de la simulación en el cual se detalla para cada tiempo virtual, el mensaje entrante o saliente del modelo. La documentación respecto al formato de los mensajes se puede ver en la misma documentación Doxygen del código. Luego se muestra el log generado por el logger, el mismo se muestra primero separado por capas (\textit{link, ip, udp}, etc.) permitiendo ver el funcionamiento horizontal de cada capa, en donde se desconoce lo máximo posible la existencia de capas inferiores y los mensajes son enviados a la misma capa de otro nodo de la red, y luego se muestra el log completo para poder ver el funcionamiento entre las capas y la relación temporal de los eventos ocurridos en la simulación. \\
+
+\textbf{Host 1 - DNS - Input port 0 (dns::DomainName)}
+\lstinputlisting[language=Bash]{../scenario/output/h1_input.output}
+
+\textbf{Host 1 - DNS - Output port 0 (dns::Packet)}
+\lstinputlisting[language=Bash]{../scenario/output/h1.output}
+
+Como se puede ver, primero llega el mensaje entrante con el nombre de dominio para el cual se quiere resolver su \textit{IP} y luego, una vez resueltas todas las consultas recursivas e iterativas a los distintos servidores, se consigue la respuesta indicando que el \textit{IP} vinculado al dominio ``networks.devs.com'' es 6.0.0.1. A continuación se muestran los logs de la simulación que muestra todo lo ocurrido para conseguir resolver el pedido, involucrando a todas las capas y dispositivos de la red. \\
+
+\textbf{Output de la capa DNS generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/dns.log}
+
+\textbf{Output de la capa UDP generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/udp.log}
+
+\textbf{Output de la capa IP generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/ip.log}
+
+\textbf{Output del módulo LINK generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/link.log}
+
+\textbf{Output del módulo SWITCH generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/switch.log}
+
+\textbf{Output del módulo SWP generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/swp.log}
+
+\textbf{Output de todo el scenario integrado generado por el logger durante la simulación}
+\lstinputlisting[language=Bash]{../scenario/logs/top.log}
 
 \section{References}
 \bibliographystyle{plain}

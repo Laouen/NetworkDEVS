@@ -1,0 +1,1693 @@
+[INFO] - [IPv4 Host 1] ip amount: 2
+[INFO] - [IPv4 Host 1] ips:
+[INFO] - [IPv4 Host 1] 1.0.0.1
+[INFO] - [IPv4 Host 1] 127.0.0.1
+[INFO] - [IPv4 Host 1] Routing table:
+[INFO] - [IPv4 Host 1] | 0.0.0.0 | 0.0.0.0 | 1.0.0.3 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 1] | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 
+[INFO] - [IPv4 Host 1] Forwarding table:
+[INFO] - [IPv4 Host 1] | 0.0.0.0 | 0.0.0.0 | 0 | 
+[INFO] - [Link Host 1 NET 0] MAC: 0:0:0:0:0:1
+[INFO] - [Link Host 1 NET 0] IP: 1.0.0.1
+[INFO] - [Link Host 1 NET 0] Interface: 0
+[INFO] - [DNS Host 1] DNS local ip: 1.0.0.1
+[INFO] - [DNS Host 1] DNS root server ip: 1.0.0.2
+[INFO] - [DNS Host 1] No authoritative RR table file.
+[INFO] - [DNS Host 1] No zone server table file.
+[INFO] - [DNS Host 1] Recursive allowed: True
+[INFO] - [Demultiplexer Host 1] Initialized with 1 interfaces
+[INFO] - [IPv4 Host 3] ip amount: 2
+[INFO] - [IPv4 Host 3] ips:
+[INFO] - [IPv4 Host 3] 4.0.0.1
+[INFO] - [IPv4 Host 3] 127.0.0.1
+[INFO] - [IPv4 Host 3] Routing table:
+[INFO] - [IPv4 Host 3] | 0.0.0.0 | 0.0.0.0 | 4.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 3] Forwarding table:
+[INFO] - [IPv4 Host 3] | 0.0.0.0 | 0.0.0.0 | 0 | 
+[INFO] - [Link Host 3 NET 0] MAC: 0:0:0:0:0:8
+[INFO] - [Link Host 3 NET 0] IP: 4.0.0.1
+[INFO] - [Link Host 3 NET 0] Interface: 0
+[INFO] - [DNS Host 3] DNS local ip: 4.0.0.1
+[INFO] - [DNS Host 3] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 3] Authoritative RR table:
+[INFO] - [DNS Host 3] network.devs.com A 6.0.0.1 IN 65535 
+[INFO] - [DNS Host 3] No zone server table file.
+[INFO] - [DNS Host 3] Recursive allowed: True
+[INFO] - [Demultiplexer Host 3] Initialized with 1 interfaces
+[INFO] - [IPv4 Host 4] ip amount: 2
+[INFO] - [IPv4 Host 4] ips:
+[INFO] - [IPv4 Host 4] 5.0.0.2
+[INFO] - [IPv4 Host 4] 127.0.0.1
+[INFO] - [IPv4 Host 4] Routing table:
+[INFO] - [IPv4 Host 4] | 0.0.0.0 | 0.0.0.0 | 5.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 4] | 5.0.0.1 | 255.255.255.255 | 5.0.0.1 | 1 |  Host 5 | 
+[INFO] - [IPv4 Host 4] Forwarding table:
+[INFO] - [IPv4 Host 4] | 0.0.0.0 | 0.0.0.0 | 0 | 
+[INFO] - [Link Host 4 NET 0] MAC: 0:0:0:0:0:12
+[INFO] - [Link Host 4 NET 0] IP: 5.0.0.2
+[INFO] - [Link Host 4 NET 0] Interface: 0
+[INFO] - [DNS Host 4] DNS local ip: 5.0.0.2
+[INFO] - [DNS Host 4] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 4] No authoritative RR table file.
+[INFO] - [DNS Host 4] 
+-------------- Zone --------------
+** NS **
+devs.com NS ns1.devs.com IN 65535 
+** A **
+ns1.dev.com A 4.0.0.1 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 4] Zone servers table:
+[INFO] - [DNS Host 4] 
+-------------- Zone --------------
+** NS **
+devs.com NS ns1.devs.com IN 65535 
+** A **
+ns1.dev.com A 4.0.0.1 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 4] Recursive allowed: False
+[INFO] - [Demultiplexer Host 4] Initialized with 1 interfaces
+[INFO] - [IPv4 Host 5] ip amount: 2
+[INFO] - [IPv4 Host 5] ips:
+[INFO] - [IPv4 Host 5] 5.0.0.1
+[INFO] - [IPv4 Host 5] 127.0.0.1
+[INFO] - [IPv4 Host 5] Routing table:
+[INFO] - [IPv4 Host 5] | 0.0.0.0 | 0.0.0.0 | 5.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 5] | 5.0.0.2 | 255.255.255.255 | 5.0.0.2 | 1 |  Host 4 | 
+[INFO] - [IPv4 Host 5] Forwarding table:
+[INFO] - [IPv4 Host 5] | 0.0.0.0 | 0.0.0.0 | 0 | 
+[INFO] - [Link Host 5 NET 0] MAC: 0:0:0:0:0:11
+[INFO] - [Link Host 5 NET 0] IP: 5.0.0.1
+[INFO] - [Link Host 5 NET 0] Interface: 0
+[INFO] - [DNS Host 5] DNS local ip: 5.0.0.1
+[INFO] - [DNS Host 5] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 5] No authoritative RR table file.
+[INFO] - [DNS Host 5] 
+-------------- Zone --------------
+** NS **
+com NS ns1.com IN 65535 
+** A **
+ns1.com A 5.0.0.2 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 5] Zone servers table:
+[INFO] - [DNS Host 5] 
+-------------- Zone --------------
+** NS **
+com NS ns1.com IN 65535 
+** A **
+ns1.com A 5.0.0.2 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 5] Recursive allowed: False
+[INFO] - [Demultiplexer Host 5] Initialized with 1 interfaces
+[INFO] - [IPv4 Router 1] ip amount: 3
+[INFO] - [IPv4 Router 1] ips:
+[INFO] - [IPv4 Router 1] 1.0.0.0
+[INFO] - [IPv4 Router 1] 2.0.0.0
+[INFO] - [IPv4 Router 1] 3.0.0.0
+[INFO] - [IPv4 Router 1] Routing table:
+[INFO] - [IPv4 Router 1] | 0.0.0.0 | 0.0.0.0 | 3.0.0.1 | 1 |  Default gateway | 
+[INFO] - [IPv4 Router 1] | 5.0.0.0 | 255.0.0.0 | 3.0.0.1 | 2 |  Router 2 | 
+[INFO] - [IPv4 Router 1] | 4.0.0.0 | 255.0.0.0 | 2.0.0.1 | 2 |  Router 3 | 
+[INFO] - [IPv4 Router 1] | 1.0.0.1 | 255.255.255.255 | 1.0.0.1 | 1 |  Host 1 | 
+[INFO] - [IPv4 Router 1] | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 
+[INFO] - [IPv4 Router 1] Forwarding table:
+[INFO] - [IPv4 Router 1] | 1.0.0.0 | 255.0.0.0 | 0 | 
+[INFO] - [IPv4 Router 1] | 3.0.0.0 | 255.0.0.0 | 1 | 
+[INFO] - [IPv4 Router 1] | 2.0.0.0 | 255.0.0.0 | 2 | 
+[INFO] - [Link Router 1 NET 0] MAC: 0:0:0:0:0:3
+[INFO] - [Link Router 1 NET 0] IP: 1.0.0.0
+[INFO] - [Link Router 1 NET 0] Interface: 0
+[INFO] - [Link Router 1 NET 1] MAC: 0:0:0:0:0:5
+[INFO] - [Link Router 1 NET 1] IP: 3.0.0.0
+[INFO] - [Link Router 1 NET 1] Interface: 1
+[INFO] - [Demultiplexer Router 1] Initialized with 3 interfaces
+[INFO] - [Link Router 1 NET 2] MAC: 0:0:0:0:0:4
+[INFO] - [Link Router 1 NET 2] IP: 2.0.0.0
+[INFO] - [Link Router 1 NET 2] Interface: 2
+[INFO] - [IPv4 Router 2] ip amount: 2
+[INFO] - [IPv4 Router 2] ips:
+[INFO] - [IPv4 Router 2] 3.0.0.1
+[INFO] - [IPv4 Router 2] 5.0.0.0
+[INFO] - [IPv4 Router 2] Routing table:
+[INFO] - [IPv4 Router 2] | 0.0.0.0 | 0.0.0.0 | 3.0.0.0 | 1 |  Default gateway | 
+[INFO] - [IPv4 Router 2] | 1.0.0.0 | 255.0.0.0 | 3.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 2] | 2.0.0.0 | 255.0.0.0 | 3.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 2] | 4.0.0.0 | 255.0.0.0 | 3.0.0.0 | 3 |  Router 1 | 
+[INFO] - [IPv4 Router 2] | 5.0.0.1 | 255.255.255.255 | 5.0.0.1 | 1 |  Host 5 | 
+[INFO] - [IPv4 Router 2] | 5.0.0.2 | 255.255.255.255 | 5.0.0.2 | 1 |  Host 4 | 
+[INFO] - [IPv4 Router 2] Forwarding table:
+[INFO] - [IPv4 Router 2] | 3.0.0.0 | 255.0.0.0 | 0 | 
+[INFO] - [IPv4 Router 2] | 5.0.0.0 | 255.0.0.0 | 1 | 
+[INFO] - [Link Router 2 NET 0] MAC: 0:0:0:0:0:9
+[INFO] - [Link Router 2 NET 0] IP: 3.0.0.1
+[INFO] - [Link Router 2 NET 0] Interface: 0
+[INFO] - [Link Router 2 NET 1] MAC: 0:0:0:0:0:10
+[INFO] - [Link Router 2 NET 1] IP: 5.0.0.0
+[INFO] - [Link Router 2 NET 1] Interface: 1
+[INFO] - [Demultiplexer router 2] Initialized with 2 interfaces
+[INFO] - [IPv4 Router 3] ip amount: 2
+[INFO] - [IPv4 Router 3] ips:
+[INFO] - [IPv4 Router 3] 2.0.0.1
+[INFO] - [IPv4 Router 3] 4.0.0.0
+[INFO] - [IPv4 Router 3] Routing table:
+[INFO] - [IPv4 Router 3] | 0.0.0.0 | 0.0.0.0 | 2.0.0.0 | 1 |  Default gateway | 
+[INFO] - [IPv4 Router 3] | 1.0.0.0 | 255.0.0.0 | 2.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 3] | 3.0.0.0 | 255.0.0.0 | 2.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 3] | 5.0.0.0 | 255.0.0.0 | 2.0.0.0 | 3 |  Router 1 | 
+[INFO] - [IPv4 Router 3] | 4.0.0.1 | 255.255.255.255 | 4.0.0.1 | 1 |  Host 3 | 
+[INFO] - [IPv4 Router 3] Forwarding table:
+[INFO] - [IPv4 Router 3] | 2.0.0.0 | 255.0.0.0 | 0 | 
+[INFO] - [IPv4 Router 3] | 4.0.0.0 | 255.0.0.0 | 1 | 
+[INFO] - [Link Router 3 NET 0] MAC: 0:0:0:0:0:6
+[INFO] - [Link Router 3 NET 0] IP: 2.0.0.1
+[INFO] - [Link Router 3 NET 0] Interface: 0
+[INFO] - [Link Router 3 NET 1] MAC: 0:0:0:0:0:7
+[INFO] - [Link Router 3 NET 1] IP: 4.0.0.0
+[INFO] - [Link Router 3 NET 1] Interface: 1
+[INFO] - [Demultiplexer router 3] Initialized with 2 interfaces
+[INFO] - [Switch Switch 1] MAC: 0:0:0:0:0:13
+[INFO] - [Switch Switch 1] Interface amounts: 3
+[INFO] - [Switch Switch 1] Added swp protocol for port 0
+[INFO] - [Switch Switch 1] Added swp protocol for port 1
+[INFO] - [Switch Switch 1] Added swp protocol for port 2
+[INFO] - [Switch Switch 1] Forwarding table:
+[INFO] - [Switch Switch 1] 0:0:0:0:0:1 | 0
+[INFO] - [Switch Switch 1] 0:0:0:0:0:2 | 2
+[INFO] - [Switch Switch 1] 0:0:0:0:0:3 | 2
+[INFO] - [Demultiplexer Switch 1] Initialized with 3 interfaces
+[INFO] - [Multiplexer Switch 1] Multiplexer initialized.
+[INFO] - [Switch Switch 2] MAC: 0:0:0:0:0:14
+[INFO] - [Switch Switch 2] Interface amounts: 3
+[INFO] - [Switch Switch 2] Added swp protocol for port 0
+[INFO] - [Switch Switch 2] Added swp protocol for port 1
+[INFO] - [Switch Switch 2] Added swp protocol for port 2
+[INFO] - [Switch Switch 2] Forwarding table:
+[INFO] - [Switch Switch 2] 0:0:0:0:0:1 | 1
+[INFO] - [Switch Switch 2] 0:0:0:0:0:2 | 0
+[INFO] - [Switch Switch 2] 0:0:0:0:0:3 | 2
+[INFO] - [Demultiplexer Switch 2] Initialized with 3 interfaces
+[INFO] - [Multiplexer Switch 2] Multiplexer initialized.
+[INFO] - [Switch Switch 3] MAC: 0:0:0:0:0:15
+[INFO] - [Switch Switch 3] Interface amounts: 3
+[INFO] - [Switch Switch 3] Added swp protocol for port 0
+[INFO] - [Switch Switch 3] Added swp protocol for port 1
+[INFO] - [Switch Switch 3] Added swp protocol for port 2
+[INFO] - [Switch Switch 3] Forwarding table:
+[INFO] - [Switch Switch 3] 0:0:0:0:0:1 | 0
+[INFO] - [Switch Switch 3] 0:0:0:0:0:2 | 0
+[INFO] - [Switch Switch 3] 0:0:0:0:0:3 | 2
+[INFO] - [Demultiplexer Switch 3] Initialized with 3 interfaces
+[INFO] - [Multiplexer Switch 3] Multiplexer initialized.
+[INFO] - [Demultiplexer Switch 4] Initialized with 3 interfaces
+[INFO] - [Multiplexer Switch 4] Multiplexer initialized.
+[INFO] - [Switch Switch 4] MAC: 0:0:0:0:0:16
+[INFO] - [Switch Switch 4] Interface amounts: 3
+[INFO] - [Switch Switch 4] Added swp protocol for port 0
+[INFO] - [Switch Switch 4] Added swp protocol for port 1
+[INFO] - [Switch Switch 4] Added swp protocol for port 2
+[INFO] - [Switch Switch 4] Forwarding table:
+[INFO] - [Switch Switch 4] 0:0:0:0:0:10 | 0
+[INFO] - [Switch Switch 4] 0:0:0:0:0:11 | 1
+[INFO] - [Switch Switch 4] 0:0:0:0:0:12 | 2
+[INFO] - [IPv4 Host 2] ip amount: 2
+[INFO] - [IPv4 Host 2] ips:
+[INFO] - [IPv4 Host 2] 1.0.0.2
+[INFO] - [IPv4 Host 2] 127.0.0.1
+[INFO] - [IPv4 Host 2] Routing table:
+[INFO] - [IPv4 Host 2] | 0.0.0.0 | 0.0.0.0 | 1.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 2] | 1.0.0.1 | 255.255.255.255 | 1.0.0.1 | 1 |  Host 1 | 
+[INFO] - [IPv4 Host 2] Forwarding table:
+[INFO] - [IPv4 Host 2] | 0.0.0.0 | 0.0.0.0 | 0 | 
+[INFO] - [Link Host 2 NET 0] MAC: 0:0:0:0:0:2
+[INFO] - [Link Host 2 NET 0] IP: 1.0.0.2
+[INFO] - [Link Host 2 NET 0] Interface: 0
+[INFO] - [DNS Host 2] DNS local ip: 1.0.0.2
+[INFO] - [DNS Host 2] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 2] No authoritative RR table file.
+[INFO] - [DNS Host 2] No zone server table file.
+[INFO] - [DNS Host 2] Recursive allowed: True
+[INFO] - [Demultiplexer Host 2] Initialized with 1 interfaces
+Simulation Initialized
+[INFO] - [UDP Host 1] Bind
+[INFO] - [UDP Host 1] SUCCESS
+[INFO] - [UDP Host 3] Bind
+[INFO] - [UDP Host 3] SUCCESS
+[INFO] - [UDP Host 4] Bind
+[INFO] - [UDP Host 4] SUCCESS
+[INFO] - [UDP Host 5] Bind
+[INFO] - [UDP Host 5] SUCCESS
+[INFO] - [UDP Host 2] Bind
+[INFO] - [UDP Host 2] SUCCESS
+[INFO] - [UDP Host 1] Read/Recv
+[INFO] - [UDP Host 3] Read/Recv
+[INFO] - [UDP Host 4] Read/Recv
+[INFO] - [UDP Host 5] Read/Recv
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [DNS Host 1] Process domain name network.devs.com
+[INFO] - [DNS Host 1] Domain not in cache
+[INFO] - [DNS Host 1] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [UDP Host 1] Write_to/Send_to
+[INFO] - [IPv4 Host 1] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 1] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 
+[INFO] - [IPv4 Host 1] Added packet to wait ARP for nexthop: 1.0.0.2
+[INFO] - [IPv4 Host 1] ARP query throw interface: NET 0
+[INFO] - [Link Host 1 NET 0] ARP_QUERY
+[INFO] - [Link Host 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Host 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 1
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 1
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 1
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 1
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 1
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 1
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:1 throw interface 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 1
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:1 throw interface 0
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 1
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [Link Host 1 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 1] link::Ctrl::ARP_READY
+[INFO] - [Link Host 1 NET 0] SEND_PACKET
+[INFO] - [Link Host 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 2
+[INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:2 throw interface 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 2
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 2
+[INFO] - [IPv4 Host 2] Processing arrived ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 2] Valid checksum: true
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 1.0.0.1
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.1 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 2] Query packet
+[INFO] - [DNS Host 2] Recursive query for domain network.devs.com
+[INFO] - [DNS Host 2] Send DNS Query to: (5.0.0.1, 53)
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [IPv4 Host 2] Forwarding ip packet: 5.0.0.1
+[INFO] - [IPv4 Host 2] Best route for packet with dest_ip: 5.0.0.1 
+is: | 0.0.0.0 | 0.0.0.0 | 1.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 2] Added packet to wait ARP for nexthop: 1.0.0.0
+[INFO] - [IPv4 Host 2] ARP query throw interface: NET 0
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.0
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 2
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 2
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 2
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 2
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 2
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 1
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 1
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 3
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 2] link::Ctrl::ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 is in cache.
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 3
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 3
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 3
+[INFO] - [IPv4 Router 1] Process Ip Datagram
+[INFO] - [IPv4 Router 1] Valid checksum: true
+[INFO] - [IPv4 Router 1] Forwarding ip packet: 5.0.0.1
+[INFO] - [IPv4 Router 1] Best route for packet with dest_ip: 5.0.0.1 
+is: | 5.0.0.0 | 255.0.0.0 | 3.0.0.1 | 2 |  Router 2 | 
+[INFO] - [IPv4 Router 1] Added packet to wait ARP for nexthop: 3.0.0.1
+[INFO] - [IPv4 Router 1] ARP query throw interface: NET 1
+[INFO] - [Link Router 1 NET 1] ARP_QUERY
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 not cached.
+[INFO] - [Link Router 1 NET 1] Sending ARP query for ip: 3.0.0.1
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 1
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 1
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [Link Router 1 NET 1] Send control ARP_READY
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 1] link::Ctrl::ARP_READY
+[INFO] - [Link Router 1 NET 1] SEND_PACKET
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 is in cache.
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [IPv4 Router 2] Process Ip Datagram
+[INFO] - [IPv4 Router 2] Valid checksum: true
+[INFO] - [IPv4 Router 2] Forwarding ip packet: 5.0.0.1
+[INFO] - [IPv4 Router 2] Best route for packet with dest_ip: 5.0.0.1 
+is: | 5.0.0.1 | 255.255.255.255 | 5.0.0.1 | 1 |  Host 5 | 
+[INFO] - [IPv4 Router 2] Added packet to wait ARP for nexthop: 5.0.0.1
+[INFO] - [IPv4 Router 2] ARP query throw interface: NET 1
+[INFO] - [Link Router 2 NET 1] ARP_QUERY
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.1 not cached.
+[INFO] - [Link Router 2 NET 1] Sending ARP query for ip: 5.0.0.1
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 1
+[INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 1
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 1
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 1
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 1
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [Link Router 2 NET 1] Send control ARP_READY
+[INFO] - [IPv4 Router 2] link::Ctrl::ARP_READY
+[INFO] - [Link Router 2 NET 1] SEND_PACKET
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.1 is in cache.
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 2
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:11 throw interface 1
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 2
+[INFO] - [IPv4 Host 5] Processing arrived ip packet: 5.0.0.1
+[INFO] - [IPv4 Host 5] Valid checksum: true
+[INFO] - [UDP Host 5] process Segment: 
+[INFO] - [UDP Host 5] local_port: 53
+[INFO] - [UDP Host 5] remote_port: 53
+[INFO] - [UDP Host 5] local_ip: 5.0.0.1
+[INFO] - [UDP Host 5] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 5] valid checksum: true
+[INFO] - [UDP Host 5] socket local_ip: 5.0.0.1
+[INFO] - [UDP Host 5] socket local_ip: 53
+[INFO] - [UDP Host 5] Deliver dns packet
+[INFO] - [DNS Host 5] Incoming packet:
+[INFO] - [DNS Host 5] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 5] Query packet
+[INFO] - [DNS Host 5] No recursive query for domain network.devs.com
+[INFO] - [DNS Host 5] Zone found: 
+-------------- Zone --------------
+** NS **
+com NS ns1.com IN 65535 
+** A **
+ns1.com A 5.0.0.2 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 5] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [UDP Host 5] Write_to/Send_to
+[INFO] - [UDP Host 5] Read/Recv
+[INFO] - [IPv4 Host 5] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 5] Best route for packet with dest_ip: 1.0.0.2 
+is: | 0.0.0.0 | 0.0.0.0 | 5.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 5] Added packet to wait ARP for nexthop: 5.0.0.0
+[INFO] - [IPv4 Host 5] ARP query throw interface: NET 0
+[INFO] - [Link Host 5 NET 0] ARP_QUERY
+[INFO] - [Link Host 5 NET 0] ARP ip 5.0.0.0 not cached.
+[INFO] - [Link Host 5 NET 0] Sending ARP query for ip: 5.0.0.0
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 2
+[INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 2
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 2
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 3
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:11 throw interface 1
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 3
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [Link Host 5 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 5] link::Ctrl::ARP_READY
+[INFO] - [Link Host 5 NET 0] SEND_PACKET
+[INFO] - [Link Host 5 NET 0] ARP ip 5.0.0.0 is in cache.
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 3
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 3
+[INFO] - [IPv4 Router 2] Process Ip Datagram
+[INFO] - [IPv4 Router 2] Valid checksum: true
+[INFO] - [IPv4 Router 2] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Router 2] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.0 | 255.0.0.0 | 3.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 2] Added packet to wait ARP for nexthop: 3.0.0.0
+[INFO] - [IPv4 Router 2] ARP query throw interface: NET 0
+[INFO] - [Link Router 2 NET 0] ARP_QUERY
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 not cached.
+[INFO] - [Link Router 2 NET 0] Sending ARP query for ip: 3.0.0.0
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 2
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 3
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 2 NET 0] Send control ARP_READY
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [IPv4 Router 2] link::Ctrl::ARP_READY
+[INFO] - [Link Router 2 NET 0] SEND_PACKET
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 is in cache.
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 3
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 1] Process Ip Datagram
+[INFO] - [IPv4 Router 1] Valid checksum: true
+[INFO] - [IPv4 Router 1] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Router 1] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 
+[INFO] - [IPv4 Router 1] Added packet to wait ARP for nexthop: 1.0.0.2
+[INFO] - [IPv4 Router 1] ARP query throw interface: NET 0
+[INFO] - [Link Router 1 NET 0] ARP_QUERY
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Router 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 2
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 2
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 4
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 3
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 3
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 4
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 4
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 4
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Router 1] link::Ctrl::ARP_READY
+[INFO] - [Link Router 1 NET 0] SEND_PACKET
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 3
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 3
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 5
+[INFO] - [IPv4 Host 2] Processing arrived ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 2] Valid checksum: true
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 5.0.0.1
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 256
+QDCount: 1
+ANCount: 1
+NSCount: 1
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+com NS ns1.com IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+ns1.com A 5.0.0.2 IN 65535 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 5.0.0.1 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 2] Answer packet
+[INFO] - [DNS Host 2] Answer Type: NS
+[INFO] - [DNS Host 2] Send DNS Query to: (5.0.0.2, 53)
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [IPv4 Host 2] Forwarding ip packet: 5.0.0.2
+[INFO] - [IPv4 Host 2] Best route for packet with dest_ip: 5.0.0.2 
+is: | 0.0.0.0 | 0.0.0.0 | 1.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 2] Added packet to wait ARP for nexthop: 1.0.0.0
+[INFO] - [IPv4 Host 2] ARP query throw interface: NET 0
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.0
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 5
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 4
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 5
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 4
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 5
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 4
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 4
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 6
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 2] link::Ctrl::ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 is in cache.
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 6
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 6
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 6
+[INFO] - [IPv4 Router 1] Process Ip Datagram
+[INFO] - [IPv4 Router 1] Valid checksum: true
+[INFO] - [IPv4 Router 1] Forwarding ip packet: 5.0.0.2
+[INFO] - [IPv4 Router 1] Best route for packet with dest_ip: 5.0.0.2 
+is: | 5.0.0.0 | 255.0.0.0 | 3.0.0.1 | 2 |  Router 2 | 
+[INFO] - [IPv4 Router 1] Added packet to wait ARP for nexthop: 3.0.0.1
+[INFO] - [IPv4 Router 1] ARP query throw interface: NET 1
+[INFO] - [Link Router 1 NET 1] ARP_QUERY
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 not cached.
+[INFO] - [Link Router 1 NET 1] Sending ARP query for ip: 3.0.0.1
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 4
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 4
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [Link Router 1 NET 1] Send control ARP_READY
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 1] link::Ctrl::ARP_READY
+[INFO] - [Link Router 1 NET 1] SEND_PACKET
+[INFO] - [Link Router 1 NET 1] ARP ip 3.0.0.1 is in cache.
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 5
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [IPv4 Router 2] Process Ip Datagram
+[INFO] - [IPv4 Router 2] Valid checksum: true
+[INFO] - [IPv4 Router 2] Forwarding ip packet: 5.0.0.2
+[INFO] - [IPv4 Router 2] Best route for packet with dest_ip: 5.0.0.2 
+is: | 5.0.0.2 | 255.255.255.255 | 5.0.0.2 | 1 |  Host 4 | 
+[INFO] - [IPv4 Router 2] Added packet to wait ARP for nexthop: 5.0.0.2
+[INFO] - [IPv4 Router 2] ARP query throw interface: NET 1
+[INFO] - [Link Router 2 NET 1] ARP_QUERY
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.2 not cached.
+[INFO] - [Link Router 2 NET 1] Sending ARP query for ip: 5.0.0.2
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 4
+[INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 4
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 3
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 1
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 4
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [Link Router 2 NET 1] Send control ARP_READY
+[INFO] - [IPv4 Router 2] link::Ctrl::ARP_READY
+[INFO] - [Link Router 2 NET 1] SEND_PACKET
+[INFO] - [Link Router 2 NET 1] ARP ip 5.0.0.2 is in cache.
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 5
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:12 throw interface 2
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 4
+[INFO] - [IPv4 Host 4] Processing arrived ip packet: 5.0.0.2
+[INFO] - [IPv4 Host 4] Valid checksum: true
+[INFO] - [UDP Host 4] process Segment: 
+[INFO] - [UDP Host 4] local_port: 53
+[INFO] - [UDP Host 4] remote_port: 53
+[INFO] - [UDP Host 4] local_ip: 5.0.0.2
+[INFO] - [UDP Host 4] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 4] valid checksum: true
+[INFO] - [UDP Host 4] socket local_ip: 5.0.0.2
+[INFO] - [UDP Host 4] socket local_ip: 53
+[INFO] - [UDP Host 4] Deliver dns packet
+[INFO] - [DNS Host 4] Incoming packet:
+[INFO] - [DNS Host 4] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 4] Query packet
+[INFO] - [DNS Host 4] No recursive query for domain network.devs.com
+[INFO] - [DNS Host 4] Zone found: 
+-------------- Zone --------------
+** NS **
+devs.com NS ns1.devs.com IN 65535 
+** A **
+ns1.dev.com A 4.0.0.1 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 4] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [UDP Host 4] Write_to/Send_to
+[INFO] - [UDP Host 4] Read/Recv
+[INFO] - [IPv4 Host 4] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 4] Best route for packet with dest_ip: 1.0.0.2 
+is: | 0.0.0.0 | 0.0.0.0 | 5.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 4] Added packet to wait ARP for nexthop: 5.0.0.0
+[INFO] - [IPv4 Host 4] ARP query throw interface: NET 0
+[INFO] - [Link Host 4 NET 0] ARP_QUERY
+[INFO] - [Link Host 4 NET 0] ARP ip 5.0.0.0 not cached.
+[INFO] - [Link Host 4 NET 0] Sending ARP query for ip: 5.0.0.0
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 2
+[INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 5
+[INFO] - [Link Router 2 NET 1] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 5
+[INFO] - [Link Host 5 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 6
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:12 throw interface 2
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 5
+[INFO] - [Link Host 4 NET 0] Process ARP packet.
+[INFO] - [Link Host 4 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 4] link::Ctrl::ARP_READY
+[INFO] - [Link Host 4 NET 0] SEND_PACKET
+[INFO] - [Link Host 4 NET 0] ARP ip 5.0.0.0 is in cache.
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 3
+[INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 6
+[INFO] - [IPv4 Router 2] Process Ip Datagram
+[INFO] - [IPv4 Router 2] Valid checksum: true
+[INFO] - [IPv4 Router 2] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Router 2] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.0 | 255.0.0.0 | 3.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 2] Added packet to wait ARP for nexthop: 3.0.0.0
+[INFO] - [IPv4 Router 2] ARP query throw interface: NET 0
+[INFO] - [Link Router 2 NET 0] ARP_QUERY
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 not cached.
+[INFO] - [Link Router 2 NET 0] Sending ARP query for ip: 3.0.0.0
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 5
+[INFO] - [Link Router 1 NET 1] Process ARP packet.
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 6
+[INFO] - [Link Router 2 NET 0] Process ARP packet.
+[INFO] - [Link Router 2 NET 0] Send control ARP_READY
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [IPv4 Router 2] link::Ctrl::ARP_READY
+[INFO] - [Link Router 2 NET 0] SEND_PACKET
+[INFO] - [Link Router 2 NET 0] ARP ip 3.0.0.0 is in cache.
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 6
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 1] Process Ip Datagram
+[INFO] - [IPv4 Router 1] Valid checksum: true
+[INFO] - [IPv4 Router 1] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Router 1] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 
+[INFO] - [IPv4 Router 1] Added packet to wait ARP for nexthop: 1.0.0.2
+[INFO] - [IPv4 Router 1] ARP query throw interface: NET 0
+[INFO] - [Link Router 1 NET 0] ARP_QUERY
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Router 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 5
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 5
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 7
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 5
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 5
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 7
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 7
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 7
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Router 1] link::Ctrl::ARP_READY
+[INFO] - [Link Router 1 NET 0] SEND_PACKET
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 6
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 6
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 8
+[INFO] - [IPv4 Host 2] Processing arrived ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 2] Valid checksum: true
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 5.0.0.2
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 256
+QDCount: 1
+ANCount: 1
+NSCount: 1
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+devs.com NS ns1.devs.com IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+ns1.dev.com A 4.0.0.1 IN 65535 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 5.0.0.2 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 2] Answer packet
+[INFO] - [DNS Host 2] Answer Type: NS
+[INFO] - [DNS Host 2] Send DNS Query to: (4.0.0.1, 53)
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [IPv4 Host 2] Forwarding ip packet: 4.0.0.1
+[INFO] - [IPv4 Host 2] Best route for packet with dest_ip: 4.0.0.1 
+is: | 0.0.0.0 | 0.0.0.0 | 1.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 2] Added packet to wait ARP for nexthop: 1.0.0.0
+[INFO] - [IPv4 Host 2] ARP query throw interface: NET 0
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.0
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 8
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 6
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 8
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 6
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 8
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 7
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 7
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 9
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 2] link::Ctrl::ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.0 is in cache.
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 9
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 9
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 9
+[INFO] - [IPv4 Router 1] Process Ip Datagram
+[INFO] - [IPv4 Router 1] Valid checksum: true
+[INFO] - [IPv4 Router 1] Forwarding ip packet: 4.0.0.1
+[INFO] - [IPv4 Router 1] Best route for packet with dest_ip: 4.0.0.1 
+is: | 4.0.0.0 | 255.0.0.0 | 2.0.0.1 | 2 |  Router 3 | 
+[INFO] - [IPv4 Router 1] Added packet to wait ARP for nexthop: 2.0.0.1
+[INFO] - [IPv4 Router 1] ARP query throw interface: NET 2
+[INFO] - [Link Router 1 NET 2] ARP_QUERY
+[INFO] - [Link Router 1 NET 2] ARP ip 2.0.0.1 not cached.
+[INFO] - [Link Router 1 NET 2] Sending ARP query for ip: 2.0.0.1
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 3 NET 0] send ACK LFR: 1
+[INFO] - [Link Router 3 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 1 NET 2] send ACK LFR: 1
+[INFO] - [Link Router 1 NET 2] Process ARP packet.
+[INFO] - [Link Router 1 NET 2] Send control ARP_READY
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 1] link::Ctrl::ARP_READY
+[INFO] - [Link Router 1 NET 2] SEND_PACKET
+[INFO] - [Link Router 1 NET 2] ARP ip 2.0.0.1 is in cache.
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 3 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [IPv4 Router 3] Process Ip Datagram
+[INFO] - [IPv4 Router 3] Valid checksum: true
+[INFO] - [IPv4 Router 3] Forwarding ip packet: 4.0.0.1
+[INFO] - [IPv4 Router 3] Best route for packet with dest_ip: 4.0.0.1 
+is: | 4.0.0.1 | 255.255.255.255 | 4.0.0.1 | 1 |  Host 3 | 
+[INFO] - [IPv4 Router 3] Added packet to wait ARP for nexthop: 4.0.0.1
+[INFO] - [IPv4 Router 3] ARP query throw interface: NET 1
+[INFO] - [Link Router 3 NET 1] ARP_QUERY
+[INFO] - [Link Router 3 NET 1] ARP ip 4.0.0.1 not cached.
+[INFO] - [Link Router 3 NET 1] Sending ARP query for ip: 4.0.0.1
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 3 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 3 NET 0] send ACK LFR: 1
+[INFO] - [Link Host 3 NET 0] Process ARP packet.
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 3 NET 1] send ACK LFR: 1
+[INFO] - [Link Router 3 NET 1] Process ARP packet.
+[INFO] - [Link Router 3 NET 1] Send control ARP_READY
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 3] link::Ctrl::ARP_READY
+[INFO] - [Link Router 3 NET 1] SEND_PACKET
+[INFO] - [Link Router 3 NET 1] ARP ip 4.0.0.1 is in cache.
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 3 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 3 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [IPv4 Host 3] Processing arrived ip packet: 4.0.0.1
+[INFO] - [IPv4 Host 3] Valid checksum: true
+[INFO] - [UDP Host 3] process Segment: 
+[INFO] - [UDP Host 3] local_port: 53
+[INFO] - [UDP Host 3] remote_port: 53
+[INFO] - [UDP Host 3] local_ip: 4.0.0.1
+[INFO] - [UDP Host 3] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 3] valid checksum: true
+[INFO] - [UDP Host 3] socket local_ip: 4.0.0.1
+[INFO] - [UDP Host 3] socket local_ip: 53
+[INFO] - [UDP Host 3] Deliver dns packet
+[INFO] - [DNS Host 3] Incoming packet:
+[INFO] - [DNS Host 3] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 3] Query packet
+[INFO] - [DNS Host 3] Resource for domain network.devs.com exist
+[INFO] - [DNS Host 3] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [UDP Host 3] Write_to/Send_to
+[INFO] - [UDP Host 3] Read/Recv
+[INFO] - [IPv4 Host 3] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 3] Best route for packet with dest_ip: 1.0.0.2 
+is: | 0.0.0.0 | 0.0.0.0 | 4.0.0.0 | 1 |  Default Route | 
+[INFO] - [IPv4 Host 3] Added packet to wait ARP for nexthop: 4.0.0.0
+[INFO] - [IPv4 Host 3] ARP query throw interface: NET 0
+[INFO] - [Link Host 3 NET 0] ARP_QUERY
+[INFO] - [Link Host 3 NET 0] ARP ip 4.0.0.0 is in cache.
+[INFO] - [Link Host 3 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 3] link::Ctrl::ARP_READY
+[INFO] - [Link Host 3 NET 0] SEND_PACKET
+[INFO] - [Link Host 3 NET 0] ARP ip 4.0.0.0 is in cache.
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 3 NET 1] send ACK LFR: 2
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 3] Process Ip Datagram
+[INFO] - [IPv4 Router 3] Valid checksum: true
+[INFO] - [IPv4 Router 3] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Router 3] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.0 | 255.0.0.0 | 2.0.0.0 | 2 |  Router 1 | 
+[INFO] - [IPv4 Router 3] Added packet to wait ARP for nexthop: 2.0.0.0
+[INFO] - [IPv4 Router 3] ARP query throw interface: NET 0
+[INFO] - [Link Router 3 NET 0] ARP_QUERY
+[INFO] - [Link Router 3 NET 0] ARP ip 2.0.0.0 is in cache.
+[INFO] - [Link Router 3 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Router 3] link::Ctrl::ARP_READY
+[INFO] - [Link Router 3 NET 0] SEND_PACKET
+[INFO] - [Link Router 3 NET 0] ARP ip 2.0.0.0 is in cache.
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 1 NET 2] send ACK LFR: 2
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [IPv4 Router 1] Process Ip Datagram
+[INFO] - [IPv4 Router 1] Valid checksum: true
+[INFO] - [IPv4 Router 1] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Router 1] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 
+[INFO] - [IPv4 Router 1] Added packet to wait ARP for nexthop: 1.0.0.2
+[INFO] - [IPv4 Router 1] ARP query throw interface: NET 0
+[INFO] - [Link Router 1 NET 0] ARP_QUERY
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 not cached.
+[INFO] - [Link Router 1 NET 0] Sending ARP query for ip: 1.0.0.2
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 8
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 8
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 10
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 7
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 7
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 10
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 10
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 10
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [Link Router 1 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Router 1] link::Ctrl::ARP_READY
+[INFO] - [Link Router 1 NET 0] SEND_PACKET
+[INFO] - [Link Router 1 NET 0] ARP ip 1.0.0.2 is in cache.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 9
+[INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 9
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 11
+[INFO] - [IPv4 Host 2] Processing arrived ip packet: 1.0.0.2
+[INFO] - [IPv4 Host 2] Valid checksum: true
+[INFO] - [UDP Host 2] process Segment: 
+[INFO] - [UDP Host 2] local_port: 53
+[INFO] - [UDP Host 2] remote_port: 53
+[INFO] - [UDP Host 2] local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] remote_ip: 4.0.0.1
+[INFO] - [UDP Host 2] valid checksum: true
+[INFO] - [UDP Host 2] socket local_ip: 1.0.0.2
+[INFO] - [UDP Host 2] socket local_ip: 53
+[INFO] - [UDP Host 2] Deliver dns packet
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 1280
+QDCount: 1
+ANCount: 1
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+network.devs.com A 6.0.0.1 IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 4.0.0.1 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 2] Answer packet
+[INFO] - [DNS Host 2] Answer Type: A
+[INFO] - [DNS Host 2] Caching authoritative answer
+[INFO] - [DNS Host 2] Send DNS Query to: (1.0.0.1, 53)
+[INFO] - [UDP Host 2] Write_to/Send_to
+[INFO] - [UDP Host 2] Read/Recv
+[INFO] - [IPv4 Host 2] Forwarding ip packet: 1.0.0.1
+[INFO] - [IPv4 Host 2] Best route for packet with dest_ip: 1.0.0.1 
+is: | 1.0.0.1 | 255.255.255.255 | 1.0.0.1 | 1 |  Host 1 | 
+[INFO] - [IPv4 Host 2] Added packet to wait ARP for nexthop: 1.0.0.1
+[INFO] - [IPv4 Host 2] ARP query throw interface: NET 0
+[INFO] - [Link Host 2 NET 0] ARP_QUERY
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.1 not cached.
+[INFO] - [Link Host 2 NET 0] Sending ARP query for ip: 1.0.0.1
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 11
+[INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
+[INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 8
+[INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 11
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
+[INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 8
+[INFO] - [Link Host 1 NET 0] Process ARP packet.
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 11
+[INFO] - [Link Router 1 NET 0] Process ARP packet.
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 3
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:2 throw interface 2
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 3
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 12
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 12
+[INFO] - [Link Host 2 NET 0] Process ARP packet.
+[INFO] - [Link Host 2 NET 0] Send control ARP_READY
+[INFO] - [IPv4 Host 2] link::Ctrl::ARP_READY
+[INFO] - [Link Host 2 NET 0] SEND_PACKET
+[INFO] - [Link Host 2 NET 0] ARP ip 1.0.0.1 is in cache.
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 12
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 12
+[INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:1 throw interface 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 9
+[INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:1 throw interface 0
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 9
+[INFO] - [IPv4 Host 1] Processing arrived ip packet: 1.0.0.1
+[INFO] - [IPv4 Host 1] Valid checksum: true
+[INFO] - [UDP Host 1] process Segment: 
+[INFO] - [UDP Host 1] local_port: 53
+[INFO] - [UDP Host 1] remote_port: 53
+[INFO] - [UDP Host 1] local_ip: 1.0.0.1
+[INFO] - [UDP Host 1] remote_ip: 1.0.0.2
+[INFO] - [UDP Host 1] valid checksum: true
+[INFO] - [UDP Host 1] socket local_ip: 1.0.0.1
+[INFO] - [UDP Host 1] socket local_ip: 53
+[INFO] - [UDP Host 1] Deliver dns packet
+[INFO] - [DNS Host 1] Incoming packet:
+[INFO] - [DNS Host 1] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 1280
+QDCount: 1
+ANCount: 1
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+network.devs.com A 6.0.0.1 IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 9227 
+-----------------------------------------
+[INFO] - [DNS Host 1] Answer packet
+[INFO] - [DNS Host 1] Answer Type: A
+[INFO] - [DNS Host 1] Caching authoritative answer
+[INFO] - [UDP Host 1] Read/Recv
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+Simulation Ended (0.0217 sec)

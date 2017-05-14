@@ -213,6 +213,26 @@ Coupled
                         max_interface = Val; 1 ; 
                         }
                     }
+                Atomic
+                    {
+                    Name = input sink
+                    Ports = 1 ; 0
+                    Path = NetworkDEVS/domain_name_sink.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -6630 ; -7305
+                        Dimension = 675 ; 675
+                        Direction = Left
+                        Color = 15
+                        Icon = ../atomics/NetworkDEVS/icons/output.svg
+                        }
+                    Parameters
+                        {
+                        module_name = Str; Host 1 ; 
+                        output = Str; ../atomics/NetworkDEVS/scenario/output/h1_input.output ; 
+                        }
+                    }
                 Line
                     {
                     Source = Cmp ;  1 ;  3 ; 0
@@ -303,6 +323,13 @@ Coupled
                     Sink = Cmp ;  3 ;  2 ; -1
                     PointX = -2700 ; -2325 ; -2325 ; -5400 ; -5400 ; -4965
                     PointY = -450 ; -450 ; 900 ; 900 ; 1650 ; 1650
+                    }
+                Line
+                    {
+                    Source = Cmp ;  6 ;  1 ; 0
+                    Sink = Cmp ;  8 ;  1 ; -1
+                    PointX = -5850 ; -5550 ; -5550 ; -5835
+                    PointY = -5475 ; -5475 ; -6975 ; -6975
                     }
                 }
             }
