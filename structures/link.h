@@ -83,6 +83,9 @@ namespace link {
     u_char interpacket_gat[12];
 
     Frame() {
+
+      ip::Datagram d;
+      this->setPayload(d);
       preamble = 0x00000000;
     }
     Frame(const Frame& other) {
@@ -112,17 +115,6 @@ namespace link {
     void setPayload(const arp::Packet& p) {
       memcpy(payload,&p,sizeof(p));
       enableARPFlag(); 
-    }
-  };
-
-  struct Multiplexed_frame {
-    Frame frame;
-    ushort interface;
-
-    Multiplexed_frame() {}
-    Multiplexed_frame(const Multiplexed_frame& other) {
-      frame = other.frame;
-      interface = other.interface;
     }
   };
 
@@ -191,7 +183,8 @@ inline std::ostream& operator<<(std::ostream& os, const link::Control& c) {
   os << "request: " << c.request << std::endl;
   os << "interface: " << c.interface << std::endl;
   os << "ip: " << c.ip << std::endl;
-  os << "Datagram: " << std::endl << c.packet << std::endl;
+  if (c.request == link::Ctrl::SEND_PACKET)
+    os << "Datagram: " << std::endl << c.packet << std::endl;
   return os;
 }
 
@@ -219,6 +212,21 @@ inline std::istream& operator>>(std::istream& is, link::Control& c) {
   is >> c.request;
   is >> c.interface;
   is >> c.ip;
+  c.packet.header.vide = 0;
+  c.packet.header.total_length = 0;
+  c.packet.header.identification = 0;
+  c.packet.header.ff = 0;
+  c.packet.header.ttlp = 50;
+  c.packet.header.header_checksum = 0;
+  c.packet.data.psd_header.src_ip = "1.0.0.1";
+  c.packet.data.psd_header.dest_ip = "1.0.0.2";
+  c.packet.data.psd_header.zeros = 0;
+  c.packet.data.psd_header.protocol = 0;
+  c.packet.data.psd_header.udp_lenght = 0;
+  c.packet.data.header.src_port = 80;
+  c.packet.data.header.dest_port = 8080;
+  c.packet.data.header.length = 0;
+  c.packet.data.header.checksum = 0;
   return is;
 }
 

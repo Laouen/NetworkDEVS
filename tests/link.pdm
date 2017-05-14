@@ -44,31 +44,11 @@ Coupled
             {
             Name = Src 1
             Ports = 0 ; 1
-            Path = NetworkDEVS/link_control_src.h
-            Description = Atomic DEVS model
-            Graphic
-                {
-                Position = -8505 ; -3030
-                Dimension = 675 ; 675
-                Direction = Right
-                Color = 15
-                Icon = ../atomics/NetworkDEVS/icons/input.svg
-                }
-            Parameters
-                {
-                module name = Str; link control ; 
-                input = Str; ../atomics/NetworkDEVS/tests/link/input/link_control.input ; 
-                }
-            }
-        Atomic
-            {
-            Name = Src 2
-            Ports = 0 ; 1
             Path = NetworkDEVS/link_frame_src.h
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -8505 ; -1680
+                Position = -8505 ; -2880
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -84,11 +64,11 @@ Coupled
             {
             Name = Sink 2
             Ports = 1 ; 0
-            Path = NetworkDEVS/link_control_sink.h
+            Path = NetworkDEVS/link_frame_sink.h
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -4305 ; -2430
+                Position = -4905 ; -1830
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -96,28 +76,8 @@ Coupled
                 }
             Parameters
                 {
-                module name = Str; link control ; 
-                input = Str; ../atomics/NetworkDEVS/tests/link/output/link_control.output ; 
-                }
-            }
-        Atomic
-            {
-            Name = Sink 1
-            Ports = 1 ; 0
-            Path = NetworkDEVS/ip_datagram_sink.h
-            Description = Atomic DEVS model
-            Graphic
-                {
-                Position = -4305 ; -3630
-                Dimension = 675 ; 675
-                Direction = Right
-                Color = 15
-                Icon = ../atomics/NetworkDEVS/icons/output.svg
-                }
-            Parameters
-                {
-                module name = Str; ip datagram ; 
-                input = Str; ../atomics/NetworkDEVS/tests/link/output/ip_datagram.output ; 
+                module name = Str; link_frame ; 
+                input = Str; ../atomics/NetworkDEVS/tests/link/output/link_frame.output ; 
                 }
             }
         Atomic
@@ -128,7 +88,27 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -4305 ; -1230
+                Position = -8505 ; -1680
+                Dimension = 675 ; 675
+                Direction = Left
+                Color = 15
+                Icon = ../atomics/NetworkDEVS/icons/output.svg
+                }
+            Parameters
+                {
+                module name = Str; link_frame_src_sink ; 
+                input = Str; ../atomics/NetworkDEVS/tests/link/output/input_link_frame.output ; 
+                }
+            }
+        Atomic
+            {
+            Name = Sink 1
+            Ports = 1 ; 0
+            Path = NetworkDEVS/ip_datagram_sink.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -4905 ; -2955
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -136,44 +116,37 @@ Coupled
                 }
             Parameters
                 {
-                module name = Str; link frame ; 
-                input = Str; ../atomics/NetworkDEVS/tests/link/output/link_frame.output ; 
+                module name = Str; ip_datagram ; 
+                input = Str; ../atomics/NetworkDEVS/tests/link/output/ip_datagram.output ; 
                 }
             }
         Line
             {
-            Source = Cmp ;  3 ;  1 ; 0
+            Source = Cmp ;  2 ;  1 ; 0
             Sink = Cmp ;  1 ;  3 ; -1
-            PointX = -7725 ; -7275 ; -7275 ; -6615
-            PointY = -1350 ; -1350 ; -1950 ; -1950
+            PointX = -7725 ; -7125 ; -7125 ; -6615
+            PointY = -2550 ; -2550 ; -1950 ; -1950
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  3 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -5700 ; -5400 ; -5400 ; -5040
+            PointY = -1950 ; -1950 ; -1500 ; -1500
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  4 ;  1 ; -1
+            PointX = -7725 ; -7275 ; -7275 ; -7710
+            PointY = -2550 ; -2550 ; -1350 ; -1350
             }
         Line
             {
             Source = Cmp ;  1 ;  1 ; 0
             Sink = Cmp ;  5 ;  1 ; -1
-            PointX = -5700 ; -5100 ; -5100 ; -4440
-            PointY = -2250 ; -2250 ; -3300 ; -3300
-            }
-        Line
-            {
-            Source = Cmp ;  2 ;  1 ; 0
-            Sink = Cmp ;  1 ;  2 ; -1
-            PointX = -7725 ; -7275 ; -7275 ; -6615
-            PointY = -2700 ; -2700 ; -2100 ; -2100
-            }
-        Line
-            {
-            Source = Cmp ;  1 ;  2 ; 0
-            Sink = Cmp ;  4 ;  1 ; -1
-            PointX = -5700 ; -5700 ; -4440
-            PointY = -2100 ; -2100 ; -2100
-            }
-        Line
-            {
-            Source = Cmp ;  1 ;  3 ; 0
-            Sink = Cmp ;  6 ;  1 ; -1
-            PointX = -5700 ; -5100 ; -5100 ; -4440
-            PointY = -1950 ; -1950 ; -900 ; -900
+            PointX = -5700 ; -5400 ; -5400 ; -5040
+            PointY = -2250 ; -2250 ; -2625 ; -2625
             }
         }
     }

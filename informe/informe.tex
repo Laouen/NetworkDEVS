@@ -852,20 +852,20 @@ El único módulo que no cuenta con test de unidad, es el modelo \textit{Switch}
 
 Para realizar test de unidad de cada módulo por separado (un módulo representa una capa o un protocolo en específico), dado que los mismos funcionan en su totalidad mediante la interacción con el resto de los modelos y ellos no van a estar en el test (por ser de unidad y no de integración), se implementaron múltiples modelos generadores y vertederos utilizando la técnica descripta en la Sección \ref{section: I/O}. De esta forma, por cada puerto de entrada por el cual el modelo recibe un input o emite un output desde y hacia otros modelos, se mockean los inputs y se guardan en archivos los output generados por el modelo consiguiendo de esta forma emular un símulación con interacciones aunque no esten todas las partes presentes. \\
 
+\textbf{Nota:} En todos los escenarios realizados para los test de unidad, los paquetes utilizados, son paquetes vacios.\\
+
 \subsubsection{Test de unidad para el módulo DNS}
 
 En el caso del modelo DNS, el test de unidad básico implementado recibe un pedido de resolución para el dominio ``networks.devs.com'' por el puerto de entrada 0 (puerto por el cual recibe datos de la capa superior) en el tiempo virtual 15, el módulo envía un pedido recursivo a su servidor local con ip conocido 1.0.0.2 por el puerto de salida 3 y luego de que el servidor resuelve la consulta de forma recursiva, se le envia un mensaje con la respuesta en formato de paquete dns por el puerto de entrada 2 (puerto por el cual recibe datos de la capa inferior), el mismo procesa la respuesta y la reenvía por el puerto de salido 0. La Figura \ref{figure: unit test dns} muestra el modelo implementado en PowerDEVS para el test de unidad del modelo dns con sus respectivas fuentes y vertederso.
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
     \centering
-    \includegraphics[width = 0.5\textwidth]{img/png/unit_tests/dns.png}
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/dns.png}
     \caption{Src 1 genera input de tipo dns::DomainName, src 2 genera input de tipo dns::Packet. Sink 1 imprime output de tipo dns::Packet y Sink 2 imprime output de tipo udp::Control, Sinks 3 y 4 imprimen el input generado por Src 1 y Src 2.}
     \label{figure: unit test dns}
 \end{figure}
 
-\newpage
-
-A continuación se muestra el input y output del test: \\
+\textbf{A continuación se muestra el input y output del test:} \\
 
 \textbf{Input port 0 (dns::DomainName)}
 \lstinputlisting[language=Bash]{../tests/dns/output/input_domain_name.output}
@@ -881,6 +881,46 @@ A continuación se muestra el input y output del test: \\
 \textbf{Output port 3 (udp::Control)}
 \lstinputlisting[language=Bash]{../tests/dns/output/udp_control.output}
 
+\newpage
+
+\textbf{Output generado por el logger durante la simulación}
+\begin{lstlisting}
+[INFO] - [DNS Test] DNS local ip: 1.0.0.1
+[INFO] - [DNS Test] DNS root server ip: 1.0.0.2
+[INFO] - [DNS Test] No authoritative RR table file.
+[INFO] - [DNS Test] No zone server table file.
+[INFO] - [DNS Test] Recursive allowed: True
+Simulation Initialized
+[INFO] - [DNS Test] Process domain name network.devs.com
+[INFO] - [DNS Test] Domain not in cache
+[INFO] - [DNS Test] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [DNS Test] Incoming packet:
+[INFO] - [DNS Test] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 0
+QDCount: 1
+ANCount: 1
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+network.devs.com A 1.0.0.3 IN 65 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.1 IN 0 
+-----------------------------------------
+[INFO] - [DNS Test] Answer packet
+[INFO] - [DNS Test] Answer Type: A
+Simulation Ended (0.000862 sec)
+\end{lstlisting}
+
 \subsubsection{Tet de unidad para el módulo UDP}
 
 Para testear el módulo UDP se utilizó la misma lógica que para DNS. En este caso, se implementaron generadores tanto para los controles de udp que envian pedidos de conección, bindeo, etc. desde la capa superior, como para los udp::Segment que llegan desde la capa inferior. La figura \ref{figure: unit test udp} muestra el modelo implementado en PowerDEVS para el test de unidad del módulo UDP. \\
@@ -895,16 +935,16 @@ En este escenario, se simuló lo siguiente:
 \item Una aplicación remota envía un paquete con socket remoto 1.0.0.2:80 y local 1.0.0.1:80. Si bien el socket es válido, el udp::Segment entrante falla en el checksum ya que el mismo es inválido y es descartado (esto no se ve en el output, pero se ve en el log de la simulación).
 \end{enumerate}
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
-    \includegraphics[width = 0.5\textwidth]{img/png/unit_tests/udp.png}
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/udp.png}
     \caption{Src 1 genera input de tipo udp::control, src 2 genera input de tipo udp::Segment. Sink 1 imprime output de tipo udp::Control, Sinks 2 imprime output de tipo udp::Segment mientras que Sink 3 y 4 imprimen el input generado por Src 1 y Src 2.}
     \label{figure: unit test udp}
 \end{figure}
 
 \newpage
 
-A continuación se muestra el input, output y log del test: \\
+\textbf{A continuación se muestra el input, output y log del test:} \\
 
 \textbf{Input port 1 (udp::Control)}
 \lstinputlisting[language=Bash]{../tests/udp/output/input_udp_control.output}
@@ -918,7 +958,7 @@ A continuación se muestra el input, output y log del test: \\
 \textbf{Output port 2 (udp::Segment)}
 \lstinputlisting[language=Bash]{../tests/udp/output/udp_segment.output}
 
-\textbf{Log generado por el logger implementado}
+\textbf{Output generado por el logger durante la simulación}
 \begin{lstlisting}
 Simulation Initialized
 [INFO] - [UDP Test] Connect
@@ -932,14 +972,142 @@ Simulation Initialized
 [INFO] - [UDP Test] remote_port: 80
 [INFO] - [UDP Test] local_ip: 1.0.0.1
 [INFO] - [UDP Test] remote_ip: 1.0.0.2
-[DEBUG] - [UDP Test] Header checksum: 0
-[DEBUG] - [UDP Test] Calculated checksum: 21411
 [INFO] - [UDP Test] valid checksum: False
 [INFO] - [UDP Test] discarted segment.
 [INFO] - [UDP Test] Write_to/Send_to
 [INFO] - [UDP Test] Write/Send
 [INFO] - [UDP Test] INVALID_SOCKET
-Simulation Ended (0.00162 sec)
+Simulation Ended (0.00135 sec)
+\end{lstlisting}
+
+\subsubsection{Test de unidad para el módulo IP Host}
+
+En este caso, el test implementado es para testear el comportamiento del protocolo IP para los hosts, la única diferencia entre este protocolo IP y el protocolo IP del server es que en este caso, se trabaja con la capa superior (UDP) y es necesario encapsular los udp::Segments en ip::Datagrams para forwardearlos por la red. Para este sencillo test se simula el proceso recien mencionado. La Figura \ref{figure: unit test ip host} muestra es escenario para este test de unidad.
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/ip_host.png}
+    \caption{Src 1 genera input de tipo udp::Segment, src 2 genera input de tipo link::Control. Sink 1 imprime output de tipo link::Control mientras que Sink 2 y 3 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test ip host}
+\end{figure}
+
+\textbf{A continuación se muestra el input, output y log del test:} \\
+
+\textbf{Input port 0 (udp::Segment)}
+\lstinputlisting[language=Bash]{../tests/ip/host/output/input_udp_segment.output}
+
+\newpage
+
+\textbf{Input port 3 (link::Control)}
+\lstinputlisting[language=Bash]{../tests/ip/host/output/input_link_control.output}
+
+\textbf{Output port 3 (link::Control)}
+\lstinputlisting[language=Bash]{../tests/ip/host/output/link_control.output}
+
+\newpage
+
+\textbf{Output generado por el logger durante la simulación}
+\begin{lstlisting}
+[INFO] - [IPv4 Test] ip amount: 1
+[INFO] - [IPv4 Test] ips:
+[INFO] - [IPv4 Test] 1.0.0.1
+[INFO] - [IPv4 Test] Routing table:
+[INFO] - [IPv4 Test] | 0.0.0.0 | 0.0.0.0          | 1.0.0.0 | 1 | Default Route |
+[INFO] - [IPv4 Test] | 1.0.0.2 | 255.255.255.255  | 1.0.0.2 | 1 | Host 2 |
+[INFO] - [IPv4 Test] Forwarding table:
+[INFO] - [IPv4 Test] | 0.0.0.0 | 0.0.0.0 | 0 
+[INFO] - [Demultiplexer Host 1] Initialized with 1 interfaces
+Simulation Initialized
+[INFO] - [IPv4 Test] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Test] Best route for packet with dest_ip: 1.0.0.2 
+is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 | 
+[INFO] - [IPv4 Test] Added packet to wait ARP for nexthop: 1.0.0.2
+[INFO] - [IPv4 Test] ARP query throw interface: NET 0
+[INFO] - [IPv4 Test] link::Ctrl::ARP_READY
+Simulation Ended (0.000886 sec)
+\end{lstlisting}
+
+\subsubsection{Test de unidad para el módulo IP Router}
+
+Para el caso del protocolo IP en routers se implementó un escenario donde a diferencia del anterior para IP en hosts, en este caso llega un ip::Datagram proveniente de la red y el mismo es forwardeado ya que un router no tiene capa 4 y todo ip::Datagram que llega es forwardeado para llegar a su destino o descartado si no pasa las verificaciones como checksum o su campo \textit{TTL} es 0. La Figura \ref{figure: unit test ip router} muestra el escenario par este test.\\
+
+\begin{figure}[!b]
+    \centering
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/ip_router.png}
+    \caption{Src 1 genera input de tipo ip::Datagram, src 2 genera input de tipo link::Control. Sink 1 imprime output de tipo link::Control mientras que Sink 2 y 3 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test ip router}
+\end{figure}
+
+\newpage
+
+\textbf{A continuación se muestra el input, output y log del test:} \\
+
+\textbf{Input port 2 (ip::Datagram)}
+\lstinputlisting[language=Bash]{../tests/ip/router/output/input_ip_datagram.output}
+
+\textbf{Input port 3 (link::Control)}
+\lstinputlisting[language=Bash]{../tests/ip/router/output/input_link_control.output}
+
+\textbf{Output port 3 (link::Control)}
+\lstinputlisting[language=Bash]{../tests/ip/router/output/link_control.output}
+
+\textbf{Output generado por el logger durante la simulación}
+\begin{lstlisting}
+[INFO] - [IPv4 Test] ip amount: 1
+[INFO] - [IPv4 Test] ips:
+[INFO] - [IPv4 Test] 1.0.0.1
+[INFO] - [IPv4 Test] Routing table:
+[INFO] - [IPv4 Test] | 0.0.0.0 | 0.0.0.0         | 1.0.0.0 | 1 | Default Route | 
+[INFO] - [IPv4 Test] | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 | 
+[INFO] - [IPv4 Test] Forwarding table:
+[INFO] - [IPv4 Test] | 0.0.0.0 | 0.0.0.0 | 0 | 
+[INFO] - [Demultiplexer Host 1] Initialized with 1 interfaces
+Simulation Initialized
+[INFO] - [IPv4 Test] Process Ip Datagram
+[INFO] - [IPv4 Test] Valid checksum: true
+[INFO] - [IPv4 Test] Forwarding ip packet: 1.0.0.2
+[INFO] - [IPv4 Test] Best route for packet with dest_ip 
+is: 1.0.0.2 is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 | 
+[INFO] - [IPv4 Test] Added packet to wait ARP for nexthop: 1.0.0.2
+[INFO] - [IPv4 Test] ARP query throw interface: NET 0
+[INFO] - [IPv4 Test] link::Ctrl::ARP_READY
+Simulation Ended (0.000795 sec)
+\end{lstlisting}
+
+\newpage
+
+\subsection{Test de unidad para el módulo link}
+
+Por último, el test de unidad para el módulo link, el cual implementa \textit{ARP} y \textit{SWP}, fue testeado con un escenario en el cual le llega un link::Frame de un nodo de la red que es aceptado. El frame entrante, es un frame de datos que contiene un ip::Datagram que es desencapsulado y entregado a la capa superior. Luego de haber entregado el ip::Datagram, el protocolo \textit{SWP} se encarga de eviar un \textit{Ack} al nodo que envió el frame para notificarle que llegó correctamente y que este pueda actualizar su ventana \textit{SWS} y seguir enviando más frames en un futuro. La Figura \ref{figure: unit test link} Muestra el escenario en la IDE PowerDEVS para este test. \\
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/link.png}
+    \caption{Src 1 genera input de tipo link::Frame, Sink 1 imprime output de tipo ip::Datagram, Sink 2 imprime output de tipo link::Frame mientras que Sink 3 imprime el input generado por Src 1.}
+    \label{figure: unit test link}
+\end{figure}
+
+\textbf{A continuación se muestra el input, output y log del test:} \\
+
+\textbf{Input port 2 (link::Frame)}
+\lstinputlisting[language=Bash]{../tests/link/output/input_link_frame.output}
+
+\textbf{Input port 0 (ip::Datagram)}
+\lstinputlisting[language=Bash]{../tests/link/output/ip_datagram.output}
+
+\textbf{Output port 2 (link::Frame)}
+\lstinputlisting[language=Bash]{../tests/link/output/link_frame.output}
+
+\textbf{Output generado por el logger durante la simulación}
+\begin{lstlisting}
+[INFO] - [Link Test] MAC: 0:0:0:0:0:1
+[INFO] - [Link Test] IP: 1.0.0.2
+[INFO] - [Link Test] Interface: 0
+Simulation Initialized
+[INFO] - [SWP Test] swp_protocol::processFrame
+[INFO] - [SWP Test] Deliver frame with SeqNum: 1
+[INFO] - [SWP Test] send ACK LFR: 1
+Simulation Ended (0.000283 sec)
 \end{lstlisting}
 
 \subsection{Escenario implementado}

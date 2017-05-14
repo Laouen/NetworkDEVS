@@ -1,0 +1,47 @@
+time:15.005
+Header: 
+vide: 11840
+total_length: 24539
+identification: 32766
+ff: 0
+ttlp: 9
+header_checksum: 0
+src_ip: 0.0.0.0
+dest_ip: 0.0.0.0
+
+data: 
+psd_header: 
+src_ip: 0.0.0.0
+dest_ip: 0.0.0.0
+zeros: 0
+protocol: 0
+udp_lenght: 0
+
+header: 
+src_port: 0
+dest_port: 0
+length: 0
+checksum: 0
+
+payload: 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+QDCount: 0
+ANCount: 0
+NSCount: 0
+ARCount: 0
+
+** QUESTION SECTION **
+
+** ANSWER SECTION **
+
+** AUTHORITATIVES SECTION **
+
+** ADITIONAL SECTION **
+-----------------------------------------
+
+
+
+

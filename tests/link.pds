@@ -7,28 +7,23 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = NetworkDEVS/link_control_src.h
-    Parameters = "link control","../atomics/NetworkDEVS/tests/link/input/link_control.input"
-   }
-  Simulator
-   {
     Path = NetworkDEVS/link_frame_src.h
     Parameters = "link frame","../atomics/NetworkDEVS/tests/link/input/link_frame.input"
    }
   Simulator
    {
-    Path = NetworkDEVS/link_control_sink.h
-    Parameters = "link control","../atomics/NetworkDEVS/tests/link/output/link_control.output"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/ip_datagram_sink.h
-    Parameters = "ip datagram","../atomics/NetworkDEVS/tests/link/output/ip_datagram.output"
+    Path = NetworkDEVS/link_frame_sink.h
+    Parameters = "link_frame","../atomics/NetworkDEVS/tests/link/output/link_frame.output"
    }
   Simulator
    {
     Path = NetworkDEVS/link_frame_sink.h
-    Parameters = "link frame","../atomics/NetworkDEVS/tests/link/output/link_frame.output"
+    Parameters = "link_frame_src_sink","../atomics/NetworkDEVS/tests/link/output/input_link_frame.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/ip_datagram_sink.h
+    Parameters = "ip_datagram","../atomics/NetworkDEVS/tests/link/output/ip_datagram.output"
    }
   EIC
    {
@@ -38,10 +33,9 @@ Root-Coordinator
    }
   IC
    {
-    (2,0);(0,2)
+    (1,0);(0,2)
+    (0,2);(2,0)
+    (1,0);(3,0)
     (0,0);(4,0)
-    (1,0);(0,1)
-    (0,1);(3,0)
-    (0,2);(5,0)
    }
  }

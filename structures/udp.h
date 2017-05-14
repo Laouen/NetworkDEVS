@@ -108,17 +108,6 @@ namespace udp {
     }
   };
 
-  struct Multiplexed_packet : abstract::Data {
-    unsigned int app_id;
-    dns::Packet packet;
-
-    Multiplexed_packet() {}
-    Multiplexed_packet(unsigned int other_app_id, dns::Packet other_packet) {
-      app_id = other_app_id;
-      packet = other_packet;
-    }
-  };
-
   // the interface Ctrl was taken from: http://www.chuidiang.com/clinux/sockets/sockets_simp.php#sockets
   enum Ctrl { SUCCESS, INVALID_SOCKET, INVALID_SOCKET_STATE, 
               CONNECT, BIND, READ_FROM, RECV_FROM, READ, RECV, WRITE_TO, SEND_TO, WRITE, SEND, CLOSE };

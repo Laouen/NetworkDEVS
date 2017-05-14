@@ -25,6 +25,16 @@ Root-Coordinator
     Path = NetworkDEVS/demultiplexer_ip_link.h
     Parameters = "Host 1",1.000000e+00
    }
+  Simulator
+   {
+    Path = NetworkDEVS/ip_datagram_sink.h
+    Parameters = "ip_datagram_src_sink","../atomics/NetworkDEVS/tests/ip/router/output/input_ip_datagram.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/link_control_sink.h
+    Parameters = "link_control_src_sink","../atomics/NetworkDEVS/tests/ip/router/output/input_link_control.output"
+   }
   EIC
    {
    }
@@ -37,5 +47,7 @@ Root-Coordinator
     (0,3);(4,0)
     (4,0);(3,0)
     (1,0);(0,2)
+    (1,0);(5,0)
+    (2,0);(6,0)
    }
  }

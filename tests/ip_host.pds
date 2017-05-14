@@ -7,18 +7,8 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = NetworkDEVS/ip_datagram_src.h
-    Parameters = "ip_datagram","../atomics/NetworkDEVS/tests/ip/host/input/ip_datagram.input"
-   }
-  Simulator
-   {
     Path = NetworkDEVS/link_control_src.h
     Parameters = "link_control","../atomics/NetworkDEVS/tests/ip/host/input/link_control.input"
-   }
-  Simulator
-   {
-    Path = NetworkDEVS/udp_segment_sink.h
-    Parameters = "udp_segment","../atomics/NetworkDEVS/tests/ip/host/output/udp_segment.output"
    }
   Simulator
    {
@@ -35,6 +25,16 @@ Root-Coordinator
     Path = NetworkDEVS/demultiplexer_ip_link.h
     Parameters = "Host 1",1.000000e+00
    }
+  Simulator
+   {
+    Path = NetworkDEVS/udp_segment_sink.h
+    Parameters = "udp_segment_src_sink","../atomics/NetworkDEVS/tests/ip/host/output/input_udp_segment.output"
+   }
+  Simulator
+   {
+    Path = NetworkDEVS/link_control_sink.h
+    Parameters = "link_control_src_sink","../atomics/NetworkDEVS/tests/ip/host/output/input_link_control.output"
+   }
   EIC
    {
    }
@@ -43,11 +43,11 @@ Root-Coordinator
    }
   IC
    {
-    (0,0);(3,0)
-    (5,0);(0,0)
-    (2,0);(0,3)
-    (0,3);(6,0)
-    (6,0);(4,0)
-    (1,0);(0,2)
+    (3,0);(0,0)
+    (1,0);(0,3)
+    (0,3);(4,0)
+    (4,0);(2,0)
+    (3,0);(5,0)
+    (1,0);(6,0)
    }
  }

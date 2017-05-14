@@ -1,0 +1,8 @@
+time:15
+preamble: 10200000
+MAC_destination: 0:0:0:0:0:1
+MAC_source: 0:0:0:0:0:2
+EtherType: 0
+CRC: 0
+
+

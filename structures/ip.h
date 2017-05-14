@@ -147,20 +147,20 @@ namespace ip {
     std::string as_string() const {
       std::string res = "| ";
       res += network.as_string();
-      for(ushort i=0;i<16-network.as_string().size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<16-network.as_string().size();++i);
+      res += " | ";
       res += netmask.as_string();
-      for(ushort i=0;i<16-netmask.as_string().size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<16-netmask.as_string().size();++i);
+      res += " | ";
       res += nexthop.as_string();
-      for(ushort i=0;i<16-nexthop.as_string().size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<16-nexthop.as_string().size();++i);
+      res += " | ";
       res += std::to_string(metric);
-      for(ushort i=0;i<5-std::to_string(metric).size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<5-std::to_string(metric).size();++i);
+      res += " | ";
       res += purpose;
-      for(ushort i=0;i<30-purpose.size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<30-purpose.size();++i);
+      res += " | ";
       return res;
     }
   };
@@ -186,14 +186,14 @@ namespace ip {
     std::string as_string() const {
       std::string res = "| ";
       res += network.as_string();
-      for(ushort i=0;i<16-network.as_string().size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<16-network.as_string().size();++i);
+      res += " | ";
       res += netmask.as_string();
-      for(ushort i=0;i<16-netmask.as_string().size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<16-netmask.as_string().size();++i);
+      res += " | ";
       res += std::to_string(interface);
-      for(ushort i=0;i<16-std::to_string(interface).size();++i) res += " ";
-      res += "\t | ";
+      for(ushort i=0;i<16-std::to_string(interface).size();++i);
+      res += " | ";
       return res;
     }
   };
@@ -232,8 +232,8 @@ inline std::ostream& operator<<(std::ostream& os, const ip::Datagram& p) {
 }
 
 inline std::ostream& operator<<(std::ostream& os, const ip::Routing_entry& e) {
-  os << e.network << " \t\t | " << e.netmask << " \t\t | " << e.nexthop << " \t\t | ";
-  os << e.metric << " \t\t | " << e.purpose;
+  os << e.network << " | " << e.netmask << " | " << e.nexthop << " | ";
+  os << e.metric << " | " << e.purpose;
   return os;
 }
 

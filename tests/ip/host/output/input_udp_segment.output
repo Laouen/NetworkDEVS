@@ -1,25 +1,4 @@
-time:15.002
-request: ARP_QUERY
-interface: 0
-ip: 1.0.0.2
-
-
-time:17.002
-request: SEND_PACKET
-interface: 0
-ip: 1.0.0.2
-Datagram: 
-Header: 
-vide: 17664
-total_length: 28
-identification: 0
-ff: 0
-ttlp: 65297
-header_checksum: 35980
-src_ip: 1.0.0.1
-dest_ip: 1.0.0.2
-
-data: 
+time:15
 psd_header: 
 src_ip: 1.0.0.1
 dest_ip: 1.0.0.2
@@ -51,8 +30,6 @@ ARCount: 0
 
 ** ADITIONAL SECTION **
 -----------------------------------------
-
-
 
 
 
