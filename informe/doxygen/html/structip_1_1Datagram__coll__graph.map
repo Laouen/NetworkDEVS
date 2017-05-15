@@ -5,5 +5,5 @@
 <area shape="rect" id="node5" href="$structabstract_1_1Header.html" title="abstract::Header" alt="" coords="247,5,365,32"/>
 <area shape="rect" id="node6" href="$structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="253,109,391,136"/>
 <area shape="rect" id="node8" href="$structip_1_1Header.html" title="ip::Header" alt="" coords="415,109,498,136"/>
-<area shape="rect" id="node7" href="$structIPv4.html" title="This class declare a IPV4 type for NetworkDEVS simulation purposes. " alt="" coords="411,5,460,32"/>
+<area shape="rect" id="node7" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="411,5,460,32"/>
 </map>

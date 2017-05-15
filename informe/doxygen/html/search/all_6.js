@@ -1,14 +1,19 @@
 var searchData=
 [
-  ['layer',['Layer',['../classLayer.html',1,'']]],
-  ['layer_3c_20dns_3a_3adomainname_2c_20int_2c_20dns_3a_3apacket_2c_20udp_3a_3acontrol_2c_20dns_3a_3apacket_20_3e',['Layer&lt; dns::DomainName, int, dns::Packet, udp::Control, dns::Packet &gt;',['../classLayer.html',1,'']]],
-  ['layer_3c_20dns_3a_3apacket_2c_20udp_3a_3acontrol_2c_20udp_3a_3asegment_2c_20ip_3a_3acontrol_20_3e',['Layer&lt; dns::Packet, udp::Control, udp::Segment, ip::Control &gt;',['../classLayer.html',1,'']]],
-  ['layer_3c_20int_2c_20int_2c_20message_3a_3amultiplexed_3c_20link_3a_3aframe_20_3e_2c_20int_20_3e',['Layer&lt; int, int, message::Multiplexed&lt; link::Frame &gt;, int &gt;',['../classLayer.html',1,'']]],
-  ['layer_3c_20ip_3a_3adatagram_2c_20link_3a_3acontrol_2c_20link_3a_3aframe_2c_20int_20_3e',['Layer&lt; ip::Datagram, link::Control, link::Frame, int &gt;',['../classLayer.html',1,'']]],
-  ['layer_3c_20udp_3a_3asegment_2c_20ip_3a_3acontrol_2c_20ip_3a_3adatagram_2c_20link_3a_3acontrol_2c_20udp_3a_3asegment_2c_20ip_3a_3acontrol_2c_20ip_3a_3adatagram_2c_20message_3a_3amultiplexed_3c_20link_3a_3acontrol_20_3e_20_3e',['Layer&lt; udp::Segment, ip::Control, ip::Datagram, link::Control, udp::Segment, ip::Control, ip::Datagram, message::Multiplexed&lt; link::Control &gt; &gt;',['../classLayer.html',1,'']]],
-  ['link_5fcontrol_5fsink',['link_control_sink',['../classlink__control__sink.html',1,'']]],
-  ['link_5fcontrol_5fsrc',['link_control_src',['../classlink__control__src.html',1,'']]],
-  ['link_5fframe_5fsink',['link_frame_sink',['../classlink__frame__sink.html',1,'']]],
-  ['link_5fframe_5fsrc',['link_frame_src',['../classlink__frame__src.html',1,'']]],
-  ['link_5fprotocol',['link_protocol',['../classlink__protocol.html',1,'']]]
+  ['input_5fstream',['input_stream',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20dns_3a_3adomainname_20_3e',['input_stream&lt; dns::DomainName &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20dns_3a_3apacket_20_3e',['input_stream&lt; dns::Packet &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20ip_3a_3acontrol_20_3e',['input_stream&lt; ip::Control &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20ip_3a_3adatagram_20_3e',['input_stream&lt; ip::Datagram &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20link_3a_3acontrol_20_3e',['input_stream&lt; link::Control &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20link_3a_3aframe_20_3e',['input_stream&lt; link::Frame &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20udp_3a_3acontrol_20_3e',['input_stream&lt; udp::Control &gt;',['../classinput__stream.html',1,'']]],
+  ['input_5fstream_3c_20udp_3a_3asegment_20_3e',['input_stream&lt; udp::Segment &gt;',['../classinput__stream.html',1,'']]],
+  ['ip_5fcontrol_5fsrc',['ip_control_src',['../classip__control__src.html',1,'']]],
+  ['ip_5fdatagram_5fsink',['ip_datagram_sink',['../classip__datagram__sink.html',1,'']]],
+  ['ip_5fdatagram_5fsrc',['ip_datagram_src',['../classip__datagram__src.html',1,'']]],
+  ['ip_5fhost_5fprotocol',['ip_host_protocol',['../classip__host__protocol.html',1,'']]],
+  ['ip_5fprotocol',['ip_protocol',['../classip__protocol.html',1,'']]],
+  ['ip_5frouter_5fprotocol',['ip_router_protocol',['../classip__router__protocol.html',1,'']]],
+  ['ipv4',['IPv4',['../structIPv4.html',1,'IPv4'],['../structIPv4.html#ac1982a68d4cd0e2f83165659ec1c41fb',1,'IPv4::IPv4()'],['../structIPv4.html#a08282c7d0d3411aee1135ba0195d27c6',1,'IPv4::IPv4(const std::string &amp;other_ip)'],['../structIPv4.html#a719104625fa0bd5890348ee1be6b370f',1,'IPv4::IPv4(const char *other_ip)'],['../structIPv4.html#ac8dddaa9a429dcffdd72c6adc5ebf742',1,'IPv4::IPv4(ushort *other_ip)'],['../structIPv4.html#ad8d3deea36179f336b91123feea5dadd',1,'IPv4::IPv4(const IPv4 &amp;other_ip)']]]
 ];
