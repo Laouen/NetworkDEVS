@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>udp</b></li><li class="navelem"><a class="el" href="structudp_1_1Control.html">Control</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceudp.html">udp</a></li><li class="navelem"><a class="el" href="structudp_1_1Control.html">Control</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">udp::Control Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This structures handles the control comunication between the application layer and the UDP Protocol.  
+ <a href="structudp_1_1Control.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="udp_8h_source.html">udp.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for udp::Control:</div>
 <div class="dyncontent">
@@ -126,17 +131,20 @@ Collaboration diagram for udp::Control:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a80ead121f346f13f0541ebc2b8d5e85c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80ead121f346f13f0541ebc2b8d5e85c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Control</b> (const <a class="el" href="structudp_1_1Control.html">Control</a> &amp;other)</td></tr>
+<tr class="memitem:ab2d271ca88530c8d7a983d44b8360101"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Control.html#ab2d271ca88530c8d7a983d44b8360101">Control</a> ()</td></tr>
+<tr class="memdesc:ab2d271ca88530c8d7a983d44b8360101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defualt constructor.  <a href="#ab2d271ca88530c8d7a983d44b8360101">More...</a><br /></td></tr>
+<tr class="separator:ab2d271ca88530c8d7a983d44b8360101"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ead121f346f13f0541ebc2b8d5e85c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Control.html#a80ead121f346f13f0541ebc2b8d5e85c">Control</a> (const <a class="el" href="structudp_1_1Control.html">Control</a> &amp;other)</td></tr>
+<tr class="memdesc:a80ead121f346f13f0541ebc2b8d5e85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a80ead121f346f13f0541ebc2b8d5e85c">More...</a><br /></td></tr>
 <tr class="separator:a80ead121f346f13f0541ebc2b8d5e85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52fc45d985e82b72f2866315400db2a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52fc45d985e82b72f2866315400db2a7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Control</b> (unsigned int other_app_id, Ctrl other_request)</td></tr>
+<tr class="memitem:a52fc45d985e82b72f2866315400db2a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Control.html#a52fc45d985e82b72f2866315400db2a7">Control</a> (unsigned int other_app_id, Ctrl other_request)</td></tr>
+<tr class="memdesc:a52fc45d985e82b72f2866315400db2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor simple requests.  <a href="#a52fc45d985e82b72f2866315400db2a7">More...</a><br /></td></tr>
 <tr class="separator:a52fc45d985e82b72f2866315400db2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca09c51711169fbe9631531e80d3c8b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca09c51711169fbe9631531e80d3c8b6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAppRequest</b> () const </td></tr>
+<tr class="memitem:aca09c51711169fbe9631531e80d3c8b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Control.html#aca09c51711169fbe9631531e80d3c8b6">isAppRequest</a> () const </td></tr>
+<tr class="memdesc:aca09c51711169fbe9631531e80d3c8b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> is a request from the appplication layer to the UDP protocol or not.  <a href="#aca09c51711169fbe9631531e80d3c8b6">More...</a><br /></td></tr>
 <tr class="separator:aca09c51711169fbe9631531e80d3c8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1fcb10d98b4f729bdf6bd54949940d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1fcb10d98b4f729bdf6bd54949940d4"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>as_string</b> () const </td></tr>
+<tr class="memitem:ad1fcb10d98b4f729bdf6bd54949940d4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Control.html#ad1fcb10d98b4f729bdf6bd54949940d4">as_string</a> () const </td></tr>
+<tr class="memdesc:ad1fcb10d98b4f729bdf6bd54949940d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints in a human redable format the value of the <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> in a std::string.  <a href="#ad1fcb10d98b4f729bdf6bd54949940d4">More...</a><br /></td></tr>
 <tr class="separator:ad1fcb10d98b4f729bdf6bd54949940d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -163,8 +171,179 @@ ushort&#160;</td><td class="memItemRight" valign="bottom"><b>remote_port</b></td
 <a class="el" href="structIPv4.html">IPv4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>remote_ip</b></td></tr>
 <tr class="separator:ae07465d93c71c8ed4a74d8c523c6f054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This structures handles the control comunication between the application layer and the UDP Protocol. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>Every command as connect, bind, read, etc are requested from the application layer using an <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> struct, specifying the socket and application ID. An <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> has the next fields:</p><ol type="1">
+<li>local_port: The local unsigned short port of the socket that the control message refers to.</li>
+<li>remote_port: The remote unsigned short port of the socket that the control message refers to (only for a connected socket).</li>
+<li>local_ip: The local <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> ip of the socket that the control message refers to.</li>
+<li>remote_ip: The remote <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> ip of the socket that the control message refers to (only for a connected socket).</li>
+<li>app_id: The application ID bound to the refered socket.</li>
+<li>request: The udp::Ctrl with the request command.</li>
+<li>packet: If the request command is send/write/send_to/write_to, this fields must have the <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a> to send through the network. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab2d271ca88530c8d7a983d44b8360101"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Control::Control </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defualt constructor. </p>
+<p>Construct a new empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="a80ead121f346f13f0541ebc2b8d5e85c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Control::Control </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structudp_1_1Control.html">Control</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a new instance with a copy of the instance passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> instance to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a52fc45d985e82b72f2866315400db2a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Control::Control </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>other_app_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ctrl&#160;</td>
+          <td class="paramname"><em>other_request</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor simple requests. </p>
+<p>Construct a new <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> specifying only the request and app_ip fields. This can be used for requests where the rest of the information is not neded.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>An int with the application ID. </td></tr>
+    <tr><td class="paramname">other_request</td><td>An udp::Ctrl with the request. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad1fcb10d98b4f729bdf6bd54949940d4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string udp::Control::as_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints in a human redable format the value of the <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> in a std::string. </p>
+<dl class="section return"><dt>Returns</dt><dd>A std::string with the printed value. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aca09c51711169fbe9631531e80d3c8b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool udp::Control::isAppRequest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the <a class="el" href="structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol...">udp::Control</a> is a request from the appplication layer to the UDP protocol or not. </p>
+<p>A request can be something else than a command from the application layer to be excecuted by the UDP protocol, as for example the udp::Ctrl::INVALID_SOCKET request that is a control messages to tell the application layer the specified socket is invalid for the send command.</p>
+<dl class="section return"><dt>Returns</dt><dd>True if it is an application request, False otherwise. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="udp_8h_source.html">udp.h</a></li>
+<li>/home/lao/Documents/git/NetworkDEVS/structures/<a class="el" href="udp_8h_source.html">udp.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

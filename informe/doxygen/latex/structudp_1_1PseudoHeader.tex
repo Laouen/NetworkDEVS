@@ -2,6 +2,15 @@
 \label{structudp_1_1PseudoHeader}\index{udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}}
 
 
+This struct declares an \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} pseudo-\/header.  
+
+
+
+
+{\ttfamily \#include $<$udp.\+h$>$}
+
+
+
 Inheritance diagram for udp\+:\+:Pseudo\+Header\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -21,15 +30,14 @@ Collaboration diagram for udp\+:\+:Pseudo\+Header\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Pseudo\+Header} (const \hyperlink{structudp_1_1PseudoHeader}{Pseudo\+Header} \&o)\hypertarget{structudp_1_1PseudoHeader_a16395f2d397c61eb38d6b6ead67137c0}{}\label{structudp_1_1PseudoHeader_a16395f2d397c61eb38d6b6ead67137c0}
-
+\hyperlink{structudp_1_1PseudoHeader_a34e596707cd0cf0c8b59ddff5febe8a2}{Pseudo\+Header} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structudp_1_1PseudoHeader_a16395f2d397c61eb38d6b6ead67137c0}{Pseudo\+Header} (const \hyperlink{structudp_1_1PseudoHeader}{Pseudo\+Header} \&o)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+ushort \hyperlink{structudp_1_1PseudoHeader_a13d65dbc9db37dce995b37d5aacaaa36}{size} ()
 \item 
-ushort {\bfseries size} ()\hypertarget{structudp_1_1PseudoHeader_a13d65dbc9db37dce995b37d5aacaaa36}{}\label{structudp_1_1PseudoHeader_a13d65dbc9db37dce995b37d5aacaaa36}
-
-\item 
-const char $\ast$ {\bfseries c\+\_\+str} ()\hypertarget{structudp_1_1PseudoHeader_a89fa524fdc3fe6c2cf151e5c31c1bbcc}{}\label{structudp_1_1PseudoHeader_a89fa524fdc3fe6c2cf151e5c31c1bbcc}
-
-\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{structudp_1_1PseudoHeader_a89fa524fdc3fe6c2cf151e5c31c1bbcc}{c\+\_\+str} ()
+\begin{DoxyCompactList}\small\item\em Copy all the bytes of the instance in a memory block and return a pointer to that memory block. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -50,6 +58,83 @@ ushort {\bfseries udp\+\_\+lenght} = 0\hypertarget{structudp_1_1PseudoHeader_adc
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This struct declares an \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} pseudo-\/header. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+The pseudo-\/header has IP layer related information that is needed in the U\+DP protocol due to the socket handling process where IP are used. An \hyperlink{structudp_1_1PseudoHeader}{udp\+::\+Pseudo\+Header} has the next fields\+:
+\begin{DoxyEnumerate}
+\item src\+\_\+ip\+: The local host IP
+\item dest\+\_\+ip\+: The remote host IP
+\item zeros\+: zeros
+\item protocol\+: The transport protocol number (currently not used)
+\item udp\+\_\+lenght\+: The total \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} length 
+\end{DoxyEnumerate}
+
+\subsection{Constructor \& Destructor Documentation}
+\index{udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}!Pseudo\+Header@{Pseudo\+Header}}
+\index{Pseudo\+Header@{Pseudo\+Header}!udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}}
+\subsubsection[{\texorpdfstring{Pseudo\+Header()}{PseudoHeader()}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Pseudo\+Header\+::\+Pseudo\+Header (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1PseudoHeader_a34e596707cd0cf0c8b59ddff5febe8a2}{}\label{structudp_1_1PseudoHeader_a34e596707cd0cf0c8b59ddff5febe8a2}
+
+
+Default constructor. 
+
+Construct an empty new instance \index{udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}!Pseudo\+Header@{Pseudo\+Header}}
+\index{Pseudo\+Header@{Pseudo\+Header}!udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}}
+\subsubsection[{\texorpdfstring{Pseudo\+Header(const Pseudo\+Header \&o)}{PseudoHeader(const PseudoHeader &o)}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Pseudo\+Header\+::\+Pseudo\+Header (
+\begin{DoxyParamCaption}
+\item[{const {\bf Pseudo\+Header} \&}]{o}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1PseudoHeader_a16395f2d397c61eb38d6b6ead67137c0}{}\label{structudp_1_1PseudoHeader_a16395f2d397c61eb38d6b6ead67137c0}
+
+
+Copy constructor. 
+
+Construct a new instance with a copy of instance passed as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & An \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to copy its values in the new instance. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}!c\+\_\+str@{c\+\_\+str}}
+\index{c\+\_\+str@{c\+\_\+str}!udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}}
+\subsubsection[{\texorpdfstring{c\+\_\+str()}{c_str()}}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ udp\+::\+Pseudo\+Header\+::c\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1PseudoHeader_a89fa524fdc3fe6c2cf151e5c31c1bbcc}{}\label{structudp_1_1PseudoHeader_a89fa524fdc3fe6c2cf151e5c31c1bbcc}
+
+
+Copy all the bytes of the instance in a memory block and return a pointer to that memory block. 
+
+\begin{DoxyReturn}{Returns}
+A const char $\ast$ that point to the memory block where the instance was capied. 
+\end{DoxyReturn}
+\index{udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}!size@{size}}
+\index{size@{size}!udp\+::\+Pseudo\+Header@{udp\+::\+Pseudo\+Header}}
+\subsubsection[{\texorpdfstring{size()}{size()}}]{\setlength{\rightskip}{0pt plus 5cm}ushort udp\+::\+Pseudo\+Header\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1PseudoHeader_a13d65dbc9db37dce995b37d5aacaaa36}{}\label{structudp_1_1PseudoHeader_a13d65dbc9db37dce995b37d5aacaaa36}
+\begin{DoxyReturn}{Returns}
+The size in bytes of the instance. 
+\end{DoxyReturn}
+
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/structures/udp.\+h\end{DoxyCompactItemize}
+/home/lao/\+Documents/git/\+Network\+D\+E\+V\+S/structures/udp.\+h\end{DoxyCompactItemize}

@@ -1,22 +1,13 @@
 var searchData=
 [
-  ['samesubnet',['sameSubnet',['../structip_1_1Routing__entry.html#ae756d25da9d7cda6c2fe7aed59284b18',1,'ip::Routing_entry::sameSubnet()'],['../structip_1_1Forwarding__entry.html#a15177e8af63ffd9d41a72a55abfcbb58',1,'ip::Forwarding_entry::sameSubnet()']]],
-  ['segment',['Segment',['../structudp_1_1Segment.html',1,'udp']]],
-  ['send',['send',['../classmessage_1_1queue.html#a05cd5f07a0ba524f1a41340b821724c5',1,'message::queue']]],
-  ['sendframe',['sendFrame',['../structswp_1_1State.html#adc781763914d3d1de3ff5c462f1f76ef',1,'swp::State']]],
-  ['sendq_5fslot',['sendQ_slot',['../structswp_1_1sendQ__slot.html',1,'swp']]],
-  ['sendq_5fslot_3c_20link_3a_3aframe_20_3e',['sendQ_slot&lt; link::Frame &gt;',['../structswp_1_1sendQ__slot.html',1,'swp']]],
-  ['sendwindowsisfull',['sendWindowsIsFull',['../structswp_1_1State.html#ad932ee3326683cbee09e8a8b36f26b9b',1,'swp::State']]],
-  ['setflag',['setFlag',['../structdns_1_1Header.html#ac8629bfb54bfe73b2a85ad3ab04e4561',1,'dns::Header']]],
-  ['setmodulename',['setModuleName',['../classLogger.html#a99b49a8748bc611e40c21017b8cf7c4c',1,'Logger']]],
-  ['setpayload',['setPayload',['../structlink_1_1Frame.html#af14b9acc0bd67497f8d008425c36462e',1,'link::Frame::setPayload(const ip::Datagram &amp;p)'],['../structlink_1_1Frame.html#a9eb67e1eb8d928dba0a42451edb590eb',1,'link::Frame::setPayload(const arp::Packet &amp;p)']]],
-  ['size',['size',['../structdns_1_1Header.html#abffe9b9ee5acba609e687535354ba6c8',1,'dns::Header::size()'],['../structdns_1_1DomainName.html#a894ccfcd88ac1ad2425b2bfe9ce826a6',1,'dns::DomainName::size()'],['../structdns_1_1ResourceRecord.html#ac686d613eaa1567545ec4cb599d22e32',1,'dns::ResourceRecord::size()'],['../structdns_1_1Packet.html#a8edc861125aa062b29793fa0c5ff435a',1,'dns::Packet::size()'],['../structip_1_1Header.html#ae426f14cf9842f7392c853463cf396da',1,'ip::Header::size()'],['../structIPv4.html#a607922ab456f0f29a8b1ca5c48e3ed38',1,'IPv4::size()']]],
-  ['socket',['Socket',['../structudp_1_1Socket.html',1,'udp']]],
-  ['state',['State',['../structswp_1_1State.html',1,'swp::State&lt; MSG &gt;'],['../structswp_1_1state.html',1,'swp::state']]],
-  ['state',['State',['../structswp_1_1State.html#acb33f7cd743bda0db9c1b7b92cf2b2ea',1,'swp::State::State()'],['../structswp_1_1State.html#a2eb6824bd9f7bfa5e84b402ce3915334',1,'swp::State::State(const State &amp;other)']]],
-  ['state_3c_20link_3a_3aframe_20_3e',['State&lt; link::Frame &gt;',['../structswp_1_1State.html',1,'swp']]],
-  ['sw',['sw',['../namespacesw.html',1,'']]],
-  ['switch_5fprotocol',['switch_protocol',['../classswitch__protocol.html',1,'']]],
-  ['swp',['swp',['../namespaceswp.html',1,'']]],
-  ['swp_5fprotocol',['swp_protocol',['../classswp__protocol.html',1,'']]]
+  ['ra',['RA',['../namespacedns.html#ad3e1d06842c1184a727c9f02f145a2b8',1,'dns']]],
+  ['rcode',['RCode',['../namespacedns.html#ad9381dbe4cb95fcff8d401fdad88021f',1,'dns']]],
+  ['rd',['RD',['../namespacedns.html#a854e4abf87b535622f79e7ff75eb2a16',1,'dns']]],
+  ['recvq_5fslot',['recvQ_slot',['../structswp_1_1recvQ__slot.html',1,'swp']]],
+  ['recvq_5fslot_3c_20link_3a_3aframe_20_3e',['recvQ_slot&lt; link::Frame &gt;',['../structswp_1_1recvQ__slot.html',1,'swp']]],
+  ['reset',['reset',['../structswp_1_1State.html#a02c83f258bba472f268c119768147def',1,'swp::State']]],
+  ['resourcerecord',['ResourceRecord',['../structdns_1_1ResourceRecord.html#a6949837726969a3a556bc4be792c48db',1,'dns::ResourceRecord::ResourceRecord()'],['../structdns_1_1ResourceRecord.html#a1d953b0a89f6e04b6d28072d776eb3dd',1,'dns::ResourceRecord::ResourceRecord(const ResourceRecord &amp;other)'],['../structdns_1_1ResourceRecord.html#a0d9cb7a786c964487cd16191fee9c8de',1,'dns::ResourceRecord::ResourceRecord(const char *const data)']]],
+  ['resourcerecord',['ResourceRecord',['../structdns_1_1ResourceRecord.html',1,'dns']]],
+  ['routing_5fentry',['Routing_entry',['../structip_1_1Routing__entry.html',1,'ip']]],
+  ['routing_5fentry',['Routing_entry',['../structip_1_1Routing__entry.html#ac767d7b0debe508f51d671ed7c46df5f',1,'ip::Routing_entry::Routing_entry()'],['../structip_1_1Routing__entry.html#aa74e68d82782de83e6adaee3307d71c3',1,'ip::Routing_entry::Routing_entry(IPv4 other_network, IPv4 other_netmask, IPv4 other_nexthop, int other_metric, std::string other_purpose)'],['../structip_1_1Routing__entry.html#af365ea3a7377448bdaf58dd82795bfa1',1,'ip::Routing_entry::Routing_entry(const Routing_entry &amp;other)']]]
 ];

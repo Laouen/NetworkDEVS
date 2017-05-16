@@ -1,7 +1,27 @@
 var searchData=
 [
-  ['tc',['TC',['../namespacedns.html#af39b19c1f00f88b095db77dc42eee9a1',1,'dns']]],
-  ['thereisframetosend',['thereIsFrameToSend',['../structswp_1_1State.html#a5a9c617b0cf8b06e442d10b6e3d98143',1,'swp::State']]],
-  ['to_5fstring',['to_string',['../namespacelink.html#accbf2c6561d1df2054160547a5697285',1,'link']]],
-  ['type',['Type',['../namespacedns.html#a2f53daa27510b0ea61122af921bb66c7',1,'dns']]]
+  ['samesubnet',['sameSubnet',['../structip_1_1Routing__entry.html#ae756d25da9d7cda6c2fe7aed59284b18',1,'ip::Routing_entry::sameSubnet()'],['../structip_1_1Forwarding__entry.html#a15177e8af63ffd9d41a72a55abfcbb58',1,'ip::Forwarding_entry::sameSubnet()']]],
+  ['segment',['Segment',['../structudp_1_1Segment.html',1,'udp']]],
+  ['segment',['Segment',['../structudp_1_1Segment.html#ac5bb0893a862d614ceaefcc3f76fc6da',1,'udp::Segment::Segment()'],['../structudp_1_1Segment.html#acc1762aaf9872190d9021a574123122c',1,'udp::Segment::Segment(const Segment &amp;o)']]],
+  ['send',['send',['../classmessage_1_1queue.html#a05cd5f07a0ba524f1a41340b821724c5',1,'message::queue']]],
+  ['sendframe',['sendFrame',['../structswp_1_1State.html#adc781763914d3d1de3ff5c462f1f76ef',1,'swp::State']]],
+  ['sendq_5fslot',['sendQ_slot',['../structswp_1_1sendQ__slot.html',1,'swp']]],
+  ['sendq_5fslot_3c_20link_3a_3aframe_20_3e',['sendQ_slot&lt; link::Frame &gt;',['../structswp_1_1sendQ__slot.html',1,'swp']]],
+  ['sendwindowsisfull',['sendWindowsIsFull',['../structswp_1_1State.html#ad932ee3326683cbee09e8a8b36f26b9b',1,'swp::State']]],
+  ['setflag',['setFlag',['../structdns_1_1Header.html#ac8629bfb54bfe73b2a85ad3ab04e4561',1,'dns::Header']]],
+  ['setmodulename',['setModuleName',['../classLogger.html#a99b49a8748bc611e40c21017b8cf7c4c',1,'Logger']]],
+  ['setpayload',['setPayload',['../structlink_1_1Frame.html#af14b9acc0bd67497f8d008425c36462e',1,'link::Frame::setPayload(const ip::Datagram &amp;p)'],['../structlink_1_1Frame.html#a9eb67e1eb8d928dba0a42451edb590eb',1,'link::Frame::setPayload(const arp::Packet &amp;p)'],['../structudp_1_1Segment.html#abe03349ffcc6719961fdc447d930dd37',1,'udp::Segment::setPayload()']]],
+  ['size',['size',['../structdns_1_1Header.html#abffe9b9ee5acba609e687535354ba6c8',1,'dns::Header::size()'],['../structdns_1_1DomainName.html#a894ccfcd88ac1ad2425b2bfe9ce826a6',1,'dns::DomainName::size()'],['../structdns_1_1ResourceRecord.html#ac686d613eaa1567545ec4cb599d22e32',1,'dns::ResourceRecord::size()'],['../structdns_1_1Packet.html#a8edc861125aa062b29793fa0c5ff435a',1,'dns::Packet::size()'],['../structip_1_1Header.html#ae426f14cf9842f7392c853463cf396da',1,'ip::Header::size()'],['../structIPv4.html#a607922ab456f0f29a8b1ca5c48e3ed38',1,'IPv4::size()'],['../structudp_1_1PseudoHeader.html#a13d65dbc9db37dce995b37d5aacaaa36',1,'udp::PseudoHeader::size()'],['../structudp_1_1Header.html#aeb0e9c82b2e6471758d8731ed590a502',1,'udp::Header::size()']]],
+  ['socket',['Socket',['../structudp_1_1Socket.html',1,'udp']]],
+  ['socket',['Socket',['../structudp_1_1Socket.html#ad92a350104ea7238042779c996de2aa0',1,'udp::Socket::Socket()'],['../structudp_1_1Socket.html#af970d688bc9492294402136069f9deab',1,'udp::Socket::Socket(int aid)'],['../structudp_1_1Socket.html#ae9419b8ecda7eb7862991fa114243004',1,'udp::Socket::Socket(ushort o_local_port, IPv4 o_local_ip, int o_app_id)'],['../structudp_1_1Socket.html#a9d54379d1f4fa64928070142ad04267c',1,'udp::Socket::Socket(ushort o_local_port, IPv4 o_local_ip, ushort o_remote_port, IPv4 o_remote_ip, int o_app_id)'],['../structudp_1_1Socket.html#abf163ce63fbd305ed2593996b52c3737',1,'udp::Socket::Socket(const Socket &amp;o)']]],
+  ['startreading',['startReading',['../structudp_1_1Socket.html#a375f5ff098b53082a034563b18cebf08',1,'udp::Socket']]],
+  ['startreadingfrom',['startReadingFrom',['../structudp_1_1Socket.html#a56dffa316e5cb39326e418ff1bb92cf0',1,'udp::Socket']]],
+  ['state',['State',['../structswp_1_1State.html#acb33f7cd743bda0db9c1b7b92cf2b2ea',1,'swp::State::State()'],['../structswp_1_1State.html#a2eb6824bd9f7bfa5e84b402ce3915334',1,'swp::State::State(const State &amp;other)']]],
+  ['state',['State',['../structswp_1_1State.html',1,'swp::State&lt; MSG &gt;'],['../structswp_1_1state.html',1,'swp::state']]],
+  ['state_3c_20link_3a_3aframe_20_3e',['State&lt; link::Frame &gt;',['../structswp_1_1State.html',1,'swp']]],
+  ['stopreading',['stopReading',['../structudp_1_1Socket.html#ac2660137ceca93fe8e49037cf2627195',1,'udp::Socket']]],
+  ['sw',['sw',['../namespacesw.html',1,'']]],
+  ['switch_5fprotocol',['switch_protocol',['../classswitch__protocol.html',1,'']]],
+  ['swp',['swp',['../namespaceswp.html',1,'']]],
+  ['swp_5fprotocol',['swp_protocol',['../classswp__protocol.html',1,'']]]
 ];

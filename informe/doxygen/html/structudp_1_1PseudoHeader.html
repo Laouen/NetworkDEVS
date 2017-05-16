@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>udp</b></li><li class="navelem"><a class="el" href="structudp_1_1PseudoHeader.html">PseudoHeader</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceudp.html">udp</a></li><li class="navelem"><a class="el" href="structudp_1_1PseudoHeader.html">PseudoHeader</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">udp::PseudoHeader Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct declares an <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> pseudo-header.  
+ <a href="structudp_1_1PseudoHeader.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="udp_8h_source.html">udp.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for udp::PseudoHeader:</div>
 <div class="dyncontent">
@@ -119,14 +124,16 @@ Collaboration diagram for udp::PseudoHeader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a16395f2d397c61eb38d6b6ead67137c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16395f2d397c61eb38d6b6ead67137c0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PseudoHeader</b> (const <a class="el" href="structudp_1_1PseudoHeader.html">PseudoHeader</a> &amp;o)</td></tr>
+<tr class="memitem:a34e596707cd0cf0c8b59ddff5febe8a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1PseudoHeader.html#a34e596707cd0cf0c8b59ddff5febe8a2">PseudoHeader</a> ()</td></tr>
+<tr class="memdesc:a34e596707cd0cf0c8b59ddff5febe8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a34e596707cd0cf0c8b59ddff5febe8a2">More...</a><br /></td></tr>
+<tr class="separator:a34e596707cd0cf0c8b59ddff5febe8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16395f2d397c61eb38d6b6ead67137c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1PseudoHeader.html#a16395f2d397c61eb38d6b6ead67137c0">PseudoHeader</a> (const <a class="el" href="structudp_1_1PseudoHeader.html">PseudoHeader</a> &amp;o)</td></tr>
+<tr class="memdesc:a16395f2d397c61eb38d6b6ead67137c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a16395f2d397c61eb38d6b6ead67137c0">More...</a><br /></td></tr>
 <tr class="separator:a16395f2d397c61eb38d6b6ead67137c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13d65dbc9db37dce995b37d5aacaaa36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13d65dbc9db37dce995b37d5aacaaa36"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> ()</td></tr>
+<tr class="memitem:a13d65dbc9db37dce995b37d5aacaaa36"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1PseudoHeader.html#a13d65dbc9db37dce995b37d5aacaaa36">size</a> ()</td></tr>
 <tr class="separator:a13d65dbc9db37dce995b37d5aacaaa36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89fa524fdc3fe6c2cf151e5c31c1bbcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89fa524fdc3fe6c2cf151e5c31c1bbcc"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>c_str</b> ()</td></tr>
+<tr class="memitem:a89fa524fdc3fe6c2cf151e5c31c1bbcc"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1PseudoHeader.html#a89fa524fdc3fe6c2cf151e5c31c1bbcc">c_str</a> ()</td></tr>
+<tr class="memdesc:a89fa524fdc3fe6c2cf151e5c31c1bbcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy all the bytes of the instance in a memory block and return a pointer to that memory block.  <a href="#a89fa524fdc3fe6c2cf151e5c31c1bbcc">More...</a><br /></td></tr>
 <tr class="separator:a89fa524fdc3fe6c2cf151e5c31c1bbcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -147,8 +154,130 @@ u_char&#160;</td><td class="memItemRight" valign="bottom"><b>protocol</b> = 0x0<
 ushort&#160;</td><td class="memItemRight" valign="bottom"><b>udp_lenght</b> = 0</td></tr>
 <tr class="separator:adc2636cd18c48abaadc658453ff1b019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct declares an <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> pseudo-header. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>The pseudo-header has IP layer related information that is needed in the UDP protocol due to the socket handling process where IP are used. An <a class="el" href="structudp_1_1PseudoHeader.html" title="This struct declares an udp::Segment pseudo-header. ">udp::PseudoHeader</a> has the next fields:</p><ol type="1">
+<li>src_ip: The local host IP</li>
+<li>dest_ip: The remote host IP</li>
+<li>zeros: zeros</li>
+<li>protocol: The transport protocol number (currently not used)</li>
+<li>udp_lenght: The total <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> length </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a34e596707cd0cf0c8b59ddff5febe8a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::PseudoHeader::PseudoHeader </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct an empty new instance </p>
+
+</div>
+</div>
+<a class="anchor" id="a16395f2d397c61eb38d6b6ead67137c0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::PseudoHeader::PseudoHeader </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structudp_1_1PseudoHeader.html">PseudoHeader</a> &amp;&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a new instance with a copy of instance passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>An <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> to copy its values in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a89fa524fdc3fe6c2cf151e5c31c1bbcc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* udp::PseudoHeader::c_str </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy all the bytes of the instance in a memory block and return a pointer to that memory block. </p>
+<dl class="section return"><dt>Returns</dt><dd>A const char * that point to the memory block where the instance was capied. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a13d65dbc9db37dce995b37d5aacaaa36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ushort udp::PseudoHeader::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The size in bytes of the instance. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="udp_8h_source.html">udp.h</a></li>
+<li>/home/lao/Documents/git/NetworkDEVS/structures/<a class="el" href="udp_8h_source.html">udp.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

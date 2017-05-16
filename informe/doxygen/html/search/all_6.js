@@ -1,23 +1,12 @@
 var searchData=
 [
-  ['info',['info',['../classLogger.html#a1e7cec2e73916bef9d29da5ca9885db4',1,'Logger']]],
-  ['input_5fstream',['input_stream',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20dns_3a_3adomainname_20_3e',['input_stream&lt; dns::DomainName &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20dns_3a_3apacket_20_3e',['input_stream&lt; dns::Packet &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20ip_3a_3acontrol_20_3e',['input_stream&lt; ip::Control &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20ip_3a_3adatagram_20_3e',['input_stream&lt; ip::Datagram &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20link_3a_3acontrol_20_3e',['input_stream&lt; link::Control &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20link_3a_3aframe_20_3e',['input_stream&lt; link::Frame &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20udp_3a_3acontrol_20_3e',['input_stream&lt; udp::Control &gt;',['../classinput__stream.html',1,'']]],
-  ['input_5fstream_3c_20udp_3a_3asegment_20_3e',['input_stream&lt; udp::Segment &gt;',['../classinput__stream.html',1,'']]],
-  ['ip',['ip',['../namespaceip.html',1,'']]],
-  ['ip_5fcontrol_5fsrc',['ip_control_src',['../classip__control__src.html',1,'']]],
-  ['ip_5fdatagram_5fsink',['ip_datagram_sink',['../classip__datagram__sink.html',1,'']]],
-  ['ip_5fdatagram_5fsrc',['ip_datagram_src',['../classip__datagram__src.html',1,'']]],
-  ['ip_5fhost_5fprotocol',['ip_host_protocol',['../classip__host__protocol.html',1,'']]],
-  ['ip_5fprotocol',['ip_protocol',['../classip__protocol.html',1,'']]],
-  ['ip_5frouter_5fprotocol',['ip_router_protocol',['../classip__router__protocol.html',1,'']]],
-  ['ipv4',['IPv4',['../structIPv4.html',1,'IPv4'],['../structIPv4.html#ac1982a68d4cd0e2f83165659ec1c41fb',1,'IPv4::IPv4()'],['../structIPv4.html#a08282c7d0d3411aee1135ba0195d27c6',1,'IPv4::IPv4(const std::string &amp;other_ip)'],['../structIPv4.html#a719104625fa0bd5890348ee1be6b370f',1,'IPv4::IPv4(const char *other_ip)'],['../structIPv4.html#ac8dddaa9a429dcffdd72c6adc5ebf742',1,'IPv4::IPv4(ushort *other_ip)'],['../structIPv4.html#ad8d3deea36179f336b91123feea5dadd',1,'IPv4::IPv4(const IPv4 &amp;other_ip)']]],
-  ['is',['is',['../structdns_1_1Header.html#aee9ceec6332d282f329b967cef1d285c',1,'dns::Header']]],
-  ['iszoneof',['isZoneOf',['../structdns_1_1Zone.html#adbd4dcf69ed0f8ce57831b9231220463',1,'dns::Zone']]]
+  ['hdr',['Hdr',['../structswp_1_1Hdr.html',1,'swp']]],
+  ['hdr',['Hdr',['../structswp_1_1Hdr.html#aa66b283dc051d983ecfce1fd51ae25bf',1,'swp::Hdr']]],
+  ['header',['Header',['../structabstract_1_1Header.html',1,'abstract']]],
+  ['header',['Header',['../structdns_1_1Header.html#ab15c37ac6b02f5186082ea6a2f40edc0',1,'dns::Header::Header()'],['../structdns_1_1Header.html#ab7d03fd2cec0659afe0df11f59a3b4da',1,'dns::Header::Header(const Header &amp;other)'],['../structdns_1_1Header.html#a5195a1241799e64eea7c5061f81a7c4e',1,'dns::Header::Header(const char *const other)'],['../structip_1_1Header.html#ae6fa99f56e2358a3a9c2ce58cc49e6b9',1,'ip::Header::Header()'],['../structip_1_1Header.html#a5e6285562e806c49a9c2f015e7400460',1,'ip::Header::Header(const Header &amp;other)'],['../structudp_1_1Header.html#a47e86aabf149c64ede0cc55ed8888bff',1,'udp::Header::Header()'],['../structudp_1_1Header.html#a4834b505432f80ca2eb9db6d51ab2c00',1,'udp::Header::Header(const Header &amp;o)']]],
+  ['header',['Header',['../structip_1_1Header.html',1,'ip']]],
+  ['header',['Header',['../structudp_1_1Header.html',1,'udp']]],
+  ['header',['Header',['../structdns_1_1Header.html',1,'dns']]],
+  ['headers_5fc_5fstr',['headers_c_str',['../structudp_1_1Segment.html#a0e04a50568add9be05b2f4b6bd93fd13',1,'udp::Segment']]],
+  ['headers_5fsize',['headers_size',['../structudp_1_1Segment.html#ad3b9b073288d5aa58c503caa76c6481b',1,'udp::Segment']]]
 ];

@@ -2,6 +2,15 @@
 \label{structudp_1_1Socket}\index{udp\+::\+Socket@{udp\+::\+Socket}}
 
 
+This struct handles a socket states.  
+
+
+
+
+{\ttfamily \#include $<$socket.\+h$>$}
+
+
+
 Collaboration diagram for udp\+:\+:Socket\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -22,42 +31,33 @@ enum {\bfseries Status} \{ {\bfseries I\+D\+LE},
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Socket} (int aid)\hypertarget{structudp_1_1Socket_af970d688bc9492294402136069f9deab}{}\label{structudp_1_1Socket_af970d688bc9492294402136069f9deab}
+\hyperlink{structudp_1_1Socket_ad92a350104ea7238042779c996de2aa0}{Socket} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structudp_1_1Socket_af970d688bc9492294402136069f9deab}{Socket} (int aid)
+\begin{DoxyCompactList}\small\item\em Constructor binded to an application ID. \end{DoxyCompactList}\item 
+\hyperlink{structudp_1_1Socket_ae9419b8ecda7eb7862991fa114243004}{Socket} (ushort o\+\_\+local\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} o\+\_\+local\+\_\+ip, int o\+\_\+app\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Bind constructor. \end{DoxyCompactList}\item 
+\hyperlink{structudp_1_1Socket_a9d54379d1f4fa64928070142ad04267c}{Socket} (ushort o\+\_\+local\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} o\+\_\+local\+\_\+ip, ushort o\+\_\+remote\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} o\+\_\+remote\+\_\+ip, int o\+\_\+app\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Connect constructor. \end{DoxyCompactList}\item 
+\hyperlink{structudp_1_1Socket_abf163ce63fbd305ed2593996b52c3737}{Socket} (const \hyperlink{structudp_1_1Socket}{Socket} \&o)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{structudp_1_1Socket_a176759a6b6a7423af91341f72a979bfc}{connected} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the socket is in status connected or not. \end{DoxyCompactList}\item 
+bool \hyperlink{structudp_1_1Socket_a0374f88bf7dfc202518c06e9056ccb3c}{bound} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the socket is in status bound or not. \end{DoxyCompactList}\item 
+void \hyperlink{structudp_1_1Socket_a375f5ff098b53082a034563b18cebf08}{start\+Reading} ()
+\begin{DoxyCompactList}\small\item\em Sets the socket in reading mode to accept the next incoming \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to the socket. \end{DoxyCompactList}\item 
+void \hyperlink{structudp_1_1Socket_a56dffa316e5cb39326e418ff1bb92cf0}{start\+Reading\+From} (ushort port, \hyperlink{structIPv4}{I\+Pv4} ip)
+\begin{DoxyCompactList}\small\item\em Sets the socket in reading mode to accept the next incoming \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to the socket coming from the specific remote socket. \end{DoxyCompactList}\item 
+void \hyperlink{structudp_1_1Socket_ac2660137ceca93fe8e49037cf2627195}{stop\+Reading} ()\hypertarget{structudp_1_1Socket_ac2660137ceca93fe8e49037cf2627195}{}\label{structudp_1_1Socket_ac2660137ceca93fe8e49037cf2627195}
 
-\item 
-{\bfseries Socket} (ushort o\+\_\+local\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} o\+\_\+local\+\_\+ip, int o\+\_\+app\+\_\+id)\hypertarget{structudp_1_1Socket_ae9419b8ecda7eb7862991fa114243004}{}\label{structudp_1_1Socket_ae9419b8ecda7eb7862991fa114243004}
-
-\item 
-{\bfseries Socket} (ushort o\+\_\+local\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} o\+\_\+local\+\_\+ip, ushort o\+\_\+remote\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} o\+\_\+remote\+\_\+ip, int o\+\_\+app\+\_\+id)\hypertarget{structudp_1_1Socket_a9d54379d1f4fa64928070142ad04267c}{}\label{structudp_1_1Socket_a9d54379d1f4fa64928070142ad04267c}
-
-\item 
-{\bfseries Socket} (const \hyperlink{structudp_1_1Socket}{Socket} \&o)\hypertarget{structudp_1_1Socket_abf163ce63fbd305ed2593996b52c3737}{}\label{structudp_1_1Socket_abf163ce63fbd305ed2593996b52c3737}
-
-\item 
-bool {\bfseries connected} ()\hypertarget{structudp_1_1Socket_a176759a6b6a7423af91341f72a979bfc}{}\label{structudp_1_1Socket_a176759a6b6a7423af91341f72a979bfc}
-
-\item 
-bool {\bfseries bound} ()\hypertarget{structudp_1_1Socket_a0374f88bf7dfc202518c06e9056ccb3c}{}\label{structudp_1_1Socket_a0374f88bf7dfc202518c06e9056ccb3c}
-
-\item 
-void {\bfseries start\+Reading} ()\hypertarget{structudp_1_1Socket_a375f5ff098b53082a034563b18cebf08}{}\label{structudp_1_1Socket_a375f5ff098b53082a034563b18cebf08}
-
-\item 
-void {\bfseries start\+Reading\+From} (ushort port, \hyperlink{structIPv4}{I\+Pv4} ip)\hypertarget{structudp_1_1Socket_a56dffa316e5cb39326e418ff1bb92cf0}{}\label{structudp_1_1Socket_a56dffa316e5cb39326e418ff1bb92cf0}
-
-\item 
-void {\bfseries stop\+Reading} ()\hypertarget{structudp_1_1Socket_ac2660137ceca93fe8e49037cf2627195}{}\label{structudp_1_1Socket_ac2660137ceca93fe8e49037cf2627195}
-
-\item 
-bool {\bfseries valid\+Local\+Address} (ushort port, \hyperlink{structIPv4}{I\+Pv4} ip)\hypertarget{structudp_1_1Socket_a689917ee204053203b09b7c74c872186}{}\label{structudp_1_1Socket_a689917ee204053203b09b7c74c872186}
-
-\item 
-bool {\bfseries valid\+Remote\+Address} (ushort port, \hyperlink{structIPv4}{I\+Pv4} ip)\hypertarget{structudp_1_1Socket_a15a198ff05352aecfb66c27956429b4c}{}\label{structudp_1_1Socket_a15a198ff05352aecfb66c27956429b4c}
-
-\item 
-bool {\bfseries accept} (ushort local\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} local\+\_\+ip, ushort remote\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} remote\+\_\+ip)\hypertarget{structudp_1_1Socket_ae0adf9be402d19720ad59dfccd57fb99}{}\label{structudp_1_1Socket_ae0adf9be402d19720ad59dfccd57fb99}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stop reading mode. No U\+D\+P\+::\+Segment is accepted. \end{DoxyCompactList}\item 
+bool \hyperlink{structudp_1_1Socket_a689917ee204053203b09b7c74c872186}{valid\+Local\+Address} (ushort port, \hyperlink{structIPv4}{I\+Pv4} ip)
+\begin{DoxyCompactList}\small\item\em Checks whether the passed port and IP are the same as the socket local port and IP. \end{DoxyCompactList}\item 
+bool \hyperlink{structudp_1_1Socket_a15a198ff05352aecfb66c27956429b4c}{valid\+Remote\+Address} (ushort port, \hyperlink{structIPv4}{I\+Pv4} ip)
+\begin{DoxyCompactList}\small\item\em Checks whether the passed port and IP are the same as the socket remote port and IP. \end{DoxyCompactList}\item 
+bool \hyperlink{structudp_1_1Socket_ae0adf9be402d19720ad59dfccd57fb99}{accept} (ushort local\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} local\+\_\+ip, ushort remote\+\_\+port, \hyperlink{structIPv4}{I\+Pv4} remote\+\_\+ip)
+\begin{DoxyCompactList}\small\item\em Checks whether the socket accepts udp\+::\+Segments from the remote socket with remote and local ips specified in the parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -87,6 +87,251 @@ bool {\bfseries reading\+\_\+from} = false\hypertarget{structudp_1_1Socket_a9259
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This struct handles a socket states. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+If the socket is connected to a remoto host, the socket has the remote ip and port must be defined defined.
+
+The U\+DP protocol uses this struct to manage all its socket states. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{Socket()}{Socket()}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Socket\+::\+Socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_ad92a350104ea7238042779c996de2aa0}{}\label{structudp_1_1Socket_ad92a350104ea7238042779c996de2aa0}
+
+
+Default constructor. 
+
+Construct an empty instance. \index{udp\+::\+Socket@{udp\+::\+Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{Socket(int aid)}{Socket(int aid)}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Socket\+::\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{aid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_af970d688bc9492294402136069f9deab}{}\label{structudp_1_1Socket_af970d688bc9492294402136069f9deab}
+
+
+Constructor binded to an application ID. 
+
+Construct a new socket with application ID specified in the parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em aid} & An int with the app ID binded to the socket \\
+\hline
+\end{DoxyParams}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{Socket(ushort o\+\_\+local\+\_\+port, I\+Pv4 o\+\_\+local\+\_\+ip, int o\+\_\+app\+\_\+id)}{Socket(ushort o_local_port, IPv4 o_local_ip, int o_app_id)}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Socket\+::\+Socket (
+\begin{DoxyParamCaption}
+\item[{ushort}]{o\+\_\+local\+\_\+port, }
+\item[{{\bf I\+Pv4}}]{o\+\_\+local\+\_\+ip, }
+\item[{int}]{o\+\_\+app\+\_\+id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_ae9419b8ecda7eb7862991fa114243004}{}\label{structudp_1_1Socket_ae9419b8ecda7eb7862991fa114243004}
+
+
+Bind constructor. 
+
+Construct a socket specifying its local ip and port and the bound application ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+\_\+local\+\_\+port} & An unsigned short with the socket local port. \\
+\hline
+{\em o\+\_\+local\+\_\+ip} & An \hyperlink{structIPv4}{I\+Pv4} with the socket local ip. \\
+\hline
+{\em o\+\_\+app\+\_\+id} & An int with the application ID. \\
+\hline
+\end{DoxyParams}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{Socket(ushort o\+\_\+local\+\_\+port, I\+Pv4 o\+\_\+local\+\_\+ip, ushort o\+\_\+remote\+\_\+port, I\+Pv4 o\+\_\+remote\+\_\+ip, int o\+\_\+app\+\_\+id)}{Socket(ushort o_local_port, IPv4 o_local_ip, ushort o_remote_port, IPv4 o_remote_ip, int o_app_id)}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Socket\+::\+Socket (
+\begin{DoxyParamCaption}
+\item[{ushort}]{o\+\_\+local\+\_\+port, }
+\item[{{\bf I\+Pv4}}]{o\+\_\+local\+\_\+ip, }
+\item[{ushort}]{o\+\_\+remote\+\_\+port, }
+\item[{{\bf I\+Pv4}}]{o\+\_\+remote\+\_\+ip, }
+\item[{int}]{o\+\_\+app\+\_\+id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a9d54379d1f4fa64928070142ad04267c}{}\label{structudp_1_1Socket_a9d54379d1f4fa64928070142ad04267c}
+
+
+Connect constructor. 
+
+Construct a new socket connect to local and remote ips an ports. It also bounds the socket to an application ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+\_\+local\+\_\+port} & An unsigned short with the socket local port. \\
+\hline
+{\em o\+\_\+local\+\_\+ip} & \hyperlink{structIPv4}{I\+Pv4} with the socket local ip. \\
+\hline
+{\em o\+\_\+remote\+\_\+port} & An unsigned short with the socket remote port. \\
+\hline
+{\em o\+\_\+remote\+\_\+ip} & \hyperlink{structIPv4}{I\+Pv4} with the socket remote ip. \\
+\hline
+{\em o\+\_\+app\+\_\+id} & An int woth the application ID. \\
+\hline
+\end{DoxyParams}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{Socket(const Socket \&o)}{Socket(const Socket &o)}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Socket\+::\+Socket (
+\begin{DoxyParamCaption}
+\item[{const {\bf Socket} \&}]{o}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_abf163ce63fbd305ed2593996b52c3737}{}\label{structudp_1_1Socket_abf163ce63fbd305ed2593996b52c3737}
+
+
+Copy constructor. 
+
+Construct a new instance with a copy of the instance passed as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & An \hyperlink{structudp_1_1Socket}{udp\+::\+Socket} to copy in the new instance. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!accept@{accept}}
+\index{accept@{accept}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{accept(ushort local\+\_\+port, I\+Pv4 local\+\_\+ip, ushort remote\+\_\+port, I\+Pv4 remote\+\_\+ip)}{accept(ushort local_port, IPv4 local_ip, ushort remote_port, IPv4 remote_ip)}}]{\setlength{\rightskip}{0pt plus 5cm}bool udp\+::\+Socket\+::accept (
+\begin{DoxyParamCaption}
+\item[{ushort}]{local\+\_\+port, }
+\item[{{\bf I\+Pv4}}]{local\+\_\+ip, }
+\item[{ushort}]{remote\+\_\+port, }
+\item[{{\bf I\+Pv4}}]{remote\+\_\+ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_ae0adf9be402d19720ad59dfccd57fb99}{}\label{structudp_1_1Socket_ae0adf9be402d19720ad59dfccd57fb99}
+
+
+Checks whether the socket accepts udp\+::\+Segments from the remote socket with remote and local ips specified in the parameters. 
+
+The remote and local sockets parameters refers to the current socket and not to the remote one.
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+\_\+port} & An unsigned short with the port to be compared agains the socket local port. \\
+\hline
+{\em local\+\_\+ip} & An \hyperlink{structIPv4}{I\+Pv4} with the ip to be compared agains the socket local ip. \\
+\hline
+{\em remote\+\_\+port} & An unsigned short with the port to be compared agains the socket remote port. \\
+\hline
+{\em remote\+\_\+ip} & An \hyperlink{structIPv4}{I\+Pv4} with the ip to be compared agains the socket remote ip. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the remote scoket information refers to a socket for which the current socket is reading udp\+::\+Segments, False otherwise. 
+\end{DoxyReturn}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!bound@{bound}}
+\index{bound@{bound}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{bound()}{bound()}}]{\setlength{\rightskip}{0pt plus 5cm}bool udp\+::\+Socket\+::bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a0374f88bf7dfc202518c06e9056ccb3c}{}\label{structudp_1_1Socket_a0374f88bf7dfc202518c06e9056ccb3c}
+
+
+Checks whether the socket is in status bound or not. 
+
+\begin{DoxyReturn}{Returns}
+True if the socket is bound, False otherwise. 
+\end{DoxyReturn}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!connected@{connected}}
+\index{connected@{connected}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{connected()}{connected()}}]{\setlength{\rightskip}{0pt plus 5cm}bool udp\+::\+Socket\+::connected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a176759a6b6a7423af91341f72a979bfc}{}\label{structudp_1_1Socket_a176759a6b6a7423af91341f72a979bfc}
+
+
+Checks whether the socket is in status connected or not. 
+
+\begin{DoxyReturn}{Returns}
+True if the socket is connected, False otherwise. 
+\end{DoxyReturn}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!start\+Reading@{start\+Reading}}
+\index{start\+Reading@{start\+Reading}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{start\+Reading()}{startReading()}}]{\setlength{\rightskip}{0pt plus 5cm}void udp\+::\+Socket\+::start\+Reading (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a375f5ff098b53082a034563b18cebf08}{}\label{structudp_1_1Socket_a375f5ff098b53082a034563b18cebf08}
+
+
+Sets the socket in reading mode to accept the next incoming \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to the socket. 
+
+If the socket is in state bound, the socket accept all the \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} directed to the local ip and port. If the socket is in state connected, it accept only \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} from remote socket as the one specified in the socket. \index{udp\+::\+Socket@{udp\+::\+Socket}!start\+Reading\+From@{start\+Reading\+From}}
+\index{start\+Reading\+From@{start\+Reading\+From}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{start\+Reading\+From(ushort port, I\+Pv4 ip)}{startReadingFrom(ushort port, IPv4 ip)}}]{\setlength{\rightskip}{0pt plus 5cm}void udp\+::\+Socket\+::start\+Reading\+From (
+\begin{DoxyParamCaption}
+\item[{ushort}]{port, }
+\item[{{\bf I\+Pv4}}]{ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a56dffa316e5cb39326e418ff1bb92cf0}{}\label{structudp_1_1Socket_a56dffa316e5cb39326e418ff1bb92cf0}
+
+
+Sets the socket in reading mode to accept the next incoming \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to the socket coming from the specific remote socket. 
+
+The \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} that arrives for the socket must comes from a remote soket with the port and IP passed as parameters. \index{udp\+::\+Socket@{udp\+::\+Socket}!valid\+Local\+Address@{valid\+Local\+Address}}
+\index{valid\+Local\+Address@{valid\+Local\+Address}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{valid\+Local\+Address(ushort port, I\+Pv4 ip)}{validLocalAddress(ushort port, IPv4 ip)}}]{\setlength{\rightskip}{0pt plus 5cm}bool udp\+::\+Socket\+::valid\+Local\+Address (
+\begin{DoxyParamCaption}
+\item[{ushort}]{port, }
+\item[{{\bf I\+Pv4}}]{ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a689917ee204053203b09b7c74c872186}{}\label{structudp_1_1Socket_a689917ee204053203b09b7c74c872186}
+
+
+Checks whether the passed port and IP are the same as the socket local port and IP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & An unsigned short with the port to check. \\
+\hline
+{\em ip} & An \hyperlink{structIPv4}{I\+Pv4} with the IP to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if both, port and ip are the same as the socket local port and ip. 
+\end{DoxyReturn}
+\index{udp\+::\+Socket@{udp\+::\+Socket}!valid\+Remote\+Address@{valid\+Remote\+Address}}
+\index{valid\+Remote\+Address@{valid\+Remote\+Address}!udp\+::\+Socket@{udp\+::\+Socket}}
+\subsubsection[{\texorpdfstring{valid\+Remote\+Address(ushort port, I\+Pv4 ip)}{validRemoteAddress(ushort port, IPv4 ip)}}]{\setlength{\rightskip}{0pt plus 5cm}bool udp\+::\+Socket\+::valid\+Remote\+Address (
+\begin{DoxyParamCaption}
+\item[{ushort}]{port, }
+\item[{{\bf I\+Pv4}}]{ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Socket_a15a198ff05352aecfb66c27956429b4c}{}\label{structudp_1_1Socket_a15a198ff05352aecfb66c27956429b4c}
+
+
+Checks whether the passed port and IP are the same as the socket remote port and IP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & An unsigned short with the port to check. \\
+\hline
+{\em ip} & An \hyperlink{structIPv4}{I\+Pv4} with the IP to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if both, port and ip are the same as the socket remote port and ip. 
+\end{DoxyReturn}
+
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/structures/socket.\+h\end{DoxyCompactItemize}
+/home/lao/\+Documents/git/\+Network\+D\+E\+V\+S/structures/socket.\+h\end{DoxyCompactItemize}

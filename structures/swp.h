@@ -77,7 +77,7 @@ namespace swp {
    * @author Laouen Louan Mayal Belloli
    * @date 14 May 2017
    * 
-   * @struct swp::recQ_slot swp.h
+   * @struct swp::recvQ_slot swp.h
    * 
    * @brief This strict declares a sendQ_slot as explained in the book: Computer Networks A system approach - 2011.
    * @details This implementation differs from the one of the book because this 

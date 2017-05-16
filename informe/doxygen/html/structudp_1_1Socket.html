@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>udp</b></li><li class="navelem"><a class="el" href="structudp_1_1Socket.html">Socket</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceudp.html">udp</a></li><li class="navelem"><a class="el" href="structudp_1_1Socket.html">Socket</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -100,6 +100,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">udp::Socket Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct handles a socket states.  
+ <a href="structudp_1_1Socket.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="socket_8h_source.html">socket.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for udp::Socket:</div>
 <div class="dyncontent">
@@ -120,41 +125,45 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af970d688bc9492294402136069f9deab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af970d688bc9492294402136069f9deab"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Socket</b> (int aid)</td></tr>
+<tr class="memitem:ad92a350104ea7238042779c996de2aa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#ad92a350104ea7238042779c996de2aa0">Socket</a> ()</td></tr>
+<tr class="memdesc:ad92a350104ea7238042779c996de2aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ad92a350104ea7238042779c996de2aa0">More...</a><br /></td></tr>
+<tr class="separator:ad92a350104ea7238042779c996de2aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af970d688bc9492294402136069f9deab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#af970d688bc9492294402136069f9deab">Socket</a> (int aid)</td></tr>
+<tr class="memdesc:af970d688bc9492294402136069f9deab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor binded to an application ID.  <a href="#af970d688bc9492294402136069f9deab">More...</a><br /></td></tr>
 <tr class="separator:af970d688bc9492294402136069f9deab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9419b8ecda7eb7862991fa114243004"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9419b8ecda7eb7862991fa114243004"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Socket</b> (ushort o_local_port, <a class="el" href="structIPv4.html">IPv4</a> o_local_ip, int o_app_id)</td></tr>
+<tr class="memitem:ae9419b8ecda7eb7862991fa114243004"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#ae9419b8ecda7eb7862991fa114243004">Socket</a> (ushort o_local_port, <a class="el" href="structIPv4.html">IPv4</a> o_local_ip, int o_app_id)</td></tr>
+<tr class="memdesc:ae9419b8ecda7eb7862991fa114243004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bind constructor.  <a href="#ae9419b8ecda7eb7862991fa114243004">More...</a><br /></td></tr>
 <tr class="separator:ae9419b8ecda7eb7862991fa114243004"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d54379d1f4fa64928070142ad04267c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d54379d1f4fa64928070142ad04267c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Socket</b> (ushort o_local_port, <a class="el" href="structIPv4.html">IPv4</a> o_local_ip, ushort o_remote_port, <a class="el" href="structIPv4.html">IPv4</a> o_remote_ip, int o_app_id)</td></tr>
+<tr class="memitem:a9d54379d1f4fa64928070142ad04267c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a9d54379d1f4fa64928070142ad04267c">Socket</a> (ushort o_local_port, <a class="el" href="structIPv4.html">IPv4</a> o_local_ip, ushort o_remote_port, <a class="el" href="structIPv4.html">IPv4</a> o_remote_ip, int o_app_id)</td></tr>
+<tr class="memdesc:a9d54379d1f4fa64928070142ad04267c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect constructor.  <a href="#a9d54379d1f4fa64928070142ad04267c">More...</a><br /></td></tr>
 <tr class="separator:a9d54379d1f4fa64928070142ad04267c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf163ce63fbd305ed2593996b52c3737"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf163ce63fbd305ed2593996b52c3737"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Socket</b> (const <a class="el" href="structudp_1_1Socket.html">Socket</a> &amp;o)</td></tr>
+<tr class="memitem:abf163ce63fbd305ed2593996b52c3737"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#abf163ce63fbd305ed2593996b52c3737">Socket</a> (const <a class="el" href="structudp_1_1Socket.html">Socket</a> &amp;o)</td></tr>
+<tr class="memdesc:abf163ce63fbd305ed2593996b52c3737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#abf163ce63fbd305ed2593996b52c3737">More...</a><br /></td></tr>
 <tr class="separator:abf163ce63fbd305ed2593996b52c3737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a176759a6b6a7423af91341f72a979bfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a176759a6b6a7423af91341f72a979bfc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>connected</b> ()</td></tr>
+<tr class="memitem:a176759a6b6a7423af91341f72a979bfc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a176759a6b6a7423af91341f72a979bfc">connected</a> ()</td></tr>
+<tr class="memdesc:a176759a6b6a7423af91341f72a979bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the socket is in status connected or not.  <a href="#a176759a6b6a7423af91341f72a979bfc">More...</a><br /></td></tr>
 <tr class="separator:a176759a6b6a7423af91341f72a979bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0374f88bf7dfc202518c06e9056ccb3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0374f88bf7dfc202518c06e9056ccb3c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>bound</b> ()</td></tr>
+<tr class="memitem:a0374f88bf7dfc202518c06e9056ccb3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a0374f88bf7dfc202518c06e9056ccb3c">bound</a> ()</td></tr>
+<tr class="memdesc:a0374f88bf7dfc202518c06e9056ccb3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the socket is in status bound or not.  <a href="#a0374f88bf7dfc202518c06e9056ccb3c">More...</a><br /></td></tr>
 <tr class="separator:a0374f88bf7dfc202518c06e9056ccb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a375f5ff098b53082a034563b18cebf08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a375f5ff098b53082a034563b18cebf08"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startReading</b> ()</td></tr>
+<tr class="memitem:a375f5ff098b53082a034563b18cebf08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a375f5ff098b53082a034563b18cebf08">startReading</a> ()</td></tr>
+<tr class="memdesc:a375f5ff098b53082a034563b18cebf08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the socket in reading mode to accept the next incoming <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> to the socket.  <a href="#a375f5ff098b53082a034563b18cebf08">More...</a><br /></td></tr>
 <tr class="separator:a375f5ff098b53082a034563b18cebf08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56dffa316e5cb39326e418ff1bb92cf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56dffa316e5cb39326e418ff1bb92cf0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startReadingFrom</b> (ushort port, <a class="el" href="structIPv4.html">IPv4</a> ip)</td></tr>
+<tr class="memitem:a56dffa316e5cb39326e418ff1bb92cf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a56dffa316e5cb39326e418ff1bb92cf0">startReadingFrom</a> (ushort port, <a class="el" href="structIPv4.html">IPv4</a> ip)</td></tr>
+<tr class="memdesc:a56dffa316e5cb39326e418ff1bb92cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the socket in reading mode to accept the next incoming <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> to the socket coming from the specific remote socket.  <a href="#a56dffa316e5cb39326e418ff1bb92cf0">More...</a><br /></td></tr>
 <tr class="separator:a56dffa316e5cb39326e418ff1bb92cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2660137ceca93fe8e49037cf2627195"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2660137ceca93fe8e49037cf2627195"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stopReading</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#ac2660137ceca93fe8e49037cf2627195">stopReading</a> ()</td></tr>
+<tr class="memdesc:ac2660137ceca93fe8e49037cf2627195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop reading mode. No UDP::Segment is accepted. <br /></td></tr>
 <tr class="separator:ac2660137ceca93fe8e49037cf2627195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a689917ee204053203b09b7c74c872186"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a689917ee204053203b09b7c74c872186"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>validLocalAddress</b> (ushort port, <a class="el" href="structIPv4.html">IPv4</a> ip)</td></tr>
+<tr class="memitem:a689917ee204053203b09b7c74c872186"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a689917ee204053203b09b7c74c872186">validLocalAddress</a> (ushort port, <a class="el" href="structIPv4.html">IPv4</a> ip)</td></tr>
+<tr class="memdesc:a689917ee204053203b09b7c74c872186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the passed port and IP are the same as the socket local port and IP.  <a href="#a689917ee204053203b09b7c74c872186">More...</a><br /></td></tr>
 <tr class="separator:a689917ee204053203b09b7c74c872186"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15a198ff05352aecfb66c27956429b4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15a198ff05352aecfb66c27956429b4c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>validRemoteAddress</b> (ushort port, <a class="el" href="structIPv4.html">IPv4</a> ip)</td></tr>
+<tr class="memitem:a15a198ff05352aecfb66c27956429b4c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#a15a198ff05352aecfb66c27956429b4c">validRemoteAddress</a> (ushort port, <a class="el" href="structIPv4.html">IPv4</a> ip)</td></tr>
+<tr class="memdesc:a15a198ff05352aecfb66c27956429b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the passed port and IP are the same as the socket remote port and IP.  <a href="#a15a198ff05352aecfb66c27956429b4c">More...</a><br /></td></tr>
 <tr class="separator:a15a198ff05352aecfb66c27956429b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0adf9be402d19720ad59dfccd57fb99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0adf9be402d19720ad59dfccd57fb99"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>accept</b> (ushort local_port, <a class="el" href="structIPv4.html">IPv4</a> local_ip, ushort remote_port, <a class="el" href="structIPv4.html">IPv4</a> remote_ip)</td></tr>
+<tr class="memitem:ae0adf9be402d19720ad59dfccd57fb99"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structudp_1_1Socket.html#ae0adf9be402d19720ad59dfccd57fb99">accept</a> (ushort local_port, <a class="el" href="structIPv4.html">IPv4</a> local_ip, ushort remote_port, <a class="el" href="structIPv4.html">IPv4</a> remote_ip)</td></tr>
+<tr class="memdesc:ae0adf9be402d19720ad59dfccd57fb99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the socket accepts udp::Segments from the remote socket with remote and local ips specified in the parameters.  <a href="#ae0adf9be402d19720ad59dfccd57fb99">More...</a><br /></td></tr>
 <tr class="separator:ae0adf9be402d19720ad59dfccd57fb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -184,8 +193,486 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>reading</b> = false</
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>reading_from</b> = false</td></tr>
 <tr class="separator:a925962404f3489233d3d17c16ec58dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct handles a socket states. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>If the socket is connected to a remoto host, the socket has the remote ip and port must be defined defined.</p>
+<p>The UDP protocol uses this struct to manage all its socket states. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ad92a350104ea7238042779c996de2aa0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Socket::Socket </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct an empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="af970d688bc9492294402136069f9deab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Socket::Socket </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>aid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor binded to an application ID. </p>
+<p>Construct a new socket with application ID specified in the parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aid</td><td>An int with the app ID binded to the socket </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae9419b8ecda7eb7862991fa114243004"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Socket::Socket </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>o_local_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>o_local_ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>o_app_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bind constructor. </p>
+<p>Construct a socket specifying its local ip and port and the bound application ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o_local_port</td><td>An unsigned short with the socket local port. </td></tr>
+    <tr><td class="paramname">o_local_ip</td><td>An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the socket local ip. </td></tr>
+    <tr><td class="paramname">o_app_id</td><td>An int with the application ID. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9d54379d1f4fa64928070142ad04267c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Socket::Socket </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>o_local_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>o_local_ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>o_remote_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>o_remote_ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>o_app_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Connect constructor. </p>
+<p>Construct a new socket connect to local and remote ips an ports. It also bounds the socket to an application ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o_local_port</td><td>An unsigned short with the socket local port. </td></tr>
+    <tr><td class="paramname">o_local_ip</td><td><a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the socket local ip. </td></tr>
+    <tr><td class="paramname">o_remote_port</td><td>An unsigned short with the socket remote port. </td></tr>
+    <tr><td class="paramname">o_remote_ip</td><td><a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the socket remote ip. </td></tr>
+    <tr><td class="paramname">o_app_id</td><td>An int woth the application ID. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abf163ce63fbd305ed2593996b52c3737"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">udp::Socket::Socket </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structudp_1_1Socket.html">Socket</a> &amp;&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a new instance with a copy of the instance passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>An <a class="el" href="structudp_1_1Socket.html" title="This struct handles a socket states. ">udp::Socket</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae0adf9be402d19720ad59dfccd57fb99"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool udp::Socket::accept </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>local_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>local_ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>remote_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>remote_ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the socket accepts udp::Segments from the remote socket with remote and local ips specified in the parameters. </p>
+<p>The remote and local sockets parameters refers to the current socket and not to the remote one.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">local_port</td><td>An unsigned short with the port to be compared agains the socket local port. </td></tr>
+    <tr><td class="paramname">local_ip</td><td>An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the ip to be compared agains the socket local ip. </td></tr>
+    <tr><td class="paramname">remote_port</td><td>An unsigned short with the port to be compared agains the socket remote port. </td></tr>
+    <tr><td class="paramname">remote_ip</td><td>An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the ip to be compared agains the socket remote ip. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the remote scoket information refers to a socket for which the current socket is reading udp::Segments, False otherwise. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0374f88bf7dfc202518c06e9056ccb3c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool udp::Socket::bound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the socket is in status bound or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the socket is bound, False otherwise. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a176759a6b6a7423af91341f72a979bfc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool udp::Socket::connected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the socket is in status connected or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the socket is connected, False otherwise. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a375f5ff098b53082a034563b18cebf08"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void udp::Socket::startReading </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the socket in reading mode to accept the next incoming <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> to the socket. </p>
+<p>If the socket is in state bound, the socket accept all the <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> directed to the local ip and port. If the socket is in state connected, it accept only <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> from remote socket as the one specified in the socket. </p>
+
+</div>
+</div>
+<a class="anchor" id="a56dffa316e5cb39326e418ff1bb92cf0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void udp::Socket::startReadingFrom </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the socket in reading mode to accept the next incoming <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> to the socket coming from the specific remote socket. </p>
+<p>The <a class="el" href="structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. ">udp::Segment</a> that arrives for the socket must comes from a remote soket with the port and IP passed as parameters. </p>
+
+</div>
+</div>
+<a class="anchor" id="a689917ee204053203b09b7c74c872186"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool udp::Socket::validLocalAddress </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the passed port and IP are the same as the socket local port and IP. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>An unsigned short with the port to check. </td></tr>
+    <tr><td class="paramname">ip</td><td>An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the IP to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if both, port and ip are the same as the socket local port and ip. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a15a198ff05352aecfb66c27956429b4c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool udp::Socket::validRemoteAddress </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the passed port and IP are the same as the socket remote port and IP. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>An unsigned short with the port to check. </td></tr>
+    <tr><td class="paramname">ip</td><td>An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with the IP to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if both, port and ip are the same as the socket remote port and ip. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="socket_8h_source.html">socket.h</a></li>
+<li>/home/lao/Documents/git/NetworkDEVS/structures/<a class="el" href="socket_8h_source.html">socket.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

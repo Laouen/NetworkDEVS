@@ -2,6 +2,15 @@
 \label{structudp_1_1Segment}\index{udp\+::\+Segment@{udp\+::\+Segment}}
 
 
+This struct declares an \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to send through the network.  
+
+
+
+
+{\ttfamily \#include $<$udp.\+h$>$}
+
+
+
 Inheritance diagram for udp\+:\+:Segment\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -21,18 +30,16 @@ Collaboration diagram for udp\+:\+:Segment\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Segment} (const \hyperlink{structudp_1_1Segment}{Segment} \&o)\hypertarget{structudp_1_1Segment_acc1762aaf9872190d9021a574123122c}{}\label{structudp_1_1Segment_acc1762aaf9872190d9021a574123122c}
-
+\hyperlink{structudp_1_1Segment_ac5bb0893a862d614ceaefcc3f76fc6da}{Segment} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structudp_1_1Segment_acc1762aaf9872190d9021a574123122c}{Segment} (const \hyperlink{structudp_1_1Segment}{Segment} \&o)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+ushort \hyperlink{structudp_1_1Segment_ad3b9b073288d5aa58c503caa76c6481b}{headers\+\_\+size} ()
 \item 
-ushort {\bfseries headers\+\_\+size} ()\hypertarget{structudp_1_1Segment_ad3b9b073288d5aa58c503caa76c6481b}{}\label{structudp_1_1Segment_ad3b9b073288d5aa58c503caa76c6481b}
-
-\item 
-const char $\ast$ {\bfseries headers\+\_\+c\+\_\+str} ()\hypertarget{structudp_1_1Segment_a0e04a50568add9be05b2f4b6bd93fd13}{}\label{structudp_1_1Segment_a0e04a50568add9be05b2f4b6bd93fd13}
-
-\item 
-void {\bfseries set\+Payload} (const \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&packet)\hypertarget{structudp_1_1Segment_abe03349ffcc6719961fdc447d930dd37}{}\label{structudp_1_1Segment_abe03349ffcc6719961fdc447d930dd37}
-
-\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{structudp_1_1Segment_a0e04a50568add9be05b2f4b6bd93fd13}{headers\+\_\+c\+\_\+str} ()
+\begin{DoxyCompactList}\small\item\em Copy all the bytes of the instance in a memory block and return a pointer to that memory block. \end{DoxyCompactList}\item 
+void \hyperlink{structudp_1_1Segment_abe03349ffcc6719961fdc447d930dd37}{set\+Payload} (const \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} \&packet)
+\begin{DoxyCompactList}\small\item\em Set a \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} as the payload. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,6 +54,94 @@ char {\bfseries payload} \mbox{[}512\mbox{]}\hypertarget{structudp_1_1Segment_a9
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This struct declares an \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to send through the network. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+A \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} has an udp\+::pseudo\+Header, an \hyperlink{structudp_1_1Header}{udp\+::\+Header} and a payload of length 512 bytes in char format. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{udp\+::\+Segment@{udp\+::\+Segment}!Segment@{Segment}}
+\index{Segment@{Segment}!udp\+::\+Segment@{udp\+::\+Segment}}
+\subsubsection[{\texorpdfstring{Segment()}{Segment()}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Segment\+::\+Segment (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Segment_ac5bb0893a862d614ceaefcc3f76fc6da}{}\label{structudp_1_1Segment_ac5bb0893a862d614ceaefcc3f76fc6da}
+
+
+Default constructor. 
+
+Construct a new empty instance. \index{udp\+::\+Segment@{udp\+::\+Segment}!Segment@{Segment}}
+\index{Segment@{Segment}!udp\+::\+Segment@{udp\+::\+Segment}}
+\subsubsection[{\texorpdfstring{Segment(const Segment \&o)}{Segment(const Segment &o)}}]{\setlength{\rightskip}{0pt plus 5cm}udp\+::\+Segment\+::\+Segment (
+\begin{DoxyParamCaption}
+\item[{const {\bf Segment} \&}]{o}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Segment_acc1762aaf9872190d9021a574123122c}{}\label{structudp_1_1Segment_acc1762aaf9872190d9021a574123122c}
+
+
+Copy constructor. 
+
+Construct a new instance with a copy of the instance passed as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & An \hyperlink{structudp_1_1Segment}{udp\+::\+Segment} to copy in the new instance. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{udp\+::\+Segment@{udp\+::\+Segment}!headers\+\_\+c\+\_\+str@{headers\+\_\+c\+\_\+str}}
+\index{headers\+\_\+c\+\_\+str@{headers\+\_\+c\+\_\+str}!udp\+::\+Segment@{udp\+::\+Segment}}
+\subsubsection[{\texorpdfstring{headers\+\_\+c\+\_\+str()}{headers_c_str()}}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ udp\+::\+Segment\+::headers\+\_\+c\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Segment_a0e04a50568add9be05b2f4b6bd93fd13}{}\label{structudp_1_1Segment_a0e04a50568add9be05b2f4b6bd93fd13}
+
+
+Copy all the bytes of the instance in a memory block and return a pointer to that memory block. 
+
+\begin{DoxyReturn}{Returns}
+A const char $\ast$ that point to the memory block where the instance was capied. 
+\end{DoxyReturn}
+\index{udp\+::\+Segment@{udp\+::\+Segment}!headers\+\_\+size@{headers\+\_\+size}}
+\index{headers\+\_\+size@{headers\+\_\+size}!udp\+::\+Segment@{udp\+::\+Segment}}
+\subsubsection[{\texorpdfstring{headers\+\_\+size()}{headers_size()}}]{\setlength{\rightskip}{0pt plus 5cm}ushort udp\+::\+Segment\+::headers\+\_\+size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Segment_ad3b9b073288d5aa58c503caa76c6481b}{}\label{structudp_1_1Segment_ad3b9b073288d5aa58c503caa76c6481b}
+\begin{DoxyReturn}{Returns}
+The instance size in bytes. 
+\end{DoxyReturn}
+\index{udp\+::\+Segment@{udp\+::\+Segment}!set\+Payload@{set\+Payload}}
+\index{set\+Payload@{set\+Payload}!udp\+::\+Segment@{udp\+::\+Segment}}
+\subsubsection[{\texorpdfstring{set\+Payload(const dns\+::\+Packet \&packet)}{setPayload(const dns::Packet &packet)}}]{\setlength{\rightskip}{0pt plus 5cm}void udp\+::\+Segment\+::set\+Payload (
+\begin{DoxyParamCaption}
+\item[{const {\bf dns\+::\+Packet} \&}]{packet}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structudp_1_1Segment_abe03349ffcc6719961fdc447d930dd37}{}\label{structudp_1_1Segment_abe03349ffcc6719961fdc447d930dd37}
+
+
+Set a \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} as the payload. 
+
+For this purpose it uses the c\+\_\+str \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} method to get the a pointer to a memory block with the instance char representation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} to set as payload. \\
+\hline
+\end{DoxyParams}
+
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/structures/udp.\+h\end{DoxyCompactItemize}
+/home/lao/\+Documents/git/\+Network\+D\+E\+V\+S/structures/udp.\+h\end{DoxyCompactItemize}

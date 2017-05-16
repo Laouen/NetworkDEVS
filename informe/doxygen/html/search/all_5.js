@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['hdr',['Hdr',['../structswp_1_1Hdr.html',1,'swp']]],
-  ['hdr',['Hdr',['../structswp_1_1Hdr.html#aa66b283dc051d983ecfce1fd51ae25bf',1,'swp::Hdr']]],
-  ['header',['Header',['../structdns_1_1Header.html',1,'dns']]],
-  ['header',['Header',['../structudp_1_1Header.html',1,'udp']]],
-  ['header',['Header',['../structip_1_1Header.html',1,'ip']]],
-  ['header',['Header',['../structdns_1_1Header.html#ab15c37ac6b02f5186082ea6a2f40edc0',1,'dns::Header::Header()'],['../structdns_1_1Header.html#ab7d03fd2cec0659afe0df11f59a3b4da',1,'dns::Header::Header(const Header &amp;other)'],['../structdns_1_1Header.html#a5195a1241799e64eea7c5061f81a7c4e',1,'dns::Header::Header(const char *const other)'],['../structip_1_1Header.html#ae6fa99f56e2358a3a9c2ce58cc49e6b9',1,'ip::Header::Header()'],['../structip_1_1Header.html#a5e6285562e806c49a9c2f015e7400460',1,'ip::Header::Header(const Header &amp;other)']]],
-  ['header',['Header',['../structabstract_1_1Header.html',1,'abstract']]]
+  ['file_5fopen',['file_open',['../classParser.html#aef3ae8c9c1b087574fa78376435df690',1,'Parser']]],
+  ['forwarding_5fentry',['Forwarding_entry',['../structip_1_1Forwarding__entry.html',1,'ip']]],
+  ['forwarding_5fentry',['Forwarding_entry',['../structip_1_1Forwarding__entry.html#af4c7f746d7de8206146adf933ad3dbe8',1,'ip::Forwarding_entry::Forwarding_entry()'],['../structip_1_1Forwarding__entry.html#a9cdd6c01091d718a32a11342c3998f9f',1,'ip::Forwarding_entry::Forwarding_entry(const Forwarding_entry &amp;other)'],['../structsw_1_1Forwarding__entry.html#ad923fd6088887cc6f0b894045e04d8df',1,'sw::Forwarding_entry::Forwarding_entry()'],['../structsw_1_1Forwarding__entry.html#a504b52199970b085a23a28cd45b9b788',1,'sw::Forwarding_entry::Forwarding_entry(const Forwarding_entry &amp;other)']]],
+  ['forwarding_5fentry',['Forwarding_entry',['../structsw_1_1Forwarding__entry.html',1,'sw']]],
+  ['frame',['Frame',['../structlink_1_1Frame.html',1,'link']]],
+  ['frame',['Frame',['../structlink_1_1Frame.html#a66cdf70363bbb87ff48c661fdeb63242',1,'link::Frame::Frame()'],['../structlink_1_1Frame.html#aea0b6d8d213840254aac152351a7c46a',1,'link::Frame::Frame(const Frame &amp;other)']]]
 ];
