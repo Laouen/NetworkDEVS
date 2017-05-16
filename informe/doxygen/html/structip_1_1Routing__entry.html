@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ip</b></li><li class="navelem"><a class="el" href="structip_1_1Routing__entry.html">Routing_entry</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceip.html">ip</a></li><li class="navelem"><a class="el" href="structip_1_1Routing__entry.html">Routing_entry</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ip::Routing_entry Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represent an entry of the routing table of the ip protocol.  
+ <a href="structip_1_1Routing__entry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ip_8h_source.html">ip.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ip::Routing_entry:</div>
 <div class="dyncontent">
@@ -112,17 +117,20 @@ Collaboration diagram for ip::Routing_entry:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa74e68d82782de83e6adaee3307d71c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa74e68d82782de83e6adaee3307d71c3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Routing_entry</b> (<a class="el" href="structIPv4.html">IPv4</a> other_network, <a class="el" href="structIPv4.html">IPv4</a> other_netmask, <a class="el" href="structIPv4.html">IPv4</a> other_nexthop, int other_metric, std::string other_purpose)</td></tr>
+<tr class="memitem:ac767d7b0debe508f51d671ed7c46df5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Routing__entry.html#ac767d7b0debe508f51d671ed7c46df5f">Routing_entry</a> ()</td></tr>
+<tr class="memdesc:ac767d7b0debe508f51d671ed7c46df5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ac767d7b0debe508f51d671ed7c46df5f">More...</a><br /></td></tr>
+<tr class="separator:ac767d7b0debe508f51d671ed7c46df5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74e68d82782de83e6adaee3307d71c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Routing__entry.html#aa74e68d82782de83e6adaee3307d71c3">Routing_entry</a> (<a class="el" href="structIPv4.html">IPv4</a> other_network, <a class="el" href="structIPv4.html">IPv4</a> other_netmask, <a class="el" href="structIPv4.html">IPv4</a> other_nexthop, int other_metric, std::string other_purpose)</td></tr>
+<tr class="memdesc:aa74e68d82782de83e6adaee3307d71c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aa74e68d82782de83e6adaee3307d71c3">More...</a><br /></td></tr>
 <tr class="separator:aa74e68d82782de83e6adaee3307d71c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af365ea3a7377448bdaf58dd82795bfa1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af365ea3a7377448bdaf58dd82795bfa1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Routing_entry</b> (const <a class="el" href="structip_1_1Routing__entry.html">Routing_entry</a> &amp;other)</td></tr>
+<tr class="memitem:af365ea3a7377448bdaf58dd82795bfa1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Routing__entry.html#af365ea3a7377448bdaf58dd82795bfa1">Routing_entry</a> (const <a class="el" href="structip_1_1Routing__entry.html">Routing_entry</a> &amp;other)</td></tr>
+<tr class="memdesc:af365ea3a7377448bdaf58dd82795bfa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#af365ea3a7377448bdaf58dd82795bfa1">More...</a><br /></td></tr>
 <tr class="separator:af365ea3a7377448bdaf58dd82795bfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae756d25da9d7cda6c2fe7aed59284b18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae756d25da9d7cda6c2fe7aed59284b18"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>sameSubnet</b> (<a class="el" href="structIPv4.html">IPv4</a> des_ip) const </td></tr>
+<tr class="memitem:ae756d25da9d7cda6c2fe7aed59284b18"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Routing__entry.html#ae756d25da9d7cda6c2fe7aed59284b18">sameSubnet</a> (<a class="el" href="structIPv4.html">IPv4</a> des_ip) const </td></tr>
+<tr class="memdesc:ae756d25da9d7cda6c2fe7aed59284b18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cheks whether the other remote host is in the implicit this-&gt;network or not.  <a href="#ae756d25da9d7cda6c2fe7aed59284b18">More...</a><br /></td></tr>
 <tr class="separator:ae756d25da9d7cda6c2fe7aed59284b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace4715a82faf3918f5cc75d1eb361f00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace4715a82faf3918f5cc75d1eb361f00"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>as_string</b> () const </td></tr>
+<tr class="memitem:ace4715a82faf3918f5cc75d1eb361f00"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Routing__entry.html#ace4715a82faf3918f5cc75d1eb361f00">as_string</a> () const </td></tr>
+<tr class="memdesc:ace4715a82faf3918f5cc75d1eb361f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints in a std::string a human redable version of the <a class="el" href="structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. ">ip::Routing_entry</a>.  <a href="#ace4715a82faf3918f5cc75d1eb361f00">More...</a><br /></td></tr>
 <tr class="separator:ace4715a82faf3918f5cc75d1eb361f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -143,6 +151,202 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>metric</b></td></tr>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>purpose</b></td></tr>
 <tr class="separator:a2ab5f00c9e3a4b2a707e236a82f9a2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represent an entry of the routing table of the ip protocol. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>The <a class="el" href="structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. ">ip::Routing_entry</a> has the next field:</p><ol type="1">
+<li>network: a <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> containing the subnet of the remote host.</li>
+<li>netmask: a <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> containing the mask that indicate what bits of the network represent the network of the remote host.</li>
+<li>nexthope: a <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> containing the ip of the reachable nexthope where to send the <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a>.</li>
+<li>metric: a int with a metric of how close is the remote host using the nexthope of the entry as the way to reach it.</li>
+<li>purpose: a std::string that specifies a description of the entry. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac767d7b0debe508f51d671ed7c46df5f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ip::Routing_entry::Routing_entry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a new empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa74e68d82782de83e6adaee3307d71c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ip::Routing_entry::Routing_entry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>other_network</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>other_netmask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>other_nexthop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>other_metric</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>other_purpose</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<p>It construct a new instance seting all its fields.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other_network</td><td>The nextwork to set. </td></tr>
+    <tr><td class="paramname">other_netmask</td><td>The netmask to set. </td></tr>
+    <tr><td class="paramname">other_nexthop</td><td>The nexthop to set. </td></tr>
+    <tr><td class="paramname">other_metric</td><td>The metric to set. </td></tr>
+    <tr><td class="paramname">other_purpose</td><td>The purpose to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af365ea3a7377448bdaf58dd82795bfa1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ip::Routing_entry::Routing_entry </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structip_1_1Routing__entry.html">Routing_entry</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a new instance with a copy of the one passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>An <a class="el" href="structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. ">ip::Routing_entry</a> to construct the new instance as a copy of it. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ace4715a82faf3918f5cc75d1eb361f00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ip::Routing_entry::as_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints in a std::string a human redable version of the <a class="el" href="structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. ">ip::Routing_entry</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>A std::string with the value printed on it. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae756d25da9d7cda6c2fe7aed59284b18"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ip::Routing_entry::sameSubnet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structIPv4.html">IPv4</a>&#160;</td>
+          <td class="paramname"><em>des_ip</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cheks whether the other remote host is in the implicit this-&gt;network or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">des_ip</td><td>The <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> of the remote host to check if is in the same subnet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if des_ip is in the same subnate of this-&gt;network. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="ip_8h_source.html">ip.h</a></li>
 </ul>

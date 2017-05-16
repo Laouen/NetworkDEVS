@@ -97,9 +97,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#abstract_1_1Data"/>
 <map name="abstract_1_1Data" id="abstract_1_1Data">
 <area shape="rect" id="node1" href="structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="5,107,111,133"/>
-<area shape="rect" id="node2" href="structip_1_1Datagram.html" title="ip::Datagram" alt="" coords="169,5,266,32"/>
-<area shape="rect" id="node3" href="structlink_1_1arp_1_1Packet.html" title="link::arp::Packet" alt="" coords="159,56,276,83"/>
-<area shape="rect" id="node4" href="structlink_1_1Frame.html" title="link::Frame" alt="" coords="174,107,261,133"/>
+<area shape="rect" id="node2" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. " alt="" coords="169,5,266,32"/>
+<area shape="rect" id="node3" href="structlink_1_1arp_1_1Packet.html" title="This struct implements an ARP packet to send a query through the subnet in order to get the response ..." alt="" coords="159,56,276,83"/>
+<area shape="rect" id="node4" href="structlink_1_1Frame.html" title="Implement a L2 frame. " alt="" coords="174,107,261,133"/>
 <area shape="rect" id="node5" href="structudp_1_1Control.html" title="udp::Control" alt="" coords="171,157,264,184"/>
 <area shape="rect" id="node6" href="structudp_1_1Segment.html" title="udp::Segment" alt="" coords="166,208,269,235"/>
 </map>
@@ -108,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <map name="abstract_1_1Header" id="abstract_1_1Header">
 <area shape="rect" id="node1" href="structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="5,81,124,108"/>
 <area shape="rect" id="node2" href="structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="194,5,287,32"/>
-<area shape="rect" id="node3" href="structip_1_1Header.html" title="ip::Header" alt="" coords="199,56,282,83"/>
+<area shape="rect" id="node3" href="structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. " alt="" coords="199,56,282,83"/>
 <area shape="rect" id="node4" href="structudp_1_1Header.html" title="udp::Header" alt="" coords="194,107,287,133"/>
 <area shape="rect" id="node5" href="structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="172,157,309,184"/>
 </map>
@@ -192,17 +192,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </td></tr>
 <tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#ip_1_1Control"/>
 <map name="ip_1_1Control" id="ip_1_1Control">
-<area shape="rect" id="node1" href="structip_1_1Control.html" title="ip::Control" alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node1" href="structip_1_1Control.html" title="This struct is used to send control messages to the UDP protocol in the near up layer. " alt="" coords="5,5,88,32"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#ip_1_1Forwarding__entry"/>
 <map name="ip_1_1Forwarding__entry" id="ip_1_1Forwarding__entry">
-<area shape="rect" id="node1" href="structip_1_1Forwarding__entry.html" title="ip::Forwarding_entry" alt="" coords="5,5,145,32"/>
+<area shape="rect" id="node1" href="structip_1_1Forwarding__entry.html" title="Represent an entry of the forwarding table of the ip protocol. " alt="" coords="5,5,145,32"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#ip_1_1Routing__entry"/>
 <map name="ip_1_1Routing__entry" id="ip_1_1Routing__entry">
-<area shape="rect" id="node1" href="structip_1_1Routing__entry.html" title="ip::Routing_entry" alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node1" href="structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. " alt="" coords="5,5,127,32"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#IPv4"/>
@@ -212,12 +212,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </td></tr>
 <tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#link_1_1arp_1_1Entry"/>
 <map name="link_1_1arp_1_1Entry" id="link_1_1arp_1_1Entry">
-<area shape="rect" id="node1" href="structlink_1_1arp_1_1Entry.html" title="link::arp::Entry" alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node1" href="structlink_1_1arp_1_1Entry.html" title="This struct represent an entry in the ARP cache Table. " alt="" coords="5,5,112,32"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#link_1_1Control"/>
 <map name="link_1_1Control" id="link_1_1Control">
-<area shape="rect" id="node1" href="structlink_1_1Control.html" title="link::Control" alt="" coords="5,5,97,32"/>
+<area shape="rect" id="node1" href="structlink_1_1Control.html" title="This struct is used to allow comunication between the io layer and ther link layer. " alt="" coords="5,5,97,32"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#Logger"/>
@@ -382,50 +382,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </td></tr>
 <tr><td><img src="inherit_graph_45.png" border="0" alt="" usemap="#sw_1_1Forwarding__entry"/>
 <map name="sw_1_1Forwarding__entry" id="sw_1_1Forwarding__entry">
-<area shape="rect" id="node1" href="structsw_1_1Forwarding__entry.html" title="sw::Forwarding_entry" alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node1" href="structsw_1_1Forwarding__entry.html" title="This structures declares an entry of the Datagram protocol forwading table. " alt="" coords="5,5,152,32"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_46.png" border="0" alt="" usemap="#swp_1_1Hdr"/>
 <map name="swp_1_1Hdr" id="swp_1_1Hdr">
-<area shape="rect" id="node1" href="structswp_1_1Hdr.html" title="swp::Hdr" alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node1" href="structswp_1_1Hdr.html" title="This structs declares a Hdr as explained in the book: Computer Networks A system approach &#45; 2011..." alt="" coords="5,5,80,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_47.png" border="0" alt="" usemap="#swp_1_1recvQ__slot_3_01link_1_1Frame_01_4"/>
+<tr><td><img src="inherit_graph_47.png" border="0" alt="" usemap="#swp_1_1recQ__slot"/>
+<map name="swp_1_1recQ__slot" id="swp_1_1recQ__slot">
+<area shape="rect" id="node1" href="structswp_1_1recQ__slot.html" title="This strict declares a sendQ_slot as explained in the book: Computer Networks A system approach &#45; 201..." alt="" coords="5,5,116,32"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_48.png" border="0" alt="" usemap="#swp_1_1recvQ__slot_3_01link_1_1Frame_01_4"/>
 <map name="swp_1_1recvQ__slot_3_01link_1_1Frame_01_4" id="swp_1_1recvQ__slot_3_01link_1_1Frame_01_4">
 <area shape="rect" id="node1" href="structswp_1_1recvQ__slot.html" title="swp::recvQ_slot\&lt; link\l::Frame \&gt;" alt="" coords="5,5,155,47"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_48.png" border="0" alt="" usemap="#swp_1_1recvQ__slot_3_01MSG_01_4"/>
+<tr><td><img src="inherit_graph_49.png" border="0" alt="" usemap="#swp_1_1recvQ__slot_3_01MSG_01_4"/>
 <map name="swp_1_1recvQ__slot_3_01MSG_01_4" id="swp_1_1recvQ__slot_3_01MSG_01_4">
 <area shape="rect" id="node1" href="structswp_1_1recvQ__slot.html" title="swp::recvQ_slot\&lt; MSG \&gt;" alt="" coords="5,5,176,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_49.png" border="0" alt="" usemap="#swp_1_1sendQ__slot_3_01link_1_1Frame_01_4"/>
+<tr><td><img src="inherit_graph_50.png" border="0" alt="" usemap="#swp_1_1sendQ__slot_3_01link_1_1Frame_01_4"/>
 <map name="swp_1_1sendQ__slot_3_01link_1_1Frame_01_4" id="swp_1_1sendQ__slot_3_01link_1_1Frame_01_4">
 <area shape="rect" id="node1" href="structswp_1_1sendQ__slot.html" title="swp::sendQ_slot\&lt; link\l::Frame \&gt;" alt="" coords="5,5,157,47"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_50.png" border="0" alt="" usemap="#swp_1_1sendQ__slot_3_01MSG_01_4"/>
+<tr><td><img src="inherit_graph_51.png" border="0" alt="" usemap="#swp_1_1sendQ__slot_3_01MSG_01_4"/>
 <map name="swp_1_1sendQ__slot_3_01MSG_01_4" id="swp_1_1sendQ__slot_3_01MSG_01_4">
-<area shape="rect" id="node1" href="structswp_1_1sendQ__slot.html" title="swp::sendQ_slot\&lt; MSG \&gt;" alt="" coords="5,5,180,32"/>
+<area shape="rect" id="node1" href="structswp_1_1sendQ__slot.html" title="This strict declares a sendQ_slot as explained in the book: Computer Networks A system approach &#45; 201..." alt="" coords="5,5,180,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_51.png" border="0" alt="" usemap="#swp_1_1State_3_01link_1_1Frame_01_4"/>
+<tr><td><img src="inherit_graph_52.png" border="0" alt="" usemap="#swp_1_1state"/>
+<map name="swp_1_1state" id="swp_1_1state">
+<area shape="rect" id="node1" href="structswp_1_1state.html" title="This strict declares a swp::state as explained in the book: Computer Networks A system approach &#45; 201..." alt="" coords="5,5,88,32"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_53.png" border="0" alt="" usemap="#swp_1_1State_3_01link_1_1Frame_01_4"/>
 <map name="swp_1_1State_3_01link_1_1Frame_01_4" id="swp_1_1State_3_01link_1_1Frame_01_4">
 <area shape="rect" id="node1" href="structswp_1_1State.html" title="swp::State\&lt; link::Frame \&gt;" alt="" coords="5,5,180,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_52.png" border="0" alt="" usemap="#swp_1_1State_3_01MSG_01_4"/>
+<tr><td><img src="inherit_graph_54.png" border="0" alt="" usemap="#swp_1_1State_3_01MSG_01_4"/>
 <map name="swp_1_1State_3_01MSG_01_4" id="swp_1_1State_3_01MSG_01_4">
 <area shape="rect" id="node1" href="structswp_1_1State.html" title="swp::State\&lt; MSG \&gt;" alt="" coords="5,5,144,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_53.png" border="0" alt="" usemap="#swp__protocol"/>
+<tr><td><img src="inherit_graph_55.png" border="0" alt="" usemap="#swp__protocol"/>
 <map name="swp__protocol" id="swp__protocol">
 <area shape="rect" id="node1" href="classswp__protocol.html" title="swp_protocol" alt="" coords="5,5,104,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_54.png" border="0" alt="" usemap="#udp_1_1Socket"/>
+<tr><td><img src="inherit_graph_56.png" border="0" alt="" usemap="#udp_1_1Socket"/>
 <map name="udp_1_1Socket" id="udp_1_1Socket">
 <area shape="rect" id="node1" href="structudp_1_1Socket.html" title="udp::Socket" alt="" coords="5,5,97,32"/>
 </map>

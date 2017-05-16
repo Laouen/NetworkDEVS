@@ -2,6 +2,15 @@
 \label{structip_1_1Forwarding__entry}\index{ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}}
 
 
+Represent an entry of the forwarding table of the ip protocol.  
+
+
+
+
+{\ttfamily \#include $<$ip.\+h$>$}
+
+
+
 Collaboration diagram for ip\+:\+:Forwarding\+\_\+entry\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -12,15 +21,14 @@ Collaboration diagram for ip\+:\+:Forwarding\+\_\+entry\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Forwarding\+\_\+entry} (const \hyperlink{structip_1_1Forwarding__entry}{Forwarding\+\_\+entry} \&other)\hypertarget{structip_1_1Forwarding__entry_a9cdd6c01091d718a32a11342c3998f9f}{}\label{structip_1_1Forwarding__entry_a9cdd6c01091d718a32a11342c3998f9f}
-
-\item 
-bool {\bfseries same\+Subnet} (\hyperlink{structIPv4}{I\+Pv4} des\+\_\+ip) const \hypertarget{structip_1_1Forwarding__entry_a15177e8af63ffd9d41a72a55abfcbb58}{}\label{structip_1_1Forwarding__entry_a15177e8af63ffd9d41a72a55abfcbb58}
-
-\item 
-std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structip_1_1Forwarding__entry_a7b005eaf733338c728b9e63c00a84668}{}\label{structip_1_1Forwarding__entry_a7b005eaf733338c728b9e63c00a84668}
-
-\end{DoxyCompactItemize}
+\hyperlink{structip_1_1Forwarding__entry_af4c7f746d7de8206146adf933ad3dbe8}{Forwarding\+\_\+entry} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structip_1_1Forwarding__entry_a9cdd6c01091d718a32a11342c3998f9f}{Forwarding\+\_\+entry} (const \hyperlink{structip_1_1Forwarding__entry}{Forwarding\+\_\+entry} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{structip_1_1Forwarding__entry_a15177e8af63ffd9d41a72a55abfcbb58}{same\+Subnet} (\hyperlink{structIPv4}{I\+Pv4} des\+\_\+ip) const 
+\begin{DoxyCompactList}\small\item\em Cheks whether the other remote host is in the implicit this-\/$>$network or not. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{structip_1_1Forwarding__entry_a7b005eaf733338c728b9e63c00a84668}{as\+\_\+string} () const 
+\begin{DoxyCompactList}\small\item\em Prints in a std\+::string a human redable version of the ip\+::\+Forwarding\+\_\+table. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,6 +41,90 @@ std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structip_1_1Forwa
 ushort {\bfseries interface}\hypertarget{structip_1_1Forwarding__entry_aa84edda440aa39d70142b02320be2e07}{}\label{structip_1_1Forwarding__entry_aa84edda440aa39d70142b02320be2e07}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represent an entry of the forwarding table of the ip protocol. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+The \hyperlink{structip_1_1Forwarding__entry}{ip\+::\+Forwarding\+\_\+entry} has the next field\+:
+\begin{DoxyEnumerate}
+\item network\+: a \hyperlink{structIPv4}{I\+Pv4} containing the subnet of the next hope.
+\item netmask\+: a \hyperlink{structIPv4}{I\+Pv4} containing the mask that indicate what bits of the network represent the network of the next hope.
+\item interface\+: an unsigned short with the interface where to send the \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} to reach the next hope. 
+\end{DoxyEnumerate}
+
+\subsection{Constructor \& Destructor Documentation}
+\index{ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}!Forwarding\+\_\+entry@{Forwarding\+\_\+entry}}
+\index{Forwarding\+\_\+entry@{Forwarding\+\_\+entry}!ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}}
+\subsubsection[{\texorpdfstring{Forwarding\+\_\+entry()}{Forwarding_entry()}}]{\setlength{\rightskip}{0pt plus 5cm}ip\+::\+Forwarding\+\_\+entry\+::\+Forwarding\+\_\+entry (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structip_1_1Forwarding__entry_af4c7f746d7de8206146adf933ad3dbe8}{}\label{structip_1_1Forwarding__entry_af4c7f746d7de8206146adf933ad3dbe8}
+
+
+Default constructor. 
+
+Construct a new empty instance. \index{ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}!Forwarding\+\_\+entry@{Forwarding\+\_\+entry}}
+\index{Forwarding\+\_\+entry@{Forwarding\+\_\+entry}!ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}}
+\subsubsection[{\texorpdfstring{Forwarding\+\_\+entry(const Forwarding\+\_\+entry \&other)}{Forwarding_entry(const Forwarding_entry &other)}}]{\setlength{\rightskip}{0pt plus 5cm}ip\+::\+Forwarding\+\_\+entry\+::\+Forwarding\+\_\+entry (
+\begin{DoxyParamCaption}
+\item[{const {\bf Forwarding\+\_\+entry} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structip_1_1Forwarding__entry_a9cdd6c01091d718a32a11342c3998f9f}{}\label{structip_1_1Forwarding__entry_a9cdd6c01091d718a32a11342c3998f9f}
+
+
+Copy constructor. 
+
+Construct a new instance with a copy of the one passed as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{structip_1_1Forwarding__entry}{ip\+::\+Forwarding\+\_\+entry} used to construct the new copy. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}!as\+\_\+string@{as\+\_\+string}}
+\index{as\+\_\+string@{as\+\_\+string}!ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}}
+\subsubsection[{\texorpdfstring{as\+\_\+string() const }{as_string() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string ip\+::\+Forwarding\+\_\+entry\+::as\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structip_1_1Forwarding__entry_a7b005eaf733338c728b9e63c00a84668}{}\label{structip_1_1Forwarding__entry_a7b005eaf733338c728b9e63c00a84668}
+
+
+Prints in a std\+::string a human redable version of the ip\+::\+Forwarding\+\_\+table. 
+
+\begin{DoxyReturn}{Returns}
+A std\+::string with the value printed on it. 
+\end{DoxyReturn}
+\index{ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}!same\+Subnet@{same\+Subnet}}
+\index{same\+Subnet@{same\+Subnet}!ip\+::\+Forwarding\+\_\+entry@{ip\+::\+Forwarding\+\_\+entry}}
+\subsubsection[{\texorpdfstring{same\+Subnet(\+I\+Pv4 des\+\_\+ip) const }{sameSubnet(IPv4 des_ip) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool ip\+::\+Forwarding\+\_\+entry\+::same\+Subnet (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Pv4}}]{des\+\_\+ip}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structip_1_1Forwarding__entry_a15177e8af63ffd9d41a72a55abfcbb58}{}\label{structip_1_1Forwarding__entry_a15177e8af63ffd9d41a72a55abfcbb58}
+
+
+Cheks whether the other remote host is in the implicit this-\/$>$network or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em des\+\_\+ip} & The \hyperlink{structIPv4}{I\+Pv4} of the remote host to check if is in the same subnet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if des\+\_\+ip is in the same subnate of this-\/$>$network. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

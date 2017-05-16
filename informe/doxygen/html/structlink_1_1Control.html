@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>link</b></li><li class="navelem"><a class="el" href="structlink_1_1Control.html">Control</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacelink.html">link</a></li><li class="navelem"><a class="el" href="structlink_1_1Control.html">Control</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">link::Control Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct is used to allow comunication between the io layer and ther link layer.  
+ <a href="structlink_1_1Control.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="link_8h_source.html">link.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for link::Control:</div>
 <div class="dyncontent">
@@ -106,8 +111,8 @@ Collaboration diagram for link::Control:</div>
 <map name="link_1_1Control_coll__map" id="link_1_1Control_coll__map">
 <area shape="rect" id="node2" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="42,5,91,32"/>
 <area shape="rect" id="node8" href="structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="150,109,287,136"/>
-<area shape="rect" id="node9" href="structip_1_1Header.html" title="ip::Header" alt="" coords="43,109,125,136"/>
-<area shape="rect" id="node3" href="structip_1_1Datagram.html" title="ip::Datagram" alt="" coords="102,288,199,315"/>
+<area shape="rect" id="node9" href="structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. " alt="" coords="43,109,125,136"/>
+<area shape="rect" id="node3" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. " alt="" coords="102,288,199,315"/>
 <area shape="rect" id="node4" href="structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="430,109,535,136"/>
 <area shape="rect" id="node5" href="structudp_1_1Segment.html" title="udp::Segment" alt="" coords="234,199,337,225"/>
 <area shape="rect" id="node6" href="structudp_1_1Header.html" title="udp::Header" alt="" coords="312,109,405,136"/>
@@ -117,8 +122,11 @@ Collaboration diagram for link::Control:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af69072be879940dcb70c80cc40f2e46a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af69072be879940dcb70c80cc40f2e46a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Control</b> (const <a class="el" href="structlink_1_1Control.html">Control</a> &amp;other)</td></tr>
+<tr class="memitem:a516338434f0fb973c8f790e8aba08ec6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Control.html#a516338434f0fb973c8f790e8aba08ec6">Control</a> ()</td></tr>
+<tr class="memdesc:a516338434f0fb973c8f790e8aba08ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a516338434f0fb973c8f790e8aba08ec6">More...</a><br /></td></tr>
+<tr class="separator:a516338434f0fb973c8f790e8aba08ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af69072be879940dcb70c80cc40f2e46a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Control.html#af69072be879940dcb70c80cc40f2e46a">Control</a> (const <a class="el" href="structlink_1_1Control.html">Control</a> &amp;other)</td></tr>
+<tr class="memdesc:af69072be879940dcb70c80cc40f2e46a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#af69072be879940dcb70c80cc40f2e46a">More...</a><br /></td></tr>
 <tr class="separator:af69072be879940dcb70c80cc40f2e46a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -136,6 +144,76 @@ ushort&#160;</td><td class="memItemRight" valign="bottom"><b>interface</b></td><
 <a class="el" href="structip_1_1Datagram.html">ip::Datagram</a>&#160;</td><td class="memItemRight" valign="bottom"><b>packet</b></td></tr>
 <tr class="separator:aa67780caf362cd49f34b9357a2d86999"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct is used to allow comunication between the io layer and ther link layer. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>A <a class="el" href="structlink_1_1Control.html" title="This struct is used to allow comunication between the io layer and ther link layer. ">link::Control</a> has the next fields:</p><ol type="1">
+<li>request: a link::Ctrol that indicates the purpose of the message.</li>
+<li>interface: an unsigned short that indicate the interface where is conected the link module that is being part of the comunication process.</li>
+<li>ip: If the request is link::Ctrl::ARP_QUERY, this fields contains the ip to ve resolved.</li>
+<li>packet: If the request is link::Ctrl::SEND_PACKET, this fields contains the <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> to send. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a516338434f0fb973c8f790e8aba08ec6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::Control::Control </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a new empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="af69072be879940dcb70c80cc40f2e46a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::Control::Control </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structlink_1_1Control.html">Control</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a copy of the instance passed as parameter in the new instance.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structlink_1_1Control.html" title="This struct is used to allow comunication between the io layer and ther link layer. ">link::Control</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="link_8h_source.html">link.h</a></li>
 </ul>

@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>link</b></li><li class="navelem"><a class="el" href="structlink_1_1Frame.html">Frame</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacelink.html">link</a></li><li class="navelem"><a class="el" href="structlink_1_1Frame.html">Frame</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">link::Frame Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implement a L2 frame.  
+ <a href="structlink_1_1Frame.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="link_8h_source.html">link.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for link::Frame:</div>
 <div class="dyncontent">
@@ -119,20 +124,26 @@ Collaboration diagram for link::Frame:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aea0b6d8d213840254aac152351a7c46a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea0b6d8d213840254aac152351a7c46a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Frame</b> (const <a class="el" href="structlink_1_1Frame.html">Frame</a> &amp;other)</td></tr>
+<tr class="memitem:a66cdf70363bbb87ff48c661fdeb63242"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Frame.html#a66cdf70363bbb87ff48c661fdeb63242">Frame</a> ()</td></tr>
+<tr class="memdesc:a66cdf70363bbb87ff48c661fdeb63242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a66cdf70363bbb87ff48c661fdeb63242">More...</a><br /></td></tr>
+<tr class="separator:a66cdf70363bbb87ff48c661fdeb63242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0b6d8d213840254aac152351a7c46a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Frame.html#aea0b6d8d213840254aac152351a7c46a">Frame</a> (const <a class="el" href="structlink_1_1Frame.html">Frame</a> &amp;other)</td></tr>
+<tr class="memdesc:aea0b6d8d213840254aac152351a7c46a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#aea0b6d8d213840254aac152351a7c46a">More...</a><br /></td></tr>
 <tr class="separator:aea0b6d8d213840254aac152351a7c46a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dfe0d1f9213795013c55120438b9790"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dfe0d1f9213795013c55120438b9790"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>disableARPFlag</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Frame.html#a7dfe0d1f9213795013c55120438b9790">disableARPFlag</a> ()</td></tr>
+<tr class="memdesc:a7dfe0d1f9213795013c55120438b9790"><td class="mdescLeft">&#160;</td><td class="mdescRight">It set the preamble ARP flag as desabled to tell that the L2 frame carries an <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a>. <br /></td></tr>
 <tr class="separator:a7dfe0d1f9213795013c55120438b9790"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa27284375795ced3f503efcd617fb65e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa27284375795ced3f503efcd617fb65e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enableARPFlag</b> ()</td></tr>
+<tr class="memitem:aa27284375795ced3f503efcd617fb65e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Frame.html#aa27284375795ced3f503efcd617fb65e">enableARPFlag</a> ()</td></tr>
+<tr class="memdesc:aa27284375795ced3f503efcd617fb65e"><td class="mdescLeft">&#160;</td><td class="mdescRight">It set the preamble ARP flag as enables to tell that the L2 frame carries an ARP Packet.  <a href="#aa27284375795ced3f503efcd617fb65e">More...</a><br /></td></tr>
 <tr class="separator:aa27284375795ced3f503efcd617fb65e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af14b9acc0bd67497f8d008425c36462e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af14b9acc0bd67497f8d008425c36462e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPayload</b> (const <a class="el" href="structip_1_1Datagram.html">ip::Datagram</a> &amp;p)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Frame.html#af14b9acc0bd67497f8d008425c36462e">setPayload</a> (const <a class="el" href="structip_1_1Datagram.html">ip::Datagram</a> &amp;p)</td></tr>
+<tr class="memdesc:af14b9acc0bd67497f8d008425c36462e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> as the payload and desables the ARP flags. <br /></td></tr>
 <tr class="separator:af14b9acc0bd67497f8d008425c36462e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9eb67e1eb8d928dba0a42451edb590eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9eb67e1eb8d928dba0a42451edb590eb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPayload</b> (const <a class="el" href="structlink_1_1arp_1_1Packet.html">arp::Packet</a> &amp;p)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1Frame.html#a9eb67e1eb8d928dba0a42451edb590eb">setPayload</a> (const <a class="el" href="structlink_1_1arp_1_1Packet.html">arp::Packet</a> &amp;p)</td></tr>
+<tr class="memdesc:a9eb67e1eb8d928dba0a42451edb590eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a <a class="el" href="structlink_1_1arp_1_1Packet.html" title="This struct implements an ARP packet to send a query through the subnet in order to get the response ...">link::arp::Packet</a> as the payload and enables the ARP flags. <br /></td></tr>
 <tr class="separator:a9eb67e1eb8d928dba0a42451edb590eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -159,6 +170,98 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>CRC</b></td>
 u_char&#160;</td><td class="memItemRight" valign="bottom"><b>interpacket_gat</b> [12]</td></tr>
 <tr class="separator:a949962d7ee45bbcf1787640c797e5bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implement a L2 frame. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>A L2 <a class="el" href="structlink_1_1Frame.html" title="Implement a L2 frame. ">Frame</a> contains the next fields: preamble: an unsigned long with all the required flags. MAC_destination: The <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> Address of the destination host. MAC_source: The <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> Address of the source host. EtherType: Type of the fisical protocol (0 for Ethernet). payload: a char[1500] with the <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> or ARP Paket to send. interpacket_gat: a char[12] used to avoid solve some networks colitions problems. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a66cdf70363bbb87ff48c661fdeb63242"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::Frame::Frame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a new empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="aea0b6d8d213840254aac152351a7c46a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::Frame::Frame </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structlink_1_1Frame.html">Frame</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a copy of the instance passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structlink_1_1Frame.html" title="Implement a L2 frame. ">link::Frame</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa27284375795ced3f503efcd617fb65e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void link::Frame::enableARPFlag </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>It set the preamble ARP flag as enables to tell that the L2 frame carries an ARP Packet. </p>
+<p>[long description] </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="link_8h_source.html">link.h</a></li>
 </ul>

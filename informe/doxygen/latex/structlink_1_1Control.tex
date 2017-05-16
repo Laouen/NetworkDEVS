@@ -2,7 +2,17 @@
 \label{structlink_1_1Control}\index{link\+::\+Control@{link\+::\+Control}}
 
 
-Collaboration diagram for link\+:\+:Control\+:\nopagebreak
+This struct is used to allow comunication between the io layer and ther link layer.  
+
+
+
+
+{\ttfamily \#include $<$link.\+h$>$}
+
+
+
+Collaboration diagram for link\+:\+:Control\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,9 +22,10 @@ Collaboration diagram for link\+:\+:Control\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Control} (const \hyperlink{structlink_1_1Control}{Control} \&other)\hypertarget{structlink_1_1Control_af69072be879940dcb70c80cc40f2e46a}{}\label{structlink_1_1Control_af69072be879940dcb70c80cc40f2e46a}
-
-\end{DoxyCompactItemize}
+\hyperlink{structlink_1_1Control_a516338434f0fb973c8f790e8aba08ec6}{Control} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structlink_1_1Control_af69072be879940dcb70c80cc40f2e46a}{Control} (const \hyperlink{structlink_1_1Control}{Control} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,6 +41,55 @@ ushort {\bfseries interface}\hypertarget{structlink_1_1Control_a9ad3f2480082b69e
 \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} {\bfseries packet}\hypertarget{structlink_1_1Control_aa67780caf362cd49f34b9357a2d86999}{}\label{structlink_1_1Control_aa67780caf362cd49f34b9357a2d86999}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This struct is used to allow comunication between the io layer and ther link layer. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+A \hyperlink{structlink_1_1Control}{link\+::\+Control} has the next fields\+:
+\begin{DoxyEnumerate}
+\item request\+: a link\+::\+Ctrol that indicates the purpose of the message.
+\item interface\+: an unsigned short that indicate the interface where is conected the link module that is being part of the comunication process.
+\item ip\+: If the request is link\+::\+Ctrl\+::\+A\+R\+P\+\_\+\+Q\+U\+E\+RY, this fields contains the ip to ve resolved.
+\item packet\+: If the request is link\+::\+Ctrl\+::\+S\+E\+N\+D\+\_\+\+P\+A\+C\+K\+ET, this fields contains the \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} to send. 
+\end{DoxyEnumerate}
+
+\subsection{Constructor \& Destructor Documentation}
+\index{link\+::\+Control@{link\+::\+Control}!Control@{Control}}
+\index{Control@{Control}!link\+::\+Control@{link\+::\+Control}}
+\subsubsection[{\texorpdfstring{Control()}{Control()}}]{\setlength{\rightskip}{0pt plus 5cm}link\+::\+Control\+::\+Control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1Control_a516338434f0fb973c8f790e8aba08ec6}{}\label{structlink_1_1Control_a516338434f0fb973c8f790e8aba08ec6}
+
+
+Default constructor. 
+
+Construct a new empty instance. \index{link\+::\+Control@{link\+::\+Control}!Control@{Control}}
+\index{Control@{Control}!link\+::\+Control@{link\+::\+Control}}
+\subsubsection[{\texorpdfstring{Control(const Control \&other)}{Control(const Control &other)}}]{\setlength{\rightskip}{0pt plus 5cm}link\+::\+Control\+::\+Control (
+\begin{DoxyParamCaption}
+\item[{const {\bf Control} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1Control_af69072be879940dcb70c80cc40f2e46a}{}\label{structlink_1_1Control_af69072be879940dcb70c80cc40f2e46a}
+
+
+Copy constructor. 
+
+Construct a copy of the instance passed as parameter in the new instance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{structlink_1_1Control}{link\+::\+Control} to copy in the new instance. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

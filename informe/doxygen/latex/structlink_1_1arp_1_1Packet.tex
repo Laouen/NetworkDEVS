@@ -2,6 +2,15 @@
 \label{structlink_1_1arp_1_1Packet}\index{link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}}
 
 
+This struct implements an A\+RP packet to send a query through the subnet in order to get the response with the \hyperlink{structMAC}{M\+AC} address of the node with asigned \hyperlink{structIPv4}{I\+Pv4} ip.  
+
+
+
+
+{\ttfamily \#include $<$link.\+h$>$}
+
+
+
 Inheritance diagram for link\+:\+:arp\+:\+:Packet\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -21,12 +30,12 @@ Collaboration diagram for link\+:\+:arp\+:\+:Packet\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Packet} (const \hyperlink{structlink_1_1arp_1_1Packet}{Packet} \&other)\hypertarget{structlink_1_1arp_1_1Packet_a96f29d607c34ae169c28e5d01b111905}{}\label{structlink_1_1arp_1_1Packet_a96f29d607c34ae169c28e5d01b111905}
-
-\item 
-std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structlink_1_1arp_1_1Packet_a52f7b2c60b11900664c7be8965d7846b}{}\label{structlink_1_1arp_1_1Packet_a52f7b2c60b11900664c7be8965d7846b}
-
-\end{DoxyCompactItemize}
+\hyperlink{structlink_1_1arp_1_1Packet_a31f07149ad68e4b17255a4288cd250ab}{Packet} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structlink_1_1arp_1_1Packet_a96f29d607c34ae169c28e5d01b111905}{Packet} (const \hyperlink{structlink_1_1arp_1_1Packet}{Packet} \&other)
+\begin{DoxyCompactList}\small\item\em Copy instance. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{structlink_1_1arp_1_1Packet_a52f7b2c60b11900664c7be8965d7846b}{as\+\_\+string} () const 
+\begin{DoxyCompactList}\small\item\em Print the \hyperlink{structlink_1_1arp_1_1Packet}{link\+::arp\+::\+Packet} in a human redable format on a std\+::string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -57,6 +66,66 @@ ushort {\bfseries Operation}\hypertarget{structlink_1_1arp_1_1Packet_ae6940f7882
 \hyperlink{structIPv4}{I\+Pv4} {\bfseries Target\+\_\+\+Protocol\+\_\+\+Address}\hypertarget{structlink_1_1arp_1_1Packet_ab9b74fc0d03a4bb39f44b30bfedf8c40}{}\label{structlink_1_1arp_1_1Packet_ab9b74fc0d03a4bb39f44b30bfedf8c40}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This struct implements an A\+RP packet to send a query through the subnet in order to get the response with the \hyperlink{structMAC}{M\+AC} address of the node with asigned \hyperlink{structIPv4}{I\+Pv4} ip. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+17 May 2017
+\end{DoxyDate}
+The fields of a \hyperlink{structlink_1_1arp_1_1Packet}{link\+::arp\+::\+Packet} are the next\+: Hardware\+\_\+type\+: a ushort (1 for \hyperlink{structMAC}{M\+AC} address type). Protocol\+\_\+type\+: a ushort (0x0800 for \hyperlink{structIPv4}{I\+Pv4} type). H\+Len\+: a u\+\_\+char with the hardware type length. P\+Len\+: a u\+\_\+char with the protocol type length. Operation\+: a ushort (1 for query, 0 for response). Source\+\_\+\+Hardware\+\_\+\+Address\+: The source hot \hyperlink{structMAC}{M\+AC}. Source\+\_\+\+Protocol\+\_\+\+Address\+: The source hot \hyperlink{structIPv4}{I\+Pv4}. Target\+\_\+\+Hardware\+\_\+\+Address\+: The target host \hyperlink{structMAC}{M\+AC}. Target\+\_\+\+Protocol\+\_\+\+Address\+: The target host \hyperlink{structIPv4}{I\+Pv4}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}!Packet@{Packet}}
+\index{Packet@{Packet}!link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}}
+\subsubsection[{\texorpdfstring{Packet()}{Packet()}}]{\setlength{\rightskip}{0pt plus 5cm}link\+::arp\+::\+Packet\+::\+Packet (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1arp_1_1Packet_a31f07149ad68e4b17255a4288cd250ab}{}\label{structlink_1_1arp_1_1Packet_a31f07149ad68e4b17255a4288cd250ab}
+
+
+Default constructor. 
+
+Construct a new empty instance \index{link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}!Packet@{Packet}}
+\index{Packet@{Packet}!link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}}
+\subsubsection[{\texorpdfstring{Packet(const Packet \&other)}{Packet(const Packet &other)}}]{\setlength{\rightskip}{0pt plus 5cm}link\+::arp\+::\+Packet\+::\+Packet (
+\begin{DoxyParamCaption}
+\item[{const {\bf Packet} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1arp_1_1Packet_a96f29d607c34ae169c28e5d01b111905}{}\label{structlink_1_1arp_1_1Packet_a96f29d607c34ae169c28e5d01b111905}
+
+
+Copy instance. 
+
+Construct a new copy of the instances passed as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{structlink_1_1arp_1_1Packet}{link\+::arp\+::\+Packet} to copy in the new instance. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}!as\+\_\+string@{as\+\_\+string}}
+\index{as\+\_\+string@{as\+\_\+string}!link\+::arp\+::\+Packet@{link\+::arp\+::\+Packet}}
+\subsubsection[{\texorpdfstring{as\+\_\+string() const }{as_string() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string link\+::arp\+::\+Packet\+::as\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1arp_1_1Packet_a52f7b2c60b11900664c7be8965d7846b}{}\label{structlink_1_1arp_1_1Packet_a52f7b2c60b11900664c7be8965d7846b}
+
+
+Print the \hyperlink{structlink_1_1arp_1_1Packet}{link\+::arp\+::\+Packet} in a human redable format on a std\+::string. 
+
+\begin{DoxyReturn}{Returns}
+A std\+::string with the printed value. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

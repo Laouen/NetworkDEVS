@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>sw</b></li><li class="navelem"><a class="el" href="structsw_1_1Forwarding__entry.html">Forwarding_entry</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacesw.html">sw</a></li><li class="navelem"><a class="el" href="structsw_1_1Forwarding__entry.html">Forwarding_entry</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">sw::Forwarding_entry Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This structures declares an entry of the Datagram protocol forwading table.  
+ <a href="structsw_1_1Forwarding__entry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="sw_8h_source.html">sw.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for sw::Forwarding_entry:</div>
 <div class="dyncontent">
@@ -110,8 +115,11 @@ Collaboration diagram for sw::Forwarding_entry:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a504b52199970b085a23a28cd45b9b788"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a504b52199970b085a23a28cd45b9b788"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Forwarding_entry</b> (const <a class="el" href="structsw_1_1Forwarding__entry.html">Forwarding_entry</a> &amp;other)</td></tr>
+<tr class="memitem:ad923fd6088887cc6f0b894045e04d8df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsw_1_1Forwarding__entry.html#ad923fd6088887cc6f0b894045e04d8df">Forwarding_entry</a> ()</td></tr>
+<tr class="memdesc:ad923fd6088887cc6f0b894045e04d8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ad923fd6088887cc6f0b894045e04d8df">More...</a><br /></td></tr>
+<tr class="separator:ad923fd6088887cc6f0b894045e04d8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a504b52199970b085a23a28cd45b9b788"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsw_1_1Forwarding__entry.html#a504b52199970b085a23a28cd45b9b788">Forwarding_entry</a> (const <a class="el" href="structsw_1_1Forwarding__entry.html">Forwarding_entry</a> &amp;other)</td></tr>
+<tr class="memdesc:a504b52199970b085a23a28cd45b9b788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a504b52199970b085a23a28cd45b9b788">More...</a><br /></td></tr>
 <tr class="separator:a504b52199970b085a23a28cd45b9b788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -123,6 +131,71 @@ Public Attributes</h2></td></tr>
 ushort&#160;</td><td class="memItemRight" valign="bottom"><b>interface</b></td></tr>
 <tr class="separator:ab08b8f0d50af0a13308f5fc5224586d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This structures declares an entry of the Datagram protocol forwading table. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>The switches uses this datatype to fill their forwarding tables in order to determine through what interfaces forward a <a class="el" href="structlink_1_1Frame.html" title="Implement a L2 frame. ">link::Frame</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ad923fd6088887cc6f0b894045e04d8df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sw::Forwarding_entry::Forwarding_entry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct an empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="a504b52199970b085a23a28cd45b9b788"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sw::Forwarding_entry::Forwarding_entry </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsw_1_1Forwarding__entry.html">Forwarding_entry</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Construct a copy of the instance passed as parameter in the new instance.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structsw_1_1Forwarding__entry.html" title="This structures declares an entry of the Datagram protocol forwading table. ">sw::Forwarding_entry</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="sw_8h_source.html">sw.h</a></li>
 </ul>

@@ -2,6 +2,15 @@
 \label{structlink_1_1Frame}\index{link\+::\+Frame@{link\+::\+Frame}}
 
 
+Implement a L2 frame.  
+
+
+
+
+{\ttfamily \#include $<$link.\+h$>$}
+
+
+
 Inheritance diagram for link\+:\+:Frame\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -21,21 +30,21 @@ Collaboration diagram for link\+:\+:Frame\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Frame} (const \hyperlink{structlink_1_1Frame}{Frame} \&other)\hypertarget{structlink_1_1Frame_aea0b6d8d213840254aac152351a7c46a}{}\label{structlink_1_1Frame_aea0b6d8d213840254aac152351a7c46a}
+\hyperlink{structlink_1_1Frame_a66cdf70363bbb87ff48c661fdeb63242}{Frame} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structlink_1_1Frame_aea0b6d8d213840254aac152351a7c46a}{Frame} (const \hyperlink{structlink_1_1Frame}{Frame} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+void \hyperlink{structlink_1_1Frame_a7dfe0d1f9213795013c55120438b9790}{disable\+A\+R\+P\+Flag} ()\hypertarget{structlink_1_1Frame_a7dfe0d1f9213795013c55120438b9790}{}\label{structlink_1_1Frame_a7dfe0d1f9213795013c55120438b9790}
 
-\item 
-void {\bfseries disable\+A\+R\+P\+Flag} ()\hypertarget{structlink_1_1Frame_a7dfe0d1f9213795013c55120438b9790}{}\label{structlink_1_1Frame_a7dfe0d1f9213795013c55120438b9790}
+\begin{DoxyCompactList}\small\item\em It set the preamble A\+RP flag as desabled to tell that the L2 frame carries an \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram}. \end{DoxyCompactList}\item 
+void \hyperlink{structlink_1_1Frame_aa27284375795ced3f503efcd617fb65e}{enable\+A\+R\+P\+Flag} ()
+\begin{DoxyCompactList}\small\item\em It set the preamble A\+RP flag as enables to tell that the L2 frame carries an A\+RP Packet. \end{DoxyCompactList}\item 
+void \hyperlink{structlink_1_1Frame_af14b9acc0bd67497f8d008425c36462e}{set\+Payload} (const \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} \&p)\hypertarget{structlink_1_1Frame_af14b9acc0bd67497f8d008425c36462e}{}\label{structlink_1_1Frame_af14b9acc0bd67497f8d008425c36462e}
 
-\item 
-void {\bfseries enable\+A\+R\+P\+Flag} ()\hypertarget{structlink_1_1Frame_aa27284375795ced3f503efcd617fb65e}{}\label{structlink_1_1Frame_aa27284375795ced3f503efcd617fb65e}
+\begin{DoxyCompactList}\small\item\em Sets an \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} as the payload and desables the A\+RP flags. \end{DoxyCompactList}\item 
+void \hyperlink{structlink_1_1Frame_a9eb67e1eb8d928dba0a42451edb590eb}{set\+Payload} (const \hyperlink{structlink_1_1arp_1_1Packet}{arp\+::\+Packet} \&p)\hypertarget{structlink_1_1Frame_a9eb67e1eb8d928dba0a42451edb590eb}{}\label{structlink_1_1Frame_a9eb67e1eb8d928dba0a42451edb590eb}
 
-\item 
-void {\bfseries set\+Payload} (const \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} \&p)\hypertarget{structlink_1_1Frame_af14b9acc0bd67497f8d008425c36462e}{}\label{structlink_1_1Frame_af14b9acc0bd67497f8d008425c36462e}
-
-\item 
-void {\bfseries set\+Payload} (const \hyperlink{structlink_1_1arp_1_1Packet}{arp\+::\+Packet} \&p)\hypertarget{structlink_1_1Frame_a9eb67e1eb8d928dba0a42451edb590eb}{}\label{structlink_1_1Frame_a9eb67e1eb8d928dba0a42451edb590eb}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets a \hyperlink{structlink_1_1arp_1_1Packet}{link\+::arp\+::\+Packet} as the payload and enables the A\+RP flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -61,6 +70,63 @@ u\+\_\+char {\bfseries interpacket\+\_\+gat} \mbox{[}12\mbox{]}\hypertarget{stru
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Implement a L2 frame. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+A L2 \hyperlink{structlink_1_1Frame}{Frame} contains the next fields\+: preamble\+: an unsigned long with all the required flags. M\+A\+C\+\_\+destination\+: The \hyperlink{structMAC}{M\+AC} Address of the destination host. M\+A\+C\+\_\+source\+: The \hyperlink{structMAC}{M\+AC} Address of the source host. Ether\+Type\+: Type of the fisical protocol (0 for Ethernet). payload\+: a char\mbox{[}1500\mbox{]} with the \hyperlink{structip_1_1Datagram}{ip\+::\+Datagram} or A\+RP Paket to send. interpacket\+\_\+gat\+: a char\mbox{[}12\mbox{]} used to avoid solve some networks colitions problems. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{link\+::\+Frame@{link\+::\+Frame}!Frame@{Frame}}
+\index{Frame@{Frame}!link\+::\+Frame@{link\+::\+Frame}}
+\subsubsection[{\texorpdfstring{Frame()}{Frame()}}]{\setlength{\rightskip}{0pt plus 5cm}link\+::\+Frame\+::\+Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1Frame_a66cdf70363bbb87ff48c661fdeb63242}{}\label{structlink_1_1Frame_a66cdf70363bbb87ff48c661fdeb63242}
+
+
+Default constructor. 
+
+Construct a new empty instance. \index{link\+::\+Frame@{link\+::\+Frame}!Frame@{Frame}}
+\index{Frame@{Frame}!link\+::\+Frame@{link\+::\+Frame}}
+\subsubsection[{\texorpdfstring{Frame(const Frame \&other)}{Frame(const Frame &other)}}]{\setlength{\rightskip}{0pt plus 5cm}link\+::\+Frame\+::\+Frame (
+\begin{DoxyParamCaption}
+\item[{const {\bf Frame} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1Frame_aea0b6d8d213840254aac152351a7c46a}{}\label{structlink_1_1Frame_aea0b6d8d213840254aac152351a7c46a}
+
+
+Copy constructor. 
+
+Construct a copy of the instance passed as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{structlink_1_1Frame}{link\+::\+Frame} to copy in the new instance. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{link\+::\+Frame@{link\+::\+Frame}!enable\+A\+R\+P\+Flag@{enable\+A\+R\+P\+Flag}}
+\index{enable\+A\+R\+P\+Flag@{enable\+A\+R\+P\+Flag}!link\+::\+Frame@{link\+::\+Frame}}
+\subsubsection[{\texorpdfstring{enable\+A\+R\+P\+Flag()}{enableARPFlag()}}]{\setlength{\rightskip}{0pt plus 5cm}void link\+::\+Frame\+::enable\+A\+R\+P\+Flag (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structlink_1_1Frame_aa27284375795ced3f503efcd617fb65e}{}\label{structlink_1_1Frame_aa27284375795ced3f503efcd617fb65e}
+
+
+It set the preamble A\+RP flag as enables to tell that the L2 frame carries an A\+RP Packet. 
+
+\mbox{[}long description\mbox{]} 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

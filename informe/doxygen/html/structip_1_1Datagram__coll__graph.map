@@ -4,6 +4,6 @@
 <area shape="rect" id="node4" href="$structudp_1_1Header.html" title="udp::Header" alt="" coords="135,109,229,136"/>
 <area shape="rect" id="node5" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="247,5,365,32"/>
 <area shape="rect" id="node6" href="$structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="253,109,391,136"/>
-<area shape="rect" id="node8" href="$structip_1_1Header.html" title="ip::Header" alt="" coords="415,109,498,136"/>
+<area shape="rect" id="node8" href="$structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. " alt="" coords="415,109,498,136"/>
 <area shape="rect" id="node7" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="411,5,460,32"/>
 </map>

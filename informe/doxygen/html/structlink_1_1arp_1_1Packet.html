@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>link</b></li><li class="navelem"><b>arp</b></li><li class="navelem"><a class="el" href="structlink_1_1arp_1_1Packet.html">Packet</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacelink.html">link</a></li><li class="navelem"><b>arp</b></li><li class="navelem"><a class="el" href="structlink_1_1arp_1_1Packet.html">Packet</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">link::arp::Packet Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct implements an ARP packet to send a query through the subnet in order to get the response with the <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> address of the node with asigned <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> ip.  
+ <a href="structlink_1_1arp_1_1Packet.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="link_8h_source.html">link.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for link::arp::Packet:</div>
 <div class="dyncontent">
@@ -120,11 +125,14 @@ Collaboration diagram for link::arp::Packet:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a96f29d607c34ae169c28e5d01b111905"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96f29d607c34ae169c28e5d01b111905"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Packet</b> (const <a class="el" href="structlink_1_1arp_1_1Packet.html">Packet</a> &amp;other)</td></tr>
+<tr class="memitem:a31f07149ad68e4b17255a4288cd250ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1arp_1_1Packet.html#a31f07149ad68e4b17255a4288cd250ab">Packet</a> ()</td></tr>
+<tr class="memdesc:a31f07149ad68e4b17255a4288cd250ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a31f07149ad68e4b17255a4288cd250ab">More...</a><br /></td></tr>
+<tr class="separator:a31f07149ad68e4b17255a4288cd250ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96f29d607c34ae169c28e5d01b111905"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1arp_1_1Packet.html#a96f29d607c34ae169c28e5d01b111905">Packet</a> (const <a class="el" href="structlink_1_1arp_1_1Packet.html">Packet</a> &amp;other)</td></tr>
+<tr class="memdesc:a96f29d607c34ae169c28e5d01b111905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy instance.  <a href="#a96f29d607c34ae169c28e5d01b111905">More...</a><br /></td></tr>
 <tr class="separator:a96f29d607c34ae169c28e5d01b111905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52f7b2c60b11900664c7be8965d7846b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52f7b2c60b11900664c7be8965d7846b"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>as_string</b> () const </td></tr>
+<tr class="memitem:a52f7b2c60b11900664c7be8965d7846b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1arp_1_1Packet.html#a52f7b2c60b11900664c7be8965d7846b">as_string</a> () const </td></tr>
+<tr class="memdesc:a52f7b2c60b11900664c7be8965d7846b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the <a class="el" href="structlink_1_1arp_1_1Packet.html" title="This struct implements an ARP packet to send a query through the subnet in order to get the response ...">link::arp::Packet</a> in a human redable format on a std::string.  <a href="#a52f7b2c60b11900664c7be8965d7846b">More...</a><br /></td></tr>
 <tr class="separator:a52f7b2c60b11900664c7be8965d7846b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -157,6 +165,98 @@ ushort&#160;</td><td class="memItemRight" valign="bottom"><b>Operation</b></td><
 <a class="el" href="structIPv4.html">IPv4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Target_Protocol_Address</b></td></tr>
 <tr class="separator:ab9b74fc0d03a4bb39f44b30bfedf8c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct implements an ARP packet to send a query through the subnet in order to get the response with the <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> address of the node with asigned <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> ip. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>17 May 2017</dd></dl>
+<p>The fields of a <a class="el" href="structlink_1_1arp_1_1Packet.html" title="This struct implements an ARP packet to send a query through the subnet in order to get the response ...">link::arp::Packet</a> are the next: Hardware_type: a ushort (1 for <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> address type). Protocol_type: a ushort (0x0800 for <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> type). HLen: a u_char with the hardware type length. PLen: a u_char with the protocol type length. Operation: a ushort (1 for query, 0 for response). Source_Hardware_Address: The source hot <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a>. Source_Protocol_Address: The source hot <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a>. Target_Hardware_Address: The target host <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a>. Target_Protocol_Address: The target host <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a31f07149ad68e4b17255a4288cd250ab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::arp::Packet::Packet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a new empty instance </p>
+
+</div>
+</div>
+<a class="anchor" id="a96f29d607c34ae169c28e5d01b111905"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::arp::Packet::Packet </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structlink_1_1arp_1_1Packet.html">Packet</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy instance. </p>
+<p>Construct a new copy of the instances passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structlink_1_1arp_1_1Packet.html" title="This struct implements an ARP packet to send a query through the subnet in order to get the response ...">link::arp::Packet</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a52f7b2c60b11900664c7be8965d7846b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string link::arp::Packet::as_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Print the <a class="el" href="structlink_1_1arp_1_1Packet.html" title="This struct implements an ARP packet to send a query through the subnet in order to get the response ...">link::arp::Packet</a> in a human redable format on a std::string. </p>
+<dl class="section return"><dt>Returns</dt><dd>A std::string with the printed value. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="link_8h_source.html">link.h</a></li>
 </ul>

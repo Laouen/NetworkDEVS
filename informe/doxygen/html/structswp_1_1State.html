@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>swp</b></li><li class="navelem"><a class="el" href="structswp_1_1State.html">State</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceswp.html">swp</a></li><li class="navelem"><a class="el" href="structswp_1_1State.html">State</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -104,7 +104,7 @@ Collaboration diagram for swp::State&lt; MSG &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structswp_1_1State__coll__graph.png" border="0" usemap="#swp_1_1State_3_01MSG_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="swp_1_1State_3_01MSG_01_4_coll__map" id="swp_1_1State_3_01MSG_01_4_coll__map">
-<area shape="rect" id="node3" href="structlink_1_1Frame.html" title="link::Frame" alt="" coords="260,31,347,57"/>
+<area shape="rect" id="node3" href="structlink_1_1Frame.html" title="Implement a L2 frame. " alt="" coords="260,31,347,57"/>
 <area shape="rect" id="node4" href="structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="5,5,111,32"/>
 <area shape="rect" id="node5" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. " alt="" coords="32,56,84,83"/>
 </map>
@@ -112,20 +112,25 @@ Collaboration diagram for swp::State&lt; MSG &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2eb6824bd9f7bfa5e84b402ce3915334"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2eb6824bd9f7bfa5e84b402ce3915334"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (const <a class="el" href="structswp_1_1State.html">State</a> &amp;other)</td></tr>
+<tr class="memitem:acb33f7cd743bda0db9c1b7b92cf2b2ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswp_1_1State.html#acb33f7cd743bda0db9c1b7b92cf2b2ea">State</a> ()</td></tr>
+<tr class="memdesc:acb33f7cd743bda0db9c1b7b92cf2b2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#acb33f7cd743bda0db9c1b7b92cf2b2ea">More...</a><br /></td></tr>
+<tr class="separator:acb33f7cd743bda0db9c1b7b92cf2b2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eb6824bd9f7bfa5e84b402ce3915334"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswp_1_1State.html#a2eb6824bd9f7bfa5e84b402ce3915334">State</a> (const <a class="el" href="structswp_1_1State.html">State</a> &amp;other)</td></tr>
+<tr class="memdesc:a2eb6824bd9f7bfa5e84b402ce3915334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a2eb6824bd9f7bfa5e84b402ce3915334">More...</a><br /></td></tr>
 <tr class="separator:a2eb6824bd9f7bfa5e84b402ce3915334"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad932ee3326683cbee09e8a8b36f26b9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad932ee3326683cbee09e8a8b36f26b9b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>sendWindowsIsFull</b> () const </td></tr>
+<tr class="memitem:ad932ee3326683cbee09e8a8b36f26b9b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswp_1_1State.html#ad932ee3326683cbee09e8a8b36f26b9b">sendWindowsIsFull</a> () const </td></tr>
+<tr class="memdesc:ad932ee3326683cbee09e8a8b36f26b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether no more MSGs can be send until a new Ack arrives.  <a href="#ad932ee3326683cbee09e8a8b36f26b9b">More...</a><br /></td></tr>
 <tr class="separator:ad932ee3326683cbee09e8a8b36f26b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a9c617b0cf8b06e442d10b6e3d98143"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a9c617b0cf8b06e442d10b6e3d98143"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>thereIsFrameToSend</b> () const </td></tr>
+<tr class="memitem:a5a9c617b0cf8b06e442d10b6e3d98143"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswp_1_1State.html#a5a9c617b0cf8b06e442d10b6e3d98143">thereIsFrameToSend</a> () const </td></tr>
+<tr class="memdesc:a5a9c617b0cf8b06e442d10b6e3d98143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether there is MSGs waiting to be send.  <a href="#a5a9c617b0cf8b06e442d10b6e3d98143">More...</a><br /></td></tr>
 <tr class="separator:a5a9c617b0cf8b06e442d10b6e3d98143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc781763914d3d1de3ff5c462f1f76ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc781763914d3d1de3ff5c462f1f76ef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendFrame</b> (<a class="el" href="structlink_1_1Frame.html">link::Frame</a> frame)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswp_1_1State.html#adc781763914d3d1de3ff5c462f1f76ef">sendFrame</a> (<a class="el" href="structlink_1_1Frame.html">link::Frame</a> frame)</td></tr>
+<tr class="memdesc:adc781763914d3d1de3ff5c462f1f76ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a <a class="el" href="structlink_1_1Frame.html" title="Implement a L2 frame. ">link::Frame</a>. <br /></td></tr>
 <tr class="separator:adc781763914d3d1de3ff5c462f1f76ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02c83f258bba472f268c119768147def"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02c83f258bba472f268c119768147def"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswp_1_1State.html#a02c83f258bba472f268c119768147def">reset</a> ()</td></tr>
+<tr class="memdesc:a02c83f258bba472f268c119768147def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the instance values to start from the begining. <br /></td></tr>
 <tr class="separator:a02c83f258bba472f268c119768147def"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -149,6 +154,127 @@ Seqno&#160;</td><td class="memItemRight" valign="bottom"><b>LFR</b></td></tr>
 std::list&lt; <a class="el" href="structswp_1_1recvQ__slot.html">recvQ_slot</a>&lt; MSG &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>recvQ</b></td></tr>
 <tr class="separator:a542ea95d27936e5d09a417c5aa36eb19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="acb33f7cd743bda0db9c1b7b92cf2b2ea"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structswp_1_1State.html">swp::State</a>&lt; MSG &gt;::<a class="el" href="structswp_1_1State.html">State</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a restarted instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2eb6824bd9f7bfa5e84b402ce3915334"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structswp_1_1State.html">swp::State</a>&lt; MSG &gt;::<a class="el" href="structswp_1_1State.html">State</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structswp_1_1State.html">State</a>&lt; MSG &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Create a copy of the instance passed as parameter in the new instace.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structswp_1_1State.html">swp::State</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad932ee3326683cbee09e8a8b36f26b9b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structswp_1_1State.html">swp::State</a>&lt; MSG &gt;::sendWindowsIsFull </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether no more MSGs can be send until a new Ack arrives. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if no more MSGs can be send, False otherwise. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5a9c617b0cf8b06e442d10b6e3d98143"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structswp_1_1State.html">swp::State</a>&lt; MSG &gt;::thereIsFrameToSend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether there is MSGs waiting to be send. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if there is MSGs to send, False otherwise. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="swp_8h_source.html">swp.h</a></li>
 </ul>

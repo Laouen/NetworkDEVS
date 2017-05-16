@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>link</b></li><li class="navelem"><b>arp</b></li><li class="navelem"><a class="el" href="structlink_1_1arp_1_1Entry.html">Entry</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacelink.html">link</a></li><li class="navelem"><b>arp</b></li><li class="navelem"><a class="el" href="structlink_1_1arp_1_1Entry.html">Entry</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">link::arp::Entry Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct represent an entry in the ARP cache Table.  
+ <a href="structlink_1_1arp_1_1Entry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="link_8h_source.html">link.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for link::arp::Entry:</div>
 <div class="dyncontent">
@@ -111,8 +116,11 @@ Collaboration diagram for link::arp::Entry:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab2adef8c42d08549d72c9fba0839da5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2adef8c42d08549d72c9fba0839da5c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Entry</b> (const <a class="el" href="structlink_1_1arp_1_1Entry.html">Entry</a> &amp;other)</td></tr>
+<tr class="memitem:af14702ffc3a1b10e45a148220af6b5d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1arp_1_1Entry.html#af14702ffc3a1b10e45a148220af6b5d4">Entry</a> ()</td></tr>
+<tr class="memdesc:af14702ffc3a1b10e45a148220af6b5d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#af14702ffc3a1b10e45a148220af6b5d4">More...</a><br /></td></tr>
+<tr class="separator:af14702ffc3a1b10e45a148220af6b5d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2adef8c42d08549d72c9fba0839da5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlink_1_1arp_1_1Entry.html#ab2adef8c42d08549d72c9fba0839da5c">Entry</a> (const <a class="el" href="structlink_1_1arp_1_1Entry.html">Entry</a> &amp;other)</td></tr>
+<tr class="memdesc:ab2adef8c42d08549d72c9fba0839da5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy instance.  <a href="#ab2adef8c42d08549d72c9fba0839da5c">More...</a><br /></td></tr>
 <tr class="separator:ab2adef8c42d08549d72c9fba0839da5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -127,6 +135,75 @@ Public Attributes</h2></td></tr>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>timeout</b></td></tr>
 <tr class="separator:a8838c1d16cd38f16032703d00742df7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct represent an entry in the ARP cache Table. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>A <a class="el" href="structlink_1_1arp_1_1Entry.html" title="This struct represent an entry in the ARP cache Table. ">link::arp::Entry</a> has the next fields:</p><ol type="1">
+<li>ip: The <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> to get the <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> Address.</li>
+<li>mac: The already obtained <a class="el" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. ">MAC</a> address of ip.</li>
+<li>timeout: The cache timeout in seconds before remove the entry from the ARP cache table. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af14702ffc3a1b10e45a148220af6b5d4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::arp::Entry::Entry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a new empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab2adef8c42d08549d72c9fba0839da5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">link::arp::Entry::Entry </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structlink_1_1arp_1_1Entry.html">Entry</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy instance. </p>
+<p>Construct a new copy of the instances passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="structlink_1_1arp_1_1Entry.html" title="This struct represent an entry in the ARP cache Table. ">link::arp::Entry</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="link_8h_source.html">link.h</a></li>
 </ul>

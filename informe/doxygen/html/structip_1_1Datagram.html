@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ip</b></li><li class="navelem"><a class="el" href="structip_1_1Datagram.html">Datagram</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceip.html">ip</a></li><li class="navelem"><a class="el" href="structip_1_1Datagram.html">Datagram</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,6 +99,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ip::Datagram Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class represent an <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> to send through the network.  
+ <a href="structip_1_1Datagram.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ip_8h_source.html">ip.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ip::Datagram:</div>
 <div class="dyncontent">
@@ -117,15 +122,18 @@ Collaboration diagram for ip::Datagram:</div>
 <area shape="rect" id="node4" href="structudp_1_1Header.html" title="udp::Header" alt="" coords="135,109,229,136"/>
 <area shape="rect" id="node5" href="structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="247,5,365,32"/>
 <area shape="rect" id="node6" href="structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="253,109,391,136"/>
-<area shape="rect" id="node8" href="structip_1_1Header.html" title="ip::Header" alt="" coords="415,109,498,136"/>
+<area shape="rect" id="node8" href="structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. " alt="" coords="415,109,498,136"/>
 <area shape="rect" id="node7" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="411,5,460,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b701e9ceeeacc10ae5df56bccde8f51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b701e9ceeeacc10ae5df56bccde8f51"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Datagram</b> (const <a class="el" href="structip_1_1Datagram.html">Datagram</a> &amp;other)</td></tr>
+<tr class="memitem:a22c9da8b488b020705bf92f0d5e2f88f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Datagram.html#a22c9da8b488b020705bf92f0d5e2f88f">Datagram</a> ()</td></tr>
+<tr class="memdesc:a22c9da8b488b020705bf92f0d5e2f88f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a22c9da8b488b020705bf92f0d5e2f88f">More...</a><br /></td></tr>
+<tr class="separator:a22c9da8b488b020705bf92f0d5e2f88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b701e9ceeeacc10ae5df56bccde8f51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structip_1_1Datagram.html#a9b701e9ceeeacc10ae5df56bccde8f51">Datagram</a> (const <a class="el" href="structip_1_1Datagram.html">Datagram</a> &amp;other)</td></tr>
+<tr class="memdesc:a9b701e9ceeeacc10ae5df56bccde8f51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a9b701e9ceeeacc10ae5df56bccde8f51">More...</a><br /></td></tr>
 <tr class="separator:a9b701e9ceeeacc10ae5df56bccde8f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -137,6 +145,74 @@ Public Attributes</h2></td></tr>
 <a class="el" href="structudp_1_1Segment.html">udp::Segment</a>&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
 <tr class="separator:a4de3ad46fa81bc6d312c2e77321e59d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represent an <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> to send through the network. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>It has the next fields:</p><ol type="1">
+<li>header: the <a class="el" href="structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. ">ip::Header</a>.</li>
+<li>data: The <a class="el" href="structudp_1_1Segment.html">udp::Segment</a> that is encapsulated to send through the network. </li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a22c9da8b488b020705bf92f0d5e2f88f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ip::Datagram::Datagram </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>It construct a new empty instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9b701e9ceeeacc10ae5df56bccde8f51"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ip::Datagram::Datagram </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structip_1_1Datagram.html">Datagram</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>It construct a new instance with a copy of the <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>An <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> to copy in the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="ip_8h_source.html">ip.h</a></li>
 </ul>
