@@ -16,7 +16,13 @@ payload:
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+flags:  QR_ANSWER
+        Opcode_QUERY
+        AA_NOT_AUTHORITATIVE_ANSWER
+        TC_NOT_TRUNCATED
+        RD_ITERATIVE
+        RA_ITERATIVE
+        RCode_NO_ERROR
 QDCount: 0
 ANCount: 0
 NSCount: 0
@@ -51,7 +57,13 @@ payload:
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+flags:  QR_ANSWER
+        Opcode_QUERY
+        AA_NOT_AUTHORITATIVE_ANSWER
+        TC_NOT_TRUNCATED
+        RD_ITERATIVE
+        RA_ITERATIVE
+        RCode_NO_ERROR
 QDCount: 0
 ANCount: 0
 NSCount: 0
@@ -86,7 +98,13 @@ payload:
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+flags:  QR_ANSWER
+        Opcode_QUERY
+        AA_NOT_AUTHORITATIVE_ANSWER
+        TC_NOT_TRUNCATED
+        RD_ITERATIVE
+        RA_ITERATIVE
+        RCode_NO_ERROR
 QDCount: 0
 ANCount: 0
 NSCount: 0

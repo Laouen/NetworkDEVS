@@ -176,7 +176,7 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 
 \medskip
 
-La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Layer} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan están separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxigen y la misma fue exportada y se encuentra disponible en el apéndice de este documento. \\
+La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Layer} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan están separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxygen. \\
 
 Todos los tipos de datos están implementados en namespaces que sirven como organizadores, para cada capa existente debe existir un namespace y los tipos de datos inherentes a esa capa tienen que estar definidos dentro del namespace (por más que otras capas lo usen). Si se implementan nuevas capas, se deben crear sus correspondientes namespaces a menos que no halla tipos de datos correspondientes a la capa. De está forma se evitan las ambigüedades que son muy recurrentes en el ámbito de las redes y se explicita la interacción con los datos correspondientes a cada capa. \\
 
@@ -392,7 +392,7 @@ La clase parser cuenta con dos métodos distintos para leer los datos del archiv
 
 \textbf{Nota:} Si bien el Parser tiene la opción para parsear el input junto con un tiempo asociado, el mismo no hace más que devolverlo en una tupla (tiempo, mensaje).\\
 
-La clase Parser puede ser utilizada de forma independiente al modelo que lee input siempre que sea necesario leer y parsear las lineas de un archivo. La interfaz y documentación técnica del Parser está en formato Doxigen y exportado en el apéndice de este documento.
+La clase Parser puede ser utilizada de forma independiente al modelo que lee input siempre que sea necesario leer y parsear las lineas de un archivo. La interfaz y documentación técnica del Parser está en formato Doxygen.
 
 \newpage
 
@@ -465,7 +465,7 @@ Lineas a descomentar y comentar para habilitar y deshabilitar los distintos tipo
 #define show_error
 \end{lstlisting}
 
-Para utilizar esta clase, cada modulo tiene que crear una variable de tipo \textit{Logger} e inicializarla pasándole como parámetro un \textit{string} con el nombre del módulo o modelo del cual el logger va a loggear eventos y luego utilizarlo siguiendo su interfaz. La inicialización de la variable puede ser en su constructor o mediante el método \textit{Logger::setModuleName(std::string other\_module\_name)}. La documentación de la interfaz está en formato Doxigen y adjunto en el apéndice de este documento. \\
+Para utilizar esta clase, cada modulo tiene que crear una variable de tipo \textit{Logger} e inicializarla pasándole como parámetro un \textit{string} con el nombre del módulo o modelo del cual el logger va a loggear eventos y luego utilizarlo siguiendo su interfaz. La inicialización de la variable puede ser en su constructor o mediante el método \textit{Logger::setModuleName(std::string other\_module\_name)}. La documentación de la interfaz está en formato Doxygen. \\
 
 La clase tamplate \textit{Layer}, ya cuenta con una variable de tipo textit{Logger} que debe ser inicializada en el método \textit{init}.
 
@@ -576,7 +576,7 @@ Cuando una consulta llega a un servidor iterativo, en caso de ser autoritativo p
 
 \subsubsection{Estructuras de datos correspondiente a UDP}
 
-El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cuales tienen documentación en formato Doxigen en el códifo y que se encuentra adjunta en el apéndice de este documento:
+El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cuales tienen documentación en formato Doxygen en el código y que se encuentra adjunta en el apéndice de este documento:
 
 \begin{itemize}
 \item udp::Segment: Representa un segmento de datos para ser enviado por la red, el mismo cuenta con pseudoheader, header y payload como se muestra en la Figura \ref{figure: udp segment}.
@@ -633,7 +633,7 @@ La estructura de datos \textit{Socket} es utilizada para manipular esta combinac
 \begin{itemize}
 \item \textbf{local\_port: } Es de tipo \textit{uint\_16} y representa el puerto del host local al cual se conecta o bindea el socket.
 \item \textbf{remote\_port: } Es de tipo \textit{uint\_16} y representa el puerto del host remoto al cual se desea enviar y/o recibir datos. Este campo es opcional, no siempre se especifica un host remoto, por ejemplo, cuando se desea leer datos de cualquier host remoto, este campo no debe especificarse.
-\item \textbf{local\_ip: } Es de tipo \textit{IPv4}\footnote{El tipo de datos \textit{IPv4} está documentado en formato Doxigen en el código} y representa el ip del host local al cual se conecta o bindea el socket.
+\item \textbf{local\_ip: } Es de tipo \textit{IPv4}\footnote{El tipo de datos \textit{IPv4} está documentado en formato Doxygen en el código} y representa el ip del host local al cual se conecta o bindea el socket.
 \item \textbf{remote\_ip: } Es de tipo \textit{IPv4} y representa el ip del host remoto al cual se desea enviar y/o recibir datos. Este campo es opcional, no siempre se especifica un host remoto, por ejemplo, cuando se desea leer datos de cualquier host remoto, este campo no debe especificarse.
 \item \textbf{status: } Es de tipo enum e indica en que estado se encuentra el socket. Los estados son los mencionados previamente cuando se explicaron los comandos.
 \end{itemize}
@@ -786,6 +786,8 @@ Tanto \textit{ARP} como \textit{SWP} (explicado más adelante) son protocolos de
 \caption{Parametros del modelo Link}
 \label{table: parameters link}
 \end{table*}
+
+\newpage
 
 \subsection{Datagrams}
 El protocolo Datagrams es utilizado por los switches para forwardear mensajes. \\
@@ -1123,21 +1125,21 @@ En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el 
     \label{figure: case study}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width = 0.5\textwidth]{img/png/powerdevs/host.png}
     \caption{Modelo PoderDEVS de un dispositivo Host con las capas \textit{DNS}, \textit{UDP}, \textit{IPv4} y \textit{Link}; Se pueden ver las conexiones realizadas entre cada una de las capas del moselo UDP/IP asi como el generador y el vertedero correspondientes al input y output de este modelo. Los puertos externos (Inport0 y outport0) permiten conectar el modelo dispositivo a otro dispositivo de la red para enviar los mensajes.}
     \label{figure: powerdevs host}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width = 0.95\textwidth]{img/png/powerdevs/router.png}
     \caption{Modelo PowerDEVS de un dispositivo Router con las capas \textit{IPv4} y \textit{Link}; El router cuenta con un modelo link por cada \textit{subnet} a la cual está conectado, para enviar un mensaje, el router debe elegir mediante la \textit{forwarding table} por cual interfaz (modelo link) enviar el mensaje dependiendo a que \textit{subnet} quiera alcanzar. Para poder enviar mensajes a los distintos módulos \textit{Link} se utiliza un demultiplexer.}
     \label{figure: powerdevs router}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width = 0.8\textwidth]{img/png/powerdevs/switch.png}
     \caption{Modelo PowerDEVS de un dispositivo \textit{Switch} que cuenta con una sola capa en la cual implementa el protocolo \textit{Datagram} y \textit{SWP}. Utiliza un multiplexer y demultiplexer para saber de cuál interfaz llego el mensaje y para elegir por cual o cuales interfaces enviar el mensaje.}
