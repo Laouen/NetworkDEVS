@@ -1,0 +1,96 @@
+\hypertarget{namespacedns}{}\section{dns Namespace Reference}
+\label{namespacedns}\index{dns@{dns}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdns_1_1DomainName}{Domain\+Name}
+\begin{DoxyCompactList}\small\item\em This struct handles domain names with the format \textquotesingle{}zone1.\+zone2.\+zone3...zoneN\textquotesingle{}. \end{DoxyCompactList}\item 
+struct \hyperlink{structdns_1_1Header}{Header}
+\begin{DoxyCompactList}\small\item\em Structure that implements a \hyperlink{structdns_1_1Packet}{dns\+::\+Packet} header. \end{DoxyCompactList}\item 
+struct \hyperlink{structdns_1_1Packet}{Packet}
+\begin{DoxyCompactList}\small\item\em This struct represent a \hyperlink{structdns_1_1Packet}{dns\+::\+Packet}, it has a \hyperlink{structdns_1_1Header}{dns\+::\+Header} that indicates how many dns\+::resource\+Record there is in each one of the four sections\+: questions, answers, authoritatives and aditionals and four std\+::lists$<$dns\+::\+Resource\+Redords$>$ containing them. \end{DoxyCompactList}\item 
+struct \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record}
+\begin{DoxyCompactList}\small\item\em This structs represent a \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} that contains information of a query or answer of a dns\+::domain\+Name. \end{DoxyCompactList}\item 
+struct \hyperlink{structdns_1_1Zone}{Zone}
+\begin{DoxyCompactList}\small\item\em This struct represent a zone entry that has the zone domain name and the domain name of the server that is authoritative for that zone. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacedns_a24d6c88b18b1d550ee6916c6a7ff5189}{QR} \+: uint16\+\_\+t \{ {\bfseries Q\+R\+\_\+\+Q\+U\+E\+RY} = 0x8000, 
+{\bfseries Q\+R\+\_\+\+A\+N\+S\+W\+ER} = 0x0000, 
+{\bfseries Q\+R\+\_\+\+M\+A\+SK} = 0x8000
+ \}\hypertarget{namespacedns_a24d6c88b18b1d550ee6916c6a7ff5189}{}\label{namespacedns_a24d6c88b18b1d550ee6916c6a7ff5189}
+\begin{DoxyCompactList}\small\item\em valid values for the Query/\+Response Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_a70939facf35621c3f171e22096932b42}{Opcode} \+: uint16\+\_\+t \{ \\*
+{\bfseries Opcode\+\_\+\+Q\+U\+E\+RY} = 0x0000, 
+{\bfseries Opcode\+\_\+\+I\+Q\+U\+E\+RY} = 0x0800, 
+{\bfseries Opcode\+\_\+\+S\+T\+A\+T\+US} = 0x1000, 
+{\bfseries Opcode\+\_\+\+R\+E\+S\+E\+R\+V\+ED} = 0x1800, 
+\\*
+{\bfseries Opcode\+\_\+\+N\+O\+T\+I\+FY} = 0x2000, 
+{\bfseries Opcode\+\_\+\+U\+P\+D\+A\+TE} = 0x2800, 
+{\bfseries Opcode\+\_\+\+M\+A\+SK} = 0x7800
+ \}\hypertarget{namespacedns_a70939facf35621c3f171e22096932b42}{}\label{namespacedns_a70939facf35621c3f171e22096932b42}
+\begin{DoxyCompactList}\small\item\em valid values for the Opcode Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_a2bdb22237537c460f31312616b38618a}{AA} \+: uint16\+\_\+t \{ {\bfseries A\+A\+\_\+\+A\+U\+T\+H\+O\+R\+I\+T\+A\+T\+I\+V\+E\+\_\+\+A\+N\+S\+W\+ER} = 0x0400, 
+{\bfseries A\+A\+\_\+\+N\+O\+T\+\_\+\+A\+U\+T\+H\+O\+R\+I\+T\+A\+T\+I\+V\+E\+\_\+\+A\+N\+S\+W\+ER} = 0x0000, 
+{\bfseries A\+A\+\_\+\+M\+A\+SK} = 0x0400
+ \}\hypertarget{namespacedns_a2bdb22237537c460f31312616b38618a}{}\label{namespacedns_a2bdb22237537c460f31312616b38618a}
+\begin{DoxyCompactList}\small\item\em valid values for the AA Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_af39b19c1f00f88b095db77dc42eee9a1}{TC} \+: uint16\+\_\+t \{ {\bfseries T\+C\+\_\+\+T\+R\+U\+N\+C\+A\+T\+ED} = 0x0200, 
+{\bfseries T\+C\+\_\+\+N\+O\+T\+\_\+\+T\+R\+U\+N\+C\+A\+T\+ED} = 0x0000, 
+{\bfseries T\+C\+\_\+\+M\+A\+SK} = 0x0200
+ \}\hypertarget{namespacedns_af39b19c1f00f88b095db77dc42eee9a1}{}\label{namespacedns_af39b19c1f00f88b095db77dc42eee9a1}
+\begin{DoxyCompactList}\small\item\em valid values for the TC Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_a854e4abf87b535622f79e7ff75eb2a16}{RD} \+: uint16\+\_\+t \{ {\bfseries R\+D\+\_\+\+R\+E\+C\+U\+R\+S\+I\+VE} = 0x0100, 
+{\bfseries R\+D\+\_\+\+I\+T\+E\+R\+A\+T\+I\+VE} = 0x0000, 
+{\bfseries R\+D\+\_\+\+M\+A\+SK} = 0x0100
+ \}\hypertarget{namespacedns_a854e4abf87b535622f79e7ff75eb2a16}{}\label{namespacedns_a854e4abf87b535622f79e7ff75eb2a16}
+\begin{DoxyCompactList}\small\item\em valid values for the RD Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_ad3e1d06842c1184a727c9f02f145a2b8}{RA} \+: uint16\+\_\+t \{ {\bfseries R\+A\+\_\+\+R\+E\+C\+U\+R\+S\+I\+O\+N\+\_\+\+A\+V\+A\+I\+L\+A\+B\+LE} = 0x0080, 
+{\bfseries R\+A\+\_\+\+I\+T\+E\+R\+A\+T\+I\+VE} = 0x0000, 
+{\bfseries R\+A\+\_\+\+M\+A\+SK} = 0x0080
+ \}\hypertarget{namespacedns_ad3e1d06842c1184a727c9f02f145a2b8}{}\label{namespacedns_ad3e1d06842c1184a727c9f02f145a2b8}
+\begin{DoxyCompactList}\small\item\em valid values for the RA Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_ad80d44e1e7fa84c98fd5a99a90c50b57}{Z} \+: uint16\+\_\+t \{ {\bfseries Z\+\_\+\+R\+E\+S\+E\+R\+V\+ED} = 0x0000, 
+{\bfseries Z\+\_\+\+M\+A\+SK} = 0x0070
+ \}\hypertarget{namespacedns_ad80d44e1e7fa84c98fd5a99a90c50b57}{}\label{namespacedns_ad80d44e1e7fa84c98fd5a99a90c50b57}
+\begin{DoxyCompactList}\small\item\em valid values for the Z Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_ad9381dbe4cb95fcff8d401fdad88021f}{R\+Code} \+: uint16\+\_\+t \{ \\*
+{\bfseries R\+Code\+\_\+\+N\+O\+\_\+\+E\+R\+R\+OR} = 0x0000, 
+{\bfseries R\+Code\+\_\+\+F\+O\+R\+M\+A\+T\+\_\+\+E\+R\+R\+OR} = 0x0001, 
+{\bfseries R\+Code\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+F\+A\+I\+L\+U\+RE} = 0x0002, 
+{\bfseries R\+Code\+\_\+\+N\+A\+M\+E\+\_\+\+E\+R\+R\+OR} = 0x0003, 
+\\*
+{\bfseries R\+Code\+\_\+\+N\+O\+T\+\_\+\+I\+M\+P\+L\+E\+M\+E\+N\+T\+ED} = 0x0004, 
+{\bfseries R\+Code\+\_\+\+R\+E\+F\+U\+S\+ED} = 0x0005, 
+{\bfseries R\+Code\+\_\+\+Y\+X\+\_\+\+D\+O\+M\+A\+IN} = 0x0006, 
+{\bfseries R\+Code\+\_\+\+Y\+X\+\_\+\+R\+R\+\_\+\+S\+ET} = 0x0007, 
+\\*
+{\bfseries R\+Code\+\_\+\+N\+X\+\_\+\+R\+R\+\_\+\+S\+ET} = 0x0008, 
+{\bfseries R\+Code\+\_\+\+N\+O\+T\+\_\+\+A\+U\+TH} = 0x0009, 
+{\bfseries R\+Code\+\_\+\+N\+O\+T\+\_\+\+Z\+O\+NE} = 0x000A, 
+{\bfseries R\+Code\+\_\+\+M\+A\+SK} = 0x000F
+ \}\hypertarget{namespacedns_ad9381dbe4cb95fcff8d401fdad88021f}{}\label{namespacedns_ad9381dbe4cb95fcff8d401fdad88021f}
+\begin{DoxyCompactList}\small\item\em valid values for the R\+Code Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_a2f53daa27510b0ea61122af921bb66c7}{Type} \+: uint16\+\_\+t \{ {\bfseries A} = 1, 
+{\bfseries NS} = 2
+ \}\hypertarget{namespacedns_a2f53daa27510b0ea61122af921bb66c7}{}\label{namespacedns_a2f53daa27510b0ea61122af921bb66c7}
+\begin{DoxyCompactList}\small\item\em valid values for the Type Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\item 
+enum \hyperlink{namespacedns_a90321cc8e6ade0bea4be3fee56d3cef2}{Class} \+: uint16\+\_\+t \{ {\bfseries IN} = 1
+ \}\hypertarget{namespacedns_a90321cc8e6ade0bea4be3fee56d3cef2}{}\label{namespacedns_a90321cc8e6ade0bea4be3fee56d3cef2}
+\begin{DoxyCompactList}\small\item\em valid values for the Class Flag for \hyperlink{structdns_1_1Header}{dns\+::\+Header} \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+namespace to use for all the data type refered to the D\+NS protocol. 

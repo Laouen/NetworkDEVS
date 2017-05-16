@@ -1,2 +1,7 @@
 <map id="Layer&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;" name="Layer&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;">
+<area shape="rect" id="node3" href="$classmessage_1_1queue.html" title="message::queue\&lt; CH2 \&gt;" alt="" coords="5,56,175,83"/>
+<area shape="rect" id="node5" href="$classmessage_1_1queue.html" title="message::queue\&lt; CL2 \&gt;" alt="" coords="7,157,173,184"/>
+<area shape="rect" id="node7" href="$classmessage_1_1queue.html" title="message::queue\&lt; DH2 \&gt;" alt="" coords="5,259,175,285"/>
+<area shape="rect" id="node9" href="$classLogger.html" title="This class print formated std::string in the pdevs.log file used by the PowerDEVS simulator..." alt="" coords="59,360,121,387"/>
+<area shape="rect" id="node10" href="$classmessage_1_1queue.html" title="message::queue\&lt; DL2 \&gt;" alt="" coords="7,411,173,437"/>
 </map>

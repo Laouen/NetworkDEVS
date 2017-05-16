@@ -16,7 +16,7 @@ Collaboration diagram for dns\+\_\+server\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=280pt]{classdns__server__coll__graph}
+\includegraphics[width=350pt]{classdns__server__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -37,12 +37,10 @@ Event {\bfseries lambda} (double)\hypertarget{classdns__server_ad691a03c4bfb7150
 void {\bfseries exit} ()\hypertarget{classdns__server_a05eb620b2f8308ec3818cf5412669890}{}\label{classdns__server_a05eb620b2f8308ec3818cf5412669890}
 
 \item 
-virtual void {\bfseries dinternal} (double)\hypertarget{classdns__server_a51e296892a2de8776c83689f172a0797}{}\label{classdns__server_a51e296892a2de8776c83689f172a0797}
-
-\item 
-virtual void {\bfseries dexternal} (double)\hypertarget{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}{}\label{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classdns__server_a51e296892a2de8776c83689f172a0797}{dinternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and must be overloaded with the protocol. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}{dexternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and can be overloaded with the protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -136,6 +134,53 @@ double {\bfseries process\+\_\+dns\+\_\+query} = 0.\+001\hypertarget{classdns__s
 double {\bfseries process\+\_\+dns\+\_\+response} = 0.\+001\hypertarget{classdns__server_a5b577ff9d1e88181cd5c753c6ea31c07}{}\label{classdns__server_a5b577ff9d1e88181cd5c753c6ea31c07}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{dns\+\_\+server@{dns\+\_\+server}!dexternal@{dexternal}}
+\index{dexternal@{dexternal}!dns\+\_\+server@{dns\+\_\+server}}
+\subsubsection[{\texorpdfstring{dexternal(double)}{dexternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}void dns\+\_\+server\+::dexternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}{}\label{classdns__server_a3a6cdeea496be969d034af8a0bdb893f}
+
+
+This method is virtual and can be overloaded with the protocol. 
+
+This method is called each time an external transition takes place.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_ae21ef24340c6c1f6cf20d66b5ab6a5f7}{Layer$<$ dns\+::\+Domain\+Name, int, dns\+::\+Packet, udp\+::\+Control, dns\+::\+Packet $>$}.
+
+\index{dns\+\_\+server@{dns\+\_\+server}!dinternal@{dinternal}}
+\index{dinternal@{dinternal}!dns\+\_\+server@{dns\+\_\+server}}
+\subsubsection[{\texorpdfstring{dinternal(double)}{dinternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}void dns\+\_\+server\+::dinternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classdns__server_a51e296892a2de8776c83689f172a0797}{}\label{classdns__server_a51e296892a2de8776c83689f172a0797}
+
+
+This method is virtual and must be overloaded with the protocol. 
+
+This method is called while the input queues has messages to process and the procotol should be implemented here..
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_a1c82b14ba3efc37969f55c633a9b3173}{Layer$<$ dns\+::\+Domain\+Name, int, dns\+::\+Packet, udp\+::\+Control, dns\+::\+Packet $>$}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

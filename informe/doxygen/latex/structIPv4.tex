@@ -44,7 +44,7 @@ ushort {\bfseries ip} \mbox{[}4\mbox{]}\hypertarget{structIPv4_afa52210d2b97527f
 \begin{DoxyCompactItemize}
 \item 
 std\+::ostream \& \hyperlink{structIPv4_ab5644dcfa13678c430f256332e31c671}{operator$<$$<$} (std\+::ostream \&, const \hyperlink{structIPv4}{I\+Pv4} \&)
-\begin{DoxyCompactList}\small\item\em $<$$<$ operation to print the \hyperlink{structIPv4}{I\+Pv4} value in a std\+::ostream \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em $<$$<$ operator to print the \hyperlink{structIPv4}{I\+Pv4} value in a std\+::ostream \end{DoxyCompactList}\item 
 std\+::istream \& \hyperlink{structIPv4_a47e7e07277bbcacf06f17b1c2fc59f7f}{operator$>$$>$} (std\+::istream \&, \hyperlink{structIPv4}{I\+Pv4} \&)
 \begin{DoxyCompactList}\small\item\em \begin{quote}
 \begin{quote}
@@ -62,7 +62,7 @@ Laouen Louan Mayal Belloli
 \begin{DoxyDate}{Date}
 14 May 2017
 \end{DoxyDate}
-It\textquotesingle{}s not meant to be a full \hyperlink{structIPv4}{I\+Pv4} struct, for that purpose, there is many external C++ libraries. This struct was designed to easely simulate Networks using the Network\+D\+E\+VS framework. 
+It\textquotesingle{}s not meant to be a full \hyperlink{structIPv4}{I\+Pv4} struct, for that purpose, there is many external C++ libraries. This struct represent an \hyperlink{structIPv4}{I\+Pv4} as a unsigned short array of length 4 and it was designed to easely simulate Networks using the Network\+D\+E\+VS framework. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{I\+Pv4@{I\+Pv4}!I\+Pv4@{I\+Pv4}}
@@ -87,7 +87,7 @@ Initialices a new \hyperlink{structIPv4}{I\+Pv4} instance with 0.\+0.\+0.\+0 \in
 
 Constructor from std\+::\+String. 
 
-It construct a new \hyperlink{structIPv4}{I\+Pv4} instance using the std\+::string $>$$>$ operator to read values with string format \textquotesingle{}a.\+b.\+c.\+d\textquotesingle{}.
+It construct a new \hyperlink{structIPv4}{I\+Pv4} instance using the std\+::string $>$$>$ operator to read values with string format \textquotesingle{}a.\+b.\+c.\+d\textquotesingle{} where 0 $<$= a,b,c,d $<$= 255 in decimal representation.
 
 
 \begin{DoxyParams}{Parameters}
@@ -109,7 +109,7 @@ This constructor uses a const char $\ast$ as the representation where to interpr
 
 
 \begin{DoxyParams}{Parameters}
-{\em other\+\_\+ip} & A const char $\ast$ that points to a representation of the \hyperlink{structIPv4}{I\+Pv4} in the next form\+: \textquotesingle{}a.\+b.\+c.\+d\textquotesingle{} where 0 $<$= a,b,c,d $<$= 255. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. \\
+{\em other\+\_\+ip} & A const char $\ast$ that points to a representation of the \hyperlink{structIPv4}{I\+Pv4} in the next form\+: \textquotesingle{}a.\+b.\+c.\+d\textquotesingle{} where 0 $<$= a,b,c,d $<$= 255 in decimal representation. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. \\
 \hline
 \end{DoxyParams}
 \index{I\+Pv4@{I\+Pv4}!I\+Pv4@{I\+Pv4}}
@@ -127,7 +127,7 @@ This constructor takes an unsigned short $\ast$ and reads from it four consecuti
 
 
 \begin{DoxyParams}{Parameters}
-{\em other\+\_\+ip} & An unsigned short that must point to four consecutives unsigned short values used to construct the new \hyperlink{structIPv4}{I\+Pv4} instance. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. \\
+{\em other\+\_\+ip} & An unsigned pointer short that must point to four consecutives unsigned short values used to construct the new \hyperlink{structIPv4}{I\+Pv4} instance. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. \\
 \hline
 \end{DoxyParams}
 \index{I\+Pv4@{I\+Pv4}!I\+Pv4@{I\+Pv4}}
@@ -141,7 +141,7 @@ This constructor takes an unsigned short $\ast$ and reads from it four consecuti
 
 Copy constructor. 
 
-This constructor uses an \hyperlink{structIPv4}{I\+Pv4} variable to construct a copy of its value. This constructor is the one used by C++ in the \hyperlink{structIPv4}{I\+Pv4} default == operator.
+This constructor uses an \hyperlink{structIPv4}{I\+Pv4} instance to construct a copy of its value. This constructor is the one used by C++ in the \hyperlink{structIPv4}{I\+Pv4} default == operator.
 
 
 \begin{DoxyParams}{Parameters}
@@ -197,7 +197,7 @@ An \hyperlink{structIPv4}{I\+Pv4} instance with the result of this \& other.
 
 Lower than comparator. 
 
-This operator compares the implicit this instance agains the other instances passed as parameter to return whether the this is lower than the other or not. An \hyperlink{structIPv4}{I\+Pv4} A is lower than another instance B when the first different value from left to right is lower in the A instance than in the B instance.
+This operator compares the implicit this instance agains the other instances passed as parameter to return whether the this is lower than the other or not. An \hyperlink{structIPv4}{I\+Pv4} A is lower than another \hyperlink{structIPv4}{I\+Pv4} B when the first different value from left to right is lower in the A instance than in the B instance.
 
 
 \begin{DoxyParams}{Parameters}
@@ -205,7 +205,7 @@ This operator compares the implicit this instance agains the other instances pas
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if this in lower than other, False otherwise. 
+True if this is lower than other, False otherwise. 
 \end{DoxyReturn}
 \index{I\+Pv4@{I\+Pv4}!operator==@{operator==}}
 \index{operator==@{operator==}!I\+Pv4@{I\+Pv4}}
@@ -276,7 +276,7 @@ An integer with the compiler size of the \hyperlink{structIPv4}{I\+Pv4} type.
 )\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{structIPv4_ab5644dcfa13678c430f256332e31c671}{}\label{structIPv4_ab5644dcfa13678c430f256332e31c671}
 
 
-$<$$<$ operation to print the \hyperlink{structIPv4}{I\+Pv4} value in a std\+::ostream 
+$<$$<$ operator to print the \hyperlink{structIPv4}{I\+Pv4} value in a std\+::ostream 
 
 The format used to print the \hyperlink{structIPv4}{I\+Pv4} value is the same as the format used by the method \hyperlink{structIPv4_acb7ed5ccf7af572bbc32396dcd1fe3cb}{as\+\_\+string()}.
 

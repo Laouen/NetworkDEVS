@@ -15,7 +15,7 @@ Collaboration diagram for link\+\_\+protocol\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=189pt]{classlink__protocol__coll__graph}
+\includegraphics[width=350pt]{classlink__protocol__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -36,13 +36,58 @@ Event {\bfseries lambda} (double)\hypertarget{classlink__protocol_ad8e4ff0a5ac9c
 void {\bfseries exit} ()\hypertarget{classlink__protocol_a1439b43d737cccf1839915a46825bf35}{}\label{classlink__protocol_a1439b43d737cccf1839915a46825bf35}
 
 \item 
-virtual void {\bfseries dexternal} (double t)\hypertarget{classlink__protocol_a41b2cf20f21b9b5b7170f8f33fd56667}{}\label{classlink__protocol_a41b2cf20f21b9b5b7170f8f33fd56667}
-
-\item 
-virtual void {\bfseries dinternal} (double t)\hypertarget{classlink__protocol_abae9797f2bf160152cf43bd011742d22}{}\label{classlink__protocol_abae9797f2bf160152cf43bd011742d22}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classlink__protocol_a41b2cf20f21b9b5b7170f8f33fd56667}{dexternal} (double t)
+\begin{DoxyCompactList}\small\item\em This method is virtual and can be overloaded with the protocol. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classlink__protocol_abae9797f2bf160152cf43bd011742d22}{dinternal} (double t)
+\begin{DoxyCompactList}\small\item\em This method is virtual and must be overloaded with the protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{link\+\_\+protocol@{link\+\_\+protocol}!dexternal@{dexternal}}
+\index{dexternal@{dexternal}!link\+\_\+protocol@{link\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dexternal(double t)}{dexternal(double t)}}]{\setlength{\rightskip}{0pt plus 5cm}void link\+\_\+protocol\+::dexternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classlink__protocol_a41b2cf20f21b9b5b7170f8f33fd56667}{}\label{classlink__protocol_a41b2cf20f21b9b5b7170f8f33fd56667}
+
+
+This method is virtual and can be overloaded with the protocol. 
+
+This method is called each time an external transition takes place.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_ae21ef24340c6c1f6cf20d66b5ab6a5f7}{Layer$<$ ip\+::\+Datagram, link\+::\+Control, link\+::\+Frame, int $>$}.
+
+\index{link\+\_\+protocol@{link\+\_\+protocol}!dinternal@{dinternal}}
+\index{dinternal@{dinternal}!link\+\_\+protocol@{link\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dinternal(double t)}{dinternal(double t)}}]{\setlength{\rightskip}{0pt plus 5cm}void link\+\_\+protocol\+::dinternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classlink__protocol_abae9797f2bf160152cf43bd011742d22}{}\label{classlink__protocol_abae9797f2bf160152cf43bd011742d22}
+
+
+This method is virtual and must be overloaded with the protocol. 
+
+This method is called while the input queues has messages to process and the procotol should be implemented here..
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_a1c82b14ba3efc37969f55c633a9b3173}{Layer$<$ ip\+::\+Datagram, link\+::\+Control, link\+::\+Frame, int $>$}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

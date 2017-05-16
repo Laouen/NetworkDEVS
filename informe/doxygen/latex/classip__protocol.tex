@@ -36,12 +36,10 @@ Event {\bfseries lambda} (double)\hypertarget{classip__protocol_ae92e4088780f38a
 void {\bfseries exit} ()\hypertarget{classip__protocol_aed94f19da59b71685e9d17de4febcd75}{}\label{classip__protocol_aed94f19da59b71685e9d17de4febcd75}
 
 \item 
-virtual void {\bfseries dinternal} (double)\hypertarget{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}{}\label{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}
-
-\item 
-virtual void {\bfseries dexternal} (double)\hypertarget{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}{}\label{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}{dinternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and must be overloaded with the protocol. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}{dexternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and can be overloaded with the protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -99,6 +97,57 @@ double {\bfseries process\+\_\+link\+\_\+control\+\_\+time} = 0.\+001\hypertarge
 double {\bfseries send\+\_\+frame\+\_\+time} = 0.\+001\hypertarget{classip__protocol_a228a55f7b2c25fa8e3900893ccc87e41}{}\label{classip__protocol_a228a55f7b2c25fa8e3900893ccc87e41}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{ip\+\_\+protocol@{ip\+\_\+protocol}!dexternal@{dexternal}}
+\index{dexternal@{dexternal}!ip\+\_\+protocol@{ip\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dexternal(double)}{dexternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ip\+\_\+protocol\+::dexternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}{}\label{classip__protocol_a34e2cc9e802edf0ba1fdbcbcbee92f5b}
+
+
+This method is virtual and can be overloaded with the protocol. 
+
+This method is called each time an external transition takes place.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_ae21ef24340c6c1f6cf20d66b5ab6a5f7}{Layer$<$ udp\+::\+Segment, ip\+::\+Control, ip\+::\+Datagram, link\+::\+Control, udp\+::\+Segment, ip\+::\+Control, ip\+::\+Datagram, message\+::\+Multiplexed$<$ link\+::\+Control $>$ $>$}.
+
+\index{ip\+\_\+protocol@{ip\+\_\+protocol}!dinternal@{dinternal}}
+\index{dinternal@{dinternal}!ip\+\_\+protocol@{ip\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dinternal(double)}{dinternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ip\+\_\+protocol\+::dinternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}{}\label{classip__protocol_a5c4dd62ee8cffa83a592f29306686be9}
+
+
+This method is virtual and must be overloaded with the protocol. 
+
+This method is called while the input queues has messages to process and the procotol should be implemented here..
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_a1c82b14ba3efc37969f55c633a9b3173}{Layer$<$ udp\+::\+Segment, ip\+::\+Control, ip\+::\+Datagram, link\+::\+Control, udp\+::\+Segment, ip\+::\+Control, ip\+::\+Datagram, message\+::\+Multiplexed$<$ link\+::\+Control $>$ $>$}.
+
+
+
+Reimplemented in \hyperlink{classip__router__protocol_a14cf3c7e1418ee8c6035b79626f99438}{ip\+\_\+router\+\_\+protocol}, and \hyperlink{classip__host__protocol_a2e2c43aeb81ae38702b7dec6f7df9227}{ip\+\_\+host\+\_\+protocol}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

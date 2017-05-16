@@ -1,3 +1,5 @@
 <map id="ip::Routing_entry" name="ip::Routing_entry">
-<area shape="rect" id="node2" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="41,5,91,32"/>
+<area shape="rect" id="node2" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="5,96,55,123"/>
+<area shape="rect" id="node3" title="STL class. " alt="" coords="79,96,159,123"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="56,5,183,47"/>
 </map>

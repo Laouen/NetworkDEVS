@@ -1,47 +1,347 @@
 \hypertarget{structMAC}{}\section{M\+AC Struct Reference}
 \label{structMAC}\index{M\+AC@{M\+AC}}
+
+
+This struct declares a \hyperlink{structMAC}{M\+AC} type for Networks\+D\+E\+VS simulation purposes.  
+
+
+
+
+{\ttfamily \#include $<$mac.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries M\+AC} (const std\+::string \&other\+\_\+mac)\hypertarget{structMAC_ae2de91cf5744ce0232220d4f06943120}{}\label{structMAC_ae2de91cf5744ce0232220d4f06943120}
-
-\item 
-{\bfseries M\+AC} (const char $\ast$other\+\_\+mac)\hypertarget{structMAC_a44b3c74ae71c8a4d25e2fe260087053c}{}\label{structMAC_a44b3c74ae71c8a4d25e2fe260087053c}
-
-\item 
-{\bfseries M\+AC} (ushort $\ast$other\+\_\+mac)\hypertarget{structMAC_a2d66b00eb9a189233549d2454932c321}{}\label{structMAC_a2d66b00eb9a189233549d2454932c321}
-
-\item 
-{\bfseries M\+AC} (const \hyperlink{structMAC}{M\+AC} \&other\+\_\+mac)\hypertarget{structMAC_a04498a5c27f36df601f83604da888f3e}{}\label{structMAC_a04498a5c27f36df601f83604da888f3e}
-
-\item 
-bool {\bfseries operator==} (const \hyperlink{structMAC}{M\+AC} \&other) const \hypertarget{structMAC_afb8130f7b3c42662da0530acec672009}{}\label{structMAC_afb8130f7b3c42662da0530acec672009}
-
-\item 
-bool {\bfseries operator==} (const std\+::string \&other\+\_\+string) const \hypertarget{structMAC_a3258f3f12ea229dce32a912c2d6f02ff}{}\label{structMAC_a3258f3f12ea229dce32a912c2d6f02ff}
-
-\item 
-bool {\bfseries operator$<$} (const \hyperlink{structMAC}{M\+AC} \&other) const \hypertarget{structMAC_a6f58d8e7e0ce6ed738aa633e8357ba29}{}\label{structMAC_a6f58d8e7e0ce6ed738aa633e8357ba29}
-
-\item 
-bool {\bfseries operator$<$} (const std\+::string \&other\+\_\+string) const \hypertarget{structMAC_ab292ef694024f72d65bde931e6f41b53}{}\label{structMAC_ab292ef694024f72d65bde931e6f41b53}
-
-\item 
-std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structMAC_aa298c6eb1ca7114f8a126e260a40548a}{}\label{structMAC_aa298c6eb1ca7114f8a126e260a40548a}
-
-\item 
-\hyperlink{structMAC}{M\+AC} {\bfseries operator\&} (const \hyperlink{structMAC}{M\+AC} \&other) const \hypertarget{structMAC_a7faadff868aa091167276de4bb83f173}{}\label{structMAC_a7faadff868aa091167276de4bb83f173}
-
-\item 
-\hyperlink{structMAC}{M\+AC} {\bfseries operator$\vert$} (const \hyperlink{structMAC}{M\+AC} \&other) const \hypertarget{structMAC_aa49ae253b26728ec7dd0c434b286a058}{}\label{structMAC_aa49ae253b26728ec7dd0c434b286a058}
-
-\end{DoxyCompactItemize}
+\hyperlink{structMAC_a3fefccc59b40a218773b21b5280adb88}{M\+AC} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{structMAC_ae2de91cf5744ce0232220d4f06943120}{M\+AC} (const std\+::string \&other\+\_\+mac)
+\begin{DoxyCompactList}\small\item\em Constructor from std\+::\+String. \end{DoxyCompactList}\item 
+\hyperlink{structMAC_a44b3c74ae71c8a4d25e2fe260087053c}{M\+AC} (const char $\ast$other\+\_\+mac)
+\begin{DoxyCompactList}\small\item\em Constructor from const char $\ast$. \end{DoxyCompactList}\item 
+\hyperlink{structMAC_a2d66b00eb9a189233549d2454932c321}{M\+AC} (ushort $\ast$other\+\_\+mac)
+\begin{DoxyCompactList}\small\item\em Constructor from unsigned short $\ast$. \end{DoxyCompactList}\item 
+\hyperlink{structMAC_a04498a5c27f36df601f83604da888f3e}{M\+AC} (const \hyperlink{structMAC}{M\+AC} \&other\+\_\+mac)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{structMAC_afb8130f7b3c42662da0530acec672009}{operator==} (const \hyperlink{structMAC}{M\+AC} \&other) const 
+\begin{DoxyCompactList}\small\item\em Equal comparator operator == against other \hyperlink{structMAC}{M\+AC} instance. \end{DoxyCompactList}\item 
+bool \hyperlink{structMAC_a3258f3f12ea229dce32a912c2d6f02ff}{operator==} (const std\+::string \&other\+\_\+string) const 
+\begin{DoxyCompactList}\small\item\em Equal comparator operator == against a std\+::string. \end{DoxyCompactList}\item 
+bool \hyperlink{structMAC_a6f58d8e7e0ce6ed738aa633e8357ba29}{operator$<$} (const \hyperlink{structMAC}{M\+AC} \&other) const 
+\begin{DoxyCompactList}\small\item\em Lower than comparator. \end{DoxyCompactList}\item 
+bool \hyperlink{structMAC_ab292ef694024f72d65bde931e6f41b53}{operator$<$} (const std\+::string \&other\+\_\+string) const 
+\begin{DoxyCompactList}\small\item\em Lower than comparator. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{structMAC_aa298c6eb1ca7114f8a126e260a40548a}{as\+\_\+string} () const 
+\begin{DoxyCompactList}\small\item\em Returns a string formated as \textquotesingle{}a\+:b;c\+:d\+:e\+:f\textquotesingle{} with the \hyperlink{structMAC}{M\+AC} value of the implicit this. where a,b,c,d,e and f are printed in hexadecimal format. \end{DoxyCompactList}\item 
+\hyperlink{structMAC}{M\+AC} \hyperlink{structMAC_a7faadff868aa091167276de4bb83f173}{operator\&} (const \hyperlink{structMAC}{M\+AC} \&other) const 
+\begin{DoxyCompactList}\small\item\em Bitwise \& operator. \end{DoxyCompactList}\item 
+\hyperlink{structMAC}{M\+AC} \hyperlink{structMAC_aa49ae253b26728ec7dd0c434b286a058}{operator$\vert$} (const \hyperlink{structMAC}{M\+AC} \&other) const 
+\begin{DoxyCompactList}\small\item\em Bitwise $\vert$ operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 ushort {\bfseries addr} \mbox{[}6\mbox{]}\hypertarget{structMAC_ab531c8e187a772159d8bcb887ed482a8}{}\label{structMAC_ab531c8e187a772159d8bcb887ed482a8}
 
 \end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{structMAC_a72c483e874958475fa33b97cda3db056}{operator$<$$<$} (std\+::ostream \&, const \hyperlink{structMAC}{M\+AC} \&)
+\begin{DoxyCompactList}\small\item\em $<$$<$ operator to print the \hyperlink{structMAC}{M\+AC} value in a std\+::ostream \end{DoxyCompactList}\item 
+std\+::istream \& \hyperlink{structMAC_ad48783b1ca0c6721e6e001a32dfc6d05}{operator$>$$>$} (std\+::istream \&, \hyperlink{structMAC}{M\+AC} \&)
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+\begin{quote}
+operator to read an \hyperlink{structMAC}{M\+AC} instance from a std\+::iestream. \end{quote}
+\end{quote}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This struct declares a \hyperlink{structMAC}{M\+AC} type for Networks\+D\+E\+VS simulation purposes. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+It\textquotesingle{}s not meant to be a full \hyperlink{structMAC}{M\+AC} type and it does not implement any low leve \hyperlink{structMAC}{M\+AC} implementation. This struct represent a \hyperlink{structMAC}{M\+AC} Address as a unsigned short array of length 6 and it was designed to easely simulate networks using the Network\+D\+E\+VS framework. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{M\+A\+C()}{MAC()}}]{\setlength{\rightskip}{0pt plus 5cm}M\+A\+C\+::\+M\+AC (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a3fefccc59b40a218773b21b5280adb88}{}\label{structMAC_a3fefccc59b40a218773b21b5280adb88}
+
+
+Default constructor. 
+
+This method construct a new \hyperlink{structMAC}{M\+AC} instance with value 0\+:0\+:0\+:0\+:0\+:0 \index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{M\+A\+C(const std\+::string \&other\+\_\+mac)}{MAC(const std::string &other_mac)}}]{\setlength{\rightskip}{0pt plus 5cm}M\+A\+C\+::\+M\+AC (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{other\+\_\+mac}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_ae2de91cf5744ce0232220d4f06943120}{}\label{structMAC_ae2de91cf5744ce0232220d4f06943120}
+
+
+Constructor from std\+::\+String. 
+
+It construct a new \hyperlink{structMAC}{M\+AC} instance using the std\+::string $>$$>$ operator to read values with string format \textquotesingle{}a\+:b\+:c\+:d\+:e\+:f\textquotesingle{} where 0 $<$= a,b,c,d,e,f $<$= 255 in hexadecimal representation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+mac} & A string representing the \hyperlink{structMAC}{M\+AC} to construct. \\
+\hline
+\end{DoxyParams}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{M\+A\+C(const char $\ast$other\+\_\+mac)}{MAC(const char *other_mac)}}]{\setlength{\rightskip}{0pt plus 5cm}M\+A\+C\+::\+M\+AC (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{other\+\_\+mac}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a44b3c74ae71c8a4d25e2fe260087053c}{}\label{structMAC_a44b3c74ae71c8a4d25e2fe260087053c}
+
+
+Constructor from const char $\ast$. 
+
+This constructor uses a const char $\ast$ as the representation where to interpreat the \hyperlink{structMAC}{M\+AC} value to create.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+mac} & A const char $\ast$ that points to a representation of the \hyperlink{structMAC}{M\+AC} in the next form\+: \textquotesingle{}a\+:b\+:c\+:d\+:e\+:f\textquotesingle{} where 0 $<$= a,b,c,d,e,f $<$= 255 in hexadecimal representation. This constructor fails if the pointer is not pointing to six consecutives unsigned short values and the new instance is created with trash values. \\
+\hline
+\end{DoxyParams}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{M\+A\+C(ushort $\ast$other\+\_\+mac)}{MAC(ushort *other_mac)}}]{\setlength{\rightskip}{0pt plus 5cm}M\+A\+C\+::\+M\+AC (
+\begin{DoxyParamCaption}
+\item[{ushort $\ast$}]{other\+\_\+mac}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a2d66b00eb9a189233549d2454932c321}{}\label{structMAC_a2d66b00eb9a189233549d2454932c321}
+
+
+Constructor from unsigned short $\ast$. 
+
+This constructor takes an unsigned short $\ast$ and reads from it six consecutives usigned short a,b,c,d,e and f to construct a new \hyperlink{structMAC}{M\+AC} with value a\+:b\+:c\+:d\+:e\+:f.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+mac} & An unsigned short pointer that must point to six consecutives unsigned short values used to construct the new \hyperlink{structMAC}{M\+AC} instance. This constructor fails if the pointer is not pointing to six consecutives unsigned short values and the new instance is created with trash values. \\
+\hline
+\end{DoxyParams}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\index{M\+AC@{M\+AC}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{M\+A\+C(const M\+A\+C \&other\+\_\+mac)}{MAC(const MAC &other_mac)}}]{\setlength{\rightskip}{0pt plus 5cm}M\+A\+C\+::\+M\+AC (
+\begin{DoxyParamCaption}
+\item[{const {\bf M\+AC} \&}]{other\+\_\+mac}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a04498a5c27f36df601f83604da888f3e}{}\label{structMAC_a04498a5c27f36df601f83604da888f3e}
+
+
+Copy constructor. 
+
+This constructor uses an \hyperlink{structMAC}{M\+AC} instance to construct a copy of its value. This constructor is the one used by C++ in the \hyperlink{structMAC}{M\+AC} default == operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+mac} & A \hyperlink{structMAC}{M\+AC} instance to be copied. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{M\+AC@{M\+AC}!as\+\_\+string@{as\+\_\+string}}
+\index{as\+\_\+string@{as\+\_\+string}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{as\+\_\+string() const }{as_string() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string M\+A\+C\+::as\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_aa298c6eb1ca7114f8a126e260a40548a}{}\label{structMAC_aa298c6eb1ca7114f8a126e260a40548a}
+
+
+Returns a string formated as \textquotesingle{}a\+:b;c\+:d\+:e\+:f\textquotesingle{} with the \hyperlink{structMAC}{M\+AC} value of the implicit this. where a,b,c,d,e and f are printed in hexadecimal format. 
+
+This method can be used to print the \hyperlink{structMAC}{M\+AC} value, the format used to print the value in a string is consistent with the format expected by the std\+::string constructor. The \begin{DoxyReturn}{Returns}
+An std\+::string with the formated value. 
+\end{DoxyReturn}
+\index{M\+AC@{M\+AC}!operator\&@{operator\&}}
+\index{operator\&@{operator\&}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator\&(const M\+A\+C \&other) const }{operator&(const MAC &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+AC} M\+A\+C\+::operator\& (
+\begin{DoxyParamCaption}
+\item[{const {\bf M\+AC} \&}]{other}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a7faadff868aa091167276de4bb83f173}{}\label{structMAC_a7faadff868aa091167276de4bb83f173}
+
+
+Bitwise \& operator. 
+
+This operator implement a bitwise \& operation between the value of the implicit this instance and the other instance passed as parameter and returns the value of the operation. The this instances is not modified. Example\+: FF\+:0\+:FF\+:1\+:F0\+:0F \& 0\+:A\+D.\+F\+F.\+2\+:0F\+:F0 = 0\+:0\+:FF\+:0\+:0\+:0
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A \hyperlink{structMAC}{M\+AC} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{structMAC}{M\+AC} instance with the result of this \& other. 
+\end{DoxyReturn}
+\index{M\+AC@{M\+AC}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator$<$(const M\+A\+C \&other) const }{operator<(const MAC &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+C\+::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf M\+AC} \&}]{other}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a6f58d8e7e0ce6ed738aa633e8357ba29}{}\label{structMAC_a6f58d8e7e0ce6ed738aa633e8357ba29}
+
+
+Lower than comparator. 
+
+This operator compares the implicit this instance agains the other instances passed as parameter to return whether the this is lower than the other or not. A \hyperlink{structMAC}{M\+AC} A is lower than another \hyperlink{structMAC}{M\+AC} B when the first different value from left to right is lower in the A instance than in the B instance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The instance against what to compare the implicite instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this is lower than other, False otherwise. 
+\end{DoxyReturn}
+\index{M\+AC@{M\+AC}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator$<$(const std\+::string \&other\+\_\+string) const }{operator<(const std::string &other_string) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+C\+::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{other\+\_\+string}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_ab292ef694024f72d65bde931e6f41b53}{}\label{structMAC_ab292ef694024f72d65bde931e6f41b53}
+
+
+Lower than comparator. 
+
+This operator compares the implicit this instance agains the \hyperlink{structMAC}{M\+AC} value represented by the std\+::string other passed as parameter to return whether the this is lower than the other or not. To do so, it first construct a new \hyperlink{structMAC}{M\+AC} instance using the std\+::string constructor and after that it compares the two instances.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+string} & A string with a \hyperlink{structMAC}{M\+AC} representation that allows to construct a new \hyperlink{structMAC}{M\+AC} instance to be compared against the implicit this \hyperlink{structMAC}{M\+AC} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this is lower than other, False otherwise. 
+\end{DoxyReturn}
+\index{M\+AC@{M\+AC}!operator==@{operator==}}
+\index{operator==@{operator==}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator==(const M\+A\+C \&other) const }{operator==(const MAC &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+C\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf M\+AC} \&}]{other}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_afb8130f7b3c42662da0530acec672009}{}\label{structMAC_afb8130f7b3c42662da0530acec672009}
+
+
+Equal comparator operator == against other \hyperlink{structMAC}{M\+AC} instance. 
+
+This operator checks if the implicit \hyperlink{structMAC}{M\+AC} instance and the other instance passed as parameter are equals or not. Two \hyperlink{structMAC}{M\+AC} instances are equals when their six unsigned short values are equals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{structMAC}{M\+AC} instance to compare the implicit this \hyperlink{structMAC}{M\+AC} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if both other and the this instance are equals, False otherwise. 
+\end{DoxyReturn}
+\index{M\+AC@{M\+AC}!operator==@{operator==}}
+\index{operator==@{operator==}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator==(const std\+::string \&other\+\_\+string) const }{operator==(const std::string &other_string) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool M\+A\+C\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{other\+\_\+string}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_a3258f3f12ea229dce32a912c2d6f02ff}{}\label{structMAC_a3258f3f12ea229dce32a912c2d6f02ff}
+
+
+Equal comparator operator == against a std\+::string. 
+
+This operator checks whether the implicit \hyperlink{structMAC}{M\+AC} instance and the \hyperlink{structMAC}{M\+AC} value represented by the std\+::string passed as parameter are equals or not. To do so, it first construct a new \hyperlink{structMAC}{M\+AC} instance using the std\+::string constructor and after that it compare the two \hyperlink{structMAC}{M\+AC} instances using the == operator with them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+string} & A string with a \hyperlink{structMAC}{M\+AC} representation that allows to construct a new \hyperlink{structMAC}{M\+AC} instance to be compared against the implicit this \hyperlink{structMAC}{M\+AC} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if both the represented \hyperlink{structMAC}{M\+AC} by other and the this instance are equals, False otherwise. 
+\end{DoxyReturn}
+\index{M\+AC@{M\+AC}!operator\texttt{"|}@{operator\texttt{"|}}}
+\index{operator\texttt{"|}@{operator\texttt{"|}}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator\texttt{"|}(const M\+A\+C \&other) const }{operator|(const MAC &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+AC} M\+A\+C\+::operator$\vert$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf M\+AC} \&}]{other}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structMAC_aa49ae253b26728ec7dd0c434b286a058}{}\label{structMAC_aa49ae253b26728ec7dd0c434b286a058}
+
+
+Bitwise $\vert$ operator. 
+
+This operator implement a bistwise $\vert$ operation between the value of the implicit this instance and the other instance passed as parameter nad returns the value of the operation. The this instance is not modified. Example FF\+:0\+:FF\+:1\+:F0\+:0F $\vert$ 0\+:A\+D.\+F\+F.\+2\+:0F\+:F0 = F\+F\+:\+A\+D\+:\+FF\+:3\+:FF\+:FF
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A \hyperlink{structMAC}{M\+AC} instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{structMAC}{M\+AC} instance with the result of this $\vert$ other. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{M\+AC@{M\+AC}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf M\+AC} \&}]{mac}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{structMAC_a72c483e874958475fa33b97cda3db056}{}\label{structMAC_a72c483e874958475fa33b97cda3db056}
+
+
+$<$$<$ operator to print the \hyperlink{structMAC}{M\+AC} value in a std\+::ostream 
+
+The format used to print the \hyperlink{structMAC}{M\+AC} value is the same as the format used by the method \hyperlink{structMAC_aa298c6eb1ca7114f8a126e260a40548a}{as\+\_\+string()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & The std\+::ostream instance where to print the value. \\
+\hline
+{\em ip} & The \hyperlink{structMAC}{M\+AC} instance to print in the os instance. \\
+\hline
+\end{DoxyParams}
+\index{M\+AC@{M\+AC}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!M\+AC@{M\+AC}}
+\subsubsection[{\texorpdfstring{operator$>$$>$}{operator>>}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\+::istream \&}]{is, }
+\item[{{\bf M\+AC} \&}]{mac}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{structMAC_ad48783b1ca0c6721e6e001a32dfc6d05}{}\label{structMAC_ad48783b1ca0c6721e6e001a32dfc6d05}
+
+
+\begin{quote}
+\begin{quote}
+operator to read an \hyperlink{structMAC}{M\+AC} instance from a std\+::iestream. \end{quote}
+\end{quote}
+
+
+The format in with the value must be represented in the std\+::iestream is the same as the format required in the std\+::string constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & The std\+::iestream used to read the new \hyperlink{structMAC}{M\+AC} instance to create. \\
+\hline
+{\em ip} & The new instance to set with the value read from is. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structabstract_1_1Header.html" title="abstract::Header" alt="" coords="5,81,124,108"/>
-<area shape="rect" id="node2" href="$structdns_1_1Header.html" title="dns::Header" alt="" coords="194,5,287,32"/>
+<area shape="rect" id="node1" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="5,81,124,108"/>
+<area shape="rect" id="node2" href="$structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="194,5,287,32"/>
 <area shape="rect" id="node3" href="$structip_1_1Header.html" title="ip::Header" alt="" coords="199,56,282,83"/>
 <area shape="rect" id="node4" href="$structudp_1_1Header.html" title="udp::Header" alt="" coords="194,107,287,133"/>
 <area shape="rect" id="node5" href="$structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="172,157,309,184"/>

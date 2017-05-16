@@ -42,6 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -146,7 +147,7 @@ ushort&#160;</td><td class="memItemRight" valign="bottom"><b>ip</b> [4]</td></tr
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:ab5644dcfa13678c430f256332e31c671"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIPv4.html#ab5644dcfa13678c430f256332e31c671">operator&lt;&lt;</a> (std::ostream &amp;, const <a class="el" href="structIPv4.html">IPv4</a> &amp;)</td></tr>
-<tr class="memdesc:ab5644dcfa13678c430f256332e31c671"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt; operation to print the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> value in a std::ostream  <a href="#ab5644dcfa13678c430f256332e31c671">More...</a><br /></td></tr>
+<tr class="memdesc:ab5644dcfa13678c430f256332e31c671"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt; operator to print the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> value in a std::ostream  <a href="#ab5644dcfa13678c430f256332e31c671">More...</a><br /></td></tr>
 <tr class="separator:ab5644dcfa13678c430f256332e31c671"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47e7e07277bbcacf06f17b1c2fc59f7f"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIPv4.html#a47e7e07277bbcacf06f17b1c2fc59f7f">operator&gt;&gt;</a> (std::istream &amp;, <a class="el" href="structIPv4.html">IPv4</a> &amp;)</td></tr>
 <tr class="memdesc:a47e7e07277bbcacf06f17b1c2fc59f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><blockquote class="doxtable">
@@ -161,7 +162,7 @@ Friends</h2></td></tr>
 <div class="textblock"><p>This struct declares a <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> type for NetworkDEVS simulation purposes. </p>
 <dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
-<p>It's not meant to be a full <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> struct, for that purpose, there is many external C++ libraries. This struct was designed to easely simulate Networks using the NetworkDEVS framework. </p>
+<p>It's not meant to be a full <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> struct, for that purpose, there is many external C++ libraries. This struct represent an <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> as a unsigned short array of length 4 and it was designed to easely simulate Networks using the NetworkDEVS framework. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac1982a68d4cd0e2f83165659ec1c41fb"></a>
 <div class="memitem">
@@ -212,7 +213,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor from std::String. </p>
-<p>It construct a new <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> instance using the std::string &gt;&gt; operator to read values with string format 'a.b.c.d'.</p>
+<p>It construct a new <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> instance using the std::string &gt;&gt; operator to read values with string format 'a.b.c.d' where 0 &lt;= a,b,c,d &lt;= 255 in decimal representation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other_ip</td><td>A string representing the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> to construct. </td></tr>
@@ -248,7 +249,7 @@ Friends</h2></td></tr>
 <p>This constructor uses a const char * as the representation where to interpreat the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> value to create.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other_ip</td><td>A const char * that points to a representation of the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> in the next form: 'a.b.c.d' where 0 &lt;= a,b,c,d &lt;= 255. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. </td></tr>
+    <tr><td class="paramname">other_ip</td><td>A const char * that points to a representation of the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> in the next form: 'a.b.c.d' where 0 &lt;= a,b,c,d &lt;= 255 in decimal representation. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. </td></tr>
   </table>
   </dd>
 </dl>
@@ -281,7 +282,7 @@ Friends</h2></td></tr>
 <p>This constructor takes an unsigned short * and reads from it four consecutives usigned short a,b,c and d to construct a new <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> with value a.b.c.d.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other_ip</td><td>An unsigned short that must point to four consecutives unsigned short values used to construct the new <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> instance. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. </td></tr>
+    <tr><td class="paramname">other_ip</td><td>An unsigned pointer short that must point to four consecutives unsigned short values used to construct the new <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> instance. This constructor fails if the pointer is not pointing to four consecutives unsigned short values and the new instance is created with trash values. </td></tr>
   </table>
   </dd>
 </dl>
@@ -311,7 +312,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Copy constructor. </p>
-<p>This constructor uses an <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> variable to construct a copy of its value. This constructor is the one used by C++ in the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> default == operator.</p>
+<p>This constructor uses an <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> instance to construct a copy of its value. This constructor is the one used by C++ in the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> default == operator.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other_ip</td><td>An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> instance to be copied. </td></tr>
@@ -405,14 +406,14 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lower than comparator. </p>
-<p>This operator compares the implicit this instance agains the other instances passed as parameter to return whether the this is lower than the other or not. An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> A is lower than another instance B when the first different value from left to right is lower in the A instance than in the B instance.</p>
+<p>This operator compares the implicit this instance agains the other instances passed as parameter to return whether the this is lower than the other or not. An <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> A is lower than another <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> B when the first different value from left to right is lower in the A instance than in the B instance.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>The instance against what to compare the implicite instance. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if this in lower than other, False otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this is lower than other, False otherwise. </dd></dl>
 
 </div>
 </div>
@@ -543,7 +544,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt; operation to print the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> value in a std::ostream </p>
+<p>&lt;&lt; operator to print the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> value in a std::ostream </p>
 <p>The format used to print the <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> value is the same as the format used by the method <a class="el" href="structIPv4.html#acb7ed5ccf7af572bbc32396dcd1fe3cb" title="Returns a string formated as &#39;a.b.c.d&#39; with the IPv4 value of the this. ">as_string()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

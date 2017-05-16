@@ -13,9 +13,9 @@ namespace message {
   /**
    * 
    * @author Laouen Louan Mayal Belloli
-   * #date 14 May 2017
+   * @date 14 May 2017
    * 
-   * @struct message::Multiplex message_queue.h
+   * @struct message::Multiplexed message_queue.h
    * 
    * @brief Encapsualtes a message of type MSG and a interface number together.
    * @details This data type is used by the multiplexer model. The model expect 
@@ -23,7 +23,7 @@ namespace message {
    * to select the correct output port where to send the message that comes in 
    * the Multiplexed instance. 
    * 
-   * @tparam MSG Data type of the message that te multiplexed will carry.
+   * @tparam MSG Data type of the message to be carry by the multiplexed instance.
    */
   template<typename MSG>
   struct Multiplexed {

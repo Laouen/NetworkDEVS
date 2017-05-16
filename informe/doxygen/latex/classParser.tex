@@ -1,0 +1,167 @@
+\hypertarget{classParser}{}\section{Parser$<$ I\+N\+P\+UT $>$ Class Template Reference}
+\label{classParser}\index{Parser$<$ I\+N\+P\+U\+T $>$@{Parser$<$ I\+N\+P\+U\+T $>$}}
+
+
+A \hyperlink{classParser}{Parser} that reads inputs of type I\+N\+P\+UT from files, construct the corresponding I\+N\+P\+UT instance and returns it.  
+
+
+
+
+{\ttfamily \#include $<$parser.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classParser_a0d63531cd89ae4d7ce378034d4ab60ca}{Parser} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classParser_a4bbe998721c17d2dcb114f61cb4eeab5}{Parser} (const char $\ast$file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor that opens a file. \end{DoxyCompactList}\item 
+\hyperlink{classParser_a41b13636c64430a962617bb508249663}{$\sim$\+Parser} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the class. \end{DoxyCompactList}\item 
+bool \hyperlink{classParser_a0d45645eefd19e2872e7c9a9b9134017}{open\+\_\+file} (const char $\ast$file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Opens a file to read input from. \end{DoxyCompactList}\item 
+bool \hyperlink{classParser_aef3ae8c9c1b087574fa78376435df690}{file\+\_\+open} ()
+\begin{DoxyCompactList}\small\item\em Checks whether a file was correctly opened or not. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, I\+N\+P\+UT $>$ \hyperlink{classParser_af5a8a76005b69198563da309a7a169e3}{next\+\_\+timed\+\_\+input} ()
+\begin{DoxyCompactList}\small\item\em Reads the next line of the file and parses the first value as the time and the res of the line as the I\+N\+P\+UT. \end{DoxyCompactList}\item 
+I\+N\+P\+UT \hyperlink{classParser_a08d758d3b93b3854ac21dc3e81c27345}{next\+\_\+input} ()
+\begin{DoxyCompactList}\small\item\em Reads the next line of the file and parses the whole line as the I\+N\+P\+UT. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class I\+N\+P\+UT$>$\\*
+class Parser$<$ I\+N\+P\+U\+T $>$}
+
+A \hyperlink{classParser}{Parser} that reads inputs of type I\+N\+P\+UT from files, construct the corresponding I\+N\+P\+UT instance and returns it. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+The Parsers uses the $>$$>$ operator and the I\+N\+P\+UT type must implement this operator, otherwise it fails in compile time. The \hyperlink{classParser}{Parser} reads one input for each line of the file, thus, the $>$$>$ operator must parse a valid instance from a single line, otherwise it fails in runtime. The file can include at the begining of each line a double presition floating number and ask the parser to read that first number as a simulation virtual time to asociate with the input.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em I\+N\+P\+UT} & Data type of the input to parse from the file. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{Parser()}{Parser()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ {\bf Parser}$<$ I\+N\+P\+UT $>$\+::{\bf Parser} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_a0d63531cd89ae4d7ce378034d4ab60ca}{}\label{classParser_a0d63531cd89ae4d7ce378034d4ab60ca}
+
+
+Default constructor. 
+
+This constructor does not open any file and a file must be opened before trying to read any input. \index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{Parser(const char $\ast$file\+\_\+path)}{Parser(const char *file_path)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ {\bf Parser}$<$ I\+N\+P\+UT $>$\+::{\bf Parser} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file\+\_\+path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_a4bbe998721c17d2dcb114f61cb4eeab5}{}\label{classParser_a4bbe998721c17d2dcb114f61cb4eeab5}
+
+
+Constructor that opens a file. 
+
+This constructor initializes a parser instance opening a file and if this contructor is used, the parser is ready to read input unless the open file process fails.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & A const char $\ast$ with the path of the file to open. \\
+\hline
+\end{DoxyParams}
+\index{Parser@{Parser}!````~Parser@{$\sim$\+Parser}}
+\index{````~Parser@{$\sim$\+Parser}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{$\sim$\+Parser()}{~Parser()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ {\bf Parser}$<$ I\+N\+P\+UT $>$\+::$\sim${\bf Parser} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_a41b13636c64430a962617bb508249663}{}\label{classParser_a41b13636c64430a962617bb508249663}
+
+
+Destructor of the class. 
+
+This method is called when the instance is destroyed and if the there is a opened file, it closes the file. 
+
+\subsection{Member Function Documentation}
+\index{Parser@{Parser}!file\+\_\+open@{file\+\_\+open}}
+\index{file\+\_\+open@{file\+\_\+open}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{file\+\_\+open()}{file_open()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ bool {\bf Parser}$<$ I\+N\+P\+UT $>$\+::file\+\_\+open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_aef3ae8c9c1b087574fa78376435df690}{}\label{classParser_aef3ae8c9c1b087574fa78376435df690}
+
+
+Checks whether a file was correctly opened or not. 
+
+If this method returns False the methods next\+\_\+timed\+\_\+input and next\+\_\+input can not be used.
+
+\begin{DoxyReturn}{Returns}
+True is a fila was correctly opened, False otherwise. 
+\end{DoxyReturn}
+\index{Parser@{Parser}!next\+\_\+input@{next\+\_\+input}}
+\index{next\+\_\+input@{next\+\_\+input}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{next\+\_\+input()}{next_input()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ I\+N\+P\+UT {\bf Parser}$<$ I\+N\+P\+UT $>$\+::next\+\_\+input (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_a08d758d3b93b3854ac21dc3e81c27345}{}\label{classParser_a08d758d3b93b3854ac21dc3e81c27345}
+
+
+Reads the next line of the file and parses the whole line as the I\+N\+P\+UT. 
+
+The line must contain the whole I\+N\+P\+UT representation to parse, if not the case it fails.
+
+\begin{DoxyReturn}{Returns}
+An I\+N\+P\+UT instance with the value of the parsed line. 
+\end{DoxyReturn}
+\index{Parser@{Parser}!next\+\_\+timed\+\_\+input@{next\+\_\+timed\+\_\+input}}
+\index{next\+\_\+timed\+\_\+input@{next\+\_\+timed\+\_\+input}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{next\+\_\+timed\+\_\+input()}{next_timed_input()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ std\+::pair$<$double,I\+N\+P\+UT$>$ {\bf Parser}$<$ I\+N\+P\+UT $>$\+::next\+\_\+timed\+\_\+input (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_af5a8a76005b69198563da309a7a169e3}{}\label{classParser_af5a8a76005b69198563da309a7a169e3}
+
+
+Reads the next line of the file and parses the first value as the time and the res of the line as the I\+N\+P\+UT. 
+
+This methods fails if the first element of the line is not a valid double presition float value representation. The rest of the line must contain te whole I\+N\+P\+UT representation to parse, if not the case, it also fails.
+
+\begin{DoxyReturn}{Returns}
+a std\+::pair$<$double,\+I\+N\+P\+U\+T$>$ where the first parameter is the parsed time and the second parameter is the parsed input. 
+\end{DoxyReturn}
+\index{Parser@{Parser}!open\+\_\+file@{open\+\_\+file}}
+\index{open\+\_\+file@{open\+\_\+file}!Parser@{Parser}}
+\subsubsection[{\texorpdfstring{open\+\_\+file(const char $\ast$file\+\_\+path)}{open_file(const char *file_path)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class I\+N\+P\+UT$>$ bool {\bf Parser}$<$ I\+N\+P\+UT $>$\+::open\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file\+\_\+path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classParser_a0d45645eefd19e2872e7c9a9b9134017}{}\label{classParser_a0d45645eefd19e2872e7c9a9b9134017}
+
+
+Opens a file to read input from. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & A const char $\ast$ with the path of the file to open. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the file was correctly opened, False otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/libs/parser.\+h\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ipv4',['IPv4',['../structIPv4.html#ac1982a68d4cd0e2f83165659ec1c41fb',1,'IPv4::IPv4()'],['../structIPv4.html#a08282c7d0d3411aee1135ba0195d27c6',1,'IPv4::IPv4(const std::string &amp;other_ip)'],['../structIPv4.html#a719104625fa0bd5890348ee1be6b370f',1,'IPv4::IPv4(const char *other_ip)'],['../structIPv4.html#ac8dddaa9a429dcffdd72c6adc5ebf742',1,'IPv4::IPv4(ushort *other_ip)'],['../structIPv4.html#ad8d3deea36179f336b91123feea5dadd',1,'IPv4::IPv4(const IPv4 &amp;other_ip)']]]
+  ['c_5fstr',['c_str',['../structdns_1_1Header.html#a9b1a9610e54c5c0992fe6e756c8fadbb',1,'dns::Header::c_str()'],['../structdns_1_1DomainName.html#ae02a0ca9015d761bbea80711d18f4bf6',1,'dns::DomainName::c_str()'],['../structdns_1_1ResourceRecord.html#a44230c7a2543fcf77060eed526d76fa1',1,'dns::ResourceRecord::c_str()'],['../structdns_1_1Packet.html#abe5254f0b79f2f3d41cee8a1b6654c6d',1,'dns::Packet::c_str()']]]
 ];

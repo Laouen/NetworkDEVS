@@ -42,6 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -106,7 +107,12 @@ Collaboration diagram for switch_protocol:</div>
 <div class="dyncontent">
 <div class="center"><img src="classswitch__protocol__coll__graph.png" border="0" usemap="#switch__protocol_coll__map" alt="Collaboration graph"/></div>
 <map name="switch__protocol_coll__map" id="switch__protocol_coll__map">
-<area shape="rect" id="node2" href="classLayer.html" title="Layer\&lt; int, int, message\l::Multiplexed\&lt; link::Frame\l \&gt;, int \&gt;" alt="" coords="5,80,179,136"/>
+<area shape="rect" id="node2" href="classLayer.html" title="Layer\&lt; int, int, message\l::Multiplexed\&lt; link::Frame\l \&gt;, int \&gt;" alt="" coords="1031,131,1204,187"/>
+<area shape="rect" id="node6" href="structmessage_1_1Multiplexed.html" title="message::Multiplexed\l\&lt; link::Frame \&gt;" alt="" coords="452,170,601,211"/>
+<area shape="rect" id="node7" href="structlink_1_1Frame.html" title="link::Frame" alt="" coords="260,177,347,204"/>
+<area shape="rect" id="node8" href="structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="5,152,111,179"/>
+<area shape="rect" id="node9" href="structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. " alt="" coords="32,203,84,229"/>
+<area shape="rect" id="node10" href="classLogger.html" title="This class print formated std::string in the pdevs.log file used by the PowerDEVS simulator..." alt="" coords="750,243,811,269"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -127,11 +133,11 @@ Event&#160;</td><td class="memItemRight" valign="bottom"><b>lambda</b> (double)<
 <tr class="memitem:a508f4ca6ad0341274a3b274a2610fb8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a508f4ca6ad0341274a3b274a2610fb8c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>exit</b> ()</td></tr>
 <tr class="separator:a508f4ca6ad0341274a3b274a2610fb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dd0e54d6b2a3683a5be387cffa99a22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dd0e54d6b2a3683a5be387cffa99a22"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>dinternal</b> (double)</td></tr>
+<tr class="memitem:a7dd0e54d6b2a3683a5be387cffa99a22"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classswitch__protocol.html#a7dd0e54d6b2a3683a5be387cffa99a22">dinternal</a> (double)</td></tr>
+<tr class="memdesc:a7dd0e54d6b2a3683a5be387cffa99a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is virtual and must be overloaded with the protocol.  <a href="#a7dd0e54d6b2a3683a5be387cffa99a22">More...</a><br /></td></tr>
 <tr class="separator:a7dd0e54d6b2a3683a5be387cffa99a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93b0465ace315872626f2f04c29b55f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93b0465ace315872626f2f04c29b55f3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>dexternal</b> (double)</td></tr>
+<tr class="memitem:a93b0465ace315872626f2f04c29b55f3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classswitch__protocol.html#a93b0465ace315872626f2f04c29b55f3">dexternal</a> (double)</td></tr>
+<tr class="memdesc:a93b0465ace315872626f2f04c29b55f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is virtual and can be overloaded with the protocol.  <a href="#a93b0465ace315872626f2f04c29b55f3">More...</a><br /></td></tr>
 <tr class="separator:a93b0465ace315872626f2f04c29b55f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classLayer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classLayer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classLayer.html">Layer&lt; int, int, message::Multiplexed&lt; link::Frame &gt;, int &gt;</a></td></tr>
 <tr class="memitem:a61263cb897fd7d091830e5591c9ae3b0 inherit pub_methods_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61263cb897fd7d091830e5591c9ae3b0"></a>
@@ -152,13 +158,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>queuedMsgs</b> () con
 <tr class="separator:aba0f1461c09e98abc9d28ab9fc438afb inherit pro_methods_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classLayer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classLayer')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classLayer.html">Layer&lt; int, int, message::Multiplexed&lt; link::Frame &gt;, int &gt;</a></td></tr>
 <tr class="memitem:a537a1e57d0e9b69c857a89372e43e8c8 inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a537a1e57d0e9b69c857a89372e43e8c8"></a>
-Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
+<a class="el" href="classLogger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
 <tr class="separator:a537a1e57d0e9b69c857a89372e43e8c8 inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a087dc6b9f1a13ab134ec21bbcca1613a inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a087dc6b9f1a13ab134ec21bbcca1613a"></a>
 std::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_data_in</b></td></tr>
 <tr class="separator:a087dc6b9f1a13ab134ec21bbcca1613a inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb48b09eff4b15662593a8e5d6c937da inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb48b09eff4b15662593a8e5d6c937da"></a>
-std::queue&lt; message::Multiplexed&lt; <a class="el" href="structlink_1_1Frame.html">link::Frame</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_data_in</b></td></tr>
+std::queue&lt; <a class="el" href="structmessage_1_1Multiplexed.html">message::Multiplexed</a>&lt; <a class="el" href="structlink_1_1Frame.html">link::Frame</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_data_in</b></td></tr>
 <tr class="separator:adb48b09eff4b15662593a8e5d6c937da inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ad38a89f17ce5ce6027cf9847f42f04 inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ad38a89f17ce5ce6027cf9847f42f04"></a>
 std::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_ctrl_in</b></td></tr>
@@ -167,16 +173,16 @@ std::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>hi
 std::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_ctrl_in</b></td></tr>
 <tr class="separator:ac4cd7792653eab48d3b01a087ae9069a inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0695544b96e2e6f4473838d1ce79acea inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0695544b96e2e6f4473838d1ce79acea"></a>
-message::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_data_out</b></td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_data_out</b></td></tr>
 <tr class="separator:a0695544b96e2e6f4473838d1ce79acea inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed13b723a43c0e7e3e05cf9c25eef0ff inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed13b723a43c0e7e3e05cf9c25eef0ff"></a>
-message::queue&lt; message::Multiplexed&lt; <a class="el" href="structlink_1_1Frame.html">link::Frame</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_data_out</b></td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; <a class="el" href="structmessage_1_1Multiplexed.html">message::Multiplexed</a>&lt; <a class="el" href="structlink_1_1Frame.html">link::Frame</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_data_out</b></td></tr>
 <tr class="separator:aed13b723a43c0e7e3e05cf9c25eef0ff inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a135be5c42313bff23a18d1cda136f495 inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a135be5c42313bff23a18d1cda136f495"></a>
-message::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_ctrl_out</b></td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_ctrl_out</b></td></tr>
 <tr class="separator:a135be5c42313bff23a18d1cda136f495 inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fdb4f5acc54930faa871a4fdc6ce688 inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fdb4f5acc54930faa871a4fdc6ce688"></a>
-message::queue&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_ctrl_out</b></td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_ctrl_out</b></td></tr>
 <tr class="separator:a5fdb4f5acc54930faa871a4fdc6ce688 inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3701dfd2133046db9c6e5ee4280a0b59 inherit pro_attribs_classLayer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3701dfd2133046db9c6e5ee4280a0b59"></a>
 Event&#160;</td><td class="memItemRight" valign="bottom"><b>output</b></td></tr>
@@ -194,6 +200,77 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>infinity</b></td></
 double&#160;</td><td class="memItemRight" valign="bottom"><b>send_time</b></td></tr>
 <tr class="separator:adf1d2eddfe40d3b94bd98a10f6226999 inherit pro_attribs_classLayer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a93b0465ace315872626f2f04c29b55f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void switch_protocol::dexternal </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method is virtual and can be overloaded with the protocol. </p>
+<p>This method is called each time an external transition takes place.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The virtual global time of the simulation at which the method is triggered. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classLayer.html#ae21ef24340c6c1f6cf20d66b5ab6a5f7">Layer&lt; int, int, message::Multiplexed&lt; link::Frame &gt;, int &gt;</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7dd0e54d6b2a3683a5be387cffa99a22"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void switch_protocol::dinternal </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method is virtual and must be overloaded with the protocol. </p>
+<p>This method is called while the input queues has messages to process and the procotol should be implemented here..</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The virtual global time of the simulation at which the method is triggered. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classLayer.html#a1c82b14ba3efc37969f55c633a9b3173">Layer&lt; int, int, message::Multiplexed&lt; link::Frame &gt;, int &gt;</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/<a class="el" href="switch__protocol_8h_source.html">switch_protocol.h</a></li>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/switch_protocol.cpp</li>

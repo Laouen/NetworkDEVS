@@ -42,6 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -86,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>dns</b></li><li class="navelem"><a class="el" href="structdns_1_1Packet.html">Packet</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacedns.html">dns</a></li><li class="navelem"><a class="el" href="structdns_1_1Packet.html">Packet</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,44 +99,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">dns::Packet Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct represent a <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a>, it has a <a class="el" href="structdns_1_1Header.html" title="Structure that implements a dns::Packet header. ">dns::Header</a> that indicates how many dns::resourceRecord there is in each one of the four sections: questions, answers, authoritatives and aditionals and four std::lists&lt;dns::ResourceRedords&gt; containing them.  
+ <a href="structdns_1_1Packet.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="dns_8h_source.html">dns.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for dns::Packet:</div>
 <div class="dyncontent">
 <div class="center"><img src="structdns_1_1Packet__coll__graph.png" border="0" usemap="#dns_1_1Packet_coll__map" alt="Collaboration graph"/></div>
 <map name="dns_1_1Packet_coll__map" id="dns_1_1Packet_coll__map">
-<area shape="rect" id="node2" href="structdns_1_1Header.html" title="dns::Header" alt="" coords="18,81,111,108"/>
-<area shape="rect" id="node3" href="structabstract_1_1Header.html" title="abstract::Header" alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node2" href="structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="19,475,113,502"/>
+<area shape="rect" id="node3" href="structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="5,379,124,405"/>
+<area shape="rect" id="node5" href="structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma..." alt="" coords="147,379,297,405"/>
+<area shape="rect" id="node6" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="149,275,199,301"/>
+<area shape="rect" id="node7" href="structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. " alt="" coords="223,275,354,301"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="249,96,329,123"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="225,5,352,47"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7cc92466b5291c0f4773092084836495"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cc92466b5291c0f4773092084836495"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Packet</b> (const <a class="el" href="structdns_1_1Packet.html">Packet</a> &amp;other)</td></tr>
+<tr class="memitem:a686821b6c288359603304ae9c075f3f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#a686821b6c288359603304ae9c075f3f1">Packet</a> ()</td></tr>
+<tr class="memdesc:a686821b6c288359603304ae9c075f3f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a686821b6c288359603304ae9c075f3f1">More...</a><br /></td></tr>
+<tr class="separator:a686821b6c288359603304ae9c075f3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc92466b5291c0f4773092084836495"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#a7cc92466b5291c0f4773092084836495">Packet</a> (const <a class="el" href="structdns_1_1Packet.html">Packet</a> &amp;other)</td></tr>
+<tr class="memdesc:a7cc92466b5291c0f4773092084836495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a7cc92466b5291c0f4773092084836495">More...</a><br /></td></tr>
 <tr class="separator:a7cc92466b5291c0f4773092084836495"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90c293bc5bc7bad9c47be19d6060b82a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90c293bc5bc7bad9c47be19d6060b82a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Packet</b> (const char *const data)</td></tr>
+<tr class="memitem:a90c293bc5bc7bad9c47be19d6060b82a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#a90c293bc5bc7bad9c47be19d6060b82a">Packet</a> (const char *const data)</td></tr>
+<tr class="memdesc:a90c293bc5bc7bad9c47be19d6060b82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contructor from const char*.  <a href="#a90c293bc5bc7bad9c47be19d6060b82a">More...</a><br /></td></tr>
 <tr class="separator:a90c293bc5bc7bad9c47be19d6060b82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9e9b7e48afc984d949b0062feef13fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9e9b7e48afc984d949b0062feef13fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addQuestionResource</b> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memitem:ac9e9b7e48afc984d949b0062feef13fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#ac9e9b7e48afc984d949b0062feef13fe">addQuestionResource</a> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memdesc:ac9e9b7e48afc984d949b0062feef13fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new dns::ResourceRedord to the questions section.  <a href="#ac9e9b7e48afc984d949b0062feef13fe">More...</a><br /></td></tr>
 <tr class="separator:ac9e9b7e48afc984d949b0062feef13fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5e426126e1b03f0ca2e874bd7453864"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5e426126e1b03f0ca2e874bd7453864"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addAnswerResource</b> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memitem:aa5e426126e1b03f0ca2e874bd7453864"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#aa5e426126e1b03f0ca2e874bd7453864">addAnswerResource</a> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memdesc:aa5e426126e1b03f0ca2e874bd7453864"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new dns::ResourceRedord to the answers section.  <a href="#aa5e426126e1b03f0ca2e874bd7453864">More...</a><br /></td></tr>
 <tr class="separator:aa5e426126e1b03f0ca2e874bd7453864"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7aac0fb6f1d988b6e74f6dae4c0dd8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7aac0fb6f1d988b6e74f6dae4c0dd8a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addAuthoritativeResource</b> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memitem:ac7aac0fb6f1d988b6e74f6dae4c0dd8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#ac7aac0fb6f1d988b6e74f6dae4c0dd8a">addAuthoritativeResource</a> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memdesc:ac7aac0fb6f1d988b6e74f6dae4c0dd8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new dns::ResourceRedord to the authoritatives section.  <a href="#ac7aac0fb6f1d988b6e74f6dae4c0dd8a">More...</a><br /></td></tr>
 <tr class="separator:ac7aac0fb6f1d988b6e74f6dae4c0dd8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a384c1b1338b232cd10808b8e94817a98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a384c1b1338b232cd10808b8e94817a98"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addAditionalResource</b> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memitem:a384c1b1338b232cd10808b8e94817a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#a384c1b1338b232cd10808b8e94817a98">addAditionalResource</a> (<a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> r)</td></tr>
+<tr class="memdesc:a384c1b1338b232cd10808b8e94817a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new dns::ResourceRedord to the aditional section.  <a href="#a384c1b1338b232cd10808b8e94817a98">More...</a><br /></td></tr>
 <tr class="separator:a384c1b1338b232cd10808b8e94817a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe5254f0b79f2f3d41cee8a1b6654c6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5254f0b79f2f3d41cee8a1b6654c6d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>c_str</b> () const </td></tr>
+<tr class="memitem:abe5254f0b79f2f3d41cee8a1b6654c6d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#abe5254f0b79f2f3d41cee8a1b6654c6d">c_str</a> () const </td></tr>
+<tr class="memdesc:abe5254f0b79f2f3d41cee8a1b6654c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy all the bytes of the instance in a memory block and return a pointer to that memory block.  <a href="#abe5254f0b79f2f3d41cee8a1b6654c6d">More...</a><br /></td></tr>
 <tr class="separator:abe5254f0b79f2f3d41cee8a1b6654c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8edc861125aa062b29793fa0c5ff435a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8edc861125aa062b29793fa0c5ff435a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const </td></tr>
+<tr class="memitem:a8edc861125aa062b29793fa0c5ff435a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#a8edc861125aa062b29793fa0c5ff435a">size</a> () const </td></tr>
 <tr class="separator:a8edc861125aa062b29793fa0c5ff435a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8d0b87762ca208e97da4d0dddd39adb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8d0b87762ca208e97da4d0dddd39adb"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>as_string</b> () const </td></tr>
+<tr class="memitem:ac8d0b87762ca208e97da4d0dddd39adb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1Packet.html#ac8d0b87762ca208e97da4d0dddd39adb">as_string</a> () const </td></tr>
+<tr class="memdesc:ac8d0b87762ca208e97da4d0dddd39adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints the <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a> instance in a std::string in a human redable format.  <a href="#ac8d0b87762ca208e97da4d0dddd39adb">More...</a><br /></td></tr>
 <tr class="separator:ac8d0b87762ca208e97da4d0dddd39adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -156,6 +169,310 @@ std::list&lt; <a class="el" href="structdns_1_1ResourceRecord.html">ResourceReco
 std::list&lt; <a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>aditionals</b></td></tr>
 <tr class="separator:aafa573148fd6ea9451c6f7db16676f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct represent a <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a>, it has a <a class="el" href="structdns_1_1Header.html" title="Structure that implements a dns::Packet header. ">dns::Header</a> that indicates how many dns::resourceRecord there is in each one of the four sections: questions, answers, authoritatives and aditionals and four std::lists&lt;dns::ResourceRedords&gt; containing them. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>This struct carry a DNS query and answer though the network. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a686821b6c288359603304ae9c075f3f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::Packet::Packet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>It initilizes a new empty instance with no dns::ResourceRedords </p>
+
+</div>
+</div>
+<a class="anchor" id="a7cc92466b5291c0f4773092084836495"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::Packet::Packet </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structdns_1_1Packet.html">Packet</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>It construct a new instance copying the value from the instances passed as parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a> used to initilize the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a90c293bc5bc7bad9c47be19d6060b82a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::Packet::Packet </td>
+          <td>(</td>
+          <td class="paramtype">const char *const&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Contructor from const char*. </p>
+<p>This constructor takes a const char * pointing to a memory block that contains a representation of a <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a> as the one obtained by the c_str method of this class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A const char* pointing to the correctly formated memory block </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a384c1b1338b232cd10808b8e94817a98"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dns::Packet::addAditionalResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a>&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a new dns::ResourceRedord to the aditional section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>A <a class="el" href="structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma...">dns::ResourceRecord</a> to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa5e426126e1b03f0ca2e874bd7453864"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dns::Packet::addAnswerResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a>&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a new dns::ResourceRedord to the answers section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>A <a class="el" href="structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma...">dns::ResourceRecord</a> to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac7aac0fb6f1d988b6e74f6dae4c0dd8a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dns::Packet::addAuthoritativeResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a>&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a new dns::ResourceRedord to the authoritatives section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>A <a class="el" href="structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma...">dns::ResourceRecord</a> to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac9e9b7e48afc984d949b0062feef13fe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dns::Packet::addQuestionResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdns_1_1ResourceRecord.html">ResourceRecord</a>&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a new dns::ResourceRedord to the questions section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>A <a class="el" href="structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma...">dns::ResourceRecord</a> to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8d0b87762ca208e97da4d0dddd39adb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string dns::Packet::as_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>prints the <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a> instance in a std::string in a human redable format. </p>
+<dl class="section return"><dt>Returns</dt><dd>a std::string with the printed value of the instance. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abe5254f0b79f2f3d41cee8a1b6654c6d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* dns::Packet::c_str </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy all the bytes of the instance in a memory block and return a pointer to that memory block. </p>
+<p>This method can be used to store a <a class="el" href="structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord...">dns::Packet</a> as an array of chars and be reconstructed with the const char * constructor later.</p>
+<dl class="section return"><dt>Returns</dt><dd>A const char * that point to the memory block where the instance was capied. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8edc861125aa062b29793fa0c5ff435a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dns::Packet::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>A int with the size of the instance in bytes. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="dns_8h_source.html">dns.h</a></li>
 </ul>

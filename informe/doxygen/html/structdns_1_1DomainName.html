@@ -42,6 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -86,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>dns</b></li><li class="navelem"><a class="el" href="structdns_1_1DomainName.html">DomainName</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacedns.html">dns</a></li><li class="navelem"><a class="el" href="structdns_1_1DomainName.html">DomainName</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,29 +99,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">dns::DomainName Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This struct handles domain names with the format 'zone1.zone2.zone3...zoneN'.  
+ <a href="structdns_1_1DomainName.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="dns_8h_source.html">dns.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for dns::DomainName:</div>
+<div class="dyncontent">
+<div class="center"><img src="structdns_1_1DomainName__coll__graph.png" border="0" usemap="#dns_1_1DomainName_coll__map" alt="Collaboration graph"/></div>
+<map name="dns_1_1DomainName_coll__map" id="dns_1_1DomainName_coll__map">
+<area shape="rect" id="node3" title="STL class. " alt="" coords="49,96,129,123"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="25,5,152,47"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad60b6906c878a459d90e581e38a14b88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad60b6906c878a459d90e581e38a14b88"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DomainName</b> (const <a class="el" href="structdns_1_1DomainName.html">DomainName</a> &amp;other)</td></tr>
+<tr class="memitem:aa6753a696606acc35cb7df58ae22ca8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#aa6753a696606acc35cb7df58ae22ca8d">DomainName</a> ()</td></tr>
+<tr class="memdesc:aa6753a696606acc35cb7df58ae22ca8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#aa6753a696606acc35cb7df58ae22ca8d">More...</a><br /></td></tr>
+<tr class="separator:aa6753a696606acc35cb7df58ae22ca8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad60b6906c878a459d90e581e38a14b88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#ad60b6906c878a459d90e581e38a14b88">DomainName</a> (const <a class="el" href="structdns_1_1DomainName.html">DomainName</a> &amp;other)</td></tr>
+<tr class="memdesc:ad60b6906c878a459d90e581e38a14b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#ad60b6906c878a459d90e581e38a14b88">More...</a><br /></td></tr>
 <tr class="separator:ad60b6906c878a459d90e581e38a14b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5672debce76216a4fdc132d2f793f7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5672debce76216a4fdc132d2f793f7d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DomainName</b> (std::string str)</td></tr>
+<tr class="memitem:ae5672debce76216a4fdc132d2f793f7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#ae5672debce76216a4fdc132d2f793f7d">DomainName</a> (std::string str)</td></tr>
+<tr class="memdesc:ae5672debce76216a4fdc132d2f793f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor from std::string.  <a href="#ae5672debce76216a4fdc132d2f793f7d">More...</a><br /></td></tr>
 <tr class="separator:ae5672debce76216a4fdc132d2f793f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4dfa596bfe1f9a2ee9aa7d6a08a1288"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4dfa596bfe1f9a2ee9aa7d6a08a1288"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DomainName</b> (const char *data)</td></tr>
+<tr class="memitem:ae4dfa596bfe1f9a2ee9aa7d6a08a1288"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#ae4dfa596bfe1f9a2ee9aa7d6a08a1288">DomainName</a> (const char *data)</td></tr>
+<tr class="memdesc:ae4dfa596bfe1f9a2ee9aa7d6a08a1288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor from const char *.  <a href="#ae4dfa596bfe1f9a2ee9aa7d6a08a1288">More...</a><br /></td></tr>
 <tr class="separator:ae4dfa596bfe1f9a2ee9aa7d6a08a1288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae02a0ca9015d761bbea80711d18f4bf6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae02a0ca9015d761bbea80711d18f4bf6"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>c_str</b> () const </td></tr>
+<tr class="memitem:ae02a0ca9015d761bbea80711d18f4bf6"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#ae02a0ca9015d761bbea80711d18f4bf6">c_str</a> () const </td></tr>
 <tr class="separator:ae02a0ca9015d761bbea80711d18f4bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a139b1cb39d27b693f7662698e865536d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a139b1cb39d27b693f7662698e865536d"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>as_string</b> () const </td></tr>
+<tr class="memitem:a139b1cb39d27b693f7662698e865536d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#a139b1cb39d27b693f7662698e865536d">as_string</a> () const </td></tr>
+<tr class="memdesc:a139b1cb39d27b693f7662698e865536d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the value of the instance in a std::string with the IDN format as required by the constructor from std::string.  <a href="#a139b1cb39d27b693f7662698e865536d">More...</a><br /></td></tr>
 <tr class="separator:a139b1cb39d27b693f7662698e865536d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a894ccfcd88ac1ad2425b2bfe9ce826a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a894ccfcd88ac1ad2425b2bfe9ce826a6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const </td></tr>
+<tr class="memitem:a894ccfcd88ac1ad2425b2bfe9ce826a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#a894ccfcd88ac1ad2425b2bfe9ce826a6">size</a> () const </td></tr>
 <tr class="separator:a894ccfcd88ac1ad2425b2bfe9ce826a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c69c68df68eff0fa0f5009958119ba6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c69c68df68eff0fa0f5009958119ba6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structdns_1_1DomainName.html">DomainName</a> &amp;other) const </td></tr>
+<tr class="memitem:a3c69c68df68eff0fa0f5009958119ba6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdns_1_1DomainName.html#a3c69c68df68eff0fa0f5009958119ba6">operator==</a> (const <a class="el" href="structdns_1_1DomainName.html">DomainName</a> &amp;other) const </td></tr>
+<tr class="memdesc:a3c69c68df68eff0fa0f5009958119ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator == for <a class="el" href="structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. ">dns::DomainName</a>.  <a href="#a3c69c68df68eff0fa0f5009958119ba6">More...</a><br /></td></tr>
 <tr class="separator:a3c69c68df68eff0fa0f5009958119ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -129,6 +145,240 @@ Public Attributes</h2></td></tr>
 std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a36d2107b7c6e3c78eb233244d22102ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This struct handles domain names with the format 'zone1.zone2.zone3...zoneN'. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>This method allows to parse domain names from strings. An example of a <a class="el" href="structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. ">dns::DomainName</a> is 'networks.devs.com' where 'networks' es zone1 'devs' is zone2 and 'com' is zone3. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa6753a696606acc35cb7df58ae22ca8d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::DomainName::DomainName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>Construct a new instance with an empty vale '' </p>
+
+</div>
+</div>
+<a class="anchor" id="ad60b6906c878a459d90e581e38a14b88"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::DomainName::DomainName </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structdns_1_1DomainName.html">DomainName</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>A <a class="el" href="structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. ">dns::DomainName</a> to copy its value to construct the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae5672debce76216a4fdc132d2f793f7d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::DomainName::DomainName </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor from std::string. </p>
+<p>This constructor uses a std::string formated in the IDN format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>A std::string used to construct the new instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae4dfa596bfe1f9a2ee9aa7d6a08a1288"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dns::DomainName::DomainName </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor from const char *. </p>
+<p>This constructor uses a char * representation to initialize the new instance. the format must be the next:</p>
+<p>0xlen1zone10xlen2zone20xlen3...0xlenNzoneN0x00 where there is no space between the len and the zones name. The len are unsigned chars with the length in bytes of the zones names in text format and the len = 0x00 represent the end of the domain name.</p>
+<p>example 0x08networks0x04devs0x03com0x00 = networks.devs.com</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A const char * used to inicialize the new instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a139b1cb39d27b693f7662698e865536d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string dns::DomainName::as_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the value of the instance in a std::string with the IDN format as required by the constructor from std::string. </p>
+<dl class="section return"><dt>Returns</dt><dd>A std::string with the formated domain name value. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae02a0ca9015d761bbea80711d18f4bf6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* dns::DomainName::c_str </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>A const char * pointing to a memory block of a well defined representation as required by the constructor from const char * of the instance domain name. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3c69c68df68eff0fa0f5009958119ba6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool dns::DomainName::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structdns_1_1DomainName.html">DomainName</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Operator == for <a class="el" href="structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. ">dns::DomainName</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if both the implicit this and the other instances are equals, False otherwise. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a894ccfcd88ac1ad2425b2bfe9ce826a6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dns::DomainName::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>A int with the zise of the current domain name with is the sum of the size in bytes of all the zones of the domain. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="dns_8h_source.html">dns.h</a></li>
 </ul>

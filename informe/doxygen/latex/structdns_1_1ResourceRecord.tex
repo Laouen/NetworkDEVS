@@ -2,39 +2,45 @@
 \label{structdns_1_1ResourceRecord}\index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
 
 
+This structs represent a \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} that contains information of a query or answer of a dns\+::domain\+Name.  
+
+
+
+
+{\ttfamily \#include $<$dns.\+h$>$}
+
+
+
 Collaboration diagram for dns\+:\+:Resource\+Record\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{structdns_1_1ResourceRecord__coll__graph}
+\includegraphics[width=249pt]{structdns_1_1ResourceRecord__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Resource\+Record} (const \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} \&other)\hypertarget{structdns_1_1ResourceRecord_a1d953b0a89f6e04b6d28072d776eb3dd}{}\label{structdns_1_1ResourceRecord_a1d953b0a89f6e04b6d28072d776eb3dd}
-
+\hyperlink{structdns_1_1ResourceRecord_a6949837726969a3a556bc4be792c48db}{Resource\+Record} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\hyperlink{structdns_1_1ResourceRecord_a1d953b0a89f6e04b6d28072d776eb3dd}{Resource\+Record} (const \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{structdns_1_1ResourceRecord_a0d9cb7a786c964487cd16191fee9c8de}{Resource\+Record} (const char $\ast$const data)
+\begin{DoxyCompactList}\small\item\em Contructor from const char$\ast$. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{structdns_1_1ResourceRecord_a44230c7a2543fcf77060eed526d76fa1}{c\+\_\+str} () const 
+\begin{DoxyCompactList}\small\item\em Copy all the bytes of the instance in a memory block and return a pointer to that memory block. \end{DoxyCompactList}\item 
+int \hyperlink{structdns_1_1ResourceRecord_ac686d613eaa1567545ec4cb599d22e32}{size} () const 
 \item 
-{\bfseries Resource\+Record} (const char $\ast$const data)\hypertarget{structdns_1_1ResourceRecord_a0d9cb7a786c964487cd16191fee9c8de}{}\label{structdns_1_1ResourceRecord_a0d9cb7a786c964487cd16191fee9c8de}
-
-\item 
-const char $\ast$ {\bfseries c\+\_\+str} () const \hypertarget{structdns_1_1ResourceRecord_a44230c7a2543fcf77060eed526d76fa1}{}\label{structdns_1_1ResourceRecord_a44230c7a2543fcf77060eed526d76fa1}
-
-\item 
-int {\bfseries size} () const \hypertarget{structdns_1_1ResourceRecord_ac686d613eaa1567545ec4cb599d22e32}{}\label{structdns_1_1ResourceRecord_ac686d613eaa1567545ec4cb599d22e32}
-
-\item 
-std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structdns_1_1ResourceRecord_acbc8eaef9fb71167e40565cbc8f17a0d}{}\label{structdns_1_1ResourceRecord_acbc8eaef9fb71167e40565cbc8f17a0d}
-
-\end{DoxyCompactItemize}
+std\+::string \hyperlink{structdns_1_1ResourceRecord_acbc8eaef9fb71167e40565cbc8f17a0d}{as\+\_\+string} () const 
+\begin{DoxyCompactList}\small\item\em It print the value of the instance in a human redable version on a std\+::string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{structdns_1_1DomainName}{Domain\+Name} {\bfseries name}\hypertarget{structdns_1_1ResourceRecord_ad0df62525540c1e2a9dcfc6b08e938bc}{}\label{structdns_1_1ResourceRecord_ad0df62525540c1e2a9dcfc6b08e938bc}
 
 \item 
-Type {\bfseries Q\+Type}\hypertarget{structdns_1_1ResourceRecord_a16b19c9f45bfd089ef50089eda442076}{}\label{structdns_1_1ResourceRecord_a16b19c9f45bfd089ef50089eda442076}
+\hyperlink{namespacedns_a2f53daa27510b0ea61122af921bb66c7}{Type} {\bfseries Q\+Type}\hypertarget{structdns_1_1ResourceRecord_a16b19c9f45bfd089ef50089eda442076}{}\label{structdns_1_1ResourceRecord_a16b19c9f45bfd089ef50089eda442076}
 
 \item 
 \hyperlink{structIPv4}{I\+Pv4} {\bfseries A\+Value}\hypertarget{structdns_1_1ResourceRecord_a1c93ffe71aba5a8893f38a08fdec766f}{}\label{structdns_1_1ResourceRecord_a1c93ffe71aba5a8893f38a08fdec766f}
@@ -43,12 +49,122 @@ Type {\bfseries Q\+Type}\hypertarget{structdns_1_1ResourceRecord_a16b19c9f45bfd0
 \hyperlink{structdns_1_1DomainName}{Domain\+Name} {\bfseries N\+S\+Value}\hypertarget{structdns_1_1ResourceRecord_a66c5d870f1a6328e6e1c26845102be6a}{}\label{structdns_1_1ResourceRecord_a66c5d870f1a6328e6e1c26845102be6a}
 
 \item 
-Class {\bfseries Q\+Class}\hypertarget{structdns_1_1ResourceRecord_a08dc70151680f4d765e9ce3896352154}{}\label{structdns_1_1ResourceRecord_a08dc70151680f4d765e9ce3896352154}
+\hyperlink{namespacedns_a90321cc8e6ade0bea4be3fee56d3cef2}{Class} {\bfseries Q\+Class}\hypertarget{structdns_1_1ResourceRecord_a08dc70151680f4d765e9ce3896352154}{}\label{structdns_1_1ResourceRecord_a08dc70151680f4d765e9ce3896352154}
 
 \item 
 ushort {\bfseries T\+TL}\hypertarget{structdns_1_1ResourceRecord_a7c540bed9cace85ce331bf596a6827e4}{}\label{structdns_1_1ResourceRecord_a7c540bed9cace85ce331bf596a6827e4}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This structs represent a \hyperlink{structdns_1_1ResourceRecord}{Resource\+Record} that contains information of a query or answer of a dns\+::domain\+Name. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+This struct stores the next information\+:
+\begin{DoxyItemize}
+\item name\+: \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} that is query.
+\item Qtype\+: The type of answer that was returned by a server.
+\item A\+Value\+: If the answer is of type A, the \hyperlink{structIPv4}{I\+Pv4} value of the response.
+\item N\+S\+Value\+: Of the answer is of type NS, the \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} value of a server to send the query.
+\item Q\+Class\+: The class of query.
+\item T\+TL\+: The Time To Live of the response in cache. 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}!Resource\+Record@{Resource\+Record}}
+\index{Resource\+Record@{Resource\+Record}!dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
+\subsubsection[{\texorpdfstring{Resource\+Record()}{ResourceRecord()}}]{\setlength{\rightskip}{0pt plus 5cm}dns\+::\+Resource\+Record\+::\+Resource\+Record (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1ResourceRecord_a6949837726969a3a556bc4be792c48db}{}\label{structdns_1_1ResourceRecord_a6949837726969a3a556bc4be792c48db}
+
+
+Default Constructor. 
+
+Construct an empty new instance of \hyperlink{structdns_1_1ResourceRecord}{dns\+::\+Resource\+Record}. \index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}!Resource\+Record@{Resource\+Record}}
+\index{Resource\+Record@{Resource\+Record}!dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
+\subsubsection[{\texorpdfstring{Resource\+Record(const Resource\+Record \&other)}{ResourceRecord(const ResourceRecord &other)}}]{\setlength{\rightskip}{0pt plus 5cm}dns\+::\+Resource\+Record\+::\+Resource\+Record (
+\begin{DoxyParamCaption}
+\item[{const {\bf Resource\+Record} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1ResourceRecord_a1d953b0a89f6e04b6d28072d776eb3dd}{}\label{structdns_1_1ResourceRecord_a1d953b0a89f6e04b6d28072d776eb3dd}
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & A dns\+::\+Resource\+Recod to copy in the new instance. \\
+\hline
+\end{DoxyParams}
+\index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}!Resource\+Record@{Resource\+Record}}
+\index{Resource\+Record@{Resource\+Record}!dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
+\subsubsection[{\texorpdfstring{Resource\+Record(const char $\ast$const data)}{ResourceRecord(const char *const data)}}]{\setlength{\rightskip}{0pt plus 5cm}dns\+::\+Resource\+Record\+::\+Resource\+Record (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$const}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1ResourceRecord_a0d9cb7a786c964487cd16191fee9c8de}{}\label{structdns_1_1ResourceRecord_a0d9cb7a786c964487cd16191fee9c8de}
+
+
+Contructor from const char$\ast$. 
+
+This constructor takes a const char $\ast$ pointing to a memory block that contains a representation of a dns\+::\+Record\+Resource as the one obtained by the c\+\_\+str method of this class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A const char$\ast$ pointing to the correctly formated memory block \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}!as\+\_\+string@{as\+\_\+string}}
+\index{as\+\_\+string@{as\+\_\+string}!dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
+\subsubsection[{\texorpdfstring{as\+\_\+string() const }{as_string() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string dns\+::\+Resource\+Record\+::as\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1ResourceRecord_acbc8eaef9fb71167e40565cbc8f17a0d}{}\label{structdns_1_1ResourceRecord_acbc8eaef9fb71167e40565cbc8f17a0d}
+
+
+It print the value of the instance in a human redable version on a std\+::string. 
+
+\begin{DoxyReturn}{Returns}
+A std\+::string with the instance value printed on it. 
+\end{DoxyReturn}
+\index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}!c\+\_\+str@{c\+\_\+str}}
+\index{c\+\_\+str@{c\+\_\+str}!dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
+\subsubsection[{\texorpdfstring{c\+\_\+str() const }{c_str() const }}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ dns\+::\+Resource\+Record\+::c\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1ResourceRecord_a44230c7a2543fcf77060eed526d76fa1}{}\label{structdns_1_1ResourceRecord_a44230c7a2543fcf77060eed526d76fa1}
+
+
+Copy all the bytes of the instance in a memory block and return a pointer to that memory block. 
+
+This method can be used to store a \hyperlink{structdns_1_1ResourceRecord}{dns\+::\+Resource\+Record} as an array of chars and be reconstructed with the const char $\ast$ constructor later.
+
+\begin{DoxyReturn}{Returns}
+A const char $\ast$ that point to the memory block where the instance was capied. 
+\end{DoxyReturn}
+\index{dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}!size@{size}}
+\index{size@{size}!dns\+::\+Resource\+Record@{dns\+::\+Resource\+Record}}
+\subsubsection[{\texorpdfstring{size() const }{size() const }}]{\setlength{\rightskip}{0pt plus 5cm}int dns\+::\+Resource\+Record\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1ResourceRecord_ac686d613eaa1567545ec4cb599d22e32}{}\label{structdns_1_1ResourceRecord_ac686d613eaa1567545ec4cb599d22e32}
+\begin{DoxyReturn}{Returns}
+An int with the instance size in bytes. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['size',['size',['../structIPv4.html#a607922ab456f0f29a8b1ca5c48e3ed38',1,'IPv4']]]
+  ['empty',['empty',['../structdns_1_1Zone.html#ad33a2d40f6301c559907d66f1c86d64e',1,'dns::Zone::empty()'],['../classmessage_1_1queue.html#ab03011f8c323c553b3f8b6d5c84ae9db',1,'message::queue::empty()']]],
+  ['error',['error',['../classLogger.html#aad5f47bafa7057b35d81f8191900bde2',1,'Logger']]]
 ];

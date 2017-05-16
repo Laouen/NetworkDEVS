@@ -1,0 +1,5 @@
+<map id="swp_protocol" name="swp_protocol">
+<area shape="rect" id="node3" href="$structlink_1_1Frame.html" title="link::Frame" alt="" coords="65,109,152,136"/>
+<area shape="rect" id="node4" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="5,5,111,32"/>
+<area shape="rect" id="node5" href="$structMAC.html" title="This struct declares a MAC type for NetworksDEVS simulation purposes. " alt="" coords="135,5,187,32"/>
+</map>

@@ -12,6 +12,8 @@
  * @author Laouen Louan Mayal Belloli
  * @date 14 May 2017
  * 
+ * @class Parser parser.h
+ * 
  * @brief A Parser that reads inputs of type INPUT from files, construct the 
  * corresponding INPUT instance and returns it. 
  *  

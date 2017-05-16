@@ -15,7 +15,7 @@ Collaboration diagram for switch\+\_\+protocol\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{classswitch__protocol__coll__graph}
+\includegraphics[width=350pt]{classswitch__protocol__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -36,13 +36,58 @@ Event {\bfseries lambda} (double)\hypertarget{classswitch__protocol_a359850b4291
 void {\bfseries exit} ()\hypertarget{classswitch__protocol_a508f4ca6ad0341274a3b274a2610fb8c}{}\label{classswitch__protocol_a508f4ca6ad0341274a3b274a2610fb8c}
 
 \item 
-virtual void {\bfseries dinternal} (double)\hypertarget{classswitch__protocol_a7dd0e54d6b2a3683a5be387cffa99a22}{}\label{classswitch__protocol_a7dd0e54d6b2a3683a5be387cffa99a22}
-
-\item 
-virtual void {\bfseries dexternal} (double)\hypertarget{classswitch__protocol_a93b0465ace315872626f2f04c29b55f3}{}\label{classswitch__protocol_a93b0465ace315872626f2f04c29b55f3}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classswitch__protocol_a7dd0e54d6b2a3683a5be387cffa99a22}{dinternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and must be overloaded with the protocol. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classswitch__protocol_a93b0465ace315872626f2f04c29b55f3}{dexternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and can be overloaded with the protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{switch\+\_\+protocol@{switch\+\_\+protocol}!dexternal@{dexternal}}
+\index{dexternal@{dexternal}!switch\+\_\+protocol@{switch\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dexternal(double)}{dexternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}void switch\+\_\+protocol\+::dexternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classswitch__protocol_a93b0465ace315872626f2f04c29b55f3}{}\label{classswitch__protocol_a93b0465ace315872626f2f04c29b55f3}
+
+
+This method is virtual and can be overloaded with the protocol. 
+
+This method is called each time an external transition takes place.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_ae21ef24340c6c1f6cf20d66b5ab6a5f7}{Layer$<$ int, int, message\+::\+Multiplexed$<$ link\+::\+Frame $>$, int $>$}.
+
+\index{switch\+\_\+protocol@{switch\+\_\+protocol}!dinternal@{dinternal}}
+\index{dinternal@{dinternal}!switch\+\_\+protocol@{switch\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dinternal(double)}{dinternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}void switch\+\_\+protocol\+::dinternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classswitch__protocol_a7dd0e54d6b2a3683a5be387cffa99a22}{}\label{classswitch__protocol_a7dd0e54d6b2a3683a5be387cffa99a22}
+
+
+This method is virtual and must be overloaded with the protocol. 
+
+This method is called while the input queues has messages to process and the procotol should be implemented here..
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_a1c82b14ba3efc37969f55c633a9b3173}{Layer$<$ int, int, message\+::\+Multiplexed$<$ link\+::\+Frame $>$, int $>$}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -1,7 +1,7 @@
 <map id="udp::Segment" name="udp::Segment">
-<area shape="rect" id="node2" href="$structabstract_1_1Data.html" title="abstract::Data" alt="" coords="5,109,111,136"/>
+<area shape="rect" id="node2" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="5,109,111,136"/>
 <area shape="rect" id="node3" href="$structudp_1_1Header.html" title="udp::Header" alt="" coords="135,109,229,136"/>
-<area shape="rect" id="node4" href="$structabstract_1_1Header.html" title="abstract::Header" alt="" coords="147,5,265,32"/>
+<area shape="rect" id="node4" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="147,5,265,32"/>
 <area shape="rect" id="node5" href="$structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="253,109,391,136"/>
 <area shape="rect" id="node6" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="297,5,347,32"/>
 </map>

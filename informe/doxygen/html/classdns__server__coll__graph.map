@@ -1,4 +1,15 @@
 <map id="dns_server" name="dns_server">
-<area shape="rect" id="node2" href="$classLayer.html" title="Layer\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="5,81,184,137"/>
-<area shape="rect" id="node4" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="209,96,258,123"/>
+<area shape="rect" id="node2" href="$classLayer.html" title="Layer\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="2561,355,2740,411"/>
+<area shape="rect" id="node6" href="$structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord..." alt="" coords="1564,253,1656,280"/>
+<area shape="rect" id="node17" href="$structudp_1_1Control.html" title="udp::Control" alt="" coords="1857,365,1951,392"/>
+<area shape="rect" id="node7" href="$structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="1303,259,1396,285"/>
+<area shape="rect" id="node8" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="870,259,989,285"/>
+<area shape="rect" id="node10" href="$structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma..." alt="" coords="855,184,1004,211"/>
+<area shape="rect" id="node23" href="$structdns_1_1Zone.html" title="This struct represent a zone entry that has the zone domain name and the domain name of the server th..." alt="" coords="1309,112,1389,139"/>
+<area shape="rect" id="node11" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="659,184,709,211"/>
+<area shape="rect" id="node12" href="$structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. " alt="" coords="619,425,749,452"/>
+<area shape="rect" id="node14" title="STL class. " alt="" coords="181,425,261,452"/>
+<area shape="rect" id="node15" title="STL class. " alt="" coords="5,418,132,459"/>
+<area shape="rect" id="node18" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="1557,393,1663,420"/>
+<area shape="rect" id="node20" href="$classLogger.html" title="This class print formated std::string in the pdevs.log file used by the PowerDEVS simulator..." alt="" coords="2235,532,2296,559"/>
 </map>

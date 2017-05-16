@@ -15,11 +15,12 @@ Inheritance diagram for udp\+\_\+protocol\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for udp\+\_\+protocol\+:\nopagebreak
+Collaboration diagram for udp\+\_\+protocol\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{classudp__protocol__coll__graph}
+\includegraphics[width=350pt]{classudp__protocol__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -40,9 +41,8 @@ Event {\bfseries lambda} (double)\hypertarget{classudp__protocol_a98590d58898aef
 void {\bfseries exit} ()\hypertarget{classudp__protocol_a10236c5fc7df21f08c5d31f9941a69e2}{}\label{classudp__protocol_a10236c5fc7df21f08c5d31f9941a69e2}
 
 \item 
-virtual void {\bfseries dinternal} (double)\hypertarget{classudp__protocol_aab75d26186e52fc49ba9f8b88fba0071}{}\label{classudp__protocol_aab75d26186e52fc49ba9f8b88fba0071}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classudp__protocol_aab75d26186e52fc49ba9f8b88fba0071}{dinternal} (double)
+\begin{DoxyCompactList}\small\item\em This method is virtual and must be overloaded with the protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
@@ -53,6 +53,31 @@ references\+:
 \item \href{https://en.wikibooks.org/wiki/Communication_Networks/TCP_and_UDP_Protocols}{\tt https\+://en.\+wikibooks.\+org/wiki/\+Communication\+\_\+\+Networks/\+T\+C\+P\+\_\+and\+\_\+\+U\+D\+P\+\_\+\+Protocols}
 \item \href{https://tools.ietf.org/html/rfc1071}{\tt https\+://tools.\+ietf.\+org/html/rfc1071} 
 \end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\index{udp\+\_\+protocol@{udp\+\_\+protocol}!dinternal@{dinternal}}
+\index{dinternal@{dinternal}!udp\+\_\+protocol@{udp\+\_\+protocol}}
+\subsubsection[{\texorpdfstring{dinternal(double)}{dinternal(double)}}]{\setlength{\rightskip}{0pt plus 5cm}void udp\+\_\+protocol\+::dinternal (
+\begin{DoxyParamCaption}
+\item[{double}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classudp__protocol_aab75d26186e52fc49ba9f8b88fba0071}{}\label{classudp__protocol_aab75d26186e52fc49ba9f8b88fba0071}
+
+
+This method is virtual and must be overloaded with the protocol. 
+
+This method is called while the input queues has messages to process and the procotol should be implemented here..
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The virtual global time of the simulation at which the method is triggered. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLayer_a1c82b14ba3efc37969f55c633a9b3173}{Layer$<$ dns\+::\+Packet, udp\+::\+Control, udp\+::\+Segment, ip\+::\+Control $>$}.
+
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

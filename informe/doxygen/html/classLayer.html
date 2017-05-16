@@ -42,6 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -96,6 +97,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>This class is a meta model that implements all the common behavior of a network devise layer from the OSI model and must be inherited to implement the protocol of the layer.  
+ <a href="classLayer.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="layer_8h_source.html">layer.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Layer&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;:</div>
@@ -106,6 +110,13 @@ Inheritance diagram for Layer&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;:</div>
 Collaboration diagram for Layer&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classLayer__coll__graph.png" border="0" usemap="#Layer_3_01DH_00_01CH_00_01DL_00_01CL_00_01DH2_00_01CH2_00_01DL2_00_01CL2_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="Layer_3_01DH_00_01CH_00_01DL_00_01CL_00_01DH2_00_01CH2_00_01DL2_00_01CL2_01_4_coll__map" id="Layer_3_01DH_00_01CH_00_01DL_00_01CL_00_01DH2_00_01CH2_00_01DL2_00_01CL2_01_4_coll__map">
+<area shape="rect" id="node3" href="classmessage_1_1queue.html" title="message::queue\&lt; CH2 \&gt;" alt="" coords="5,56,175,83"/>
+<area shape="rect" id="node5" href="classmessage_1_1queue.html" title="message::queue\&lt; CL2 \&gt;" alt="" coords="7,157,173,184"/>
+<area shape="rect" id="node7" href="classmessage_1_1queue.html" title="message::queue\&lt; DH2 \&gt;" alt="" coords="5,259,175,285"/>
+<area shape="rect" id="node9" href="classLogger.html" title="This class print formated std::string in the pdevs.log file used by the PowerDEVS simulator..." alt="" coords="59,360,121,387"/>
+<area shape="rect" id="node10" href="classmessage_1_1queue.html" title="message::queue\&lt; DL2 \&gt;" alt="" coords="7,411,173,437"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -119,11 +130,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dint</b> (double t)</
 <tr class="memitem:a7e588f39547025f0483fc94a57fc9636"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e588f39547025f0483fc94a57fc9636"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dext</b> (Event x, double t)</td></tr>
 <tr class="separator:a7e588f39547025f0483fc94a57fc9636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c82b14ba3efc37969f55c633a9b3173"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c82b14ba3efc37969f55c633a9b3173"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>dinternal</b> (double t)</td></tr>
+<tr class="memitem:a1c82b14ba3efc37969f55c633a9b3173"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#a1c82b14ba3efc37969f55c633a9b3173">dinternal</a> (double t)</td></tr>
+<tr class="memdesc:a1c82b14ba3efc37969f55c633a9b3173"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is virtual and must be overloaded with the protocol.  <a href="#a1c82b14ba3efc37969f55c633a9b3173">More...</a><br /></td></tr>
 <tr class="separator:a1c82b14ba3efc37969f55c633a9b3173"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae21ef24340c6c1f6cf20d66b5ab6a5f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae21ef24340c6c1f6cf20d66b5ab6a5f7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>dexternal</b> (double t)</td></tr>
+<tr class="memitem:ae21ef24340c6c1f6cf20d66b5ab6a5f7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayer.html#ae21ef24340c6c1f6cf20d66b5ab6a5f7">dexternal</a> (double t)</td></tr>
+<tr class="memdesc:ae21ef24340c6c1f6cf20d66b5ab6a5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is virtual and can be overloaded with the protocol.  <a href="#ae21ef24340c6c1f6cf20d66b5ab6a5f7">More...</a><br /></td></tr>
 <tr class="separator:ae21ef24340c6c1f6cf20d66b5ab6a5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -135,7 +146,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>queuedMsgs</b> () con
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a537a1e57d0e9b69c857a89372e43e8c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a537a1e57d0e9b69c857a89372e43e8c8"></a>
-Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
+<a class="el" href="classLogger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
 <tr class="separator:a537a1e57d0e9b69c857a89372e43e8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a087dc6b9f1a13ab134ec21bbcca1613a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a087dc6b9f1a13ab134ec21bbcca1613a"></a>
 std::queue&lt; DH &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_data_in</b></td></tr>
@@ -150,16 +161,16 @@ std::queue&lt; CH &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>hig
 std::queue&lt; CL &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_ctrl_in</b></td></tr>
 <tr class="separator:ac4cd7792653eab48d3b01a087ae9069a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0695544b96e2e6f4473838d1ce79acea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0695544b96e2e6f4473838d1ce79acea"></a>
-message::queue&lt; DH2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_data_out</b> = 0</td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; DH2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_data_out</b> = 0</td></tr>
 <tr class="separator:a0695544b96e2e6f4473838d1ce79acea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed13b723a43c0e7e3e05cf9c25eef0ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed13b723a43c0e7e3e05cf9c25eef0ff"></a>
-message::queue&lt; DL2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_data_out</b> = 2</td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; DL2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_data_out</b> = 2</td></tr>
 <tr class="separator:aed13b723a43c0e7e3e05cf9c25eef0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a135be5c42313bff23a18d1cda136f495"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a135be5c42313bff23a18d1cda136f495"></a>
-message::queue&lt; CH2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_ctrl_out</b> = 1</td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; CH2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>higher_layer_ctrl_out</b> = 1</td></tr>
 <tr class="separator:a135be5c42313bff23a18d1cda136f495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fdb4f5acc54930faa871a4fdc6ce688"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fdb4f5acc54930faa871a4fdc6ce688"></a>
-message::queue&lt; CL2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_ctrl_out</b> = 3</td></tr>
+<a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; CL2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower_layer_ctrl_out</b> = 3</td></tr>
 <tr class="separator:a5fdb4f5acc54930faa871a4fdc6ce688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3701dfd2133046db9c6e5ee4280a0b59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3701dfd2133046db9c6e5ee4280a0b59"></a>
 Event&#160;</td><td class="memItemRight" valign="bottom"><b>output</b></td></tr>
@@ -181,8 +192,123 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>send_time</b> = 0.0
 <div class="textblock"><h3>template&lt;typename DH, typename CH, typename DL, typename CL, typename DH2 = DH, typename CH2 = CH, typename DL2 = DL, typename CL2 = CL&gt;<br />
 class Layer&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;</h3>
 
-<p>Basic layer model to inheritate </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>This class is a meta model that implements all the common behavior of a network devise layer from the OSI model and must be inherited to implement the protocol of the layer. </p>
+<dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
+<p>This model has four input port and four output ports to comunicate to the upper and lower layers of the OSI model using a different port for the data (Packet, Segment, Datagram, Frame, etc.) and for the control messages send between the layers due to the protocol they implement. The mapping between the input/output ports of a layer and the data kind that should be send through them is specified as next:</p>
+<p>Input queues:</p><ul>
+<li>std::queue&lt;DH&gt; higher_layer_data_in; // Input Port 0</li>
+<li>std::queue&lt;DL&gt; lower_layer_data_in; // Input Port 1</li>
+<li>std::queue&lt;CH&gt; higher_layer_ctrl_in; // Input Port 2</li>
+<li>std::queue&lt;CL&gt; lower_layer_ctrl_in; // Input Port 3</li>
+</ul>
+<p>Output queues:</p><ul>
+<li>message::queue&lt;DH2&gt; higher_layer_data_out = 0; // Output Port 0</li>
+<li>message::queue&lt;DL2&gt; lower_layer_data_out = 1; // Output Port 1</li>
+<li>message::queue&lt;CH2&gt; higher_layer_ctrl_out = 3; // Output Port 2</li>
+<li>message::queue&lt;CL2&gt; lower_layer_ctrl_out = 3; // Output Port 3</li>
+</ul>
+<p>How the incoming messages are queued in the corresponding input queues and how the pushed messages in the output queues are send through the correct output ports is a task the protocol developer does not need to do because the it is implemented in the template model <a class="el" href="classLayer.html" title="This class is a meta model that implements all the common behavior of a network devise layer from the...">Layer</a>.</p>
+<p>The protocol developer only need to implement the dinternal method where the protocol must be implemented and must uses the queue with the methods front, pop and push to read incoming messages from the input queues and to send messages through the output ports to other layers.</p>
+<p>Note: modelers familirized with DEVS and PowerDEVS can use the dexternal method to implement some behavior when external transition is occuring.</p>
+<p>The processing flow is the following:</p><ol type="1">
+<li>The model stays in IDLE until a message arrives.</li>
+<li>When that happens, the dinternal method is used to process the message.</li>
+<li>When dinternal finish the model uses the value stored in next_internal to set how much virtual time (the simulated time) has take the protocol to process the dinternal. In the dinternal method this variable must be correctly set with a value grater than zero.</li>
+<li>If there is messages in the output queues, the model iterate through all of them to send all of them.</li>
+<li>If there is no messages in the input queues the model comes back to IDLE state.</li>
+<li>If it still are messages in the input queues, the model repeat the whole process.</li>
+</ol>
+<p>Note: The messages must be poped from the input queues by the protocol in the diternal method, if this does not happen, the model will trigger the dinternal method again until they are all empty.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DH</td><td>The data type of the messages send trough output port 0 </td></tr>
+    <tr><td class="paramname">CH</td><td>The data type of the messages send trough output port 1 </td></tr>
+    <tr><td class="paramname">DL</td><td>The data type of the messages send trough output port 2 </td></tr>
+    <tr><td class="paramname">CL</td><td>The data type of the messages send trough output port 3 </td></tr>
+    <tr><td class="paramname">DH2</td><td>The data type of the messages received from the input port 0 (by default is the same as DH) </td></tr>
+    <tr><td class="paramname">CH2</td><td>The data type of the messages received from the input port 1 (by default is the same as CH) </td></tr>
+    <tr><td class="paramname">DL2</td><td>The data type of the messages received from the input port 2 (by default is the same as DL) </td></tr>
+    <tr><td class="paramname">CL2</td><td>The data type of the messages received from the input port 3 (by default is the same as CL) </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae21ef24340c6c1f6cf20d66b5ab6a5f7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DH, typename CH, typename DL, typename CL, typename DH2 = DH, typename CH2 = CH, typename DL2 = DL, typename CL2 = CL&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classLayer.html">Layer</a>&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;::dexternal </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method is virtual and can be overloaded with the protocol. </p>
+<p>This method is called each time an external transition takes place.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The virtual global time of the simulation at which the method is triggered. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classlink__protocol.html#a41b2cf20f21b9b5b7170f8f33fd56667">link_protocol</a>, <a class="el" href="classdns__server.html#a3a6cdeea496be969d034af8a0bdb893f">dns_server</a>, <a class="el" href="classip__protocol.html#a34e2cc9e802edf0ba1fdbcbcbee92f5b">ip_protocol</a>, and <a class="el" href="classswitch__protocol.html#a93b0465ace315872626f2f04c29b55f3">switch_protocol</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1c82b14ba3efc37969f55c633a9b3173"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DH, typename CH, typename DL, typename CL, typename DH2 = DH, typename CH2 = CH, typename DL2 = DL, typename CL2 = CL&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classLayer.html">Layer</a>&lt; DH, CH, DL, CL, DH2, CH2, DL2, CL2 &gt;::dinternal </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method is virtual and must be overloaded with the protocol. </p>
+<p>This method is called while the input queues has messages to process and the procotol should be implemented here..</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The virtual global time of the simulation at which the method is triggered. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classlink__protocol.html#abae9797f2bf160152cf43bd011742d22">link_protocol</a>, <a class="el" href="classdns__server.html#a51e296892a2de8776c83689f172a0797">dns_server</a>, <a class="el" href="classip__protocol.html#a5c4dd62ee8cffa83a592f29306686be9">ip_protocol</a>, <a class="el" href="classudp__protocol.html#aab75d26186e52fc49ba9f8b88fba0071">udp_protocol</a>, <a class="el" href="classswitch__protocol.html#a7dd0e54d6b2a3683a5be387cffa99a22">switch_protocol</a>, <a class="el" href="classip__router__protocol.html#a14cf3c7e1418ee8c6035b79626f99438">ip_router_protocol</a>, and <a class="el" href="classip__host__protocol.html#a2e2c43aeb81ae38702b7dec6f7df9227">ip_host_protocol</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/lao/powerdevs/atomics/NetworkDEVS/template/<a class="el" href="layer_8h_source.html">layer.h</a></li>
 </ul>
 </div><!-- contents -->

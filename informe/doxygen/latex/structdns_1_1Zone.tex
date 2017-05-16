@@ -2,26 +2,32 @@
 \label{structdns_1_1Zone}\index{dns\+::\+Zone@{dns\+::\+Zone}}
 
 
+This struct represent a zone entry that has the zone domain name and the domain name of the server that is authoritative for that zone.  
+
+
+
+
+{\ttfamily \#include $<$dns.\+h$>$}
+
+
+
 Collaboration diagram for dns\+:\+:Zone\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=234pt]{structdns_1_1Zone__coll__graph}
+\includegraphics[width=249pt]{structdns_1_1Zone__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool {\bfseries empty} () const \hypertarget{structdns_1_1Zone_ad33a2d40f6301c559907d66f1c86d64e}{}\label{structdns_1_1Zone_ad33a2d40f6301c559907d66f1c86d64e}
-
+bool \hyperlink{structdns_1_1Zone_ad33a2d40f6301c559907d66f1c86d64e}{empty} () const 
 \item 
-std\+::string {\bfseries as\+\_\+string} () const \hypertarget{structdns_1_1Zone_a424d36efa5adc9e4f4b7e6073ade3763}{}\label{structdns_1_1Zone_a424d36efa5adc9e4f4b7e6073ade3763}
-
-\item 
-bool {\bfseries is\+Zone\+Of} (\hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} d) const \hypertarget{structdns_1_1Zone_adbd4dcf69ed0f8ce57831b9231220463}{}\label{structdns_1_1Zone_adbd4dcf69ed0f8ce57831b9231220463}
-
-\end{DoxyCompactItemize}
+std\+::string \hyperlink{structdns_1_1Zone_a424d36efa5adc9e4f4b7e6073ade3763}{as\+\_\+string} () const 
+\begin{DoxyCompactList}\small\item\em prints the \hyperlink{structdns_1_1Zone}{dns\+::\+Zone} instance in a std\+::string in a human redable format. \end{DoxyCompactList}\item 
+bool \hyperlink{structdns_1_1Zone_adbd4dcf69ed0f8ce57831b9231220463}{is\+Zone\+Of} (\hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} d) const 
+\begin{DoxyCompactList}\small\item\em Checks whether the instance zone is authoritative for a given \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,6 +37,63 @@ bool {\bfseries is\+Zone\+Of} (\hyperlink{structdns_1_1DomainName}{dns\+::\+Doma
 \hyperlink{structdns_1_1ResourceRecord}{dns\+::\+Resource\+Record} {\bfseries authoritative}\hypertarget{structdns_1_1Zone_a11cd8c23701e8f1a7e43d90a5cc51acc}{}\label{structdns_1_1Zone_a11cd8c23701e8f1a7e43d90a5cc51acc}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This struct represent a zone entry that has the zone domain name and the domain name of the server that is authoritative for that zone. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\index{dns\+::\+Zone@{dns\+::\+Zone}!as\+\_\+string@{as\+\_\+string}}
+\index{as\+\_\+string@{as\+\_\+string}!dns\+::\+Zone@{dns\+::\+Zone}}
+\subsubsection[{\texorpdfstring{as\+\_\+string() const }{as_string() const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string dns\+::\+Zone\+::as\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1Zone_a424d36efa5adc9e4f4b7e6073ade3763}{}\label{structdns_1_1Zone_a424d36efa5adc9e4f4b7e6073ade3763}
+
+
+prints the \hyperlink{structdns_1_1Zone}{dns\+::\+Zone} instance in a std\+::string in a human redable format. 
+
+\begin{DoxyReturn}{Returns}
+a std\+::string with the printed value of the instance. 
+\end{DoxyReturn}
+\index{dns\+::\+Zone@{dns\+::\+Zone}!empty@{empty}}
+\index{empty@{empty}!dns\+::\+Zone@{dns\+::\+Zone}}
+\subsubsection[{\texorpdfstring{empty() const }{empty() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool dns\+::\+Zone\+::empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1Zone_ad33a2d40f6301c559907d66f1c86d64e}{}\label{structdns_1_1Zone_ad33a2d40f6301c559907d66f1c86d64e}
+\begin{DoxyReturn}{Returns}
+True if the zone is empty, False otherwise 
+\end{DoxyReturn}
+\index{dns\+::\+Zone@{dns\+::\+Zone}!is\+Zone\+Of@{is\+Zone\+Of}}
+\index{is\+Zone\+Of@{is\+Zone\+Of}!dns\+::\+Zone@{dns\+::\+Zone}}
+\subsubsection[{\texorpdfstring{is\+Zone\+Of(dns\+::\+Domain\+Name d) const }{isZoneOf(dns::DomainName d) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool dns\+::\+Zone\+::is\+Zone\+Of (
+\begin{DoxyParamCaption}
+\item[{{\bf dns\+::\+Domain\+Name}}]{d}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{structdns_1_1Zone_adbd4dcf69ed0f8ce57831b9231220463}{}\label{structdns_1_1Zone_adbd4dcf69ed0f8ce57831b9231220463}
+
+
+Checks whether the instance zone is authoritative for a given \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & A \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name} to check if is under the zone responsability or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the zone is responzible of the \hyperlink{structdns_1_1DomainName}{dns\+::\+Domain\+Name}, False otherwise. 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

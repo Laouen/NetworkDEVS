@@ -1,4 +1,9 @@
 <map id="dns::Packet" name="dns::Packet">
-<area shape="rect" id="node2" href="$structdns_1_1Header.html" title="dns::Header" alt="" coords="18,81,111,108"/>
-<area shape="rect" id="node3" href="$structabstract_1_1Header.html" title="abstract::Header" alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node2" href="$structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="19,475,113,502"/>
+<area shape="rect" id="node3" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="5,379,124,405"/>
+<area shape="rect" id="node5" href="$structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma..." alt="" coords="147,379,297,405"/>
+<area shape="rect" id="node6" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="149,275,199,301"/>
+<area shape="rect" id="node7" href="$structdns_1_1DomainName.html" title="This struct handles domain names with the format &#39;zone1.zone2.zone3...zoneN&#39;. " alt="" coords="223,275,354,301"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="249,96,329,123"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="225,5,352,47"/>
 </map>

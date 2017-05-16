@@ -1,0 +1,171 @@
+\hypertarget{classmessage_1_1queue}{}\section{message\+:\+:queue$<$ M\+SG $>$ Struct Template Reference}
+\label{classmessage_1_1queue}\index{message\+::queue$<$ M\+S\+G $>$@{message\+::queue$<$ M\+S\+G $>$}}
+
+
+Implement a queue to output messages through ports in Power\+D\+E\+VS models.  
+
+
+
+
+{\ttfamily \#include $<$message\+\_\+queue.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmessage_1_1queue_ac166e11137e5addc2f81b672c9b55c4d}{queue} ()
+\begin{DoxyCompactList}\small\item\em Default constructor that does no specifies port number. \end{DoxyCompactList}\item 
+\hyperlink{classmessage_1_1queue_a6d303f8450ddfc4f1cffd80e94e25f0a}{queue} (ushort other\+\_\+default\+\_\+port)
+\begin{DoxyCompactList}\small\item\em Constructor with port number. \end{DoxyCompactList}\item 
+void \hyperlink{classmessage_1_1queue_ab4afb64536817a390af8348866136822}{push} (const M\+SG \&m, int port)
+\begin{DoxyCompactList}\small\item\em Adds a new message at the end of the queue seting a specific port to send the message when poped. \end{DoxyCompactList}\item 
+void \hyperlink{classmessage_1_1queue_a6672a6c6f964beaadf2594d0e7ca56c2}{push} (const M\+SG \&m)
+\begin{DoxyCompactList}\small\item\em Adds a new message at the end of the queue seting the default port to send the message when poped. \end{DoxyCompactList}\item 
+Event \hyperlink{classmessage_1_1queue_a8ebd25ce589eca4dd4b1afde687df705}{pop} ()
+\begin{DoxyCompactList}\small\item\em Removes the next element from the queue in F\+I\+FO order and returns the Power\+D\+E\+VS Event instance to send the message from one model to another. \end{DoxyCompactList}\item 
+Event \hyperlink{classmessage_1_1queue_a05cd5f07a0ba524f1a41340b821724c5}{send} (const M\+SG \&m, int port)
+\begin{DoxyCompactList}\small\item\em This method does not push the message in the queue and instead it directly generates a Power\+D\+E\+VS Event instance with a pointer to the message asociated with the port number passed as parameter. \end{DoxyCompactList}\item 
+bool \hyperlink{classmessage_1_1queue_ab03011f8c323c553b3f8b6d5c84ae9db}{empty} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the \hyperlink{classmessage_1_1queue}{message\+::queue} is empty or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename M\+SG$>$\\*
+struct message\+::queue$<$ M\+S\+G $>$}
+
+Implement a queue to output messages through ports in Power\+D\+E\+VS models. 
+
+\begin{DoxyAuthor}{Author}
+Laouen Louan Mayal Belloli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017
+\end{DoxyDate}
+Each instance of a queue is asociated with a port number and every message that is pushed into the queue will be sent through that port if no output port is explicitated in the push method. This queue handles the void $\ast$ requested by the Power\+D\+E\+VS keeping the pointed object alive until the next pop is done and the message was already delivered to the corresponding model or models. \hyperlink{classmessage_1_1queue}{message\+::queue} allows to push multiple messages to be send and send them one by one using the pop method that returns a Power\+D\+E\+VS valid Event instance ready to be sent in the lambda function with the next message in the queue and the port set in it.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em M\+SG} & Data type of the messages that will output the queue \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{message\+::queue@{message\+::queue}!queue@{queue}}
+\index{queue@{queue}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{queue()}{queue()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ {\bf message\+::queue}$<$ M\+SG $>$\+::{\bf queue} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_ac166e11137e5addc2f81b672c9b55c4d}{}\label{classmessage_1_1queue_ac166e11137e5addc2f81b672c9b55c4d}
+
+
+Default constructor that does no specifies port number. 
+
+If this constructor is used and the port number is never specified, each push must be done passing the port as the second parameter, otherwise the port number is unknow and the model fails in runtime. \index{message\+::queue@{message\+::queue}!queue@{queue}}
+\index{queue@{queue}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{queue(ushort other\+\_\+default\+\_\+port)}{queue(ushort other_default_port)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ {\bf message\+::queue}$<$ M\+SG $>$\+::{\bf queue} (
+\begin{DoxyParamCaption}
+\item[{ushort}]{other\+\_\+default\+\_\+port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_a6d303f8450ddfc4f1cffd80e94e25f0a}{}\label{classmessage_1_1queue_a6d303f8450ddfc4f1cffd80e94e25f0a}
+
+
+Constructor with port number. 
+
+This constructor initialize a new \hyperlink{classmessage_1_1queue}{message\+::queue} instance with a default port number that will be used each time a message is pushed without passing a port number as parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+default\+\_\+port} & A unsigned short that specifies the defualt port number. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{message\+::queue@{message\+::queue}!empty@{empty}}
+\index{empty@{empty}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{empty()}{empty()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ bool {\bf message\+::queue}$<$ M\+SG $>$\+::empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_ab03011f8c323c553b3f8b6d5c84ae9db}{}\label{classmessage_1_1queue_ab03011f8c323c553b3f8b6d5c84ae9db}
+
+
+Checks whether the \hyperlink{classmessage_1_1queue}{message\+::queue} is empty or not. 
+
+\begin{DoxyReturn}{Returns}
+True if the message\+:queue is empty, False otherwise. 
+\end{DoxyReturn}
+\index{message\+::queue@{message\+::queue}!pop@{pop}}
+\index{pop@{pop}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{pop()}{pop()}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ Event {\bf message\+::queue}$<$ M\+SG $>$\+::pop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_a8ebd25ce589eca4dd4b1afde687df705}{}\label{classmessage_1_1queue_a8ebd25ce589eca4dd4b1afde687df705}
+
+
+Removes the next element from the queue in F\+I\+FO order and returns the Power\+D\+E\+VS Event instance to send the message from one model to another. 
+
+The removed object is stored in memory until the next pop is made to ensure the void $\ast$ used by the simulator does point to a valid memory place.
+
+\begin{DoxyReturn}{Returns}
+A Power\+D\+E\+VS Event instance that contains the poped message asociated with the port used to push the message in the queue. 
+\end{DoxyReturn}
+\index{message\+::queue@{message\+::queue}!push@{push}}
+\index{push@{push}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{push(const M\+S\+G \&m, int port)}{push(const MSG &m, int port)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ void {\bf message\+::queue}$<$ M\+SG $>$\+::push (
+\begin{DoxyParamCaption}
+\item[{const M\+SG \&}]{m, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_ab4afb64536817a390af8348866136822}{}\label{classmessage_1_1queue_ab4afb64536817a390af8348866136822}
+
+
+Adds a new message at the end of the queue seting a specific port to send the message when poped. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & A M\+SG message to push. \\
+\hline
+{\em port} & An unsigned short that specifies the port number where to send the message when poped. \\
+\hline
+\end{DoxyParams}
+\index{message\+::queue@{message\+::queue}!push@{push}}
+\index{push@{push}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{push(const M\+S\+G \&m)}{push(const MSG &m)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ void {\bf message\+::queue}$<$ M\+SG $>$\+::push (
+\begin{DoxyParamCaption}
+\item[{const M\+SG \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_a6672a6c6f964beaadf2594d0e7ca56c2}{}\label{classmessage_1_1queue_a6672a6c6f964beaadf2594d0e7ca56c2}
+
+
+Adds a new message at the end of the queue seting the default port to send the message when poped. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & A M\+SG message to push. \\
+\hline
+\end{DoxyParams}
+\index{message\+::queue@{message\+::queue}!send@{send}}
+\index{send@{send}!message\+::queue@{message\+::queue}}
+\subsubsection[{\texorpdfstring{send(const M\+S\+G \&m, int port)}{send(const MSG &m, int port)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename M\+SG$>$ Event {\bf message\+::queue}$<$ M\+SG $>$\+::send (
+\begin{DoxyParamCaption}
+\item[{const M\+SG \&}]{m, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classmessage_1_1queue_a05cd5f07a0ba524f1a41340b821724c5}{}\label{classmessage_1_1queue_a05cd5f07a0ba524f1a41340b821724c5}
+
+
+This method does not push the message in the queue and instead it directly generates a Power\+D\+E\+VS Event instance with a pointer to the message asociated with the port number passed as parameter. 
+
+This metod behave as a pop where the poped message is the one passed as parameter, the message pointer is handled in the same way a poped a message pointer is handled. This method can be used to avoid the message be pushed if the one is a priority over all pushed mesasges.
+
+\begin{DoxyReturn}{Returns}
+A Power\+D\+E\+VS Event instance that contains the message asociated with the port number passed as parameter. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/lao/powerdevs/atomics/\+Network\+D\+E\+V\+S/libs/message\+\_\+queue.\+h\end{DoxyCompactItemize}

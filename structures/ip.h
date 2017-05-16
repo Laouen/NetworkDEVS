@@ -14,21 +14,54 @@
 #include "mac.h"
 #include "udp.h"
 
-// network layer structures
+/**
+ * @namespace ip
+ * 
+ * This namespace to use for all the IP protocol datatypes
+ */
 namespace ip {
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct ip::Header ip.h
+   * 
+   * @brief This struct implement an IPv4 Datagram header.
+   * @details An ip::Header has the next fields:
+   * 1. vide: unsigned short that stores the version,IHL,DSCP and ECN.
+   * 2. total_length: unsigned short that stores the total ip::Datagram length.
+   * 3. identification: unsigned short that stores the identification.
+   * 4. ff: unsigned short that stores the flags and fragment_offset.
+   * 5. ttlp: unsigned short that stores the TTL and the Protocol.
+   * 6. header_checksum: unsigned short that stores the header checksum.
+   * 7. src_ip: IPv4 that stores the src IP.
+   * 8. dest_ip: IPv4 that stores the dest IP.
+   */
   struct Header : abstract::Header {
-    ushort vide; // Version,IHL,DSCP,ECN
+    ushort vide;
     ushort total_length;
     ushort identification;
-    ushort ff; // flag,fragment_offset
-    ushort ttlp; // time to live,protocol
+    ushort ff;
+    ushort ttlp;
     ushort header_checksum;
     IPv4 src_ip;
     IPv4 dest_ip;
     // not implementing opntions field
 
+    /**
+     * @brief Default constructor.
+     * @details Construct an empty instance.
+     */
     Header() {}
+
+    /**
+     * @brief Copy constructor
+     * @details Construct a new instance from a copy of an existent one.
+     * 
+     * @param other A ip::Header to copy in the initialization of the new instance.
+     */
     Header(const Header& other) {
       vide = other.vide;
       total_length = other.total_length;
@@ -40,6 +73,9 @@ namespace ip {
       dest_ip = other.dest_ip;  
     }
 
+    /**
+     * @return The size of the instance in bytes.
+     */
     int size() const {
       return sizeof(vide) +
               sizeof(total_length) +
@@ -51,6 +87,13 @@ namespace ip {
               src_ip.size();
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     *
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* c_str() const {
       char* foo = new char[this->size()];
       int i = 0;
@@ -74,10 +117,22 @@ namespace ip {
       return foo;
     }
 
+    /**
+     * @return Returns the size of the ip::Header without the checksum size.
+     */
     int checksum_size() const {
       return this->size() - sizeof(header_checksum);
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @details This methods does not copy in the memory block the checksum field.
+     *
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* checksum_c_str() const {
       char* foo = new char[this->size()];
       int i = 0;
@@ -100,17 +155,56 @@ namespace ip {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct ip::Datagram
+   * 
+   * @brief This class represent an ip::Datagram to send through the network.
+   * @details It has the next fields:
+   * 1. header: the ip::Header.
+   * 2. data: The udp::Segment that is encapsulated to send through the network.
+   */
   struct Datagram : abstract::Data {
     Header header;
     udp::Segment data;
 
+    /**
+     * @brief Default constructor.
+     * @details It construct a new empty instance.
+     */
     Datagram() {}
+
+    /**
+     * @brief Copy constructor
+     * @details It construct a new instance with a copy of the ip::Datagram 
+     * passed as parameter.
+     * 
+     * @param other An ip::Datagram to copy in the new instance.
+     */
     Datagram(const Datagram& other) {
       header = other.header;
       data = other.data;
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct ip::Routing_entry
+   * 
+   * @brief Represent an entry of the routing table of the ip protocol.
+   * @details The ip::Routing_entry has the next field:
+   * 1. network: a IPv4 containing the subnet of the remote host.
+   * 2. netmask: a IPv4 containing the mask that indicate what bits of the network represent the network of the remote host.
+   * 3. nexthope: a IPv4 containing the ip of the reachable nexthope where to send the ip::Datagram.
+   * 4. metric: a int with a metric of how close is the remote host using the nexthope of the entry as the way to reach it.
+   * 5. purpose: a std::string that specifies a description of the entry.
+   */
   struct Routing_entry {
     IPv4 network;
     IPv4 netmask;
@@ -118,7 +212,22 @@ namespace ip {
     int metric;
     std::string purpose;
 
+    /**
+     * @brief Default constructor.
+     * @details Construct a new empty instance.
+     */
     Routing_entry() {}
+
+    /**
+     * @brief Constructor
+     * @details It construct a new instance seting all its fields.
+     * 
+     * @param other_network The nextwork to set.
+     * @param other_netmask The netmask to set. 
+     * @param other_nexthop The nexthop to set.
+     * @param other_metric The metric to set.
+     * @param other_purpose The purpose to set.
+     */
     Routing_entry(IPv4 other_network,
                   IPv4 other_netmask,
                   IPv4 other_nexthop,
@@ -130,6 +239,13 @@ namespace ip {
       metric    = other_metric;
       purpose   = other_purpose;
     }
+
+    /**
+     * @brief Copy constructor
+     * @details Construct a new instance with a copy of the one passed as parameter.
+     * 
+     * @param other An ip::Routing_entry to construct the new instance as a copy of it.
+     */
     Routing_entry(const Routing_entry& other) {
       network   = other.network;
       netmask   = other.netmask;
@@ -138,12 +254,23 @@ namespace ip {
       purpose   = other.purpose;
     }
 
+    /**
+     * @brief Cheks whether the other remote host is in the implicit this->network or not.
+     * 
+     * @param des_ip The IPv4 of the remote host to check if is in the same subnet. 
+     * @return True if des_ip is in the same subnate of this->network.
+     */
     bool sameSubnet(IPv4 des_ip) const {
       IPv4 dest_subnet = des_ip & netmask; 
       IPv4 entry_subnet = network & netmask;
       return dest_subnet == entry_subnet;
     }
 
+    /**
+     * @brief Prints in a std::string a human redable version of the ip::Routing_entry.
+     * 
+     * @return A std::string with the value printed on it.
+     */
     std::string as_string() const {
       std::string res = "| ";
       res += network.as_string();
@@ -165,24 +292,59 @@ namespace ip {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct ip::Forwarding_entry
+   * 
+   * @brief Represent an entry of the forwarding table of the ip protocol.
+   * @details The ip::Forwarding_entry has the next field:
+   * 1. network: a IPv4 containing the subnet of the next hope.
+   * 2. netmask: a IPv4 containing the mask that indicate what bits of the network represent the network of the next hope.
+   * 3. interface: an unsigned short with the interface where to send the ip::Datagram to reach the next hope.
+   */
   struct Forwarding_entry {
     IPv4 network;
     IPv4 netmask;
     ushort interface;
 
+    /**
+     * @brief Default constructor.
+     * @details Construct a new empty instance.
+     */
     Forwarding_entry() {}
+    
+    /**
+     * @brief Copy constructor.
+     * @details Construct a new instance with a copy of the one passed as parameter.
+     * 
+     * @param other The ip::Forwarding_entry used to construct the new copy.
+     */
     Forwarding_entry(const Forwarding_entry& other) {
       network = other.network;
       netmask = other.netmask;
       interface = other.interface;
     }
 
+    /**
+     * @brief Cheks whether the other remote host is in the implicit this->network or not.
+     * 
+     * @param des_ip The IPv4 of the remote host to check if is in the same subnet. 
+     * @return True if des_ip is in the same subnate of this->network.
+     */
     bool sameSubnet(IPv4 des_ip) const {
       IPv4 dest_subnet = des_ip & netmask; 
       IPv4 entry_subnet = network & netmask;
       return dest_subnet == entry_subnet;
     }
 
+    /**
+     * @brief Prints in a std::string a human redable version of the ip::Forwarding_table.
+     * 
+     * @return A std::string with the value printed on it.
+     */
     std::string as_string() const {
       std::string res = "| ";
       res += network.as_string();
@@ -198,14 +360,46 @@ namespace ip {
     }
   };
 
+  /**
+   * @enum ip::Ctrl
+   * @brief Valid values of a ip::Control request.
+   */
   enum Ctrl { ADD_IP, REMOVE_IP, ROUTING_ERROR };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct ip::Control ip.h
+   * 
+   * @brief This struct is used to send control messages to the UDP protocol in the 
+   * near up layer.
+   */
   struct Control {
     Ctrl request;
     IPv4 ip;
 
+    /**
+     * @brief Default constructor.
+     * @details Construct a new empty instance.
+     */
     Control() {}
+
+    /**
+     * @brief Constructor from ip::Ctrl
+     * @details Construct a new instance with the request passed as parameter.
+     * 
+     * @param c The ip::Ctrl with the request value.
+     */
     Control(Ctrl c) : request(c) {}
+
+    /**
+     * @brief Copy constructor
+     * @details Construct a new instance from a copy of the one passed as parameter.
+     * 
+     * @param o The ip::Control to copy in the new instance.
+     */
     Control(const Control& o) {
       request = o.request;
       ip = o.ip;

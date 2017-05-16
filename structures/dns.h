@@ -15,15 +15,30 @@
 #include "abstract_types.h"
 #include "ipv4.h"
 
-// Application layer structures
+
+/**
+ * @namespace dns
+ * 
+ * namespace to use for all the data type refered to the DNS protocol.
+ */
 namespace dns {
 
-  enum QR : uint16_t { // Query/Response Flag
+  /**
+   * @enum QR 
+   * 
+   * @brief valid values for the Query/Response Flag for dns::Header
+   */
+  enum QR : uint16_t {
     QR_QUERY = 0x8000, 
     QR_ANSWER = 0x0000, 
     QR_MASK = 0x8000
   };
 
+  /**
+   * @enum Opcode 
+   * 
+   * @brief valid values for the Opcode Flag for dns::Header
+   */
   enum Opcode : uint16_t { // Operation code
     Opcode_QUERY = 0x0000, //0
     Opcode_IQUERY = 0x0800, //1
@@ -34,35 +49,65 @@ namespace dns {
     Opcode_MASK = 0x7800
   };
 
+  /**
+   * @enum AA 
+   * 
+   * @brief valid values for the AA Flag for dns::Header
+   */
   enum AA : uint16_t { // Authoritative Answer Flag
     AA_AUTHORITATIVE_ANSWER = 0x0400,
     AA_NOT_AUTHORITATIVE_ANSWER = 0x0000,
     AA_MASK = 0x0400
   };
 
+  /**
+   * @enum TC 
+   * 
+   * @brief valid values for the TC Flag for dns::Header
+   */
   enum TC : uint16_t { // Truncation Flag
     TC_TRUNCATED  = 0x0200,
     TC_NOT_TRUNCATED  = 0x0000,
     TC_MASK  = 0x0200
   };
 
+  /**
+   * @enum RD 
+   * 
+   * @brief valid values for the RD Flag for dns::Header
+   */
   enum RD : uint16_t { // Recursion Desired
     RD_RECURSIVE = 0x0100,
     RD_ITERATIVE = 0x0000,
     RD_MASK = 0x0100
   };
 
+  /**
+   * @enum RA 
+   * 
+   * @brief valid values for the RA Flag for dns::Header
+   */
   enum RA : uint16_t { // Recursion Available
     RA_RECURSION_AVAILABLE = 0x0080,
     RA_ITERATIVE = 0x0000,
     RA_MASK = 0x0080
   };
 
+  /**
+   * @enum Z 
+   * 
+   * @brief valid values for the Z Flag for dns::Header
+   */
   enum Z : uint16_t { // Zero
     Z_RESERVED = 0x0000,
     Z_MASK = 0x0070,
   };
 
+  /**
+   * @enum RCode 
+   * 
+   * @brief valid values for the RCode Flag for dns::Header
+   */
   enum RCode : uint16_t { // Response code
     RCode_NO_ERROR = 0x0000,
     RCode_FORMAT_ERROR = 0x0001,
@@ -78,10 +123,33 @@ namespace dns {
     RCode_MASK = 0x000F
   };
 
+  /**
+   * @enum Type 
+   * 
+   * @brief valid values for the Type Flag for dns::Header
+   */
   enum Type : uint16_t {A = 1, NS = 2 };
 
+  /**
+   * @enum Class 
+   * 
+   * @brief valid values for the Class Flag for dns::Header
+   */
   enum Class : uint16_t {IN = 1};
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct dns::Header dns.h
+   * 
+   * @brief Structure that implements a dns::Packet header.
+   * 
+   * @details For a detailed documentation of the meaning of each field can
+   * be found in http://www.tcpipguide.com/free/t_DNSMessageHeaderandQuestionSectionFormat.htm
+   * 
+   */
   struct Header : abstract::Header {
     ushort id;
     ushort flags_code;
@@ -90,7 +158,17 @@ namespace dns {
     ushort NSCount;
     ushort ARCount;
 
+    /**
+     * @brief Default constructor.
+     * @details Inicializes a new instance.
+     */
     Header() {}
+
+    /**
+     * @brief Copy contructor.
+     * 
+     * @param other A dns::Header to copy its value to create the new instance. 
+     */
     Header(const Header& other) {
       id = other.id;
       flags_code = other.flags_code;
@@ -99,6 +177,15 @@ namespace dns {
       NSCount = other.NSCount;
       ARCount = other.ARCount;
     }
+
+    /**
+     * @brief Contructor from const char*
+     * @details This constructor takes a const char * pointing to a memory block
+     * that contains a representation of a dns::Header as the one obtained by 
+     * the c_str method of this class.
+     * 
+     * @param other A const char* pointing to the correctly formated memory block
+     */    
     Header(const char* const other) {
       std::memcpy(&id,other,2);
       std::memcpy(&flags_code,&other[2],2);
@@ -108,19 +195,51 @@ namespace dns {
       std::memcpy(&ARCount,&other[10],2);
     }
 
+    /**
+     * @brief Uses the mask to set the correct bits of the flags_code field of 
+     * the instance with the value the bits in the flag parameter in those positions.
+     * 
+     * @details The bits with 1s in the mask are the bits of the flags_code that 
+     * will be modified by this method.
+     * 
+     * @param flag The values to set in the flags_code.
+     * @param mask The positions of the flags_code to modify.
+     */
     void setFlag(uint16_t flag, uint16_t mask) {
       flags_code = (flags_code & ~mask);
       flags_code = (flags_code | flag);
     }
 
+    /**
+     * @brief Checks whether the flags_code is set with the flag passed as parameter.
+     * 
+     * @param flag The flag to check if it is set or not.
+     * @param mask The mask to know witch bits if the flags_code are the bits of the 
+     * flag.
+     * 
+     * @return [description]
+     */
     bool is(uint16_t flag, uint16_t mask) const {
       return (flags_code & mask) == flag;
     }
 
+    /**
+     * @return The size of the instance in bytes.
+     */
     ushort size() const {
       return 12;
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @details This method can be used to store a dns::Header as an array of chars 
+     * and be reconstructed with the const char * constructor later.
+     * 
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* c_str() const {
       char* res = new char[this->size()];
 
@@ -133,6 +252,12 @@ namespace dns {
       return res;
     }
 
+    /**
+     * @brief Returns a string formated with the dns::Header value of the this.
+     * @details This method can be used to print the dns::HEader value
+     * 
+     * @return An std::string with the formated value.
+     */
     std::string as_string() const {
       std::string res = "";
       res += "id: " + std::to_string(id) + "\n";
@@ -145,13 +270,43 @@ namespace dns {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct dns::DomainName dns.h
+   * 
+   * @brief This struct handles domain names with the format 'zone1.zone2.zone3...zoneN'
+   * 
+   * @details This method allows to parse domain names from strings. An example of
+   * a dns::DomainName is 'networks.devs.com' where 'networks' es zone1 
+   * 'devs' is zone2 and 'com' is zone3.
+   */
   struct DomainName {
     std::vector<std::string> name;
 
+    /**
+     * @brief Default constructor
+     * @details Construct a new instance with an empty vale ''
+     */
     DomainName() {};
+
+    /**
+     * @brief Copy constructor
+     * 
+     * @param other A dns::DomainName to copy its value to construct the new instance.
+     */
     DomainName(const DomainName& other) {
       name = other.name;
     }
+
+    /**
+     * @brief Constructor from std::string
+     * @details This constructor uses a std::string formated in the IDN format.
+     * 
+     * @param str A std::string used to construct the new instance.
+     */
     DomainName(std::string str) {
       std::stringstream ss(str);
       std::string sub_domain;
@@ -160,6 +315,21 @@ namespace dns {
         name.push_back(sub_domain);
       }
     }
+
+    /**
+     * @brief Constructor from const char *
+     * @details This constructor uses a char * representation to initialize 
+     * the new instance. the format must be the next:
+     * 
+     * 0xlen1zone10xlen2zone20xlen3...0xlenNzoneN0x00
+     * where there is no space between the len and the zones name. The len are 
+     * unsigned chars with the length in bytes of the zones names in text format 
+     * and the len = 0x00 represent the end of the domain name.
+     * 
+     * example 0x08networks0x04devs0x03com0x00 = networks.devs.com 
+     * 
+     * @param data A const char * used to inicialize the new instance
+     */
     DomainName(const char* data) {
       int i = 0;
       while (data[i] != 0x00) { /* data[i] == 0 */
@@ -169,6 +339,12 @@ namespace dns {
       }
     }
 
+
+    /**
+     * @return A const char * pointing to a memory block of a well defined 
+     * representation as required by the constructor from const char * of 
+     * the instance domain name.
+     */
     const char* c_str() const {
       char* res = new char[this->size()];
       for (int i = 0; i < this->size(); ++i) res[i] = 0x00; // last 0x0 character is initialized here
@@ -184,6 +360,12 @@ namespace dns {
       return res;
     }
 
+    /**
+     * @brief Return the value of the instance in a std::string with the IDN format
+     * as required by the constructor from std::string.
+     * 
+     * @return A std::string with the formated domain name value.
+     */
     std::string as_string() const {
       std::string res = "";
       std::vector<std::string>::const_iterator it = name.begin();
@@ -195,6 +377,10 @@ namespace dns {
       return res;
     }
 
+    /**
+     * @return A int with the zise of the current domain name with is the sum
+     * of the size in bytes of all the zones of the domain.
+     */
     int size() const {
       int size = 0;
       std::vector<std::string>::const_iterator it;
@@ -204,6 +390,12 @@ namespace dns {
       return size+1; // last 0 char value
     }
 
+    /**
+     * @brief Operator == for dns::DomainName
+     * 
+     * @return True if both the implicit this and the other instances are equals, 
+     * False otherwise.
+     */
     bool operator==(const DomainName& other) const {
       if (name.size() != other.name.size()) {
         return false;
@@ -217,7 +409,24 @@ namespace dns {
     }
   };
 
-  // Resource Record
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct dns::ResourceRecord
+   * 
+   * @brief This structs represent a ResourceRecord that contains information
+   * of a query or answer of a dns::domainName.
+   * 
+   * @details This struct stores the next information:
+   * * name: dns::DomainName that is query.
+   * * Qtype: The type of answer that was returned by a server.
+   * * AValue: If the answer is of type A, the IPv4 value of the response.
+   * * NSValue: Of the answer is of type NS, the dns::DomainName value of a server to send the query.
+   * * QClass: The class of query.
+   * * TTL: The Time To Live of the response in cache.
+   */
   struct ResourceRecord {
     DomainName name;
     Type QType;
@@ -226,7 +435,17 @@ namespace dns {
     Class QClass;
     ushort TTL;
 
+    /**
+     * @brief Default Constructor.
+     * @details Construct an empty new instance of dns::ResourceRecord.
+     */
     ResourceRecord() {}
+    
+    /**
+     * @brief Copy constructor
+     * 
+     * @param other A dns::ResourceRecod to copy in the new instance. 
+     */
     ResourceRecord(const ResourceRecord& other) {
       name = other.name;
       AValue = other.AValue;
@@ -235,6 +454,15 @@ namespace dns {
       QClass = other.QClass;
       TTL = other.TTL;
     }
+
+    /**
+     * @brief Contructor from const char*
+     * @details This constructor takes a const char * pointing to a memory block
+     * that contains a representation of a dns::RecordResource as the one obtained by 
+     * the c_str method of this class.
+     * 
+     * @param data A const char* pointing to the correctly formated memory block
+     */    
     ResourceRecord(const char* const data) {
       
       // Reading name
@@ -262,6 +490,16 @@ namespace dns {
       std::memcpy(&TTL, &data[i], sizeof(TTL));
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @details This method can be used to store a dns::ResourceRecord as an 
+     * array of chars and be reconstructed with the const char * constructor later.
+     * 
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* c_str() const {
       char* res = new char[this->size()];
       for (int i = 0; i < this->size(); ++i) res[i] = 0x00;
@@ -298,6 +536,9 @@ namespace dns {
       return res;
     }
 
+    /**
+     * @return An int with the instance size in bytes.
+     */
     int size() const {
       int size = name.size() + sizeof(QType) + sizeof(QClass) + sizeof(TTL);
       if (QType == Type::A) size += AValue.size();
@@ -305,6 +546,12 @@ namespace dns {
       return size;
     }
 
+    /**
+     * @brief It print the value of the instance in a human redable version on 
+     * a std::string.
+     * 
+     * @return A std::string with the instance value printed on it.
+     */
     std::string as_string() const {
       std::string res = "";
       res += this->name.as_string() + " ";
@@ -320,6 +567,20 @@ namespace dns {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct dns::Packet dns.h
+   * 
+   * @brief This struct represent a dns::Packet, it has a dns::Header that
+   * indicates how many dns::resourceRecord there is in each one of the four 
+   * sections: questions, answers, authoritatives and aditionals and four 
+   * std::lists<dns::ResourceRedords> containing them.
+   * 
+   * @details This struct carry a DNS query and answer though the network.
+   */
   struct Packet {
     Header header;
     std::list<ResourceRecord> questions;
@@ -327,12 +588,24 @@ namespace dns {
     std::list<ResourceRecord> authoritatives;
     std::list<ResourceRecord> aditionals;
 
+    /**
+     * @brief Default constructor
+     * @details It initilizes a new empty instance with no dns::ResourceRedords
+     */
     Packet() {
       header.QDCount = 0;
       header.ANCount = 0;
       header.NSCount = 0;
       header.ARCount = 0;
     }
+
+    /**
+     * @brief Copy constructor
+     * @details It construct a new instance copying the value from the instances
+     * passed as parameter.
+     * 
+     * @param other A dns::Packet used to initilize the new instance.
+     */
     Packet(const Packet& other) {
       header = other.header;
       questions = other.questions;
@@ -340,6 +613,15 @@ namespace dns {
       authoritatives = other.authoritatives;
       aditionals = other.aditionals;
     }
+
+    /**
+     * @brief Contructor from const char*
+     * @details This constructor takes a const char * pointing to a memory block
+     * that contains a representation of a dns::Packet as the one obtained by 
+     * the c_str method of this class.
+     * 
+     * @param data A const char* pointing to the correctly formated memory block
+     */ 
     Packet(const char* const data) {
       
       int i = 0;
@@ -365,26 +647,56 @@ namespace dns {
       }
     }
 
+    /**
+     * @brief Adds a new dns::ResourceRedord to the questions section
+     * 
+     * @param r A dns::ResourceRecord to add.
+     */
     void addQuestionResource(ResourceRecord r) {
       questions.push_back(r);
       header.QDCount++;
     }
 
+    /**
+     * @brief Adds a new dns::ResourceRedord to the answers section
+     * 
+     * @param r A dns::ResourceRecord to add.
+     */
     void addAnswerResource(ResourceRecord r) {
       answers.push_back(r);
       header.ANCount++;
     }
 
+    /**
+     * @brief Adds a new dns::ResourceRedord to the authoritatives section
+     * 
+     * @param r A dns::ResourceRecord to add.
+     */
     void addAuthoritativeResource(ResourceRecord r) {
       authoritatives.push_back(r);
       header.NSCount++;
     }
 
+    /**
+     * @brief Adds a new dns::ResourceRedord to the aditional section
+     * 
+     * @param r A dns::ResourceRecord to add.
+     */
     void addAditionalResource(ResourceRecord r) {
       aditionals.push_back(r);
       header.ARCount++;
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @details This method can be used to store a dns::Packet as an 
+     * array of chars and be reconstructed with the const char * constructor later.
+     * 
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* c_str() const {
       std::list<ResourceRecord>::const_iterator it;
 
@@ -425,6 +737,9 @@ namespace dns {
       return res;
     }
 
+    /**
+     * @return A int with the size of the instance in bytes.
+     */
     int size() const {
       int len = header.size();
       std::list<ResourceRecord>::const_iterator it;
@@ -444,6 +759,12 @@ namespace dns {
       return len;
     }
 
+    /**
+     * @brief prints the dns::Packet instance in a std::string in a human 
+     * redable format.
+     *
+     * @return a std::string with the printed value of the instance.
+     */
     std::string as_string() const {
 
       std::string res = "-------------- dns packet ---------------\n";
@@ -478,10 +799,23 @@ namespace dns {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct dns::Zone dns.h
+   * 
+   * @brief This struct represent a zone entry that has the zone domain name 
+   * and the domain name of the server that is authoritative for that zone.
+   */
   struct Zone {
     dns::ResourceRecord name_server; 
     dns::ResourceRecord authoritative;
 
+    /**
+     * @return True if the zone is empty, False otherwise
+     */
     bool empty() const {
       return  name_server.name.name.size() == 0 ||
               authoritative.name.name.size() == 0 ||
@@ -489,6 +823,12 @@ namespace dns {
               authoritative.QType != Type::A;
     }
 
+    /**
+     * @brief prints the dns::Zone instance in a std::string in a human 
+     * redable format.
+     *
+     * @return a std::string with the printed value of the instance.
+     */
     std::string as_string() const {
       std::string res = "\n";
       res += "-------------- Zone --------------\n";
@@ -500,6 +840,13 @@ namespace dns {
       return res;
     }
 
+    /**
+     * @brief Checks whether the instance zone is authoritative for a 
+     * given dns::DomainName or not. 
+     * 
+     * @param d A dns::DomainName to check if is under the zone responsability or not.
+     * @return True if the zone is responzible of the dns::DomainName, False otherwise.
+     */
     bool isZoneOf(dns::DomainName d) const {
       int name_server_len = name_server.name.name.size();
       int domain_len = d.name.size();
