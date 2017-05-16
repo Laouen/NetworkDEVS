@@ -11,9 +11,31 @@
 #include "ipv4.h"
 #include "dns.h"
 
-// transport layer structures
+/**
+ * @namespace udp
+ * 
+ * This namespace is used to declare all the UDP protocol related datatypes
+ */
 namespace udp {
 
+  /**
+   *
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct udp::PseudoHeader udp.h
+   *  
+   * @brief This struct declares an udp::Segment pseudo-header.
+   * @details The pseudo-header has IP layer related information that is needed
+   * in the UDP protocol due to the socket handling process where IP are used.
+   * An udp::PseudoHeader has the next fields:
+   * 1. src_ip: The local host IP 
+   * 2. dest_ip: The remote host IP
+   * 3. zeros: zeros
+   * 4. protocol: The transport protocol number (currently not used)
+   * 5. udp_lenght: The total udp::Segment length
+   * 
+   */
   struct PseudoHeader : abstract::Header {
     IPv4 src_ip;
     IPv4 dest_ip;
@@ -21,7 +43,18 @@ namespace udp {
     u_char protocol = 0x0; // currently not used
     ushort udp_lenght = 0;
 
+    /**
+     * @brief Default constructor.
+     * @details Construct an empty new instance
+     */
     PseudoHeader() {}
+
+    /**
+     * @brief Copy constructor
+     * @details Construct a new instance with a copy of instance passed as parameter.
+     * 
+     * @param o An udp::Segment to copy its values in the new instance.
+     */
     PseudoHeader(const PseudoHeader& o) {
       src_ip = o.src_ip;
       dest_ip = o.dest_ip;
@@ -30,10 +63,20 @@ namespace udp {
       zeros = o.zeros;
     }
 
+    /**
+     * @return The size in bytes of the instance.
+     */
     ushort size() {
       return 20; // this is the current size of header for checksum
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* c_str() {
       char* foo = new char[this->size()];
       memcpy(foo, src_ip.ip, 8);
@@ -45,13 +88,39 @@ namespace udp {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct udp::Header udp.h
+   * 
+   * @brief This struct declares an udp::Segment header.
+   * @details An udp::Header has the next fields:
+   * 1. src_port: The local host socket port of the udp::Segment.
+   * 2. dest_port: The local host socket ip of the udp::Segment.
+   * 3. length: The total length of the udp::Segment.
+   * 4. checksum: The checksum used to verify the udp::Segment has correctly arrived.
+   * 
+   */
   struct Header : abstract::Header {
     ushort src_port;
     ushort dest_port;
     ushort length;
     ushort checksum;
 
+    /**
+     * @brief Default constructor.
+     * @details Construct an empty new instance.
+     */
     Header () {}
+
+    /**
+     * @brief Copy constructor
+     * @details Construct a new instance with a copy of the instance passed as parameter.
+     * 
+     * @param o An udp::Header to copy in the new instance.
+     */
     Header(const Header& o) {
       src_port = o.src_port;
       dest_port = o.dest_port;
@@ -59,10 +128,20 @@ namespace udp {
       checksum = o.checksum;
     }
 
+    /**
+     * @return Returns the instance size in bytes
+     */
     ushort size() {
       return 6; // this is the current size of header for checksum
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* c_str() {
       char* foo = new char[this->size()];
       memcpy(foo, &src_port, 2);
@@ -72,24 +151,57 @@ namespace udp {
     }
   };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @brief This struct declares an udp::Segment to send through the network.
+   * 
+   * @details A udp::Segment has an udp::pseudoHeader, an udp::Header and a 
+   * payload of length 512 bytes in char format.
+   * 
+   */
   struct Segment : abstract::Data {
     PseudoHeader psd_header;
     Header header;
     char payload[512]; // UDP size limit
 
+    /**
+     * @brief Default constructor
+     * @details Construct a new empty instance.
+     */
     Segment() {
       for(int i=0; i<512; ++i) payload[i] = 0x00;
     }
+
+    /**
+     * @brief Copy constructor
+     * 
+     * @details Construct a new instance with a copy of the instance passed as parameter.
+     * 
+     * @param o An udp::Segment to copy in the new instance.
+     */
     Segment(const Segment& o) {
       psd_header = o.psd_header;
       header = o.header;
       memcpy(&payload[0], &o.payload[0], 512);
     }
 
+    /**
+     * @return The instance size in bytes.
+     */
     ushort headers_size() {
       return header.size()+psd_header.size();
     }
 
+    /**
+     * @brief Copy all the bytes of the instance in a memory block and return a
+     * pointer to that memory block.
+     * 
+     * @return A const char * that point to the memory block where the instance 
+     * was capied.
+     */
     const char* headers_c_str() {
       char* foo = new char[this->headers_size()];
       const char* h = header.c_str(); 
@@ -101,6 +213,13 @@ namespace udp {
       return foo;
     }
 
+    /**
+     * @brief Set a dns::Packet as the payload. 
+     * @details For this purpose it uses the c_str dns::Packet method to get the 
+     * a pointer to a memory block with the instance char representation.
+     * 
+     * @param packet The dns::Packet to set as payload.
+     */
     void setPayload(const dns::Packet& packet) {
       const char* payload_str = packet.c_str();
       memcpy(&payload[0],payload_str,packet.size());
@@ -108,10 +227,36 @@ namespace udp {
     }
   };
 
-  // the interface Ctrl was taken from: http://www.chuidiang.com/clinux/sockets/sockets_simp.php#sockets
+  /**
+   * @enum Ctrl
+   * 
+   * the interface Ctrl was taken from: http://www.chuidiang.com/clinux/sockets/sockets_simp.php#sockets
+   */
   enum Ctrl { SUCCESS, INVALID_SOCKET, INVALID_SOCKET_STATE, 
               CONNECT, BIND, READ_FROM, RECV_FROM, READ, RECV, WRITE_TO, SEND_TO, WRITE, SEND, CLOSE };
 
+  /**
+   * 
+   * @author Laouen Louan Mayal Belloli
+   * @date 14 May 2017
+   * 
+   * @struct udp::Control udp.h
+   * 
+   * @brief This structures handles the control comunication between the application layer and the 
+   * UDP Protocol.
+   * 
+   * @details Every command as connect, bind, read, etc are requested from the application layer
+   * using an udp::Control struct, specifying the socket and application ID. 
+   * An udp::Control has the next fields:
+   * 1. local_port: The local unsigned short port of the socket that the control message refers to.
+   * 2. remote_port: The remote unsigned short port of the socket that the control message refers to (only for a connected socket).
+   * 3. local_ip: The local IPv4 ip of the socket that the control message refers to.
+   * 4. remote_ip: The remote IPv4 ip of the socket that the control message refers to (only for a connected socket).
+   * 5. app_id: The application ID bound to the refered socket.
+   * 6. request: The udp::Ctrl with the request command.
+   * 7. packet: If the request command is send/write/send_to/write_to, this fields must have the dns::Packet to send through the network.
+   * 
+   */
   struct Control : abstract::Data {
     Ctrl request;
     unsigned int app_id;
@@ -123,7 +268,19 @@ namespace udp {
     IPv4 local_ip;
     IPv4 remote_ip;
 
+    /**
+     * @brief Defualt constructor.
+     * 
+     * @details Construct a new empty instance.
+     */
     Control() {}
+
+    /**
+     * @brief Copy constructor
+     * @details Construct a new instance with a copy of the instance passed as parameter.
+     * 
+     * @param other The udp::Control instance to copy in the new instance.
+     */
     Control(const Control& other) {
       request = other.request;
       app_id = other.app_id;
@@ -133,11 +290,32 @@ namespace udp {
       local_ip = other.local_ip;
       remote_ip = other.remote_ip;
     }
+
+    /**
+     * @brief Constructor simple requests.
+     * @details Construct a new udp::Control specifying only the request and 
+     * app_ip fields. This can be used for requests where the rest of the 
+     * information is not neded. 
+     * 
+     * @param int An int with the application ID.
+     * @param other_request An udp::Ctrl with the request.
+     */
     Control(unsigned int other_app_id, Ctrl other_request) {
       app_id = other_app_id;
       request = other_request;
     }
 
+    /**
+     * @brief Checks whether the udp::Control is a request from the appplication 
+     * layer to the UDP protocol or not.
+     * 
+     * @details A request can be something else than a command from the application 
+     * layer to be excecuted by the UDP protocol, as for example the 
+     * udp::Ctrl::INVALID_SOCKET request that is a control messages to tell the 
+     * application layer the specified socket is invalid for the send command.
+     * 
+     * @return True if it is an application request, False otherwise.
+     */
     bool isAppRequest() const {
       switch(request) {
       case CONNECT: 
@@ -159,6 +337,12 @@ namespace udp {
       }
     }
 
+    /**
+     * @brief Prints in a human redable format the value of the udp::Control in
+     * a std::string.
+     * 
+     * @return A std::string with the printed value.
+     */
     std::string as_string() const {
       std::stringstream ss;
       ss << "app_id: " << app_id << std::endl;
