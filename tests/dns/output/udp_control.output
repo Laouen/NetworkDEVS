@@ -23,7 +23,13 @@ packet:
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags: QR_QUERY|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_RECURSIVE|RA_ITERATIVE|RCode_NO_ERROR
+flags: 	QR_QUERY					|
+		Opcode_QUERY				|
+		AA_NOT_AUTHORITATIVE_ANSWER	|
+		TC_NOT_TRUNCATED			|
+		RD_RECURSIVE				|
+		RA_ITERATIVE				|
+		RCode_NO_ERROR
 QDCount: 1
 ANCount: 0
 NSCount: 0
