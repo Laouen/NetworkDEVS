@@ -138,8 +138,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.90292968"
-     inkscape:cx="444.01488"
-     inkscape:cy="256.53473"
+     inkscape:cx="547.02558"
+     inkscape:cy="131.6359"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -341,5 +341,49 @@
          x="121.63338"
          id="tspan10816"
          sodipodi:role="line">[no hay mensaje salientes]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:20.6673851px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="34.418255"
+       y="323.14099"
+       id="text4218"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4220"
+         x="34.418255"
+         y="323.14099">ta=inf</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4232"
+       y="116.34871"
+       x="41.394901"
+       style="font-style:normal;font-weight:normal;font-size:20.6673851px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="116.34871"
+         x="41.394901"
+         sodipodi:role="line"
+         id="tspan4240">*=tiempo de procesamiento del mensaje actual</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:20.6673851px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="651.71552"
+       y="322.95935"
+       id="text4236"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4238"
+         x="651.71552"
+         y="322.95935">ta=0</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4254"
+       y="322.95935"
+       x="344.08807"
+       style="font-style:normal;font-weight:normal;font-size:20.6673851px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         y="322.95935"
+         x="344.08807"
+         id="tspan4256"
+         sodipodi:role="line">ta=*</tspan></text>
   </g>
 </svg>

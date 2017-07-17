@@ -56,15 +56,15 @@
  * * std::queue<CL> lower_layer_ctrl_in;  // Input Port 3
  * 
  * Output queues:
- * * message::queue<DH2> higher_layer_data_out = 0; // Output Port 0 
- * * message::queue<DL2> lower_layer_data_out = 1;  // Output Port 1
- * * message::queue<CH2> higher_layer_ctrl_out = 3; // Output Port 2
- * * message::queue<CL2> lower_layer_ctrl_out = 3;  // Output Port 3 
+ * * message::queue<DHout> higher_layer_data_out = 0; // Output Port 0 
+ * * message::queue<DLout> lower_layer_data_out = 1;  // Output Port 1
+ * * message::queue<CHout> higher_layer_ctrl_out = 3; // Output Port 2
+ * * message::queue<CLout> lower_layer_ctrl_out = 3;  // Output Port 3 
  * 
  * How the incoming messages are queued in the corresponding input queues and how
  * the pushed messages in the output queues are send through the correct output
- * ports is a task the protocol developer does not need to do because the 
- * it is implemented in the template model Layer.
+ * ports is a task the protocol developer does not need to care because it is
+ * implemented in the template model Layer.
  * 
  * The protocol developer only need to implement the dinternal method where the
  * protocol must be implemented and must uses the queue with the methods front, 
@@ -90,16 +90,16 @@
  * method, if this does not happen, the model will trigger the dinternal method again
  * until they are all empty. 
  * 
- * @tparam DH The data type of the messages send trough output port 0
- * @tparam CH The data type of the messages send trough output port 1
- * @tparam DL The data type of the messages send trough output port 2
- * @tparam CL The data type of the messages send trough output port 3
- * @tparam DH2 The data type of the messages received from the input port 0 (by default is the same as DH)
- * @tparam CH2 The data type of the messages received from the input port 1 (by default is the same as CH)
- * @tparam DL2 The data type of the messages received from the input port 2 (by default is the same as DL)
- * @tparam CL2 The data type of the messages received from the input port 3 (by default is the same as CL)
+ * @tparam DH The data type of the messages received from the input port 0
+ * @tparam CH The data type of the messages received from the input port 1
+ * @tparam DL The data type of the messages received from the input port 2
+ * @tparam CL The data type of the messages received from the input port 3
+ * @tparam DHout The data type of the messages send trough output port 0 (by default is the same as DH)
+ * @tparam CHout The data type of the messages send trough output port 1 (by default is the same as CH)
+ * @tparam DLout The data type of the messages send trough output port 2 (by default is the same as DL)
+ * @tparam CLout The data type of the messages send trough output port 3 (by default is the same as CL)
  */
-template <typename DH, typename CH, typename DL, typename CL, typename DH2 = DH, typename CH2 = CH, typename DL2 = DL, typename CL2 = CL>
+template <typename DH, typename CH, typename DL, typename CL, typename DHout = DH, typename CHout = CH, typename DLout = DL, typename CLout = CL>
 class Layer: public Simulator { 
 
 protected:
@@ -113,10 +113,10 @@ protected:
   std::queue<CL> lower_layer_ctrl_in;
   
   // output queues
-  message::queue<DH2> higher_layer_data_out = 0;
-  message::queue<DL2> lower_layer_data_out = 2;
-  message::queue<CH2> higher_layer_ctrl_out = 1;
-  message::queue<CL2> lower_layer_ctrl_out = 3;
+  message::queue<DHout> higher_layer_data_out = 0;
+  message::queue<DLout> lower_layer_data_out = 2;
+  message::queue<CHout> higher_layer_ctrl_out = 1;
+  message::queue<CLout> lower_layer_ctrl_out = 3;
 
   Event output;
 
@@ -124,7 +124,7 @@ protected:
   double last_transition;
 
   /********** TIMES ***************/
-  double infinity = std::numeric_limits<double>::max();
+  const double infinity = std::numeric_limits<double>::max();
   double send_time = 0.001;
 
   /********* Private methods *********/

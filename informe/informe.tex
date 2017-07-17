@@ -116,7 +116,7 @@ Ejemplos de estos son:
 \item  Un router que tiene más de una interfaz: Hay una interfaz por cada sub-red a la cual esté conectado, contando con más de un modulo en la capa de linkeo (capa dos del modelo OSI).
 \end{itemize}
 
-Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como existe solo un medio de comunicación físico entre dispositivos por donde datos y controles son enviados, el modelo acoplado ``dispositivo'' tiene solo un puerto de salida y un puerto de entrada destinado a comunicarse con otros dispositivos, y queda en el modelador decidir que puerto o puertos de salida de la capa $1$ conectar con el puerto de salida del modelo acoplado y que puerto o puertos de entrada de la capa $1$ comunicar con los el puerto de entrada. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede obtener mediante modelos generadores situados adentro del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$, este output puede ser recibido por modelos vertederos que lo guardan en archivos. \\
+Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como existe un único medio de comunicación por cada puerto físico entre dispositivos, por donde datos y controles son enviados sin distinción, el modelo acoplado ``dispositivo'' tiene solo un puerto de salida y un puerto de entrada destinado a comunicarse con otros dispositivos por cada puerto físico modelado, y queda en el modelador decidir como mapear los puertos de salida y entrada de la capa $1$ con los puertos de entrada y salida del modelo acoplado. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede obtener mediante modelos generadores situados adentro del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$, este output puede ser recibido por modelos vertederos que lo guardan en archivos. \\
 
 Distintos dispositivos de la red pueden tener distintas cantidades de capas, por lo cual, la cantidad de capas existente puede variar entre los distintos modelos de cada dispositivo dentro de una misma red. Los hosts por ejemplo, suelen tener hasta la capa siete, mientras que los routers comunes llegan a la capa tres y los switches a la capa dos. \\
 
@@ -133,7 +133,7 @@ La Figura \ref{figure:general architecture} muestra la arquitectura general reci
 
 \subsubsection{Arquitectura de las capas}
 
-La arquitectura de las capas está implementada en un modelo template llamado Layer del cual se puede realizar herencia para heredar su estructura. Esta estructura permite abstraer al protocolo de todo el modelo correspondiente al dispositivo, en otras palabras, esta estructura ya modela las propiedades de un dispositivo genérico, esto implica manejar el envío y recepción de mensajes a y desde las otras capas. Para manejar la entrada y salida de mensajes se utilizan colas FIFO; Cada vez que hay un mensajes entrante, el mismo es encolado en la cola de entrada correspondiente y el protocolo los va desencolando y atendiendo de uno o de a muchos dependiendo su implementación, el modelo template ya está armado de forma que mientras no haya mensajes por procesar se mantiene pasivado (en estado IDLE) y mientras que hay mensajes por procesar se queda ciclando para ir atendiéndolos a todos hasta que no halla más mensajes a procesar, momento en el que el modelo se vuelve a pasivar. Por otro lado, cada vez que se quiere enviar un mensaje, el mismo solo debe ser encolado en la cola de mensajes salientes correspondiente dependiendo de si es un mensaje de datos o control a la capa superior o inferior, luego el simulador cuando el protocolo termina el procesamiento actual se encarga de ciclar entre las colas de salida para enviar todos los mensajes que hallan sido encolados. La Figura \ref{figure:layer general architecture} muestra la arquitectura general de una capa cualquiera y la Figura \ref{figure:processing flow} muestra el flujo de procesamiento generado por el modelo template cuando es extendido agregándole un protocolo.
+La arquitectura de las capas está implementada en un modelo template llamado Layer del cual se puede realizar herencia para heredar su estructura. Esta estructura permite abstraer al protocolo de todo el modelo correspondiente al dispositivo, en otras palabras, esta estructura ya modela las propiedades de un dispositivo genérico, esto implica manejar el envío y recepción de mensajes a y desde las otras capas. Para manejar la entrada y salida de mensajes se utilizan colas FIFO; Cada vez que hay un mensaje entrante, el mismo es encolado en la cola de entrada correspondiente y el protocolo los va desencolando y atendiendo de uno o de a muchos dependiendo su implementación, el modelo template ya está armado de forma que mientras no haya mensajes por procesar se mantiene pasivado (en estado IDLE) y mientras que hay mensajes por procesar se queda ciclando para ir atendiéndolos a todos hasta que no halla más mensajes a procesar, momento en el que el modelo se vuelve a pasivar. Por otro lado, cada vez que se quiere enviar un mensaje, el mismo solo debe ser encolado en la cola de mensajes salientes correspondiente dependiendo de si es un mensaje de datos o control a la capa superior o inferior, luego el simulador cuando el protocolo termina el procesamiento actual se encarga de ciclar entre las colas de salida para enviar todos los mensajes que hallan sido encolados. La Figura \ref{figure:layer general architecture} muestra la arquitectura general de una capa cualquiera y la Figura \ref{figure:processing flow} muestra el flujo de procesamiento generado por el modelo template cuando es extendido agregándole un protocolo.
 
 \begin{figure}[t]
     \centering
@@ -160,7 +160,7 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 .3 message\_queue.h.
 .3 parser.h.
 .2 structures.
-.3 bastract\_types.h.
+.3 abstract\_types.h.
 .3 ipv4.h1.
 .3 mac.h.
 .3 socket.h.
@@ -176,11 +176,11 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 
 \medskip
 
-La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Layer} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan están separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxygen. \\
+La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Layer} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxygen. \\
 
 Todos los tipos de datos están implementados en namespaces que sirven como organizadores, para cada capa existente debe existir un namespace y los tipos de datos inherentes a esa capa tienen que estar definidos dentro del namespace (por más que otras capas lo usen). Si se implementan nuevas capas, se deben crear sus correspondientes namespaces a menos que no halla tipos de datos correspondientes a la capa. De está forma se evitan las ambigüedades que son muy recurrentes en el ámbito de las redes y se explicita la interacción con los datos correspondientes a cada capa. \\
 
-\textbf{Note: } No están incluidos en esta estructura todos los archivos puntuales al modelo particular implementado, solo se encuentran aquellos archivos correspondientes a la arquitectura del framework. \\
+\textbf{Nota: } No están incluidos en esta estructura todos los archivos puntuales al modelo particular implementado, solo se encuentran aquellos archivos correspondientes a la arquitectura del framework. \\
 
 \subsection{Como heredar el modelo layer}
 
@@ -188,7 +188,7 @@ El modelo \textit{Layer} es el modelo template que contiene toda la implementaci
 
 El modelo \textit{Layer} tiene la siguiente forma:
 \begin{lstlisting}
-template <typename DH, CH, DL, CL, DH2 = DH, CH2 = CH, DL2 = DL, CL2 = CL>
+template <typename DH, CH, DL, CL, DHout = DH, CHout = CH, DLout = DL, CLout = CL>
 class Layer: public Simulator { 
 
 protected:
@@ -202,10 +202,10 @@ protected:
   std::queue<CL> lower_layer_ctrl_in;  // Input Port 3
   
   // Colas de salida
-  message::queue<DH2> higher_layer_data_out = 0; // Output Port 0 
-  message::queue<DL2> lower_layer_data_out = 1;  // Output Port 1
-  message::queue<CH2> higher_layer_ctrl_out = 3; // Output Port 2
-  message::queue<CL2> lower_layer_ctrl_out = 3;  // Output Port 3
+  message::queue<DHout> higher_layer_data_out = 0; // Output Port 0 
+  message::queue<DLout> lower_layer_data_out = 1;  // Output Port 1
+  message::queue<CHout> higher_layer_ctrl_out = 3; // Output Port 2
+  message::queue<CLout> lower_layer_ctrl_out = 3;  // Output Port 3
 
   Event output;
 
@@ -213,13 +213,13 @@ protected:
   // Manipulacion del tiempo virtual de la simulacion 
   double next_internal;
   double last_transition;
-  double infinity = std::numeric_limits<double>::max();
+  const double infinity = std::numeric_limits<double>::max();
   bool queuedMsgs() const { ... }
 
 public:
 
   Layer(const char *n): Simulator(n) {};
-  double ta(
+  double ta()
   Event lambda(double) { .... }
   void dint(double t) { .... }
   void dext(Event x, double t) { .... }
@@ -288,13 +288,13 @@ Para procesar los mensajes, dentro del método \textit{dinternal}, los mismos de
 
 Para enviar mensajes las colas a utilizar son las siguientes:
 \begin{itemize}
-\item message::queue$<DH2>$ higher\_layer\_data\_out: Output Port 0 
-\item message::queue$<DL2>$ lower\_layer\_data\_out:  Output Port 1
-\item message::queue$<CH2>$ higher\_layer\_ctrl\_out: Output Port 2
-\item message::queue$<CL2>$ lower\_layer\_ctrl\_out:  Output Port 3
+\item message::queue$<DHout>$ higher\_layer\_data\_out: Output Port 0 
+\item message::queue$<DLout>$ lower\_layer\_data\_out:  Output Port 1
+\item message::queue$<CHout>$ higher\_layer\_ctrl\_out: Output Port 2
+\item message::queue$<CLout>$ lower\_layer\_ctrl\_out:  Output Port 3
 \end{itemize}
 
-Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada con un $2$ al final, esto es porque los mismos por defecto se instancian usando los tipos de las colas de entrada a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya que se considera buena práctica que el tipo de datos que intercambian dos capas por un canal de comunicación sea siempre el mismo en ambas direcciones, facilitando la reutilización y comprensión de los modelos por parte de otras personas, sin embargo esto no es siempre posible, principalmente cuando se interactua mediante modelos \textit{demultiplexers}. \\
+Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada con un \textit{out} al final, esto es porque los mismos por defecto se instancian usando los tipos de las colas de entrada a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya que se considera buena práctica que el tipo de datos que intercambian dos capas por un canal de comunicación sea siempre el mismo en ambas direcciones, facilitando la reutilización y comprensión de los modelos por parte de otras personas, sin embargo esto no es siempre posible, principalmente cuando se interactua mediante modelos \textit{demultiplexers}. \\
 
 Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{message::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
 
@@ -860,14 +860,143 @@ Para realizar test de unidad de cada módulo por separado (un módulo representa
 
 En el caso del modelo DNS, el test de unidad básico implementado recibe un pedido de resolución para el dominio ``networks.devs.com'' por el puerto de entrada 0 (puerto por el cual recibe datos de la capa superior) en el tiempo virtual 15, el módulo envía un pedido recursivo a su servidor local con ip conocido 1.0.0.2 por el puerto de salida 3 y luego de que el servidor resuelve la consulta de forma recursiva, se le envía un mensaje con la respuesta en formato de paquete dns por el puerto de entrada 2 (puerto por el cual recibe datos de la capa inferior), el mismo procesa la respuesta y la reenvía por el puerto de salido 0. La Figura \ref{figure: unit test dns} muestra el modelo implementado en PowerDEVS para el test de unidad del modelo dns con sus respectivas fuentes y vertederos.
 
-\begin{figure}[!b]
+\begin{figure}[!h]
     \centering
-    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/dns.png}
+    \includegraphics[width = 0.4\textwidth]{img/png/unit_tests/dns.png}
     \caption{Src 1 genera input de tipo dns::DomainName, src 2 genera input de tipo dns::Packet. Sink 1 imprime output de tipo dns::Packet y Sink 2 imprime output de tipo udp::Control, Sinks 3 y 4 imprimen el input generado por Src 1 y Src 2.}
     \label{figure: unit test dns}
 \end{figure}
 
-\textbf{A continuación se muestra el input y output del test:} \\
+El input y output del test se puede ver en el apendice \ref{appendix: dns unit test}
+
+\newpage
+
+\subsubsection{Tet de unidad para el módulo UDP}
+
+Para testear el módulo UDP se utilizó la misma lógica que para DNS. En este caso, se implementaron generadores tanto para los controles de udp que envían pedidos de conexión, bindeo, etc. desde la capa superior, como para los udp::Segment que llegan desde la capa inferior. La figura \ref{figure: unit test udp} muestra el modelo implementado en PowerDEVS para el test de unidad del módulo UDP. \\
+
+En este escenario, se simuló lo siguiente:
+\begin{enumerate}
+\item El módulo de capa de aplicación se conecta la aplicación con id 0 al socket local 1.0.0.1:80 y remoto 1.0.0.2:80.
+\item El módulo de capa de aplicación realiza envía dos paquetes vacíos para la aplicación con id 0 utilizando el socket previamente conectado.
+\item El módulo de capa de aplicación bindea la aplicación con id 1 al socket local 1.0.0.1:8080.
+\item El módulo de capa de aplicación envía un paquete para la aplicación con id 1 especificando el destinatario con socket remoto 1.0.0.2:8080.
+\item El módulo de capa de aplicación envía un paquete para la aplicación con id 0 por el socket local 1.0.0.1:53 inexistente, por lo que este pedido falla.
+\item Una aplicación remota envía un paquete con socket remoto 1.0.0.2:80 y local 1.0.0.1:80. Si bien el socket es válido, el udp::Segment entrante falla en el checksum ya que el mismo es inválido y es descartado (esto no se ve en el output, pero se ve en el log de la simulación).
+\end{enumerate}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/udp.png}
+    \caption{Src 1 genera input de tipo udp::control, src 2 genera input de tipo udp::Segment. Sink 1 imprime output de tipo udp::Control, Sinks 2 imprime output de tipo udp::Segment mientras que Sink 3 y 4 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test udp}
+\end{figure}
+
+El input y output del test se puede ver en el apendice \ref{appendix: udp unit test}
+
+\newpage
+
+\subsubsection{Test de unidad para el módulo IP Host}
+
+En este caso, el test implementado es para testear el comportamiento del protocolo IP para los hosts, la única diferencia entre este protocolo IP y el protocolo IP de los routers es que en este caso, se trabaja con la capa superior (UDP) y es necesario encapsular los udp::Segments en ip::Datagrams para forwardearlos por la red. Para este sencillo test se simula el proceso recién mencionado. La Figura \ref{figure: unit test ip host} muestra es escenario para este test de unidad.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 0.35\textwidth]{img/png/unit_tests/ip_host.png}
+    \caption{Src 1 genera input de tipo udp::Segment, src 2 genera input de tipo link::Control. Sink 1 imprime output de tipo link::Control mientras que Sink 2 y 3 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test ip host}
+\end{figure}
+
+El input y output del test se puede ver en el apendice \ref{appendix: ip_host unit test}
+
+\subsubsection{Test de unidad para el módulo IP Router}
+
+Para el caso del protocolo IP en routers se implementó un escenario donde a diferencia del anterior para IP en hosts, en este caso llega un ip::Datagram proveniente de la red y el mismo es forwardeado ya que un router no tiene capa 4 y todo ip::Datagram que llega es forwardeado para llegar a su destino o descartado si no pasa las verificaciones como checksum o su campo \textit{TTL} es 0. La Figura \ref{figure: unit test ip router} muestra el escenario par este test.\\
+
+\begin{figure}[!thb]
+    \centering
+    \includegraphics[width = 0.35\textwidth]{img/png/unit_tests/ip_router.png}
+    \caption{Src 1 genera input de tipo ip::Datagram, src 2 genera input de tipo link::Control. Sink 1 imprime output de tipo link::Control mientras que Sink 2 y 3 imprimen el input generado por Src 1 y Src 2.}
+    \label{figure: unit test ip router}
+\end{figure}
+
+El input y output del test se puede ver en el apendice \ref{appendix: ip_router unit test}
+
+\newpage
+
+\subsubsection{Test de unidad para el módulo link}
+
+Por último, el test de unidad para el módulo link, el cual implementa \textit{ARP} y \textit{SWP}, fue testeado con un escenario en el cual le llega un link::Frame de un nodo de la red que es aceptado. El frame entrante, es un frame de datos que contiene un ip::Datagram que es desencapsulado y entregado a la capa superior. Luego de haber entregado el ip::Datagram, el protocolo \textit{SWP} se encarga de enviar un \textit{Ack} al nodo que envió el frame para notificarle que llegó correctamente y que este pueda actualizar su ventana \textit{SWS} y seguir enviando más frames en un futuro. La Figura \ref{figure: unit test link} Muestra el escenario en la IDE PowerDEVS para este test. \\
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/link.png}
+    \caption{Src 1 genera input de tipo link::Frame, Sink 1 imprime output de tipo ip::Datagram, Sink 2 imprime output de tipo link::Frame mientras que Sink 3 imprime el input generado por Src 1.}
+    \label{figure: unit test link}
+\end{figure}
+
+El input y output del test se puede ver en el apendice \ref{appendix: link unit test}
+
+\subsection{Test de integración - Escenario implementado}
+
+Para finalizar y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario donde todos los módulos funcionan en conjuntos para enviar mensajes entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteó el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada al test. Las Figuras \ref{figure: powerdevs host}, \ref{figure: powerdevs router} y \ref{figure: powerdevs switch} muestran los modelos acoplados de dispositivos hosts routers y switches correspondientes al escenario planteado. \\
+
+En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el host 5 es el host TLD mientras que el host 4 es el host responsable de la zona ``.com'' y el host 3 es el host responsable para la zona ``.devs.com'' con lo cual, el es autoritativo para el dominio ``networks.devs.com''. En esta simulación el host 1 le pide a su servidor local (host 2) que resuelva el dominio ``networks.devs.com'' de forma recursiva, el mismo al no tener esa entrada en su cache, envía el pedido al servidor TLD (host 5) quien no tiene la respuesta pero sabe que pertenece a la zona ``.com'' y le envía un mensaje diciéndole que el host 4 es el responsable de esa zona, también le envía el \textit{IP} del host 4 para que sepa como llegar a el, el host 2 envía entonces la misma consulta al host 4 y repitiéndose lo mismo que antes, el host 4 al no tener la respuesta pero saber que el host 3 es responsable de la zona más puntual ``.devs.com'', le envía el \textit{IP} del host 3 y repitiendo el proceso, el host 2 le envía el mismo pedido al host 3 quien si tiene la respuesta. Una vez con la respuesta, el host 2 la agrega a su cache, para que se mantenga ahí hasta que se venza su \textit{TTL} y y se la envía al host 1. El input y output de la simulación del test se puede ver en el apendice \ref{appendix: integration test} \\
+
+\newpage
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 1.0\textwidth]{img/png/scenario.png}
+    \caption{Escenario implementado: Las lineas azules muestran el intercambio de paquetes \textit{DNS} entre los hosts mientras que las lineas negras muestran las conexiones de la red por donde efectivamente se envían los paquetes, teniendo que pasar por múltiples switches y routers para ir de un host a otro. Los números al lado de los switches muestran el mapeo de puertos para el protocolo \textit{Datagram}.}
+    \label{figure: case study}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{img/png/powerdevs/host.png}
+    \caption{Modelo PoderDEVS de un dispositivo Host con las capas \textit{DNS}, \textit{UDP}, \textit{IPv4} y \textit{Link}; Se pueden ver las conexiones realizadas entre cada una de las capas del moselo UDP/IP asi como el generador y el vertedero correspondientes al input y output de este modelo. Los puertos externos (Inport0 y outport0) permiten conectar el modelo dispositivo a otro dispositivo de la red para enviar los mensajes.}
+    \label{figure: powerdevs host}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.95\textwidth]{img/png/powerdevs/router.png}
+    \caption{Modelo PowerDEVS de un dispositivo Router con las capas \textit{IPv4} y \textit{Link}; El router cuenta con un modelo link por cada \textit{subnet} a la cual está conectado, para enviar un mensaje, el router debe elegir mediante la \textit{forwarding table} por cual interfaz (modelo link) enviar el mensaje dependiendo a que \textit{subnet} quiera alcanzar. Para poder enviar mensajes a los distintos módulos \textit{Link} se utiliza un demultiplexer.}
+    \label{figure: powerdevs router}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{img/png/powerdevs/switch.png}
+    \caption{Modelo PowerDEVS de un dispositivo \textit{Switch} que cuenta con una sola capa en la cual implementa el protocolo \textit{Datagram} y \textit{SWP}. Utiliza un multiplexer y demultiplexer para saber de cuál interfaz llego el mensaje y para elegir por cual o cuales interfaces enviar el mensaje.}
+    \label{figure: powerdevs switch}
+\end{figure}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\newpage
+
+\appendix
+\section{Formato del log del modelo}
+En esta sección se explica el output generado por el modelo, de esta forma el lector puede comprender los resultados mostrados en el apendice \ref{appendix: logs}
+
+\todo[inline]{COMPLETAR}
+
+
+\section{Logs generados por los tests}
+\label{appendix: logs}
+En esta sección se encuentran todos los logs de las simulaciónes realizada tanto para los test de unidad como para el test de integración del modelo.
+
+\subsection{Logs del test de unidad del módulo DNS}
+\label{appendix: dns unit test}
+
+A continuación se muestra el input, output y log del test de unidad del modelo DNS.\\
 
 \textbf{Input port 0 (dns::DomainName)}
 \lstinputlisting[language=Bash]{../tests/dns/output/input_domain_name.output}
@@ -878,12 +1007,8 @@ En el caso del modelo DNS, el test de unidad básico implementado recibe un pedi
 \textbf{Output port 0 (dns::Packet)}
 \lstinputlisting[language=Bash]{../tests/dns/output/dns_packet.output}
 
-\newpage
-
 \textbf{Output port 3 (udp::Control)}
 \lstinputlisting[language=Bash]{../tests/dns/output/udp_control.output}
-
-\newpage
 
 \textbf{Output generado por el logger durante la simulación}
 \begin{lstlisting}
@@ -923,30 +1048,9 @@ network.devs.com A 1.0.0.1 IN 0
 Simulation Ended (0.000862 sec)
 \end{lstlisting}
 
-\subsubsection{Tet de unidad para el módulo UDP}
-
-Para testear el módulo UDP se utilizó la misma lógica que para DNS. En este caso, se implementaron generadores tanto para los controles de udp que envían pedidos de conexión, bindeo, etc. desde la capa superior, como para los udp::Segment que llegan desde la capa inferior. La figura \ref{figure: unit test udp} muestra el modelo implementado en PowerDEVS para el test de unidad del módulo UDP. \\
-
-En este escenario, se simuló lo siguiente:
-\begin{enumerate}
-\item El módulo de capa de aplicación se conecta la aplicación con id 0 al socket local 1.0.0.1:80 y remoto 1.0.0.2:80.
-\item El módulo de capa de aplicación realiza envía dos paquetes vacíos para la aplicación con id 0 utilizando el socket previamente conectado.
-\item El módulo de capa de aplicación bindea la aplicación con id 1 al socket local 1.0.0.1:8080.
-\item El módulo de capa de aplicación envía un paquete para la aplicación con id 1 especificando el destinatario con socket remoto 1.0.0.2:8080.
-\item El módulo de capa de aplicación envía un paquete para la aplicación con id 0 por el socket local 1.0.0.1:53 inexistente, por lo que este pedido falla.
-\item Una aplicación remota envía un paquete con socket remoto 1.0.0.2:80 y local 1.0.0.1:80. Si bien el socket es válido, el udp::Segment entrante falla en el checksum ya que el mismo es inválido y es descartado (esto no se ve en el output, pero se ve en el log de la simulación).
-\end{enumerate}
-
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/udp.png}
-    \caption{Src 1 genera input de tipo udp::control, src 2 genera input de tipo udp::Segment. Sink 1 imprime output de tipo udp::Control, Sinks 2 imprime output de tipo udp::Segment mientras que Sink 3 y 4 imprimen el input generado por Src 1 y Src 2.}
-    \label{figure: unit test udp}
-\end{figure}
-
-\newpage
-
-\textbf{A continuación se muestra el input, output y log del test:} \\
+\subsection{Logs del test de unidad del modelo UDP}
+\label{appendix: udp unit test}
+A continuación se muestra el input, output y log del test de unidad del modelo UDP.\\
 
 \textbf{Input port 1 (udp::Control)}
 \lstinputlisting[language=Bash]{../tests/udp/output/input_udp_control.output}
@@ -982,31 +1086,18 @@ Simulation Initialized
 Simulation Ended (0.00135 sec)
 \end{lstlisting}
 
-\subsubsection{Test de unidad para el módulo IP Host}
-
-En este caso, el test implementado es para testear el comportamiento del protocolo IP para los hosts, la única diferencia entre este protocolo IP y el protocolo IP de los routers es que en este caso, se trabaja con la capa superior (UDP) y es necesario encapsular los udp::Segments en ip::Datagrams para forwardearlos por la red. Para este sencillo test se simula el proceso recién mencionado. La Figura \ref{figure: unit test ip host} muestra es escenario para este test de unidad.
-
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/ip_host.png}
-    \caption{Src 1 genera input de tipo udp::Segment, src 2 genera input de tipo link::Control. Sink 1 imprime output de tipo link::Control mientras que Sink 2 y 3 imprimen el input generado por Src 1 y Src 2.}
-    \label{figure: unit test ip host}
-\end{figure}
-
-\textbf{A continuación se muestra el input, output y log del test:} \\
+\subsection{Logs del test de unidad del modelo IP en un host}
+\label{appendix: ip_host unit test}
+A continuación se muestra el input, output y log del test de unidad del modelo IP en un host.\\
 
 \textbf{Input port 0 (udp::Segment)}
 \lstinputlisting[language=Bash]{../tests/ip/host/output/input_udp_segment.output}
-
-\newpage
 
 \textbf{Input port 3 (link::Control)}
 \lstinputlisting[language=Bash]{../tests/ip/host/output/input_link_control.output}
 
 \textbf{Output port 3 (link::Control)}
 \lstinputlisting[language=Bash]{../tests/ip/host/output/link_control.output}
-
-\newpage
 
 \textbf{Output generado por el logger durante la simulación}
 \begin{lstlisting}
@@ -1029,20 +1120,9 @@ is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 |
 Simulation Ended (0.000886 sec)
 \end{lstlisting}
 
-\subsubsection{Test de unidad para el módulo IP Router}
-
-Para el caso del protocolo IP en routers se implementó un escenario donde a diferencia del anterior para IP en hosts, en este caso llega un ip::Datagram proveniente de la red y el mismo es forwardeado ya que un router no tiene capa 4 y todo ip::Datagram que llega es forwardeado para llegar a su destino o descartado si no pasa las verificaciones como checksum o su campo \textit{TTL} es 0. La Figura \ref{figure: unit test ip router} muestra el escenario par este test.\\
-
-\begin{figure}[!b]
-    \centering
-    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/ip_router.png}
-    \caption{Src 1 genera input de tipo ip::Datagram, src 2 genera input de tipo link::Control. Sink 1 imprime output de tipo link::Control mientras que Sink 2 y 3 imprimen el input generado por Src 1 y Src 2.}
-    \label{figure: unit test ip router}
-\end{figure}
-
-\newpage
-
-\textbf{A continuación se muestra el input, output y log del test:} \\
+\subsection{Logs del test de unidad del modelo IP en un router}
+\label{appendix: ip_router unit test}
+A continuación se muestra el input, output y log del test de unidad del modelo IP en un router.\\
 
 \textbf{Input port 2 (ip::Datagram)}
 \lstinputlisting[language=Bash]{../tests/ip/router/output/input_ip_datagram.output}
@@ -1076,20 +1156,9 @@ is: 1.0.0.2 is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 |
 Simulation Ended (0.000795 sec)
 \end{lstlisting}
 
-\newpage
-
-\subsubsection{Test de unidad para el módulo link}
-
-Por último, el test de unidad para el módulo link, el cual implementa \textit{ARP} y \textit{SWP}, fue testeado con un escenario en el cual le llega un link::Frame de un nodo de la red que es aceptado. El frame entrante, es un frame de datos que contiene un ip::Datagram que es desencapsulado y entregado a la capa superior. Luego de haber entregado el ip::Datagram, el protocolo \textit{SWP} se encarga de enviar un \textit{Ack} al nodo que envió el frame para notificarle que llegó correctamente y que este pueda actualizar su ventana \textit{SWS} y seguir enviando más frames en un futuro. La Figura \ref{figure: unit test link} Muestra el escenario en la IDE PowerDEVS para este test. \\
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width = 0.45\textwidth]{img/png/unit_tests/link.png}
-    \caption{Src 1 genera input de tipo link::Frame, Sink 1 imprime output de tipo ip::Datagram, Sink 2 imprime output de tipo link::Frame mientras que Sink 3 imprime el input generado por Src 1.}
-    \label{figure: unit test link}
-\end{figure}
-
-\textbf{A continuación se muestra el input, output y log del test:} \\
+\subsection{Logs del test de unidad del modelo Link}
+\label{appendix: link unit test}
+A continuación se muestra el input, output y log del test de unidad del modelo Link.\\
 
 \textbf{Input port 2 (link::Frame)}
 \lstinputlisting[language=Bash]{../tests/link/output/input_link_frame.output}
@@ -1112,43 +1181,8 @@ Simulation Initialized
 Simulation Ended (0.000283 sec)
 \end{lstlisting}
 
-\subsection{Test de integración - Escenario implementado}
-
-Para finalizar y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario donde todos los módulos funcionan en conjuntos para enviar mensajes entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteó el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada al test. Las Figuras \ref{figure: powerdevs host}, \ref{figure: powerdevs router} y \ref{figure: powerdevs switch} muestran los modelos acoplados de dispositivos hosts routers y switches correspondientes al escenario planteado. \\
-
-En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el host 5 es el host TLD mientras que el host 4 es el host responsable de la zona ``.com'' y el host 3 es el host responsable para la zona ``.devs.com'' con lo cual, el es autoritativo para el dominio ``networks.devs.com''. En esta simulación el host 1 le pide a su servidor local (host 2) que resuelva el dominio ``networks.devs.com'' de forma recursiva, el mismo al no tener esa entrada en su cache, envía el pedido al servidor TLD (host 5) quien no tiene la respuesta pero sabe que pertenece a la zona ``.com'' y le envía un mensaje diciéndole que el host 4 es el responsable de esa zona, también le envía el \textit{IP} del host 4 para que sepa como llegar a el, el host 2 envía entonces la misma consulta al host 4 y repitiéndose lo mismo que antes, el host 4 al no tener la respuesta pero saber que el host 3 es responsable de la zona más puntual ``.devs.com'', le envía el \textit{IP} del host 3 y repitiendo el proceso, el host 2 le envía el mismo pedido al host 3 quien si tiene la respuesta. Una vez con la respuesta, el host 2 la agrega a su cache, para que se mantenga ahí hasta que se venza su \textit{TTL} y y se la envía al host 1.
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width = 1.0\textwidth]{img/png/scenario.png}
-    \caption{Escenario implementado: Las lineas azules muestran el intercambio de paquetes \textit{DNS} entre los hosts mientras que las lineas negras muestran las conexiones de la red por donde efectivamente se envían los paquetes, teniendo que pasar por múltiples switches y routers para ir de un host a otro. Los números al lado de los switches muestran el mapeo de puertos para el protocolo \textit{Datagram}.}
-    \label{figure: case study}
-\end{figure}
-
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width = 0.5\textwidth]{img/png/powerdevs/host.png}
-    \caption{Modelo PoderDEVS de un dispositivo Host con las capas \textit{DNS}, \textit{UDP}, \textit{IPv4} y \textit{Link}; Se pueden ver las conexiones realizadas entre cada una de las capas del moselo UDP/IP asi como el generador y el vertedero correspondientes al input y output de este modelo. Los puertos externos (Inport0 y outport0) permiten conectar el modelo dispositivo a otro dispositivo de la red para enviar los mensajes.}
-    \label{figure: powerdevs host}
-\end{figure}
-
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width = 0.95\textwidth]{img/png/powerdevs/router.png}
-    \caption{Modelo PowerDEVS de un dispositivo Router con las capas \textit{IPv4} y \textit{Link}; El router cuenta con un modelo link por cada \textit{subnet} a la cual está conectado, para enviar un mensaje, el router debe elegir mediante la \textit{forwarding table} por cual interfaz (modelo link) enviar el mensaje dependiendo a que \textit{subnet} quiera alcanzar. Para poder enviar mensajes a los distintos módulos \textit{Link} se utiliza un demultiplexer.}
-    \label{figure: powerdevs router}
-\end{figure}
-
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width = 0.8\textwidth]{img/png/powerdevs/switch.png}
-    \caption{Modelo PowerDEVS de un dispositivo \textit{Switch} que cuenta con una sola capa en la cual implementa el protocolo \textit{Datagram} y \textit{SWP}. Utiliza un multiplexer y demultiplexer para saber de cuál interfaz llego el mensaje y para elegir por cual o cuales interfaces enviar el mensaje.}
-    \label{figure: powerdevs switch}
-\end{figure}
-
-\newpage
-
-\section{Resultados}
+\subsection{Logs del test de integración}
+\label{appendix: integration test}
 
 A continuación se presentan los resultados del escenario con el mismo formato que se presentaron para los test de unidad. Primero se presenta el input y ouput de la simulación en el cual se detalla para cada tiempo virtual, el mensaje entrante o saliente del modelo. La documentación respecto al formato de los mensajes se puede ver en la misma documentación Doxygen del código. Luego se muestra el log generado por el logger, el mismo se muestra primero separado por capas (\textit{link, ip, udp}, etc.) permitiendo ver el funcionamiento horizontal de cada capa, en donde se desconoce lo máximo posible la existencia de capas inferiores y los mensajes son enviados a la misma capa de otro nodo de la red, y luego se muestra el log completo para poder ver el funcionamiento entre las capas y la relación temporal de los eventos ocurridos en la simulación. \\
 
@@ -1180,9 +1214,5 @@ Como se puede ver, primero llega el mensaje entrante con el nombre de dominio pa
 
 \textbf{Output de todo el scenario integrado generado por el logger durante la simulación}
 \lstinputlisting[language=Bash]{../scenario/logs/top.log}
-
-\section{References}
-\bibliographystyle{plain}
-\bibliography{references}
 
 \end{document}
