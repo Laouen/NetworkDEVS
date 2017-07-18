@@ -10,14 +10,14 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1991.3889"
+   width="2012.2328"
    height="1611.1941"
-   viewBox="0 0 1991.3889 1611.1941"
+   viewBox="0 0 2012.2328 1611.1941"
    id="svg4234"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="UDP-state-machine.svg"
-   inkscape:export-filename="/home/lao/Documents/git/NetworkDEVS/informe/img/png/UP-state-machine.png"
+   inkscape:export-filename="/home/lao/Documents/git/NetworkDEVS/informe/img/png/UDP-state-machine.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -320,15 +320,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24748737"
-     inkscape:cx="407.51375"
-     inkscape:cy="649.47257"
+     inkscape:zoom="0.35"
+     inkscape:cx="624.72365"
+     inkscape:cy="642.59694"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
+     inkscape:window-width="1551"
      inkscape:window-height="876"
-     inkscape:window-x="0"
+     inkscape:window-x="49"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      fit-margin-bottom="10"
@@ -380,13 +380,13 @@
        id="g4393"
        transform="translate(0,4)">
       <rect
-         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#bb9b50;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.41189814;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.52475251;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#bb9b50;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.88579345;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.52475251;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
          id="rect4250"
-         width="685.41199"
-         height="239.07111"
-         x="-462.53198"
-         y="242.47876"
-         ry="22.573872" />
+         width="685.93811"
+         height="185.31149"
+         x="-462.79504"
+         y="242.21571"
+         ry="17.497715" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:100px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -394,21 +394,16 @@
          y="312.17758"
          id="text4252"
          sodipodi:linespacing="125%"><tspan
+           id="tspan4304"
            sodipodi:role="line"
-           id="tspan4254"
-           x="-118.56258"
+           x="-108.78474"
            y="312.17758"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">CONECTADO</tspan><tspan
-           id="tspan4302"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">UNIDO A UN SOCKET </tspan><tspan
            sodipodi:role="line"
            x="-118.56258"
            y="382.49008"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">A UN HOST REMOTO</tspan><tspan
-           id="tspan4304"
-           sodipodi:role="line"
-           x="-118.56258"
-           y="452.80258"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">ESPECÍFICO</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+           id="tspan4369">LOCAL Y REMOTO</tspan></text>
     </g>
     <g
        id="g4379"
@@ -447,14 +442,6 @@
     <g
        id="g4400"
        transform="translate(102.85714,-64.078426)">
-      <rect
-         ry="9.9865236"
-         y="309.53082"
-         x="468.0556"
-         height="105.7634"
-         width="443.00778"
-         id="rect4306"
-         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#bb9b50;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.35917115;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.52475251;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
       <text
          sodipodi:linespacing="125%"
          id="text4308"
@@ -596,7 +583,7 @@
          sodipodi:role="line">BIND</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4708)"
-       d="m 787.14285,369.50504 c -12.4706,412.52465 105.14459,212.69228 115.71431,460.57143"
+       d="m 769.99999,449.50504 c -5.32774,268.23893 116.57316,132.69228 127.14288,380.57143"
        id="path4706"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -604,15 +591,16 @@
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path4712"
-       d="M 787.14285,369.50504 C 786.79408,796.20666 23.2258,449.59104 54.285731,826.07647"
+       d="M 769.99999,446.6479 C 769.65122,873.34952 23.2258,449.59104 54.285731,826.07647"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4714)" />
     <text
-       inkscape:transform-center-y="-13.442999"
-       inkscape:transform-center-x="40.288751"
+       inkscape:transform-center-y="-16.381261"
+       inkscape:transform-center-x="40.160958"
        sodipodi:linespacing="125%"
        id="text4718"
        style="font-style:normal;font-weight:normal;font-size:100px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><textPath
+       xml:space="preserve"
+       transform="matrix(0.99782199,0.06596414,-0.06596414,0.99782199,63.210538,-6.9906177)"><textPath
          xlink:href="#path4753"
          id="textPath4755"><tspan
    id="tspan4720"
@@ -628,9 +616,9 @@
        style="font-style:normal;font-weight:normal;font-size:100px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text4758"
        sodipodi:linespacing="125%"
-       inkscape:transform-center-x="-42.323426"
-       inkscape:transform-center-y="4.8965412"
-       transform="translate(-20.203051,28.284271)"><textPath
+       inkscape:transform-center-x="-40.626257"
+       inkscape:transform-center-y="-5.5809036"
+       transform="matrix(0.97318391,-0.23002844,0.23002844,0.97318391,-93.642905,272.34378)"><textPath
          xlink:href="#path4783"
          id="textPath4785"><tspan
    style="font-size:37.5px"
@@ -683,7 +671,7 @@
        sodipodi:nodetypes="csc"
        inkscape:connector-curvature="0"
        id="path4816"
-       d="m 1236.9657,1004.5189 c 238.1141,-41.61863 77.5455,-236.90939 78.8805,-396.85442 1.2822,-153.61714 -71.503,-307.1294 -267.3504,-309.50676"
+       d="m 1236.9657,1004.5189 c 238.1141,-41.61863 123.0649,-271.24971 127.4519,-431.14013 6.51,-237.2607 19.1619,-274.90997 -107.3504,-255.22105"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4818)" />
     <path
        sodipodi:nodetypes="cc"
@@ -742,5 +730,34 @@
        id="path4909"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <g
+       transform="translate(1011.4286,-1.7142858)"
+       id="g4373">
+      <rect
+         ry="17.497715"
+         y="242.21571"
+         x="-462.79504"
+         height="185.31149"
+         width="685.93811"
+         id="rect4375"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#bb9b50;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.88579345;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.52475251;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4377"
+         y="312.17758"
+         x="-118.56258"
+         style="font-style:normal;font-weight:normal;font-size:100px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+           y="312.17758"
+           x="-108.78474"
+           sodipodi:role="line"
+           id="tspan4379">UNIDO A UN SOCKET </tspan><tspan
+           id="tspan4381"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:56.25px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+           y="382.49008"
+           x="-118.56258"
+           sodipodi:role="line">LOCAL</tspan></text>
+    </g>
   </g>
 </svg>

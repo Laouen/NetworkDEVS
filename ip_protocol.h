@@ -3,7 +3,7 @@
 
 #include "template/layer.h"
 
-/* Documentation
+/* Related documentation
  *
  * https://www.iplocation.net/subnet-mask
  * distance-vector: RIP - peterson pag 243.
@@ -11,7 +11,7 @@
  * for a complete information about IPv4 header: https://en.wikipedia.org/wiki/IPv4
  * IPv4 routing documents
  * https://technet.microsoft.com/en-us/library/dd379495(v=ws.10).aspx // routing table
- * https://technet.microsoft.com/en-us/library/cc958831.aspx // routing algorithm used
+ * https://technet.microsoft.com/en-us/library/cc958831.aspx // used routing algorithm
  * https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/NetworkingConcepts/PacketRoutingandDelivery/PacketRoutingandDelivery.html
  * 
  */

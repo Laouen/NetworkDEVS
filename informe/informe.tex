@@ -594,7 +594,7 @@ Cuando una consulta llega a un servidor iterativo, en caso de ser autoritativo p
 El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cuales tienen documentación en formato Doxygen en el código y que se encuentra adjunta en el apéndice de este documento:
 
 \begin{itemize}
-\item udp::Segment: Representa un segmento de datos para ser enviado por la red, el mismo cuenta con pseudoheader, header y payload como se muestra en la Figura \ref{figure: udp segment}.
+\item udp::Segment: Representa un segmento de datos para ser enviado por la red, el mismo cuenta con pseudoheader, header y payload como se muestra en la Figura \ref{figure: udp segment}. Esta estructura de datos sigue el esquema marcado en RFC 768 \cite{postel1980user}.
 \item udp::Control: Es la estructura de datos utilizada para la comunicación con la capa de aplicación, en la misma se especifica que comando envía la aplicación a la capa UDP. Toda la información a enviar llega al protocolo UDP a través de esta estructura.
 \end{itemize}
 
@@ -609,7 +609,7 @@ El protocolo UDP implementado cuenta con los siguientes tipos de datos, los cual
 
 El protocolo UDP no cuenta con ningún sistema de detección de fallas en la entrega de los mensajes ya que el mismo está pensado para funcionar de forma que optimice la velocidad de entrega, para esto se basa en un mecanismo de mejor esfuerzo. Esto lo convierte en un buen protocolo cuando la eficiencia es un atributo clave. Por otro lado, dado que no controla que los mensajes lleguen o no a su destino, es necesario contar con otro mecanismo que detecte mensajes faltantes (aquellos que no llegaron a destino) o de lo contrario, debe permitirse la perdida de los mismos. Si bien no se realiza ningún esfuerzo por detectar si el mensaje llega o no a destino, UDP implementa checksum para detectar errores en la codificación del header del segmento, esto es implementado con la finalidad de no entregar mensajes a destinatarios incorrectos. Cuando un error es detectado en el header, el segment es directamente descartado\footnote{No se comprueba que el payload contenga errores en su codificación, por lo que el dato en si, podría llegar a destino con errores y nunca serían detectados por UDP.}.\\
 
-UDP funciona con sockets, los sockets son una combinación de IP y puerto que permiten enviar y entregar los mensajes a la aplicación correspondiente dentro del host de destino. De esta forma, para que un mensaje sea correctamente entregado, el host destino tiene que tener una aplicación que esté escuchando por el puerto al cual fue enviado el mensaje, si este no es el caso, el mensaje es simplemente descartado. Los sockets también cumplen el roll de evitar colisiones entre las aplicaciones ya que las mismas no pueden conectarse a un puerto mediante un socket si el puerto ya está siendo utilizado por otra aplicación, ya sea para enviar o recibir mensajes. La Figura \ref{figure: UPD state machine} muestra la máquina de estados del protocolo UDP implementado en este trabajo. \\
+UDP funciona con sockets, los sockets son una combinación de IP y puerto que permiten enviar y entregar los mensajes a la aplicación correspondiente dentro del host de destino. De esta forma, para que un mensaje sea correctamente entregado, el host destino tiene que tener una aplicación que esté escuchando por el puerto al cual fue enviado el mensaje, si este no es el caso, el mensaje es simplemente descartado. Los sockets también cumplen en este trabajo el roll de evitar colisiones entre las aplicaciones ya que las mismas no pueden unirse a un puerto mediante un socket si el puerto ya está siendo utilizado por otra aplicación, ya sea para enviar o recibir mensajes. Esta decisión de no permitir a dos aplicaciónes utilizar un mismo socket a la misma vez no es general de UDP y es más bien particular de esta implementación, futuros trabajos podrían implementar un protocolo sin este comportamiento. La Figura \ref{figure: UPD state machine} muestra la máquina de estados del protocolo UDP implementado en este trabajo. \\
 
 \begin{figure}[t]
     \centering
@@ -623,8 +623,8 @@ UDP funciona con sockets, los sockets son una combinación de IP y puerto que pe
 En el modelo implementado, los mensajes de Control contienen un campo \textit{request} que indica que operación se desea efectuar (connect, bind, read, etc) también es necesario enviar el IP y puerto del socket y el id de la aplicación, esta información es siempre requerida, ya sea para crear un nuevo socket atado a la aplicación del id o para corroborar que el socket existe y que corresponde a la aplicación que envía el mensaje de control. Dependiendo de la operación, es preciso completar correctamente los campos restantes. A continuación se explica cada operación y que campos requiere cada una: \\
 
 \begin{itemize}
-\item \textbf{CONNECT}: \textit{remote\_ip}, \textit{remote\_port}. De está forma UDP sabe que cada vez que esta aplicación envíe o reciba un paquete, el mismo será para o desde el socket con IP \textit{remote\_ip} y puerto \textit{remote\_port}. Esta operación falla si el socket ya existe.
-\item \textbf{BIND:} Esto permite a la aplicación enviar paquetes a distintos destinos, especificando siempre el socket del destino mediante los comandos WRITE\_TO y SEND\_TO y recibir mensajes de distintos orígenes mediante los comandos READ\_FROM, RECV\_FROM, REC o READ. Esta aplicación falla si el soquet ya existe.
+\item \textbf{CONNECT}: \textit{remote\_ip}, \textit{remote\_port}. De está forma UDP sabe que cada vez que esta aplicación envíe o reciba un paquete, el mismo será para o desde el socket remoto con IP \textit{remote\_ip} y puerto \textit{remote\_port}. Esta operación falla si el socket ya existe por lo explicado previamente. \textbf{Nota:} Este comando solo sirve (al igual que BIND), para unirse a un socket dentro del protocolo, pero no hay ningún tipo de conexión remota ni \textit{handshake} realizado ya que UDP es \textit{connectionless}.
+\item \textbf{BIND:} Esto permite a la aplicación enviar paquetes a distintos destinos, especificando siempre el socket del destino (socket remoto) mediante los comandos WRITE\_TO y SEND\_TO y recibir mensajes de distintos orígenes mediante los comandos READ\_FROM, RECV\_FROM, REC o READ. Esta aplicación falla si el soquet ya existe.
 \item \textbf{READ\_FROM / RECV\_FROM:} \textit{remote\_ip}, \textit{remote\_port}, estos campos son utilizados para saber que mensajes entrantes deben que ser aceptados y cuales no. Cuando este comando es recibido por UDP, el socket correspondiente es marcado como ``En espera de mensajes'' y el mismo se mantiene en ese estado hasta que llega un mensaje del host remoto indicado, en ese momento el mensaje es entregado y el socket vuelve al estado anterior. Este comando solo puede ser utilizado en un socket que está en estado \textit{BOUND}, o sea, un socket que fue previamente bindeado.
 \item \textbf{READ / RECV:} Es lo mismo que el item anterior pero con la diferencia de que no se especifica un socket remoto. Si el el soket local fue bindeado se aceptan todos los mensajes entrantes a este socket y si fue conectado se aceptan solo los mensajes del socket remoto indicado en el momento de la conexión.
 \item \textbf{WRITE\_TO / SEND\_TO:} Lo mismo que READ\_FROM / RECV\_FROM pero para enviar mensajes, con lo cual el campo \textit{packet} debe contener el paquete a enviar.
@@ -676,7 +676,7 @@ La Tabla \ref{table: parameters UDP} muestra los parámetros del modelo UDP en l
 
 \subsection{IP}
 
-El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} de tipo ip::Header y un campo \textit{data} de tipo udp::Segment, la Figura \ref{figure: ip header} muestra la estructura del tipo de datos ip::Header.  \\
+El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo (router, host) a otro con la finalidad de llegar al host destino. La estructura de datos ip::Datagram es la utilizada para encapsula los udp::Segments y cuenta con un campo \textit{header} de tipo ip::Header y un campo \textit{data} de tipo udp::Segment, la Figura \ref{figure: ip header} muestra la estructura del tipo de datos ip::Header. Tanto la estructura del ip::Header como los algoritmos implementados para el protocolo IP de este trabajo están basados en los protocolos explicados en \cite{routingtablemicrosoft} y \cite{routingprocessmicrosoft} \\
 
 \begin{figure}[!htb]
     \centering
@@ -685,15 +685,15 @@ El protocolo IP es el encargado del enrutamiento de los ip::Datagrams de un nodo
     \label{figure: ip header}
 \end{figure}
 
-El protocolo IP implementado en este trabajo funciona con UDP y se puede dividir en dos categorías:
+El protocolo IP implementado en este trabajo funciona con segmentos UDP pero puede muy facilmente ser extendido para aceptar segmentos de otros protocolos como por ejemplo TCP. El protocolo IP implementado en este trabajo se puede dividir en dos categorías:
 \begin{itemize}
 \item \textbf{Enrutamiento en un host:} Los hosts son los encargados de encapsular los udp::Segments provenientes de la capa superior (UDP) dentro de ip::Datagrams y enviarlos al router o host directamente conectado al mismo dependiendo de si el IP de destino corresponde a un un host de la misma subnet o a un host en otra subnet. Si un host recibe un ip::Datagram cuyo IP destino no corresponde con ningún IP del host, el ip::Datagram no es forwardeado a nadie y es descartado, en cambio si el IP corresponde con algún IP del host, el udp::Segment del ip::Datagram recibido es desencapsulado y entregado a la capa superior.
 \item \textbf{Enrutamiento en un router:} Los routers por el contrario no encapsulan udp::Segments ya que no existe capa de transporte en un router, los mismos se encargan de forwardear ip::Datagrams que llegan.
 \end{itemize}
 
-Si bien hay diferencia entre los hosts y los routers, el proceso de forwardear ip::Datagrams es el mismo para ambos, este proceso consiste en buscar el mejor \textit{nexthope} dentro de la ``routing table'' y enviar el ip::Datagram al mismo con la esperanza de que este sepa como entregar el mensaje al destino. \\
+Si bien hay diferencias entre los hosts y los routers, el proceso de forwardear ip::Datagrams es el mismo para ambos, este proceso consiste en buscar el mejor \textit{nexthope} dentro de la ``routing table'' y enviar el ip::Datagram al mismo con la esperanza de que este sepa como entregar el mensaje al destino. Es por esta igualdad, que se implemento una clase \textit{ip\_protocol} general que modela el comportamiento común entre el protocolo IP de un host y de un router y luego se extendió dicho modelo a dos modelos más especificos, uno para el protocolo IP de un host y otro para el modelo IP de un router.\\
 
-En este trabajo no se implementaron clases de direcciones IP A, B y C, por el contrario se implementó el mecanismo de \textit{subneting} mediante el uso de \textit{netmasks}, esto significa que se utiliza una máscara que indica cuantos bits de la izquierda del IP corresponden al network. La máscara utilizada es una dirección IP que tiene en los bits de la izquierda unos y en los bits de la derecha ceros, la cantidad de unos de la máscara determinan cuantos bits del IP deben ser considerados como network. \\
+En este trabajo no se implementaron clases de direcciones IP A, B y C, por el contrario se implementó el mecanismo de \textit{subneting} mediante el uso de \textit{netmasks}, esto significa que se utiliza una máscara que indica cuantos bits de la izquierda del IP corresponden al network. La máscara utilizada es una dirección IP que tiene en los bits de la izquierda unos y en los bits de la derecha ceros, la cantidad de unos de la máscara determinan cuantos bits del IP deben ser considerados como network. Más información sobre este mecanismo puede ser encontrado en la sección \textit{Subnetting and classless addressing} en el libro de la materia \cite[p.~220]{peterson2011computer}. \\
 
 La routing table contiene los siguientes campos:
 \begin{itemize}
@@ -740,9 +740,9 @@ Los parámetros del modelo IP en la IDE de PowerDEVS son los que muestra la Tabl
 
 \subsection{ARP}
 
-Si bien los IPs cuentan con una estructura jerárquica que permite describir la topología de la red y de esa forma agrupar a los hosts por networks, los mismos son asignados dinámicamente dependiendo de en donde está conectado el host. Por el contrario, las \textit{MAC addresses} son fijas, y cada dispositivo de red viene con una \textit{MAC address} de fábrica, la misma se supone que es única. Para poder enviar datos de un dispositivo a otro, es necesario primero conseguir su \textit{MAC address}, el protocolo ARP (\textit{Address Resolution Protocol}) es el encargado en este modelo para realizar este trabajo. \\
+Si bien los IPs cuentan con una estructura jerárquica que permite describir la topología de la red y de esa forma agrupar a los hosts por networks, los mismos son asignados dinámicamente dependiendo de en donde está conectado el host. Por el contrario, las \textit{MAC addresses} son fijas, y cada dispositivo de red viene con una \textit{MAC address} de fábrica, la misma se supone que es única. Para poder enviar datos de un dispositivo a otro, es necesario primero conseguir su \textit{MAC address}, el protocolo ARP (\textit{Address Resolution Protocol}) es el encargado en este modelo para realizar este trabajo. Más información sobre ARP pude ser encontrada en la sección \textit{Address Translation (ARP)} del libro de la materia \cite[p.~228]{peterson2011computer} y en el RFC 826 \cite{plummer1982ethernet}. Vale aclarar que este trabajo implementó una versión más cercana al libro de la materia.\\
 
-Los ip::Datagram que deben ser enviados entre dos nodos adyacentes de la red son encapsulados dentro de un link::Frame, el cual cuenta con la estructura mostrada en la Figura \ref{figure: frame structure}. \\
+Los ip::Datagram que deben ser enviados entre dos nodos adyacentes de la red son encapsulados dentro de un link::Frame, el cual cuenta con la estructura mostrada en la Figura \ref{figure: frame structure}. Esta estructura proviene del estandar para ethernet II. \\
 
 \begin{figure}[!htb]
     \centering
@@ -775,12 +775,12 @@ Podría suceder que durante el tiempo que transcurre entre que ARP envía el men
 \begin{figure}[!htb]
     \centering
     \includegraphics[width = 0.6\textwidth]{img/png/arp-packet.png}
-    \caption{Estructura de datos de un link::arp::Packet alineada a 4 bytes. \textbf{Nota:} las direcciones de hardware (\textit{MAC addresses}) son de 6 bytes y no de 4, esto no se muestra en la figura para mantener el orden de los campos.}
+    \caption{Estructura de datos de un link::arp::Packet alineada a 4 bytes. \textbf{Nota:} las direcciones de hardware (\textit{MAC addresses}) son de 6 bytes y no de 4, esto no se muestra en la figura para mantener el orden de los campos. Más información puede ser encontrado en el RFC 826 \cite{plummer1982ethernet}}
     \label{figure: arp packet}
 \end{figure}
 
 
-Un dispositivo puede tener varias interfaces y cada interfaz es un modelo \textit{Link} que implenta ARP y SWL. Este es el caso de los routers que cuentan con una interfaz por cada network al que están conectados. Cada interfaz cuanta con un IP y con una \textit{MAC address} y los pedidos de \textit{MAC address} que llegan a la interfaz son respondidos por el protocolo ARP dentro de la interfaz sin llegar a la capa de enrutamiento. De esta forma, un router puede ser accedido por los dispositivos de una red solo si ellos conocen el IP de la interfaz que está conectada a dicha red, en caso de que llegue un pedido de \textit{MAC address} para un IP de otra interfaz, el mismo es ignorado ya que las interfaces son independientes entre si. \\
+Un dispositivo puede tener varias interfaces físicas y cada interfaz es un modelo atómico distinto del protocolo\textit{Link} que implenta ARP y SWL. Este es el caso de los routers que cuentan con una interfaz por cada network al que están conectados. Cada interfaz cuanta con un IP y con una \textit{MAC address} y los pedidos de \textit{MAC address} que llegan a la interfaz son respondidos por el protocolo ARP dentro de la interfaz sin llegar a la capa de enrutamiento. De esta forma, un router puede ser accedido por los dispositivos de una red solo si ellos conocen el IP de la interfaz que está conectada a dicha red, en caso de que llegue un pedido de \textit{MAC address} para un IP de otra interfaz, el mismo es ignorado ya que las interfaces son independientes entre si. \\
 
 Tanto \textit{ARP} como \textit{SWP} (explicado más adelante) son protocolos de nivel 2 y es por eso que se encuentran ambos implementados dentro del modelo \textit{link}. La tabla \ref{table: parameters link} muestra los parámetros del modelo de \textit{link} en la IDE PowerDEVS. 
 
@@ -805,7 +805,7 @@ Tanto \textit{ARP} como \textit{SWP} (explicado más adelante) son protocolos de
 \newpage
 
 \subsection{Datagrams}
-El protocolo Datagrams es utilizado por los switches para forwardear mensajes. \\
+El protocolo Datagrams es utilizado por los switches para forwardear mensajes. El mismo está basado en la sección \textit{Datagrams} del libro de la materia \cite[p.~172]{peterson2011computer} \\
 
 En el modelo implementado, el envío de frames sucede mediante cables ethernet, y para evitar colisiones, un dispositivo puede estar conectado a muchos otros mediante el uso de switches. Aunque en la realidad los switches evitan gran parte de las colisiones, los mismos no evitan todas, ya que siguen existiendo las colisiones generadas entre los frames que se envían de cada punta del cable. Este tipo de colisiones no están consideradas y el modelo implementado se abstrae de ellas, dejándolo como posible trabajo futuro. \\
 
@@ -838,7 +838,7 @@ Tanto \textit{Datagrams} como \textit{SWP} (explicado más adelante) son protoco
 \label{table: parameters datagrams}
 \end{table*}
 
-\subsection{SWP}
+\subsection{SWP (Sliding Window Protocol)}
 
 Este protocolo es el utilizado en la capa $2$ y el mismo se encuentra tanto en el modelo \textit{link} como en el modelo \textit{switch}, de esta forma la comunicación de todos los dispositivos a nivel $2$ es realizada mediante \textit{SWP}.\\
 
@@ -972,7 +972,7 @@ En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width = 0.5\textwidth]{img/png/powerdevs/host.png}
-    \caption{Modelo PoderDEVS de un dispositivo Host con las capas \textit{DNS}, \textit{UDP}, \textit{IPv4} y \textit{Link}; Se pueden ver las conexiones realizadas entre cada una de las capas del moselo UDP/IP asi como el generador y el vertedero correspondientes al input y output de este modelo. Los puertos externos (Inport0 y outport0) permiten conectar el modelo dispositivo a otro dispositivo de la red para enviar los mensajes.}
+    \caption{Modelo PowerDEVS de un dispositivo Host con las capas \textit{DNS}, \textit{UDP}, \textit{IPv4} y \textit{Link}; Se pueden ver las conexiones realizadas entre cada una de las capas del moselo UDP/IP asi como el generador y el vertedero correspondientes al input y output de este modelo. Los puertos externos (Inport0 y outport0) permiten conectar el modelo dispositivo a otro dispositivo de la red para enviar los mensajes.}
     \label{figure: powerdevs host}
 \end{figure}
 
