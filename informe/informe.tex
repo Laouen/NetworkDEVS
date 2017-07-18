@@ -70,7 +70,7 @@ La creación de un modelo que sirva como framework, tiene por objetivo factoriza
 
 \subsection{Modelar una red UDP/IP básica}
 
-Por otro lado, este trabajo pretende implementar un modelo básico de una red UDP/IP que permita cubrir los protocolos mínimos e indispensables para permitir enviar mensajes entre distintos dispositivos. Este modelo no tiene como intensión implementar todas las partes, ni cubrir todos los protocolos, por lo que temáticas como la fragmentación de paquetes, congestión de tráfico, manejo de errores, Dinamic Host Configuration Protocol (DHCP) \cite[p.~231]{peterson2011computer}, Routing Information Protocol (RIP)\cite[p.~243]{peterson2011computer} y Spanning tree protocol \cite[p.~194]{peterson2011computer} quedan fuera del alcance de este trabajo, siendo los mismos posibles trabajos futuros. \\
+Por otro lado, este trabajo implementa un modelo básico de una red UDP/IP que permita cubrir los protocolos mínimos e indispensables para permitir enviar mensajes entre distintos dispositivos. Este modelo no tiene como intensión implementar todas las partes, ni cubrir todos los protocolos, por lo que temáticas como la fragmentación de paquetes, congestión de tráfico, manejo de errores, Dinamic Host Configuration Protocol (DHCP) \cite[p.~231]{peterson2011computer}, Routing Information Protocol (RIP)\cite[p.~243]{peterson2011computer} y Spanning tree protocol \cite[p.~194]{peterson2011computer} quedan fuera del alcance de este trabajo, siendo los mismos posibles trabajos futuros. \\
 
 También se implementó un modelo de switch que utiliza el protocolo Datagramas \cite[p.~172]{peterson2011computer} utilizando una forwarding table para enviar los Frames por la interface correspondiente. \\
 
@@ -95,7 +95,7 @@ La arquitectura general del modelo propuesto en este trabajo tiene por principal
 \newpage
 
 \subsubsection{Arquitectura implementada}
-La arquitectura consiste en un modelo acoplado ``dispositivo'' de $N$ capas, con $N > 0$ de forma que cada capa $i, i \in [1,..,N]$ se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
+La arquitectura consiste en un modelo acoplado \textit{dispositivo} de $N$ capas (cada capa además es un modelo acoplado), con $N > 0$. Cada capa $i, i \in [1,..,N]$ contiene uno o más modelos atómicos con los distintos protocolos de la capa y se comunica con las capas $i+1$ e $i-1$ utilizando $8$ canales de comunicación distintos:
 
 \begin{itemize}
 \item Output port 0: Envío de datos a la capa $i+1$.
@@ -108,46 +108,52 @@ La arquitectura consiste en un modelo acoplado ``dispositivo'' de $N$ capas, con
 \item Input port 3: Recepción de controles de la capa $i-1$.
 \end{itemize}
 
-Dado que no siempre sucede que en un dispositivo de la red, exista un solo módulo por capa, y dado que los puertos de salida y entradas están pensados para comunicarse con un solo modelo en la capa superior e inferior. Es necesario usar modelos demultiplexers que permitan redirigir los mensajes salientes por un puerto al modelo correspondiente de entre todas las posibles opciones. También, se puede usar modelos multiplexers para que los múltiples modelos de la capa superior o inferior envíen mensajes al modulo y quede guardado en el campo \textit{interfaz} la identidad del modulo de origen del mensaje si fuera necesario. \\
+Dado que no siempre sucede que en un dispositivo de la red, exista un solo módulo/protocolo por capa, y dado que los puertos de salida y entradas están pensados para comunicarse con un solo modelo en la capa superior e inferior. Es necesario usar modelos demultiplexers que permitan redirigir los mensajes salientes por un puerto al modelo correspondiente de entre todas las posibles opciones.\\
 
 Ejemplos de estos son: 
 \begin{itemize}
-\item Un host que tiene varias aplicaciones enviando datos a través de distintos sockets: Hay más de un módulo en la capa de aplicación (capa siete del modelo OSI) de ese host.
+\item Un host que tiene varias aplicaciones enviando datos a través de distintos protocolos (UDP, TCP, etc): Hay más de un módulo en la capa de transporte (capa cuatro del modelo OSI) de ese host.
 \item  Un router que tiene más de una interfaz: Hay una interfaz por cada sub-red a la cual esté conectado, contando con más de un modulo en la capa de linkeo (capa dos del modelo OSI).
 \end{itemize}
 
-Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos. Como existe un único medio de comunicación por cada puerto físico entre dispositivos, por donde datos y controles son enviados sin distinción, el modelo acoplado ``dispositivo'' tiene solo un puerto de salida y un puerto de entrada destinado a comunicarse con otros dispositivos por cada puerto físico modelado, y queda en el modelador decidir como mapear los puertos de salida y entrada de la capa $1$ con los puertos de entrada y salida del modelo acoplado. Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se puede obtener mediante modelos generadores situados adentro del modelo acoplado. Lo mismo ocurre con el output generado por la capa $N$, este output puede ser recibido por modelos vertederos que lo guardan en archivos. \\
+Las capas $1$ y $N$ usan la misma arquitectura que el resto de las capas y tienen definidos los mismos puertos con las diferencias siguientes:
+\begin{itemize}
+\item Capa $1$: como existe un único medio de comunicación por cada puerto físico del dispositivo, por donde datos y controles son enviados y recividos sin distinción, el modelo acoplado de la capa 1 tiene solo un puerto de salida y un puerto de entrada destinado a comunicarse con los puertos de entrada y salida del dispositivo, queda en el modelador decidir como mapear los puertos de salida y entrada de los protocolos de la capa $1$ con los puertos de entrada y salida del modelo acoplado.
+\item Capa $N$: Por otro lado, el input requerido por la capa $N$ (comunmente el input que indica los pedidos del usuario de enviar o recibir datos) se pueden obtener mediante modelos generadores situados adentro del modelo del dispositivo. Lo mismo ocurre con el output generado por la capa $N$, este output puede ser recibido por modelos vertederos que lo guardan en archivos.
+\end{itemize}
 
 Distintos dispositivos de la red pueden tener distintas cantidades de capas, por lo cual, la cantidad de capas existente puede variar entre los distintos modelos de cada dispositivo dentro de una misma red. Los hosts por ejemplo, suelen tener hasta la capa siete, mientras que los routers comunes llegan a la capa tres y los switches a la capa dos. \\
 
-La Figura \ref{figure:general architecture} muestra la arquitectura general recién explicada en un modelo de una red con un host y un router, en el mismo se pueden ver: los multiplexers y demultiplexers, modelos con distintas cantidades de capas y las conexiones entre capas utilizando los distintos puertos. \\
+La Figura \ref{figure:general architecture} muestra la arquitectura general recién explicada; En el mismo se pueden ver los multiplexers que comunican las entradas de cada capa con los protocolos, el mapeo de los protocolos con los puertos de entrada y salida de cada capa y el mapeo entre capas. \\
 
-\begin{figure}[t]
+\begin{figure}[!bht]
     \centering
     \includegraphics[width = 0.8\textwidth]{img/png/general_architecture.png}
-    \caption{Arquitectura de un modelo en NetworkDEVS con dos dispositivos de N y M capas correspondientemente.}
+    \caption{Arquitectura de un modelo en NetworkDEVS mostrando dos dispositivos de N y M capas correspondientemente.}
     \label{figure:general architecture}
 \end{figure}
 
 \newpage
 
-\subsubsection{Arquitectura de las capas}
+\subsubsection{Arquitectura de los protocolos}
 
-La arquitectura de las capas está implementada en un modelo template llamado Layer del cual se puede realizar herencia para heredar su estructura. Esta estructura permite abstraer al protocolo de todo el modelo correspondiente al dispositivo, en otras palabras, esta estructura ya modela las propiedades de un dispositivo genérico, esto implica manejar el envío y recepción de mensajes a y desde las otras capas. Para manejar la entrada y salida de mensajes se utilizan colas FIFO; Cada vez que hay un mensaje entrante, el mismo es encolado en la cola de entrada correspondiente y el protocolo los va desencolando y atendiendo de uno o de a muchos dependiendo su implementación, el modelo template ya está armado de forma que mientras no haya mensajes por procesar se mantiene pasivado (en estado IDLE) y mientras que hay mensajes por procesar se queda ciclando para ir atendiéndolos a todos hasta que no halla más mensajes a procesar, momento en el que el modelo se vuelve a pasivar. Por otro lado, cada vez que se quiere enviar un mensaje, el mismo solo debe ser encolado en la cola de mensajes salientes correspondiente dependiendo de si es un mensaje de datos o control a la capa superior o inferior, luego el simulador cuando el protocolo termina el procesamiento actual se encarga de ciclar entre las colas de salida para enviar todos los mensajes que hallan sido encolados. La Figura \ref{figure:layer general architecture} muestra la arquitectura general de una capa cualquiera y la Figura \ref{figure:processing flow} muestra el flujo de procesamiento generado por el modelo template cuando es extendido agregándole un protocolo.
+La arquitectura de los protocolos está implementada en un modelo template llamado \textit{Protocol} del cual se puede realizar herencia para heredar su estructura. Esta estructura permite abstraer al protocolo de todo el modelo correspondiente a la comunicación con el exterior manejando el envío y recepción de mensajes a y desde el modelo acoplado de la capa al protocolo. Para manejar la entrada y salida de mensajes se utilizan colas FIFO; Cada vez que hay un mensaje entrante, el mismo es automaticamente encolado en la cola de entrada correspondiente y el protocolo los va desencolando y atendiendo de a uno o de a muchos dependiendo la implementación, el modelo template ya está armado de forma que mientras que no haya mensajes por procesar se mantiene pasivado (en estado IDLE) y mientras que hay mensajes por procesar se queda ciclando para ir atendiéndolos a todos hasta que no halla más mensajes a procesar, momento en el que el modelo se vuelve a pasivar. Por otro lado, cada vez que se quiere enviar un mensaje, el mismo solo debe ser encolado en la cola de mensajes salientes correspondiente dependiendo de si es un mensaje de datos o control a la capa superior o inferior, luego el simulador cuando el protocolo termina el procesamiento actual se encarga de ciclar entre las colas de salida para enviar todos los mensajes que hallan sido encolados. La Figura \ref{figure:protocol general architecture} muestra la arquitectura general de un protocolo cualquiera y la Figura \ref{figure:processing flow} muestra el flujo de procesamiento generado por el modelo template cuando es extendido agregándole una implementación particular al protocolo.
 
-\begin{figure}[t]
+\begin{figure}[!bht]
     \centering
-    \includegraphics[width = 0.4\textwidth]{img/png/layer_architecture.png}
-    \caption{Arquitectura de una capa en NetworkDEVS.}
-    \label{figure:layer general architecture}
+    \includegraphics[width = 0.4\textwidth]{img/png/protocol_architecture.png}
+    \caption{Arquitectura de un protocolo en NetworkDEVS.}
+    \label{figure:protocol general architecture}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!bht]
     \centering
     \includegraphics[width = 0.55\textwidth]{img/png/processing_flow.png}
-    \caption{Flujo de procesamiento de una capa que extiende al modelo template Layer.}
+    \caption{Flujo de procesamiento de un protocolo que extiende al modelo template Protocol. El estado \textit{Procesando mensajes} es el estado que representa al protocolo mientras que la función \textit{protocol implementation} con la implementación particular del protocolo está siendo ejecutada para procesar los mensajes encolados en las colas de entrada del protocolo.}
     \label{figure:processing flow}
 \end{figure}
+
+\newpage
 
 \section{Como usar el template}
 
@@ -165,9 +171,8 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 .3 mac.h.
 .3 socket.h.
 .2 templates. 
-.3 layer.h.
+.3 protocol.h.
 .3 demultiplexer.h.
-.3 multiplexer.h.
 .3 input\_stream.h.
 .3 output\_strem.h.
 .2 LICENSE.
@@ -176,20 +181,20 @@ Todo el modelo está implementado en C++ y la forma de usar el template es media
 
 \medskip
 
-La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Layer} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxygen. \\
+La carpeta \textit{structures} es la que contiene las definiciones de todos los tipos de datos que vienen por defecto con el framework, algunos de ellos fueron implementados exclusivamente para el modelo presentado en este trabajo, pero todos pueden ser utilizados y están incluidos por el modelo template \textit{Protocol} que introduciremos a continuación. Los tipos de datos están implementados usando structs y casi todos heredan de dos tipos abstractos definidos en \textit{abstract\_types.h} que sirven como organizadores. De esta forma quedan separados entre los que son Data y los que son Headers. Cada tipo de dato definido cuenta con documentación en el código en formato Doxygen. \\
 
-Todos los tipos de datos están implementados en namespaces que sirven como organizadores, para cada capa existente debe existir un namespace y los tipos de datos inherentes a esa capa tienen que estar definidos dentro del namespace (por más que otras capas lo usen). Si se implementan nuevas capas, se deben crear sus correspondientes namespaces a menos que no halla tipos de datos correspondientes a la capa. De está forma se evitan las ambigüedades que son muy recurrentes en el ámbito de las redes y se explicita la interacción con los datos correspondientes a cada capa. \\
+Todos los tipos de datos están implementados en namespaces que sirven como organizadores, para cada protocolo existente debe existir un namespace y los tipos de datos inherentes a ese protocolo tienen que estar definidos dentro del namespace (por más que otros protocolos lo usen). Si se implementan nuevos protocolos, se deben crear sus correspondientes namespaces a menos que no halla tipos de datos correspondientes al nuevo protocolo. De está forma se evitan las ambigüedades que son muy recurrentes en el ámbito de las redes y se explicita la interacción con los datos correspondientes a cada capa. \\
 
 \textbf{Nota: } No están incluidos en esta estructura todos los archivos puntuales al modelo particular implementado, solo se encuentran aquellos archivos correspondientes a la arquitectura del framework. \\
 
-\subsection{Como heredar el modelo layer}
+\subsection{Como heredar el modelo protocol}
 
-El modelo \textit{Layer} es el modelo template que contiene toda la implementación correspondiente a la arquitectura general de una capa. El mismo es un modelo que cuenta con $4$ tipos de datos templates a instanciar y $4$ tipos de datos template con instanciación por defecto si no se explicitaran otros tipos para ellos. Estos tipos a instanciar son los tipos de los mensajes que envían y reciben los puertos y los tipos con los cuales se definen las colas. Por defecto se asume que los modelos intercambian los mismos tipos de datos, por ejemplo, si dos modelos intercambian datos de control, estos datos son del mismo tipo en ambas direcciones, sin importar quien es el que los envia y quien es el que los recibe. Es por esto que hay solo 4 tipos template que deben ser instanciados obligatoriamente, mientras que los restantes cuatro se mapean por defecto con los primeros 4. De todas formas, si se desea que los tipos de datos no sean iguales dependiendo quien envía y quien recibe, se pueden instanciar todos los tipos template.\\
+El modelo \textit{Protocol} es el modelo template que contiene toda la implementación correspondiente a la arquitectura general de un protocolo. El mismo es un modelo que cuenta con $4$ tipos de datos templates a instanciar y $4$ tipos de datos template con instanciación por defecto si no se explicitaran otros tipos para ellos. Estos tipos a instanciar son los tipos de los mensajes que envían y reciben los puertos y los tipos con los cuales se definen las colas. Por defecto se asume que los modelos intercambian los mismos tipos de datos, por ejemplo, si dos modelos intercambian datos de control, estos datos son del mismo tipo en ambas direcciones, sin importar quien es el que los envia y quien es el que los recibe. Es por esto que hay solo 4 tipos template que deben ser instanciados obligatoriamente, mientras que los restantes cuatro se mapean por defecto con los primeros 4. De todas formas, si se desea que los tipos de datos no sean iguales dependiendo quien envía y quien recibe, se pueden instanciar todos los tipos template.\\
 
-El modelo \textit{Layer} tiene la siguiente forma:
+El modelo \textit{Protocol} tiene la siguiente forma:
 \begin{lstlisting}
 template <typename DH, CH, DL, CL, DHout = DH, CHout = CH, DLout = DL, CLout = CL>
-class Layer: public Simulator { 
+class Protocol: public Simulator { 
 
 protected:
   // Logger
@@ -218,25 +223,33 @@ protected:
 
 public:
 
-  Layer(const char *n): Simulator(n) {};
+  Protocol(const char *n): Simulator(n) {};
   double ta()
   Event lambda(double) { .... }
   void dint(double t) { .... }
   void dext(Event x, double t) { .... }
   
-  virtual void dinternal(double t) {}
+  virtual void protocol_implementation(double t) {}
   virtual void dexternal(double t) {}
 };
 \end{lstlisting}
 
-PowerDEVS tiene un par de exigencias a la hora de declarar un nuevo modelo, por este motivo, a continuación se muestra un ejemplo de herencia que puede ser usado de base para implementar nuevos modelos de capas. \\
+PowerDEVS tiene un par de exigencias a la hora de declarar un nuevo modelo: \\
 
-\textbf{protocol\_name.h}
+\begin{itemize}
+\item La primer linea es requerida por el compilador de PowerDEVS y tiene que tener correctamente seteado la dirección al archivo \textit{.cpp} donde estén implementados todos los métodos del modelo.
+\item El constructor de la clase debe estar declarado como se muestra en el ejemplo y la función \textit{init} es la utilizada por el simulador para inicializar el modelo. Esta función debe ser declarada como se muestra con los ``\ldots'' como parámetro, el simulador llama a esta función pasándole como primer parámetro \textit{double} la cantidad de parámetros a leer y luego el resto de los parámetros definidos para el modelo en la IDE PowerDEVS, los mismos se recuperan utilizando la librería \textit{va\_start} y \textit{va\_arg} \cite{vastart} \cite{vaarg}.
+\item El método exit también debe ser declarado y el mismo es llamado por el simulador al finalizar la simulación. Todos los destructores correspondientes deben ser llamados en esta función de forma de liberar correctamente la memoria (de ser necesario).
+\item El nombre de la clase debe estar escrito todo con minúsculas.
+\end{itemize}
+
+A continuación se muestra un ejemplo de herencia que puede ser usado de base para implementar nuevos modelos de protocolos: \\
+
 \begin{lstlisting}
 //CPP:path_to_cpp_files/protocol_name.cpp
-#include "template/layer.h"
+#include "template/protocol.h"
 
-class protocol_name: public Layer<T1, T2, T3, T4 [, T5, T6, T7, T8]> { 
+class protocol_name: public Protocol<T1, T2, T3, T4 [, T5, T6, T7, T8]> { 
 
 protected:
 	
@@ -245,32 +258,24 @@ protected:
 
 public:
   protocol_name(const char *n): Layer(n) {};
-  void init(double, ...);
+  void init(double t, ...);
   void exit();
 
-  virtual void dinternal(double);
-  virtual void dexternal(double);
+  virtual void protocol_implementation(double t);
+  virtual void dexternal(double t);
   
   // Variables publicas del modelo
   // Metodos publicos del modelo
 };
 \end{lstlisting}
 
-\textbf{Exigencias}
-\begin{itemize}
-\item La primer linea es requerida por el compilador de PowerDEVS y tiene que tener correctamente seteado la dirección al archivo \textit{.cpp} donde estén implementados todos los métodos del modelo.
-\item El constructor de la clase debe estar declarado como se muestra en el ejemplo y la función \textit{init} es la utilizada por el simulador para inicializar el modelo. Esta función debe ser declarada como se muestra con los ``\ldots'' como parámetro, el simulador llama a esta función pasándole como primer parámetro \textit{double} la cantidad de parámetros a leer y luego el resto de los parámetros definidos para el modelo en la IDE PowerDEVS, los mismos se recuperan utilizando la librería \textit{va\_start} y \textit{va\_arg} \cite{vastart} \cite{vaarg}.
-\item El método exit también debe ser declarado y el mismo es llamado por el simulador al finalizar la simulación. Todos los destructores correspondientes deben ser llamados en esta función de forma de liberar correctamente la memoria (de ser necesario).
-\item El nombre de la clase debe estar escrito todo con minúsculas.
-\end{itemize}
+Como se puede observar existen las funciones \textit{dint} y \textit{dext} que son las funciones exigidas por el simulador para ejecutar correctamente las transiciones interna y externa correspondientes al formalismo DEVS, el modelo Protocol ejecuta en esas funciones todo el mecanismo relativo a la arquitectura presentada y llama a los métodos virtuales \textit{protocol\_implementation} y \textit{dexternal} que son sobre escritos por el modelador para ejecutar el protocolo implementado. De esta forma se consigue abstraer lo más posible al modelador del formalismo DEVS, convirtiendo esta herramienta en una herramienta viable para el uso dentro del ámbito de estudio. \\
 
-Como se puede observar existen las funciones \textit{dint} y \textit{dext} que son las funciones exigidas por el simulador para ejecutar correctamente las transiciones interna y externa correspondientes al formalismo DEVS, el modelo Layer ejecuta en esas funciones todo el código relativo a la arquitectura presentada y llama a los métodos virtuales \textit{dinternal} y \textit{dexternal} que son sobre escritos por el modelador para ejecutar el protocolo implementado. De esta forma se consigue abstraer lo más posible al modelador del formalismo, convirtiendo esta herramienta en una herramienta viable para el uso dentro del ámbito de estudio. \\
+Por otro lado, la variable \textit{next\_internal} definida en en el template Layer es utilizada por el modelo para agendar la próxima transición interna. Si el protocolo no asigna ningún valor a esta variable, se asume que el protocolo tomó infinito tiempo en procesar y el modelo quedará pasivado hasta que llegué nuevos mensajes externos. Una vez que se cumple el \textit{next\_time}, el output correspondiente es inmediatamente enviado y luego el modelo queda pasivado a menos que haya más mensajes externos a procesar. El desarrollador del protocolo tiene que asignar en esta esta variable un modelo del tiempo de computo del protocolo para de esta forma modelar los tiempos reales de runtime\footnote{Una opción es medir el tiempo real de procesamiento mediante librerias c++ para asignar el valor real de tiempo de computo.}. Esta variable es de tipo double y la representación del tiempo mediante doubles queda en manos del modelador y debe ser consensuada con el resto de los modeladores de los demás protocolos para poder unirlos en un solo modelo, un consenso común es asumir que una unidad de double representa un milisegundo y utilizarlo de forma igual a los timestamps. \\
 
-Por otro lado, la variable \textit{next\_internal} definida en en el template Layer es utilizada por el modelo para agendar la próxima transición interna. Si el protocolo no asigna ningún valor a esta variable, se asume que el protocolo tomó infinito tiempo en procesar y el modelo quedará pasivado hasta que llegué nuevos mensajes externos. Una vez que se cumple el \textit{next\_time}, el output correspondiente es inmediatamente enviado y luego el simulador queda pasivado a menos que haya más mensajes externos a procesar. El desarrollador del protocolo tiene que asignar en esta esta variable un modelo del tiempo de computo del protocolo para de esta forma modelar los tiempos reales de runtime\footnote{Una opción es medir el tiempo real de procesamiento mediante librerias c++ para asignar el valor real de tiempo de computo.}. Esta variable es de tipo double y la representación del tiempo mediante doubles queda en manos del modelador y debe ser consensuada con el resto de los modeladores de los demás protocolos para poder unirlos en un solo modelo, un consenso común es asumir que una unidad de double representa un segundo y utilizarlo de forma similar a los timestamps. \\
+\subsection{Como enviar y recibir mensajes entre protocolos de distintas capas}
 
-\subsection{Como enviar y recibir mensajes entre las capas}
-
-Todos los mensajes que llegan al modelo de una capa son recibidas por uno de los cuatro siguientes puertos dependiendo de donde provenga el mensaje:
+Todos los mensajes que llegan al modelo de un protocolo son recibidos por uno de los cuatro siguientes puertos dependiendo de donde provenga el mensaje:
 \begin{itemize}
 \item std::queue$<DH>$ higher\_layer\_data\_in:  Input Port 0
 \item std::queue$<DL>$ lower\_layer\_data\_in:   Input Port 1
@@ -278,13 +283,11 @@ Todos los mensajes que llegan al modelo de una capa son recibidas por uno de los
 \item std::queue$<CL>$ lower\_layer\_ctrl\_in:   Input Port 3
 \end{itemize}
 
-La Figura \ref{figure:layer general architecture} Muestra de que capa proviene y para que tipo de datos está pensado cada uno de estos puertos. \\
+La Figura \ref{figure:protocol general architecture} Muestra de que capa proviene y para que tipo de datos está pensado cada uno de estos puertos. \\
 
 Como ya fue mencionado y como se puede observar en la definición de las colas, los tipos template instanciados son los tipos de los mensajes recibidos desde las capas superior e inferior. Es importante que los mensajes recibidos sean efectivamente de este tipo, porque el simulador PowerDEVS envía mensajes como \textbf{void *} y los mismos son casteados a su tipo correspondientes una vez recibidos por el modelo receptor, por lo que si los tipos no corresponden se generará un excepción en tiempo de ejecución. \\
 
-Para procesar los mensajes, dentro del método \textit{dinternal}, los mismos deben ser desencolados, es importante que se desencolen, ya que en caso contrario el mismo seguirá estando en la cola y el modelo volverá a producir una transición interna y llamar de nuevo al método \textit{dinternal} procesando dos o más veces el mismo mensaje. Reprocesar un mensaje múltiple veces probablemente esté mal, pero tal vez es lo deseado por el protocolo, pero hay que tener en cuenta que una de las pocas exigencias del formalismo DEVS es que no ocurran infinitos eventos en un mismo momento del tiempo virtual, y como el modelo sigue generando transiciones internas mientras haya mensajes por procesar, si los mensajes no son nunca desencolados y la variable \textit{next\_internal} se mantiene en cero, se generan infinitas transiciones internas y eso produciría un modelo DEVS ilegítimo que cuelga al simulador. \\
-
-\newpage
+Para procesar los mensajes, dentro del método \textit{protocol\_implementation}, los mismos deben ser desencolados, es importante que se desencolen, ya que en caso contrario el mismo seguirá estando en la cola y el modelo volverá a producir una transición interna y llamar de nuevo al método \textit{protocol\_implementation} procesando dos o más veces el mismo mensaje. Reprocesar un mensaje múltiple veces probablemente esté mal, pero tal vez es lo deseado por el protocolo, pero hay que tener en cuenta que una de las pocas exigencias del formalismo DEVS es que no ocurran infinitos eventos en un mismo momento del tiempo virtual, y como el modelo sigue generando transiciones internas mientras haya mensajes por procesar, si los mensajes no son desencolados nunca y la variable \textit{next\_internal} se mantiene en cero, se generan infinitas transiciones en tiempo cero y eso produciría un modelo DEVS ilegítimo que cuelga al simulador. \\
 
 Para enviar mensajes las colas a utilizar son las siguientes:
 \begin{itemize}
@@ -294,13 +297,17 @@ Para enviar mensajes las colas a utilizar son las siguientes:
 \item message::queue$<CLout>$ lower\_layer\_ctrl\_out:  Output Port 3
 \end{itemize}
 
-Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada con un \textit{out} al final, esto es porque los mismos por defecto se instancian usando los tipos de las colas de entrada a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya que se considera buena práctica que el tipo de datos que intercambian dos capas por un canal de comunicación sea siempre el mismo en ambas direcciones, facilitando la reutilización y comprensión de los modelos por parte de otras personas, sin embargo esto no es siempre posible, principalmente cuando se interactua mediante modelos \textit{demultiplexers}. \\
+Como se puede observar, los nombres de los tipos a instanciar son iguales a los de las colas de entrada con un \textit{out} al final, esto es porque los mismos por defecto se instancian usando los tipos de las colas de entrada a menos que en la declaración de la herencia se especifique lo contrario, esto es así ya que se considera buena práctica que el tipo de datos que intercambian dos modelos por un canal de comunicación sea siempre el mismo en ambas direcciones, facilitando la reutilización y comprensión de los modelos por parte de otras personas, sin embargo esto no es siempre posible. \\
 
-Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{message::queue::push(MSG mensaje)}. De la misma forma que el modelo Layer se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, el mismo se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
+Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el método \textit{message::queue::push(MSG mensaje, int protocol\_id)}. De la misma forma que el modelo \textit{Protocol} se encarga de encolar los mensajes en la cola de entrada correspondiente dependiendo el puerto por donde llegó el mensaje, también se encarga de desencolar y enviar los mensajes encolados en las colas de salidas por el puerto correspondiente a cada cola y desencolar el mismo. \\
 
-El tipo de datos message::multiplexed$<typename MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho -$>$ parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter demultiplexer} explica los parámetros a setear en estos modelos. La Figura \ref{figure: demultiplexer} muestra como es el mapeo de los puertos de un demultiplexer conectado a \textit{k} modulos\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
+Por defecto y de forma automática, el modelo \textit{Protocol} envía los mensajes de forma multiplexada para ser demultiplexados en la capa destino del mensaje por su correspondiente demultiplexer (ver Figura \ref{figure:general architecture}), de esta forma, como ya fué mencionado previamente, es posible la interacción entre múltiples protocolos de una capa con múltiples protocolos de otra capa adjacente. Es por esto que cuando se encola un mensaje es necesario conocer el id del protocolo al que se le está enviando el mensaje, el mismo es pasado como parámetro a la función \textit{message::queue::push(MSG mensaje, int protocol\_id)}. Para poder comprender como se asignan los ids a los protocolos de forma de enviar y recibir mensajes correctamente, a continuación se explica el funcionamiento del tipo de datos message::multiplexed y del medelo \textit{demultiplexer}. \\
 
-\begin{table*}[h]
+El tipo de datos message::multiplexed$<typename\ MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename\ MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario (id del protocolo destino) correspondientemente. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho $\rightarrow$ parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter demultiplexer} explica los parámetros a setear en estos modelos. \\
+
+El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer con los puertos de entrada de los destinatarios, la entrada de mensages del modelo $i$ de destino debe estar conectado al puerto de salida $i$ del demultiplexer siendo entonces $i$ el id del protocolo para ese demultiplexer, la Figura \ref{figure: demultiplexer} muestra el mapeo de puertos de un demultiplexer\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
+
+\begin{table*}[!hbt]
 	\begin{tabular}{|l|c|c|c|}
   		\hline
   		\textbf{Nombre} & \textbf{Tipo} & \textbf{Descripción} \\
@@ -314,32 +321,29 @@ El tipo de datos message::multiplexed$<typename MSG>$ sirve para enviar mensajes
 	\label{table: parameter demultiplexer}
 \end{table*}
 
-\begin{figure}[t]
+\begin{figure}[!hbt]
     \centering
     \includegraphics[width = 0.6\textwidth]{img/png/demultiplexer.png}
     \caption{Puertos de entrada y salida de un demultiplexer, mapeo del campo interfaz del mensaje con el puerto de salida correspondiente.}
     \label{figure: demultiplexer}
 \end{figure}
 
-El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer con los puertos de entrada de los destinatarios, la entrada de mensages del modelo $i$ de destino debe estar conectado al puerto de salida $i$ del demultiplexer, la Figura \ref{figure: demultiplexer} muestra el mapeo de puertos de un demultiplexer. \\
-
 \newpage
 
-\subsection{Como implementar el protocolo de una capa (internal/external functions)}
+\subsection{Como implementar el protocolo de una capa (funciones protocol\_implementation y dexternal)}
 
-El template cuenta con dos métodos virtuales que están definidos e implementados como funciones vacías (sin comportamiento), estos métodos son los que deben ser sobre escritos para implementar el protocolo. Siempre que haya mensajes por procesar en las colas de entradas, el modelo llama al método \textit{dinternal} en el cual se deben procesar dichos mensajes, el modelo Layer mira las colas de salidas para ver si hay mensajes a enviar y los envía, si al finalizar este proceso sigue habiendo mensajes por procesar en la cola de entrada se volverá a llamar a esta función respetando el formalismo DEVS de forma de seguir procesando mensajes. Este ciclo se repite indefinidamente hasta que no haya mas mensajes por procesar, momento en el cual el modelo se pasiva a la espera de nuevos eventos externos. \\
+El template cuenta con dos métodos virtuales que están definidos e implementados como funciones vacías (sin comportamiento), estos métodos son los que deben ser sobre escritos para implementar el protocolo. Siempre que haya mensajes por procesar en las colas de entradas, el modelo llama al método \textit{protocol\_implementation} en el cual se deben procesar dichos mensajes, el modelo \textit{Protocol} mira las colas de salida para ver si hay mensajes a enviar y los envía, si al finalizar este proceso sigue habiendo mensajes por procesar en las colas de entrada se volverá a llamar a esta función respetando el formalismo DEVS de forma de seguir procesando mensajes. Este ciclo se repite indefinidamente hasta que no haya mas mensajes por procesar, momento en el cual el modelo se pasiva a la espera de nuevos eventos externos. \\
 
-El método virtual \textit{dexternal} existe por si se desea implementar código que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro motivo. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS o con el simulador PowerDEVS. \\
+El método virtual \textit{dexternal} existe por si se desea implementar código que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro motivo. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS o con el simulador PowerDEVS. Para aquellas personas familiarizadas con el formalismo DEVS, tienen que tener en cuenta lo siguente: Si bien cada mensaje que llega genera una transición externa (implementada en el método \textit{dext} de PowerDEVS), lo único que hace es encolar los mensajes en la cola correspondiente y llamar a una transición interna inmediata solo si el modelo está actualmente pasivado (ya que al llegar mensajes nuevos deben ser procesados). Si el modelo no está pasivado, entonces está procesando un mensaje y cuando termine, al ver un nuevo mensaje va a procesarlo automaticamente. Los mensajes que son encolados son procesados en la función \textit{protocol\_implementation} que es llamada por el modelo template en la transición interna (en el método \textit{dint} de PowerDEVS) agendada de forma inmediata por la transición externa cuando llega un mensaje estando el modelo pasivado o por la transición interna anterior si el modelo tiene más de un mensaje a procesar. Un diagrama de este esquema de procesamiento se puede encontrar en el apendice \ref{appendix: internal external transition flow}.\\
 
-\section{Como agregar una capa}
+\section{Como agregar un protocolo}
 
-Hay dos tipos de modelos: los modelos atómicos y los modelos acoplados. Para implementar un modelo de capa, primero es necesario heredar del template Layer para obtener el modelo atómico capa como fue descripto en la sección anterior y luego el mismo debe ser insertado mediante la IDE PowerDEVS dentro del modelo acoplado de un dispositivo, luego en el \textit{TOP model} se interconectan todos los modelos acoplados de los dispositivos. \\
+Hay dos tipos de modelos en el formalismo DEVS: los modelos atómicos y los modelos acoplados. Para implementar un modelo de protocolo nuevo, primero es necesario heredar del template Protocol para obtener el modelo atómico protocolo como fue descripto en la sección anterior y luego el mismo debe ser insertado mediante la IDE PowerDEVS dentro del modelo acoplado de una capa dentro de un dispositivo. Luego, se deben conectar correctamente los puertos de entrada/salida del protocolo con los puertos de entrada/salida de la capa y del demultiplexer (Ver Figura \ref{figure:protocol general architecture}), luego en el dispositivo se interconectan todas las capas y en el \textit{TOP model} se interconectan todos los modelos acoplados de los dispositivos\footnote{En el caso de estudio de este trabajo se muestra un ejemplo complejo de las interconexiones entre capas y dispositivos}. \\
 
-Como se muestra en la arquitectura general, las capas deben ser insertadas dentro de los modelos acoplados de dispositivos (hosts, switches, routers, etc), por lo que antes de agregar la capa al modelo hay que abrir el modelo acoplado dispositivo en caso de existir, o crear el modelo acoplado dispositivo en caso de todavía no existir.
-
+Como crear y abrir un modelo acoplado en PowerDEVS:
 \begin{itemize}
-\item \textbf{Abrir un modelo acoplado en PowerDEVS:} Seleccionar con el mouse el modelo acoplado a abrir y desplegar el menú de opciones del mismo dando click derecho sobre el icono, luego elegir la opción ``open model''.
 \item \textbf{Crear un modelo acoplado en PowerDEVS: } Abrir la pestaña ``Basic Elements'' del sector ``library'' de la IDE y arrastrar el icono ``Coupled'' desde el menú hasta el sector donde esta el dibujo del modelo.
+\item \textbf{Abrir un modelo acoplado en PowerDEVS:} Seleccionar con el mouse el modelo acoplado a abrir y desplegar el menú de opciones del mismo dando click derecho sobre el icono, luego elegir la opción ``open model''.
 \end{itemize}
 
 La figura \ref{figure: PowerDEVS IDE} muestra la IDE PowerDEVS e indica como crear un modelo acoplado dentro de la misma. \\
@@ -351,21 +355,20 @@ La figura \ref{figure: PowerDEVS IDE} muestra la IDE PowerDEVS e indica como cre
     \label{figure: PowerDEVS IDE}
 \end{figure}
 
-Para insertar un nuevo modelo de capa dentro de un modelo acoplado de dispositivo en PowerDEVS hay que seguir los siguientes pasos:
+Para insertar un nuevo modelo de protocolo dentro de un modelo acoplado de capa en PowerDEVS hay que seguir los siguientes pasos:
 
 \begin{enumerate}
-\item Crear el modelo acoplado de dispositivo (en caso de ser necesario) y abrirlo.
-\item Crear un nuevo modelo atómico de capa:
+\item Crear el modelo acoplado de capa (en caso de ser necesario) y abrirlo.
+\item Crear un nuevo modelo atómico de protocolo:
 \begin{enumerate}
 \item De la solapa ``Basic Elements'' arrastrar al escenario el icono ``atomic''.
 \item Click derecho sobre el icono del nuevo modelo atómico en el escenario.
 \item Elegir la opción  ``edit''.
-\item Ir a la pestaña ``code'', navegar por los modelos hasta encontrar el archivo \textit{.h} del modelo capa creado y seleccionarlo.
+\item Ir a la pestaña ``code'', navegar por los modelos hasta encontrar el archivo \textit{.h} del modelo protocolo creado y seleccionarlo.
 \item Ir a la pestaña ``parameters'' y agregar todos los parámetros requeridos por el modelo, o sea aquellos que el simulador le va a pasar al método ``init'' del modelo para inicializarlo y que serán leídos usando \textit{va\_arg} \footnote{Estos parámetros dependen de la implementación particular del protocolo.}.
 \item Ir a la pestaña ``properties'' y realizar las siguientes tareas: Escribir el nombre deseado para el nuevo modelo, setear cuatro puertos de entrada y cuatro puertos de salida y elegir el icono a mostrar en el modelo (Elegir un icono no es obligatorio)
 \end{enumerate}
-\item Conectar las salidas de los modelos superiores e inferiores con las entradas del nuevo modelo según lo explicado anteriormente en la sección \textit{Como enviar y recibir mensajes entre las capas}.
-\item Conectar las salidas del nuevo modelo a las entradas correspondientes de los modelos de las capas superiores e inferiores según lo explicado anteriormente en la sección \textit{Como enviar y recibir mensajes entre las capas}.
+\item Conectar las salidas y entradas del modelo según lo explicado anteriormente.
 \end{enumerate}
 
 Información más detallada sobre como usar PowerDEVS puede ser encontrada en el documento \cite{bergero2011powerdevs}, allí los autores describen como funciona el simulador y como crear un modelo desde el principio. \\
@@ -1215,4 +1218,7 @@ Como se puede ver, primero llega el mensaje entrante con el nombre de dominio pa
 \textbf{Output de todo el scenario integrado generado por el logger durante la simulación}
 \lstinputlisting[language=Bash]{../scenario/logs/top.log}
 
+\section{Diagrama de flujo de la transiciones internas y external del modelo template Protocol}
+\label{appendix: internal external transition flow}
+\todo[inline]{HACER DIAGRAMA}
 \end{document}
