@@ -36,17 +36,17 @@
  * @author Laouen Louan Mayal Belloli
  * @date 14 May 2017
  * 
- * @class Layer layer.h
+ * @class Protocol protocol.h
  * 
  * @brief This class is a meta model that implements all the common behavior of 
- * a network devise layer from the OSI model and must be inherited to implement
- * the protocol of the layer.
+ * a network devise protocol from the OSI model and must be inherited to implement
+ * the protocol of the protocol.
  *  
  * @details This model has four input port and four output ports to comunicate
  * to the upper and lower layers of the OSI model using a different port for the
  * data (Packet, Segment, Datagram, Frame, etc.) and for the control messages
  * send between the layers due to the protocol they implement.
- * The mapping between the input/output ports of a layer and the data kind that 
+ * The mapping between the input/output ports of a protocol and the data kind that 
  * should be send through them is specified as next:
  * 
  * Input queues:
@@ -64,7 +64,7 @@
  * How the incoming messages are queued in the corresponding input queues and how
  * the pushed messages in the output queues are send through the correct output
  * ports is a task the protocol developer does not need to care because it is
- * implemented in the template model Layer.
+ * implemented in the template model Protocol.
  * 
  * The protocol developer only need to implement the dinternal method where the
  * protocol must be implemented and must uses the queue with the methods front, 
@@ -100,7 +100,7 @@
  * @tparam CLout The data type of the messages send trough output port 3 (by default is the same as CL)
  */
 template <typename DH, typename CH, typename DL, typename CL, typename DHout = DH, typename CHout = CH, typename DLout = DL, typename CLout = CL>
-class Layer: public Simulator { 
+class Protocol: public Simulator { 
 
 protected:
   // Logger
@@ -137,7 +137,7 @@ protected:
 
 public:
 
-  Layer(const char *n): Simulator(n) {};
+  Protocol(const char *n): Simulator(n) {};
 
   void dint(double t) {
 
@@ -191,7 +191,7 @@ public:
       lower_layer_ctrl_in.push(*(CL*)x.value);
       break;
     default:
-      logger.error("[Layer.h] Invalid port.");
+      logger.error("[Protocol.h] Invalid port.");
       break;
     }
 

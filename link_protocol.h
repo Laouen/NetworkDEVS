@@ -5,11 +5,11 @@
 
 #include <algorithm>
 
-#include "template/layer.h"
+#include "template/protocol.h"
 #include "swp_protocol.h"
 
 // there is no control type for lower layer physical protocols
-class link_protocol : public Layer<ip::Datagram, link::Control, link::Frame, int> {
+class link_protocol : public Protocol<ip::Datagram, link::Control, link::Frame, int> {
 
   std::list<link::arp::Entry> ARPTable;
   swp_protocol swp;
@@ -54,7 +54,7 @@ class link_protocol : public Layer<ip::Datagram, link::Control, link::Frame, int
   void arpSendQuery(IPv4 arp_ip);
 
 public:
-  link_protocol(const char *n): Layer(n) {};
+  link_protocol(const char *n): Protocol(n) {};
   void init(double, ...);
   double ta(double t);
   Event lambda(double);

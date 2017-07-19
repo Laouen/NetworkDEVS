@@ -2,7 +2,7 @@
 #if !defined udp_protocol_h
 #define udp_protocol_h
 
-#include "template/layer.h"
+#include "template/protocol.h"
 
 /**
  * references: 
@@ -12,7 +12,7 @@
  *
  */
 
-class udp_protocol: public Layer<dns::Packet, udp::Control, udp::Segment, ip::Control> {
+class udp_protocol: public Protocol<dns::Packet, udp::Control, udp::Segment, ip::Control> {
 
   std::map<ushort,std::map<IPv4,udp::Socket>> sockets;
   std::vector<IPv4> ips;
@@ -35,7 +35,7 @@ class udp_protocol: public Layer<dns::Packet, udp::Control, udp::Segment, ip::Co
   bool validAppSocket(ushort, IPv4, int);
 
 public:
-	udp_protocol(const char *n): Layer(n) {};
+	udp_protocol(const char *n): Protocol(n) {};
 	void init(double, ...);
 	double ta(double t);
   Event lambda(double);

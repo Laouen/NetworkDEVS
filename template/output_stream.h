@@ -1,7 +1,7 @@
 #if !defined output_stream_h
 #define output_stream_h
 
-#include "layer.h"
+#include "protocol.h"
 
 /**
  * 

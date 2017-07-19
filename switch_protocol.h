@@ -2,11 +2,11 @@
 #if !defined switch_protocol_h
 #define switch_protocol_h
 
-#include "template/layer.h"
+#include "template/protocol.h"
 #include <set>
 #include "swp_protocol.h"
 
-class switch_protocol : public Layer<int, int, message::Multiplexed<link::Frame>, int> {
+class switch_protocol : public Protocol<int, int, message::Multiplexed<link::Frame>, int> {
 
   std::map<MAC,ushort> forwarding_table;
   std::vector<swp_protocol> swp_ports;
@@ -29,7 +29,7 @@ class switch_protocol : public Layer<int, int, message::Multiplexed<link::Frame>
   bool verifyCRC(link::Frame frame);
 
 public:
-  switch_protocol(const char *n): Layer(n) {};
+  switch_protocol(const char *n): Protocol(n) {};
   void init(double, ...);
   double ta(double);
   Event lambda(double);

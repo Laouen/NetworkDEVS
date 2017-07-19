@@ -1,7 +1,7 @@
 #if !defined ip_protocol_h
 #define ip_protocol_h
 
-#include "template/layer.h"
+#include "template/protocol.h"
 
 /* Related documentation
  *
@@ -16,7 +16,7 @@
  * 
  */
 
-class ip_protocol: public Layer<udp::Segment, ip::Control, ip::Datagram, link::Control, udp::Segment, ip::Control, ip::Datagram, message::Multiplexed<link::Control>> { 
+class ip_protocol: public Protocol<udp::Segment, ip::Control, ip::Datagram, link::Control, udp::Segment, ip::Control, ip::Datagram, message::Multiplexed<link::Control>> { 
 
 protected:
 
@@ -48,7 +48,7 @@ protected:
   bool getInterface(IPv4, ushort&) const;
 
 public:
-	ip_protocol(const char *n): Layer(n) {};
+	ip_protocol(const char *n): Protocol(n) {};
 	void init(double, ...);
 	double ta(double t);
   Event lambda(double);

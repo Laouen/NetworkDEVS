@@ -2,7 +2,7 @@
 #if !defined dns_server_h
 #define dns_server_h
 
-#include "template/layer.h"
+#include "template/protocol.h"
 #include <cmath>
 
 /* Documentation
@@ -10,7 +10,7 @@
  * 
  */
 
-class dns_server: public Layer<dns::DomainName, int, dns::Packet, udp::Control, dns::Packet> { 
+class dns_server: public Protocol<dns::DomainName, int, dns::Packet, udp::Control, dns::Packet> { 
 
 protected:
 
@@ -50,7 +50,7 @@ protected:
   dns::ResourceRecord getRR(const dns::DomainName& d);
 
 public:
-  dns_server(const char *n): Layer(n) {};
+  dns_server(const char *n): Protocol(n) {};
   void init(double, ...);
   double ta(double t);
   Event lambda(double);
