@@ -5,3 +5,4 @@ informe/*.log
 informe/informe.pdf
 informe/*.synctex.gz
 informe/*.toc
+output
