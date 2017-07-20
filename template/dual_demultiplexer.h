@@ -76,7 +76,7 @@ public:
 
     // Set logger module name
     std::string module_name = va_arg(parameters, char*);
-    logger.setModuleName("DDemultiplexer " + module_name);
+    logger.setModuleName("DDemultiplexer " + this->getName());
 
     // Set interface amount
     _max_interface = (unsigned int)va_arg(parameters,double);
