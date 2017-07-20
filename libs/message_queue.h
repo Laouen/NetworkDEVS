@@ -170,6 +170,26 @@ namespace message {
     /**
      * @brief This method does not push the message in the queue and instead it
      * directly generates a PowerDEVS Event instance with a pointer to the message
+     * asociated with the port number passed as parameter and the and the default_interface.
+     * 
+     * @details This metod behave as a pop where the poped message is the one 
+     * passed as parameter, the message pointer is handled in the same way a 
+     * poped message pointer is handled. 
+     * This method can be used to avoid the message be pushed if the one is 
+     * a priority over all pushed mesasges.
+     * 
+     * @return A PowerDEVS Event instance that contains the message asociated 
+     * with the port number passed as parameter.
+     */
+    Event send(const MSG& message, ushort port) {
+      current_msg = Multiplexed<MSG>(message, default_interface);
+      return Event(&current_msg, port);
+    }
+
+
+    /**
+     * @brief This method does not push the message in the queue and instead it
+     * directly generates a PowerDEVS Event instance with a pointer to the message
      * asociated with the port and interface numbers passed as parameter.
      * 
      * @details This metod behave as a pop where the poped message is the one 
