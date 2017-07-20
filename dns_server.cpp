@@ -409,6 +409,8 @@ dns::ResourceRecord dns_server::getRR(const dns::DomainName& d) {
   for(it = authoritative_RRs.begin(); it != authoritative_RRs.end(); ++it) {
     if (it->name == d) return *it;
   }
+
+  return dns::ResourceRecord();
 }
 
 void dns_server::updateCache(double t) {

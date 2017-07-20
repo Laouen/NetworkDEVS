@@ -180,7 +180,6 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       higher_layer_ctrl_out.push(m);
       break;
     }
-
     s = &sockets[port][ip];
     if (s->state != udp::Socket::Status::CONNECTED && 
         s->state != udp::Socket::Status::BOUND) {
@@ -190,7 +189,6 @@ void udp_protocol::processUDPCtrl(const udp::Control &c, double t) {
       higher_layer_ctrl_out.push(m);
       break;
     }
-
     // set flag waiting data
     s->startReading();
     output = Event(0,5);

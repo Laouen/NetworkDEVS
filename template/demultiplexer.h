@@ -58,7 +58,7 @@ class demultiplexer: public Simulator {
   Logger logger;
 
   message::queue<MSG> _output_queue;
-  unsigned int _max_interface;
+  int _max_interface;
   Event _output;
 
   double infinity = std::numeric_limits<double>::max();
@@ -74,7 +74,7 @@ public:
 
     // Set logger module name
     std::string module_name = va_arg(parameters,char*);
-    logger.setModuleName("Demultiplexer " + module_name);
+    logger.setModuleName("Demux " + module_name);
 
     // Set interface amount
     _max_interface = (unsigned int)va_arg(parameters,double);

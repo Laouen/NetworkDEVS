@@ -40,14 +40,14 @@ namespace ip {
    * 8. dest_ip: IPv4 that stores the dest IP.
    */
   struct Header : abstract::Header {
-    ushort vide;
-    ushort total_length;
-    ushort identification;
-    ushort ff;
-    ushort ttlp;
-    ushort header_checksum;
-    IPv4 src_ip;
-    IPv4 dest_ip;
+    ushort vide = 0;
+    ushort total_length = 0;
+    ushort identification = 0;
+    ushort ff = 0;
+    ushort ttlp = 0;
+    ushort header_checksum = 0;
+    IPv4 src_ip = "0.0.0.0";
+    IPv4 dest_ip = "0.0.0.0";
     // not implementing opntions field
 
     /**

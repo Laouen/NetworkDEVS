@@ -24,6 +24,10 @@ void link_protocol::init(double t, ...) {
 
   swp.init(mac, module_name);
 
+  // set queues to not send multiplexed messages to the lower layer
+  lower_layer_data_out.set_multiplexed(false);
+  lower_layer_ctrl_out.set_multiplexed(false);
+
   next_internal = infinity;
   output = Event(0,5);
 }
@@ -282,6 +286,8 @@ MAC link_protocol::arpGetMAC(IPv4 dest_ip) {
     if (it->ip == dest_ip) 
       return it->mac;
   }
+
+  return "0:0:0:0:0:0";
 }
 
 void link_protocol::arpUpdateCache(double elapsed_time) {

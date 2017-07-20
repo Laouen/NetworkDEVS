@@ -16,7 +16,7 @@
  * 
  */
 
-class ip_protocol: public Protocol<udp::Segment, ip::Control, ip::Datagram, link::Control, udp::Segment, ip::Control, ip::Datagram, message::Multiplexed<link::Control>> { 
+class ip_protocol: public Protocol<udp::Segment, ip::Control, ip::Datagram, link::Control> { 
 
 protected:
 

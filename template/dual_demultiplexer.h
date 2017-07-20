@@ -60,7 +60,7 @@ class DDemultiplexer: public Simulator {
 
   message::queue<DATA> _output_queue_data;
   message::queue<CTRL> _output_queue_ctrl;
-  unsigned int _max_interface;
+  int _max_interface;
   Event _output;
 
   double infinity = std::numeric_limits<double>::max();
@@ -76,7 +76,7 @@ public:
 
     // Set logger module name
     std::string module_name = va_arg(parameters,char*);
-    logger.setModuleName("DDemultiplexer " + module_name);
+    logger.setModuleName("DDemux " + module_name);
 
     // Set interface amount
     _max_interface = (unsigned int)va_arg(parameters,double);
@@ -92,7 +92,7 @@ public:
   }
 
   double ta(double t) {
-    return (_output.port >= _max_interface) ? infinity : 0;
+    return (_output.port >= 2*_max_interface) ? infinity : 0;
   }
 
   void dint(double t) {
@@ -105,11 +105,13 @@ public:
 
     if (x.port == 0) {
       multiplexed_data = *(message::Multiplexed<DATA>*)x.value;
+      logger.debug("Incoming Data for interface: " + std::to_string(multiplexed_data.interface));
       if (multiplexed_data.interface <= _max_interface) {
         _output = _output_queue_data.send(multiplexed_data.message, 2*multiplexed_data.interface);
       }
     } else if (x.port == 1) {
       multiplexed_ctrl = *(message::Multiplexed<CTRL>*)x.value;
+      logger.debug("Incoming Ctrl for interface: " + std::to_string(multiplexed_ctrl.interface));
       if (multiplexed_ctrl.interface <= _max_interface) {
         _output = _output_queue_ctrl.send(multiplexed_ctrl.message, 2*multiplexed_ctrl.interface+1);
       }
