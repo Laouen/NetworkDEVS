@@ -45,6 +45,10 @@ void switch_protocol::init(double t, ...) {
   for (std::map<MAC,ushort>::iterator i = forwarding_table.begin(); i != forwarding_table.end(); ++i) {
     logger.info(i->first.as_string() + " | " + std::to_string(i->second));
   }
+
+  // set queues to not send multiplexed messages to the lower layer
+  lower_layer_data_out.set_multiplexed(false);
+  lower_layer_ctrl_out.set_multiplexed(false);
 }
 
 double switch_protocol::ta(double t) {
@@ -179,7 +183,7 @@ void switch_protocol::send(link::Frame& frame, ushort interface) {
 }
 
 void switch_protocol::updateTimeouts(double t) {
-  for (int i=0; i<swp_ports.size(); ++i) {
+  for (ushort i=0; i<swp_ports.size(); ++i) {
     swp_ports[i].updateTimeouts(t-last_transition);
   }
 }

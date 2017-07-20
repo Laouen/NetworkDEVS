@@ -429,6 +429,7 @@ inline std::istream& operator>>(std::istream& is, udp::PseudoHeader& ph) {
 inline std::istream& operator>>(std::istream& is, udp::Segment& s) {
   is >> s.psd_header;
   is >> s.header;
+  return is;
 }
 
 inline std::ostream& operator<<(std::ostream& os, const udp::Control& m) {

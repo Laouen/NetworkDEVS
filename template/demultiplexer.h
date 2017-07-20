@@ -52,8 +52,9 @@
  * @tparam MSG The data type of the template parameter MSG of the 
  * message::Multiplexed message that arrives in the input port zero.
  */
+
 template<typename MSG>
-class demultiplexer: public Simulator { 
+class demultiplexer: public Simulator {
   Logger logger;
 
   message::queue<MSG> _output_queue;
@@ -82,6 +83,9 @@ public:
     logger.info("Initialized with " + 
                 std::to_string(_max_interface) + 
                 " interfaces");
+
+    // send messages not multiplexed
+    _output_queue.set_multiplexed(false);
   }
 
   double ta(double t) {

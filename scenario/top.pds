@@ -4,26 +4,6 @@ Root-Coordinator
      {
       Simulator
        {
-        Path = NetworkDEVS/udp_protocol.h
-        Parameters = "Host 1",1.000000e+00,"1.0.0.1"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 1",2.000000e+00,"1.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h1.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h1.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Host 1 NET 0","0:0:0:0:0:1","1.0.0.1",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 1","1.0.0.1","1.0.0.2","../atomics/NetworkDEVS/scenario/input/dns/1/h1.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h1.zone_table",1.000000e+00
-       }
-      Simulator
-       {
         Path = NetworkDEVS/dns_packet_sink.h
         Parameters = "Host 1","../atomics/NetworkDEVS/scenario/output/h1.output"
        }
@@ -34,355 +14,1088 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "Host 1",1.000000e+00
-       }
-      Simulator
-       {
         Path = NetworkDEVS/domain_name_sink.h
         Parameters = "Host 1","../atomics/NetworkDEVS/scenario/output/h1_input.output"
        }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/dns_server.h
+            Parameters = "Host 1","1.0.0.1","1.0.0.2","../atomics/NetworkDEVS/scenario/input/dns/1/h1.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h1.zone_table",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+           }
+          EOC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(0,2)
+            (0,3);(0,3)
+           }
+          IC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/udp_protocol.h
+            Parameters = "Host 1",1.000000e+00,"1.0.0.1"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,3);(0,3)
+            (2,2);(0,2)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_host_protocol.h
+            Parameters = "Host 1",2.000000e+00,"1.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h1.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h1.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Host 1 NET 0","0:0:0:0:0:1","1.0.0.1",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Host 1",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,2)
+            (2,0);(0,3)
+            (2,1);(0,3)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (1,2);(2,0)
+            (1,3);(2,1)
+           }
+         }
+      Simulator
+       {
+        Path = NetworkDEVS/demux_dn_int.h
+        Parameters = "Host 1",1.000000e+00
+       }
       EIC
        {
-        (0,0);(2,2)
+        (0,0);(6,2)
        }
       EOC
        {
-        (2,2);(0,0)
+        (6,2);(0,0)
        }
       IC
        {
-        (0,2);(1,0)
-        (1,0);(0,2)
-        (2,0);(1,2)
-        (2,1);(1,3)
+        (3,3);(4,1)
+        (4,1);(3,3)
+        (4,0);(3,2)
+        (4,2);(5,0)
+        (5,0);(4,2)
+        (5,3);(6,1)
+        (6,1);(5,3)
+        (6,0);(5,2)
+        (1,0);(3,0)
+        (3,0);(0,0)
+        (1,0);(7,0)
+        (7,0);(2,0)
+       }
+     }
+    Coordinator
+     {
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/dns_server.h
+            Parameters = "Host 3","4.0.0.1","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h3.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h3.zone_table",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+           }
+          EOC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(0,2)
+            (0,3);(0,3)
+           }
+          IC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/udp_protocol.h
+            Parameters = "Host 3",1.000000e+00,"4.0.0.1"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_host_protocol.h
+            Parameters = "Host 3",2.000000e+00,"4.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h3.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h3.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Host 3 NET 0","0:0:0:0:0:8","4.0.0.1",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Host 3",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (1,2);(2,0)
+            (1,3);(2,1)
+           }
+         }
+      EIC
+       {
         (0,0);(3,2)
-        (0,1);(3,3)
-        (5,0);(3,0)
-        (3,0);(4,0)
-        (3,3);(0,1)
-        (1,3);(6,0)
-        (6,0);(2,1)
-        (5,0);(7,0)
-       }
-     }
-    Coordinator
-     {
-      Simulator
-       {
-        Path = NetworkDEVS/udp_protocol.h
-        Parameters = "Host 3",1.000000e+00,"4.0.0.1"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 3",2.000000e+00,"4.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h3.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h3.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Host 3 NET 0","0:0:0:0:0:8","4.0.0.1",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 3","../atomics/NetworkDEVS/scenario/input/input/1/h3.input"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_packet_sink.h
-        Parameters = "Host 3","../atomics/NetworkDEVS/scenario/output/h3.output"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 3","4.0.0.1","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h3.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h3.zone_table",1.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "Host 3",1.000000e+00
-       }
-      EIC
-       {
-        (0,0);(2,2)
        }
       EOC
        {
-        (2,2);(0,0)
+        (3,2);(0,0)
        }
       IC
        {
-        (0,2);(1,0)
+        (1,2);(2,0)
+        (2,3);(3,1)
         (1,0);(0,2)
+        (0,3);(1,1)
+        (3,0);(2,2)
+        (1,1);(0,3)
         (2,0);(1,2)
-        (2,1);(1,3)
-        (3,0);(5,0)
-        (5,0);(4,0)
-        (0,0);(5,2)
-        (0,1);(5,3)
-        (5,3);(0,1)
-        (1,3);(6,0)
-        (6,0);(2,1)
+        (3,1);(2,3)
        }
      }
     Coordinator
      {
-      Simulator
-       {
-        Path = NetworkDEVS/udp_protocol.h
-        Parameters = "Host 4",1.000000e+00,"5.0.0.2"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 4",2.000000e+00,"5.0.0.2","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h4.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h4.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Host 4 NET 0","0:0:0:0:0:12","5.0.0.2",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 4","../atomics/NetworkDEVS/scenario/input/input/1/h4.input"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_packet_sink.h
-        Parameters = "Host 4","../atomics/NetworkDEVS/scenario/output/h4.output"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 4","5.0.0.2","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h4.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h4.zone_table",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "Host 4",1.000000e+00
-       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/dns_server.h
+            Parameters = "Host 4","5.0.0.2","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h4.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h4.zone_table",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+           }
+          EOC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(0,2)
+            (0,3);(0,3)
+           }
+          IC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/udp_protocol.h
+            Parameters = "Host 4",1.000000e+00,"5.0.0.2"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_host_protocol.h
+            Parameters = "Host 4",2.000000e+00,"5.0.0.2","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h4.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h4.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Host 4 NET 0","0:0:0:0:0:12","5.0.0.2",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Host 4",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (1,2);(2,0)
+            (1,3);(2,1)
+           }
+         }
       EIC
        {
-        (0,0);(2,2)
+        (0,0);(3,2)
        }
       EOC
        {
-        (2,2);(0,0)
+        (3,2);(0,0)
        }
       IC
        {
-        (0,2);(1,0)
+        (3,0);(2,2)
+        (1,2);(2,0)
         (1,0);(0,2)
+        (1,1);(0,3)
+        (2,3);(3,1)
+        (0,3);(1,1)
+        (3,1);(2,3)
         (2,0);(1,2)
-        (2,1);(1,3)
-        (5,0);(4,0)
-        (3,0);(5,0)
-        (0,0);(5,2)
-        (0,1);(5,3)
-        (5,3);(0,1)
-        (1,3);(6,0)
-        (6,0);(2,1)
        }
      }
     Coordinator
      {
-      Simulator
-       {
-        Path = NetworkDEVS/udp_protocol.h
-        Parameters = "Host 5",1.000000e+00,"5.0.0.1"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 5",2.000000e+00,"5.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h5.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h5.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Host 5 NET 0","0:0:0:0:0:11","5.0.0.1",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 5","../atomics/NetworkDEVS/scenario/input/input/1/h5.input"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_packet_sink.h
-        Parameters = "Host 5","../atomics/NetworkDEVS/scenario/output/h5.output"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 5","5.0.0.1","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h5.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h5.zone_table",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "Host 5",1.000000e+00
-       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/dns_server.h
+            Parameters = "Host 5","5.0.0.1","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h5.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h5.zone_table",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+           }
+          EOC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(0,2)
+            (0,3);(0,3)
+           }
+          IC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/udp_protocol.h
+            Parameters = "Host 5",1.000000e+00,"5.0.0.1"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_host_protocol.h
+            Parameters = "Host 5",2.000000e+00,"5.0.0.1","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h5.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h5.forwarding_table"
+           }
+          EIC
+           {
+            (0,2);(1,0)
+            (0,3);(1,1)
+            (0,0);(0,0)
+            (0,1);(0,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,3);(0,3)
+            (2,2);(0,2)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Host 5 NET 0","0:0:0:0:0:11","5.0.0.1",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Host 5",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (1,2);(2,0)
+            (1,3);(2,1)
+           }
+         }
       EIC
        {
-        (0,0);(2,2)
+        (0,0);(3,2)
        }
       EOC
        {
-        (2,2);(0,0)
+        (3,2);(0,0)
        }
       IC
        {
-        (0,2);(1,0)
+        (3,0);(2,2)
+        (1,2);(2,0)
+        (2,3);(3,1)
         (1,0);(0,2)
         (2,0);(1,2)
-        (2,1);(1,3)
-        (3,0);(5,0)
-        (5,0);(4,0)
-        (0,0);(5,2)
-        (0,1);(5,3)
-        (5,3);(0,1)
-        (1,3);(6,0)
-        (6,0);(2,1)
+        (3,1);(2,3)
+        (1,1);(0,3)
+        (0,3);(1,1)
        }
      }
     Coordinator
      {
-      Simulator
-       {
-        Path = NetworkDEVS/ip_router_protocol.h
-        Parameters = "Router 1",3.000000e+00,"1.0.0.0","2.0.0.0","3.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r1.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r1.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 1 NET 0","0:0:0:0:0:3","1.0.0.0",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 1 NET 1","0:0:0:0:0:5","3.0.0.0",1.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "Router 1",3.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 1 NET 2","0:0:0:0:0:4","2.0.0.0",2.000000e+00
-       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_router_protocol.h
+            Parameters = "Router 1",3.000000e+00,"1.0.0.0","2.0.0.0","3.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r1.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r1.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Router 1",3.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 1 NET 0","0:0:0:0:0:3","1.0.0.0",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 1 NET 1","0:0:0:0:0:5","3.0.0.0",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 1 NET 2","0:0:0:0:0:4","2.0.0.0",2.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          EIC
+           {
+            (0,1);(0,1)
+            (0,0);(0,0)
+            (0,2);(1,2)
+            (0,3);(2,2)
+            (0,4);(3,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,0)
+            (3,0);(0,0)
+            (3,1);(0,1)
+            (2,1);(0,1)
+            (4,0);(0,4)
+            (4,1);(0,4)
+            (5,0);(0,3)
+            (5,1);(0,3)
+            (6,0);(0,2)
+            (6,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+            (0,4);(3,0)
+            (0,5);(3,1)
+            (3,2);(4,0)
+            (3,3);(4,1)
+            (2,2);(5,0)
+            (2,3);(5,1)
+            (1,2);(6,0)
+            (1,3);(6,1)
+           }
+         }
       EIC
        {
         (0,0);(1,2)
-        (0,1);(2,2)
-        (0,2);(4,2)
+        (0,1);(1,3)
+        (0,2);(1,4)
        }
       EOC
        {
         (1,2);(0,0)
-        (2,2);(0,1)
-        (4,2);(0,2)
+        (1,3);(0,1)
+        (1,4);(0,2)
        }
       IC
        {
-        (1,1);(0,3)
-        (0,3);(3,0)
         (1,0);(0,2)
-        (2,0);(0,2)
-        (2,1);(0,3)
-        (3,1);(2,1)
-        (3,0);(1,1)
-        (3,2);(4,1)
-        (4,0);(0,2)
-        (4,1);(0,3)
+        (1,1);(0,3)
+        (0,3);(1,1)
        }
      }
     Coordinator
      {
-      Simulator
-       {
-        Path = NetworkDEVS/ip_router_protocol.h
-        Parameters = "Router 2",2.000000e+00,"3.0.0.1","5.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r2.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r2.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 2 NET 0","0:0:0:0:0:9","3.0.0.1",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 2 NET 1","0:0:0:0:0:10","5.0.0.0",1.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "router 2",2.000000e+00
-       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Router 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Router 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_router_protocol.h
+            Parameters = "Router 2",2.000000e+00,"3.0.0.1","5.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r2.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r2.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Router 1",3.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 2 NET 0","0:0:0:0:0:9","3.0.0.1",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 2 NET 1","0:0:0:0:0:10","5.0.0.0",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          EIC
+           {
+            (0,1);(0,1)
+            (0,0);(0,0)
+            (0,2);(1,2)
+            (0,3);(2,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (3,0);(0,3)
+            (3,1);(0,3)
+            (4,0);(0,2)
+            (4,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+            (2,2);(3,0)
+            (2,3);(3,1)
+            (1,2);(4,0)
+            (1,3);(4,1)
+           }
+         }
       EIC
        {
         (0,0);(1,2)
-        (0,1);(2,2)
+        (0,1);(1,3)
        }
       EOC
        {
         (1,2);(0,0)
-        (2,2);(0,1)
+        (1,3);(0,1)
        }
       IC
        {
-        (1,1);(0,3)
-        (0,3);(3,0)
         (1,0);(0,2)
-        (2,0);(0,2)
-        (2,1);(0,3)
-        (3,1);(2,1)
-        (3,0);(1,1)
+        (1,1);(0,3)
+        (0,3);(1,1)
        }
      }
     Coordinator
      {
-      Simulator
-       {
-        Path = NetworkDEVS/ip_router_protocol.h
-        Parameters = "Router 3",2.000000e+00,"2.0.0.1","4.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r3.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r3.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 3 NET 0","0:0:0:0:0:6","2.0.0.1",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Router 3 NET 1","0:0:0:0:0:7","4.0.0.0",1.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "router 3",2.000000e+00
-       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Router 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Router 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_router_protocol.h
+            Parameters = "Router 3",2.000000e+00,"2.0.0.1","4.0.0.0","../atomics/NetworkDEVS/scenario/input/ip/1/r3.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/r3.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Router 1",3.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 3 NET 0","0:0:0:0:0:6","2.0.0.1",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Router 3 NET 1","0:0:0:0:0:7","4.0.0.0",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Router 1",1.000000e+00
+           }
+          EIC
+           {
+            (0,1);(0,1)
+            (0,0);(0,0)
+            (0,2);(1,2)
+            (0,3);(2,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (3,0);(0,3)
+            (3,1);(0,3)
+            (4,0);(0,2)
+            (4,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+            (2,2);(3,0)
+            (2,3);(3,1)
+            (1,2);(4,0)
+            (1,3);(4,1)
+           }
+         }
       EIC
        {
         (0,0);(1,2)
-        (0,1);(2,2)
+        (0,1);(1,3)
        }
       EOC
        {
         (1,2);(0,0)
-        (2,2);(0,1)
+        (1,3);(0,1)
        }
       IC
        {
+        (0,3);(1,1)
         (1,1);(0,3)
-        (0,3);(3,0)
         (1,0);(0,2)
-        (2,0);(0,2)
-        (2,1);(0,3)
-        (3,1);(2,1)
-        (3,0);(1,1)
        }
      }
     Coordinator
@@ -527,62 +1240,179 @@ Root-Coordinator
      }
     Coordinator
      {
-      Simulator
-       {
-        Path = NetworkDEVS/udp_protocol.h
-        Parameters = "Host 2",1.000000e+00,"1.0.0.2"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/domain_name_source.h
-        Parameters = "Host 2","../atomics/NetworkDEVS/scenario/input/input/1/h2.input"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_packet_sink.h
-        Parameters = "Host 2","../atomics/NetworkDEVS/scenario/output/h2.output"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/ip_host_protocol.h
-        Parameters = "Host 2",2.000000e+00,"1.0.0.2","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h2.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h2.forwarding_table"
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/link_protocol.h
-        Parameters = "Host 2 NET 0","0:0:0:0:0:2","1.0.0.2",0.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/dns_server.h
-        Parameters = "Host 2","1.0.0.2","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h2.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h2.zone_table",1.000000e+00
-       }
-      Simulator
-       {
-        Path = NetworkDEVS/demultiplexer_ip_link.h
-        Parameters = "Host 2",1.000000e+00
-       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/dns_server.h
+            Parameters = "Host 2","1.0.0.2","5.0.0.1","../atomics/NetworkDEVS/scenario/input/dns/1/h2.authoritative_table","../atomics/NetworkDEVS/scenario/input/dns/1/h2.zone_table",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_dn_int.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (0,2);(2,0)
+            (0,3);(2,1)
+           }
+          EOC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(0,2)
+            (0,3);(0,3)
+           }
+          IC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_packet_ctrl.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/udp_protocol.h
+            Parameters = "Host 2",1.000000e+00,"1.0.0.2"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_segment_ctrl.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/ip_host_protocol.h
+            Parameters = "Host 2",2.000000e+00,"1.0.0.2","127.0.0.1","../atomics/NetworkDEVS/scenario/input/ip/1/h2.routing_table","../atomics/NetworkDEVS/scenario/input/ip/1/h2.forwarding_table"
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,0)
+            (0,3);(1,1)
+           }
+          EOC
+           {
+            (2,0);(0,0)
+            (2,1);(0,1)
+            (2,2);(0,2)
+            (2,3);(0,3)
+           }
+          IC
+           {
+            (0,0);(2,0)
+            (0,1);(2,1)
+            (1,0);(2,2)
+            (1,1);(2,3)
+           }
+         }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = NetworkDEVS/demux_datagram_ctrl.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/link_protocol.h
+            Parameters = "Host 2 NET 0","0:0:0:0:0:2","1.0.0.2",0.000000e+00
+           }
+          Simulator
+           {
+            Path = NetworkDEVS/demux_frame_int.h
+            Parameters = "Host 2",1.000000e+00
+           }
+          EIC
+           {
+            (0,0);(0,0)
+            (0,1);(0,1)
+            (0,2);(1,2)
+           }
+          EOC
+           {
+            (1,0);(0,0)
+            (1,1);(0,1)
+            (2,0);(0,2)
+            (2,1);(0,2)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (0,1);(1,1)
+            (1,2);(2,0)
+            (1,3);(2,1)
+           }
+         }
       EIC
        {
-        (0,0);(4,2)
+        (0,0);(3,2)
        }
       EOC
        {
-        (4,2);(0,0)
+        (3,2);(0,0)
        }
       IC
        {
-        (0,2);(3,0)
-        (3,0);(0,2)
-        (4,0);(3,2)
-        (4,1);(3,3)
-        (1,0);(5,0)
-        (5,0);(2,0)
-        (0,0);(5,2)
-        (0,1);(5,3)
-        (5,3);(0,1)
-        (3,3);(6,0)
-        (6,0);(4,1)
+        (3,0);(2,2)
+        (1,1);(0,3)
+        (0,3);(1,1)
+        (2,3);(3,1)
+        (2,0);(1,2)
+        (3,1);(2,3)
+        (1,2);(2,0)
+        (1,0);(0,2)
        }
      }
   EIC
@@ -593,16 +1423,8 @@ Root-Coordinator
    }
   IC
    {
-    (7,0);(0,0)
-    (4,1);(5,0)
-    (5,0);(4,1)
-    (4,2);(6,0)
     (1,0);(6,1)
     (6,1);(1,0)
-    (6,0);(4,2)
-    (0,0);(7,0)
-    (9,2);(4,0)
-    (4,0);(9,2)
     (8,2);(9,0)
     (9,0);(8,2)
     (5,1);(10,0)
@@ -613,9 +1435,17 @@ Root-Coordinator
     (2,0);(10,2)
     (7,1);(9,1)
     (9,1);(7,1)
-    (11,0);(8,0)
-    (8,0);(11,0)
     (8,1);(7,2)
     (7,2);(8,1)
+    (11,0);(8,0)
+    (8,0);(11,0)
+    (0,0);(7,0)
+    (9,2);(4,0)
+    (4,0);(9,2)
+    (6,0);(4,1)
+    (4,1);(6,0)
+    (5,0);(4,2)
+    (4,2);(5,0)
+    (7,0);(0,0)
    }
  }

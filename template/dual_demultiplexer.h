@@ -1,5 +1,5 @@
-#if !defined demultiplexer_h
-#define demultiplexer_h
+#if !defined dual_demultiplexer_h
+#define dual_demultiplexer_h
 
 #include <limits>
 
@@ -20,7 +20,7 @@
  * 
  * @class DDemultiplexer dual_demultiplexer.h
  * 
- * @brief Template meta model of a demultiplexer that receives a 
+ * @brief Template meta model of a dual_demultiplexer that receives a 
  * message::multiplexed<DATA> or message::multiplexed<CTRL> in the input port number 
  * zero/one and returns the encapsulated message through the port indicated 
  * by the interface field of the multiplexed instance.
@@ -40,7 +40,7 @@
  *        //CPP:networkDEVS/new_class_name.cpp.
  * 4. The file networkDEVS/new_class_name.cpp must exist as an empty file.
  * 5. The constructor of the new class must be specified in the public section as shown here: 
- *        new_class_name(const char *n): demultiplexer(n) {};
+ *        new_class_name(const char *n): DDemultiplexer(n) {};
  * 
  * The parameters to specifie in the PowerDEVS IDE (right click in the atomic
  * model -> edit -> parameters) are the nexts:
@@ -75,8 +75,8 @@ public:
     va_start(parameters,t);
 
     // Set logger module name
-    std::string module_name = va_arg(parameters, char*);
-    logger.setModuleName("DDemultiplexer " + this->getName());
+    std::string module_name = va_arg(parameters,char*);
+    logger.setModuleName("DDemultiplexer " + module_name);
 
     // Set interface amount
     _max_interface = (unsigned int)va_arg(parameters,double);
@@ -85,6 +85,10 @@ public:
     logger.info("Initialized with " + 
                 std::to_string(_max_interface) + 
                 " interfaces");
+
+    // set queues to not send multiplexed messages.
+    _output_queue_data.set_multiplexed(false);
+    _output_queue_ctrl.set_multiplexed(false);
   }
 
   double ta(double t) {
@@ -102,12 +106,12 @@ public:
     if (x.port == 0) {
       multiplexed_data = *(message::Multiplexed<DATA>*)x.value;
       if (multiplexed_data.interface <= _max_interface) {
-        _output = _output_queue.send(multiplexed_data.message, 2*multiplexed_data.interface);
+        _output = _output_queue_data.send(multiplexed_data.message, 2*multiplexed_data.interface);
       }
     } else if (x.port == 1) {
       multiplexed_ctrl = *(message::Multiplexed<CTRL>*)x.value;
       if (multiplexed_ctrl.interface <= _max_interface) {
-        _output = _output_queue.send(multiplexed_ctrl.message, 2*multiplexed_ctrl.interface+1);
+        _output = _output_queue_ctrl.send(multiplexed_ctrl.message, 2*multiplexed_ctrl.interface+1);
       }
     }
   }

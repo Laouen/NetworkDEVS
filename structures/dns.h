@@ -401,7 +401,7 @@ namespace dns {
         return false;
       }
 
-      for(int i=0; i<name.size(); ++i) {
+      for(ushort i=0; i<name.size(); ++i) {
         if (name[i] != other.name[i]) return false;
       }
 

@@ -2,6 +2,7 @@
 #if !defined multiplexer_switch_h
 #define multiplexer_switch_h
 
+#include "template/protocol.h"
 #include "template/multiplexer.h"
 
 class multiplexer_switch: public multiplexer<link::Frame> {

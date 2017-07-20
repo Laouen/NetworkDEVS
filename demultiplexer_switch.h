@@ -2,6 +2,7 @@
 #if !defined demultiplexer_switch_h
 #define demultiplexer_switch_h
 
+#include "template/protocol.h"
 #include "template/demultiplexer.h"
 
 /**
