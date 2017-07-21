@@ -103,26 +103,6 @@ Coupled
             }
         Atomic
             {
-            Name = demu 1
-            Ports = 1 ; 1
-            Path = NetworkDEVS/demultiplexer_ip_link.h
-            Description = Atomic DEVS model
-            Graphic
-                {
-                Position = -5430 ; -2130
-                Dimension = 675 ; 675
-                Direction = Right
-                Color = 15
-                Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
-                }
-            Parameters
-                {
-                module_name = Str; Host 1 ; 
-                max_interface = Val; 1 ; 
-                }
-            }
-        Atomic
-            {
             Name = Sink 2
             Ports = 1 ; 0
             Path = NetworkDEVS/udp_segment_sink.h
@@ -177,31 +157,24 @@ Coupled
             }
         Line
             {
-            Source = Cmp ;  1 ;  4 ; 0
-            Sink = Cmp ;  5 ;  1 ; -1
-            PointX = -5700 ; -5700 ; -5565
-            PointY = -1800 ; -1800 ; -1800
-            }
-        Line
-            {
-            Source = Cmp ;  5 ;  1 ; 0
-            Sink = Cmp ;  3 ;  1 ; -1
-            PointX = -4650 ; -4650 ; -4515
-            PointY = -1800 ; -1800 ; -1800
-            }
-        Line
-            {
             Source = Cmp ;  4 ;  1 ; 0
-            Sink = Cmp ;  6 ;  1 ; -1
+            Sink = Cmp ;  5 ;  1 ; -1
             PointX = -7800 ; -7500 ; -7500 ; -7860
             PointY = -2700 ; -2700 ; -3975 ; -3975
             }
         Line
             {
             Source = Cmp ;  2 ;  1 ; 0
-            Sink = Cmp ;  7 ;  1 ; -1
+            Sink = Cmp ;  6 ;  1 ; -1
             PointX = -7800 ; -7425 ; -7425 ; -7785
             PointY = -1350 ; -1350 ; -150 ; -150
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  4 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -5700 ; -4515 ; -4515
+            PointY = -1800 ; -1800 ; -1800
             }
         }
     }

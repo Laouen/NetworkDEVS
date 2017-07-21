@@ -1,14 +1,17 @@
 time:25.001
+interface: 0
 app_id: 0
 Ctrol: SUCCESS
 
 
 time:55.004
+interface: 0
 app_id: 1
 Ctrol: SUCCESS
 
 
 time:75.006
+interface: 0
 app_id: 0
 Ctrol: INVALID_SOCKET
 

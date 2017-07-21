@@ -1,14 +1,16 @@
-time:18
+time:500
+interface: 0
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags:  QR_ANSWER
-        Opcode_QUERY
-        AA_NOT_AUTHORITATIVE_ANSWER
-        TC_NOT_TRUNCATED
-        RD_ITERATIVE
-        RA_ITERATIVE
-        RCode_NO_ERROR
+flags: 
+	QR_ANSWER
+	Opcode_QUERY
+	AA_NOT_AUTHORITATIVE_ANSWER
+	TC_NOT_TRUNCATED
+	RD_ITERATIVE
+	RA_ITERATIVE
+	RCode_NO_ERROR
 QDCount: 1
 ANCount: 1
 NSCount: 0

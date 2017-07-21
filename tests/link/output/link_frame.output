@@ -1,4 +1,5 @@
-time:15.003
+time:80.001
+interface: 0
 preamble: 1100000
 MAC_destination: 0:0:0:0:0:2
 MAC_source: 0:0:0:0:0:1

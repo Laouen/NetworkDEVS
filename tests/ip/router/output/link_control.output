@@ -1,10 +1,12 @@
-time:15.002
+time:85.001
+interface: 0
 request: ARP_QUERY
 interface: 0
 ip: 1.0.0.2
 
 
-time:19.002
+time:155.002
+interface: 0
 request: SEND_PACKET
 interface: 0
 ip: 1.0.0.2
@@ -37,7 +39,14 @@ payload:
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+flags: 
+	QR_ANSWER
+	Opcode_QUERY
+	AA_NOT_AUTHORITATIVE_ANSWER
+	TC_NOT_TRUNCATED
+	RD_ITERATIVE
+	RA_ITERATIVE
+	RCode_NO_ERROR
 QDCount: 0
 ANCount: 0
 NSCount: 0

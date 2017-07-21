@@ -22,11 +22,6 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = NetworkDEVS/demultiplexer_ip_link.h
-    Parameters = "Host 1",1.000000e+00
-   }
-  Simulator
-   {
     Path = NetworkDEVS/udp_segment_sink.h
     Parameters = "udp_segment_src_sink","../atomics/NetworkDEVS/tests/ip/host/output/input_udp_segment.output"
    }
@@ -45,9 +40,8 @@ Root-Coordinator
    {
     (3,0);(0,0)
     (1,0);(0,3)
-    (0,3);(4,0)
-    (4,0);(2,0)
-    (3,0);(5,0)
-    (1,0);(6,0)
+    (3,0);(4,0)
+    (1,0);(5,0)
+    (0,3);(2,0)
    }
  }

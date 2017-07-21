@@ -1,4 +1,5 @@
 time:15
+interface: 0
 psd_header: 
 src_ip: 1.0.0.1
 dest_ip: 1.0.0.2
@@ -16,7 +17,14 @@ payload:
 -------------- dns packet ---------------
 ** HEADER ** 
 id: 0
-flags: QR_ANSWER|Opcode_QUERY|AA_NOT_AUTHORITATIVE_ANSWER|TC_NOT_TRUNCATED|RD_ITERATIVE|RA_ITERATIVE|RCode_NO_ERROR
+flags: 
+	QR_ANSWER
+	Opcode_QUERY
+	AA_NOT_AUTHORITATIVE_ANSWER
+	TC_NOT_TRUNCATED
+	RD_ITERATIVE
+	RA_ITERATIVE
+	RCode_NO_ERROR
 QDCount: 0
 ANCount: 0
 NSCount: 0
