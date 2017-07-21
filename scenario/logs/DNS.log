@@ -1,0 +1,270 @@
+[INFO] - [DNS Host 1] DNS local ip: 1.0.0.1
+[INFO] - [DNS Host 1] DNS root server ip: 1.0.0.2
+[INFO] - [DNS Host 1] No authoritative RR table file.
+[INFO] - [DNS Host 1] No zone server table file.
+[INFO] - [DNS Host 1] Recursive allowed: True
+[INFO] - [DNS Host 3] DNS local ip: 4.0.0.1
+[INFO] - [DNS Host 3] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 3] Authoritative RR table:
+[INFO] - [DNS Host 3] network.devs.com A 6.0.0.1 IN 65535 
+[INFO] - [DNS Host 3] No zone server table file.
+[INFO] - [DNS Host 3] Recursive allowed: False
+[INFO] - [DNS Host 4] DNS local ip: 5.0.0.2
+[INFO] - [DNS Host 4] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 4] No authoritative RR table file.
+[INFO] - [DNS Host 4] 
+-------------- Zone --------------
+** NS **
+devs.com NS ns1.devs.com IN 65535 
+** A **
+ns1.dev.com A 4.0.0.1 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 4] Zone servers table:
+[INFO] - [DNS Host 4] 
+-------------- Zone --------------
+** NS **
+devs.com NS ns1.devs.com IN 65535 
+** A **
+ns1.dev.com A 4.0.0.1 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 4] Recursive allowed: False
+[INFO] - [DNS Host 5] DNS local ip: 5.0.0.1
+[INFO] - [DNS Host 5] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 5] No authoritative RR table file.
+[INFO] - [DNS Host 5] 
+-------------- Zone --------------
+** NS **
+com NS ns1.com IN 65535 
+** A **
+ns1.com A 5.0.0.2 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 5] Zone servers table:
+[INFO] - [DNS Host 5] 
+-------------- Zone --------------
+** NS **
+com NS ns1.com IN 65535 
+** A **
+ns1.com A 5.0.0.2 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 5] Recursive allowed: False
+[INFO] - [DNS Host 2] DNS local ip: 1.0.0.2
+[INFO] - [DNS Host 2] DNS root server ip: 5.0.0.1
+[INFO] - [DNS Host 2] No authoritative RR table file.
+[INFO] - [DNS Host 2] No zone server table file.
+[INFO] - [DNS Host 2] Recursive allowed: True
+[INFO] - [DNS Host 1] Process domain name network.devs.com
+[INFO] - [DNS Host 1] Domain not in cache
+[INFO] - [DNS Host 1] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.1 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 2] Query packet
+[INFO] - [DNS Host 2] Recursive query for domain network.devs.com
+[INFO] - [DNS Host 2] Send DNS Query to: (5.0.0.1, 53)
+[INFO] - [DNS Host 5] Incoming packet:
+[INFO] - [DNS Host 5] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 5] Query packet
+[INFO] - [DNS Host 5] No recursive query for domain network.devs.com
+[INFO] - [DNS Host 5] Zone found: 
+-------------- Zone --------------
+** NS **
+com NS ns1.com IN 65535 
+** A **
+ns1.com A 5.0.0.2 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 5] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 256
+QDCount: 1
+ANCount: 1
+NSCount: 1
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+com NS ns1.com IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+ns1.com A 5.0.0.2 IN 65535 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 5.0.0.1 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 2] Answer packet
+[INFO] - [DNS Host 2] Answer Type: NS
+[INFO] - [DNS Host 2] Send DNS Query to: (5.0.0.2, 53)
+[INFO] - [DNS Host 4] Incoming packet:
+[INFO] - [DNS Host 4] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 4] Query packet
+[INFO] - [DNS Host 4] No recursive query for domain network.devs.com
+[INFO] - [DNS Host 4] Zone found: 
+-------------- Zone --------------
+** NS **
+devs.com NS ns1.devs.com IN 65535 
+** A **
+ns1.dev.com A 4.0.0.1 IN 65535 
+----------------------------------
+[INFO] - [DNS Host 4] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 256
+QDCount: 1
+ANCount: 1
+NSCount: 1
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+devs.com NS ns1.devs.com IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+ns1.dev.com A 4.0.0.1 IN 65535 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 5.0.0.2 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 2] Answer packet
+[INFO] - [DNS Host 2] Answer Type: NS
+[INFO] - [DNS Host 2] Send DNS Query to: (4.0.0.1, 53)
+[INFO] - [DNS Host 3] Incoming packet:
+[INFO] - [DNS Host 3] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 33024
+QDCount: 1
+ANCount: 0
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 3] Query packet
+[INFO] - [DNS Host 3] Resource for domain network.devs.com exist
+[INFO] - [DNS Host 3] Send DNS Query to: (1.0.0.2, 53)
+[INFO] - [DNS Host 2] Incoming packet:
+[INFO] - [DNS Host 2] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 1280
+QDCount: 1
+ANCount: 1
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+network.devs.com A 6.0.0.1 IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 4.0.0.1 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 2] Answer packet
+[INFO] - [DNS Host 2] Answer Type: A
+[INFO] - [DNS Host 2] Caching authoritative answer
+[INFO] - [DNS Host 2] Send DNS Query to: (1.0.0.1, 53)
+[INFO] - [DNS Host 1] Incoming packet:
+[INFO] - [DNS Host 1] 
+-------------- dns packet ---------------
+** HEADER ** 
+id: 0
+flags_code: 1280
+QDCount: 1
+ANCount: 1
+NSCount: 0
+ARCount: 1
+
+** QUESTION SECTION ** 
+network.devs.com A 0.0.0.0 IN 0 
+
+** ANSWER SECTION ** 
+network.devs.com A 6.0.0.1 IN 65535 
+
+** AUTHORITATIVES SECTION ** 
+
+** ADITIONAL SECTION ** 
+network.devs.com A 1.0.0.2 IN 40303 
+-----------------------------------------
+[INFO] - [DNS Host 1] Answer packet
+[INFO] - [DNS Host 1] Answer Type: A
+[INFO] - [DNS Host 1] Caching authoritative answer

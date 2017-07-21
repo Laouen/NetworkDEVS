@@ -1,0 +1,49 @@
+[INFO] - [DDemux Host 1 App 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 1 App 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 1 Transport 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 1 Transport 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host Link 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 App 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 App 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 Transport 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 Transport 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 3 Link 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 App 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 App 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 Transport 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 Transport 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 4 Link 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 App 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 App 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 Transport 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 Transport 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 5 Link 1] Initialized with 1 interfaces
+[INFO] - [DDemux Router 1 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Router 1 Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Router 1 Link 1] Initialized with 3 interfaces
+[INFO] - [DDemux Router 2 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Router 2 Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Router 1 Link 1] Initialized with 3 interfaces
+[INFO] - [DDemux Router 2 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Router 2 Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Router 1 LInk 1] Initialized with 3 interfaces
+[INFO] - [Demux Switch 1] Initialized with 3 interfaces
+[INFO] - [Demux Switch 2] Initialized with 3 interfaces
+[INFO] - [Demux Switch 3] Initialized with 3 interfaces
+[INFO] - [Demux Switch 4] Initialized with 3 interfaces
+[INFO] - [DDemux Host App 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host app 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 2 Transport 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 2 Transport 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 2 Network 1] Initialized with 1 interfaces
+[INFO] - [DDemux Host 2  Network 2] Initialized with 1 interfaces
+[INFO] - [DDemux Host 2 Link 1] Initialized with 1 interfaces

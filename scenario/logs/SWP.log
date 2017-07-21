@@ -1,0 +1,713 @@
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 1
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 1
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 1
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 1
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 1
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 1
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 1
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 2
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 2
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 2
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 2
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 2
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 1
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 1
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 3
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 3
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 3
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 3
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 1
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 1
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 1
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 1
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 1
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 1
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 1
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 2
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 2
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 2
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 2
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 3
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 3
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 3
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 3
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 2
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 3
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 3
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 2
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 2
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 4
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 3
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 3
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 4
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 4
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 4
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 3
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 3
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 5
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 5
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 4
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 5
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 4
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 5
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 4
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 4
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 6
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 6
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 6
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 6
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 4
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 4
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 5
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 4
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 4
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 3
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 1
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 4
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 4
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 5
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 4
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 4
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 2
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 5
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 5 NET 0] send ACK LFR: 5
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 5 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 6
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 4 NET 0] send ACK LFR: 5
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 4 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 3
+[INFO] - [SWP Host 4 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 2 NET 1] send ACK LFR: 6
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 5
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 5
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 2 NET 0] send ACK LFR: 6
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 1] Deliver frame with SeqNum: 6
+[INFO] - [SWP Router 1 NET 1] send ACK LFR: 6
+[INFO] - [SWP Router 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 5
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 5
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 7
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 5
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 5
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 5
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 5
+[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 2 NET 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 7
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 7
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 7
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 6
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 6
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 8
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 8
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 6
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 6
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 8
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 6
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 6
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 8
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 7
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 7
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 9
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 9
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 9
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 9
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 3 NET 0] send ACK LFR: 1
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 1 NET 2] send ACK LFR: 1
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 3 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 3 NET 0] Deliver frame with SeqNum: 1
+[INFO] - [SWP Host 3 NET 0] send ACK LFR: 1
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] Deliver frame with SeqNum: 1
+[INFO] - [SWP Router 3 NET 1] send ACK LFR: 1
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 3 NET 0] Deliver frame with SeqNum: 2
+[INFO] - [SWP Host 3 NET 0] send ACK LFR: 2
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 1] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 3 NET 1] send ACK LFR: 2
+[INFO] - [SWP Host 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] Deliver frame with SeqNum: 2
+[INFO] - [SWP Router 1 NET 2] send ACK LFR: 2
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 3 NET 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 3 NET 0] send ACK LFR: 3
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 2] Deliver frame with SeqNum: 3
+[INFO] - [SWP Router 1 NET 2] send ACK LFR: 3
+[INFO] - [SWP Router 3 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 8
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 8
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 10
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 7
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 7
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 7
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 7
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 10
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 10
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 10
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 10
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 9
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 9
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 11
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 11
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 8
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 8
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 11
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 8
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 8
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Deliver frame with SeqNum: 11
+[INFO] - [SWP Router 1 NET 0] send ACK LFR: 11
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Router 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 3
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 3
+[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 3
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Deliver frame with SeqNum: 12
+[INFO] - [SWP Host 2 NET 0] send ACK LFR: 12
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 2 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 12
+[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 12
+[INFO] - [SWP Host 2 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 9
+[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 9
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Deliver frame with SeqNum: 9
+[INFO] - [SWP Host 1 NET 0] send ACK LFR: 9
+[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] swp_protocol::processFrame
+[INFO] - [SWP Host 1 NET 0] Discarted frame: Frame not in RWS windows
+[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
+[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
+Simulation Ended (0.0386 sec)
