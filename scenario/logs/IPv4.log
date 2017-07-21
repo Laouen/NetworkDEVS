@@ -84,6 +84,7 @@
 [INFO] - [IPv4 Host 2] | 1.0.0.1 | 255.255.255.255 | 1.0.0.1 | 1 |  Host 1 | 
 [INFO] - [IPv4 Host 2] Forwarding table:
 [INFO] - [IPv4 Host 2] | 0.0.0.0 | 0.0.0.0 | 0 | 
+Simulation Initialized
 [INFO] - [IPv4 Host 1] Forwarding ip packet: 1.0.0.2
 [INFO] - [IPv4 Host 1] Best route for packet with dest_ip: 1.0.0.2
 [INFO] - [IPv4 Host 1] is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 |  Host 2 | 

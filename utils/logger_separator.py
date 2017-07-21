@@ -40,6 +40,12 @@ last_label = ''
 with open(FLAGS.log) as f:
 	content = f.readlines()
 	for line in content:
+
+		if 'Simulation Initialized' in line:
+			for label, logs in labels.iteritems():
+				logs.append(line)
+			continue	
+
 		is_label = False
 		for label, logs in labels.iteritems():
 			if label in line:

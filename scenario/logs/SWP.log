@@ -1,3 +1,4 @@
+Simulation Initialized
 [INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
 [INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 1
 [INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 1

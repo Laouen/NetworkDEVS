@@ -52,6 +52,7 @@ ns1.com A 5.0.0.2 IN 65535
 [INFO] - [DNS Host 2] No authoritative RR table file.
 [INFO] - [DNS Host 2] No zone server table file.
 [INFO] - [DNS Host 2] Recursive allowed: True
+Simulation Initialized
 [INFO] - [DNS Host 1] Process domain name network.devs.com
 [INFO] - [DNS Host 1] Domain not in cache
 [INFO] - [DNS Host 1] Send DNS Query to: (1.0.0.2, 53)
