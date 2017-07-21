@@ -95,12 +95,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 1",1.000000e+00
+            Parameters = "Host Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 1",1.000000e+00
+            Parameters = "Host Network 1",1.000000e+00
            }
           Simulator
            {
@@ -134,7 +134,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 1",1.000000e+00
+            Parameters = "Host Link 1",1.000000e+00
            }
           Simulator
            {
@@ -205,12 +205,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_dn_int.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 App 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 App 2",1.000000e+00
            }
           EIC
            {
@@ -239,12 +239,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 Transport 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 Transport 2",1.000000e+00
            }
           Simulator
            {
@@ -278,12 +278,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 Network 2",1.000000e+00
            }
           Simulator
            {
@@ -317,7 +317,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 3",1.000000e+00
+            Parameters = "Host 3 Link 1",1.000000e+00
            }
           Simulator
            {
@@ -374,12 +374,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_dn_int.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 App 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 App 2",1.000000e+00
            }
           EIC
            {
@@ -408,12 +408,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 Transport 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 Transport 2",1.000000e+00
            }
           Simulator
            {
@@ -447,12 +447,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 Network 2",1.000000e+00
            }
           Simulator
            {
@@ -486,7 +486,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 4",1.000000e+00
+            Parameters = "Host 4 Link 1",1.000000e+00
            }
           Simulator
            {
@@ -543,12 +543,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_dn_int.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 App 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 App 2",1.000000e+00
            }
           EIC
            {
@@ -577,12 +577,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 Transport 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 Transport 2",1.000000e+00
            }
           Simulator
            {
@@ -616,12 +616,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 Network 2",1.000000e+00
            }
           Simulator
            {
@@ -655,7 +655,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 5",1.000000e+00
+            Parameters = "Host 5 Link 1",1.000000e+00
            }
           Simulator
            {
@@ -707,12 +707,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Router 1",1.000000e+00
+            Parameters = "Router 1 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Router 1",1.000000e+00
+            Parameters = "Router 1 Network 2",1.000000e+00
            }
           Simulator
            {
@@ -746,7 +746,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Router 1",3.000000e+00
+            Parameters = "Router 1 Link 1",3.000000e+00
            }
           Simulator
            {
@@ -819,12 +819,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Router 2",1.000000e+00
+            Parameters = "Router 2 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Router 2",1.000000e+00
+            Parameters = "Router 2 Network 2",1.000000e+00
            }
           Simulator
            {
@@ -858,7 +858,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Router 1",3.000000e+00
+            Parameters = "Router 1 Link 1",3.000000e+00
            }
           Simulator
            {
@@ -918,12 +918,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Router 2",1.000000e+00
+            Parameters = "Router 2 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Router 2",1.000000e+00
+            Parameters = "Router 2 Network 2",1.000000e+00
            }
           Simulator
            {
@@ -957,7 +957,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Router 1",3.000000e+00
+            Parameters = "Router 1 LInk 1",3.000000e+00
            }
           Simulator
            {
@@ -1162,12 +1162,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_dn_int.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host App 2",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host app 2",1.000000e+00
            }
           EIC
            {
@@ -1196,12 +1196,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_packet_ctrl.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host 2 Transport 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host 2 Transport 2",1.000000e+00
            }
           Simulator
            {
@@ -1235,12 +1235,12 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_segment_ctrl.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host 2 Network 1",1.000000e+00
            }
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host 2  Network 2",1.000000e+00
            }
           Simulator
            {
@@ -1274,7 +1274,7 @@ Root-Coordinator
           Simulator
            {
             Path = NetworkDEVS/demux_datagram_ctrl.h
-            Parameters = "Host 2",1.000000e+00
+            Parameters = "Host 2 Link 1",1.000000e+00
            }
           Simulator
            {

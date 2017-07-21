@@ -15,9 +15,10 @@ class switch_protocol : public Protocol<int, int, message::Multiplexed<link::Fra
   ushort interface_amount;
 
   /************** times ***************/
-  double process_frame_time = 0.001;
-  double send_frame_time = 0.001;
-  double swp_timeout_time = 0.001;
+  // In milliseconds
+  double process_frame_time = 50;
+  double send_frame_time = 5;
+  double swp_timeout_time = 100;
 
   /********** switch methods **********/
   void processFrame(link::Frame& frame, ushort interface);

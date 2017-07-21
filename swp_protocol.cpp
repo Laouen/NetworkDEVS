@@ -46,12 +46,13 @@ bool swp_protocol::timeoutTriggered() {
   std::list<swp::sendQ_slot<link::Frame>>::iterator it;
 
   for(it = swp_state.sendQ.begin(); it != swp_state.sendQ.end(); ++it) {
-    if (it->timeout <= 0) {
-      //logger.debug("timeoutTriggered: True");
+    // TODO: implement a better way to compare against zero
+    if (it->timeout <= 0.000001) {
+      logger.debug("timeoutTriggered: True");
       return true;
     }
   }
-  //logger.debug("timeoutTriggered: False");
+  logger.debug("timeoutTriggered: False");
   return false;
 }
 
@@ -60,7 +61,8 @@ void swp_protocol::timeout() {
   std::list<swp::sendQ_slot<link::Frame>>::iterator it;
 
   for(it = swp_state.sendQ.begin(); it != swp_state.sendQ.end(); ++it) {
-    if (it->timeout <= 0) {
+    // TODO: implement a better way to compare against zero
+    if (it->timeout <= 0.000001) {
       it->timeout = SWP_SEND_TIMEOUT;
       to_send_frames.push(it->msg);
     }
@@ -89,6 +91,7 @@ void swp_protocol::processFrame(link::Frame frame) {
       swp_state.sendQ.pop_front();
       ++swp_state.LAR;
     };
+    logger.debug("SWP Send queue size is: " + std::to_string(swp_state.sendQ.size()));
     logger.debug( "waiting ACK frames: " + std::to_string(swp_state.sendQ.size()));
     return;
   } 
@@ -97,7 +100,7 @@ void swp_protocol::processFrame(link::Frame frame) {
     
     if (!this->inWindow(swp_state.LFR+1, RWS, hdr.SeqNum)) { // drop the message
       logger.info("Discarted frame: Frame not in RWS windows");
-      logger.debug( "fram SeqNum: " + std::to_string(hdr.SeqNum) + 
+      logger.debug( "frame SeqNum: " + std::to_string(hdr.SeqNum) + 
                     " LFR+1: " + std::to_string(swp_state.LFR+1) + 
                     " RWS: " + std::to_string(RWS));
       return;

@@ -19,14 +19,15 @@ class link_protocol : public Protocol<ip::Datagram, link::Control, link::Frame, 
   ushort interface;
 
   /********** TIMES *****************/
-  double send_swp_time = 0.001;
-  double send_frame_time = 0.001;
-  double deliver_swp_time = 0.001;
-  double swp_timeout_time = 0.001;
-  double deliver_up_layer_time = 0.001;
-  double process_arp_time = 0.001;
-  double process_link_control_time = 0.001;
-  double process_frame_time = 0.001;
+  // In milliseconds
+  double send_swp_time = 5;
+  double send_frame_time = 5;
+  double deliver_swp_time = 5;
+  double swp_timeout_time = 5;
+  double deliver_up_layer_time = 5;
+  double process_arp_time = 60;
+  double process_link_control_time = 60;
+  double process_frame_time = 60;
 
   /********** Comunication methods **************/
 

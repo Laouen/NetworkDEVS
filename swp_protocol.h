@@ -23,7 +23,8 @@ public:
 	std::queue<link::Frame> to_send_frames;
 	
 	/************ Times ******************/
-	double send_time = 0.001;
+	// Time in milliseconds
+	double send_time = 5; 
 	double infinity = std::numeric_limits<double>::max();
 	
 	swp_protocol();

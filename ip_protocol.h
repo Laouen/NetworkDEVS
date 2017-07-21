@@ -29,10 +29,11 @@ protected:
   std::list<ip::Routing_entry> routing_table;
 
   /********** TIMES ***************/
-  double process_udp_segment_time = 0.001;
-  double process_ip_datagram_time = 0.001;
-  double process_link_control_time = 0.001;
-  double send_frame_time = 0.001;
+  // in milliseconds
+  double process_udp_segment_time = 70;
+  double process_ip_datagram_time = 70;
+  double process_link_control_time = 70;
+  double send_frame_time = 10;
 
   /********* Protected methods *********/
   // Class state modifiers

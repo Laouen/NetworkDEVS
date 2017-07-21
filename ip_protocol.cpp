@@ -97,7 +97,8 @@ void ip_protocol::routeIPDatagram(ip::Datagram p) {
   }
 
   // Step 6-7
-  logger.info("Best route for packet with dest_ip: " + dest_ip.as_string() + " is: " + route.as_string());
+  logger.info("Best route for packet with dest_ip: " + dest_ip.as_string());
+  logger.info("is: " + route.as_string());
   this->arp(p,route.nexthop);
 }
 

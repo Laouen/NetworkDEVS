@@ -27,8 +27,9 @@ protected:
   std::list<dns::Packet> host_requests;
 
   /********** TIMES ***************/
-  double process_dns_query = 0.001;
-  double process_dns_response = 0.001;
+  // In milliseconds
+  double process_dns_query = 85;
+  double process_dns_response = 85;
 
   /********* Protected methods *********/
   void processDomainName(dns::DomainName domain);

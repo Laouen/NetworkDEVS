@@ -70,6 +70,7 @@ void link_protocol::dinternal(double t) {
   }
 
   if (!lower_layer_data_in.empty()) {
+    logger.debug("Lower layer data");
     link::Frame f = lower_layer_data_in.front();
     this->processFrame(f);
     lower_layer_data_in.pop();
@@ -78,6 +79,7 @@ void link_protocol::dinternal(double t) {
   }
 
   if (!higher_layer_ctrl_in.empty()) {
+    logger.debug("Lower layer ctrl");
     link::Control c = higher_layer_ctrl_in.front();
     this->arpProcessLinkControl(c);
     higher_layer_ctrl_in.pop();

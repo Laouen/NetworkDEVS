@@ -18,9 +18,10 @@ class udp_protocol: public Protocol<dns::Packet, udp::Control, udp::Segment, ip:
   std::vector<IPv4> ips;
 
   /********** TIMES ***************/
-  double add_rm_ip_time = 0.01;
-  double delivering_time = 0.01;
-  double app_ctrl_time = 0.01;
+  // in milliseconds
+  double add_rm_ip_time = 10;
+  double delivering_time = 10;
+  double app_ctrl_time = 10;
 
   /************ Helper methods **************/
   void processSegment(const udp::Segment&, double );
