@@ -305,12 +305,15 @@ void dns_server::directAnswer(dns::Packet& packet) {
 void dns_server::deliverAnswer(const dns::Packet& packet) {
 
   if (this->isAppRequest(packet.header.id)) {
+    logger.debug("Is app request");
     higher_layer_data_out.push(packet);
   } else if (this->isHostRequest(packet.header.id)) {
 
+    logger.debug("Is remote host request");
     IPv4 host_ip = this->getPacket(packet.header.id).aditionals.front().AValue; // first aditional is requester host ip
     this->sendTo(packet, host_ip, 53);
   }
+  logger.debug("answer delivered");
 }
 
 void dns_server::setAuthoritativeFlag(dns::Packet& packet, dns::DomainName d) {

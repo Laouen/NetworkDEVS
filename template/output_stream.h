@@ -2,6 +2,7 @@
 #define output_stream_h
 
 #include "protocol.h"
+#include "../libs/message_queue.h"
 
 /**
  * 
@@ -60,7 +61,7 @@ public:
 
     // Set logger module name
     std::string module_name = va_arg(parameters,char*);
-    logger.setModuleName("Input stream " + module_name);
+    logger.setModuleName("Output stream " + module_name);
 
     const char* file_path = va_arg(parameters,char*);
     file.open(file_path);
@@ -75,9 +76,10 @@ public:
   void dext(Event x, double t) {
 
     if (x.port == 0) {
-      DATA m = *(DATA*)x.value;
+      message::Multiplexed<DATA> m = *(message::Multiplexed<DATA>*)x.value;
       file << "time:" << t << std::endl;
-      file << m << std::endl << std::endl;
+      file << "interface: " << m.interface << std::endl;
+      file << m.message << std::endl << std::endl;
     }
   }
 

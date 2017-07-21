@@ -161,11 +161,6 @@ Root-Coordinator
          }
       Simulator
        {
-        Path = NetworkDEVS/demux_dn_int.h
-        Parameters = "Host 1",1.000000e+00
-       }
-      Simulator
-       {
         Path = NetworkDEVS/domain_name_source.h
         Parameters = "Host 1","../atomics/NetworkDEVS/scenario/input/input/1/h1.input"
        }
@@ -187,10 +182,9 @@ Root-Coordinator
         (4,3);(5,1)
         (5,1);(4,3)
         (5,0);(4,2)
+        (6,0);(2,0)
         (2,0);(0,0)
         (6,0);(1,0)
-        (7,0);(2,0)
-        (7,0);(6,0)
        }
      }
     Coordinator

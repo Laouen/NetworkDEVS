@@ -104,10 +104,10 @@ namespace udp {
    * 
    */
   struct Header : abstract::Header {
-    ushort src_port;
-    ushort dest_port;
-    ushort length;
-    ushort checksum;
+    ushort src_port = 0;
+    ushort dest_port = 0;
+    ushort length = 0;
+    ushort checksum = 0;
 
     /**
      * @brief Default constructor.

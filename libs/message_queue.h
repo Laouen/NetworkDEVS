@@ -3,6 +3,7 @@
 
 #include <queue>
 #include <utility>
+#include <iostream>
 #include "simulator.h"
 
 /**
@@ -299,6 +300,13 @@ namespace message {
       return queued_msgs.empty();
     }
   };
+}
+
+template<typename MSG>
+std::ostream& operator<<(std::ostream& os, const message::Multiplexed<MSG>& multiplexed) {
+  os << "Interface: " << multiplexed.interface;
+  os << "Message: \n" << multiplexed.message;
+  return os;
 }
 
 #endif

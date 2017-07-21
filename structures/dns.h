@@ -970,14 +970,14 @@ inline std::ostream& operator<<(std::ostream& os, const dns::Class& t) {
 inline std::ostream& operator<<(std::ostream& os, const dns::Header& h) {
   os << "id: " << h.id << std::endl;
 
-  os << "flags: ";
-  os << (dns::QR)(h.flags_code & dns::QR::QR_MASK) << "|";
-  os << (dns::Opcode)(h.flags_code & dns::Opcode::Opcode_MASK) << "|";
-  os << (dns::AA)(h.flags_code & dns::AA::AA_MASK) << "|";
-  os << (dns::TC)(h.flags_code & dns::TC::TC_MASK) << "|";
-  os << (dns::RD)(h.flags_code & dns::RD::RD_MASK) << "|";
-  os << (dns::RA)(h.flags_code & dns::RA::RA_MASK) << "|";
-  os << (dns::RCode)(h.flags_code & dns::RCode::RCode_MASK);
+  os << "flags: " << std::endl;
+  os << "\t" << (dns::QR)(h.flags_code & dns::QR::QR_MASK) << std::endl;
+  os << "\t" << (dns::Opcode)(h.flags_code & dns::Opcode::Opcode_MASK) << std::endl;
+  os << "\t" << (dns::AA)(h.flags_code & dns::AA::AA_MASK) << std::endl;
+  os << "\t" << (dns::TC)(h.flags_code & dns::TC::TC_MASK) << std::endl;
+  os << "\t" << (dns::RD)(h.flags_code & dns::RD::RD_MASK) << std::endl;
+  os << "\t" << (dns::RA)(h.flags_code & dns::RA::RA_MASK) << std::endl;
+  os << "\t" << (dns::RCode)(h.flags_code & dns::RCode::RCode_MASK);
 
   os << std::endl;
   os << "QDCount: " << h.QDCount << std::endl;

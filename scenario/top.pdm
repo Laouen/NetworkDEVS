@@ -70,7 +70,7 @@ Coupled
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -2730 ; -5955
+                        Position = -4005 ; -5955
                         Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
@@ -90,7 +90,7 @@ Coupled
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -7455 ; -7305
+                        Position = -6555 ; -7380
                         Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
@@ -1091,33 +1091,13 @@ Coupled
                                             }
                                                 Atomic
                                                     {
-                                                    Name = demu 1
-                                                    Ports = 2 ; 2
-                                                    Path = NetworkDEVS/demux_dn_int.h
-                                                    Description = Atomic DEVS model
-                                                    Graphic
-                                                        {
-                                                        Position = -9180 ; -7155
-                                                        Dimension = 675 ; 675
-                                                        Direction = Right
-                                                        Color = 15
-                                                        Icon = ../atomics/NetworkDEVS/icons/demultiplexer.svg
-                                                        }
-                                                    Parameters
-                                                        {
-                                                        module_name = Str; Host 1 ; 
-                                                        max_interface = Val; 1 ; 
-                                                        }
-                                                    }
-                                                Atomic
-                                                    {
                                                     Name = input 1
                                                     Ports = 0 ; 1
                                                     Path = NetworkDEVS/domain_name_source.h
                                                     Description = Atomic DEVS model
                                                     Graphic
                                                         {
-                                                        Position = -11130 ; -5955
+                                                        Position = -9330 ; -5955
                                                         Dimension = 675 ; 675
                                                         Direction = Right
                                                         Color = 15
@@ -1201,31 +1181,24 @@ Coupled
                                                     }
                                                 Line
                                                     {
+                                                    Source = Cmp ;  7 ;  1 ; 0
+                                                    Sink = Cmp ;  3 ;  1 ; -1
+                                                    PointX = -8550 ; -8550 ; -6840
+                                                    PointY = -5625 ; -5625 ; -5625
+                                                    }
+                                                Line
+                                                    {
                                                     Source = Cmp ;  3 ;  1 ; 0
                                                     Sink = Cmp ;  1 ;  1 ; -1
-                                                    PointX = -5625 ; -2865 ; -2865
+                                                    PointX = -5625 ; -5625 ; -4140
                                                     PointY = -5625 ; -5625 ; -5625
                                                     }
                                                 Line
                                                     {
                                                     Source = Cmp ;  7 ;  1 ; 0
                                                     Sink = Cmp ;  2 ;  1 ; -1
-                                                    PointX = -8400 ; -8400 ; -7590
-                                                    PointY = -6975 ; -6975 ; -6975
-                                                    }
-                                                Line
-                                                    {
-                                                    Source = Cmp ;  8 ;  1 ; 0
-                                                    Sink = Cmp ;  3 ;  1 ; -1
-                                                    PointX = -10350 ; -10350 ; -6840
-                                                    PointY = -5625 ; -5625 ; -5625
-                                                    }
-                                                Line
-                                                    {
-                                                    Source = Cmp ;  8 ;  1 ; 0
-                                                    Sink = Cmp ;  7 ;  1 ; -1
-                                                    PointX = -10350 ; -9825 ; -9825 ; -9315
-                                                    PointY = -5625 ; -5625 ; -6975 ; -6975
+                                                    PointX = -8550 ; -7725 ; -7725 ; -6690
+                                                    PointY = -5625 ; -5625 ; -7050 ; -7050
                                                     }
                 }
             }
