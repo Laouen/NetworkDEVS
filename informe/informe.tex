@@ -309,9 +309,21 @@ Para encolar un mensaje en la cola de salida correspondiente se debe utilizar el
 
 Por defecto y de forma automática, el modelo \textit{Protocol} envía los mensajes de forma multiplexada para ser demultiplexados en la capa destino del mensaje por su correspondiente demultiplexer (ver Figura \ref{figure:general architecture}), de esta forma, como ya fué mencionado previamente, es posible la interacción entre múltiples protocolos de una capa con múltiples protocolos de otra capa adjacente. Es por esto que cuando se encola un mensaje es necesario conocer el id del protocolo dentro del demultiplexer al que se le está enviando el mensaje, el mismo es pasado como parámetro a la función \textit{message::queue::push(MSG mensaje, int protocol\_id)}. Para poder comprender como se asignan los ids a los protocolos de forma de enviar y recibir mensajes correctamente, a continuación se explica el funcionamiento del tipo de datos message::multiplexed y del medelo \textit{demultiplexer}. \\
 
-El tipo de datos message::multiplexed$<typename\ MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo demultiplexer$<typename\ MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario (id del protocolo destino) correspondientemente. Luego solo resta utilizar un modelo demultiplexer, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho $\rightarrow$ parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter demultiplexer} explica los parámetros a setear en estos modelos. \\
+\subsubsection{Modelo dual\_demultiplexer (DDemultiplexer)}
 
-El campo \textit{interface} le indica al demultiplexer por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del demultiplexer con los puertos de entrada de los destinatarios, la entrada de mensages del modelo $i$ de destino debe estar conectado al puerto de salida $i$ del demultiplexer siendo entonces $i$ el id del protocolo para ese demultiplexer, la Figura \ref{figure: demultiplexer} muestra el mapeo de puertos de un demultiplexer\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
+El tipo de datos message::multiplexed$<typename\ MSG>$ sirve para enviar mensajes que van a ser demultiplexados por un modelo DDemultiplexer$<typename\ MSG>$. El mismo cuenta con los campos \textit{message} e \textit{interface} que son utilizados para asignar el mensaje y el identificador del destinatario (id del protocolo destino) correspondientemente. Luego solo resta utilizar un modelo \textit{DDemultiplexer}, setear correctamente sus parámetros en la IDE de PowerDEVS\footnote{Para setear parámetros en un modelo hay que hacer clic derecho $\rightarrow$ parameters}, y conectar correctamente sus puertos de entrada y salida con el modelo de origen y los modelos de destino, la Tabla \ref{table: parameter ddemultiplexer} explica los parámetros a setear en estos modelos. \\
+
+El campo \textit{interface} le indica al \textit{DDemultiplexer} por que puerto enviar el mensaje, por lo que es importante conectar correctamente los puertos de salida del \textit{DDemultiplexer} con los puertos de entrada de los destinatarios. El mapeo de interfaces a puertos de salida de un \textit{DDemultiplexer} es el siguiente: \\
+
+\begin{itemize}
+\item Si el mensaje llega con un número de interfaz mayor o igual a Max\_interface, el mensaje es descartado.
+\item Si el mensaje llega por el puerto $0$ del \textit{DDemultiplexer} con número de interfaz $i$, entonces el mensaje demultiplexado es enviado por el puerto de salida $2*i$.
+\item Si el mensaje llega por el puerto $1$ del \textit{DDemultiplexer} con número de interfaz $i$, entonces el mensaje demultiplexado es enviado por el puerto de salida $2*i + 1$.
+\end{itemize}
+
+De está forma el modelo demultiplexa dos canales. La idea de demultiplexar dos canales proviene de que un puerto (en general el puerto 0) es el puerto de datos enviados por los puertos de salidas pares y el otro puerto es el puerto de controles enviado por los puertos de salida impares. De esta forma no es necesario tener un demultiplexer por cada canal (ver la arquitectura general en la Figura \ref{figure:general architecture}). \\
+
+La entrada de mensages de datos del modelo $i$ de destino debe estar conectado al puerto de salida $2*i$ del demultiplexer y la de controles al puerto $2*i$+1, siendo entonces $i$ el id del protocolo para ese \textit{DDemultiplexer}, la Figura \ref{figure: demultiplexer} muestra el mapeo de puertos de un demultiplexer\footnote{En el modelo implementado en este trabajo hay ejemplos de como utilizar el modelo demultiplexer con el tipo de dato message::multiplexed}\footnote{Un demultiplexer con relación $1$ a $k$ numera los módulos de salida de $0$ a $k-1$}. \\
 
 \begin{table*}[!hbt]
 	\begin{tabular}{|l|c|c|c|}
@@ -323,8 +335,8 @@ El campo \textit{interface} le indica al demultiplexer por que puerto enviar el 
   		Max\_interface & Int & La cantidad máximas de interfaces de salida que puede demultiplexar. \\
   		\hline
 	\end{tabular}
-	\caption{Parámetros del modelo demultiplexer}
-	\label{table: parameter demultiplexer}
+	\caption{Parámetros del modelo \textit{DDemultiplexer}}
+	\label{table: parameter ddemultiplexer}
 \end{table*}
 
 \begin{figure}[!hbt]
@@ -340,7 +352,7 @@ El campo \textit{interface} le indica al demultiplexer por que puerto enviar el 
 
 El template cuenta con dos métodos virtuales que están definidos e implementados como funciones vacías (sin comportamiento), estos métodos son los que deben ser sobre escritos para implementar el protocolo. Siempre que haya mensajes por procesar en las colas de entradas, el modelo llama al método \textit{protocol\_implementation} en el cual se deben procesar dichos mensajes, el modelo \textit{Protocol} mira las colas de salida para ver si hay mensajes a enviar y los envía, si al finalizar este proceso sigue habiendo mensajes por procesar en las colas de entrada, se volverá a llamar a esta función respetando el formalismo DEVS de forma de seguir procesando mensajes. Este ciclo se repite indefinidamente hasta que no haya más mensajes por procesar, momento en el cual el modelo se pasiva a la espera de nuevos eventos externos. \\
 
-El método virtual \textit{dexternal} existe por si se desea implementar código que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro motivo. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS o con el simulador PowerDEVS. Para aquellas personas familiarizadas con el formalismo DEVS, tienen que tener en cuenta lo siguente: Si bien cada mensaje que llega genera una transición externa (implementada en el método \textit{dext} de PowerDEVS), lo único que hace es encolar los mensajes en la cola correspondiente y llamar a una transición interna inmediata solo si el modelo está actualmente pasivado (ya que al llegar mensajes nuevos deben ser procesados). Si el modelo no está pasivado, entonces está procesando un mensaje y cuando termine, al ver un nuevo mensaje va a procesarlo automaticamente. Los mensajes que son encolados son procesados en la función \textit{protocol\_implementation} que es llamada por el modelo template en la transición interna (en el método \textit{dint} de PowerDEVS) agendada de forma inmediata por la transición externa cuando llega un mensaje estando el modelo pasivado o por la transición interna anterior si el modelo tiene más de un mensaje a procesar. Un diagrama de este esquema de procesamiento se puede encontrar en el apendice \ref{appendix: internal external transition flow}.\\
+El método virtual \textit{dexternal} existe por si se desea implementar código que se ejecute cada vez que ocurre un evento externo para modificar el estado de las variables internas del protocolo o por algún otro motivo. Esto no es recomendado para desarrolladores no familiarizados con el formalismo DEVS o con el simulador PowerDEVS. Para aquellas personas familiarizadas con el formalismo DEVS, tienen que tener en cuenta lo siguente: Si bien cada mensaje que llega genera una transición externa (implementada en el método \textit{dext} de PowerDEVS), lo único que hace es encolar los mensajes en la cola correspondiente y llamar a una transición interna inmediata solo si el modelo está actualmente pasivado (ya que al llegar mensajes nuevos deben ser procesados). Si el modelo no está pasivado, entonces está procesando un mensaje y cuando termine, al ver un nuevo mensaje va a procesarlo automaticamente. Los mensajes que son encolados son procesados en la función \textit{protocol\_implementation} que es llamada por el modelo template en la transición interna (en el método \textit{dint} de PowerDEVS) agendada de forma inmediata por la transición externa cuando llega un mensaje estando el modelo pasivado o por la transición interna anterior si el modelo tiene más de un mensaje a procesar. \\
 
 \section{Como agregar un protocolo}
 
@@ -352,13 +364,11 @@ Como crear y abrir un modelo acoplado en PowerDEVS:
 \item \textbf{Abrir un modelo acoplado en PowerDEVS:} Seleccionar con el mouse el modelo acoplado a abrir y desplegar el menú de opciones del mismo dando click derecho sobre el icono, luego elegir la opción ``open model''.
 \end{itemize}
 
-\newpage
-
 La figura \ref{figure: PowerDEVS IDE} muestra la IDE PowerDEVS e indica como crear un modelo acoplado dentro de la misma. \\
 
-\begin{figure}[htbp]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width = 0.6\textwidth]{img/png/powerDEVS_coupled.png}
+    \includegraphics[width = 0.5\textwidth]{img/png/powerDEVS_coupled.png}
     \caption{Screenshot de la IDE PowerDEVS con la pestaña ``Basic Elements'' abierta resaltando el icono de coupled model.}
     \label{figure: PowerDEVS IDE}
 \end{figure}
@@ -405,11 +415,9 @@ La clase parser cuenta con dos métodos distintos para leer los datos del archiv
 
 La clase Parser puede ser utilizada de forma independiente al modelo que lee input siempre que sea necesario leer y parsear las lineas de un archivo. La interfaz y documentación técnica del Parser está en formato Doxygen.
 
-\newpage
+\subsection{El modelo input\_stream}
 
-\subsection{El modelo input stream}
-
-El modelo input stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo que se utiliza para iniciar el parser y tiene las mismas precondiciones. \\
+El modelo input\_stream es un modelo handler que se encarga de manejar el parser de forma de ir leyendo el input e ir insertándolo en el momento correcto de la simulación. Para esto, el modelo está implementado como template de forma de poder funcionar con distintos tipos de inputs, el parámetro template es el mismo que se utiliza para iniciar el parser y tiene las mismas precondiciones. Este modelo envía los mensajes de forma multiplexada con interfaz $0$.\\
 
 Para utilizar este modelo, hay que crear una clase input\_stream\_$<$tipo del input$>$ que herede de input\_stream \footnote{El archivo header siempre tiene que ser de tipo \textit{.h} y la implementación debe estar en un archivo \textit{.cpp}} instanciando el parámetro template del tipo de datos del input. Dado que el simulador PowerDEVS requiere que los modelos tengan un archivo \textit{.cpp} el mismo debe existir y puede simplemente estar vacío. \\
 
@@ -430,8 +438,8 @@ Los parámetros a setear del mismo en la IDE de PowerDEVS son los que se muestra
 \label{table: input stream parameters}
 \end{table*}
 
-\subsection{El modelo output stream}
-De la misma forma que es necesario contar con modelos generadores, también se necesita contar con modelos vertederos o \textit{sink} en ingles. Estos modelos sirven para absorver todo el output generado por el modelo y guardarlo en un archivo. El mismo está implementado de la misma forma que el modelo input stream y se hereda tomando las mismas consideraciones. Las únicas diferencias son las siguientes: \\
+\subsection{El modelo output\_stream}
+De la misma forma que es necesario contar con modelos generadores, también se necesita contar con modelos vertederos o \textit{sink} en ingles. Estos modelos sirven para absorver todo el output generado por el modelo y guardarlo en un archivo. Este modelo espera mensaje multiplexados. El mismo está implementado de la misma forma que el modelo input stream y se hereda tomando las mismas consideraciones. Las únicas diferencias son las siguientes: \\
 
 \begin{itemize}
 \item No cuenta con ningún puerto de salida y cuenta con un puerto de entrada.
@@ -452,8 +460,6 @@ Un ejemplo de esto se encuentra disponible en el modelo del caso de estudio pres
 \caption{Parámetros del modelo input\_stream}
 \label{table: output stream parameters}
 \end{table*}
-
-\newpage
 
 \section{Logger}
 
@@ -496,6 +502,8 @@ Si bien en la implementación de los procolos de la capa de enlace se van a enco
 	
 \subsection{DNS (Domain Name System)}
 \textit{DNS} (\textit{Domain Name System}) es un sistema de indexación mediante el cual se puede transformar un nombre de dominio en una dirección \textit{IP} del host correspondiente. Este sistema es muy utilizado ya que para los humanos es muy difícil recordar direcciones en formato \textit{IP} pero no en formato \textit{Domian Name}. Asi como el sistema de indexación de una guia telefónica indexa por apellido y nombre para conseguir el número de teléfono de las persona, cuando se cuenta con un nombre de dominio se debe utilizar \textit{DNS} para conseguir la direccion \textit{IP} del host. Este sistema pertenece a la capa de aplicación y es utilizada por diversas aplicaciones para facilitar la comunicación con aplicaciones remotas. Ejemplos de esto son los browsers donde una persona escribe el nombre de dominio de un servidor y \textit{DNS} lo transforma en \textit{IP} para poder acceder al mismo donde se encuentra alojada la plataforma web. 
+
+\newpage
 
 \subsubsection{Estructuras de datos correspondientes}
 La estructura de datos utilizada para el sistema de \textit{DNS} es dns::Packet y cuenta con los siguientes campos:
@@ -586,6 +594,8 @@ Cuando una consulta llega a un servidor iterativo, en caso de ser autoritativo p
 \end{enumerate}
 
 \textbf{note: } un servidor $s1$ es más puntual para una zona que otro servidor $s2$ si y solo si $s1$ pertenece a la zona de $s2$, por ejemplo ``devs.com'' es más puntual que ``com'' ya que ``devs.com'' pertenece a la zona ``com'', con lo cual, si hay una consulta ``algo.devs.com'' el servidor que tiene la respuesta final es ``devs.com'' y no ``com'' quien va a devolver una redirección a ``devs.com''.
+
+\newpage
 
 \subsection{UDP (User Datagram Protocol)}
 
@@ -802,8 +812,6 @@ Tanto \textit{ARP} como \textit{SWP} (explicado más adelante) son protocolos de
 \label{table: parameters link}
 \end{table*}
 
-\newpage
-
 \subsection{Datagrams}
 El protocolo Datagrams es utilizado por los switches para forwardear mensajes. El mismo está basado en la sección \textit{Datagrams} del libro de la materia \cite[p.~172]{peterson2011computer} \\
 
@@ -954,7 +962,7 @@ El input y output del test se puede ver en el apendice \ref{appendix: link unit 
 
 \subsection{Test de integración - Escenario implementado}
 
-Para finalizar y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario donde todos los módulos funcionan en conjuntos para enviar mensajes entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteó el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada al test. Las Figuras \ref{figure: powerdevs host}, \ref{figure: powerdevs router} y \ref{figure: powerdevs switch} muestran los modelos acoplados de dispositivos hosts routers y switches correspondientes al escenario planteado. \\
+Para finalizar y a modo de test de integración, se implementó un modelo de una red y se simuló un escenario donde todos los módulos funcionan en conjuntos para enviar mensajes entre los \textit{host} de dicha red. El escenario implementado en este trabajo está pensado para cubrir de forma minimal los eventos relevantes en el envío de mensajes a través de la red tales como: Pasar por múltiples \textit{routers}, enviar mensajes a otro host de la misma red y enviar mensajes a un \textit{host} de una red donde es el único \textit{host}. Dado que se implementó \textit{DNS}, el escenario también busca mostrar un ejemplo donde se ejecuten tanto pedidos recursivos como pedidos iterativos a los distintos servidores \textit{DNS}. Para conseguir esto, se planteó el escenario mostrado en la Figura \ref{figure: case study}, el mismo cuenta con cinco \textit{subnets} con diferentes cantidades de \textit{switches} y \textit{hosts}, las \textit{subnets} $2$ y $3$ no cuentan con dispositivos extras a los \textit{routers} a los cuales están conectadas ya que no aportaría nada al test. Las Figuras \ref{figure: powerdevs host}, \ref{figure: powerdevs router}, \ref{figure: powerdevs interfaces} y \ref{figure: powerdevs switch} muestran los modelos acoplados de dispositivos hosts routers y switches correspondientes al escenario planteado. \\
 
 En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el host 5 es el host TLD mientras que el host 4 es el host responsable de la zona ``.com'' y el host 3 es el host responsable para la zona ``.devs.com'' con lo cual, el es autoritativo para el dominio ``networks.devs.com''. En esta simulación el host 1 le pide a su servidor local (host 2) que resuelva el dominio ``networks.devs.com'' de forma recursiva, el mismo al no tener esa entrada en su cache, envía el pedido al servidor TLD (host 5) quien no tiene la respuesta pero sabe que pertenece a la zona ``.com'' y le envía un mensaje diciéndole que el host 4 es el responsable de esa zona, también le envía el \textit{IP} del host 4 para que sepa como llegar a el, el host 2 envía entonces la misma consulta al host 4 y repitiéndose lo mismo que antes, el host 4 al no tener la respuesta pero saber que el host 3 es responsable de la zona más puntual ``.devs.com'', le envía el \textit{IP} del host 3 y repitiendo el proceso, el host 2 le envía el mismo pedido al host 3 quien si tiene la respuesta. Una vez con la respuesta, el host 2 la agrega a su cache, para que se mantenga ahí hasta que se venza su \textit{TTL} y y se la envía al host 1. El input y output de la simulación del test se puede ver en el apendice \ref{appendix: integration test} \\
 
@@ -978,12 +986,19 @@ En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width = 0.95\textwidth]{img/png/powerdevs/router.png}
-    \caption{Modelo PowerDEVS de un dispositivo Router con las capas \textit{IPv4} y \textit{Link}; El router cuenta con un modelo link por cada \textit{subnet} a la cual está conectado, para enviar un mensaje, el router debe elegir mediante la \textit{forwarding table} por cual interfaz (modelo link) enviar el mensaje dependiendo a que \textit{subnet} quiera alcanzar. Para poder enviar mensajes a los distintos módulos \textit{Link} se utiliza un demultiplexer.}
+    \includegraphics[width = 0.6\textwidth]{img/png/powerdevs/router.png}
+    \caption{Modelo PowerDEVS de un dispositivo Router con las capas \textit{IPv4} y \textit{Link}; Se puede ver que la capa Link tiene 5 puertos de entrada y salida en vez de 4. Esto es porque como se mencionó en la arquitectura del modelo, la capa 1 cuenta con 2 puertos para la comunicación con la capa 2 y con k puertos para la entrada y salida del dispositivo, uno por cada interfaz, en este caso $k = 3$.}
     \label{figure: powerdevs router}
 \end{figure}
 
 \newpage
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{img/png/powerdevs/router_interfaces.png}
+    \caption{Modelo PowerDEVS de la capa Link del router ; el router debe elegir mediante la \textit{forwarding table} por cual interfaz (modelo link) enviar el mensaje dependiendo a que \textit{subnet} quiera alcanzar. La interfaz viaja en el mensaje multiplexado y el \textit{demultiplexer} es quien lo dirige al modelo \textit{Link} que corresponda. Como se ve, el input y output de cada interfaz al dispositivo se realiza de forma directa, entonces, un mensaje que viene por el puerto 2 va a ir a la interfaz Link r1, por lo que un mensaje enviado al router desde una \textit{subnet} no puede llegar a otra interfaz del router que la interfaz de la misma \textit{subnet}.}
+    \label{figure: powerdevs interfaces}
+\end{figure}
 
 \begin{figure}[!htb]
     \centering
@@ -992,18 +1007,14 @@ En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el 
     \label{figure: powerdevs switch}
 \end{figure}
 
+\newpage
+
 \bibliographystyle{plain}
 \bibliography{references}
 
 \newpage
 
 \appendix
-\section{Formato del log del modelo}
-En esta sección se explica el output generado por el modelo, de esta forma el lector puede comprender los resultados mostrados en el apendice \ref{appendix: logs}
-
-\todo[inline]{COMPLETAR}
-
-
 \section{Logs generados por los tests}
 \label{appendix: logs}
 En esta sección se encuentran todos los logs de las simulaciónes realizada tanto para los test de unidad como para el test de integración del modelo.
@@ -1063,6 +1074,8 @@ network.devs.com A 1.0.0.1 IN 0
 Simulation Ended (0.000862 sec)
 \end{lstlisting}
 
+\newpage
+
 \subsection{Logs del test de unidad del modelo UDP}
 \label{appendix: udp unit test}
 A continuación se muestra el input, output y log del test de unidad del modelo UDP.\\
@@ -1101,6 +1114,8 @@ Simulation Initialized
 Simulation Ended (0.00135 sec)
 \end{lstlisting}
 
+\newpage
+
 \subsection{Logs del test de unidad del modelo IP en un host}
 \label{appendix: ip_host unit test}
 A continuación se muestra el input, output y log del test de unidad del modelo IP en un host.\\
@@ -1134,6 +1149,8 @@ is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 |
 [INFO] - [IPv4 Test] link::Ctrl::ARP_READY
 Simulation Ended (0.000886 sec)
 \end{lstlisting}
+
+\newpage
 
 \subsection{Logs del test de unidad del modelo IP en un router}
 \label{appendix: ip_router unit test}
@@ -1171,6 +1188,8 @@ is: 1.0.0.2 is: | 1.0.0.2 | 255.255.255.255 | 1.0.0.2 | 1 | Host 2 |
 Simulation Ended (0.000795 sec)
 \end{lstlisting}
 
+\newpage
+
 \subsection{Logs del test de unidad del modelo Link}
 \label{appendix: link unit test}
 A continuación se muestra el input, output y log del test de unidad del modelo Link.\\
@@ -1195,6 +1214,8 @@ Simulation Initialized
 [INFO] - [SWP Test] send ACK LFR: 1
 Simulation Ended (0.000283 sec)
 \end{lstlisting}
+
+\newpage
 
 \subsection{Logs del test de integración}
 \label{appendix: integration test}
@@ -1230,7 +1251,4 @@ Como se puede ver, primero llega el mensaje entrante con el nombre de dominio pa
 \textbf{Output de todo el scenario integrado generado por el logger durante la simulación}
 \lstinputlisting[language=Bash]{../scenario/logs/top.log}
 
-\section{Diagrama de flujo de la transiciones internas y external del modelo template Protocol}
-\label{appendix: internal external transition flow}
-\todo[inline]{HACER DIAGRAMA}
 \end{document}

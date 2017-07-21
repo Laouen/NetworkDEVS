@@ -43,459 +43,111 @@
 [INFO] - [Switch Switch 4] 0:0:0:0:0:11 | 1
 [INFO] - [Switch Switch 4] 0:0:0:0:0:12 | 2
 Simulation Initialized
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 1
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 1
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 1
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 1
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:1 throw interface 1
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 1
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
 [INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:1 throw interface 0
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 2
 [INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:2 throw interface 2
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 2
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 2
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 2
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 2
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 1
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 1
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 3
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 3
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 1
 [INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 1
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 2
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:11 throw interface 1
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 2
 [INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 3
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:11 throw interface 1
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 4 Port: 1] send ACK LFR: 3
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 2
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 2
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 3
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 4
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 4
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 4
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 4
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 3
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 3
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 5
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 5
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 4
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 4
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 5
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 5
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 4
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 4
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 4
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 4
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 6
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 6
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 6
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 6
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 4
-[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 4
 [INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 1
-[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 1
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 5
-[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 5
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:12 throw interface 2
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 2
-[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 2
 [INFO] - [Switch Switch 4] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
 [INFO] - [Switch Switch 4] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Deliver frame with SeqNum: 6
-[INFO] - [SWP Switch 4 Port: 0] send ACK LFR: 6
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:12 throw interface 2
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 4 Port: 2] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 4 Port: 2] send ACK LFR: 3
 [INFO] - [Switch Switch 4] send frame for MAC: 0:0:0:0:0:10 throw interface 0
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 5
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 5
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 5
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 5
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 5
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 5
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 4 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 7
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 7
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 7
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 7
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 6
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 6
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 6
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 6
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 8
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 8
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 6
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 6
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 8
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 8
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 7
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 7
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 7
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 7
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 9
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 9
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 9
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 9
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 8
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 8
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 8
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 8
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 7
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 7
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 10
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 10
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 10
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 10
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Discarted frame: Frame not in RWS windows
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:3 throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] Deliver frame with SeqNum: 9
-[INFO] - [SWP Switch 3 Port: 2] send ACK LFR: 9
 [INFO] - [Switch Switch 3] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Deliver frame with SeqNum: 9
-[INFO] - [SWP Switch 2 Port: 2] send ACK LFR: 9
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 11
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 11
 [INFO] - [Switch Switch 2] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 1
 [INFO] - [Switch Switch 2] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 8
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 8
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 2] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 3 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 0] Deliver frame with SeqNum: 11
-[INFO] - [SWP Switch 3 Port: 0] send ACK LFR: 11
 [INFO] - [Switch Switch 1] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 1] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 0
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
 [INFO] - [Switch Switch 3] Bradcast MAC sent throw all interfaces
 [INFO] - [Switch Switch 3] send frame for MAC: ff:ff:ff:ff:ff:ff throw interface 2
-[INFO] - [SWP Switch 2 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 3 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 1 Port: 0] send ACK LFR: 3
 [INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:2 throw interface 2
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] Deliver frame with SeqNum: 3
-[INFO] - [SWP Switch 2 Port: 1] send ACK LFR: 3
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:2 throw interface 0
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 0] Deliver frame with SeqNum: 12
-[INFO] - [SWP Switch 2 Port: 0] send ACK LFR: 12
 [INFO] - [Switch Switch 2] send frame for MAC: 0:0:0:0:0:1 throw interface 1
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 2 Port: 1] Discarted frame: Frame not in RWS windows
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Deliver frame with SeqNum: 9
-[INFO] - [SWP Switch 1 Port: 2] send ACK LFR: 9
 [INFO] - [Switch Switch 1] send frame for MAC: 0:0:0:0:0:1 throw interface 0
-[INFO] - [SWP Switch 2 Port: 1] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 0] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] swp_protocol::processFrame
-[INFO] - [SWP Switch 1 Port: 2] Discarted frame: Frame not in RWS windows
