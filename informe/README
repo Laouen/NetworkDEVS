@@ -1,0 +1,35 @@
+# NetworkDEVS
+#### A Network simulation tool for data network educational purposes
+
+All the instructions of this README file works in Linux Ubuntu 16.04 LTS
+
+## Dependencies
+1. PowerDEVS
+2. C++11 >
+
+**Note:** To compile the model in PowerDEVS IDE the flag *-std=c++11* must be added to the *CXXFLAGS* variable of the PowerDEVS makefile in *powerdevs/engine/Makefile.include*. 
+Also, in order to debug using the GDB option of PowerDEVS IDE, this flag must also be added in the same way to *powerdevs/engine/Makefile.include.debug*.
+
+## PowerDEVS issues
+It's posible that PowerDEVS does not compile after its instalation, if that is the case, the next steps should solve the problem. 
+If this does not solves the problem contact the PowerDEVS team or join the PowerDEVS forum for help https://sourceforge.net/p/powerdevs/discussion/general/
+
+1. Finde the file powerdevs/engine/Makefile.include
+2. Add -I/usr/include/hdf5/serial/ at the end of the of the includes line: INCLUDES = -I$(SRCENGINE) -I$(ATOMICS) -I$(BUILD) -L$(BUILDLIB) -I/usr/include/hdf5/serial/
+
+**Note:** If hdf5 is placed in other path, then the correct path sould be set
+
+## How to compile and run the scenario of the case study
+In order to get the case stady that comes in this project working, the next steps are the instructions: 
+
+1. The root directory of this project must be copied into powerdevs/atomics/ with the name PowerDEVS
+2. The open the file powerdevs/atomics/PowerDEVS/scenario/top.pdm in PowerDEVS
+3. Compile
+4. Run simulation
+
+* The simulation output is in the scenario/output folder
+* The simulation input is in the scenario/input folder
+* The logger output will be in powerdevs/output/pdevs.log
+
+## Documentation
+This projects comes with HTML Doxygen documentation, to open the main page just open NetworkDEVS/doxygen/index.html in a web browser.
