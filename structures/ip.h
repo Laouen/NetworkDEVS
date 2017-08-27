@@ -201,8 +201,8 @@ namespace ip {
    * @details The ip::Routing_entry has the next field:
    * 1. network: a IPv4 containing the subnet of the remote host.
    * 2. netmask: a IPv4 containing the mask that indicate what bits of the network represent the network of the remote host.
-   * 3. nexthope: a IPv4 containing the ip of the reachable nexthope where to send the ip::Datagram.
-   * 4. metric: a int with a metric of how close is the remote host using the nexthope of the entry as the way to reach it.
+   * 3. nexthop: a IPv4 containing the ip of the reachable nexthop where to send the ip::Datagram.
+   * 4. metric: a int with a metric of how close is the remote host using the nexthop of the entry as the way to reach it.
    * 5. purpose: a std::string that specifies a description of the entry.
    */
   struct Routing_entry {
