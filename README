@@ -32,4 +32,4 @@ In order to get the case stady that comes in this project working, the next step
 * The logger output will be in powerdevs/output/pdevs.log
 
 ## Documentation
-This projects comes with HTML Doxygen documentation, to open the main page just open NetworkDEVS/doxygen/index.html in a web browser.
+This projects comes with HTML Doxygen documentation, to open the main page just open NetworkDEVS/doxygen/html/index.html in a web browser.
