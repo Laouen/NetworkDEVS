@@ -9,14 +9,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="214.69859mm"
-   height="177.09932mm"
-   viewBox="0 0 760.74305 627.51727"
+   width="322.28455mm"
+   height="179.92154mm"
+   viewBox="0 0 1141.9531 637.51726"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="ip-arp-comunication.svg"
-   inkscape:export-filename="/home/laouen/powerdevs/atomics/NetworkDEVS/informe/img/png/ip-arp-comunication.png"
+   inkscape:export-filename="/home/lao/Documents/git/NetworkDEVS/informe/img/png/ip-arp-comunication.png"
    inkscape:export-xdpi="89"
    inkscape:export-ydpi="89">
   <defs
@@ -106,9 +106,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.985947"
-     inkscape:cx="368.4582"
-     inkscape:cy="308.7671"
+     inkscape:zoom="0.69716981"
+     inkscape:cx="556.68227"
+     inkscape:cy="391.3371"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -116,11 +116,13 @@
      fit-margin-right="10"
      fit-margin-bottom="10"
      fit-margin-left="10"
-     inkscape:window-width="1553"
+     inkscape:window-width="1551"
      inkscape:window-height="876"
-     inkscape:window-x="47"
+     inkscape:window-x="49"
      inkscape:window-y="24"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     showguides="false"
+     inkscape:guide-bbox="true" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -137,7 +139,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-16.998109,-16.035084)">
+     transform="translate(-16.998109,-5.0261081)">
     <path
        style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.37932616;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
        d="m 112.65075,155.88234 -0.7715,217.82399"
@@ -211,12 +213,12 @@
          x="207.14705"
          style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           style="font-size:10px"
+           style="font-size:12.5px"
            y="205.96782"
            x="207.14705"
            id="tspan5193"
            sodipodi:role="line">Pedido de <tspan
-   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"
    id="tspan5837">MAC address</tspan></tspan></text>
     </g>
     <g
@@ -239,8 +241,8 @@
            id="tspan5209"
            x="203.59717"
            y="270.34439"
-           style="font-size:10px"><tspan
-   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+           style="font-size:12.5px"><tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"
    id="tspan5835">MAC address</tspan> lista</tspan></text>
     </g>
     <g
@@ -262,7 +264,7 @@
            id="tspan5217"
            x="206.63992"
            y="328.69247"
-           style="font-size:10px">Enviar ip::Datagram</tspan></text>
+           style="font-size:12.5px">Enviar ip::Datagram</tspan></text>
     </g>
     <rect
        style="opacity:1;fill:#000000;fill-opacity:0.15500004;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -284,10 +286,10 @@
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path5680"
-       d="m 463.57985,156.89245 -0.76642,406.45203"
+       d="m 666.92337,155.88348 -0.76642,406.45203"
        style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5164572;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
     <g
-       transform="translate(345.0361,1.0142533)"
+       transform="translate(548.37962,0.005278)"
        id="g5682">
       <rect
          style="opacity:1;fill:none;fill-opacity:0.25;stroke:#000000;stroke-width:0.583489;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -311,12 +313,12 @@
     </g>
     <path
        style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.52228129;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-       d="m 654.25938,156.89225 -0.76624,415.77583"
+       d="m 857.6029,155.88328 -0.76624,415.77583"
        id="path5690"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <g
-       transform="translate(185.60835,1.0142533)"
+       transform="translate(388.95187,0.005278)"
        id="g5692">
       <rect
          ry="6.1174092"
@@ -340,7 +342,7 @@
     </g>
     <g
        id="g5700"
-       transform="translate(350.93164,1.0142533)">
+       transform="translate(554.27516,0.005278)">
       <path
          style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Lend);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
          d="m 121.7389,213.57473 170.39456,-10e-6"
@@ -358,12 +360,12 @@
            id="tspan5706"
            x="207.14705"
            y="205.96782"
-           style="font-size:10px">Pedido de<tspan
-   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+           style="font-size:12.5px">Pedido de<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"
    id="tspan5820"> MAC address</tspan></tspan></text>
     </g>
     <g
-       transform="translate(351.84165,-1.0743698)"
+       transform="translate(555.18517,-2.0833451)"
        id="g5708">
       <path
          sodipodi:nodetypes="cc"
@@ -378,17 +380,17 @@
          x="203.59717"
          style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           style="font-size:10px"
+           style="font-size:12.5px"
            y="270.34439"
            x="203.59717"
            id="tspan5714"
            sodipodi:role="line"><tspan
-   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"
    id="tspan5818">MAC address</tspan> lista</tspan></text>
     </g>
     <g
        id="g5716"
-       transform="translate(351.43877,3.4010941)">
+       transform="translate(554.78229,2.3921188)">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -402,7 +404,7 @@
          x="206.63992"
          style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           style="font-size:10px"
+           style="font-size:12.5px"
            y="328.69247"
            x="206.63992"
            id="tspan5722"
@@ -410,8 +412,8 @@
     </g>
     <rect
        ry="0"
-       y="214.10361"
-       x="653.91016"
+       y="213.09462"
+       x="857.25372"
        height="62.568619"
        width="9.7817478"
        id="rect5724"
@@ -421,12 +423,12 @@
        id="rect5726"
        width="15.867268"
        height="128.44826"
-       x="447.71967"
-       y="213.9498"
+       x="651.06323"
+       y="212.94081"
        ry="0" />
     <g
        id="g5728"
-       transform="translate(351.84165,124.03715)">
+       transform="translate(555.18517,123.02818)">
       <path
          style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Lstart);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
          d="m 121.7389,278.48694 170.39456,-1e-5"
@@ -444,10 +446,10 @@
            id="tspan5734"
            x="203.59717"
            y="270.34439"
-           style="font-size:10px">Error en el envio de mensaje</tspan></text>
+           style="font-size:12.5px">Error en el envio de mensaje</tspan></text>
     </g>
     <g
-       transform="translate(351.84165,186.59289)"
+       transform="translate(555.18517,185.58392)"
        id="g5736">
       <path
          sodipodi:nodetypes="cc"
@@ -462,16 +464,16 @@
          x="203.59717"
          style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           style="font-size:10px"
+           style="font-size:12.5px"
            y="270.34439"
            x="203.59717"
            id="tspan5742"
            sodipodi:role="line"><tspan
-   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"
    id="tspan5822">MAC address</tspan> lista</tspan></text>
     </g>
     <g
-       transform="translate(351.43877,191.06838)"
+       transform="translate(554.78229,190.05941)"
        id="g5744">
       <path
          style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker5223);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
@@ -490,20 +492,20 @@
            id="tspan5750"
            x="206.63992"
            y="328.69247"
-           style="font-size:10px">Enviar ip::Datagram</tspan></text>
+           style="font-size:12.5px">Enviar ip::Datagram</tspan></text>
     </g>
     <rect
        style="opacity:1;fill:#000000;fill-opacity:0.15500004;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5752"
        width="9.7817478"
        height="125.32234"
-       x="654.12659"
-       y="339.60574"
+       x="857.47015"
+       y="338.59677"
        ry="0" />
     <rect
        ry="0"
-       y="401.58667"
-       x="446.70541"
+       y="400.5777"
+       x="650.04895"
        height="128.44826"
        width="15.867268"
        id="rect5758"
@@ -512,80 +514,289 @@
        id="text5760"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        transform="translate(-2.2820695,-0.50712665)" />
-    <g
-       id="g5830"
-       transform="translate(-4.3105765,-23.074263)">
-      <text
-         sodipodi:linespacing="125%"
-         id="text5824"
-         y="331.20154"
-         x="724.57739"
-         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"
-         transform="translate(-2.2820695,-0.50712665)"><tspan
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
-           y="331.20154"
-           x="724.57739"
-           id="tspan5826"
-           sodipodi:role="line">Timeout</tspan></text>
-      <path
-         style="opacity:1;fill:#007100;fill-opacity:0.39500002;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-         d="m 746.61867,327.54149 c 0,13.80712 -11.19288,25 -25,25 -11.32661,0 -20.89393,-7.53244 -23.96597,-17.86135 -0.67277,-2.26201 -35.26508,-3.08164 -35.26508,-3.08164 -0.45871,-2.70239 34.67218,-9.43607 35.48732,-11.90393 3.29087,-9.96318 12.67766,-17.15308 23.74373,-17.15308 13.80712,0 25,11.19288 25,25 z"
-         id="path5764"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="ssscsss" />
-    </g>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="567.47473"
-       y="413.38263"
+       x="923.65912"
+       y="308.94202"
+       id="text5824"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5826"
+         x="923.65912"
+         y="308.94202"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'">Timeout</tspan></text>
+    <path
+       sodipodi:nodetypes="zssscsscz"
+       inkscape:connector-curvature="0"
+       id="path5764"
+       d="m 956.28556,305.6098 c -0.34036,16.66517 -10.22404,24.0041 -23.18283,24.93497 -0.6001,0.0431 -15.24668,-0.29359 -15.85777,-0.29359 -11.3266,0 -20.89392,-7.53244 -23.96596,-17.86135 -0.67277,-2.26201 -35.26508,-3.08164 -35.26508,-3.08164 -0.45871,-2.70239 34.67218,-9.43607 35.48732,-11.90393 3.29087,-9.96318 12.67766,-17.15308 23.74372,-17.15308 0.60412,0 15.24383,0.37999 15.83721,0.42219 13.01032,-0.1564 23.54375,8.27126 23.20339,24.93643 z"
+       style="opacity:1;fill:#c40000;fill-opacity:0.39607843;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="760.8183"
+       y="416.37366"
        id="text5796"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5798"
-         x="567.47473"
-         y="413.38263"
-         style="font-size:10px">{El ip::Datagram es devuelto}</tspan></text>
+         x="760.8183"
+         y="416.37366"
+         style="font-size:12.5px">{El ip::Datagram es devuelto}</tspan></text>
     <path
        style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-       d="m 380.34499,59.408225 0,548.711035"
+       d="m 583.68851,58.39925 0,548.71104"
        id="path5800"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="207.62923"
+       x="303.14969"
        y="53.465225"
        id="text5802"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5804"
-         x="210.01692"
+         x="305.75711"
          y="53.465225"
-         style="-inkscape-font-specification:'sans-serif Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">Comunicación </tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">Comunicación </tspan><tspan
          sodipodi:role="line"
-         x="207.62923"
+         x="303.14969"
          y="72.215225"
          id="tspan5812"
-         style="-inkscape-font-specification:'sans-serif Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">sin interrupción</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">sin interrupción</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5806"
-       y="53.465225"
-       x="557.90167"
+       y="52.456249"
+       x="856.84625"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="53.465225"
-         x="560.28937"
+         y="52.456249"
+         x="859.45367"
          sodipodi:role="line"
          id="tspan5810"
-         style="-inkscape-font-specification:'sans-serif Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">Comunicación  interrumpida </tspan><tspan
-         y="72.215225"
-         x="557.90167"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">Comunicación  interrumpida </tspan><tspan
+         y="71.206253"
+         x="856.84625"
          sodipodi:role="line"
          id="tspan5816"
-         style="-inkscape-font-specification:'sans-serif Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">por un timeout</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">por un timeout</tspan></text>
+    <g
+       transform="translate(754.36989,147.74547)"
+       id="g4254">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4256"
+         d="m 121.7389,213.57473 170.39456,-10e-6"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Lend);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4258"
+         y="205.96782"
+         x="207.14705"
+         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:12.5px"
+           y="205.96782"
+           x="207.14705"
+           id="tspan4260"
+           sodipodi:role="line">Pedido de<tspan
+   id="tspan4262"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"> MAC address</tspan></tspan></text>
+    </g>
+    <g
+       id="g4264"
+       transform="translate(755.99708,164.30367)">
+      <path
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Lstart);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+         d="m 121.7389,278.48694 170.39456,-1e-5"
+         id="path4266"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="203.59717"
+         y="270.34439"
+         id="text4268"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4270"
+           x="203.59717"
+           y="270.34439"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"> Envía MAC addres</tspan></text>
+    </g>
+    <g
+       id="g4274"
+       transform="translate(197.05197,19.944271)">
+      <path
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Lend);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+         d="m 121.7389,213.57473 170.39456,-10e-6"
+         id="path4276"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="207.14705"
+         y="205.96782"
+         id="text4278"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4280"
+           x="207.14705"
+           y="205.96782"
+           style="font-size:12.5px">Pedido de<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';font-size:12.5px"
+   id="tspan4282"> MAC address</tspan></tspan></text>
+    </g>
+    <g
+       transform="translate(196.65065,-21.309967)"
+       id="g4284">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4286"
+         d="m 121.7389,278.48694 170.39456,-1e-5"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Lstart);color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4288"
+         y="270.34439"
+         x="203.59717"
+         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+           y="270.34439"
+           x="203.59717"
+           id="tspan4290"
+           sodipodi:role="line">Envía MAC address</tspan></text>
+    </g>
+    <path
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.37932616;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 500.40908,157.91085 -0.7715,217.82399"
+       id="path4294"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <g
+       transform="translate(31.755423,0)"
+       id="g4296">
+      <rect
+         ry="6.1174092"
+         y="105.85562"
+         x="408.72583"
+         height="40.986645"
+         width="119.08415"
+         id="rect4298"
+         style="opacity:1;fill:none;fill-opacity:0.25;stroke:#000000;stroke-width:0.583489;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4300"
+         y="129.98"
+         x="468.90878"
+         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="129.98"
+           x="468.90878"
+           id="tspan4302"
+           sodipodi:role="line">Network</tspan></text>
+    </g>
+    <text
+       transform="matrix(0.97432635,-0.22514033,0.22514033,0.97432635,0,0)"
+       sodipodi:linespacing="125%"
+       id="text4306"
+       y="248.28419"
+       x="340.74335"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+         y="248.28419"
+         x="342.73309"
+         id="tspan4308"
+         sodipodi:role="line">MAC address no </tspan><tspan
+         id="tspan4312"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+         y="263.90918"
+         x="340.74335"
+         sodipodi:role="line">está en cache</tspan></text>
+    <path
+       style="opacity:1;fill:#c40000;fill-opacity:0.39500002;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 439.65114,152.74391 c 4.11781,11.68068 5.54823,26.2326 -6.41727,30.5563 -1.2652,0.45717 -63.4359,14.25813 -64.80851,14.47206 -14.37327,2.2402 -21.86089,3.92368 -29.68581,-3.48539 -1.71364,-1.62258 -32.08128,14.96376 -32.08128,14.96376 -1.74845,-2.11099 25.30896,-25.50797 24.78096,-28.05277 -2.13161,-10.2738 0.75447,-23.09555 11.98613,-26.72687 1.34246,-0.43403 63.87351,-13.59032 65.19869,-13.92062 21.87178,-5.45147 26.06386,-1.88526 31.02709,12.19353 z"
+       id="path4310"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sssscssss" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4314"
+       d="m 1064.067,155.87759 -0.7653,431.557"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.53177243;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <g
+       id="g4316"
+       transform="translate(595.41646,0.005278)">
+      <rect
+         style="opacity:1;fill:none;fill-opacity:0.25;stroke:#000000;stroke-width:0.583489;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4318"
+         width="119.08415"
+         height="40.986645"
+         x="408.72583"
+         y="105.85562"
+         ry="6.1174092" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="468.90878"
+         y="129.98"
+         id="text4320"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4322"
+           x="468.90878"
+           y="129.98">Network</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="897.9397"
+       y="383.6644"
+       id="text4326"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.97759825,-0.21047961,0.21047961,0.97759825,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4328"
+         x="899.92944"
+         y="383.6644"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'">MAC address ya </tspan><tspan
+         sodipodi:role="line"
+         x="897.9397"
+         y="399.2894"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'"
+         id="tspan4330">está en cache</tspan></text>
+    <path
+       sodipodi:nodetypes="sssscssss"
+       inkscape:connector-curvature="0"
+       id="path4332"
+       d="m 1013.2701,173.29834 c 3.0945,11.99242 5.5482,26.23259 -6.4173,30.5563 -1.2652,0.45717 -71.32485,16.40969 -72.69746,16.62362 -14.37327,2.2402 -21.86089,3.92368 -29.68581,-3.4854 -1.71364,-1.62257 -32.08128,14.96376 -32.08128,14.96376 -1.74845,-2.11098 25.30896,-25.50796 24.78096,-28.05276 -2.13161,-10.2738 0.75447,-23.09556 11.98613,-26.72687 1.34246,-0.43403 71.75439,-15.77656 73.08773,-16.07218 13.26554,-2.94132 27.85673,-0.0923 31.02703,12.19353 z"
+       style="opacity:1;fill:#007100;fill-opacity:0.39500002;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="0"
+       y="361.12741"
+       x="1063.9055"
+       height="82.291222"
+       width="9.7817478"
+       id="rect4334"
+       style="opacity:1;fill:#000000;fill-opacity:0.15500004;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="0"
+       y="232.78029"
+       x="500.32751"
+       height="24.534121"
+       width="9.7817478"
+       id="rect4336"
+       style="opacity:1;fill:#000000;fill-opacity:0.15500004;stroke:none;stroke-width:0.25400001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>
