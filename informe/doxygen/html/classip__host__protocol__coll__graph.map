@@ -1,20 +1,19 @@
 <map id="ip_host_protocol" name="ip_host_protocol">
-<area shape="rect" id="node2" href="$classip__protocol.html" title="ip_protocol" alt="" coords="2379,182,2464,209"/>
-<area shape="rect" id="node3" href="$classLayer.html" title="Layer\&lt; udp::Segment,\l ip::Control, ip::Datagram,\l link::Control, udp::Segment,\l ip::Control, ip::Datagram,\l message::Multiplexed\&lt; link\l::Control \&gt; \&gt;" alt="" coords="2140,424,2329,524"/>
-<area shape="rect" id="node6" href="$structlink_1_1Control.html" title="This struct is used to allow comunication between the io layer and ther link layer. " alt="" coords="1405,418,1497,445"/>
-<area shape="rect" id="node7" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="216,270,265,297"/>
-<area shape="rect" id="node13" href="$structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="407,479,544,506"/>
-<area shape="rect" id="node14" href="$structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. " alt="" coords="434,358,517,385"/>
-<area shape="rect" id="node18" href="$structip_1_1Control.html" title="This struct is used to send control messages to the UDP protocol in the near up layer. " alt="" coords="434,530,517,557"/>
-<area shape="rect" id="node23" href="$structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. " alt="" coords="415,130,536,157"/>
-<area shape="rect" id="node27" href="$structip_1_1Forwarding__entry.html" title="Represent an entry of the forwarding table of the ip protocol. " alt="" coords="405,71,545,98"/>
-<area shape="rect" id="node8" href="$structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. " alt="" coords="1027,418,1124,445"/>
-<area shape="rect" id="node9" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="423,425,528,451"/>
-<area shape="rect" id="node10" href="$structudp_1_1Segment.html" title="udp::Segment" alt="" coords="709,485,812,511"/>
-<area shape="rect" id="node11" href="$structudp_1_1Header.html" title="udp::Header" alt="" coords="429,581,522,607"/>
-<area shape="rect" id="node12" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="181,527,300,554"/>
-<area shape="rect" id="node16" href="$classmessage_1_1queue.html" title="message::queue\&lt; message\l::Multiplexed\&lt; link::Control \&gt; \&gt;" alt="" coords="1731,479,1933,520"/>
-<area shape="rect" id="node20" href="$classLogger.html" title="This class print formated std::string in the pdevs.log file used by the PowerDEVS simulator..." alt="" coords="1801,545,1863,571"/>
-<area shape="rect" id="node24" title="STL class. " alt="" coords="201,13,281,39"/>
-<area shape="rect" id="node25" title="STL class. " alt="" coords="5,5,132,47"/>
+<area shape="rect" id="node2" href="$classip__protocol.html" title="ip_protocol" alt="" coords="2337,154,2423,181"/>
+<area shape="rect" id="node3" href="$classProtocol.html" title="Protocol\&lt; udp::Segment,\l ip::Control, ip::Datagram,\l link::Control \&gt;" alt="" coords="2115,374,2288,430"/>
+<area shape="rect" id="node6" href="$structlink_1_1Control.html" title="This struct is used to allow comunication between the io layer and ther link layer. " alt="" coords="1405,443,1497,470"/>
+<area shape="rect" id="node7" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="216,266,265,293"/>
+<area shape="rect" id="node13" href="$structudp_1_1PseudoHeader.html" title="This struct declares an udp::Segment pseudo&#45;header. " alt="" coords="407,534,544,561"/>
+<area shape="rect" id="node14" href="$structip_1_1Header.html" title="This struct implement an IPv4 Datagram header. " alt="" coords="434,410,517,437"/>
+<area shape="rect" id="node17" href="$structip_1_1Control.html" title="This struct is used to send control messages to the UDP protocol in the near up layer. " alt="" coords="434,295,517,322"/>
+<area shape="rect" id="node22" href="$structip_1_1Routing__entry.html" title="Represent an entry of the routing table of the ip protocol. " alt="" coords="415,103,536,130"/>
+<area shape="rect" id="node26" href="$structip_1_1Forwarding__entry.html" title="Represent an entry of the forwarding table of the ip protocol. " alt="" coords="405,47,545,74"/>
+<area shape="rect" id="node8" href="$structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. " alt="" coords="1027,443,1124,470"/>
+<area shape="rect" id="node9" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="423,477,528,503"/>
+<area shape="rect" id="node10" href="$structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. " alt="" coords="709,539,812,566"/>
+<area shape="rect" id="node11" href="$structudp_1_1Header.html" title="This struct declares an udp::Segment header. " alt="" coords="429,585,522,611"/>
+<area shape="rect" id="node12" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="181,534,300,561"/>
+<area shape="rect" id="node19" href="$classLogger.html" title="This class print formated std::string in the pdevs.log file used by the PowerDEVS simulator..." alt="" coords="1789,501,1850,527"/>
+<area shape="rect" id="node23" title="STL class. " alt="" coords="201,13,281,39"/>
+<area shape="rect" id="node24" title="STL class. " alt="" coords="5,5,132,47"/>
 </map>

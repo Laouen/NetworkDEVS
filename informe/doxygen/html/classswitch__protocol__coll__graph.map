@@ -1,5 +1,5 @@
 <map id="switch_protocol" name="switch_protocol">
-<area shape="rect" id="node2" href="$classLayer.html" title="Layer\&lt; int, int, message\l::Multiplexed\&lt; link::Frame\l \&gt;, int \&gt;" alt="" coords="1031,131,1204,187"/>
+<area shape="rect" id="node2" href="$classProtocol.html" title="Protocol\&lt; int, int,\l message::Multiplexed\l\&lt; link::Frame \&gt;, int \&gt;" alt="" coords="1031,131,1184,187"/>
 <area shape="rect" id="node6" href="$structmessage_1_1Multiplexed.html" title="message::Multiplexed\l\&lt; link::Frame \&gt;" alt="" coords="452,170,601,211"/>
 <area shape="rect" id="node7" href="$structlink_1_1Frame.html" title="Implement a L2 frame. " alt="" coords="260,177,347,204"/>
 <area shape="rect" id="node8" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="5,152,111,179"/>

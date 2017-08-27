@@ -2,9 +2,10 @@ var searchData=
 [
   ['samesubnet',['sameSubnet',['../structip_1_1Routing__entry.html#ae756d25da9d7cda6c2fe7aed59284b18',1,'ip::Routing_entry::sameSubnet()'],['../structip_1_1Forwarding__entry.html#a15177e8af63ffd9d41a72a55abfcbb58',1,'ip::Forwarding_entry::sameSubnet()']]],
   ['segment',['Segment',['../structudp_1_1Segment.html#ac5bb0893a862d614ceaefcc3f76fc6da',1,'udp::Segment::Segment()'],['../structudp_1_1Segment.html#acc1762aaf9872190d9021a574123122c',1,'udp::Segment::Segment(const Segment &amp;o)']]],
-  ['send',['send',['../classmessage_1_1queue.html#a05cd5f07a0ba524f1a41340b821724c5',1,'message::queue']]],
+  ['send',['send',['../classmessage_1_1queue.html#a5fb6a671faf783c7bd13caa69451ca84',1,'message::queue::send(const MSG &amp;message, ushort port)'],['../classmessage_1_1queue.html#a95abcec7e979fbc1233204c5d87865b1',1,'message::queue::send(const MSG &amp;message, ushort interface, ushort port)']]],
   ['sendframe',['sendFrame',['../structswp_1_1State.html#adc781763914d3d1de3ff5c462f1f76ef',1,'swp::State']]],
   ['sendwindowsisfull',['sendWindowsIsFull',['../structswp_1_1State.html#ad932ee3326683cbee09e8a8b36f26b9b',1,'swp::State']]],
+  ['set_5fmultiplexed',['set_multiplexed',['../classmessage_1_1queue.html#ae84717161f68aa5fee8b158afe7e9a75',1,'message::queue']]],
   ['setflag',['setFlag',['../structdns_1_1Header.html#ac8629bfb54bfe73b2a85ad3ab04e4561',1,'dns::Header']]],
   ['setmodulename',['setModuleName',['../classLogger.html#a99b49a8748bc611e40c21017b8cf7c4c',1,'Logger']]],
   ['setpayload',['setPayload',['../structlink_1_1Frame.html#af14b9acc0bd67497f8d008425c36462e',1,'link::Frame::setPayload(const ip::Datagram &amp;p)'],['../structlink_1_1Frame.html#a9eb67e1eb8d928dba0a42451edb590eb',1,'link::Frame::setPayload(const arp::Packet &amp;p)'],['../structudp_1_1Segment.html#abe03349ffcc6719961fdc447d930dd37',1,'udp::Segment::setPayload()']]],

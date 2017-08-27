@@ -1,11 +1,11 @@
 <map id="udp_protocol" name="udp_protocol">
-<area shape="rect" id="node2" href="$classLayer.html" title="Layer\&lt; dns::Packet,\l udp::Control, udp::\lSegment, ip::Control \&gt;" alt="" coords="2404,160,2559,216"/>
-<area shape="rect" id="node5" href="$structudp_1_1Segment.html" title="udp::Segment" alt="" coords="1487,135,1589,161"/>
+<area shape="rect" id="node2" href="$classProtocol.html" title="Protocol\&lt; dns::Packet,\l udp::Control, udp::Segment,\l ip::Control \&gt;" alt="" coords="2404,160,2595,216"/>
+<area shape="rect" id="node5" href="$structudp_1_1Segment.html" title="This struct declares an udp::Segment to send through the network. " alt="" coords="1487,135,1589,161"/>
 <area shape="rect" id="node6" href="$structabstract_1_1Data.html" title="Represent an abstract data structure for any kind of network data. " alt="" coords="1138,157,1243,184"/>
-<area shape="rect" id="node23" href="$structudp_1_1Control.html" title="udp::Control" alt="" coords="1709,253,1802,280"/>
-<area shape="rect" id="node7" href="$structudp_1_1Header.html" title="udp::Header" alt="" coords="1144,107,1237,133"/>
+<area shape="rect" id="node23" href="$structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol..." alt="" coords="1709,253,1802,280"/>
+<area shape="rect" id="node7" href="$structudp_1_1Header.html" title="This struct declares an udp::Segment header. " alt="" coords="1144,107,1237,133"/>
 <area shape="rect" id="node8" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="870,139,989,165"/>
-<area shape="rect" id="node9" href="$structudp_1_1PseudoHeader.html" title="udp::PseudoHeader" alt="" coords="1122,56,1259,83"/>
+<area shape="rect" id="node9" href="$structudp_1_1PseudoHeader.html" title="This struct declares an udp::Segment pseudo&#45;header. " alt="" coords="1122,56,1259,83"/>
 <area shape="rect" id="node15" href="$structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="1144,208,1237,235"/>
 <area shape="rect" id="node10" href="$structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. " alt="" coords="659,173,709,200"/>
 <area shape="rect" id="node12" href="$structip_1_1Control.html" title="This struct is used to send control messages to the UDP protocol in the near up layer. " alt="" coords="888,5,971,32"/>

@@ -144,28 +144,28 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a105b752c949ecc83a6c64dec53b51e96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a105b752c949ecc83a6c64dec53b51e96"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>vide</b></td></tr>
+ushort&#160;</td><td class="memItemRight" valign="bottom"><b>vide</b> = 0</td></tr>
 <tr class="separator:a105b752c949ecc83a6c64dec53b51e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3ae0942baa2544afa8b86b9677ce464"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3ae0942baa2544afa8b86b9677ce464"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>total_length</b></td></tr>
+ushort&#160;</td><td class="memItemRight" valign="bottom"><b>total_length</b> = 0</td></tr>
 <tr class="separator:ae3ae0942baa2544afa8b86b9677ce464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a1db0df8e25a4bcc0f2df9549bc30b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a1db0df8e25a4bcc0f2df9549bc30b1"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>identification</b></td></tr>
+ushort&#160;</td><td class="memItemRight" valign="bottom"><b>identification</b> = 0</td></tr>
 <tr class="separator:a6a1db0df8e25a4bcc0f2df9549bc30b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c79b047f8384c0e78055dda3271598f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c79b047f8384c0e78055dda3271598f"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>ff</b></td></tr>
+ushort&#160;</td><td class="memItemRight" valign="bottom"><b>ff</b> = 0</td></tr>
 <tr class="separator:a9c79b047f8384c0e78055dda3271598f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad747dde10ed8db84dd6eec3e5e6e4619"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad747dde10ed8db84dd6eec3e5e6e4619"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>ttlp</b></td></tr>
+ushort&#160;</td><td class="memItemRight" valign="bottom"><b>ttlp</b> = 0</td></tr>
 <tr class="separator:ad747dde10ed8db84dd6eec3e5e6e4619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c970e995fa43b87ed6be2a7e3b7e179"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c970e995fa43b87ed6be2a7e3b7e179"></a>
-ushort&#160;</td><td class="memItemRight" valign="bottom"><b>header_checksum</b></td></tr>
+ushort&#160;</td><td class="memItemRight" valign="bottom"><b>header_checksum</b> = 0</td></tr>
 <tr class="separator:a9c970e995fa43b87ed6be2a7e3b7e179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0da2fcac6244ddb22e31efb81e3571a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0da2fcac6244ddb22e31efb81e3571a9"></a>
-<a class="el" href="structIPv4.html">IPv4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>src_ip</b></td></tr>
+<a class="el" href="structIPv4.html">IPv4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>src_ip</b> = &quot;0.0.0.0&quot;</td></tr>
 <tr class="separator:a0da2fcac6244ddb22e31efb81e3571a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3609ecc70b34815e28ef2f46708fe7ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3609ecc70b34815e28ef2f46708fe7ee"></a>
-<a class="el" href="structIPv4.html">IPv4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dest_ip</b></td></tr>
+<a class="el" href="structIPv4.html">IPv4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dest_ip</b> = &quot;0.0.0.0&quot;</td></tr>
 <tr class="separator:a3609ecc70b34815e28ef2f46708fe7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -177,7 +177,7 @@ ushort&#160;</td><td class="memItemRight" valign="bottom"><b>header_checksum</b>
 <li>total_length: unsigned short that stores the total <a class="el" href="structip_1_1Datagram.html" title="This class represent an ip::Datagram to send through the network. ">ip::Datagram</a> length.</li>
 <li>identification: unsigned short that stores the identification.</li>
 <li>ff: unsigned short that stores the flags and fragment_offset.</li>
-<li>ttlp: unsigned short that stores the TTL and the Protocol.</li>
+<li>ttlp: unsigned short that stores the TTL and the <a class="el" href="classProtocol.html" title="This class is a meta model that implements all the common behavior of a network devise protocol from ...">Protocol</a>.</li>
 <li>header_checksum: unsigned short that stores the header checksum.</li>
 <li>src_ip: <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> that stores the src IP.</li>
 <li>dest_ip: <a class="el" href="structIPv4.html" title="This struct declares a IPv4 type for NetworkDEVS simulation purposes. ">IPv4</a> that stores the dest IP. </li>
@@ -345,7 +345,7 @@ ushort&#160;</td><td class="memItemRight" valign="bottom"><b>header_checksum</b>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/lao/Documents/git/NetworkDEVS/structures/<a class="el" href="ip_8h_source.html">ip.h</a></li>
+<li>/home/lao/powerdevs/atomics/NetworkDEVS/structures/<a class="el" href="ip_8h_source.html">ip.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

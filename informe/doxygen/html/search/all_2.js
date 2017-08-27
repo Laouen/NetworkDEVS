@@ -4,6 +4,7 @@ var searchData=
   ['checksum_5fc_5fstr',['checksum_c_str',['../structip_1_1Header.html#a32100da1e12b3a6a8aca71d665c7a2e9',1,'ip::Header']]],
   ['checksum_5fsize',['checksum_size',['../structip_1_1Header.html#ae9467c8f725af565e43fb9210ad9a943',1,'ip::Header']]],
   ['class',['Class',['../namespacedns.html#a90321cc8e6ade0bea4be3fee56d3cef2',1,'dns']]],
+  ['clear',['clear',['../classmessage_1_1queue.html#a6b5fbac4cdd0c3a563e3d8f8422e2cb1',1,'message::queue']]],
   ['connected',['connected',['../structudp_1_1Socket.html#a176759a6b6a7423af91341f72a979bfc',1,'udp::Socket']]],
   ['control',['Control',['../structudp_1_1Control.html',1,'udp']]],
   ['control',['Control',['../structip_1_1Control.html',1,'ip']]],

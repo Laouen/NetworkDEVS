@@ -1,55 +1,66 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$classdemultiplexer.html" title="Template meta model of a demultiplexer that receives a message::multiplexed&lt;MSG&gt; in the input port nu..." alt="" coords="152,5,305,32"/>
-<area shape="rect" id="node3" href="$classdemultiplexer.html" title="demultiplexer\&lt; link\l::Control \&gt;" alt="" coords="163,57,294,98"/>
-<area shape="rect" id="node5" href="$classdemultiplexer.html" title="demultiplexer\&lt; link\l::Frame \&gt;" alt="" coords="163,122,294,163"/>
-<area shape="rect" id="node7" href="$classinput__stream.html" title="Template meta model of an input_stream model. Once instanciated, this model is initialized with a fil..." alt="" coords="147,188,310,215"/>
-<area shape="rect" id="node8" href="$classinput__stream.html" title="input_stream\&lt; dns::\lDomainName \&gt;" alt="" coords="159,239,298,281"/>
-<area shape="rect" id="node10" href="$classinput__stream.html" title="input_stream\&lt; dns::\lPacket \&gt;" alt="" coords="159,305,298,346"/>
-<area shape="rect" id="node12" href="$classinput__stream.html" title="input_stream\&lt; ip::Control \&gt;" alt="" coords="138,371,319,397"/>
-<area shape="rect" id="node14" href="$classinput__stream.html" title="input_stream\&lt; ip::Datagram \&gt;" alt="" coords="131,421,327,448"/>
-<area shape="rect" id="node16" href="$classinput__stream.html" title="input_stream\&lt; link\l::Control \&gt;" alt="" coords="164,473,293,514"/>
-<area shape="rect" id="node18" href="$classinput__stream.html" title="input_stream\&lt; link\l::Frame \&gt;" alt="" coords="164,538,293,579"/>
-<area shape="rect" id="node20" href="$classinput__stream.html" title="input_stream\&lt; udp::\lControl \&gt;" alt="" coords="159,603,298,645"/>
-<area shape="rect" id="node22" href="$classinput__stream.html" title="input_stream\&lt; udp::\lSegment \&gt;" alt="" coords="159,669,298,710"/>
-<area shape="rect" id="node24" href="$classLayer.html" title="This class is a meta model that implements all the common behavior of a network devise layer from the..." alt="" coords="134,734,323,775"/>
-<area shape="rect" id="node25" href="$classLayer.html" title="Layer\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="139,799,318,855"/>
-<area shape="rect" id="node27" href="$classLayer.html" title="Layer\&lt; dns::Packet,\l udp::Control, udp::\lSegment, ip::Control \&gt;" alt="" coords="151,879,306,935"/>
-<area shape="rect" id="node29" href="$classLayer.html" title="Layer\&lt; int, int, message\l::Multiplexed\&lt; link::Frame\l \&gt;, int \&gt;" alt="" coords="142,959,315,1015"/>
-<area shape="rect" id="node31" href="$classLayer.html" title="Layer\&lt; ip::Datagram,\l link::Control, link\l::Frame, int \&gt;" alt="" coords="156,1039,301,1095"/>
-<area shape="rect" id="node33" href="$classLayer.html" title="Layer\&lt; udp::Segment,\l ip::Control, ip::Datagram,\l link::Control, udp::Segment,\l ip::Control, ip::Datagram,\l message::Multiplexed\&lt; link\l::Control \&gt; \&gt;" alt="" coords="134,1118,323,1218"/>
-<area shape="rect" id="node37" href="$classmultiplexer.html" title="Template meta model of a multiplexer that receives a MSG in one of the inputs port and returns a mess..." alt="" coords="159,1243,298,1269"/>
-<area shape="rect" id="node38" href="$classmultiplexer.html" title="multiplexer\&lt; link::\lFrame \&gt;" alt="" coords="166,1294,291,1335"/>
-<area shape="rect" id="node40" href="$classoutput__stream.html" title="Template meta model of an output_stream model. Once instanciated, this model is initialized with a fi..." alt="" coords="146,1360,311,1387"/>
-<area shape="rect" id="node41" href="$classoutput__stream.html" title="output_stream\&lt; dns\l::DomainName \&gt;" alt="" coords="159,1411,298,1453"/>
-<area shape="rect" id="node43" href="$classoutput__stream.html" title="output_stream\&lt; dns\l::Packet \&gt;" alt="" coords="159,1477,298,1518"/>
-<area shape="rect" id="node45" href="$classoutput__stream.html" title="output_stream\&lt; ip::\lDatagram \&gt;" alt="" coords="161,1542,296,1583"/>
-<area shape="rect" id="node47" href="$classoutput__stream.html" title="output_stream\&lt; link\l::Control \&gt;" alt="" coords="160,1607,297,1649"/>
-<area shape="rect" id="node49" href="$classoutput__stream.html" title="output_stream\&lt; link\l::Frame \&gt;" alt="" coords="160,1673,297,1714"/>
-<area shape="rect" id="node51" href="$classoutput__stream.html" title="output_stream\&lt; udp\l::Control \&gt;" alt="" coords="159,1738,298,1779"/>
-<area shape="rect" id="node53" href="$classoutput__stream.html" title="output_stream\&lt; udp\l::Segment \&gt;" alt="" coords="159,1803,298,1845"/>
-<area shape="rect" id="node4" href="$classdemultiplexer__ip__link.html" title="A specialization of the demultiplexer template model to demultiplex message::Multiplexed&lt;link::Contro..." alt="" coords="378,64,521,91"/>
-<area shape="rect" id="node6" href="$classdemultiplexer__switch.html" title="A specialization of the demultiplexer template model to demultiplex message::Multiplexed&lt;link::Frame&gt;..." alt="" coords="377,129,521,156"/>
-<area shape="rect" id="node9" href="$classdomain__name__source.html" title="A specialization of input_stream template model to generate input of type dns::DomainName from a file..." alt="" coords="375,247,524,273"/>
-<area shape="rect" id="node11" href="$classdns__packet__src.html" title="A specialization of input_stream template model to generate input of type dns::Packet from a file..." alt="" coords="392,312,507,339"/>
-<area shape="rect" id="node13" href="$classip__control__src.html" title="A specialization of input_stream template model to generate input of type ip::Control from a file..." alt="" coords="398,371,501,397"/>
-<area shape="rect" id="node15" href="$classip__datagram__src.html" title="A specialization of input_stream template model to generate input of type ip::Datagram from a file..." alt="" coords="390,421,509,448"/>
-<area shape="rect" id="node17" href="$classlink__control__src.html" title="A specialization of input_stream template model to generate input of type link::Control from a file..." alt="" coords="393,480,506,507"/>
-<area shape="rect" id="node19" href="$classlink__frame__src.html" title="A specialization of input_stream template model to generate input of type link::Frame from a file..." alt="" coords="396,545,503,572"/>
-<area shape="rect" id="node21" href="$classudp__control__src.html" title="A specialization of input_stream template model to generate input of type udp::Control from a file..." alt="" coords="392,611,507,637"/>
-<area shape="rect" id="node23" href="$classudp__segment__src.html" title="A specialization of input_stream template model to generate input of type udp::Segment from a file..." alt="" coords="387,676,512,703"/>
-<area shape="rect" id="node26" href="$classdns__server.html" title="dns_server" alt="" coords="406,813,493,840"/>
-<area shape="rect" id="node28" href="$classudp__protocol.html" title="udp_protocol" alt="" coords="401,893,497,920"/>
-<area shape="rect" id="node30" href="$classswitch__protocol.html" title="switch_protocol" alt="" coords="393,973,506,1000"/>
-<area shape="rect" id="node32" href="$classlink__protocol.html" title="link_protocol" alt="" coords="402,1053,497,1080"/>
-<area shape="rect" id="node34" href="$classip__protocol.html" title="ip_protocol" alt="" coords="407,1155,492,1181"/>
-<area shape="rect" id="node35" href="$classip__host__protocol.html" title="ip_host_protocol" alt="" coords="576,1129,693,1156"/>
-<area shape="rect" id="node36" href="$classip__router__protocol.html" title="ip_router_protocol" alt="" coords="572,1180,697,1207"/>
-<area shape="rect" id="node39" href="$classmultiplexer__switch.html" title="multiplexer_switch" alt="" coords="384,1301,515,1328"/>
-<area shape="rect" id="node42" href="$classdomain__name__sink.html" title="A specialization of output_stream template model to write in a file output messages of type dns::Doma..." alt="" coords="382,1419,517,1445"/>
-<area shape="rect" id="node44" href="$classdns__packet__sink.html" title="A specialization of output_stream template model to write in a file output messages of type dns::Pack..." alt="" coords="389,1484,509,1511"/>
-<area shape="rect" id="node46" href="$classip__datagram__sink.html" title="A specialization of output_stream template model to write in a file output messages of type ip::Datag..." alt="" coords="387,1549,511,1576"/>
-<area shape="rect" id="node48" href="$classlink__control__sink.html" title="A specialization of output_stream template model to write in a file output messages of type link::Con..." alt="" coords="390,1615,509,1641"/>
-<area shape="rect" id="node50" href="$classlink__frame__sink.html" title="A specialization of output_stream template model to write in a file output messages of type link::Fra..." alt="" coords="393,1680,506,1707"/>
-<area shape="rect" id="node52" href="$classudp__control__sink.html" title="A specialization of output_stream template model to write in a file output messages of type udp::Cont..." alt="" coords="389,1745,509,1772"/>
-<area shape="rect" id="node54" href="$classudp__segment__sink.html" title="A specialization of output_stream template model to write in a file output messages of type udp::Segm..." alt="" coords="384,1811,515,1837"/>
+<area shape="rect" id="node2" href="$classDDemultiplexer.html" title="Template meta model of a dual_demultiplexer that receives a message::multiplexed&lt;DATA&gt; or message::mu..." alt="" coords="147,5,311,47"/>
+<area shape="rect" id="node3" href="$classDDemultiplexer.html" title="DDemultiplexer\&lt; dns\l::DomainName, int \&gt;" alt="" coords="156,71,301,112"/>
+<area shape="rect" id="node5" href="$classDDemultiplexer.html" title="DDemultiplexer\&lt; dns\l::Packet, udp::Control \&gt;" alt="" coords="147,136,310,177"/>
+<area shape="rect" id="node7" href="$classDDemultiplexer.html" title="DDemultiplexer\&lt; ip\l::Datagram, link::Control \&gt;" alt="" coords="140,201,317,243"/>
+<area shape="rect" id="node9" href="$classDDemultiplexer.html" title="DDemultiplexer\&lt; link\l::Frame, int \&gt;" alt="" coords="157,267,301,308"/>
+<area shape="rect" id="node11" href="$classDDemultiplexer.html" title="DDemultiplexer\&lt; udp\l::Segment, ip::Control \&gt;" alt="" coords="147,332,310,373"/>
+<area shape="rect" id="node13" href="$classdemultiplexer.html" title="Template meta model of a demultiplexer that receives a message::multiplexed&lt;MSG&gt; in the input port nu..." alt="" coords="152,398,305,425"/>
+<area shape="rect" id="node14" href="$classdemultiplexer.html" title="demultiplexer\&lt; link\l::Control \&gt;" alt="" coords="163,449,294,491"/>
+<area shape="rect" id="node16" href="$classdemultiplexer.html" title="demultiplexer\&lt; link\l::Frame \&gt;" alt="" coords="163,515,294,556"/>
+<area shape="rect" id="node18" href="$classinput__stream.html" title="Template meta model of an input_stream model. Once instanciated, this model is initialized with a fil..." alt="" coords="147,581,310,607"/>
+<area shape="rect" id="node19" href="$classinput__stream.html" title="input_stream\&lt; dns::\lDomainName \&gt;" alt="" coords="159,632,298,673"/>
+<area shape="rect" id="node21" href="$classinput__stream.html" title="input_stream\&lt; dns::\lPacket \&gt;" alt="" coords="159,697,298,739"/>
+<area shape="rect" id="node23" href="$classinput__stream.html" title="input_stream\&lt; ip::Control \&gt;" alt="" coords="138,763,319,790"/>
+<area shape="rect" id="node25" href="$classinput__stream.html" title="input_stream\&lt; ip::Datagram \&gt;" alt="" coords="131,814,327,841"/>
+<area shape="rect" id="node27" href="$classinput__stream.html" title="input_stream\&lt; link\l::Control \&gt;" alt="" coords="164,865,293,907"/>
+<area shape="rect" id="node29" href="$classinput__stream.html" title="input_stream\&lt; link\l::Frame \&gt;" alt="" coords="164,931,293,972"/>
+<area shape="rect" id="node31" href="$classinput__stream.html" title="input_stream\&lt; udp::\lControl \&gt;" alt="" coords="159,996,298,1037"/>
+<area shape="rect" id="node33" href="$classinput__stream.html" title="input_stream\&lt; udp::\lSegment \&gt;" alt="" coords="159,1061,298,1103"/>
+<area shape="rect" id="node35" href="$classmultiplexer.html" title="Template meta model of a multiplexer that receives a MSG in one of the inputs port and returns a mess..." alt="" coords="159,1127,298,1154"/>
+<area shape="rect" id="node36" href="$classmultiplexer.html" title="multiplexer\&lt; link::\lFrame \&gt;" alt="" coords="166,1179,291,1220"/>
+<area shape="rect" id="node38" href="$classoutput__stream.html" title="Template meta model of an output_stream model. Once instanciated, this model is initialized with a fi..." alt="" coords="146,1245,311,1271"/>
+<area shape="rect" id="node39" href="$classoutput__stream.html" title="output_stream\&lt; dns\l::DomainName \&gt;" alt="" coords="159,1296,298,1337"/>
+<area shape="rect" id="node41" href="$classoutput__stream.html" title="output_stream\&lt; dns\l::Packet \&gt;" alt="" coords="159,1361,298,1403"/>
+<area shape="rect" id="node43" href="$classoutput__stream.html" title="output_stream\&lt; ip::\lDatagram \&gt;" alt="" coords="161,1427,296,1468"/>
+<area shape="rect" id="node45" href="$classoutput__stream.html" title="output_stream\&lt; link\l::Control \&gt;" alt="" coords="160,1492,297,1533"/>
+<area shape="rect" id="node47" href="$classoutput__stream.html" title="output_stream\&lt; link\l::Frame \&gt;" alt="" coords="160,1557,297,1599"/>
+<area shape="rect" id="node49" href="$classoutput__stream.html" title="output_stream\&lt; udp\l::Control \&gt;" alt="" coords="159,1623,298,1664"/>
+<area shape="rect" id="node51" href="$classoutput__stream.html" title="output_stream\&lt; udp\l::Segment \&gt;" alt="" coords="159,1688,298,1729"/>
+<area shape="rect" id="node53" href="$classProtocol.html" title="This class is a meta model that implements all the common behavior of a network devise protocol from ..." alt="" coords="137,1753,320,1809"/>
+<area shape="rect" id="node54" href="$classProtocol.html" title="Protocol\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="131,1833,326,1889"/>
+<area shape="rect" id="node56" href="$classProtocol.html" title="Protocol\&lt; dns::Packet,\l udp::Control, udp::Segment,\l ip::Control \&gt;" alt="" coords="133,1913,324,1969"/>
+<area shape="rect" id="node58" href="$classProtocol.html" title="Protocol\&lt; int, int,\l message::Multiplexed\l\&lt; link::Frame \&gt;, int \&gt;" alt="" coords="152,1993,305,2049"/>
+<area shape="rect" id="node60" href="$classProtocol.html" title="Protocol\&lt; ip::Datagram,\l link::Control, link::\lFrame, int \&gt;" alt="" coords="148,2073,309,2129"/>
+<area shape="rect" id="node62" href="$classProtocol.html" title="Protocol\&lt; udp::Segment,\l ip::Control, ip::Datagram,\l link::Control \&gt;" alt="" coords="142,2153,315,2209"/>
+<area shape="rect" id="node4" href="$classdemux__dn__int.html" title="A specialization of the DDemultiplexer template model to demultiplex message::Multiplexed&lt;dns::Domain..." alt="" coords="398,78,501,105"/>
+<area shape="rect" id="node6" href="$classdemux__packet__ctrl.html" title="A specialization of the DDemultiplexer template model to demultiplex message::Multiplexed&lt;dns::Packet..." alt="" coords="383,143,515,170"/>
+<area shape="rect" id="node8" href="$classdemux__datagram__ctrl.html" title="A specialization of the DDemultiplexer template model to demultiplex message::Multiplexed&lt;ip::Datagra..." alt="" coords="376,209,523,235"/>
+<area shape="rect" id="node10" href="$classdemux__frame__int.html" title="A specialization of the DDemultiplexer template model to demultiplex message::Multiplexed&lt;link::Frame..." alt="" coords="388,274,511,301"/>
+<area shape="rect" id="node12" href="$classdemux__segment__ctrl.html" title="A specialization of the DDemultiplexer template model to demultiplex message::Multiplexed&lt;udp::Segmen..." alt="" coords="378,339,521,366"/>
+<area shape="rect" id="node15" href="$classdemultiplexer__ip__link.html" title="A specialization of the demultiplexer template model to demultiplex message::Multiplexed&lt;link::Contro..." alt="" coords="378,457,521,483"/>
+<area shape="rect" id="node17" href="$classdemultiplexer__switch.html" title="A specialization of the demultiplexer template model to demultiplex message::Multiplexed&lt;link::Frame&gt;..." alt="" coords="377,522,521,549"/>
+<area shape="rect" id="node20" href="$classdomain__name__source.html" title="A specialization of input_stream template model to generate input of type dns::DomainName from a file..." alt="" coords="375,639,524,666"/>
+<area shape="rect" id="node22" href="$classdns__packet__src.html" title="A specialization of input_stream template model to generate input of type dns::Packet from a file..." alt="" coords="392,705,507,731"/>
+<area shape="rect" id="node24" href="$classip__control__src.html" title="A specialization of input_stream template model to generate input of type ip::Control from a file..." alt="" coords="398,763,501,790"/>
+<area shape="rect" id="node26" href="$classip__datagram__src.html" title="A specialization of input_stream template model to generate input of type ip::Datagram from a file..." alt="" coords="390,814,509,841"/>
+<area shape="rect" id="node28" href="$classlink__control__src.html" title="A specialization of input_stream template model to generate input of type link::Control from a file..." alt="" coords="393,873,506,899"/>
+<area shape="rect" id="node30" href="$classlink__frame__src.html" title="A specialization of input_stream template model to generate input of type link::Frame from a file..." alt="" coords="396,938,503,965"/>
+<area shape="rect" id="node32" href="$classudp__control__src.html" title="A specialization of input_stream template model to generate input of type udp::Control from a file..." alt="" coords="392,1003,507,1030"/>
+<area shape="rect" id="node34" href="$classudp__segment__src.html" title="A specialization of input_stream template model to generate input of type udp::Segment from a file..." alt="" coords="387,1069,512,1095"/>
+<area shape="rect" id="node37" href="$classmultiplexer__switch.html" title="multiplexer_switch" alt="" coords="384,1186,515,1213"/>
+<area shape="rect" id="node40" href="$classdomain__name__sink.html" title="A specialization of output_stream template model to write in a file output messages of type dns::Doma..." alt="" coords="382,1303,517,1330"/>
+<area shape="rect" id="node42" href="$classdns__packet__sink.html" title="A specialization of output_stream template model to write in a file output messages of type dns::Pack..." alt="" coords="389,1369,509,1395"/>
+<area shape="rect" id="node44" href="$classip__datagram__sink.html" title="A specialization of output_stream template model to write in a file output messages of type ip::Datag..." alt="" coords="387,1434,511,1461"/>
+<area shape="rect" id="node46" href="$classlink__control__sink.html" title="A specialization of output_stream template model to write in a file output messages of type link::Con..." alt="" coords="390,1499,509,1526"/>
+<area shape="rect" id="node48" href="$classlink__frame__sink.html" title="A specialization of output_stream template model to write in a file output messages of type link::Fra..." alt="" coords="393,1565,506,1591"/>
+<area shape="rect" id="node50" href="$classudp__control__sink.html" title="A specialization of output_stream template model to write in a file output messages of type udp::Cont..." alt="" coords="389,1630,509,1657"/>
+<area shape="rect" id="node52" href="$classudp__segment__sink.html" title="A specialization of output_stream template model to write in a file output messages of type udp::Segm..." alt="" coords="384,1695,515,1722"/>
+<area shape="rect" id="node55" href="$classdns__server.html" title="dns_server" alt="" coords="406,1847,493,1874"/>
+<area shape="rect" id="node57" href="$classudp__protocol.html" title="udp_protocol" alt="" coords="401,1927,497,1954"/>
+<area shape="rect" id="node59" href="$classswitch__protocol.html" title="switch_protocol" alt="" coords="393,2007,506,2034"/>
+<area shape="rect" id="node61" href="$classlink__protocol.html" title="link_protocol" alt="" coords="402,2087,497,2114"/>
+<area shape="rect" id="node63" href="$classip__protocol.html" title="ip_protocol" alt="" coords="407,2167,492,2194"/>
+<area shape="rect" id="node64" href="$classip__host__protocol.html" title="ip_host_protocol" alt="" coords="576,2142,693,2169"/>
+<area shape="rect" id="node65" href="$classip__router__protocol.html" title="ip_router_protocol" alt="" coords="572,2193,697,2219"/>
 </map>

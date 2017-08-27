@@ -107,23 +107,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac166e11137e5addc2f81b672c9b55c4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#ac166e11137e5addc2f81b672c9b55c4d">queue</a> ()</td></tr>
-<tr class="memdesc:ac166e11137e5addc2f81b672c9b55c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor that does no specifies port number.  <a href="#ac166e11137e5addc2f81b672c9b55c4d">More...</a><br /></td></tr>
+<tr class="memdesc:ac166e11137e5addc2f81b672c9b55c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor that does no specifies neither port nor interface numbers.  <a href="#ac166e11137e5addc2f81b672c9b55c4d">More...</a><br /></td></tr>
 <tr class="separator:ac166e11137e5addc2f81b672c9b55c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d303f8450ddfc4f1cffd80e94e25f0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a6d303f8450ddfc4f1cffd80e94e25f0a">queue</a> (ushort other_default_port)</td></tr>
 <tr class="memdesc:a6d303f8450ddfc4f1cffd80e94e25f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with port number.  <a href="#a6d303f8450ddfc4f1cffd80e94e25f0a">More...</a><br /></td></tr>
 <tr class="separator:a6d303f8450ddfc4f1cffd80e94e25f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4afb64536817a390af8348866136822"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#ab4afb64536817a390af8348866136822">push</a> (const MSG &amp;m, int port)</td></tr>
-<tr class="memdesc:ab4afb64536817a390af8348866136822"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new message at the end of the queue seting a specific port to send the message when poped.  <a href="#ab4afb64536817a390af8348866136822">More...</a><br /></td></tr>
-<tr class="separator:ab4afb64536817a390af8348866136822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6672a6c6f964beaadf2594d0e7ca56c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a6672a6c6f964beaadf2594d0e7ca56c2">push</a> (const MSG &amp;m)</td></tr>
-<tr class="memdesc:a6672a6c6f964beaadf2594d0e7ca56c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new message at the end of the queue seting the default port to send the message when poped.  <a href="#a6672a6c6f964beaadf2594d0e7ca56c2">More...</a><br /></td></tr>
-<tr class="separator:a6672a6c6f964beaadf2594d0e7ca56c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34787cab8e5205524bbebe4343033c62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a34787cab8e5205524bbebe4343033c62">queue</a> (ushort other_default_port, ushort other_default_interface)</td></tr>
+<tr class="memdesc:a34787cab8e5205524bbebe4343033c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with port and interface number.  <a href="#a34787cab8e5205524bbebe4343033c62">More...</a><br /></td></tr>
+<tr class="separator:a34787cab8e5205524bbebe4343033c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5fbac4cdd0c3a563e3d8f8422e2cb1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b5fbac4cdd0c3a563e3d8f8422e2cb1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a6b5fbac4cdd0c3a563e3d8f8422e2cb1">clear</a> ()</td></tr>
+<tr class="memdesc:a6b5fbac4cdd0c3a563e3d8f8422e2cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes all the pushed messages from the queue. <br /></td></tr>
+<tr class="separator:a6b5fbac4cdd0c3a563e3d8f8422e2cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84717161f68aa5fee8b158afe7e9a75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#ae84717161f68aa5fee8b158afe7e9a75">set_multiplexed</a> (bool other_multiplexer)</td></tr>
+<tr class="memdesc:ae84717161f68aa5fee8b158afe7e9a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to set a new value for the multiplexed attribute used to determines if messages must be send multiplexed or not.  <a href="#ae84717161f68aa5fee8b158afe7e9a75">More...</a><br /></td></tr>
+<tr class="separator:ae84717161f68aa5fee8b158afe7e9a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a473ab65bba7f707e59710b22343a62bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a473ab65bba7f707e59710b22343a62bf">push</a> (const MSG &amp;message, ushort interface, ushort port)</td></tr>
+<tr class="memdesc:a473ab65bba7f707e59710b22343a62bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new message at the end of the queue seting a specific interface and port numbers where to send the message when poped.  <a href="#a473ab65bba7f707e59710b22343a62bf">More...</a><br /></td></tr>
+<tr class="separator:a473ab65bba7f707e59710b22343a62bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a961d33eeb52a8733669c74c18289e6bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a961d33eeb52a8733669c74c18289e6bb">push</a> (const MSG &amp;message, ushort interface)</td></tr>
+<tr class="memdesc:a961d33eeb52a8733669c74c18289e6bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new message at the end of the queue seting a specific interface and uses the default port to send the message when poped.  <a href="#a961d33eeb52a8733669c74c18289e6bb">More...</a><br /></td></tr>
+<tr class="separator:a961d33eeb52a8733669c74c18289e6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295edb53a69103cd3c6607cf40546c20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a295edb53a69103cd3c6607cf40546c20">push</a> (const MSG &amp;message)</td></tr>
+<tr class="memdesc:a295edb53a69103cd3c6607cf40546c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new message at the end of the queue seting the default interface and the default port to send the message when poped.  <a href="#a295edb53a69103cd3c6607cf40546c20">More...</a><br /></td></tr>
+<tr class="separator:a295edb53a69103cd3c6607cf40546c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ebd25ce589eca4dd4b1afde687df705"><td class="memItemLeft" align="right" valign="top">Event&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a8ebd25ce589eca4dd4b1afde687df705">pop</a> ()</td></tr>
-<tr class="memdesc:a8ebd25ce589eca4dd4b1afde687df705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the next element from the queue in FIFO order and returns the PowerDEVS Event instance to send the message from one model to another.  <a href="#a8ebd25ce589eca4dd4b1afde687df705">More...</a><br /></td></tr>
+<tr class="memdesc:a8ebd25ce589eca4dd4b1afde687df705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the next element from the queue in FIFO order and returns the PowerDEVS Event instance to send the message.  <a href="#a8ebd25ce589eca4dd4b1afde687df705">More...</a><br /></td></tr>
 <tr class="separator:a8ebd25ce589eca4dd4b1afde687df705"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05cd5f07a0ba524f1a41340b821724c5"><td class="memItemLeft" align="right" valign="top">Event&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a05cd5f07a0ba524f1a41340b821724c5">send</a> (const MSG &amp;m, int port)</td></tr>
-<tr class="memdesc:a05cd5f07a0ba524f1a41340b821724c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method does not push the message in the queue and instead it directly generates a PowerDEVS Event instance with a pointer to the message asociated with the port number passed as parameter.  <a href="#a05cd5f07a0ba524f1a41340b821724c5">More...</a><br /></td></tr>
-<tr class="separator:a05cd5f07a0ba524f1a41340b821724c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fb6a671faf783c7bd13caa69451ca84"><td class="memItemLeft" align="right" valign="top">Event&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a5fb6a671faf783c7bd13caa69451ca84">send</a> (const MSG &amp;message, ushort port)</td></tr>
+<tr class="memdesc:a5fb6a671faf783c7bd13caa69451ca84"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method does not push the message in the queue and instead it directly generates a PowerDEVS Event instance with a pointer to the message asociated with the port number passed as parameter and the and the default_interface.  <a href="#a5fb6a671faf783c7bd13caa69451ca84">More...</a><br /></td></tr>
+<tr class="separator:a5fb6a671faf783c7bd13caa69451ca84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95abcec7e979fbc1233204c5d87865b1"><td class="memItemLeft" align="right" valign="top">Event&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#a95abcec7e979fbc1233204c5d87865b1">send</a> (const MSG &amp;message, ushort interface, ushort port)</td></tr>
+<tr class="memdesc:a95abcec7e979fbc1233204c5d87865b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method does not push the message in the queue and instead it directly generates a PowerDEVS Event instance with a pointer to the message asociated with the port and interface numbers passed as parameter.  <a href="#a95abcec7e979fbc1233204c5d87865b1">More...</a><br /></td></tr>
+<tr class="separator:a95abcec7e979fbc1233204c5d87865b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab03011f8c323c553b3f8b6d5c84ae9db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1queue.html#ab03011f8c323c553b3f8b6d5c84ae9db">empty</a> ()</td></tr>
 <tr class="memdesc:ab03011f8c323c553b3f8b6d5c84ae9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the <a class="el" href="classmessage_1_1queue.html" title="Implement a queue to output messages through ports in PowerDEVS models. ">message::queue</a> is empty or not.  <a href="#ab03011f8c323c553b3f8b6d5c84ae9db">More...</a><br /></td></tr>
 <tr class="separator:ab03011f8c323c553b3f8b6d5c84ae9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,7 +151,7 @@ struct message::queue&lt; MSG &gt;</h3>
 <p>Implement a queue to output messages through ports in PowerDEVS models. </p>
 <dl class="section author"><dt>Author</dt><dd>Laouen Louan Mayal Belloli </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>14 May 2017</dd></dl>
-<p>Each instance of a queue is asociated with a port number and every message that is pushed into the queue will be sent through that port if no output port is explicitated in the push method. This queue handles the void * requested by the PowerDEVS keeping the pointed object alive until the next pop is done and the message was already delivered to the corresponding model or models. <a class="el" href="classmessage_1_1queue.html" title="Implement a queue to output messages through ports in PowerDEVS models. ">message::queue</a> allows to push multiple messages to be send and send them one by one using the pop method that returns a PowerDEVS valid Event instance ready to be sent in the lambda function with the next message in the queue and the port set in it.</p>
+<p>Each instance of a queue is asociated with a port and interface number and every message that is pushed into the queue will be sent through that port if no output port is explicitated in the push method. If the multiplexed attribute is true, then the message is send as multiplexed using the interface number. This queue handles the void * requested by the PowerDEVS keeping the pointed object alive until the next pop is done and the message was already delivered to the corresponding model or models. <a class="el" href="classmessage_1_1queue.html" title="Implement a queue to output messages through ports in PowerDEVS models. ">message::queue</a> allows to push multiple messages to be send and send them one by one using the pop method that returns a PowerDEVS valid Event instance ready to be sent in the lambda function with the next message in the queue and the port set in it.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">MSG</td><td>Data type of the messages that will output the queue </td></tr>
@@ -166,8 +182,8 @@ template&lt;typename MSG&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Default constructor that does no specifies port number. </p>
-<p>If this constructor is used and the port number is never specified, each push must be done passing the port as the second parameter, otherwise the port number is unknow and the model fails in runtime. </p>
+<p>Default constructor that does no specifies neither port nor interface numbers. </p>
+<p>defaul values are: port = 0. interface = 0; multiplexed = true. </p>
 
 </div>
 </div>
@@ -196,10 +212,56 @@ template&lt;typename MSG&gt; </div>
 </div><div class="memdoc">
 
 <p>Constructor with port number. </p>
-<p>This constructor initialize a new <a class="el" href="classmessage_1_1queue.html" title="Implement a queue to output messages through ports in PowerDEVS models. ">message::queue</a> instance with a default port number that will be used each time a message is pushed without passing a port number as parameter.</p>
+<p>This constructor initialize a new <a class="el" href="classmessage_1_1queue.html" title="Implement a queue to output messages through ports in PowerDEVS models. ">message::queue</a> instance with a default port number that will be used each time a message is pushed without passing a port number as parameter. Defaul values are: interface = 0; multiplexed = true.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other_default_port</td><td>A unsigned short that specifies the defualt port number. </td></tr>
+    <tr><td class="paramname">other_default_port</td><td>A unsigned short that specifies the default port number. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a34787cab8e5205524bbebe4343033c62"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::<a class="el" href="classmessage_1_1queue.html">queue</a> </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>other_default_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>other_default_interface</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor with port and interface number. </p>
+<p>This constructor initialize a new <a class="el" href="classmessage_1_1queue.html" title="Implement a queue to output messages through ports in PowerDEVS models. ">message::queue</a> instance with default port and interface numbers that will be used each time a message is pushed without passing any port and interface numbers as parameter. Defaul values are: multiplexed = true.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other_default_port</td><td>A unsigned short that specifies the default port number. </td></tr>
+    <tr><td class="paramname">other_default_interface</td><td>A unsigned short that specifies the default interface number. </td></tr>
   </table>
   </dd>
 </dl>
@@ -258,13 +320,13 @@ template&lt;typename MSG&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Removes the next element from the queue in FIFO order and returns the PowerDEVS Event instance to send the message from one model to another. </p>
+<p>Removes the next element from the queue in FIFO order and returns the PowerDEVS Event instance to send the message. </p>
 <p>The removed object is stored in memory until the next pop is made to ensure the void * used by the simulator does point to a valid memory place.</p>
 <dl class="section return"><dt>Returns</dt><dd>A PowerDEVS Event instance that contains the poped message asociated with the port used to push the message in the queue. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ab4afb64536817a390af8348866136822"></a>
+<a class="anchor" id="a473ab65bba7f707e59710b22343a62bf"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -277,12 +339,18 @@ template&lt;typename MSG&gt; </div>
           <td class="memname">void <a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::push </td>
           <td>(</td>
           <td class="paramtype">const MSG &amp;&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
+          <td class="paramname"><em>message</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>interface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
           <td class="paramname"><em>port</em>&#160;</td>
         </tr>
         <tr>
@@ -298,18 +366,19 @@ template&lt;typename MSG&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a new message at the end of the queue seting a specific port to send the message when poped. </p>
+<p>Adds a new message at the end of the queue seting a specific interface and port numbers where to send the message when poped. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>A MSG message to push. </td></tr>
-    <tr><td class="paramname">port</td><td>An unsigned short that specifies the port number where to send the message when poped. </td></tr>
+    <tr><td class="paramname">message</td><td>A MSG message to push. </td></tr>
+    <tr><td class="paramname">interface</td><td>An unsigned short that specifies the interface number where to multiplex the message when poped. </td></tr>
+    <tr><td class="paramname">port</td><td>An unsigned short that specifies the interfaz number where to send the message when poped. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a6672a6c6f964beaadf2594d0e7ca56c2"></a>
+<a class="anchor" id="a961d33eeb52a8733669c74c18289e6bb"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -322,7 +391,52 @@ template&lt;typename MSG&gt; </div>
           <td class="memname">void <a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::push </td>
           <td>(</td>
           <td class="paramtype">const MSG &amp;&#160;</td>
-          <td class="paramname"><em>m</em></td><td>)</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>interface</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a new message at the end of the queue seting a specific interface and uses the default port to send the message when poped. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>A MSG message to push. </td></tr>
+    <tr><td class="paramname">interface</td><td>An unsigned short that specifies the interfaz number where to multiplex the message when poped. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a295edb53a69103cd3c6607cf40546c20"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">const MSG &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -333,17 +447,17 @@ template&lt;typename MSG&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a new message at the end of the queue seting the default port to send the message when poped. </p>
+<p>Adds a new message at the end of the queue seting the default interface and the default port to send the message when poped. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>A MSG message to push. </td></tr>
+    <tr><td class="paramname">message</td><td>A MSG message to push. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a05cd5f07a0ba524f1a41340b821724c5"></a>
+<a class="anchor" id="a5fb6a671faf783c7bd13caa69451ca84"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -356,12 +470,12 @@ template&lt;typename MSG&gt; </div>
           <td class="memname">Event <a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::send </td>
           <td>(</td>
           <td class="paramtype">const MSG &amp;&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
+          <td class="paramname"><em>message</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">ushort&#160;</td>
           <td class="paramname"><em>port</em>&#160;</td>
         </tr>
         <tr>
@@ -377,14 +491,109 @@ template&lt;typename MSG&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>This method does not push the message in the queue and instead it directly generates a PowerDEVS Event instance with a pointer to the message asociated with the port number passed as parameter. </p>
-<p>This metod behave as a pop where the poped message is the one passed as parameter, the message pointer is handled in the same way a poped a message pointer is handled. This method can be used to avoid the message be pushed if the one is a priority over all pushed mesasges.</p>
+<p>This method does not push the message in the queue and instead it directly generates a PowerDEVS Event instance with a pointer to the message asociated with the port number passed as parameter and the and the default_interface. </p>
+<p>This metod behave as a pop where the poped message is the one passed as parameter, the message pointer is handled in the same way a poped message pointer is handled. This method can be used to avoid the message be pushed if the one is a priority over all pushed mesasges.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>A MSG to be send. </td></tr>
+    <tr><td class="paramname">port</td><td>A unsigned short that indicates the port where to send the message. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>A PowerDEVS Event instance that contains the message asociated with the port number passed as parameter. </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a95abcec7e979fbc1233204c5d87865b1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Event <a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::send </td>
+          <td>(</td>
+          <td class="paramtype">const MSG &amp;&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>interface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method does not push the message in the queue and instead it directly generates a PowerDEVS Event instance with a pointer to the message asociated with the port and interface numbers passed as parameter. </p>
+<p>This metod behave as a pop where the poped message is the one passed as parameter, the message pointer is handled in the same way a poped message pointer is handled. This method can be used to avoid the message be pushed if the one is a priority over all pushed mesasges.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>A MSG to be send. </td></tr>
+    <tr><td class="paramname">interface</td><td>A unsigned short that indicates the interface to multiplex the message. </td></tr>
+    <tr><td class="paramname">port</td><td>A unsigned short that indicates the port where to send the message. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A PowerDEVS Event instance that contains the message asociated with the port number passed as parameter. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae84717161f68aa5fee8b158afe7e9a75"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MSG&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmessage_1_1queue.html">message::queue</a>&lt; MSG &gt;::set_multiplexed </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>other_multiplexer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interface to set a new value for the multiplexed attribute used to determines if messages must be send multiplexed or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other_multiplexer</td><td>A boolean that will be set as the new multiplexed attribute value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/lao/Documents/git/NetworkDEVS/libs/<a class="el" href="message__queue_8h_source.html">message_queue.h</a></li>
+<li>/home/lao/powerdevs/atomics/NetworkDEVS/libs/<a class="el" href="message__queue_8h_source.html">message_queue.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

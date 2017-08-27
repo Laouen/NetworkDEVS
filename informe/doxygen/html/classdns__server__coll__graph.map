@@ -1,7 +1,7 @@
 <map id="dns_server" name="dns_server">
-<area shape="rect" id="node2" href="$classLayer.html" title="Layer\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="2561,355,2740,411"/>
+<area shape="rect" id="node2" href="$classProtocol.html" title="Protocol\&lt; dns::DomainName,\l int, dns::Packet, udp\l::Control, dns::Packet \&gt;" alt="" coords="2561,355,2756,411"/>
 <area shape="rect" id="node6" href="$structdns_1_1Packet.html" title="This struct represent a dns::Packet, it has a dns::Header that indicates how many dns::resourceRecord..." alt="" coords="1564,253,1656,280"/>
-<area shape="rect" id="node17" href="$structudp_1_1Control.html" title="udp::Control" alt="" coords="1857,365,1951,392"/>
+<area shape="rect" id="node17" href="$structudp_1_1Control.html" title="This structures handles the control comunication between the application layer and the UDP Protocol..." alt="" coords="1857,365,1951,392"/>
 <area shape="rect" id="node7" href="$structdns_1_1Header.html" title="Structure that implements a dns::Packet header. " alt="" coords="1303,259,1396,285"/>
 <area shape="rect" id="node8" href="$structabstract_1_1Header.html" title="Represent an abstract header structure for any kind of network data. " alt="" coords="870,259,989,285"/>
 <area shape="rect" id="node10" href="$structdns_1_1ResourceRecord.html" title="This structs represent a ResourceRecord that contains information of a query or answer of a dns::doma..." alt="" coords="855,184,1004,211"/>

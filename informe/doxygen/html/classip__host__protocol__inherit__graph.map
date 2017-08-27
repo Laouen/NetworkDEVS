@@ -1,4 +1,4 @@
 <map id="ip_host_protocol" name="ip_host_protocol">
-<area shape="rect" id="node2" href="$classip__protocol.html" title="ip_protocol" alt="" coords="368,42,453,69"/>
-<area shape="rect" id="node3" href="$classLayer.html" title="Layer\&lt; udp::Segment,\l ip::Control, ip::Datagram,\l link::Control, udp::Segment,\l ip::Control, ip::Datagram,\l message::Multiplexed\&lt; link\l::Control \&gt; \&gt;" alt="" coords="131,5,320,105"/>
+<area shape="rect" id="node2" href="$classip__protocol.html" title="ip_protocol" alt="" coords="49,184,135,211"/>
+<area shape="rect" id="node3" href="$classProtocol.html" title="Protocol\&lt; udp::Segment,\l ip::Control, ip::Datagram,\l link::Control \&gt;" alt="" coords="5,80,179,136"/>
 </map>
