@@ -31,5 +31,9 @@ In order to get the case stady that comes in this project working, the next step
 * The simulation input is in the scenario/input folder
 * The logger output will be in powerdevs/output/pdevs.log
 
+## How to compile and run the unit tests
+In order to compile the unit test, the same steps as the scenario should be made.
+All the tests files are in the folder test/<case>.pdm and only must be opened with PowerDEVS, compiled and ran
+
 ## Documentation
 This projects comes with HTML Doxygen documentation, to open the main page just open NetworkDEVS/doxygen/html/index.html in a web browser.
