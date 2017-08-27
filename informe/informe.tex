@@ -33,14 +33,14 @@
 
 \usepackage{verbatim}
 
-\begin{document}
+\begin{document}	
 
-\titulo{NetworkDEVS}
-\subtitulo{Una herramienta de estudio para modelar redes usando DEVS y PowerDEVS}
+\titulo{Trabajo Práctico Final}
+\subtitulo{NetworkDEVS: Una herramienta de simulación para la enseñanza de redes de datos}
 
 \fecha{\today}
 
-\materia{Teoría de las telecomunicaciones}
+\materia{Teoría de las Comunicaciones}
 
 \integrante{Belloli, Laouen Mayal Louan}{134/11}{laouen.belloli@gmail.com}
 
@@ -51,11 +51,11 @@
 
 \section{Introducción y Motivación}
 
-El presente trabajo introduce un modelo DEVS de una red funcionando bajo el protocolo UDP/IP encuadrando lo mejor posible cada uno de sus módulos en su correspondiente capa respecto al modelo OSI presentado en la literatura oficial de la materia de teoría de la telecomunicaciones \cite{peterson2011computer}. El trabajo fue desarrollado en el simulador PowerDEVS y pensado como herramienta de estudio para futuros alumnos de la materia. \\
+El presente trabajo introduce un modelo DEVS de una red funcionando bajo el protocolo UDP/IP encuadrando lo mejor posible cada uno de sus módulos en su correspondiente capa respecto al modelo OSI presentado en la literatura oficial de la materia de teoría de la comunicaciones \cite{peterson2011computer}. El trabajo fue desarrollado en el simulador PowerDEVS y pensado como herramienta de estudio para futuros alumnos de la materia. \\
 
-Además del modelo, este trabajo aporta un framework que permite programar y modificar los protocolos de una red de telecomunicaciones para luego simular su comportamiento y obtener feedback instantáneo de los resultados. También, usando el simulador PowerDEVS, se consigue brindar una interfaz gráfica intuitiva que mapea de forma directa los dispositivos de la red con los módulos del modelo. Esta interfaz gráfica permite crear distintos escenarios topológicos sin tener que tocar ni una linea de código. \\
+Además del modelo, este trabajo aporta un framework que permite programar y modificar los protocolos de una red de comunicaciones para luego simular su comportamiento y obtener feedback instantáneo de los resultados. También, usando el simulador PowerDEVS, se consigue brindar una interfaz gráfica intuitiva que mapea de forma directa los dispositivos de la red con los módulos del modelo. Esta interfaz gráfica permite crear distintos escenarios topológicos sin tener que tocar ni una linea de código. \\
 
-Por otro lado, esta interfaz gráfica permite modularizar de forma explícita las distintas capas del modelo y sus interacciones. De esta forma, se programa cada protocolo en su capa correspondiente, esto no es menor, ya que si bien, teóricamente, los distintos protocolos están separados en capas y las redes pueden ser pensadas así, en la realidad, estas capas no existen de forma explicita y hay un salto entre las teorías de redes y los modelos en capas respecto de sus distintas implementaciones prácticas. Este modelo, permite a los alumnos hacer trabajos prácticos implementando los protocolos y manteniendo explicitas estas capas, por ende, permite acercar la teoría y la práctica de las redes de telecomunicaciones. \\
+Por otro lado, esta interfaz gráfica permite modularizar de forma explícita las distintas capas del modelo y sus interacciones. De esta forma, se programa cada protocolo en su capa correspondiente, esto no es menor, ya que si bien, teóricamente, los distintos protocolos están separados en capas y las redes pueden ser pensadas así, en la realidad, estas capas no existen de forma explicita y hay un salto entre las teorías de redes y los modelos en capas respecto de sus distintas implementaciones prácticas. Este modelo, permite a los alumnos hacer trabajos prácticos implementando los protocolos y manteniendo explicitas estas capas, por ende, permite acercar la teoría y la práctica de las redes de comunicaciones. \\
 
 Si bien, el modelo realizado es un modelo DEVS (Discrete EVent System Specification), el mismo fue pensado para que no sea necesario más que una breve introducción al formalismo, por lo que mismo personas sin ninguna experiencia en DEVS deberían ser capases de poder utilizar el simulador, el modelo y el framework general propuesto en este trabajo. De todas formas, una explicación detallada sobre DEVS y PowerDEVS puede ser encontrada en \cite{bergero2011powerdevs}, un documento donde los autores de PowerDEVS explican con detalles, el formalismo DEVS y el simulador PowerDEVS. \\
 
@@ -64,7 +64,7 @@ Si bien, el modelo realizado es un modelo DEVS (Discrete EVent System Specificat
 Los objetivos de este trabajo se pueden dividir en varias partes:
 \subsection{Desarrollar un framework para modelos de redes}
 
-Como ya fue mencionado en la introducción, uno de los principales objetivos de este trabajo es desarrollar un framework, que permita fácilmente implementar protocolos de red, validarlos y experimentar con ellos mediante Simulación de Eventos Discretos (DES). Esta herramienta permite testear los protocolos implementados de forma sencilla y rápida. Obteniendo una herramienta útil, tanto para el estudio de las redes de telecomunicaciones como para la investigación en el área. 
+Como ya fue mencionado en la introducción, uno de los principales objetivos de este trabajo es desarrollar un framework, que permita fácilmente implementar protocolos de red, validarlos y experimentar con ellos mediante Simulación de Eventos Discretos (DES). Esta herramienta permite testear los protocolos implementados de forma sencilla y rápida. Obteniendo una herramienta útil, tanto para el estudio de las redes de comunicaciones como para la investigación en el área. 
 
 La creación de un modelo que sirva como framework, tiene por objetivo factorizar y estandarizar las partes comunes a todos los protocolos, estás partes comunes provienen de las propiedades inherentes a los dispositivos físicos en los cuales los protocolos están corriendo, y de los estándares actualmente utilizados que permiten obtener robustez y compatibilidad entre distintas implementaciones que puedan existir en distintas partes de una red. Estas abstracciones encapsuladas en el modelo framework presentado, permiten al modelador, concentrarse plenamente en su protocolo y permite la reutilización y compatibilidad de distintos modelos que pueden luego ser combinados en un único modelo de una red que funcione bajo distintos protocolos, permitiendo así el estudio de la compatibilidad, homogeneidad y efectividad de los protocolos implementados.
 
@@ -971,7 +971,7 @@ En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width = 1.0\textwidth]{img/png/scenario.png}
-    \caption{Escenario implementado: Las lineas azules muestran el intercambio de paquetes \textit{DNS} entre los hosts mientras que las lineas negras muestran las conexiones de la red por donde efectivamente se envían los paquetes, teniendo que pasar por múltiples switches y routers para ir de un host a otro. Los números al lado de los switches muestran el mapeo de puertos para el protocolo \textit{Datagram}.}
+    \caption{Escenario implementado: Las lineas azules numeradas muestran el intercambio de paquetes \textit{DNS} entre los hosts y el orden secuencial con el que sea realizan estos intercambios, mientras que las lineas negras muestran las conexiones de la red por donde efectivamente se envían los paquetes, teniendo que pasar por múltiples switches y routers para ir de un host a otro. Los números al lado de los switches muestran el mapeo de puertos para el protocolo \textit{Datagram}.}
     \label{figure: case study}
 \end{figure}
 
@@ -1006,6 +1006,30 @@ En este escenario, el host 2 es el servidor local para la \textit{subnet} 1, el 
     \caption{Modelo PowerDEVS de un dispositivo \textit{Switch} que cuenta con una sola capa en la cual implementa el protocolo \textit{Datagram} y \textit{SWP}. Utiliza un multiplexer y demultiplexer para saber de cuál interfaz llego el mensaje y para elegir por cual o cuales interfaces enviar el mensaje.}
     \label{figure: powerdevs switch}
 \end{figure}
+
+\section{Conclusiones}
+Si bien existen varias herramientas para la implementación de modelado y simulación de redes de comunicaciones, en este trabajo se pudo observar varias ventajas extras, algunas de ellas desde el punto de vista formal y otras desde el punto de vista educativo. Desde el punto de vista formal, se logró implementar el modelo OSI e implementar un modelo UDP/IP que funcione sobre el mismo, permitiendo modelar las formalidades de las ideas más teóricas de los protocolos de forma práctica, además, este trabajo cuenta con todos los beneficios heredados al utilizar el formalismo DEVS. Desde el punto de vista educativo, se observa la ventaja principal de poder contar con un modelo más intuitivo para la enseñanza y aprendizaje de redes que se abstrae de las dificultades técnicas existentes en herramientas de modelado más complejas pero que pueden no aportar al entendimiento de los temas. \\
+
+Personalmente, siento que en este trabajo se logró modelar a los protocolos como entidades individuales abstrayéndolos lo suficiente de los aspectos generales de las redes, lo que me permitió estudiar y comprender mejor sus interacciones y mecanismos, separar los aspectos generales de los protocolos (necesario para el buen funcionamiento del sistema) de los aspectos particulares de los mismos (necesarios para la robustez y funcionamiento particular de cada entidad del sistema) así como comprender y separar las ideas de los protocolos horizontales (cada capa se comunica con la capa del mismo nivel del otro nodo) respecto de su implementación final vertical (cada protocolo envía y recibe paquetes mediante la capa inferior). Por otro lado, implementar un modelo que se amolde lo mejor posible a la teoría pero que tenga funcionamiento práctico me permitió comprender mejor la distancia existente entre ambos mundos. Creo que estos aspectos mencionados si bien son personales, se derivan directamente de la arquitectura propuesta en este trabajo y pueden ser adquiridas por cualquier estudiante que utilice NetworkDEVS para aprender sobre los temas del área.
+
+\section{trabajo futuro}
+
+\subsection{Automatizar la implementación de los modelos acoplados Layer}
+Si bien en este trabajo se implementó la arquitectura general del framework de trabajo para modelar redes, las estructuras de los modelos acoplados de las capas y sus parámetros deben actualmente ser implementadas a mano por el modelador y requiere la realización de trabajo mecánico por parte del mismo. Esta tarea además de consumir mucho tiempo y ser tediosa, es propensa a errores del programador fácilmente evitables si el mismo fuera automatizado. Por lo que un trabajo futuro muy útil para mejorar la usabilidad de está herramienta es la implementación de un generador de estructuras acopladas donde el usuario especifique datos tales como:
+
+\begin{itemize}
+\item Ubicaciones de los archivos donde está implementado el o los protocolos de la capa.
+\item Los parámetros de los protocolos.
+\item Los ids para los demultiplexers.
+\end{itemize}
+
+\subsection{Generador automático de topologías}
+De la misma forma que se puede automatizar la creación de los modelos capas, también se puede automatizar la creación de distintas topología. Ya existe una herramienta para la creación de topologías integradas a PowerDEVS \cite{laurito2017topogen}, solo es necesario integrar a esa herramienta la arquitectura de NetworkDEVS.
+
+\subsection{Mejoras al modelo del caso de estudio}
+\begin{itemize}
+\item Como ya fue mencionado anteriormente, en el modelo implementado en este trabajo no se implementó ningún protocolo dinámico para el llenado de las distintas tablas utilizadas (routing table, forwarding table, etc.), sería muy interesante implementar estos protocolos para poder tener un caso de estudió más completo del funcionamiento de una red.
+\end{itemize}
 
 \newpage
 
